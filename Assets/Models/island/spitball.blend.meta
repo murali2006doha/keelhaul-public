@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: a10482246d8cc044a84f5fd7fa216b61
+timeCreated: 1456779115
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Armature_001
+    100004: Armature_002
+    100006: Armature_003
+    100008: Barrel
+    100010: Barrel_001
+    100012: Bomb
+    100014: Bone
+    100016: Bone_0
+    100018: Bone_001
+    100020: Bone_002
+    100022: Bone_003
+    100024: Bone_004
+    100026: Bone_1
+    100028: Bone_10
+    100030: Bone_11
+    100032: Bone_12
+    100034: Bone_2
+    100036: Bone_3
+    100038: Bone_4
+    100040: Bone_5
+    100042: Bone_6
+    100044: Bone_7
+    100046: Bone_8
+    100048: Bone_9
+    100050: Cannonball
+    100052: Cylinder
+    100054: Cylinder_001
+    100056: Cylinder_002
+    100058: Cylinder_003
+    100060: Cylinder_004
+    100062: Cylinder_005
+    100064: Field_002
+    100066: Flag
+    100068: Flag_002
+    100070: Island_subsurf
+    100072: Island_subsurf_002
+    100074: Plane_000
+    100076: Plane_001
+    100078: Plane_002
+    100080: Sphere_000
+    100082: Sphere_001
+    100084: Sphere_003
+    100086: //RootNode
+    100088: Trees
+    100090: Trees_002
+    400000: Armature
+    400002: Armature_001
+    400004: Armature_002
+    400006: Armature_003
+    400008: Barrel
+    400010: Barrel_001
+    400012: Bomb
+    400014: Bone
+    400016: Bone_0
+    400018: Bone_001
+    400020: Bone_002
+    400022: Bone_003
+    400024: Bone_004
+    400026: Bone_1
+    400028: Bone_10
+    400030: Bone_11
+    400032: Bone_12
+    400034: Bone_2
+    400036: Bone_3
+    400038: Bone_4
+    400040: Bone_5
+    400042: Bone_6
+    400044: Bone_7
+    400046: Bone_8
+    400048: Bone_9
+    400050: Cannonball
+    400052: Cylinder
+    400054: Cylinder_001
+    400056: Cylinder_002
+    400058: Cylinder_003
+    400060: Cylinder_004
+    400062: Cylinder_005
+    400064: Field_002
+    400066: Flag
+    400068: Flag_002
+    400070: Island_subsurf
+    400072: Island_subsurf_002
+    400074: Plane_000
+    400076: Plane_001
+    400078: Plane_002
+    400080: Sphere_000
+    400082: Sphere_001
+    400084: Sphere_003
+    400086: //RootNode
+    400088: Trees
+    400090: Trees_002
+    2300000: Barrel
+    2300002: Barrel_001
+    2300004: Bomb
+    2300006: Cannonball
+    2300008: Cylinder
+    2300010: Cylinder_001
+    2300012: Flag
+    2300014: Flag_002
+    2300016: Island_subsurf
+    2300018: Island_subsurf_002
+    2300020: Plane_000
+    2300022: Plane_001
+    2300024: Plane_002
+    2300026: Sphere_000
+    2300028: Sphere_001
+    2300030: Sphere_003
+    2300032: Trees
+    2300034: Trees_002
+    3300000: Barrel
+    3300002: Barrel_001
+    3300004: Bomb
+    3300006: Cannonball
+    3300008: Cylinder
+    3300010: Cylinder_001
+    3300012: Flag
+    3300014: Flag_002
+    3300016: Island_subsurf
+    3300018: Island_subsurf_002
+    3300020: Plane_000
+    3300022: Plane_001
+    3300024: Plane_002
+    3300026: Sphere_000
+    3300028: Sphere_001
+    3300030: Sphere_003
+    3300032: Trees
+    3300034: Trees_002
+    4300000: Plane_001
+    4300002: Cylinder_003
+    4300004: Cylinder_005
+    4300006: Cylinder_004
+    4300008: Cylinder_002
+    4300010: Plane_000
+    4300012: Sphere_000
+    4300014: Sphere_003
+    4300016: Cylinder_001
+    4300018: Sphere_001
+    4300020: Cylinder
+    4300022: Plane_002
+    4300024: Trees_002
+    4300026: Island_subsurf_002
+    4300028: Barrel_001
+    4300030: Flag_002
+    4300032: Flag
+    4300034: Trees
+    4300036: Island_subsurf
+    4300038: Cannonball
+    4300040: Bomb
+    4300042: Barrel
+    7400000: Default Take
+    9500000: //RootNode
+    13700000: Cylinder_002
+    13700002: Cylinder_003
+    13700004: Cylinder_004
+    13700006: Cylinder_005
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

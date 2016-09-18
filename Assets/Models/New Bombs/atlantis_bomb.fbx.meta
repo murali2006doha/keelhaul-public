@@ -1,0 +1,107 @@
+fileFormatVersion: 2
+guid: 888c5e3955b444005b35c0037316e076
+timeCreated: 1474063991
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bone
+    100004: Cube
+    400000: //RootNode
+    400002: Bone
+    400004: Cube
+    2300000: Cube
+    3300000: Cube
+    4300000: Cube
+    7400000: Armature.001|Armature.002|Armature.001|Armature.002|Armature.001|atlantis_bo
+    7400002: Armature.001|Armature.002|Armature.001|Armature.002|Armature.001|rowboat.000
+    7400004: Armature.001|Armature.002|Armature.001|Armature.002|Armature.001|rowboat_bom
+    7400006: Armature.001|Armature.002|Armature.001|Armature.003|Armature|atlantis_bomb_f
+    7400008: Armature.001|Armature.002|Armature.001|Armature.003|Armature|rowboat_bomb_ex
+    7400010: Armature.001|Armature.002|Armature.001|Armature.003|Armature|rowboat_bomb_fl
+    7400012: Armature.001|Armature.002|Armature.001|atlantis_bomb_float|Armature.001|.000
+    7400014: Armature.001|Armature.002|Armature.001|atlantis_bomb_float|Armature.001|atla
+    7400016: Armature.001|Armature.002|Armature.001|cannon_dash|Armature.001|cannon_dash
+    7400018: Armature.001|Armature.002|Armature.001|cannon_idle|Armature.001|cannon_idle
+    7400020: Armature.001|Armature.002|Armature.001|cannon_sink|Armature.001|cannon_sink
+    7400022: Armature.001|Armature.002|Armature.001|cannon_spawn|Armature.001|cannon_spaw
+    7400024: Armature.001|Armature.002|Armature.001|rowboat_bomb_explode|Armature.001.000
+    7400026: Armature.001|Armature.002|Armature.001|rowboat_bomb_explode|Armature.001|row
+    7400028: Armature.001|Armature.002|Armature.001|rowboat_bomb_float|Armature.001|r.000
+    7400030: Armature.001|Armature.002|Armature.001|rowboat_bomb_float|Armature.001|rowbo
+    7400032: Armature.001|Armature.002|Armature.001|Sphere.001|Sphere.002|rowboat_bomb_fl
+    7400034: Armature.001|Armature.003|Armature|atlantis_bomb_float|Armature|atlantis_bom
+    7400036: Armature.001|Armature.003|Armature|rowboat_bomb_explode|Armature|rowboat_bom
+    7400038: Armature.001|Armature.003|Armature|rowboat_bomb_float|Armature|rowboat_bomb_
+    7400040: Armature.001|atlantis_bomb_float
+    7400042: Armature.001|rowboat_bomb_explode
+    7400044: Armature.001|rowboat_bomb_float
+    7400046: Armature.001|Sphere.001|Sphere.002|rowboat_bomb_float|Sphere.002|rowboat_bom
+    7400048: Cube|rowboat_bomb_explode
+    7400050: Cube|Sphere.001|Sphere.002|rowboat_bomb_float|Sphere.002|rowboat_bom
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

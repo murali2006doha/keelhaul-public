@@ -1,0 +1,342 @@
+diff --git a/Assets/Models/common_mats.meta b/Assets/Models/common_mats.meta
+new file mode 100644
+index 0000000..5518cdc
+--- /dev/null
++++ b/Assets/Models/common_mats.meta
+@@ -0,0 +1,9 @@
++fileFormatVersion: 2
++guid: 934b58ab3a847c24cb266a9d91c207dd
++folderAsset: yes
++timeCreated: 1463971239
++licenseType: Pro
++DefaultImporter:
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/Prefabs/networked_prefabs.meta b/Assets/Prefabs/networked_prefabs.meta
+new file mode 100644
+index 0000000..3846e42
+--- /dev/null
++++ b/Assets/Prefabs/networked_prefabs.meta
+@@ -0,0 +1,9 @@
++fileFormatVersion: 2
++guid: 947fea6f85dbeca4fac1efdfd3d182a0
++folderAsset: yes
++timeCreated: 1465524213
++licenseType: Free
++DefaultImporter:
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/Scenes/free for all.unity b/Assets/Scenes/free for all.unity
+index a9b8069..18cbdd6 100644
+Binary files a/Assets/Scenes/free for all.unity and b/Assets/Scenes/free for all.unity differ
+diff --git a/Assets/Shaders/Editor.meta b/Assets/Shaders/Editor.meta
+new file mode 100644
+index 0000000..a35b80f
+--- /dev/null
++++ b/Assets/Shaders/Editor.meta
+@@ -0,0 +1,9 @@
++fileFormatVersion: 2
++guid: a32093069776a0b419fda3f5c5fecacb
++folderAsset: yes
++timeCreated: 1463969723
++licenseType: Pro
++DefaultImporter:
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/Standard Assets/Effects/seagull_island.meta b/Assets/Standard Assets/Effects/seagull_island.meta
+new file mode 100644
+index 0000000..5854d09
+--- /dev/null
++++ b/Assets/Standard Assets/Effects/seagull_island.meta	
+@@ -0,0 +1,9 @@
++fileFormatVersion: 2
++guid: 359a64ad2380fc94fb0d51c7020def03
++folderAsset: yes
++timeCreated: 1458412494
++licenseType: Pro
++DefaultImporter:
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/Standard Assets/Effects/seagull_island/Materials.meta b/Assets/Standard Assets/Effects/seagull_island/Materials.meta
+new file mode 100644
+index 0000000..967c548
+--- /dev/null
++++ b/Assets/Standard Assets/Effects/seagull_island/Materials.meta	
+@@ -0,0 +1,9 @@
++fileFormatVersion: 2
++guid: e738a922ecc3c6e42a7842bbd8db2471
++folderAsset: yes
++timeCreated: 1458412494
++licenseType: Pro
++DefaultImporter:
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/barrel.cs b/Assets/barrel.cs
+new file mode 100644
+index 0000000..db6440d
+--- /dev/null
++++ b/Assets/barrel.cs
+@@ -0,0 +1,11 @@
++﻿using UnityEngine;
++using System.Collections;
++
++public class barrel : MonoBehaviour {
++	public GameObject owner;
++	// Use this for initialization
++	void Start () {
++	
++	}
++
++}
+diff --git a/Assets/barrel.cs.meta b/Assets/barrel.cs.meta
+new file mode 100644
+index 0000000..af6e1b8
+--- /dev/null
++++ b/Assets/barrel.cs.meta
+@@ -0,0 +1,12 @@
++fileFormatVersion: 2
++guid: f077a91223a1ec645aefd73e02a1b1ca
++timeCreated: 1467932427
++licenseType: Pro
++MonoImporter:
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/scripts/Hookshot.cs b/Assets/scripts/Hookshot.cs
+index 2471347..8af133e 100644
+--- a/Assets/scripts/Hookshot.cs
++++ b/Assets/scripts/Hookshot.cs
+@@ -42,6 +42,8 @@ public class Hookshot : MonoBehaviour {
+     public Vector3 moveVector;
+     public Camera playerCam;
+ 
++	Vector3 barrel_anchor;
++
+ 	void Start () {
+ 		Vector3 inFront = new Vector3 (1f, 0f, 1f);
+ 		aim.transform.position = this.transform.position + inFront;
+@@ -109,7 +111,12 @@ public class Hookshot : MonoBehaviour {
+ 			Vector3 barrelPosition = barrel.transform.position;
+ 
+ 			if (Vector3.Distance (barrelPosition, targetPosition) > .1f) { 
+-				rb.isKinematic = true;
++				var barrelJoint = barrel.GetComponent<CharacterJoint> ();
++				if (barrelJoint != null) {
++					barrel_anchor = barrelJoint.anchor;
++					Destroy (barrelJoint);
++				}
++				//rb.isKinematic = true;
+ 				var relativePoint = transform.InverseTransformPoint (barrel.transform.position); 
+ 				//checks which side the barrel is on
+ 
+@@ -117,13 +124,13 @@ public class Hookshot : MonoBehaviour {
+ 
+ 					if (relativePoint.x < 0.0) { 
+ 						//if barrel is on the left side of ship, rotate counter clock-wise
+-						barrel.transform.RotateAround (transform.position, Vector3.down, 200 * (Time.deltaTime * GlobalVariables.gameSpeed));	
++						//barrel.transform.RotateAround (transform.position, Vector3.down, 200 * (Time.deltaTime * GlobalVariables.gameSpeed));	
+ 
+ 						MoveTowardsTarget ();
+ 
+ 					} else if (relativePoint.x > 0.0) {	
+ 						//if barrel is on the right side of ship, rotate clock-wise
+-						barrel.transform.RotateAround (transform.position, Vector3.up, 200 * (Time.deltaTime * GlobalVariables.gameSpeed));	
++						//barrel.transform.RotateAround (transform.position, Vector3.up, 200 * (Time.deltaTime * GlobalVariables.gameSpeed));	
+ 
+ 						MoveTowardsTarget ();
+ 					}
+@@ -133,7 +140,11 @@ public class Hookshot : MonoBehaviour {
+ 				rb.isKinematic = false;
+ 				reachedDestination = true;
+ 				tempReached = false;
+-				barrel.GetComponent<FixedJoint> ().connectedBody = barrel_dest.GetComponent<Rigidbody> ();
++				barrel.GetComponent<barrel> ().owner = this.gameObject;
++				barrel.AddComponent<CharacterJoint> ();
++				barrel.GetComponent<CharacterJoint> ().anchor = barrel_anchor;
++
++				barrel.GetComponent<CharacterJoint> ().connectedBody = barrel_dest.GetComponent<Rigidbody> ();
+ 
+ 			}
+ 		}
+@@ -154,7 +165,7 @@ public class Hookshot : MonoBehaviour {
+ 		//now normalize the direction, since we only want the direction information
+ 		directionOfTravel.Normalize();
+ 		//scale the movement on each axis by the directionOfTravel vector components
+-
++		//barrel.transform.position = Vector3.Lerp(barrelPosition,targetPosition,Time.deltaTime);
+ 		barrel.transform.Translate(
+ 			(directionOfTravel.x * speed * (Time.deltaTime * GlobalVariables.gameSpeed)),
+ 			(directionOfTravel.y * speed * (Time.deltaTime * GlobalVariables.gameSpeed)),
+@@ -246,9 +257,9 @@ public class Hookshot : MonoBehaviour {
+ 				rb.isKinematic = true;
+ 				newpos = hook.transform.position + Vector3.Normalize (heading) * distance;
+ 
+-				if (barrel.GetComponent<FixedJoint> ().connectedBody) {
++				if (barrel.GetComponent<barrel> ().owner) {
+ 					//If another player is already tethered to the barrel, unhook that player
+-					barrel.GetComponent<FixedJoint> ().connectedBody.transform.parent.GetComponent<Hookshot> ().UnHook ();
++					barrel.GetComponent<barrel> ().owner.transform.parent.GetComponent<Hookshot> ().UnHook ();
+ 				} else if (otherPlayer.isHooked () && otherPlayer.barrel==this.barrel) {
+ 					otherPlayer.UnHook ();
+ 				}
+@@ -284,10 +295,10 @@ public class Hookshot : MonoBehaviour {
+ 	//checks if aim reticule's collider is touching the barrel. I could put this in a new script just for the reticule, but 
+ 	//its good for now. 
+ 	public bool isHooked(){
+-		if(barrel ==null || barrel.GetComponent<FixedJoint> ()==null){
++		if(barrel ==null){
+ 			return false;
+ 		}
+-		return (barrel.GetComponent<FixedJoint> ().connectedBody == barrel_dest.GetComponent<Rigidbody> () || tempReached);
++		return (barrel.GetComponent<barrel> ().owner == this.gameObject || tempReached);
+ 
+ 	}
+ 
+@@ -319,36 +330,29 @@ public class Hookshot : MonoBehaviour {
+ 	//Basically reset hookshot variables to before the barrel was hooked
+ 	public void UnHook() {
+ 		if (barrel != null) {
+-			if (barrel.GetComponent<FixedJoint> ().connectedBody) {
+-				other = barrel.GetComponent<FixedJoint> ().connectedBody.gameObject; 
++			if (barrel.GetComponent<CharacterJoint> ()!=null && barrel.GetComponent<CharacterJoint> ().connectedBody) {
++				other = barrel.GetComponent<CharacterJoint> ().connectedBody.gameObject; 
+ 				if (other == barrel_dest) {
+-					barrel.GetComponent<FixedJoint> ().connectedBody = null;
++					barrel.GetComponent<CharacterJoint> ().connectedBody = null;
++					barrel.GetComponent<barrel> ().owner = null;
+ 				}
+-				rb.isKinematic = false;
+-				tether.enabled = false;
+-				hittingBarrel = false;
+-				reachedDestination = false;
+-				hookshotActive = false;
+-				distanceCounter = 0;
+-				tempReached = false;
+-				barrel = null;
+-				rb = null;
++
+ 				arrowController.TargetBarrel ();
+ 
+ 			} else if (isHooked ()) {
+-
+-				rb.isKinematic = false;
+-				tether.enabled = false;
+-				hittingBarrel = false;
+-				reachedDestination = false;
+-				hookshotActive = false;
+-				distanceCounter = 0;
+-				tempReached = false;
+-				barrel = null;
+-				rb = null;
++				
+ 				arrowController.TargetBarrel ();
+ 
+ 			}
++			rb.isKinematic = false;
++			tether.enabled = false;
++			hittingBarrel = false;
++			reachedDestination = false;
++			hookshotActive = false;
++			distanceCounter = 0;
++			tempReached = false;
++			barrel = null;
++			rb = null;
+ 			missedBarrel = false;
+ 		}
+ 
+diff --git a/Assets/scripts/PlayerSignIn.cs b/Assets/scripts/PlayerSignIn.cs
+index 4458610..f5b7730 100644
+--- a/Assets/scripts/PlayerSignIn.cs
++++ b/Assets/scripts/PlayerSignIn.cs
+@@ -119,7 +119,7 @@ public class PlayerSignIn : MonoBehaviour {  //copy of Game
+ 	 */
+ 	public void removeCharacter() { 
+ 		
+-
++		/*
+ 		if (player1.Actions.Red.WasPressed && player1.selected == true) { 
+ 			 
+ 			destroyCharacterFromOthers (player1, player2, player3); //, player4);
+@@ -136,7 +136,7 @@ public class PlayerSignIn : MonoBehaviour {  //copy of Game
+ 			destroyCharacterFromOthers (player3, player2, player1); //, player4);
+ 
+ 
+-		} 
++		} */
+ 		/*
+ 		if (player4.Actions.Red.WasPressed && player4.selected == true) { 
+ 
+diff --git a/Assets/scripts/gameManager.cs b/Assets/scripts/gameManager.cs
+index c75ee57..1934ce0 100644
+--- a/Assets/scripts/gameManager.cs
++++ b/Assets/scripts/gameManager.cs
+@@ -85,7 +85,7 @@ public class gameManager : MonoBehaviour {
+ 
+ 		//puts the camera in the starting positions as soon as the game starts
+ 		if (!done) {
+-			if (!countDown.gameObject.activeSelf) {
++			if (!countDown.gameObject.activeSelf && signedIn) {
+ 				cam.gameObject.SetActive (false);
+ 				countDown.SetActive (true);
+ 				screenSplitter.SetActive (true);
+@@ -95,7 +95,7 @@ public class gameManager : MonoBehaviour {
+ 				}
+ 			}
+ 
+-			if (countDown.GetComponent<CountDown> ().done) {
++			if (countDown.GetComponent<CountDown> ().done && signedIn) {
+ 				gameStart ();
+ 				done = true;
+ 				print ("gamestart");
+@@ -107,7 +107,7 @@ public class gameManager : MonoBehaviour {
+ 			k.camera.gameObject.SetActive (true);
+ 		}
+ 
+-		/*
++
+ 
+ 		if (!signedIn) {
+ 
+@@ -176,7 +176,7 @@ public class gameManager : MonoBehaviour {
+ 					pressAtoJoin.SetActive(true);
+ 				}
+ 			}
+-		}*/
++		}
+ 		demoScript ();
+ 	}
+ 
+@@ -231,16 +231,22 @@ public class gameManager : MonoBehaviour {
+ 
+ 
+ 	void teleportBarrel(GameObject barrel){
+-		Destroy (barrel.GetComponent<FixedJoint> ());
++		Vector3 anchor = new Vector3(0,0.06f,0.06f);
++		if (barrel.GetComponent<CharacterJoint> () != null) {
++			anchor = barrel.GetComponent<CharacterJoint> ().anchor;
++			Destroy (barrel.GetComponent<CharacterJoint> ());
++		}
+ 		int x = 0;
+ 		foreach (GameObject barr in barrels) {
+ 			if (barr == barrel) {
+ 				barrel.transform.position = barrels_start_pos[x];
++				barrel.transform.rotation = Quaternion.Euler(new Vector3 (-90f, 0f, 0f));
+ 				break;
+ 			}
+ 			x++;
+ 		}
+-		barrel.AddComponent<FixedJoint> ();
++		barrel.AddComponent<CharacterJoint> ();
++		barrel.GetComponent<CharacterJoint> ().anchor = anchor;
+ 
+ 	}
+ 

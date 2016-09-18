@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: 7898dfced3d1d714595e86d0148e1110
+timeCreated: 1468289369
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Armature_001
+    100004: Back_Sail_Bone
+    100006: //RootNode
+    100008: Bottom_Sail_Bone
+    100010: Cannon_Bone
+    100012: Cube
+    100014: Cube_001
+    100016: Cube_006
+    100018: Cube_037
+    100020: Cylinder_010
+    100022: Cylinder_025
+    100024: Cylinder_026
+    100026: Cylinder_027
+    100028: Cylinder_028
+    100030: Cylinder_029
+    100032: Cylinder_030
+    100034: Hull_Bone
+    100036: IMG_20160629_133524
+    100038: Main_Sail_Bone
+    100040: Top_Sail_Bone
+    400000: Armature
+    400002: Armature_001
+    400004: Back_Sail_Bone
+    400006: //RootNode
+    400008: Bottom_Sail_Bone
+    400010: Cannon_Bone
+    400012: Cube
+    400014: Cube_001
+    400016: Cube_006
+    400018: Cube_037
+    400020: Cylinder_010
+    400022: Cylinder_025
+    400024: Cylinder_026
+    400026: Cylinder_027
+    400028: Cylinder_028
+    400030: Cylinder_029
+    400032: Cylinder_030
+    400034: Hull_Bone
+    400036: IMG_20160629_133524
+    400038: Main_Sail_Bone
+    400040: Top_Sail_Bone
+    2300000: Cube_006
+    2300002: Cube_037
+    2300004: Cylinder_010
+    2300006: Cylinder_025
+    2300008: Cylinder_026
+    2300010: Cylinder_027
+    2300012: Cylinder_028
+    2300014: Cylinder_029
+    2300016: Cylinder_030
+    2300018: IMG_20160629_133524
+    3300000: Cube_006
+    3300002: Cube_037
+    3300004: Cylinder_010
+    3300006: Cylinder_025
+    3300008: Cylinder_026
+    3300010: Cylinder_027
+    3300012: Cylinder_028
+    3300014: Cylinder_029
+    3300016: Cylinder_030
+    3300018: IMG_20160629_133524
+    4300000: Cube_001
+    4300002: Cube
+    4300004: Cylinder_030
+    4300006: Cylinder_029
+    4300008: Cylinder_028
+    4300010: Cylinder_027
+    4300012: Cube_037
+    4300014: Cylinder_026
+    4300016: Cylinder_025
+    4300018: Cube_006
+    4300020: Cylinder_010
+    4300022: IMG_20160629_133524
+    7400000: Default Take
+    7400002: blackbeard_cannon_idle
+    7400004: blackbeard_cannon_sink
+    7400006: blackbeard_ship_idle
+    7400008: blackbeard_ship_sink
+    9500000: //RootNode
+    13700000: Cube
+    13700002: Cube_001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

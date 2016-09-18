@@ -1,0 +1,306 @@
+fileFormatVersion: 2
+guid: de97707745f5f1f4aa311fd6204c25b4
+timeCreated: 1472346677
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Cube
+    100004: hull
+    100006: //RootNode
+    100008: mast1
+    100010: mast2
+    100012: mast3
+    100014: sail1
+    100016: sail2
+    100018: sail3
+    400000: Armature
+    400002: Cube
+    400004: hull
+    400006: //RootNode
+    400008: mast1
+    400010: mast2
+    400012: mast3
+    400014: sail1
+    400016: sail2
+    400018: sail3
+    4300000: Cube
+    7400000: Armature|junk_dash
+    7400002: Armature|junk_idle
+    7400004: Armature|junk_sink
+    7400006: Armature|ship_respawn
+    9500000: //RootNode
+    13700000: Cube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|junk_dash
+      takeName: Armature|junk_dash
+      firstFrame: 0
+      lastFrame: 62
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hull
+        weight: 1
+      - path: Armature/mast1
+        weight: 1
+      - path: Armature/mast2
+        weight: 1
+      - path: Armature/mast3
+        weight: 1
+      - path: Armature/sail1
+        weight: 1
+      - path: Armature/sail2
+        weight: 1
+      - path: Armature/sail3
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|junk_idle
+      takeName: Armature|junk_idle
+      firstFrame: 0
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hull
+        weight: 1
+      - path: Armature/mast1
+        weight: 1
+      - path: Armature/mast2
+        weight: 1
+      - path: Armature/mast3
+        weight: 1
+      - path: Armature/sail1
+        weight: 1
+      - path: Armature/sail2
+        weight: 1
+      - path: Armature/sail3
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|junk_sink
+      takeName: Armature|junk_sink
+      firstFrame: 0
+      lastFrame: 136
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.99497783
+        functionName: onDeathAnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 389b30b51468d584d936d5d9da5bd541,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hull
+        weight: 1
+      - path: Armature/mast1
+        weight: 1
+      - path: Armature/mast2
+        weight: 1
+      - path: Armature/mast3
+        weight: 1
+      - path: Armature/sail1
+        weight: 1
+      - path: Armature/sail2
+        weight: 1
+      - path: Armature/sail3
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|ship_respawn
+      takeName: Armature|ship_respawn
+      firstFrame: 0
+      lastFrame: 379
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.9830508
+        functionName: onDeathAnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 389b30b51468d584d936d5d9da5bd541,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/hull
+        weight: 1
+      - path: Armature/mast1
+        weight: 1
+      - path: Armature/mast2
+        weight: 1
+      - path: Armature/mast3
+        weight: 1
+      - path: Armature/sail1
+        weight: 1
+      - path: Armature/sail2
+        weight: 1
+      - path: Armature/sail3
+        weight: 1
+      - path: Cube
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

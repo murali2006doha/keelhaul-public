@@ -1,0 +1,2231 @@
+fileFormatVersion: 2
+guid: 47a3b3c8e8bd866469dc0b1993a1a6c2
+timeCreated: 1473623179
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Baby Kraken
+    100004: Back Head
+    100006: Bone
+    100008: Bone.001
+    100010: Bone.002
+    100012: Bone.003
+    100014: Bone.004
+    100016: Bone.005
+    100018: Bone.011
+    100020: Bone.012
+    100022: Bone.013
+    100024: Bone.014
+    100026: Bone.016
+    100028: Bone.017
+    100030: Bone.018
+    100032: Bone.019
+    100034: Bone.021
+    100036: Bone.022
+    100038: Bone.023
+    100040: Bone.024
+    100042: Bone.030
+    100044: Bone.031
+    100046: Bone.032
+    100048: Bone.033
+    100050: Bone.035
+    100052: Bone.036
+    100054: Bone.037
+    100056: Bone.038
+    100058: Bone.040
+    100060: Bone.041
+    100062: Bone.042
+    100064: Bone.043
+    100066: buck_left2
+    100068: buck_left_1
+    100070: buck_right2
+    100072: buck_right_1
+    100074: canine_left1
+    100076: canine_left2
+    100078: canine_right1
+    100080: canine_right2
+    100082: center_left1
+    100084: center_right1
+    100086: Front Head
+    100088: front_left1
+    100090: front_right1
+    100092: IK_back_left
+    100094: IK_back_right
+    100096: IK_center_left
+    100098: IK_center_right
+    100100: IK_front_left
+    100102: IK_front_rght
+    100104: IK_rear_left
+    100106: IK_rear_right
+    100108: //RootNode
+    100110: rear_left1
+    100112: rear_right1
+    400000: Armature
+    400002: Baby Kraken
+    400004: Back Head
+    400006: Bone
+    400008: Bone.001
+    400010: Bone.002
+    400012: Bone.003
+    400014: Bone.004
+    400016: Bone.005
+    400018: Bone.011
+    400020: Bone.012
+    400022: Bone.013
+    400024: Bone.014
+    400026: Bone.016
+    400028: Bone.017
+    400030: Bone.018
+    400032: Bone.019
+    400034: Bone.021
+    400036: Bone.022
+    400038: Bone.023
+    400040: Bone.024
+    400042: Bone.030
+    400044: Bone.031
+    400046: Bone.032
+    400048: Bone.033
+    400050: Bone.035
+    400052: Bone.036
+    400054: Bone.037
+    400056: Bone.038
+    400058: Bone.040
+    400060: Bone.041
+    400062: Bone.042
+    400064: Bone.043
+    400066: buck_left2
+    400068: buck_left_1
+    400070: buck_right2
+    400072: buck_right_1
+    400074: canine_left1
+    400076: canine_left2
+    400078: canine_right1
+    400080: canine_right2
+    400082: center_left1
+    400084: center_right1
+    400086: Front Head
+    400088: front_left1
+    400090: front_right1
+    400092: IK_back_left
+    400094: IK_back_right
+    400096: IK_center_left
+    400098: IK_center_right
+    400100: IK_front_left
+    400102: IK_front_rght
+    400104: IK_rear_left
+    400106: IK_rear_right
+    400108: //RootNode
+    400110: rear_left1
+    400112: rear_right1
+    4300000: Baby Kraken
+    7400000: Armature|bb_kraken_death
+    7400002: Armature|bb_kraken_emerge
+    7400004: Armature|bb_kraken_headbash_charge
+    7400006: Armature|bb_kraken_headbash_heavy
+    7400008: Armature|bb_kraken_headbash_lite
+    7400010: Armature|bb_kraken_idle
+    7400012: Armature|bb_kraken_spawn
+    7400014: Armature|bb_kraken_spitball_charge
+    7400016: Armature|bb_kraken_spitball_heavy
+    7400018: Armature|bb_kraken_spitball_lite
+    7400020: Armature|bb_kraken_submerge
+    7400022: Armature|bb_kraken_swim
+    7400024: Armature|bb_kraken_swipe
+    7400026: Armature|bb_kraken_idle0
+    7400028: Armature|bb_kraken_headbash_heavy0
+    9500000: //RootNode
+    13700000: Baby Kraken
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|bb_kraken_idle0
+      takeName: Armature|bb_kraken_idle
+      firstFrame: 0
+      lastFrame: 420
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_emerge
+      takeName: Armature|bb_kraken_emerge
+      firstFrame: 0
+      lastFrame: 81
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_headbash_charge
+      takeName: Armature|bb_kraken_headbash_charge
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_headbash_heavy
+      takeName: Armature|bb_kraken_headbash_heavy
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_headbash_lite
+      takeName: Armature|bb_kraken_headbash_lite
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_idle
+      takeName: Armature|bb_kraken_idle
+      firstFrame: 0
+      lastFrame: 420
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_spawn
+      takeName: Armature|bb_kraken_spawn
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.7436984
+        functionName: onDeathAnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 85628caba7951a847bc7efd6541296e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_spitball_charge
+      takeName: Armature|bb_kraken_spitball_charge
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_spitball_heavy
+      takeName: Armature|bb_kraken_spitball_heavy
+      firstFrame: 0
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_spitball_lite
+      takeName: Armature|bb_kraken_spitball_lite
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.34899327
+        functionName: actuallyFire
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 85628caba7951a847bc7efd6541296e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.99105144
+        functionName: resetFire
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 85628caba7951a847bc7efd6541296e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_submerge
+      takeName: Armature|bb_kraken_submerge
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.8043911
+        functionName: causeSplash
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 85628caba7951a847bc7efd6541296e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9487345
+        functionName: setSubmerging
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 85628caba7951a847bc7efd6541296e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_swim
+      takeName: Armature|bb_kraken_swim
+      firstFrame: 0
+      lastFrame: 320
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_swipe
+      takeName: Armature|bb_kraken_swipe
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|bb_kraken_headbash_heavy0
+      takeName: Armature|bb_kraken_headbash_heavy
+      firstFrame: 30
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Back Head
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Bone.001
+        weight: 1
+      - path: Armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: Armature/Bone.003
+        weight: 1
+      - path: Armature/Bone.003/Bone.004
+        weight: 1
+      - path: Armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: Armature/buck_left_1
+        weight: 1
+      - path: Armature/buck_left_1/buck_left2
+        weight: 1
+      - path: Armature/buck_right_1
+        weight: 1
+      - path: Armature/buck_right_1/buck_right2
+        weight: 1
+      - path: Armature/canine_left1
+        weight: 1
+      - path: Armature/canine_left1/canine_left2
+        weight: 1
+      - path: Armature/canine_right1
+        weight: 1
+      - path: Armature/canine_right1/canine_right2
+        weight: 1
+      - path: Armature/center_left1
+        weight: 1
+      - path: Armature/center_left1/Bone.016
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: Armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: Armature/center_right1
+        weight: 1
+      - path: Armature/center_right1/Bone.035
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: Armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: Armature/Front Head
+        weight: 1
+      - path: Armature/front_left1
+        weight: 1
+      - path: Armature/front_left1/Bone.011
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: Armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: Armature/front_right1
+        weight: 1
+      - path: Armature/front_right1/Bone.030
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: Armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: Armature/IK_back_left
+        weight: 1
+      - path: Armature/IK_back_right
+        weight: 1
+      - path: Armature/IK_center_left
+        weight: 1
+      - path: Armature/IK_center_right
+        weight: 1
+      - path: Armature/IK_front_left
+        weight: 1
+      - path: Armature/IK_front_rght
+        weight: 1
+      - path: Armature/IK_rear_left
+        weight: 1
+      - path: Armature/IK_rear_right
+        weight: 1
+      - path: Armature/rear_left1
+        weight: 1
+      - path: Armature/rear_left1/Bone.021
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: Armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: Armature/rear_right1
+        weight: 1
+      - path: Armature/rear_right1/Bone.040
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: Armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
