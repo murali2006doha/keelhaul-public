@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour {
             worldSpaceBoost = boostBar.GetComponentInChildren<Slider>();
             boostImg = worldSpaceBoost.fillRect.gameObject.GetComponent<Image>();
             boostButtonImg = worldSpaceBoost.GetComponentInChildren<Animator>().gameObject;
-            boostButtonImg.SetActive(false);
+            boostButtonImg.SetActive(true);
         }
     }
 
@@ -121,7 +121,7 @@ public class UIManager : MonoBehaviour {
             }
             if(worldSpaceBoost.value == worldSpaceBoost.maxValue)
             {
-                boostButtonImg.SetActive(false);
+                boostButtonImg.SetActive(true);
                 if (highlight)
                 {
                     highlight = false;

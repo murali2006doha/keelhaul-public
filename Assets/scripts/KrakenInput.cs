@@ -91,11 +91,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         currentStage = Mathf.Min(currentStage, currentStage + 1);
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Debug.Log(hit.collider.transform);
-        Debug.Log(hit.collider.transform.root);
-    }
+
     // Update is called once per frame
     void Update()
     {
