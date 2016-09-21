@@ -260,9 +260,6 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		if (gameStarted) {
 			if (LayerMask.LayerToName (other.gameObject.layer).Equals ("kraken_arm") && !invincible) {
 				KrakenInput kraken = other.gameObject.transform.root.GetComponent<KrakenInput> ();
-				if (health - stats.kraken_damage <= 0 && health > 0) {
-					kraken.incrementPoint ();
-				}
 				hit (stats.kraken_damage,kraken);
 				other.gameObject.transform.root.GetComponent<KrakenInput> ().vibrate (.5f, .5f);
 			} else {
@@ -502,6 +499,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 				} else if (attacker is KrakenInput) {
 					((KrakenInput)attacker).gameStats.numOfKills++;
+					kraken.incrementPoint ();	
+
 				}
 				die ();
 			} 
