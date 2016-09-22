@@ -14,53 +14,44 @@ using InControl;
 public class CharacterSelect : MonoBehaviour {
 
 	public PlayerActions Actions { get; set; }
-	public GameObject kraken; 
-	public GameObject blue;
-	public GameObject red;
-	public GameObject green;
-	public List<GameObject> characterList = new List<GameObject>(); //contains the texts
+	//public List<GameObject> charImages = new List<GameObject>();
+	public Image Panel;
 
 	public bool isSignedIn = false;
 	public Transform upLitArrow;
 	public Transform downLitArrow;
 	public Transform deselect;
-
 	public string selectedCharacter;
-	public bool selected = false;
-	public int index;			//indicates which character is shown from the available characters
+	bool selected;
+	int selectedCharacterIndex;
+	public int index;			
 	public PlayerSignIn ps;
-
+	Color originalColor;
 
 	// Use this for initialization
 	void Start () {
 
-		if (Actions != null) {
-			characterList[0].SetActive (true);
+		if (this.gameObject != null) {
+			this.enabled = true;
+
+			//index = 0;
+			selected = false;
+			selectedCharacter = "";
+			Panel.sprite = ps.AImage;
+			originalColor = Panel.color;
+		} else {
+			this.enabled = false;
 		}
 
-		characterList.Add (kraken);
-		characterList.Add (blue);
-		characterList.Add (red);
-		characterList.Add (green);
-		selectedCharacter = "";
 	}
 
 
 	// Update is called once per frame
 	void Update () {
 		if (Actions != null) {
-			characterSelect ();
-			if (selected != true) {
-				characterList[index].SetActive (true);
-			}
-		}
-		ps = GameObject.FindObjectOfType<PlayerSignIn> ();
-
-	}
-
-
-	public List<GameObject> getCharacterList() {
-		return characterList;
+			renderImage (index);
+			characterSelect ();		
+		} 
 	}
 
 
@@ -74,48 +65,63 @@ public class CharacterSelect : MonoBehaviour {
 	}
 
 
-	public bool isSelected() {
-		return selected;
-	}
-
 	/*
 	 * navigate the characters selection options and set the character when chosen
 	 */
 	public void characterSelect () {		
-		if (!selected && isSignedIn) {
 
+		if (!selected && isSignedIn) {
 			lightArrows ();
 
-			if (Actions.Down.WasPressed) {
-				characterList [index].SetActive (false);
-				index = upAndDown (characterList, index, "down");
+			if (Actions.Down.WasReleased) {
+				index = upAndDown (ps.Characters.Count, index, "down");
+				//renderImage (index);
 			} 
 
-			if (Actions.Up.WasPressed) {
-				characterList [index].SetActive (false);
-				index = upAndDown (characterList, index, "up");
+			if (Actions.Up.WasReleased) {
+				index = upAndDown (ps.Characters.Count, index, "up");
+				//renderImage(index);
 			}
 
-
-			if (Actions.Green.WasPressed) { //if the player selects the character
-				if(!ps.characters[ps.getCharacterKeys()[index]]) {
+			if (Actions.Green.WasReleased) { //if the player selects the character
+				if(ps.lockCharacter(index)) {
 					selected = true;
-					characterList [index].SetActive (true);
-					characterList [index].transform.GetChild (0).gameObject.SetActive (true);
-					selectedCharacter = ps.getCharacterKeys () [index];
-					deselect.gameObject.SetActive (true);
+					//renderImage(index);
+					selectedCharacterIndex = index;
+					selectedCharacter = getCharacterKeys () [selectedCharacterIndex];
 				}
 			} 
 
-		} else if (selected && Actions.Red.WasPressed) {
-			if (ps.characters [ps.getCharacterKeys () [index]]) {
+		} else if (selected && Actions.Red.WasReleased) {
+			if(ps.unlockCharacter(selectedCharacterIndex)) {
 				selected = false;
-				characterList [index].transform.GetChild (0).gameObject.SetActive (false);
-				characterList [index].SetActive (true);	
-				deselect.gameObject.SetActive (false);
+				//renderImage(index);				
+				selectedCharacter = "";
 			}
 		}
 	}
+
+
+
+	public void renderImage(int index) {
+		Color originalColor = Panel.color;
+
+		if (selected) {
+			Panel.sprite = ps.Characters [getCharacterKeys () [index]] [1];  //READY
+			deselect.gameObject.SetActive (true);
+
+		} else {
+			if (ps.characterStatuses [getCharacterKeys () [index]]) {
+				Panel.sprite = ps.Characters [getCharacterKeys () [index]] [2];  //LOCK
+
+			} else {
+				Panel.sprite = ps.Characters [getCharacterKeys () [index]] [0];  //CHARACTER
+			}
+			deselect.gameObject.SetActive (false);
+
+		}
+	}
+
 
 
 	public void lightArrows() {
@@ -145,17 +151,17 @@ public class CharacterSelect : MonoBehaviour {
 	/*
 	 * cycles through a list 
 	 */ 
-	public int upAndDown (List<GameObject> items, int i, string direction) {
+	public int upAndDown (int listSize, int i, string direction) {
 
 		if (direction == "up") {
 			if (i == 0) {
-				i = items.Count - 1;
+				i = listSize - 1;
 			} else {
 				i -= 1;
 			}
 		}
 		if (direction == "down") {
-			if (i == items.Count - 1) {
+			if (i == listSize - 1) {
 				i = 0;
 			} else {
 				i += 1;
@@ -163,6 +169,11 @@ public class CharacterSelect : MonoBehaviour {
 		}
 
 		return i;
+	}
+
+
+	public List<string> getCharacterKeys() {
+		return ps.getCharacterKeys();
 	}
 
 }

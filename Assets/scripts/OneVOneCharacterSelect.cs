@@ -18,12 +18,9 @@ public class OneVOneCharacterSelect : CharacterSelect {
 	void Start () {
 
 		if (Actions != null) {
-			characterList[0].SetActive (true);
 		}
 
-		characterList.Add (blue);
-		characterList.Add (red);
-		characterList.Add (green);
+
 		selectedCharacter = "";
 	}
 
@@ -32,9 +29,7 @@ public class OneVOneCharacterSelect : CharacterSelect {
 	void Update () {
 		if (Actions != null) {
 			characterSelect ();
-			if (selected != true) {
-				characterList[index].SetActive (true);
-			}
+
 		}
 		ps = GameObject.FindObjectOfType<OneVsOnePlayerSignIn> ();
 	}

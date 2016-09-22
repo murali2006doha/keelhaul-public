@@ -64,7 +64,7 @@ public class PauseMenu : MonoBehaviour {
 			}
 			if (playerActions.Exists (p => p.Green.WasReleased)) {
 				Time.timeScale = 1;
-				gm.restartCurrentGame ();
+				gm.exitToCharacterSelect ();
 			}
 
 		}
