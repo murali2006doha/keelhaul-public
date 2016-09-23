@@ -110,13 +110,19 @@ public class CharacterSelect : MonoBehaviour {
 	public void lightArrows() {
 
 		if (Actions.Down.IsPressed) {
-			downLitArrow.gameObject.SetActive(true);
-
-		} if (Actions.Up.IsPressed) {
-			upLitArrow.gameObject.SetActive(true);
-		} 
-
+			downLitArrow.gameObject.SetActive (true);
+		}
+		if (Actions.Down.WasReleased) {
+			downLitArrow.gameObject.SetActive (false);
+		}
+				if (Actions.Up.IsPressed) {
+					upLitArrow.gameObject.SetActive (true);
+				}
+		if (Actions.Up.WasReleased) {
+			upLitArrow.gameObject.SetActive (false);
+		}
 	}
+
 
 	public void turnOffDownArrow() {
 
@@ -127,8 +133,7 @@ public class CharacterSelect : MonoBehaviour {
 
 		upLitArrow.gameObject.SetActive (false);
 	}
-
-
+		
 	/*
 	 * cycles through a list 
 	 */ 
