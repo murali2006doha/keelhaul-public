@@ -14,7 +14,6 @@ using InControl;
 public class CharacterSelect : MonoBehaviour {
 
 	public PlayerActions Actions { get; set; }
-	//public List<GameObject> charImages = new List<GameObject>();
 	public Image Panel;
 
 	public bool isSignedIn = false;
@@ -31,17 +30,10 @@ public class CharacterSelect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		if (this.gameObject != null) {
-			this.enabled = true;
-
-			//index = 0;
 			selected = false;
 			selectedCharacter = "";
 			Panel.sprite = ps.AImage;
 			originalColor = Panel.color;
-		} else {
-			this.enabled = false;
-		}
 
 	}
 
@@ -52,11 +44,6 @@ public class CharacterSelect : MonoBehaviour {
 			renderImage (index);
 			characterSelect ();		
 		} 
-	}
-
-
-	public int getIndex() {
-		return index;
 	}
 
 
@@ -74,19 +61,16 @@ public class CharacterSelect : MonoBehaviour {
 			lightArrows ();
 
 			if (Actions.Down.WasReleased) {
-				index = upAndDown (ps.Characters.Count, index, "down");
-				//renderImage (index);
+				index = getIndexPosition (ps.Characters.Count, index, "down");
 			} 
 
 			if (Actions.Up.WasReleased) {
-				index = upAndDown (ps.Characters.Count, index, "up");
-				//renderImage(index);
+				index = getIndexPosition (ps.Characters.Count, index, "up");
 			}
 
 			if (Actions.Green.WasReleased) { //if the player selects the character
 				if(ps.lockCharacter(index)) {
 					selected = true;
-					//renderImage(index);
 					selectedCharacterIndex = index;
 					selectedCharacter = getCharacterKeys () [selectedCharacterIndex];
 				}
@@ -95,7 +79,6 @@ public class CharacterSelect : MonoBehaviour {
 		} else if (selected && Actions.Red.WasReleased) {
 			if(ps.unlockCharacter(selectedCharacterIndex)) {
 				selected = false;
-				//renderImage(index);				
 				selectedCharacter = "";
 			}
 		}
@@ -126,13 +109,11 @@ public class CharacterSelect : MonoBehaviour {
 
 	public void lightArrows() {
 
-		if (Actions.Down.WasPressed) {
+		if (Actions.Down.IsPressed) {
 			downLitArrow.gameObject.SetActive(true);
-			Invoke ("turnOffDownArrow", 0.15f);
 
-		} if (Actions.Up.WasPressed) {
+		} if (Actions.Up.IsPressed) {
 			upLitArrow.gameObject.SetActive(true);
-			Invoke ("turnOffUpArrow", 0.15f);
 		} 
 
 	}
@@ -151,7 +132,7 @@ public class CharacterSelect : MonoBehaviour {
 	/*
 	 * cycles through a list 
 	 */ 
-	public int upAndDown (int listSize, int i, string direction) {
+	public int getIndexPosition (int listSize, int i, string direction) {
 
 		if (direction == "up") {
 			if (i == 0) {
