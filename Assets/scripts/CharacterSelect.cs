@@ -115,9 +115,9 @@ public class CharacterSelect : MonoBehaviour {
 		if (Actions.Down.WasReleased) {
 			downLitArrow.gameObject.SetActive (false);
 		}
-				if (Actions.Up.IsPressed) {
-					upLitArrow.gameObject.SetActive (true);
-				}
+		if (Actions.Up.IsPressed) {
+			upLitArrow.gameObject.SetActive (true);
+		}
 		if (Actions.Up.WasReleased) {
 			upLitArrow.gameObject.SetActive (false);
 		}
