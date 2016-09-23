@@ -123,17 +123,6 @@ public class CharacterSelect : MonoBehaviour {
 		}
 	}
 
-
-	public void turnOffDownArrow() {
-
-		downLitArrow.gameObject.SetActive (false);
-	}
-
-	public void turnOffUpArrow() {
-
-		upLitArrow.gameObject.SetActive (false);
-	}
-		
 	/*
 	 * cycles through a list 
 	 */ 
