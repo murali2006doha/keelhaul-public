@@ -92,7 +92,7 @@ public class gameManager : MonoBehaviour {
                         kraken.followCamera.ready = true;
                     } else if (numDevices == 1)
                     {
-                        num = createShipWithName(num, action, "atlantean");
+						num = createShipWithName(num, action, ShipEnum.AtlanteanShip.ToString());
                         break;
                     } else if (numDevices == 2)
                     {
@@ -104,11 +104,11 @@ public class gameManager : MonoBehaviour {
 
                 if(numDevices == 1)
                 {
-                    num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "chinese");
-                    num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "atlantean");
+					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
+					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
                 }  else if (numDevices == 2)
                 {
-                    num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "chinese");
+					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
             
                 }
             }
@@ -117,8 +117,8 @@ public class gameManager : MonoBehaviour {
                 print("no devices or characters selected - adding default");
                 kraken.Actions = PlayerActions.CreateWithKeyboardBindings();
                 kraken.followCamera.ready = true;
-                num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "chinese");
-                num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "atlantean");
+				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
+				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
             }
            
         }
