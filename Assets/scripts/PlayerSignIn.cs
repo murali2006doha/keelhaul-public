@@ -18,36 +18,29 @@ public class PlayerSignIn : MonoBehaviour {
 
 	Dictionary<CharacterSelect, bool> players_in_play = new Dictionary<CharacterSelect, bool>();
 	public Dictionary<string, bool> characterStatuses = new Dictionary<string, bool>();
-	public Dictionary<string, List<Sprite>> Characters = new Dictionary<string, List<Sprite>>();
+	public Dictionary<string, List<Sprite>> CharacterItems = new Dictionary<string, List<Sprite>>();
 	public Sprite AImage;
-	public Sprite krakenImage;
-	public Sprite BlackbeardShipImage;
-	public Sprite AtlanteanShipImage;
-	public Sprite ChineseJunkShipImage;
-	public Sprite krakenReadyImage;
-	public Sprite BlackbeardReadyImage;
-	public Sprite AtlanteanReadyImage;
-	public Sprite ChineseJunkReadyImage;
-	public Sprite krakenLockImage;
-	public Sprite BlackbeardLockImage;
-	public Sprite AtlanteanLockImage;
-	public Sprite ChineseJunkLockImage;
-	List<Sprite> images = new List<Sprite>();
-	List<Sprite> imagesB = new List<Sprite>();
-	List<Sprite> imagesC = new List<Sprite>();
-	List<Sprite> imagesD = new List<Sprite>();
 	int playersInPlay;
-
-	//Character -> charImage, readyImage, lockImage
 
 	// Use this for initialization
 	public string levelName;
 	public bool withKeyboard;
 	public Transform start;
 	public bool signedIn = false;
-	//public int assign_index = 0;
 	public GameObject mapSelect;
 	public ControllerSelect cc;
+
+	[System.Serializable]
+	public struct CharacterMenuItems
+	{
+		public ShipEnum character;
+		public Sprite charImage;
+		public Sprite readyImage;
+		public Sprite lockImage;
+	}
+
+	[SerializeField]
+	public List<CharacterMenuItems> sprites;
 
 
 	void Start () {
@@ -60,28 +53,18 @@ public class PlayerSignIn : MonoBehaviour {
 		players.Add (player2);
 		players.Add (player3);
 
-		images.Add (krakenImage);
-		images.Add (krakenReadyImage);
-		images.Add (krakenLockImage);
-		imagesB.Add (BlackbeardShipImage);
-		imagesB.Add (BlackbeardReadyImage);
-		imagesB.Add (BlackbeardLockImage);
-		imagesC.Add (AtlanteanShipImage);
-		imagesC.Add (AtlanteanReadyImage);
-		imagesC.Add (AtlanteanLockImage);
-		imagesD.Add (ChineseJunkShipImage);
-		imagesD.Add (ChineseJunkReadyImage);
-		imagesD.Add (ChineseJunkLockImage);
+		foreach (CharacterMenuItems charInfo in sprites) {
 
-		characterStatuses.Add (ShipEnum.Kraken.ToString(), false);
-		characterStatuses.Add (ShipEnum.BlackbeardShip.ToString(), false);
-		characterStatuses.Add (ShipEnum.AtlanteanShip.ToString(), false);
-		characterStatuses.Add (ShipEnum.ChineseJunkShip.ToString(), false);
+			characterStatuses.Add (charInfo.character.ToString(), false);
 
-		Characters.Add (ShipEnum.Kraken.ToString(), images);
-		Characters.Add (ShipEnum.BlackbeardShip.ToString(), imagesB);
-		Characters.Add (ShipEnum.AtlanteanShip.ToString(), imagesC);
-		Characters.Add (ShipEnum.ChineseJunkShip.ToString(), imagesD);
+			List<Sprite> images = new List<Sprite>();
+			images.Add(charInfo.charImage);
+			images.Add(charInfo.readyImage);
+			images.Add(charInfo.lockImage);
+
+			CharacterItems.Add (charInfo.character.ToString (), images);
+
+		}
 
 		playersInPlay = players.Count;
 	}
@@ -128,7 +111,6 @@ public class PlayerSignIn : MonoBehaviour {
 		else if (cc.players.Count == 1) {
 			player1.Actions = (PlayerActions)cc.players [0];
 			if (player1.Actions.Green.WasReleased) {
-				player1.Panel.sprite = AImage;
 				player1.isSignedIn = true;
 			}
 		}
@@ -222,10 +204,6 @@ public class PlayerSignIn : MonoBehaviour {
 	public List<CharacterSelect> getPlayersKeys() {
 		List<CharacterSelect> keys = new List<CharacterSelect> (players_in_play.Keys);
 		return keys;
-	}
-
-	public void assign(){
-		//assign_index++;
 	}
 
 

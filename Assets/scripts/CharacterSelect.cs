@@ -25,16 +25,12 @@ public class CharacterSelect : MonoBehaviour {
 	int selectedCharacterIndex;
 	public int index;			
 	public PlayerSignIn ps;
-	Color originalColor;
 
 	// Use this for initialization
 	void Start () {
 
 			selected = false;
 			selectedCharacter = "";
-			Panel.sprite = ps.AImage;
-			originalColor = Panel.color;
-
 	}
 
 
@@ -42,7 +38,7 @@ public class CharacterSelect : MonoBehaviour {
 	void Update () {
 		if (Actions != null) {
 			renderImage (index);
-			characterSelect ();		
+			characterSelect ();	
 		} 
 	}
 
@@ -61,11 +57,11 @@ public class CharacterSelect : MonoBehaviour {
 			lightArrows ();
 
 			if (Actions.Down.WasReleased) {
-				index = getIndexPosition (ps.Characters.Count, index, "down");
+				index = getIndexPosition (ps.CharacterItems.Count, index, "down");
 			} 
 
 			if (Actions.Up.WasReleased) {
-				index = getIndexPosition (ps.Characters.Count, index, "up");
+				index = getIndexPosition (ps.CharacterItems.Count, index, "up");
 			}
 
 			if (Actions.Green.WasReleased) { //if the player selects the character
@@ -87,18 +83,16 @@ public class CharacterSelect : MonoBehaviour {
 
 
 	public void renderImage(int index) {
-		Color originalColor = Panel.color;
-
 		if (selected) {
-			Panel.sprite = ps.Characters [getCharacterKeys () [index]] [1];  //READY
+			Panel.sprite = ps.CharacterItems [getCharacterKeys () [index]] [1];  //READY
 			deselect.gameObject.SetActive (true);
 
 		} else {
 			if (ps.characterStatuses [getCharacterKeys () [index]]) {
-				Panel.sprite = ps.Characters [getCharacterKeys () [index]] [2];  //LOCK
+				Panel.sprite = ps.CharacterItems [getCharacterKeys () [index]] [2];  //LOCK
 
 			} else {
-				Panel.sprite = ps.Characters [getCharacterKeys () [index]] [0];  //CHARACTER
+				Panel.sprite = ps.CharacterItems [getCharacterKeys () [index]] [0];  //CHARACTER
 			}
 			deselect.gameObject.SetActive (false);
 
