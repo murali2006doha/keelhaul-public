@@ -6,9 +6,9 @@ public static class GlobalVariables {
 
     public static float gameSpeed = 1.25f;
 	public static Dictionary<string,string> shipToPrefabLocation = new Dictionary<string, string> () {
-		{"blackbeard","Ship/Blackbeard Ship"},
-		{"atlantean","Ship/Atlantean Ship"},
-		{"chinese","Ship/Chinese Junk Ship"}
+		{ShipEnum.BlackbeardShip.ToString(),"Ship/Blackbeard Ship"},
+		{ShipEnum.AtlanteanShip.ToString(),"Ship/Atlantean Ship"},
+		{ShipEnum.ChineseJunkShip.ToString(),"Ship/Chinese Junk Ship"}
 
 	};
 

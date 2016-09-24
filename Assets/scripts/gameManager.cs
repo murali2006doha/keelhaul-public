@@ -127,7 +127,7 @@ public class gameManager : MonoBehaviour {
             foreach (CharacterSelect player in ps.players)
             {
 
-                if (player.selectedCharacter == "kraken")
+				if (player.selectedCharacter == ShipEnum.Kraken.ToString())
                 {
                     kraken.Actions = player.Actions;
                     kraken.followCamera.ready = true;

@@ -94,10 +94,10 @@ public class LevelManager : MonoBehaviour {
 				startScreen.gameObject.SetActive (true);
 			} else if (selectmode.gameObject.active == true) {
 				selectmode.gameObject.SetActive (false);
-				mainMenu.gameObject.SetActive (true);
+				startScreen.gameObject.SetActive (true);
 			} else if (characterselectFFA.gameObject.active == true) {
 				characterselectFFA.gameObject.SetActive (false);
-				startScreen.gameObject.SetActive (true);
+				selectmode.gameObject.SetActive (true);
 			} else if (characterselect1v1.gameObject.active == true) {
 				characterselect1v1.gameObject.SetActive (false);
 				selectmode.gameObject.SetActive (true);
