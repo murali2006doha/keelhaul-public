@@ -45,7 +45,7 @@ public class Hookshot : MonoBehaviour {
 	bool reverseTether = false;
 
 	float stuckCounter =0f;
-    public SoundManager soundManager;
+    
 
     void Start () {
 		Vector3 inFront = new Vector3 (1f, 0f, 1f);
@@ -192,7 +192,7 @@ public class Hookshot : MonoBehaviour {
 			//IF the player presses the hookshot button and not hooked, then fire hookshot
 			//Fix when game is about to start.
 			stats.hookshotNum++;
-            soundManager.playSound("Hookshot");
+            SoundManager.playSound(SoundClipEnum.Hookshot, SoundCategoryEnum.Generic, transform.position);
             if (hittingBarrel) {
 				ship.GetComponent<playerInput> ().vibrate (.15f, .2f);
 				hookshotActive = true;
@@ -271,7 +271,7 @@ public class Hookshot : MonoBehaviour {
 				tempReached = true;
 				rb.isKinematic = true;
 				newpos = hook.transform.position + Vector3.Normalize (heading) * distance;
-                soundManager.playSound("HookshotHit");
+                SoundManager.playSound(SoundClipEnum.Hookshothit, SoundCategoryEnum.Generic, transform.position);
                 if (barrel.GetComponent<barrel> ().owner) {
 					stats.numOfBarrelSteals += 1;
 					barrel.GetComponent<barrel> ().owner.GetComponent<playerInput> ().gameStats.numOfBarrelsLost += 1;

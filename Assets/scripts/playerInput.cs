@@ -32,7 +32,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	gameManager manager;
 	KrakenInput kraken;
 	GameObject aiSign;
-    SoundManager soundManager;
+
 
 	//AIM stuff
 	Hookshot hook_component;
@@ -82,14 +82,10 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		initCannons ();
 		kraken = GameObject.FindObjectOfType<KrakenInput> ();
         startingPoint = this.transform.position;
-		anim = GetComponentInChildren<ShipAnimator> ();
-        soundManager = ((GameObject)Instantiate(Resources.Load("Ship/ShipSoundManager") as GameObject, Vector3.zero, Quaternion.identity)).GetComponent<SoundManager>();
-        soundManager.gameObject.transform.parent = this.transform;
-        anim.soundManager = soundManager;
+		anim = GetComponentInChildren<ShipAnimator>();
+        anim.category = CategoryHelper.convertType(type);
         this.hook_component.playerCam = followCamera.camera;
 		this.hook_component.stats = gameStats;
-        this.hook_component.soundManager = soundManager;
-        bombCannon.soundManager = soundManager;
         followCamera.cullingMask = cullingMask;
 		invincibilityParticle = (GameObject) Instantiate (invincibilyPrefab, this.transform.position, this.transform.rotation);
 		invincibilityParticle.SetActive (false);
@@ -395,7 +391,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		}
 
 		if (Actions.Boost && !boosted){
-            soundManager.playSound("Boost");
+            SoundManager.playSound(SoundClipEnum.Boost, SoundCategoryEnum.Generic, this.transform.position);
             velocity = stats.boostVelocity;
 			gameStats.numOfBoosts++;
 			vibrate (.5f, .5f);
@@ -481,7 +477,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		if (!invincible) {
 			float actualDamage = (passedDamage > 0)?passedDamage:damage;
 			health -= actualDamage;
-            soundManager.playSound("ShipHit");
+            SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
 			gameStats.healthLost+=actualDamage;
 			if (attacker is playerInput) {
 				((playerInput)attacker).gameStats.addGivenDamage (type.ToString (), actualDamage);
@@ -528,7 +524,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	public void die(){
         hook_component.UnHook();
 		dying = true;
-        soundManager.playSound("SinkExplosion");
+        SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
         centralCannon.gameObject.SetActive (false);
 		bombCannon.activateAllBombs ();
 		anim.triggerDeathAnimation ();

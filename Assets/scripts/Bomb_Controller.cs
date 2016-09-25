@@ -13,7 +13,6 @@ public class Bomb_Controller : MonoBehaviour {
 
 	List<GameObject> bombList = new List<GameObject>();
 	List<Vector3> explosionList = new List<Vector3>();
-    public SoundManager soundManager;
 
     public GameObject Drop_Bomb() {
 		//maybe do an arc to throw bomb?
@@ -28,7 +27,7 @@ public class Bomb_Controller : MonoBehaviour {
 		if (input.Actions.Red && canDropBomb) {
 			if (input.bombs != 0) {
 				GameObject b = this.Drop_Bomb ();
-                soundManager.playSound("BombDrop");
+                SoundManager.playSound(SoundClipEnum.BombDrop, SoundCategoryEnum.Generic, transform.position);
                 bombList.Add (b);
 				explosionList.Add (b.transform.position); //holds the positions of the bombs. used in the on trigger enter function.
 				input.uiManager.decrementBomb ();

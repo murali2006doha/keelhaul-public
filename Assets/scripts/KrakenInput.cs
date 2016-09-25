@@ -52,7 +52,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     float headbashChargeTime = 0f;
     public CharacterController cc;
     GameObject aiSign;
-    SoundManager soundManager;
+    
 
 
     public FreeForAllStatistics gameStats;
@@ -74,12 +74,11 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         currentStage = 0;
         cc = GetComponent<CharacterController>();
         krakenArmPosition = transform.Find("KrakenArm");
-        soundManager = GetComponentInChildren<SoundManager>();
         animator.splashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Submerge");
         animator.emergeSplashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Emerge");
-        animator.soundManager = soundManager;
-        aiSign = this.followCamera.transform.FindChild("Canvas").FindChild("AI").gameObject;
-        aiSign.SetActive(false);
+        //aiSign = this.followCamera.transform.FindChild("Canvas").FindChild("AI").gameObject;
+        //aiSign.SetActive(false);
+        // Disabled AI functionality until GDC.
         gameStats = new FreeForAllStatistics();
 
     }
@@ -241,7 +240,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (Actions.Blue.WasPressed && stats.canPerformAction(Actions.Blue.Name, currentStage))
             { //Submerge
-                soundManager.playSound("KrakenSubmerge");
+                SoundManager.playSound(SoundClipEnum.KrakenSubmerge,SoundCategoryEnum.KrakenStageOne, transform.position);
                 velocity = 0;
                 animator.submergeKraken();
                 Invoke("disableSpray", stats.stages[currentStage].emergeTime);
@@ -282,7 +281,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (Actions.Blue.WasPressed && stats.canPerformAction(Actions.Blue.Name, currentStage))
             {  //rise up 
-                soundManager.playSound("KrakenBubble");
+                SoundManager.playSound(SoundClipEnum.KrakenBubble, SoundCategoryEnum.Generic,transform.position);
                 velocity = 0;
                 isSubmerging = true;
                 submergeSprite.enabled = false;
