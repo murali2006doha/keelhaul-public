@@ -203,6 +203,7 @@ public class PlayerSignIn : MonoBehaviour {
 		}
 	}
 
+
 	public List<string> getCharacterKeys() {
 		List<string> keys = new List<string> (characterStatuses.Keys);
 		return keys;

@@ -383,6 +383,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         }
         followCamera.zoomIn = true;
         animator.triggerDeathAnimation();
+		spitter.clearSpitball ();
         disableSpray();
     }
 

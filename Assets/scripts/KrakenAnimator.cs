@@ -186,7 +186,7 @@ public class KrakenAnimator : MonoBehaviour {
 
     public void resetFire() {
         animKraken.SetBool("spit", false);
-        kraken.spitter.canShoot = true;   
+		kraken.spitter.ResetShots ();   
     }
 
     public void causeEmergeSplash(int dying)
