@@ -6,7 +6,8 @@ public class ShipAnimator : MonoBehaviour {
 	public Animator shipAnimator;
 	public playerInput ship;
 	public float respawnTime;
-    public SoundManager soundManager;
+    public SoundCategoryEnum category = SoundCategoryEnum.Generic;
+   
 
     // Use this for initialization
     void Start () {
@@ -20,11 +21,12 @@ public class ShipAnimator : MonoBehaviour {
 
     public void playBubbleSound()
     {
-        soundManager.playSound("SinkWater");
+        FFASoundManager.playSound("SinkWater",transform.position);
     }
 
 	public void triggerRespawnAnimation(){
-        soundManager.playSound("Respawn");
+        print("Cateory" + category);
+        FFASoundManager.playSound("Respawn", category,transform.position);
         shipAnimator.SetBool ("death", false);
 	}
 
