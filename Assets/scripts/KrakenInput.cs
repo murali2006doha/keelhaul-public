@@ -78,6 +78,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         animator.emergeSplashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Emerge");
         //aiSign = this.followCamera.transform.FindChild("Canvas").FindChild("AI").gameObject;
         //aiSign.SetActive(false);
+        // Disabled AI functionality until GDC.
         gameStats = new FreeForAllStatistics();
 
     }
