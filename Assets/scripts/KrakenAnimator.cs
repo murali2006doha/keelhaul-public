@@ -80,7 +80,7 @@ public class KrakenAnimator : MonoBehaviour {
 	}
 	//The kraken needs to emerge
 	public void emergeKraken(){
-        FFASoundManager.playSound("KrakenEmerge", SoundCategoryEnum.KrakenStageOne, transform.position);
+        SoundManager.playSound("KrakenEmerge", SoundCategoryEnum.KrakenStageOne, transform.position);
         animKraken.SetBool("submerge", false);
 
 	}
@@ -91,7 +91,7 @@ public class KrakenAnimator : MonoBehaviour {
 		sinkableShip = null;
 	}
 	public void emergeKrakenAttack(GameObject ship){
-        FFASoundManager.playSound("KrakenEmergeAttack", SoundCategoryEnum.KrakenStageOne, transform.position);
+        SoundManager.playSound("KrakenEmergeAttack", SoundCategoryEnum.KrakenStageOne, transform.position);
         sinkableShip = ship;
 		animKraken.SetBool("submerge", false);
 		animKraken.SetBool ("underShip", true);
@@ -111,7 +111,7 @@ public class KrakenAnimator : MonoBehaviour {
 	}
 
 	public void executeSmash(){
-        FFASoundManager.playSound("KrakenSwipe", SoundCategoryEnum.KrakenStageOne,transform.position);
+        SoundManager.playSound("KrakenSwipe", SoundCategoryEnum.KrakenStageOne,transform.position);
         animKraken.SetBool("smash", true);
 
 	
@@ -139,8 +139,8 @@ public class KrakenAnimator : MonoBehaviour {
 	}
 
 	void setupRespawn(){
-        FFASoundManager.playSound("KrakenDrum",transform.position);
-        FFASoundManager.playSound("KrakenRespawn",SoundCategoryEnum.KrakenStageOne,transform.position);
+        SoundManager.playSound("KrakenDrum",transform.position);
+        SoundManager.playSound("KrakenRespawn",SoundCategoryEnum.KrakenStageOne,transform.position);
         kraken.setupRespawn ();
 	}
 	public void onDeathAnimationEnd(int dying){

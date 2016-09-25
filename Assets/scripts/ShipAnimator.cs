@@ -21,12 +21,12 @@ public class ShipAnimator : MonoBehaviour {
 
     public void playBubbleSound()
     {
-        FFASoundManager.playSound("SinkWater",transform.position);
+        SoundManager.playSound("SinkWater",transform.position);
     }
 
 	public void triggerRespawnAnimation(){
         print("Cateory" + category);
-        FFASoundManager.playSound("Respawn", category,transform.position);
+        SoundManager.playSound("Respawn", category,transform.position);
         shipAnimator.SetBool ("death", false);
 	}
 

@@ -62,7 +62,7 @@ public class gameManager : MonoBehaviour {
 		int num = 0;
 
         //spawning players and attaching player input to objects.
-        FFASoundManager.initLibrary();
+        SoundManager.initLibrary();
         if(ps == null || ps.players.Count == 0) //Default behaviour if didn't come from character select screen. 
         {
             int numDevices = 0;

@@ -239,7 +239,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (Actions.Blue.WasPressed && stats.canPerformAction(Actions.Blue.Name, currentStage))
             { //Submerge
-                FFASoundManager.playSound("KrakenSubmerge",SoundCategoryEnum.KrakenStageOne, transform.position);
+                SoundManager.playSound("KrakenSubmerge",SoundCategoryEnum.KrakenStageOne, transform.position);
                 velocity = 0;
                 animator.submergeKraken();
                 Invoke("disableSpray", stats.stages[currentStage].emergeTime);
@@ -280,7 +280,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (Actions.Blue.WasPressed && stats.canPerformAction(Actions.Blue.Name, currentStage))
             {  //rise up 
-                FFASoundManager.playSound("KrakenBubble",transform.position);
+                SoundManager.playSound("KrakenBubble",transform.position);
                 velocity = 0;
                 isSubmerging = true;
                 submergeSprite.enabled = false;

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class FFASoundManager {
+public class SoundManager {
 
     public static SoundLibrary library;
 
@@ -12,7 +12,7 @@ public class FFASoundManager {
     public static void initLibrary()
     {
         lookup = new Dictionary<SoundCategoryEnum, Dictionary<string, SoundClip>>();
-        library = ((GameObject)Resources.Load("Prefabs/Sounds/FFASoundLibrary")).GetComponent<SoundLibrary>();
+        library = ((GameObject)Resources.Load("Prefabs/Sounds/SoundLibrary")).GetComponent<SoundLibrary>();
         foreach (SoundClip clip in library.sounds)
         {
             if (!lookup.ContainsKey(clip.category))
