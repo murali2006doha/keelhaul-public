@@ -86,11 +86,11 @@ public class OneVOneGameManager : MonoBehaviour {
 					action.Device = device;
 					if (numDevices == 0)
 					{
-						num = createShipWithName(num, action, "chinese");
+						num = createShipWithName(num, action, ShipEnum.ChineseJunkShip.ToString());
 
 					} else if (numDevices == 1)
 					{
-						num = createShipWithName(num, action, "atlantean");
+						num = createShipWithName(num, action, ShipEnum.AtlanteanShip.ToString());
 						break;
 					}
 					numDevices++;
@@ -98,14 +98,14 @@ public class OneVOneGameManager : MonoBehaviour {
 
 				if(numDevices == 1)
 				{
-					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "atlantean");
+					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
 				} 
 			}
 			if(numDevices == 0)
 			{
 				print("no devices or characters selected - adding default");
-				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "chinese");
-				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "atlantean");
+				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
+				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
 			}
 
 		}
@@ -439,7 +439,7 @@ public class OneVOneGameManager : MonoBehaviour {
 	public void restartCurrentGame(){
 		DontDestroyOnLoad (ps);
 		DontDestroyOnLoad (controller);
-		SceneManager.LoadScene ("free for all_vig");
+		SceneManager.LoadScene ("TropicalMap");
 	}
 
 
