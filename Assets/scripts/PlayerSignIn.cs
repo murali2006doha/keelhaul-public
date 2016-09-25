@@ -154,7 +154,9 @@ public class PlayerSignIn : MonoBehaviour {
 
 			//unlock character for all players
 			if (characterStatuses.ContainsKey (ShipEnum.Kraken.ToString ())) {
-				deIsolateKraken (index);
+				if (getCharacterKeys () [index] == ShipEnum.Kraken.ToString ()) {
+					deIsolateKraken (index);
+				}
 			}
 
 			return true;
@@ -179,21 +181,27 @@ public class PlayerSignIn : MonoBehaviour {
 		}
 	}
 
+
 	public void deIsolateKraken(int index) {
 
-		if (playersInPlay > 1 && !characterStatuses [ShipEnum.Kraken.ToString()]) {
+
+		List<string> charactersSelected = new List<string>();
+		if (playersInPlay > 1 && !characterStatuses [ShipEnum.Kraken.ToString ()]) {
+			foreach (CharacterSelect player in players) {
+				if (player.selectedCharacter != "") {
+					charactersSelected.Add (player.selectedCharacter);
+				}
+			}
+
 			foreach (string character in getCharacterKeys()) {
 				if (characterStatuses [character]) {
-					foreach (CharacterSelect player in players) {
-						if (!(player.selectedCharacter == character)) {
-							characterStatuses [character] = false;
-						}
+					if (!charactersSelected.Contains (character)) {
+						characterStatuses [character] = false;
 					}
 				}
-			}			
+			}
 		}
 	}
-		
 
 	public List<string> getCharacterKeys() {
 		List<string> keys = new List<string> (characterStatuses.Keys);
