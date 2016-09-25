@@ -25,7 +25,6 @@ public class ShipAnimator : MonoBehaviour {
     }
 
 	public void triggerRespawnAnimation(){
-        print("Cateory" + category);
         SoundManager.playSound(SoundClipEnum.Respawn, category,transform.position);
         shipAnimator.SetBool ("death", false);
 	}
