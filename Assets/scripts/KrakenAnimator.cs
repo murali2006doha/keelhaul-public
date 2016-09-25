@@ -139,7 +139,7 @@ public class KrakenAnimator : MonoBehaviour {
 	}
 
 	void setupRespawn(){
-        SoundManager.playSound("KrakenDrum",transform.position);
+        SoundManager.playSound("KrakenDrum", SoundCategoryEnum.Generic, transform.position);
         SoundManager.playSound("KrakenRespawn",SoundCategoryEnum.KrakenStageOne,transform.position);
         kraken.setupRespawn ();
 	}

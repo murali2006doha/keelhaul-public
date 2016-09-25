@@ -280,7 +280,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (Actions.Blue.WasPressed && stats.canPerformAction(Actions.Blue.Name, currentStage))
             {  //rise up 
-                SoundManager.playSound("KrakenBubble",transform.position);
+                SoundManager.playSound("KrakenBubble",SoundCategoryEnum.Generic,transform.position);
                 velocity = 0;
                 isSubmerging = true;
                 submergeSprite.enabled = false;

@@ -25,32 +25,15 @@ public class SoundManager {
 
     }
 
-    public static void playSound(string name, Vector3 pos)
-    {
-        playSound(name, SoundCategoryEnum.Generic, pos);
-    }
-
-    public static void playSound(string name, SoundCategoryEnum category, Vector3 pos)
+    public static void playSound(string name, SoundCategoryEnum category = SoundCategoryEnum.Generic, Vector3 pos = default(Vector3))
     {
         SoundClip clip = lookup[category][name];
         if (clip != null && source != null)
         {
-            source.PlayOneShot(clip.clip, clip.volume); // For now we will ignore position...
+            source.PlayOneShot(clip.clip, clip.volume); 
         }
     }
 
-    public static void playSound(string name)
-    {
-        playSound(name, SoundCategoryEnum.Generic);
-    }
 
-    public static void playSound(string name, SoundCategoryEnum category)
-    {
-        SoundClip clip = lookup[category][name];
-        if (clip != null && source != null)
-        {
-            source.PlayOneShot(clip.clip, clip.volume);
-        }
-    }
 
 }

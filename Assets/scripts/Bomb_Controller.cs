@@ -27,7 +27,7 @@ public class Bomb_Controller : MonoBehaviour {
 		if (input.Actions.Red && canDropBomb) {
 			if (input.bombs != 0) {
 				GameObject b = this.Drop_Bomb ();
-                SoundManager.playSound("BombDrop",transform.position);
+                SoundManager.playSound("BombDrop", SoundCategoryEnum.Generic, transform.position);
                 bombList.Add (b);
 				explosionList.Add (b.transform.position); //holds the positions of the bombs. used in the on trigger enter function.
 				input.uiManager.decrementBomb ();

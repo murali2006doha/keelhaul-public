@@ -21,7 +21,7 @@ public class ShipAnimator : MonoBehaviour {
 
     public void playBubbleSound()
     {
-        SoundManager.playSound("SinkWater",transform.position);
+        SoundManager.playSound("SinkWater", SoundCategoryEnum.Generic, transform.position);
     }
 
 	public void triggerRespawnAnimation(){
