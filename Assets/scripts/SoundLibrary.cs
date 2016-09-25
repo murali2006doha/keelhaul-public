@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class SoundClip
 {
-    public string name;
+    public SoundClipEnum clipName;
     public SoundCategoryEnum category;
     public AudioClip clip;
     public float volume = 0.5f;

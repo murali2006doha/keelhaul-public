@@ -391,7 +391,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		}
 
 		if (Actions.Boost && !boosted){
-            SoundManager.playSound("Boost", SoundCategoryEnum.Generic, this.transform.position);
+            SoundManager.playSound(SoundClipEnum.Boost, SoundCategoryEnum.Generic, this.transform.position);
             velocity = stats.boostVelocity;
 			gameStats.numOfBoosts++;
 			vibrate (.5f, .5f);
@@ -477,7 +477,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		if (!invincible) {
 			float actualDamage = (passedDamage > 0)?passedDamage:damage;
 			health -= actualDamage;
-            SoundManager.playSound("ShipHit", SoundCategoryEnum.Generic, transform.position);
+            SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
 			gameStats.healthLost+=actualDamage;
 			if (attacker is playerInput) {
 				((playerInput)attacker).gameStats.addGivenDamage (type.ToString (), actualDamage);
@@ -524,7 +524,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	public void die(){
         hook_component.UnHook();
 		dying = true;
-        SoundManager.playSound("SinkExplosion", SoundCategoryEnum.Generic, transform.position);
+        SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
         centralCannon.gameObject.SetActive (false);
 		bombCannon.activateAllBombs ();
 		anim.triggerDeathAnimation ();
