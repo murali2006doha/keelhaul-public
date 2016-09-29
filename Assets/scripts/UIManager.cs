@@ -14,36 +14,31 @@ public class UIManager : MonoBehaviour {
 	public GameObject scorePosition;
 	public GameObject scoreAnimation;
     public RectTransform compassArrow;
-    Vector3 barrel;
-    Vector3 arrowTarget;
+    Vector3 barrelPos;
+    GameObject arrowTarget;
+    Vector3 arrowTargetPos;
     Image arrowImage;
     Vector3 compassRotationTarget;
     public float wobbleSpeed = 3.5f;
     float wobbleIntensity = 5f;
     float currentIntensity = 5f;
     int wobbleCount = 0;
-    Slider worldSpaceBoost;
-    public GameObject boostBar;
-    Image boostImg;
-    public GameObject boostButtonImg;
-    public Vector3 boostOffset;
+    public Slider boostBar;
+    public SpriteRenderer barrelTooltip;
+    barrel barrelObj;
+    public Vector3 tooltipOffset;
+
 
     bool highlight = true;
 
     void Start()
     {
-        barrel = GameObject.FindObjectOfType<barrel>().transform.position;
+        barrelObj = GameObject.FindObjectOfType<barrel>();
+        barrelPos = barrelObj.transform.position;
         if (compassArrow != null)
         {
             arrowImage = compassArrow.GetComponent<Image>();
             targetBarrel();
-        }
-        if (boostBar)
-        {
-            worldSpaceBoost = boostBar.GetComponentInChildren<Slider>();
-            boostImg = worldSpaceBoost.fillRect.gameObject.GetComponent<Image>();
-            boostButtonImg = worldSpaceBoost.GetComponentInChildren<Animator>().gameObject;
-            boostButtonImg.SetActive(true);
         }
     }
 
@@ -81,12 +76,29 @@ public class UIManager : MonoBehaviour {
 		healthBar.value = health;
 	}
 
+    public void updateShipUI(Vector3 pos, bool hittingBarrel)
+    {
+        updateCompass(pos);
+        if (hittingBarrel && barrelTooltip!=null)
+        {
+            barrelTooltip.enabled = true;
+            barrelTooltip.transform.position = barrelObj.transform.position + tooltipOffset;
+
+        }
+        else
+        {
+            barrelTooltip.enabled = false;
+        }
+          
+    }
+
     public void updateCompass(Vector3 pos)
     {
         if (compassArrow!=null && arrowTarget!=null)
         {
-            Vector3 difference = arrowTarget - pos;
-            float sign = (arrowTarget.z < pos.z) ? -1.0f : 1.0f;
+            arrowTargetPos = arrowTarget.transform.position;
+            Vector3 difference = arrowTargetPos - pos;
+            float sign = (arrowTargetPos.z < pos.z) ? -1.0f : 1.0f;
             float angle =  Vector3.Angle(Vector2.right, difference) * sign;
             float sinVal = Mathf.Sin(wobbleSpeed * Time.time * GlobalVariables.gameSpeed);
             if(sinVal > 0.00001 || sinVal < -0.00001)
@@ -101,37 +113,6 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    public void updateBoostSlider(Vector3 pos)
-    {
-        if (worldSpaceBoost) {
-
-            worldSpaceBoost.transform.position = pos+ boostOffset;
-            if(worldSpaceBoost.value <= 0.5f)
-            {
-                if(boostImg.color.a > 0)
-                {
-                    boostButtonImg.SetActive(false);
-                    boostImg.CrossFadeAlpha(0f, 0.5f, false);
-                }
-            } else if(worldSpaceBoost.value >= 0.8)
-            {
-               
-               boostImg.CrossFadeAlpha(1f, 0.5f, false);
-                
-            }
-            if(worldSpaceBoost.value == worldSpaceBoost.maxValue)
-            {
-                boostButtonImg.SetActive(true);
-                if (highlight)
-                {
-                    highlight = false;
-                    //Invoke("empasize", 2);
-                    //Invoke("unflashBoost", 4);
-                }
-            }
-        }
-
-    }
 
     public void changeCompassColor(Color color)
     {
@@ -142,8 +123,8 @@ public class UIManager : MonoBehaviour {
     }
 
 
-	public void setworldSpaceBoost(float wind) {
-		worldSpaceBoost.value = wind;
+	public void setBoostBar(float value) {
+		boostBar.value = value;
 	}
 
 
@@ -197,11 +178,11 @@ public class UIManager : MonoBehaviour {
 
     public void targetBarrel()
     {
-        this.arrowTarget = barrel;
+        this.arrowTarget = barrelObj.gameObject;
         changeCompassColor(Color.yellow);
     }
 
-    public void setTarget(Vector3 target)
+    public void setTarget(GameObject target)
     {
         this.arrowTarget = target;
     }

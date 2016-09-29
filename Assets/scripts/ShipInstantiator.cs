@@ -59,6 +59,7 @@ public class ShipInstantiator : MonoBehaviour {
 		foreach(GameObject ui in uis){
 			if(ui.name.Contains(num+"")){
 				ship.uiManager = ui.GetComponent<UIManager>();
+                print("Yes");
 				ship.uiManager.altFireBar.gameObject.transform.GetChild(1).gameObject.GetComponentInChildren<Image> ().sprite = info.altFireSprite;
 				ship.uiManager.altFireBar.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Image> ().sprite = info.altFireOutline;
 				ship.followCamera = ui.GetComponentInParent<cameraFollow> ();
