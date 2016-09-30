@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour {
     public SpriteRenderer barrelTooltip;
     barrel barrelObj;
     public Vector3 tooltipOffset;
+    public TutorialUIManager tutorialManager;
+    public bool enableTutorials = true;
 
 
     bool highlight = true;
@@ -90,6 +92,14 @@ public class UIManager : MonoBehaviour {
             barrelTooltip.enabled = false;
         }
           
+    }
+
+    public void updateTutorialPrompts(Camera cam, PlayerActions input)
+    {
+        if (enableTutorials && tutorialManager != null && !tutorialManager.isEmpty())
+        {
+            tutorialManager.updateTutorial(cam, input);
+        }
     }
 
     public void updateCompass(Vector3 pos)

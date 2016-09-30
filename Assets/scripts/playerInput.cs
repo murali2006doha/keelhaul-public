@@ -171,8 +171,12 @@ public class playerInput : MonoBehaviour,StatsInterface {
 					manager.exitToCharacterSelect ();
 				}
 			}
-           
+
             uiManager.updateShipUI(this.transform.position, hook_component.shouldShowTooltip());
+            if (gameStarted)
+            {
+                uiManager.updateTutorialPrompts(followCamera.camera, Actions);
+            }
             
         }
 	}
