@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
-
+using System.Collections;
 public class TutorialUIManager : MonoBehaviour {
 
     public List<TutorialPrompt> prompts = new List<TutorialPrompt>();
     public List<TutorialPrompt> promptQueue = new List<TutorialPrompt>();
     TutorialPrompt currentPrompt = null;
-    public int lastPromptNum = 0;
+    HashSet<int> completedPrompts = new HashSet<int>();
 	// Use this for initialization
 	void Start () {
 	    TutorialPrompt[] initial  = this.GetComponentsInChildren<TutorialPrompt>();
@@ -16,8 +16,15 @@ public class TutorialUIManager : MonoBehaviour {
             prompts.Add(prompt);
             prompt.manager = this;
             prompt.canvasGroup = prompt.GetComponent<CanvasGroup>();
+            if (prompt.isFindByName)
+            {
+                prompt.gameObj = GameObject.Find(prompt.gameObjectName);
+                prompt.isFindByName = false;
+            }
         }
-	}
+        completedPrompts.Add(0);
+
+    }
 
     public void updateTutorial(Camera cam, PlayerActions input)
     {
@@ -25,7 +32,7 @@ public class TutorialUIManager : MonoBehaviour {
         {
             currentPrompt = promptQueue[0];
             promptQueue.Remove(currentPrompt);
-            lastPromptNum = currentPrompt.promptNumber;
+            completedPrompts.Add(currentPrompt.promptNumber);
             currentPrompt.enabled = true;
             currentPrompt.fadeIn();
         }
@@ -38,7 +45,15 @@ public class TutorialUIManager : MonoBehaviour {
         {
             if (!prompt.isOnScreenCheck)
             {
-                if (lastPromptNum == prompt.previousPromptNumber)
+                if (completedPrompts.Contains(prompt.previousPromptNumber))
+                {
+                    promptQueue.Add(prompt);
+                }
+            } else if (prompt.gameObj !=null)
+            {
+                Vector3 screenPoint = cam.WorldToViewportPoint(prompt.gameObj.transform.position);
+                bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+                if (onScreen)
                 {
                     promptQueue.Add(prompt);
                 }
