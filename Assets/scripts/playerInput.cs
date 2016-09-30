@@ -29,7 +29,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	public GameObject spray;
 
 	//Fixed vars
-	gameManager manager;
+	AbstractGameManager manager;
 	KrakenInput kraken;
 	GameObject aiSign;
     SoundManager soundManager;
@@ -75,7 +75,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	void Start () {
 		gameStats = new FreeForAllStatistics();
 		this.GetComponentInChildren<ShipInstantiator> ().setupShipNames (this, type, shipNum);
-		manager = GameObject.FindObjectOfType<gameManager> ();
+		manager = GameObject.FindObjectOfType<AbstractGameManager> ();
 		hook_component = this.GetComponent<Hookshot> ();
 		hook_component.scoreDestination = scoreDestination.transform;
         hook_component.uiManager = uiManager;

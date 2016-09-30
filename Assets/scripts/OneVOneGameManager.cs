@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using InControl;
-public class OneVOneGameManager : MonoBehaviour {
+public class OneVOneGameManager : AbstractGameManager {
 	//Use this script for general things like managing the state of the game, tracking players and so on.
 
 	public float respawnTimer;
@@ -232,7 +232,7 @@ public class OneVOneGameManager : MonoBehaviour {
 	}
 
 
-	public void respawnPlayer(playerInput player, Vector3 startingPoint){
+	override public void respawnPlayer(playerInput player, Vector3 startingPoint){
 
 		player.gameObject.transform.position = startingPoint;
 
@@ -266,7 +266,7 @@ public class OneVOneGameManager : MonoBehaviour {
 
 	}
 
-	public void incrementPoint(playerInput player, GameObject barrl){
+    override public void incrementPoint(playerInput player, GameObject barrl){
 		if (freeForAll)
 		{
 			player.GetComponent<Hookshot>().UnHook();
@@ -389,7 +389,7 @@ public class OneVOneGameManager : MonoBehaviour {
 		losers [0].transform.rotation = Quaternion.Euler (new Vector3 (0f, 180f, 0f));
 
 
-		GameObject titlesPrefab = Resources.Load ("Titles", typeof(GameObject)) as GameObject;
+		GameObject titlesPrefab = Resources.Load ("Prefabs/Titles", typeof(GameObject)) as GameObject;
 		Titles titles = titlesPrefab.GetComponent<Titles> ();
 		titles.calculateTitles (shipStats,krakenStats);
 
@@ -431,7 +431,7 @@ public class OneVOneGameManager : MonoBehaviour {
 		}
 	}
 
-	public void exitToCharacterSelect(){
+    override public void exitToCharacterSelect(){
 		Destroy (controller.gameObject);
 		Destroy (ps.gameObject);
 		SceneManager.LoadScene ("start2");

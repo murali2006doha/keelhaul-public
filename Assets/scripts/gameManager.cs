@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using InControl;
-public class gameManager : MonoBehaviour {
+public class gameManager : AbstractGameManager {
 	//Use this script for general things like managing the state of the game, tracking players and so on.
 
 	public float respawnTimer;
@@ -186,7 +186,7 @@ public class gameManager : MonoBehaviour {
 	}
 
 
-	void Update(){
+    void Update(){
 
 
 		//puts the camera in the starting positions as soon as the game starts
@@ -252,7 +252,7 @@ public class gameManager : MonoBehaviour {
 	}
 
 
-	public void respawnPlayer(playerInput player, Vector3 startingPoint){
+    override public void respawnPlayer(playerInput player, Vector3 startingPoint){
 
 		player.gameObject.transform.position = startingPoint;
 
@@ -309,7 +309,7 @@ public class gameManager : MonoBehaviour {
 
 	}
 
-	public void incrementPoint(playerInput player, GameObject barrl){
+	override public void incrementPoint(playerInput player, GameObject barrl){
 		if (freeForAll)
 		{
 			player.GetComponent<Hookshot>().UnHook();
@@ -457,7 +457,7 @@ public class gameManager : MonoBehaviour {
 		losers[1].transform.rotation  =Quaternion.Euler (new Vector3 (0f, 180f, 0f));
 
 
-		GameObject titlesPrefab = Resources.Load ("Titles", typeof(GameObject)) as GameObject;
+		GameObject titlesPrefab = Resources.Load ("Prefabs/Titles", typeof(GameObject)) as GameObject;
 		Titles titles = titlesPrefab.GetComponent<Titles> ();
 		titles.calculateTitles (shipStats,krakenStats);
 
@@ -506,7 +506,7 @@ public class gameManager : MonoBehaviour {
 		}
 	}
 
-	public void exitToCharacterSelect(){
+    override public void exitToCharacterSelect(){
 		Destroy (controller.gameObject);
 		Destroy (ps.gameObject);
 		SceneManager.LoadScene ("start2");
