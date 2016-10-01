@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using InControl;
+using System;
 
 public class Hookshot : MonoBehaviour {
 
@@ -38,7 +39,7 @@ public class Hookshot : MonoBehaviour {
 	Vector3 moveVector;
 	Vector3 barrel_anchor;
 	float distanceCounter = 0;
-	bool hittingBarrel = false;
+	public bool hittingBarrel = false;
 	bool reachedDestination = false;
 	bool tempReached = false;
 	bool missedBarrel=false;
@@ -71,7 +72,7 @@ public class Hookshot : MonoBehaviour {
 		}
 		if (isHooked()) {
 			stats.timeSpentCarryingBarrel += Time.deltaTime;
-            uiManager.setTarget(scoreDestination.position);
+            uiManager.setTarget(scoreDestination.gameObject);
             uiManager.changeCompassColor(Color.green);
             arrowController.TargetHome ();
 			aim.GetComponent<Renderer> ().material.color = Color.white;
@@ -162,8 +163,12 @@ public class Hookshot : MonoBehaviour {
 		}
 	}
 
+    internal bool shouldShowTooltip()
+    {
+        return hittingBarrel && !isHooked();
+    }
 
-	private void MoveTowardsTarget() {
+    private void MoveTowardsTarget() {
 
 		// pulls in the barrel towards the empty game object, which sits directly behind the ship 
 

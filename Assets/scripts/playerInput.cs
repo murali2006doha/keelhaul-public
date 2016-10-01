@@ -171,9 +171,13 @@ public class playerInput : MonoBehaviour,StatsInterface {
 					manager.exitToCharacterSelect ();
 				}
 			}
-            this.uiManager.updateCompass(this.transform.position);
-            this.uiManager.updateBoostSlider(this.transform.position);
 
+            uiManager.updateShipUI(this.transform.position, hook_component.shouldShowTooltip());
+            if (gameStarted)
+            {
+                uiManager.updateTutorialPrompts(followCamera.camera, Actions);
+            }
+            
         }
 	}
 
@@ -383,7 +387,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 		if (boosted) {
 
-			uiManager.setworldSpaceBoost ((Time.realtimeSinceStartup - boostTimer) / stats.boostResetTime);
+			uiManager.setBoostBar ((Time.realtimeSinceStartup - boostTimer) / stats.boostResetTime);
 			if ((Time.realtimeSinceStartup - boostTimer) > stats.boostResetTime)
 			{
 				boosted = false;
