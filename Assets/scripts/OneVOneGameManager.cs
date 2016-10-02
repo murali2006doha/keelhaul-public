@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using InControl;
-public class OneVOneGameManager : MonoBehaviour {
+public class OneVOneGameManager : AbstractGameManager {
 	//Use this script for general things like managing the state of the game, tracking players and so on.
 
 	public float respawnTimer;
@@ -86,11 +86,11 @@ public class OneVOneGameManager : MonoBehaviour {
 					action.Device = device;
 					if (numDevices == 0)
 					{
-						num = createShipWithName(num, action, "chinese");
+						num = createShipWithName(num, action, ShipEnum.ChineseJunkShip.ToString());
 
 					} else if (numDevices == 1)
 					{
-						num = createShipWithName(num, action, "atlantean");
+						num = createShipWithName(num, action, ShipEnum.AtlanteanShip.ToString());
 						break;
 					}
 					numDevices++;
@@ -98,14 +98,14 @@ public class OneVOneGameManager : MonoBehaviour {
 
 				if(numDevices == 1)
 				{
-					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "atlantean");
+					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
 				} 
 			}
 			if(numDevices == 0)
 			{
 				print("no devices or characters selected - adding default");
-				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "chinese");
-				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), "atlantean");
+				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
+				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
 			}
 
 		}
@@ -232,7 +232,7 @@ public class OneVOneGameManager : MonoBehaviour {
 	}
 
 
-	public void respawnPlayer(playerInput player, Vector3 startingPoint){
+	override public void respawnPlayer(playerInput player, Vector3 startingPoint){
 
 		player.gameObject.transform.position = startingPoint;
 
@@ -266,7 +266,7 @@ public class OneVOneGameManager : MonoBehaviour {
 
 	}
 
-	public void incrementPoint(playerInput player, GameObject barrl){
+    override public void incrementPoint(playerInput player, GameObject barrl){
 		if (freeForAll)
 		{
 			player.GetComponent<Hookshot>().UnHook();
@@ -389,7 +389,7 @@ public class OneVOneGameManager : MonoBehaviour {
 		losers [0].transform.rotation = Quaternion.Euler (new Vector3 (0f, 180f, 0f));
 
 
-		GameObject titlesPrefab = Resources.Load ("Titles", typeof(GameObject)) as GameObject;
+		GameObject titlesPrefab = Resources.Load ("Prefabs/Titles", typeof(GameObject)) as GameObject;
 		Titles titles = titlesPrefab.GetComponent<Titles> ();
 		titles.calculateTitles (shipStats,krakenStats);
 
@@ -431,7 +431,7 @@ public class OneVOneGameManager : MonoBehaviour {
 		}
 	}
 
-	public void exitToCharacterSelect(){
+    override public void exitToCharacterSelect(){
 		Destroy (controller.gameObject);
 		Destroy (ps.gameObject);
 		SceneManager.LoadScene ("start2");
@@ -439,7 +439,7 @@ public class OneVOneGameManager : MonoBehaviour {
 	public void restartCurrentGame(){
 		DontDestroyOnLoad (ps);
 		DontDestroyOnLoad (controller);
-		SceneManager.LoadScene ("free for all_vig");
+		SceneManager.LoadScene ("TropicalMap");
 	}
 
 

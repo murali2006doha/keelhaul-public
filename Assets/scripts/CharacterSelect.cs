@@ -21,7 +21,7 @@ public class CharacterSelect : MonoBehaviour {
 	public Transform downLitArrow;
 	public Transform deselect;
 	public string selectedCharacter;
-	bool selected;
+	public bool selected;
 	int selectedCharacterIndex;
 	public int index;			
 	public PlayerSignIn ps;
@@ -29,14 +29,15 @@ public class CharacterSelect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-			selected = false;
-			selectedCharacter = "";
+		selected = false;
+		selectedCharacter = "";
+		Panel.sprite = ps.AImage;
 	}
 
 
 	// Update is called once per frame
 	void Update () {
-		if (Actions != null) {
+		if (Actions != null && this.gameObject.activeSelf) {
 			renderImage (index);
 			characterSelect ();	
 		} 
@@ -69,6 +70,7 @@ public class CharacterSelect : MonoBehaviour {
 					selected = true;
 					selectedCharacterIndex = index;
 					selectedCharacter = getCharacterKeys () [selectedCharacterIndex];
+					turnOffArrows();
 				}
 			} 
 
@@ -86,8 +88,10 @@ public class CharacterSelect : MonoBehaviour {
 		if (selected) {
 			Panel.sprite = ps.CharacterItems [getCharacterKeys () [index]] [1];  //READY
 			deselect.gameObject.SetActive (true);
+			//turnOffArrows ();
 
 		} else {
+			
 			if (ps.characterStatuses [getCharacterKeys () [index]]) {
 				Panel.sprite = ps.CharacterItems [getCharacterKeys () [index]] [2];  //LOCK
 
@@ -115,6 +119,13 @@ public class CharacterSelect : MonoBehaviour {
 		if (Actions.Up.WasReleased) {
 			upLitArrow.gameObject.SetActive (false);
 		}
+	}
+
+
+	void turnOffArrows() {
+		upLitArrow.gameObject.SetActive (false);
+		downLitArrow.gameObject.SetActive (false);
+
 	}
 
 	/*

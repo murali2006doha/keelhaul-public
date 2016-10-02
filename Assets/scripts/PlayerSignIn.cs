@@ -13,10 +13,8 @@ using InControl;
 public class PlayerSignIn : MonoBehaviour {  
 
 	public PlayerActions Actions { get; set; }
-	public CharacterSelect player1,player2,player3; 
-	List<CharacterSelect> players = new List<CharacterSelect>(); //to pass on to 
+	public List<CharacterSelect> players = new List<CharacterSelect>(); //to pass on to 
 
-	Dictionary<CharacterSelect, bool> players_in_play = new Dictionary<CharacterSelect, bool>();
 	public Dictionary<string, bool> characterStatuses = new Dictionary<string, bool>();
 	public Dictionary<string, List<Sprite>> CharacterItems = new Dictionary<string, List<Sprite>>();
 	public Sprite AImage;
@@ -26,9 +24,8 @@ public class PlayerSignIn : MonoBehaviour {
 	public string levelName;
 	public bool withKeyboard;
 	public Transform start;
-	public bool signedIn = false;
 	public GameObject mapSelect;
-	public ControllerSelect cc;
+	ControllerSelect cc;
 
 	[System.Serializable]
 	public struct CharacterMenuItems
@@ -40,7 +37,7 @@ public class PlayerSignIn : MonoBehaviour {
 	}
 
 	[SerializeField]
-	public List<CharacterMenuItems> sprites;
+	public List<CharacterMenuItems> characters;
 
 
 	void Start () {
@@ -49,11 +46,7 @@ public class PlayerSignIn : MonoBehaviour {
 		cc.withKeyboard = withKeyboard;
 		cc.listening = false;
 
-		players.Add (player1); 
-		players.Add (player2);
-		players.Add (player3);
-
-		foreach (CharacterMenuItems charInfo in sprites) {
+		foreach (CharacterMenuItems charInfo in characters) {
 
 			characterStatuses.Add (charInfo.character.ToString(), false);
 
@@ -67,6 +60,7 @@ public class PlayerSignIn : MonoBehaviour {
 		}
 
 		playersInPlay = players.Count;
+
 	}
 
 
@@ -76,6 +70,8 @@ public class PlayerSignIn : MonoBehaviour {
 		if (this.gameObject.activeSelf) {
 			cc.listening = true;
 			signIn ();
+		} else {
+			cc.listening = false;
 		}
 
 		if (this.gameObject != null) {
@@ -101,32 +97,32 @@ public class PlayerSignIn : MonoBehaviour {
 
 	public void signIn() {
 		var inputDevice = InputManager.ActiveDevice;
-	
+
 		if (cc.players.Count == 0) {
-				player1.Panel.sprite = AImage;
-				player2.Panel.sprite = AImage;
-				player3.Panel.sprite = AImage;
-
+		
+		
+		} else if (cc.players.Count == 1) {
+			players [0].Actions = (PlayerActions)cc.players [0];
+			if (players [0].Actions.Green.WasReleased) {
+				players [0].isSignedIn = true;
+				//player1.charPanel.sprite = CharacterItems [ShipEnum.Kraken.ToString()][0]; //first image of first character
+			}
+		} else if (cc.players.Count == 2) {
+			print (players [1]);
+			players [1].Actions = (PlayerActions)cc.players [1];
+			if (players [1].Actions.Green.WasReleased) {
+				players [1].isSignedIn = true;
+				//player2.charPanel.sprite = CharacterItems [ShipEnum.Kraken.ToString()][0];
+			}
+		} else if (players.Count > 2) {
+			if (cc.players.Count == 3) {
+				players [2].Actions = (PlayerActions)cc.players [2];
+				if (players [2].Actions.Green.WasReleased) {
+					players [2].isSignedIn = true;
+					//player3.charPanel.sprite = CharacterItems [ShipEnum.Kraken.ToString()][0];
+				}
+			} 	
 		}
-		else if (cc.players.Count == 1) {
-			player1.Actions = (PlayerActions)cc.players [0];
-			if (player1.Actions.Green.WasReleased) {
-				player1.isSignedIn = true;
-			}
-		}
-
-		else if (cc.players.Count == 2) {
-			player2.Actions = (PlayerActions)cc.players [1];
-			if (player2.Actions.Green.WasReleased) {
-				player2.isSignedIn = true;
-			}
-
-		} else if (cc.players.Count == 3) {
-			player3.Actions = (PlayerActions)cc.players [2];
-			if (player3.Actions.Green.WasReleased) {
-				player3.isSignedIn = true;
-			}
-		} 			
 	}
 
 
@@ -136,8 +132,11 @@ public class PlayerSignIn : MonoBehaviour {
 			//character is locked
 			characterStatuses [getCharacterKeys() [index]] = true;
 			playersInPlay--;
+
 			//lock character for all players
-			isolateKraken(index);
+			if (characterStatuses.ContainsKey (ShipEnum.Kraken.ToString ())) {
+				isolateKraken (index);
+			}
 
 			return true;
 		}
@@ -154,8 +153,10 @@ public class PlayerSignIn : MonoBehaviour {
 			playersInPlay++;
 
 			//unlock character for all players
-			if (getCharacterKeys () [index] == ShipEnum.Kraken.ToString ()) {
-				deIsolateKraken (index);
+			if (characterStatuses.ContainsKey (ShipEnum.Kraken.ToString ())) {
+				if (getCharacterKeys () [index] == ShipEnum.Kraken.ToString ()) {
+					deIsolateKraken (index);
+				}
 			}
 
 			return true;
@@ -179,6 +180,7 @@ public class PlayerSignIn : MonoBehaviour {
 			} 
 		}
 	}
+
 
 	public void deIsolateKraken(int index) {
 
@@ -204,11 +206,6 @@ public class PlayerSignIn : MonoBehaviour {
 
 	public List<string> getCharacterKeys() {
 		List<string> keys = new List<string> (characterStatuses.Keys);
-		return keys;
-	}
-
-	public List<CharacterSelect> getPlayersKeys() {
-		List<CharacterSelect> keys = new List<CharacterSelect> (players_in_play.Keys);
 		return keys;
 	}
 
