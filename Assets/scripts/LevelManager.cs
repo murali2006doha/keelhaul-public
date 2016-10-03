@@ -53,24 +53,22 @@ public class LevelManager : MonoBehaviour {
 
 	void Update () {
 
+		escape ();
 		//signIn ();
-
-		if (mainMenu.gameObject.active == false && startScreen.gameObject.active == true) {
-			if (InputManager.ActiveDevice.AnyButton.WasPressed || InputManager.AnyKeyIsPressed) {
+		if (startScreen.gameObject.active == true) {
+			if (InputManager.ActiveDevice.Action1.WasReleased || InputManager.AnyKeyIsPressed) {
 				selectmode.gameObject.SetActive(true);
 				//characterselectFFA.gameObject.SetActive (true);
 				startScreen.gameObject.SetActive (false);
 			}
 		}
 
-		escape ();
-
 		if (mainMenu.gameObject.active == true) { //navigation for main menu
-			screenOne ();
+			navigateScreen (menuOptions);
 		}
 
 		if (selectmode.gameObject.active == true) { //navigation for mode select
-			screenTwo ();
+			navigateScreen (modeOptions);
 		}
 
 	}
@@ -168,7 +166,7 @@ public class LevelManager : MonoBehaviour {
 
 	//This is all the navigation code used for the Keyboard and controller arrow keys. 
 
-	public int upAndDown (Button[] items, int item, string direction) {
+	public int getPositionIndex (Button[] items, int item, string direction) {
 		if (direction == "up") {
 			if (item == 0) {
 				item = items.Length - 1;
@@ -187,34 +185,23 @@ public class LevelManager : MonoBehaviour {
 
 		return item;
 	}
+		
 
-
-	/*
-	 * 	NEED TO MODIFY TO USE CONTROLLER ALSO
-	 */
-
-	public void screenOne () {	//navigating main menu		
-		if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			index = upAndDown (menuOptions, index, "down");
+	public void navigateScreen (Button[] menuScreen) {	//navigating main menu		
+		if (Input.GetKeyDown (KeyCode.DownArrow) || InputManager.ActiveDevice.DPadDown.WasReleased) {
+			index = getPositionIndex (menuScreen, index, "down");
+			menuScreen [index].Select ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
-			index = upAndDown (menuOptions, index, "up");
+		if (Input.GetKeyDown (KeyCode.UpArrow) || InputManager.ActiveDevice.DPadUp.WasReleased) {
+			index = getPositionIndex (menuScreen, index, "up");
+			menuScreen [index].Select ();
 		}
-		menuOptions [index].Select ();
+
+		if (InputManager.ActiveDevice.Action1.IsPressed) {
+			menuScreen [index].onClick.Invoke();
+		}
 	}
-
-
-	public void screenTwo () {	//navigating select mode		
-		if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			index = upAndDown (modeOptions, index, "down");
-		}
-
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
-			index = upAndDown (modeOptions, index, "up");
-		}
-		modeOptions [index].Select ();
-	}
-
+		
 
 }

@@ -14,7 +14,8 @@ using InControl;
 public class CharacterSelect : MonoBehaviour {
 
 	public PlayerActions Actions { get; set; }
-	public Image Panel;
+	public Image forePanel;
+	public Image backPanel;
 
 	public bool isSignedIn = false;
 	public Transform upLitArrow;
@@ -25,13 +26,17 @@ public class CharacterSelect : MonoBehaviour {
 	int selectedCharacterIndex;
 	public int index;			
 	public PlayerSignIn ps;
+	Image foreImage;
 
 	// Use this for initialization
 	void Start () {
-
 		selected = false;
 		selectedCharacter = "";
-		Panel.sprite = ps.AImage;
+		backPanel.sprite = ps.AImage;
+
+		foreImage = forePanel.GetComponent<Image>();
+		foreImage.enabled = false;
+
 	}
 
 
@@ -86,17 +91,19 @@ public class CharacterSelect : MonoBehaviour {
 
 	public void renderImage(int index) {
 		if (selected) {
-			Panel.sprite = ps.CharacterItems [getCharacterKeys () [index]] [1];  //READY
+			
+			foreImage.sprite = ps.CharacterItems [getCharacterKeys () [index]] [1];  //READY
+			foreImage.enabled = true;
 			deselect.gameObject.SetActive (true);
-			//turnOffArrows ();
 
 		} else {
 			
 			if (ps.characterStatuses [getCharacterKeys () [index]]) {
-				Panel.sprite = ps.CharacterItems [getCharacterKeys () [index]] [2];  //LOCK
-
+				foreImage.sprite = ps.CharacterItems [getCharacterKeys () [index]] [2];  //READY
+				foreImage.enabled = true;
 			} else {
-				Panel.sprite = ps.CharacterItems [getCharacterKeys () [index]] [0];  //CHARACTER
+				foreImage.enabled = false;
+				backPanel.sprite = ps.CharacterItems [getCharacterKeys () [index]] [0];  //CHARACTER
 			}
 			deselect.gameObject.SetActive (false);
 
