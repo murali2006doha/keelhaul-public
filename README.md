@@ -25,7 +25,7 @@ General guidelines to keep in mind
  1. Lets all try not to use git add* 
  2. git add and commit per commit unless the files are related to the change
  3. Any prefab changes especially needs to be commented to show what exactly changed
- 4. Design changes like ship speed, will only be committed by the person who's laptop we worked on during th meeting (Most likely Vig)
+ 4. Design changes like ship speed, will only be committed by the person who's laptop we worked on during the meeting (Most likely Vig)
  
  
  #Shipyard:
