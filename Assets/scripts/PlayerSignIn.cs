@@ -105,21 +105,17 @@ public class PlayerSignIn : MonoBehaviour {
 			players [0].Actions = (PlayerActions)cc.players [0];
 			if (players [0].Actions.Green.WasReleased) {
 				players [0].isSignedIn = true;
-				//player1.charPanel.sprite = CharacterItems [ShipEnum.Kraken.ToString()][0]; //first image of first character
 			}
 		} else if (cc.players.Count == 2) {
-			print (players [1]);
 			players [1].Actions = (PlayerActions)cc.players [1];
 			if (players [1].Actions.Green.WasReleased) {
 				players [1].isSignedIn = true;
-				//player2.charPanel.sprite = CharacterItems [ShipEnum.Kraken.ToString()][0];
 			}
 		} else if (players.Count > 2) {
 			if (cc.players.Count == 3) {
 				players [2].Actions = (PlayerActions)cc.players [2];
 				if (players [2].Actions.Green.WasReleased) {
 					players [2].isSignedIn = true;
-					//player3.charPanel.sprite = CharacterItems [ShipEnum.Kraken.ToString()][0];
 				}
 			} 	
 		}
@@ -154,9 +150,8 @@ public class PlayerSignIn : MonoBehaviour {
 
 			//unlock character for all players
 			if (characterStatuses.ContainsKey (ShipEnum.Kraken.ToString ())) {
-				if (getCharacterKeys () [index] == ShipEnum.Kraken.ToString ()) {
-					deIsolateKraken (index);
-				}
+				deIsolateKraken (index);
+				isolateKraken (index);
 			}
 
 			return true;
