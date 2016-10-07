@@ -15,6 +15,10 @@ public class spitBallCannon : MonoBehaviour
     public float spitTime = 1f;
     public Vector4 spitScale;
     public GameObject spit;
+
+	public float clampLineRenderer;
+	public LineRenderer trajectoryLine;
+	public int trajectorySteps = 10;
     public bool canShoot = true;
     public KrakenInput input;
     public int baseSpitDamage = 1;
@@ -23,12 +27,9 @@ public class spitBallCannon : MonoBehaviour
     public float maxSpitDistance = 4;
     float shootDelay = 0.1f;
     public float maxSpitScale = 4f;
+	float chargeMagnitude;
 
-    public void setDelays(float shootDelay, float alternateShootDelay)
-    {
-        this.shootDelay = shootDelay;
-    }
-
+	Vector3 forceToAdd;
     public void spawnSpit() {
         spit = (GameObject)Instantiate(cannonBallPrefab, cannonBallPos.position + (velocity * dampening), transform.rotation);
         spit.transform.parent = cannonBallPos.transform;
@@ -37,21 +38,25 @@ public class spitBallCannon : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (spit) {
-            float chargeMagnitude = Time.realtimeSinceStartup - spitTime;
-            if (input.Actions.Device)
-                input.Actions.Device.Vibrate(chargeMagnitude/5);
-            if (spit.transform.localScale.magnitude < maxSpitScale)
-                 spit.transform.localScale = spitScale * (spitScale.magnitude + (chargeMagnitude));
-            if (spitDamage < maxSpitDamage)
-                spitDamage = (int)(baseSpitDamage + chargeMagnitude);  
-        }
+		if (spit) {
+			forceToAdd = (spit.transform.forward * cannonForce * chargeMagnitude) + (spit.transform.up * arcCannonForce);
+			chargeMagnitude = Mathf.Min ((Time.realtimeSinceStartup - spitTime), maxSpitDistance);
+			TrajectoryHelper.UpdateTrajectory (cannonBallPos.position, (forceToAdd * clampLineRenderer), Physics.gravity, trajectoryLine, trajectorySteps);
+			if (input.Actions.Device)
+				input.Actions.Device.Vibrate (chargeMagnitude / 5);
+			if (spit.transform.localScale.magnitude < maxSpitScale)
+				spit.transform.localScale = spitScale * (spitScale.magnitude + (chargeMagnitude));
+			if (spitDamage < maxSpitDamage)
+				spitDamage = (int)(baseSpitDamage + chargeMagnitude);  
+		} else {
+			TrajectoryHelper.resetTrajectory (trajectoryLine);
+		}
+			
     }
 
     public void Fire()
     {
         if (canShoot) {
-            float chargeMagnitude = Mathf.Min((Time.realtimeSinceStartup - spitTime), maxSpitDistance);
             input.vibrate(chargeMagnitude/5 * 2, .1f);
             spit.transform.parent = null;
 			CannonBall spitCannonBall = spit.GetComponent<CannonBall> ();
@@ -65,9 +70,8 @@ public class spitBallCannon : MonoBehaviour
 			spitCannonBall.damage = spitDamage;
 			spitCollider.enabled = true;
 
-			spitRigidbody.AddForce(spit.transform.forward * cannonForce * chargeMagnitude);
-			spitRigidbody.AddForce(spit.transform.up * arcCannonForce);
-
+			spitRigidbody.AddForce(forceToAdd);
+		
             canShoot = false;
 			clearSpitball ();
         }
