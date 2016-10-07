@@ -6,7 +6,7 @@ public static class TrajectoryHelper {
 	
 	public static void UpdateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, Vector3 gravity, LineRenderer trajectoryRenderer, int steps)
 	{
-		float timeDelta = 1.0f / initialVelocity.magnitude; // for example
+		float timeDelta = 1.0f / initialVelocity.magnitude; 
 
 
 		trajectoryRenderer.SetVertexCount(steps);
