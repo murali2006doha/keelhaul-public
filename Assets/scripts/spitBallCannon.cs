@@ -48,8 +48,6 @@ public class spitBallCannon : MonoBehaviour
 				spit.transform.localScale = spitScale * (spitScale.magnitude + (chargeMagnitude));
 			if (spitDamage < maxSpitDamage)
 				spitDamage = (int)(baseSpitDamage + chargeMagnitude);  
-		} else {
-			TrajectoryHelper.resetTrajectory (trajectoryLine);
 		}
 			
     }
@@ -74,6 +72,7 @@ public class spitBallCannon : MonoBehaviour
 		
             canShoot = false;
 			clearSpitball ();
+			TrajectoryHelper.resetTrajectory (trajectoryLine, trajectorySteps);
         }
       
 

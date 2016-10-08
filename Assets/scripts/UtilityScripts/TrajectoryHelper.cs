@@ -8,9 +8,7 @@ public static class TrajectoryHelper {
 	{
 		float timeDelta = 1.0f / initialVelocity.magnitude; 
 
-
-		trajectoryRenderer.SetVertexCount(steps);
-
+		trajectoryRenderer.enabled = true;
 		Vector3 position = initialPosition;
 		Vector3 velocity = initialVelocity;
 		for (int i = 0; i < steps; ++i)
@@ -20,11 +18,21 @@ public static class TrajectoryHelper {
 			position += velocity * timeDelta + 0.5f * gravity * timeDelta * timeDelta;
 			velocity += gravity * timeDelta;
 		}
+
+		trajectoryRenderer.SetVertexCount(steps);
+	
 	}
 
 
-	public static void resetTrajectory(LineRenderer trajectory){
-		trajectory.SetVertexCount (0);
-		trajectory.SetPositions(null);
+	public static void resetTrajectory(LineRenderer trajectoryRenderer, int steps) {
+		for (int i = 0; i < steps; ++i)
+		{
+			trajectoryRenderer.SetPosition(i, Vector3.zero);
+
+		}
+		trajectoryRenderer.SetVertexCount(0);
+
+
+
 	}
 }
