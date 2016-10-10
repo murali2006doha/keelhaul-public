@@ -283,7 +283,7 @@ public class gameManager : AbstractGameManager {
 		}
 		barrel.AddComponent<CharacterJoint> ();
 		barrel.GetComponent<CharacterJoint> ().anchor = anchor;
-
+        barrel.GetComponent<barrel>().activatePillar();
 	}
 
 	public void incrementPoint(KrakenInput kraken){
