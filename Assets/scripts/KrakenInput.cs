@@ -251,6 +251,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (Actions.Alt_Fire.WasPressed && stats.canPerformAction(Actions.Alt_Fire.Name, currentStage))
             {
+				// re-enable after evolution
                 //animator.chargeHeadbash();
                 //headbashChargeTime = Time.realtimeSinceStartup;
             }
