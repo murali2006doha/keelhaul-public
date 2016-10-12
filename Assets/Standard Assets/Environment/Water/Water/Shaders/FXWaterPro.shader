@@ -23,6 +23,7 @@ Properties {
 Subshader {
 	Tags { "WaterMode"="Refractive" "RenderType"="Opaque" "Queue" = "Geometry+100" }
 	Pass {
+	Blend SrcAlpha OneMinusSrcAlpha
 CGPROGRAM
 #pragma vertex vert
 #pragma fragment frag

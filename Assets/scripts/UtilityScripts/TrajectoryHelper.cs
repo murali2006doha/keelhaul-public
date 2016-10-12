@@ -11,6 +11,7 @@ public static class TrajectoryHelper {
 		trajectoryRenderer.enabled = true;
 		Vector3 position = initialPosition;
 		Vector3 velocity = initialVelocity;
+		trajectoryRenderer.SetVertexCount(steps);
 		for (int i = 0; i < steps; ++i)
 		{
 			trajectoryRenderer.SetPosition(i, position);
@@ -19,7 +20,7 @@ public static class TrajectoryHelper {
 			velocity += gravity * timeDelta;
 		}
 
-		trajectoryRenderer.SetVertexCount(steps);
+
 	
 	}
 

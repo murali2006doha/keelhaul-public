@@ -47,6 +47,7 @@ public class KrakenAnimator : MonoBehaviour {
         animKraken.SetBool("headbashFinish", true);
     }
 
+	//animation event
     public void resetUnderShip(){
 		animKraken.SetBool ("underShip", false);
 		kraken.resetEmerge ();
@@ -85,6 +86,7 @@ public class KrakenAnimator : MonoBehaviour {
 
 	}
 
+	//animation event
 	public void sinkShip(){
 		if (sinkableShip!=null)
 			sinkableShip.GetComponent<playerInput> ().sinkToYourDeath ();
@@ -127,9 +129,6 @@ public class KrakenAnimator : MonoBehaviour {
 	public void triggerDeathAnimation(){
 		animKraken.SetBool ("death", true);
 		animKraken.SetBool ("underShip", false);
-	//	animKraken.SetBool ("submerge", false);
-	//	animKraken.SetBool ("smash", false);
-
 	}
 
 
@@ -143,6 +142,8 @@ public class KrakenAnimator : MonoBehaviour {
         SoundManager.playSound(SoundClipEnum.KrakenRespawn, SoundCategoryEnum.KrakenStageOne,transform.position);
         kraken.setupRespawn ();
 	}
+
+	//animator function
 	public void onDeathAnimationEnd(int dying){
 
 		if (dying==1 && animKraken.GetBool ("death") == true) { //this function is called at end of dying
@@ -180,14 +181,26 @@ public class KrakenAnimator : MonoBehaviour {
         animKraken.SetBool("spitCharge", false);
     }
 
+	//animation event
     public void actuallyFire() {
         kraken.spitter.Fire();
     }
 
+	//animation event
     public void resetFire() {
         animKraken.SetBool("spit", false);
 		kraken.spitter.ResetShots ();   
     }
+
+	public void triggerEvolveAnimation(){
+		animKraken.SetBool("evolve", true);
+
+	}
+		
+	//animation event
+	public void evolveToNextStage(){
+		kraken.evolveToNextStage ();
+	}
 
     public void causeEmergeSplash(int dying)
     {

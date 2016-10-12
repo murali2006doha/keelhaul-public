@@ -1,0 +1,3278 @@
+fileFormatVersion: 2
+guid: 09536e6b411f4d14d96d2ea98587d0f8
+timeCreated: 1475298261
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Baby Kraken
+    100002: baby_kraken_armature
+    100004: baby_kraken_hitbox
+    100006: Back Head
+    100008: Bone
+    100010: Bone.001
+    100012: Bone.002
+    100014: Bone.003
+    100016: Bone.004
+    100018: Bone.005
+    100020: Bone.011
+    100022: Bone.012
+    100024: Bone.013
+    100026: Bone.014
+    100028: Bone.016
+    100030: Bone.017
+    100032: Bone.018
+    100034: Bone.019
+    100036: Bone.021
+    100038: Bone.022
+    100040: Bone.023
+    100042: Bone.024
+    100044: Bone.030
+    100046: Bone.031
+    100048: Bone.032
+    100050: Bone.033
+    100052: Bone.035
+    100054: Bone.036
+    100056: Bone.037
+    100058: Bone.038
+    100060: Bone.040
+    100062: Bone.041
+    100064: Bone.042
+    100066: Bone.043
+    100068: buck_left2
+    100070: buck_left_1
+    100072: buck_right2
+    100074: buck_right_1
+    100076: canine_left1
+    100078: canine_left2
+    100080: canine_right1
+    100082: canine_right2
+    100084: center_left1
+    100086: center_right1
+    100088: Front Head
+    100090: front_left1
+    100092: front_right1
+    100094: IK_back_left
+    100096: IK_back_right
+    100098: IK_center_left
+    100100: IK_center_right
+    100102: IK_front_left
+    100104: IK_front_rght
+    100106: IK_rear_left
+    100108: IK_rear_right
+    100110: //RootNode
+    100112: rear_left1
+    100114: rear_right1
+    400000: Baby Kraken
+    400002: baby_kraken_armature
+    400004: baby_kraken_hitbox
+    400006: Back Head
+    400008: Bone
+    400010: Bone.001
+    400012: Bone.002
+    400014: Bone.003
+    400016: Bone.004
+    400018: Bone.005
+    400020: Bone.011
+    400022: Bone.012
+    400024: Bone.013
+    400026: Bone.014
+    400028: Bone.016
+    400030: Bone.017
+    400032: Bone.018
+    400034: Bone.019
+    400036: Bone.021
+    400038: Bone.022
+    400040: Bone.023
+    400042: Bone.024
+    400044: Bone.030
+    400046: Bone.031
+    400048: Bone.032
+    400050: Bone.033
+    400052: Bone.035
+    400054: Bone.036
+    400056: Bone.037
+    400058: Bone.038
+    400060: Bone.040
+    400062: Bone.041
+    400064: Bone.042
+    400066: Bone.043
+    400068: buck_left2
+    400070: buck_left_1
+    400072: buck_right2
+    400074: buck_right_1
+    400076: canine_left1
+    400078: canine_left2
+    400080: canine_right1
+    400082: canine_right2
+    400084: center_left1
+    400086: center_right1
+    400088: Front Head
+    400090: front_left1
+    400092: front_right1
+    400094: IK_back_left
+    400096: IK_back_right
+    400098: IK_center_left
+    400100: IK_center_right
+    400102: IK_front_left
+    400104: IK_front_rght
+    400106: IK_rear_left
+    400108: IK_rear_right
+    400110: //RootNode
+    400112: rear_left1
+    400114: rear_right1
+    2300000: baby_kraken_hitbox
+    3300000: baby_kraken_hitbox
+    4300000: baby_kraken_hitbox
+    4300002: Baby Kraken
+    7400000: baby_kraken_armature|bb_kraken_death
+    7400002: baby_kraken_armature|bb_kraken_emerge
+    7400004: baby_kraken_armature|bb_kraken_emerge_attack
+    7400006: baby_kraken_armature|bb_kraken_emerge_mega
+    7400008: baby_kraken_armature|bb_kraken_headbash_charge
+    7400010: baby_kraken_armature|bb_kraken_headbash_charge_mega
+    7400012: baby_kraken_armature|bb_kraken_headbash_heavy
+    7400014: baby_kraken_armature|bb_kraken_headbash_lite
+    7400016: baby_kraken_armature|bb_kraken_idle
+    7400018: baby_kraken_armature|bb_kraken_spawn
+    7400020: baby_kraken_armature|bb_kraken_spitball_charge
+    7400022: baby_kraken_armature|bb_kraken_spitball_heavy
+    7400024: baby_kraken_armature|bb_kraken_spitball_lite
+    7400026: baby_kraken_armature|bb_kraken_submerge
+    7400028: baby_kraken_armature|bb_kraken_submerge_mega
+    7400030: baby_kraken_armature|bb_kraken_swim
+    7400032: baby_kraken_armature|bb_kraken_swim2idle
+    7400034: baby_kraken_armature|bb_kraken_swipe
+    7400036: baby_kraken_armature|bb_kraken_swipe2
+    7400038: baby_kraken_armature|bb_kraken_headbash_heavy_finish
+    7400040: evolve
+    9500000: //RootNode
+    13700000: Baby Kraken
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_death
+      takeName: baby_kraken_armature|bb_kraken_death
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.96998125
+        functionName: onDeathAnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 85628caba7951a847bc7efd6541296e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_emerge
+      takeName: baby_kraken_armature|bb_kraken_emerge
+      firstFrame: 0
+      lastFrame: 81
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_emerge_attack
+      takeName: baby_kraken_armature|bb_kraken_emerge_attack
+      firstFrame: 0
+      lastFrame: 113
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_emerge_mega
+      takeName: baby_kraken_armature|bb_kraken_emerge_mega
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_headbash_charge
+      takeName: baby_kraken_armature|bb_kraken_headbash_charge
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_headbash_charge_mega
+      takeName: baby_kraken_armature|bb_kraken_headbash_charge_mega
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_headbash_heavy
+      takeName: baby_kraken_armature|bb_kraken_headbash_heavy
+      firstFrame: 0
+      lastFrame: 58
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_headbash_lite
+      takeName: baby_kraken_armature|bb_kraken_headbash_lite
+      firstFrame: 0
+      lastFrame: 85
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_idle
+      takeName: baby_kraken_armature|bb_kraken_idle
+      firstFrame: 0
+      lastFrame: 420
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_spawn
+      takeName: baby_kraken_armature|bb_kraken_spawn
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.80804956
+        functionName: onDeathAnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 85628caba7951a847bc7efd6541296e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_spitball_charge
+      takeName: baby_kraken_armature|bb_kraken_spitball_charge
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_spitball_heavy
+      takeName: baby_kraken_armature|bb_kraken_spitball_heavy
+      firstFrame: 0
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.48643008
+        functionName: actuallyFire
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 85628caba7951a847bc7efd6541296e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.91649264
+        functionName: resetFire
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 85628caba7951a847bc7efd6541296e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_spitball_lite
+      takeName: baby_kraken_armature|bb_kraken_spitball_lite
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_submerge
+      takeName: baby_kraken_armature|bb_kraken_submerge
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_submerge_mega
+      takeName: baby_kraken_armature|bb_kraken_submerge_mega
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_swim
+      takeName: baby_kraken_armature|bb_kraken_swim
+      firstFrame: 0
+      lastFrame: 153
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_swim2idle
+      takeName: baby_kraken_armature|bb_kraken_swim2idle
+      firstFrame: 0
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_swipe
+      takeName: baby_kraken_armature|bb_kraken_swipe
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_swipe2
+      takeName: baby_kraken_armature|bb_kraken_swipe2
+      firstFrame: 0
+      lastFrame: 51
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: baby_kraken_armature|bb_kraken_headbash_heavy_finish
+      takeName: baby_kraken_armature|bb_kraken_headbash_heavy
+      firstFrame: 58
+      lastFrame: 85
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: evolve
+      takeName: baby_kraken_armature|bb_kraken_submerge
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.9519833
+        functionName: evolveToNextStage
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 85628caba7951a847bc7efd6541296e3,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Baby Kraken
+        weight: 1
+      - path: baby_kraken_hitbox
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Back Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone/Bone.001/Bone.002
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Bone.003/Bone.004/Bone.005
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_left_1/buck_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/buck_right_1/buck_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_left1/canine_left2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/canine_right1/canine_right2
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_left1/Bone.016/Bone.017/Bone.018/Bone.019
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/center_right1/Bone.035/Bone.036/Bone.037/Bone.038
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/Front Head
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_left1/Bone.011/Bone.012/Bone.013/Bone.014
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/front_right1/Bone.030/Bone.031/Bone.032/Bone.033
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_back_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_center_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_front_rght
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_left
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/IK_rear_right
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_left1/Bone.021/Bone.022/Bone.023/Bone.024
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042
+        weight: 1
+      - path: baby_kraken_hitbox/baby_kraken_armature/rear_right1/Bone.040/Bone.041/Bone.042/Bone.043
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
