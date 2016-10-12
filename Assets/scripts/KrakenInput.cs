@@ -235,7 +235,9 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         if (animator.isCurrentAnimName("idle"))
         {
             if (Actions.Fire.WasPressed && stats.canPerformAction(Actions.Fire.Name, currentStage)) {
-                animator.startFire();
+                //animator.startFire(); re-enable for spitball
+				animator.executeSmash();
+				Invoke("resetSmash", 0.1f);
             }
 
             if (Actions.Blue.WasPressed && stats.canPerformAction(Actions.Blue.Name, currentStage))
@@ -249,10 +251,9 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (Actions.Alt_Fire.WasPressed && stats.canPerformAction(Actions.Alt_Fire.Name, currentStage))
             {
-                animator.chargeHeadbash();
-                headbashChargeTime = Time.realtimeSinceStartup;
-               // animator.executeSmash();
-               // Invoke("resetSmash", 0.1f);
+				// re-enable after evolution
+                //animator.chargeHeadbash();
+                //headbashChargeTime = Time.realtimeSinceStartup;
             }
         }
 
@@ -345,10 +346,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         directionVector = new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y); //Get the direction the user is pushing the left analog stick in
 
         velocity = Mathf.Max(0f, (velocity - (stats.stages[currentStage].deaccelaration * (Time.deltaTime * GlobalVariables.gameSpeed)))); //Deaccelerate
-
-        if (animator.isCurrentAnimName("submerged") || animator.isCurrentAnimName("idle")) {
-            velocity = Mathf.Min(maxVelocity, velocity + (directionVector.magnitude * moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))); ////Accelerate
-        }
+		velocity = Mathf.Min(maxVelocity, velocity + (directionVector.magnitude * moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))); ////Accelerate
 
         if (animator.isCurrentAnimName("headbash") && velocity <= 0f)
         {
