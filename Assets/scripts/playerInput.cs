@@ -13,6 +13,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	public Vector3 startingPoint;
 
 	public PlayerActions Actions { get; set; }
+	public GameObject rammingSprite;
 	public UIManager uiManager;
 	public Collider shipMesh;
 	public GameObject krakenSpot;
@@ -269,7 +270,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
             if (other.name == "nose") {
                 playerInput otherPlayer = other.transform.root.GetComponent<playerInput>();
-                if (otherPlayer.velocity > otherPlayer.stats.maxVelocity) {
+				if (otherPlayer.velocity > otherPlayer.stats.maxVelocity) {
+					Instantiate (rammingSprite, other.transform.position, other.transform.rotation);
                     addPushForce(otherPlayer.cc.velocity.normalized, Mathf.Max(otherPlayer.stats.weight - stats.weight, 0f));
                     otherPlayer.velocity = 0;
                 }
