@@ -60,8 +60,6 @@ public class CannonBall : MonoBehaviour {
 				if (LayerMask.LayerToName (collider.gameObject.layer).Contains ("playerMesh")) {
                     playerInput controller = collider.GetComponentInParent<playerInput>();
                    
-                    Instantiate(shipHit, transform.position, transform.rotation);
-
                     if (kraken)
                     {
                         kraken.gameStats.numOfShotHits++;
