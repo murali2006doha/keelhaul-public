@@ -270,7 +270,6 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
             if (other.name == "nose") {
                 playerInput otherPlayer = other.transform.root.GetComponent<playerInput>();
-				Instantiate (rammingSprite, other.transform.position, other.transform.rotation);
 				if (otherPlayer.velocity > otherPlayer.stats.maxVelocity) {
 					Instantiate (rammingSprite, other.transform.position, other.transform.rotation);
                     addPushForce(otherPlayer.cc.velocity.normalized, Mathf.Max(otherPlayer.stats.weight - stats.weight, 0f));
