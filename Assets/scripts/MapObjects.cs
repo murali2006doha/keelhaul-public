@@ -14,6 +14,7 @@ public class MapObjects : MonoBehaviour {
 	public GameObject winnerLoc;
 	public GameObject loser1loc;
 	public GameObject loser2loc;
+	public IslandManager[] islands;
 
 	public GameObject[] winds;
 
