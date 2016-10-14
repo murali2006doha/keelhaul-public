@@ -107,8 +107,8 @@ public class cameraFollow : MonoBehaviour {
 
 	public void startShake(){
 		if (!shaking) {
-	//		shaking = true;
-	//		shakeTime = Time.realtimeSinceStartup;
+			shaking = true;
+			shakeTime = Time.realtimeSinceStartup;
 		}
 
 	}
