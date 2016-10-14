@@ -9,7 +9,7 @@ Shader "Projector/Light" {
 	}
 	
 	Subshader {
-		Tags {"Queue"="Transparent"}
+		Tags {"Queue" = "Geometry+100" "RenderType"="Opaque"}
 		Pass {
 			ZWrite Off
 			ColorMask RGB
@@ -50,10 +50,10 @@ Shader "Projector/Light" {
 			{
 				fixed4 texS = tex2Dproj (_ShadowTex, UNITY_PROJ_COORD(i.uvShadow));
 				texS.rgb *= _Color.rgb;
-				texS.a = 1.0-texS.a;
+				texS.a = 0;
 	
 				fixed4 texF = tex2Dproj (_FalloffTex, UNITY_PROJ_COORD(i.uvFalloff));
-				fixed4 res = texS * texF.a;
+				fixed4 res = texS * 10;
 
 				UNITY_APPLY_FOG_COLOR(i.fogCoord, res, fixed4(0,0,0,0));
 				return res;
