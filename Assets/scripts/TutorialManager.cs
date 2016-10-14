@@ -31,21 +31,7 @@ public class TutorialManager : MonoBehaviour {
 	void Update () {
 
 		if (InputManager.ActiveDevice.Action1.WasReleased || Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.A)) {
-			if (!splashDone) {
-				krakenTut.enabled = true;
-				shipTut.enabled = false;
-				Invoke ("startShip", 32);
-				krakenMov.Play ();
-				splashTut.enabled = false;
-				splashDone = true;
-				this.GetComponent<AudioSource> ().Stop ();
-			}
-
-			else {
-				
-				loadMenu ();
-			}
-
+			loadMenu ();
 		}
 
 	}
