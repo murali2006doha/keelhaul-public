@@ -18,6 +18,9 @@ public class KrakenStats : MonoBehaviour
         public float emergeTime;
         public float deaccelaration;
         public float turnSpeed;
+		public float emergingTurnSpeed;
+		public float emergingMoveSpeed;
+		public float emergingMaxVelocity;
         public float submergedTurnSpeed;
         public float submergedMoveSpeed;
         public float submergedMaxVelocity;

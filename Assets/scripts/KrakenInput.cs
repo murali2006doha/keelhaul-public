@@ -337,6 +337,12 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
             maxVelocity = stats.stages[currentStage].submergedMaxVelocity;
             moveSpeed = stats.stages[currentStage].submergedMoveSpeed;
             turnSpeed = stats.stages[currentStage].submergedTurnSpeed;
+
+			if (bubbles.activeSelf) {
+				maxVelocity = stats.stages[currentStage].emergingMaxVelocity;
+				moveSpeed = stats.stages[currentStage].emergingMoveSpeed;
+				turnSpeed = stats.stages[currentStage].emergingTurnSpeed;
+			}
         }
         else  if (animator.isCurrentAnimName("spitCharge") || animator.isCurrentAnimName("headbashCharge")) {
             moveSpeed = 0;
