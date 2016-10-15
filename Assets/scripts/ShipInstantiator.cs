@@ -48,8 +48,7 @@ public class ShipInstantiator : MonoBehaviour {
 
 
 		ship.scoreDestination = mapObjects.scoringZones[num-1];
-
-
+		mapObjects.islands [num - 1].enemyShip = ship;
 	
 		ship.startingPoint = mapObjects.shipStartingLocations[num-1].transform.position;
 		ship.transform.position =  mapObjects.shipStartingLocations[num-1].transform.position;

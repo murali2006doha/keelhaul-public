@@ -188,7 +188,6 @@ public class gameManager : AbstractGameManager {
 
     void Update(){
 
-
 		//puts the camera in the starting positions as soon as the game starts
 		if (!done) {
 			if (!countDown.gameObject.activeSelf) {
@@ -264,14 +263,23 @@ public class gameManager : AbstractGameManager {
 
 
 	}
+				
 
+	IEnumerator teleportBarrel(playerInput player, GameObject barrel){
 
-	void teleportBarrel(GameObject barrel){
+		yield return new WaitForSeconds(1);
+
 		Vector3 anchor = new Vector3(0,0.06f,0.06f);
 		if (barrel.GetComponent<CharacterJoint> () != null) {
 			anchor = barrel.GetComponent<CharacterJoint> ().anchor;
 			Destroy (barrel.GetComponent<CharacterJoint> ());
 		}
+			
+		barrel b = barrel.GetComponent<barrel> ();
+		b.explodeBarrel ();
+
+		player.uiManager.setEnemyIslandBar (player.uiManager.enemyIslandHealthBar.value - 1);
+
 		int x = 0;
 		foreach (GameObject barr in barrels) {
 			if (barr == barrel) {
@@ -314,13 +322,13 @@ public class gameManager : AbstractGameManager {
 		{
 			player.GetComponent<Hookshot>().UnHook();
 			player.GetComponent<Hookshot> ().enabled = false;
-			teleportBarrel(barrl);
+			StartCoroutine(teleportBarrel(player, barrl));
 			player.GetComponent<Hookshot> ().enabled = true;
 			float points = (float)(player.uiManager.incrementPoint());
 			player.uiManager.setScoreBar (points / playerWinPoints);
 
 			//refactor so color in text script and just pass ship name into script.
-			if (points == (playerWinPoints - 1)) {
+			if (points == (playerWinPoints - 1)) { //enemyIslandHealth == (0f);
 				if (player.shipName.Equals ("Chinese Junk Ship")) {
 					var textScripts = GameObject.FindObjectsOfType<ProgressScript> ();
 					foreach (ProgressScript script in textScripts) {
@@ -358,7 +366,7 @@ public class gameManager : AbstractGameManager {
 		else
 		{
 			player.GetComponent<Hookshot>().UnHook();
-			teleportBarrel(barrl);
+			StartCoroutine(teleportBarrel(player, barrl));
 			int points = 0;
 			foreach (playerInput p in players) {
 				points = p.uiManager.incrementPoint();

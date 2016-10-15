@@ -323,6 +323,58 @@ ModelImporter:
     100630: Cylinder.071
     100632: Cylinder.072
     100634: Plane
+    100636: Cube.347
+    100638: Cube.348
+    100640: Cube.349
+    100642: Cube.350
+    100644: Cube.351
+    100646: Cube.352
+    100648: Cube.353
+    100650: Cube.354
+    100652: Cube.355
+    100654: Cube.356
+    100656: Cube_Cube.001
+    100658: Cube_Cube.006
+    100660: Cube_Cube.007
+    100662: Cube_Cube.008
+    100664: Cube_Cube.009
+    100666: Cube_Cube.010
+    100668: Cube_Cube.011
+    100670: Cube_Cube.012
+    100672: Cube_Cube.013
+    100674: Cube_Cube.014
+    100676: Cube_Cube.015
+    100678: Cube_Cube.016
+    100680: Cube_Cube.017
+    100682: Cube_Cube.018
+    100684: Cylinder.073
+    100686: Cylinder.074
+    100688: Cylinder.075
+    100690: Cylinder.076
+    100692: Cylinder.077
+    100694: Cylinder.078
+    100696: Cylinder.079
+    100698: Cylinder.080
+    100700: east_small_island
+    100702: fortress_north_wall
+    100704: kraken_island_spawn
+    100706: market_stall_island
+    100708: north_east_market_island
+    100710: rock1
+    100712: rock1.001
+    100714: rock2
+    100716: rock2.001
+    100718: rock2.002
+    100720: rocks_south_side
+    100722: sign1
+    100724: south_long island
+    100726: south_west_island_market
+    100728: temple_east_wall
+    100730: tree_island
+    100732: tree_island.001
+    100734: village_west_side
+    100736: west_island_house
+    100738: west_market_island
     400000: baby Kraken hitbox
     400002: box1
     400004: box1.002
@@ -641,6 +693,58 @@ ModelImporter:
     400630: Cylinder.071
     400632: Cylinder.072
     400634: Plane
+    400636: Cube.347
+    400638: Cube.348
+    400640: Cube.349
+    400642: Cube.350
+    400644: Cube.351
+    400646: Cube.352
+    400648: Cube.353
+    400650: Cube.354
+    400652: Cube.355
+    400654: Cube.356
+    400656: Cube_Cube.001
+    400658: Cube_Cube.006
+    400660: Cube_Cube.007
+    400662: Cube_Cube.008
+    400664: Cube_Cube.009
+    400666: Cube_Cube.010
+    400668: Cube_Cube.011
+    400670: Cube_Cube.012
+    400672: Cube_Cube.013
+    400674: Cube_Cube.014
+    400676: Cube_Cube.015
+    400678: Cube_Cube.016
+    400680: Cube_Cube.017
+    400682: Cube_Cube.018
+    400684: Cylinder.073
+    400686: Cylinder.074
+    400688: Cylinder.075
+    400690: Cylinder.076
+    400692: Cylinder.077
+    400694: Cylinder.078
+    400696: Cylinder.079
+    400698: Cylinder.080
+    400700: east_small_island
+    400702: fortress_north_wall
+    400704: kraken_island_spawn
+    400706: market_stall_island
+    400708: north_east_market_island
+    400710: rock1
+    400712: rock1.001
+    400714: rock2
+    400716: rock2.001
+    400718: rock2.002
+    400720: rocks_south_side
+    400722: sign1
+    400724: south_long island
+    400726: south_west_island_market
+    400728: temple_east_wall
+    400730: tree_island
+    400732: tree_island.001
+    400734: village_west_side
+    400736: west_island_house
+    400738: west_market_island
     2300000: baby Kraken hitbox
     2300002: box1
     2300004: box1.002
@@ -958,6 +1062,58 @@ ModelImporter:
     2300628: Cylinder.071
     2300630: Cylinder.072
     2300632: Plane
+    2300634: Cube.347
+    2300636: Cube.348
+    2300638: Cube.349
+    2300640: Cube.350
+    2300642: Cube.351
+    2300644: Cube.352
+    2300646: Cube.353
+    2300648: Cube.354
+    2300650: Cube.355
+    2300652: Cube.356
+    2300654: Cube_Cube.001
+    2300656: Cube_Cube.006
+    2300658: Cube_Cube.007
+    2300660: Cube_Cube.008
+    2300662: Cube_Cube.009
+    2300664: Cube_Cube.010
+    2300666: Cube_Cube.011
+    2300668: Cube_Cube.012
+    2300670: Cube_Cube.013
+    2300672: Cube_Cube.014
+    2300674: Cube_Cube.015
+    2300676: Cube_Cube.016
+    2300678: Cube_Cube.017
+    2300680: Cube_Cube.018
+    2300682: Cylinder.073
+    2300684: Cylinder.074
+    2300686: Cylinder.075
+    2300688: Cylinder.076
+    2300690: Cylinder.077
+    2300692: Cylinder.078
+    2300694: Cylinder.079
+    2300696: Cylinder.080
+    2300698: east_small_island
+    2300700: fortress_north_wall
+    2300702: kraken_island_spawn
+    2300704: market_stall_island
+    2300706: north_east_market_island
+    2300708: rock1
+    2300710: rock1.001
+    2300712: rock2
+    2300714: rock2.001
+    2300716: rock2.002
+    2300718: rocks_south_side
+    2300720: sign1
+    2300722: south_long island
+    2300724: south_west_island_market
+    2300726: temple_east_wall
+    2300728: tree_island
+    2300730: tree_island.001
+    2300732: village_west_side
+    2300734: west_island_house
+    2300736: west_market_island
     3300000: baby Kraken hitbox
     3300002: box1
     3300004: box1.002
@@ -1275,6 +1431,58 @@ ModelImporter:
     3300628: Cylinder.071
     3300630: Cylinder.072
     3300632: Plane
+    3300634: Cube.347
+    3300636: Cube.348
+    3300638: Cube.349
+    3300640: Cube.350
+    3300642: Cube.351
+    3300644: Cube.352
+    3300646: Cube.353
+    3300648: Cube.354
+    3300650: Cube.355
+    3300652: Cube.356
+    3300654: Cube_Cube.001
+    3300656: Cube_Cube.006
+    3300658: Cube_Cube.007
+    3300660: Cube_Cube.008
+    3300662: Cube_Cube.009
+    3300664: Cube_Cube.010
+    3300666: Cube_Cube.011
+    3300668: Cube_Cube.012
+    3300670: Cube_Cube.013
+    3300672: Cube_Cube.014
+    3300674: Cube_Cube.015
+    3300676: Cube_Cube.016
+    3300678: Cube_Cube.017
+    3300680: Cube_Cube.018
+    3300682: Cylinder.073
+    3300684: Cylinder.074
+    3300686: Cylinder.075
+    3300688: Cylinder.076
+    3300690: Cylinder.077
+    3300692: Cylinder.078
+    3300694: Cylinder.079
+    3300696: Cylinder.080
+    3300698: east_small_island
+    3300700: fortress_north_wall
+    3300702: kraken_island_spawn
+    3300704: market_stall_island
+    3300706: north_east_market_island
+    3300708: rock1
+    3300710: rock1.001
+    3300712: rock2
+    3300714: rock2.001
+    3300716: rock2.002
+    3300718: rocks_south_side
+    3300720: sign1
+    3300722: south_long island
+    3300724: south_west_island_market
+    3300726: temple_east_wall
+    3300728: tree_island
+    3300730: tree_island.001
+    3300732: village_west_side
+    3300734: west_island_house
+    3300736: west_market_island
     4300000: Cube.203
     4300002: Cube.202
     4300004: Cylinder.025
@@ -1592,6 +1800,58 @@ ModelImporter:
     4300628: Cube.340
     4300630: Cylinder.043
     4300632: Cube.282
+    4300634: fortress_north_wall
+    4300636: Cube_Cube.018
+    4300638: Cube_Cube.017
+    4300640: Cube_Cube.016
+    4300642: Cube_Cube.015
+    4300644: Cube_Cube.014
+    4300646: Cube_Cube.013
+    4300648: Cube_Cube.012
+    4300650: Cube_Cube.011
+    4300652: Cube_Cube.010
+    4300654: Cube_Cube.009
+    4300656: Cube_Cube.008
+    4300658: Cube_Cube.007
+    4300660: Cube_Cube.006
+    4300662: Cube.355
+    4300664: Cube.354
+    4300666: Cube.353
+    4300668: Cube.351
+    4300670: Cube.350
+    4300672: Cube.349
+    4300674: Cylinder.080
+    4300676: Cylinder.079
+    4300678: Cylinder.078
+    4300680: Cylinder.077
+    4300682: Cube.348
+    4300684: Cube.347
+    4300686: Cylinder.076
+    4300688: Cylinder.075
+    4300690: Cylinder.074
+    4300692: Cylinder.073
+    4300694: Cube.356
+    4300696: Cube.352
+    4300698: Cube_Cube.001
+    4300700: sign1
+    4300702: rocks_south_side
+    4300704: temple_east_wall
+    4300706: village_west_side
+    4300708: kraken_island_spawn
+    4300710: east_small_island
+    4300712: rock2
+    4300714: south_west_island_market
+    4300716: rock1.001
+    4300718: rock1
+    4300720: south_long island
+    4300722: north_east_market_island
+    4300724: rock2.002
+    4300726: market_stall_island
+    4300728: west_island_house
+    4300730: tree_island.001
+    4300732: rock2.001
+    4300734: west_market_island
+    4300736: tree_island
   materials:
     importMaterials: 1
     materialName: 0

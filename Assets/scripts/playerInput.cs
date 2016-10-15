@@ -242,18 +242,22 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	void OnTriggerStay(Collider other){
 		if (gameStarted) {
 			if (other.transform.root == scoreDestination.transform.parent && hook_component.isHooked ()) {
+
+				hook_component.barrel.transform.position = Vector3.Lerp(hook_component.barrel.transform.position, scoreDestination.transform.position, Time.time);
+
 				manager.incrementPoint (this, hook_component.barrel);
-                uiManager.targetBarrel();
-                LightPillar pillar = scoreDestination.transform.parent.GetComponentInChildren<LightPillar> ();
+				uiManager.targetBarrel();
+
+				LightPillar pillar = scoreDestination.transform.parent.GetComponentInChildren<LightPillar> ();
 				if (pillar != null) {
 					pillar.activatePillar ();
-				}
-			}
+				}			}
 			if (other.name.Contains ("wind")) {
 				touchingWind = true;
 			}
 		}
 	}
+		
 
 
 	//checks collisions for kraken attachs, bombs, and barrel destination
