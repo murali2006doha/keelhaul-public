@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour {
 	public Slider healthBar;
 	public Slider enemyIslandHealthBar;
 	public Text points;
+
+	//ship exclamation
+	public GameObject shipAlert;
+	public float alertTime;
 	//public Slider altFireBar;
 	public Slider altFireBar;
 	public Slider scoreBar;
@@ -71,6 +75,17 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 
+	public void triggerShipAlert()
+	{
+		if (!shipAlert.activeSelf) {
+			shipAlert.SetActive (true);
+			Invoke ("disableShipAlert", alertTime);
+		}
+	}
+
+	void disableShipAlert(){
+		shipAlert.SetActive (false);
+	}
 
 	public int decrementPoint() {
 		int point = Mathf.Max(int.Parse (points.text) - 1,0);
