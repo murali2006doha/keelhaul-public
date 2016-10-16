@@ -19,6 +19,7 @@ public class PauseMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		CanPause = true;
+        
 		//Controls.gameObject.SetActive (false);
 		countdown = GetComponent<CountDown>();
 		pauseMusic = pauseMenu.gameObject.GetComponent<AudioSource> ();
