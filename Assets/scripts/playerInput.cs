@@ -288,9 +288,11 @@ public class playerInput : MonoBehaviour,StatsInterface {
                     kraken.velocity = 0;
                     addPushForce(kraken.cc.velocity, kraken.getCurrentWeight() - stats.weight);
                 }
-              
             } 
 
+			if (other.name == "KrakenBubbles") {
+				uiManager.triggerShipAlert ();
+			}
 		}
 
 	}
