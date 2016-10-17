@@ -321,7 +321,7 @@ public class gameManager : AbstractGameManager {
 		}
 		if (points == krakenWinPoints && winner == null) {
             activateVictoryText();
-            Invoke("triggerVictory", 2f);
+            Invoke("triggerVictory", 1.2f);
             winner = kraken.gameObject;
         }
 
@@ -367,7 +367,7 @@ public class gameManager : AbstractGameManager {
             if (points == playerWinPoints && winner ==null)
             { 
                 activateVictoryText();
-                Invoke("triggerVictory",2f);
+                Invoke("triggerVictory",1.2f);
                 winner = player.gameObject;
 			} else {
 				GameObject[] winds = GameObject.FindObjectOfType<MapObjects> ().winds;
@@ -390,7 +390,7 @@ public class gameManager : AbstractGameManager {
 			}
 			if (points == playerWinPoints) {
                 activateVictoryText();
-                Invoke("triggerVictory", 2f);
+                Invoke("triggerVictory", 1.2f);
                 winner = player.gameObject;
             }
 		}
@@ -455,15 +455,19 @@ public class gameManager : AbstractGameManager {
 		kraken.reset ();
 		foreach (playerInput z in players) {
 			z.reset ();
+            z.followCamera.enabled = false;
 		}
+        kraken.followCamera.enabled = false;
 		screenSplitter.SetActive (false);
 		MapObjects map = GameObject.FindObjectOfType<MapObjects> ();
-		//Refactor out of map
-		map.gameOverCamera.GetComponent<Camera>().enabled = true;
+        //Refactor out of map
+        
+        map.gameOverCamera.gameObject.SetActive(true);
 	
         GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
         gameOverUI.gameObject.SetActive(true);
-		List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
+
+        List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
 		List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
 
 		FreeForAllStatistics winStat = null;
@@ -546,9 +550,16 @@ public class gameManager : AbstractGameManager {
 			}
 
 		}
+        Invoke("enableStats", 4f);
 			
 
 	}
+
+    public void enableStats()
+    {
+        GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
+        gameOverUI.startFading = true;
+    }
 	public void disableWinds(){
 		foreach (GameObject obj in GameObject.FindObjectOfType<MapObjects> ().winds) {
 			obj.SetActive (false);
