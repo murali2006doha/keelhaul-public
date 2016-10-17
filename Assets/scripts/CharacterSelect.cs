@@ -17,6 +17,9 @@ public class CharacterSelect : MonoBehaviour {
 	public Image forePanel;
 	public Image backPanel;
 
+	public Animator characterPanelAnimator;
+    public float swoopSpeed;
+
 	public bool isSignedIn = false;
 	public Transform upLitArrow;
 	public Transform downLitArrow;
@@ -30,6 +33,7 @@ public class CharacterSelect : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+      
 		selected = false;
 		selectedCharacter = "";
 		backPanel.sprite = ps.AImage;
@@ -37,14 +41,20 @@ public class CharacterSelect : MonoBehaviour {
 		foreImage = forePanel.GetComponent<Image>();
 		foreImage.enabled = false;
 
-	}
+
+
+    }
 
 
 	// Update is called once per frame
 	void Update () {
+
+        if (characterPanelAnimator.transform.parent.gameObject.activeSelf) {
+            characterPanelAnimator.SetFloat("swoopSpeed", swoopSpeed);
+        }
 		if (Actions != null && this.gameObject.activeSelf) {
 			renderImage (index);
-			characterSelect ();	
+            characterSelect ();	
 		} 
 	}
 
@@ -57,18 +67,20 @@ public class CharacterSelect : MonoBehaviour {
 	/*
 	 * navigate the characters selection options and set the character when chosen
 	 */
-	public void characterSelect () {		
+	public void characterSelect () {
 
-		if (!selected && isSignedIn) {
+        if (!selected && isSignedIn) {
 			lightArrows ();
 
 			if (Actions.Down.WasReleased) {
 				index = getIndexPosition (ps.CharacterItems.Count, index, "down");
+                characterPanelAnimator.SetTrigger("shakeDown");
 			} 
 
 			if (Actions.Up.WasReleased) {
 				index = getIndexPosition (ps.CharacterItems.Count, index, "up");
-			}
+                characterPanelAnimator.SetTrigger("shakeUp");
+            }
 
 			if (Actions.Green.WasReleased) { //if the player selects the character
 				if(ps.lockCharacter(index)) {
@@ -86,7 +98,6 @@ public class CharacterSelect : MonoBehaviour {
 			}
 		}
 	}
-
 
 
 	public void renderImage(int index) {
@@ -162,5 +173,8 @@ public class CharacterSelect : MonoBehaviour {
 	public List<string> getCharacterKeys() {
 		return ps.getCharacterKeys();
 	}
+					public void toggleShake(){
+
+					}
 
 }

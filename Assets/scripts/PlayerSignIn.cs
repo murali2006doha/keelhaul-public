@@ -206,7 +206,7 @@ public class PlayerSignIn : MonoBehaviour {
 
 
 	public void LoadScene (string name) {
-		Application.LoadLevel (name);
+		SceneManager.LoadSceneAsync(name);
 	}
 
 }
