@@ -12,7 +12,7 @@ public class gameManager : AbstractGameManager {
 	GameObject[] barrels;
 	Vector3[] barrels_start_pos;
 	public Vector3 barrel_start_pos;
-	public GameObject screenSplitter;
+	
 	public List<playerInput> players = new List<playerInput>();
 	public KrakenInput kraken;
 	public int playerWinPoints = 3;
@@ -21,23 +21,35 @@ public class gameManager : AbstractGameManager {
 	public bool signedIn = false;
 	int assign_index =0;
 	public bool freeForAll = true;
-	public GameObject countDown;
+	
 	public signInCamera cam;
 	public PlayerManager manager;
 	public ControllerSelect controller;
 	public GameObject ship;
 	public int maxNoOfShips = 2;
 	bool done = false;
-    public Animator globalCanvas;
+    FFAGlobalCanvas globalCanvas;
+    GameObject screenSplitter;
+    Animator fadeInAnimator;
+    public GameObject countDown;
+
     MonoBehaviour script;
 	PlayerSelectSettings ps;
 	public bool gameOver = false;
-	string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
+    GameObject winner;
+
+    string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
 
 
 	void Start () {
+        globalCanvas = GameObject.FindObjectOfType<FFAGlobalCanvas>();
+        screenSplitter = globalCanvas.splitscreenImages;
+        fadeInAnimator = globalCanvas.fadePanelAnimator;
+        countDown = globalCanvas.countDownTimer;
+
 		gameOver = false;
-		GameObject[] winds = GameObject.FindObjectOfType<MapObjects> ().winds;
+        
+        GameObject[] winds = GameObject.FindObjectOfType<MapObjects> ().winds;
 
 		if (winds != null && winds.Length > 0) {
 			foreach (GameObject obj in winds) {
@@ -307,9 +319,11 @@ public class gameManager : AbstractGameManager {
 			}
 
 		}
-		if (points == krakenWinPoints) {
-			triggerVictory (kraken.gameObject);
-		}
+		if (points == krakenWinPoints && winner == null) {
+            activateVictoryText();
+            Invoke("triggerVictory", 1.2f);
+            winner = kraken.gameObject;
+        }
 
 	}
 	public void decrementPoint(KrakenInput kraken){
@@ -349,10 +363,12 @@ public class gameManager : AbstractGameManager {
 					}
 				}
 
-			} 
-			if (points == playerWinPoints)
-			{
-				triggerVictory(player.gameObject);
+			}
+            if (points == playerWinPoints && winner ==null)
+            { 
+                activateVictoryText();
+                Invoke("triggerVictory",1.2f);
+                winner = player.gameObject;
 			} else {
 				GameObject[] winds = GameObject.FindObjectOfType<MapObjects> ().winds;
 				if (winds != null && winds.Length > 0) {
@@ -373,53 +389,85 @@ public class gameManager : AbstractGameManager {
 				p.uiManager.setScoreBar (points / playerWinPoints);
 			}
 			if (points == playerWinPoints) {
-				triggerVictory(player.gameObject);
-			}
+                activateVictoryText();
+                Invoke("triggerVictory", 1.2f);
+                winner = player.gameObject;
+            }
 		}
 
 
 	}
-	public void triggerVictory(GameObject player){
+
+    public void activateVictoryText()
+    {
+        Time.timeScale = 0.3f;
+        foreach (playerInput p in players)
+        {
+            p.uiManager.activateFinishAndColorTint();
+        }
+        kraken.uiManager.activateFinishAndColorTint();
+    }
+
+	public void triggerVictory(){
 
        
-        if (player.GetComponent<playerInput>())
+        if (winner.GetComponent<playerInput>())
         {
-            script = player.GetComponent<playerInput>();
-                player.GetComponent<playerInput>().hasWon = true;
+            script = winner.GetComponent<playerInput>();
+            ((playerInput)script).hasWon = true;
+           
         }
         else {
-            script = player.GetComponent<KrakenInput>();
-            player.GetComponent<KrakenInput>().hasWon = true;
+            script = winner.GetComponent<KrakenInput>();
+            ((KrakenInput)script).hasWon = true;
+           
         }
 		
 		//player.victoryScreen.SetActive (true);
 		foreach (playerInput p in players) {
 			p.gameStarted = false;
-		}
+        }
 		kraken.gameStarted = false;
 
-        globalCanvas.SetBool("fade", true);
 
-        Invoke("triggerVictoryScreen", 1.5f);
+        //globalCanvas.finishText.SetActive(true);
+        Texture2D texture = new Texture2D(Screen.width, Screen.height/2, TextureFormat.RGB24, true);
+        texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height / 2), 0, 0);
+        texture.Apply();
+        Texture2D texture2 = new Texture2D(Screen.width, Screen.height / 2, TextureFormat.RGB24, true);
+        texture2.ReadPixels(new Rect(0, Screen.height / 2, Screen.width, Screen.height / 2), 0, 0);
+        texture2.Apply();
+        globalCanvas.panel1.texture = texture2;
+        globalCanvas.panel2.texture = texture;
+        globalCanvas.panel1.gameObject.SetActive(true);
+        globalCanvas.panel2.gameObject.SetActive(true);
+        triggerVictoryScreen();
+        
 
 	}
 
 
 
 	public void triggerVictoryScreen(){
-		gameOver = true;
+        Time.timeScale = 1f;
+        //fadeInAnimator.SetBool("fade", true);
+        gameOver = true;
 		kraken.reset ();
 		foreach (playerInput z in players) {
 			z.reset ();
+            z.followCamera.enabled = false;
 		}
+        kraken.followCamera.enabled = false;
 		screenSplitter.SetActive (false);
 		MapObjects map = GameObject.FindObjectOfType<MapObjects> ();
-		//Refactor out of map
-		map.gameOverCamera.GetComponent<Camera>().enabled = true;
-		map.ui.SetActive (true);
-		GameOverStatsUI gameOverUI = map.ui.GetComponent<GameOverStatsUI> ();
+        //Refactor out of map
+        
+        map.gameOverCamera.gameObject.SetActive(true);
+	
+        GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
+        gameOverUI.gameObject.SetActive(true);
 
-		List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
+        List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
 		List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
 
 		FreeForAllStatistics winStat = null;
@@ -502,9 +550,16 @@ public class gameManager : AbstractGameManager {
 			}
 
 		}
+        Invoke("enableStats", 4f);
 			
 
 	}
+
+    public void enableStats()
+    {
+        GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
+        gameOverUI.startFading = true;
+    }
 	public void disableWinds(){
 		foreach (GameObject obj in GameObject.FindObjectOfType<MapObjects> ().winds) {
 			obj.SetActive (false);

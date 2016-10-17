@@ -34,9 +34,10 @@ public class UIManager : MonoBehaviour {
 	public Vector3 tooltipOffset;
 	public TutorialUIManager tutorialManager;
 	public bool enableTutorials = true;
+    public GameObject finishText;
+    public GameObject colorTint;
 
-
-	bool highlight = true;
+    bool highlight = true;
 
 	void Start()
 	{
@@ -221,5 +222,16 @@ public class UIManager : MonoBehaviour {
 		currentIntensity = Random.Range(2, wobbleIntensity*5);
 		wobbleCount = 0;
 	}
+
+    public void activateFinishAndColorTint()
+    {
+        colorTint.SetActive(true);
+        activateFinishText();
+    }
+
+    void activateFinishText()
+    {
+        finishText.SetActive(true);
+    }
 
 }

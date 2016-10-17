@@ -12,10 +12,9 @@ public class OneVOneGameManager : AbstractGameManager {
 	GameObject[] barrels;
 	Vector3[] barrels_start_pos;
 	public Vector3 barrel_start_pos;
-	public GameObject screenSplitter;
+	
 	List<playerInput> players = new List<playerInput>();
 	public int playerWinPoints = 3;
-	public GameObject pressAtoJoin;
 	public bool signedIn = false;
 	int assign_index =0;
 	public bool freeForAll = true;
@@ -28,7 +27,8 @@ public class OneVOneGameManager : AbstractGameManager {
 	bool done = false;
 	public Animator globalCanvas;
 	MonoBehaviour script;
-	PlayerSelectSettings ps;
+    GameObject screenSplitter;
+    PlayerSelectSettings ps;
 	public bool gameOver = false;
 	string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
 

@@ -17,7 +17,7 @@ public class IslandManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		manageDamageSmoke ();	
-		print (enemyShip.uiManager.enemyIslandHealthBar.value);
+		//print (enemyShip.uiManager.enemyIslandHealthBar.value);
 	}
 
 	void manageDamageSmoke() {
