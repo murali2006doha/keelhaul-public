@@ -146,7 +146,7 @@ public class gameManager : AbstractGameManager {
                 }
                 else
                 {
-                    if (num <= maxNoOfShips)
+                    if (num < maxNoOfShips)
                     {
                         num = createPlayerShip(num, player);
                     }
