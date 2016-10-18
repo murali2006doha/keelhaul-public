@@ -15,7 +15,7 @@ public class CannonBall : MonoBehaviour {
 	public float force;
 	public float reflectForce = 100;
 	public int reflectMult = 1;
-	public int damage = 1;
+	public float damage = 1;
 	bool splashed = false;
     public float pushMagnitude =0f;
 	public bool reflected = false;
