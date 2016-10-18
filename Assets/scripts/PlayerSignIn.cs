@@ -19,9 +19,9 @@ public class PlayerSignIn : MonoBehaviour {
 	public Dictionary<string, List<Sprite>> CharacterItems = new Dictionary<string, List<Sprite>>();
 	public Sprite AImage;
 	int playersInPlay;
-
-	// Use this for initialization
-	public string levelName;
+    bool started = false;
+    // Use this for initialization
+    public string levelName;
 	public bool withKeyboard;
 	public Transform start;
 	public GameObject mapSelect;
@@ -79,9 +79,9 @@ public class PlayerSignIn : MonoBehaviour {
 			if (playersInPlay == 0) {
 
 				start.gameObject.SetActive (true); //change to next when there is map selection
-
-				if (players.Exists(p => p.Actions.Green.IsPressed)) {
-
+      
+				if (!started && players.Exists(p => p.Actions.Green.IsPressed)) {
+                    started = true;
 					GameObject.FindObjectOfType<PlayerSelectSettings> ().setPlayerCharacters (players);
 
 					LoadScene (levelName);
