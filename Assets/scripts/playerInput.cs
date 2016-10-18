@@ -14,7 +14,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 	public PlayerActions Actions { get; set; }
 	public GameObject rammingSprite;
-	public UIManager uiManager;
+    public GameObject stunEffect;
+    public UIManager uiManager;
 	public Collider shipMesh;
 	public GameObject krakenSpot;
 	public GameObject dmgState1, dmgState2;
@@ -386,9 +387,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
             transform.Rotate(Vector3.up, rotationSpeed * cc.velocity.magnitude, Space.World);
             cc.Move(pushDirection * velocity * (Time.deltaTime * GlobalVariables.gameSpeed));
             if (velocity <= 0 || cc.velocity.magnitude <=0.2f) {
-                isPushed = false;
-                pushDirection = Vector3.zero;
-                pushMagnitude = 0f;
+                stopPushForce();
             }
             return;
 		}
@@ -449,11 +448,12 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 	public void addPushForce(Vector3 direction, float magnitude) {
 		if (magnitude > 0 && !isPushed) {
-			hook_component.UnHook ();
+            hook_component.UnHook ();
             velocity = stats.maxVelocity * magnitude;
             followCamera.startShake ();
             pushMagnitude = magnitude;
             isPushed = true;
+            stunEffect.SetActive(true);
             pushDirection = direction;
         }
 
@@ -461,8 +461,12 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 
 	void stopPushForce() {
-		isPushed = false;
-	}
+        isPushed = false;
+        pushDirection = Vector3.zero;
+        pushMagnitude = 0f;
+        stunEffect.SetActive(false);
+
+    }
 
 
 	public void vibrate(float intensity, float time){
