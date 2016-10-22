@@ -109,8 +109,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		centralCannon.input = this;
 		bombCannon = this.GetComponentInChildren<Bomb_Controller> ();
 		bombCannon.input = this;
-		bombCannon.Bomb = this.Bomb;
-		this.bombCannon.Bomb.owner = this.transform;
+		//bombCannon.Bomb = this.Bomb;
+		this.bombCannon.bombComponent.owner = this.transform;
 		//centralCannon.cannonForce = this.cannonForce;
 	}
 
@@ -277,8 +277,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 				hit (stats.kraken_damage,kraken);
 				other.gameObject.transform.root.GetComponent<KrakenInput> ().vibrate (.5f, .5f);
 			} else {
-				
-					bombCannon.handleTrigger (other);
+				bombCannon.handleTrigger (other); //collider is bomb
 			}
 
             if (other.name == "nose") {
@@ -498,6 +497,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	}
 
 	public void hit(float passedDamage = 0f,StatsInterface attacker=null) {
+		print (passedDamage);
 		if (!invincible && health>0) {
 			float actualDamage = (passedDamage > 0)?passedDamage:damage;
 			health -= actualDamage;

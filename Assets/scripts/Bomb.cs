@@ -14,6 +14,7 @@ public class Bomb : MonoBehaviour {
 	public GameObject krakenHit;
 	public GameObject explosion; 
 	public float explosion_duration = 1.5f;
+	public float damage;
 
 
 	void Start()  {
@@ -89,7 +90,8 @@ public class Bomb : MonoBehaviour {
 		playerInput ownerPlayer = owner.GetComponent<playerInput> ();
 		Instantiate (shipHit, exp.transform.position, exp.transform.rotation);
 		if (controller != null) {
-			controller.hit (1,ownerPlayer);
+			print (Time.deltaTime);
+			controller.hit (damage,ownerPlayer);
 		}
 	}
 		
