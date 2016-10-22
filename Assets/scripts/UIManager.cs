@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour {
 	public float wobbleSpeed = 3.5f;
 	float wobbleIntensity = 5f;
 	float currentIntensity = 5f;
+	float UISpeed = 2.5f;
+	float enemyHealth = 3f;
 	int wobbleCount = 0;
 	public Slider boostBar;
 	public SpriteRenderer barrelTooltip;
@@ -41,6 +43,7 @@ public class UIManager : MonoBehaviour {
 
 	void Start()
 	{
+
 		barrelObj = GameObject.FindObjectOfType<barrel>();
 		barrelPos = barrelObj.transform.position;
 		if (compassArrow != null)
@@ -48,6 +51,11 @@ public class UIManager : MonoBehaviour {
 			arrowImage = compassArrow.GetComponent<Image>();
 			targetBarrel();
 		}
+	}
+
+
+	void Update() {
+		setEnemyIslandBar ();
 	}
 
 	public int incrementPoint() {
@@ -66,13 +74,15 @@ public class UIManager : MonoBehaviour {
 
 
 	public void decrementEnemyHealth() {
-		float point = enemyIslandHealthBar.value - (1.0f/3.0f);
+		enemyHealth = enemyIslandHealthBar.value - (enemyIslandHealthBar.maxValue/3.0f);
 	}
 
 
-	public void setEnemyIslandBar(float health) {
+	public void setEnemyIslandBar() {
 		if (enemyIslandHealthBar != null) {
-			enemyIslandHealthBar.value = health;
+			float step = UISpeed * Time.deltaTime; //Lerp Speed
+
+			enemyIslandHealthBar.value = Mathf.MoveTowards (enemyIslandHealthBar.value, enemyHealth, step);
 		}
 	}
 
@@ -96,7 +106,10 @@ public class UIManager : MonoBehaviour {
 
 
 	public void setHealthBar(float health) {
-		healthBar.value = health;
+		float step = UISpeed * Time.deltaTime; //Lerp Speed
+
+		healthBar.value = Mathf.MoveTowards (healthBar.value, health, step);
+
 	}
 
 	public void updateShipUI(Vector3 pos, bool hittingBarrel)

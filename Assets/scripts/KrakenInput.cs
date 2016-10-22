@@ -91,10 +91,15 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     }
 
 
+	void updateHealth() {
+		uiManager.setHealthBar(health / stats.stages[currentStage].max_health);
+
+	}
+
     // Update is called once per frame
     void Update()
     {
-
+		updateHealth ();
         if (Actions != null && !animator.isCurrentAnimName("death") && gameStarted)
         {
             followCamera.cullingMask = cullingMask;
@@ -416,7 +421,6 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         dying = false;
         enableCollisions();
         isSubmerging = false;
-        uiManager.setHealthBar(health / stats.stages[currentStage].max_health);
     }
 
 
@@ -449,9 +453,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
             {
                 vibrate(.5f, .5f);
             }
-
-            uiManager.setHealthBar(health / stats.stages[currentStage].max_health);
-
+				
         }
 
     }
