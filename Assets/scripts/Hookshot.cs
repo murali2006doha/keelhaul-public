@@ -31,7 +31,6 @@ public class Hookshot : MonoBehaviour {
 	public FreeForAllStatistics stats;
     public UIManager uiManager;
 
-	ArrowController arrowController;
 	Transform ship;
 	Rigidbody rb;
 	LineRenderer tether; 
@@ -51,21 +50,16 @@ public class Hookshot : MonoBehaviour {
     void Start () {
 		Vector3 inFront = new Vector3 (1f, 0f, 1f);
 		aim.transform.position = this.transform.position + inFront;
-		this.arrowController = GetComponentInChildren<ArrowController> ();
 		this.ship = this.gameObject.transform;
 		tether = GetComponent<LineRenderer> ();
 		barrel = GameObject.FindObjectOfType<barrel> ().gameObject;
 		rb = barrel.GetComponent<Rigidbody> ();
 		aiHook = false;
-		arrowController.home = scoreDestination;
 //        uiManager.targetBarrel();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (scoreDestination != null && arrowController.home==null) {
-			arrowController.home = scoreDestination;
-		}
 		if (Actions!= null) { 
             if (Actions.Device != null) 
 			    aim.transform.position = (aim.transform.position - this.transform.position).normalized * 0.75f + this.transform.position;
@@ -74,7 +68,6 @@ public class Hookshot : MonoBehaviour {
 			stats.timeSpentCarryingBarrel += Time.deltaTime;
             uiManager.setTarget(scoreDestination.gameObject);
             uiManager.changeCompassColor(Color.green);
-            arrowController.TargetHome ();
 			aim.GetComponent<Renderer> ().material.color = Color.white;
 		}
 		if (Actions != null && !ship.GetComponent<playerInput>().dying) {
@@ -359,12 +352,6 @@ public class Hookshot : MonoBehaviour {
 					barrel.GetComponent<CharacterJoint> ().connectedBody = null;
 					barrel.GetComponent<barrel> ().owner = null;
 				}
-                
-                arrowController.TargetBarrel ();
-
-			} else if (isHooked ()) {
-               
-                arrowController.TargetBarrel ();
 
 			}
            
