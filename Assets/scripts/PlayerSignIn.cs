@@ -89,7 +89,7 @@ public class PlayerSignIn : MonoBehaviour {
                   
                     if (!loadingScene)
                     {
-                        loadingScreen.SetActive(true);
+                        loadingScreen.SetActive(true);  
                         StartCoroutine(LoadNewScene());
                         loadingScene = true;
                     }
@@ -217,7 +217,7 @@ public class PlayerSignIn : MonoBehaviour {
     IEnumerator LoadNewScene()
     {
         //To do: move this logic out of playerSignIn, make it more generic
-        AsyncOperation async = SceneManager.LoadSceneAsync(levelName);
+        AsyncOperation async = SceneManager.LoadSceneAsync(GlobalVariables.getMapToLoad());
         while (!async.isDone)
         {
             yield return null;
