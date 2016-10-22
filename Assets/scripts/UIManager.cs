@@ -28,7 +28,6 @@ public class UIManager : MonoBehaviour {
 	float wobbleIntensity = 5f;
 	float currentIntensity = 5f;
 	float UISpeed = 2.5f;
-	float step; //Lerp Speed
 	float enemyHealth = 3f;
 	int wobbleCount = 0;
 	public Slider boostBar;
@@ -44,7 +43,6 @@ public class UIManager : MonoBehaviour {
 
 	void Start()
 	{
-		step = UISpeed * Time.deltaTime; //Lerp Speed
 
 		barrelObj = GameObject.FindObjectOfType<barrel>();
 		barrelPos = barrelObj.transform.position;
@@ -82,6 +80,8 @@ public class UIManager : MonoBehaviour {
 
 	public void setEnemyIslandBar() {
 		if (enemyIslandHealthBar != null) {
+			float step = UISpeed * Time.deltaTime; //Lerp Speed
+
 			enemyIslandHealthBar.value = Mathf.MoveTowards (enemyIslandHealthBar.value, enemyHealth, step);
 		}
 	}
@@ -106,6 +106,7 @@ public class UIManager : MonoBehaviour {
 
 
 	public void setHealthBar(float health) {
+		float step = UISpeed * Time.deltaTime; //Lerp Speed
 
 		healthBar.value = Mathf.MoveTowards (healthBar.value, health, step);
 
