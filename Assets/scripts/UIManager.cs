@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour {
 	public bool enableTutorials = true;
     public GameObject finishText;
     public GameObject colorTint;
+    public GameObject worldSpace;
 
     bool highlight = true;
 
