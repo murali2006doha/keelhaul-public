@@ -144,10 +144,17 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		CancelInvoke ();
 	}
 
+	void updateHealth() {
+		uiManager.setHealthBar (health / stats.max_health);
+
+	}
 
 	void Update () {
         
 		if (Actions != null) {
+
+			updateHealth ();
+
 			if (hook_component.Actions == null)
 				hook_component.Actions = Actions;
 
@@ -161,6 +168,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 					centralCannon.handleShoot (transform.forward * velocity*GlobalVariables.gameSpeed,velocity*GlobalVariables.gameSpeed);
 					bombCannon.handleBomb ();
 					//tiltBoat ();
+
 
 				} else {
 					rotateBoat ();
@@ -520,7 +528,6 @@ public class playerInput : MonoBehaviour,StatsInterface {
 				vibrate (.5f, .5f);
 			}
 		}
-		uiManager.setHealthBar(health/stats.max_health);
 	}
 
 
@@ -571,7 +578,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 		activateInvincibility ();
 		Invoke ("deactivateInvincibility", stats.invinciblityTime);
-		uiManager.setHealthBar (health/stats.max_health);
+
 		checkColliders (true);
 	}
 

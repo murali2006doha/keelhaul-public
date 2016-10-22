@@ -290,7 +290,7 @@ public class gameManager : AbstractGameManager {
 		barrel b = barrel.GetComponent<barrel> ();
 		b.explodeBarrel ();
 
-		player.uiManager.setEnemyIslandBar (player.uiManager.enemyIslandHealthBar.value - 1);
+		player.uiManager.decrementEnemyHealth (); //set in UIManager itself
 
 		int x = 0;
 		foreach (GameObject barr in barrels) {
