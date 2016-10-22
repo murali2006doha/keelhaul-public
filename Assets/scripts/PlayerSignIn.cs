@@ -14,7 +14,8 @@ public class PlayerSignIn : MonoBehaviour {
 
 	public PlayerActions Actions { get; set; }
 	public List<CharacterSelect> players = new List<CharacterSelect>(); //to pass on to 
-
+    public AsyncOperation asyncLoad;
+    public bool loadingScene;
 	public Dictionary<string, bool> characterStatuses = new Dictionary<string, bool>();
 	public Dictionary<string, List<Sprite>> CharacterItems = new Dictionary<string, List<Sprite>>();
 	public Sprite AImage;
@@ -27,6 +28,7 @@ public class PlayerSignIn : MonoBehaviour {
 	public GameObject mapSelect;
 	ControllerSelect cc;
 
+    public GameObject loadingScreen;
 	[System.Serializable]
 	public struct CharacterMenuItems
 	{
@@ -65,7 +67,8 @@ public class PlayerSignIn : MonoBehaviour {
 
 
 	void Update(){ //need to make controllers work in menu
-		var inputDevice = InputManager.ActiveDevice; //last device to
+
+        var inputDevice = InputManager.ActiveDevice; //last device to
 
 		if (this.gameObject.activeSelf) {
 			cc.listening = true;
@@ -83,8 +86,14 @@ public class PlayerSignIn : MonoBehaviour {
 				if (!started && players.Exists(p => p.Actions.Green.IsPressed)) {
                     started = true;
 					GameObject.FindObjectOfType<PlayerSelectSettings> ().setPlayerCharacters (players);
-
-					LoadScene (levelName);
+                  
+                    if (!loadingScene)
+                    {
+                        loadingScreen.SetActive(true);
+                        StartCoroutine(LoadNewScene());
+                        loadingScene = true;
+                    }
+					
 					//this.gameObject.SetActive(false);
 					//mapSelect.gameObject.SetActive(true);
 				}
@@ -205,8 +214,15 @@ public class PlayerSignIn : MonoBehaviour {
 	}
 
 
-	public void LoadScene (string name) {
-		SceneManager.LoadSceneAsync(name);
-	}
+    IEnumerator LoadNewScene()
+    {
+        //To do: move this logic out of playerSignIn, make it more generic
+        AsyncOperation async = SceneManager.LoadSceneAsync(levelName);
+        while (!async.isDone)
+        {
+            yield return null;
+        }
+
+    }
 
 }
