@@ -35,26 +35,29 @@ public class Bomb : MonoBehaviour {
 
 	public IEnumerator ActivateBomb(GameObject bomb) {
 
-		GameObject b = bomb.transform.Find ("bomb zone").gameObject;
-		b.SetActive (false);
+		GameObject smallZone = bomb.transform.Find ("bomb zone").gameObject;
+		GameObject model = bomb.transform.Find ("bomb_model").gameObject;
+		smallZone.SetActive (false);
 
-		GameObject bombzone = (GameObject) Instantiate (bombZone, bomb.transform.position, bomb.transform.rotation);
+		GameObject largeBombzone = (GameObject) Instantiate (bombZone, bomb.transform.position, bomb.transform.rotation);
 
 		for(int i = 0; i < blinks; i++){ //blinks when activated
 			if (bomb!=null){
-				bombzone.GetComponent<Renderer> ().material.color = Color.white;
+				largeBombzone.GetComponent<Renderer> ().material.color = Color.white;
+				model.GetComponent<Renderer> ().material.color = Color.white;
 				yield return new WaitForSeconds(blinkTime);
 					
 			}
 			if (bomb != null) {
-				bombzone.GetComponent<Renderer> ().material.color = Color.yellow;
+				largeBombzone.GetComponent<Renderer> ().material.color = Color.yellow;
+				model.GetComponent<Renderer> ().material.color = Color.red;
 				yield return new WaitForSeconds(blinkTime);
 			}
 
 		}
 
 		//explode!
-		Destroy (bombzone); 			//destroy the parameter zone
+		Destroy (largeBombzone); 			//destroy the parameter zone
 		GameObject exp = explode(bomb); //produces an explosion
 		//Invoke ("fadeHalo", .5f);
 		yield return new WaitForSeconds(explosion_duration); 
@@ -86,7 +89,7 @@ public class Bomb : MonoBehaviour {
 		playerInput ownerPlayer = owner.GetComponent<playerInput> ();
 		Instantiate (shipHit, exp.transform.position, exp.transform.rotation);
 		if (controller != null) {
-			controller.hit (2,ownerPlayer);
+			controller.hit (1,ownerPlayer);
 		}
 	}
 		
