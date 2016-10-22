@@ -90,6 +90,7 @@ public class gameManager : AbstractGameManager {
                     if (device.Name.ToLower().Contains("controller") || device.Name.ToLower().Contains("joy") || device.IsKnown)
                     {
                         devices.Add(device);
+                        
                     }
                     
                 }
@@ -105,13 +106,14 @@ public class gameManager : AbstractGameManager {
                     } else if (numDevices == 1)
                     {
 						num = createShipWithName(num, action, ShipEnum.AtlanteanShip.ToString());
-                        break;
+                       
                     } else if (numDevices == 2)
                     {
-                      
-                        break;
+                        num = createShipWithName(num, action, ShipEnum.ChineseJunkShip.ToString());
+
                     }
                     numDevices++;
+
                 }
 
                 if(numDevices == 1)

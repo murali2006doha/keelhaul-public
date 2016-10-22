@@ -64,6 +64,10 @@ public class ShipInstantiator : MonoBehaviour {
 				ship.followCamera = ui.GetComponentInParent<cameraFollow> ();
 				ship.followCamera.target = ship.gameObject;
 				ship.followCamera.ready = true;
+                if(num == 2)
+                {
+                    LayerHelper.setLayerRecursively(ship.uiManager.worldSpace,LayerMask.NameToLayer("p2_ui"));
+                }
 				break;
 			}
 		}
