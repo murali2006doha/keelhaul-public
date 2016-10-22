@@ -240,8 +240,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		if (!invincible) {
 			gameStats.numOfTimesSubmergedByKraken += 1;
             hook_component.UnHook();
-			health = 0;
-			hit ();
+			hit (20);
 			startSinking = false;
 			locked = false;
 		}
