@@ -5,19 +5,20 @@ using System.Collections.Generic;
 public class Bomb_Controller : MonoBehaviour {
 
 
-	public GameObject bombPrefab;
+	//public GameObject bombPrefab;
 
 	public playerInput input;
-	public Bomb Bomb;
+	public Bomb bombComponent;
 	public bool canDropBomb = true;
 
 	List<GameObject> bombList = new List<GameObject>();
 	List<Vector3> explosionList = new List<Vector3>();
 
+
+
     public GameObject Drop_Bomb() {
 		//maybe do an arc to throw bomb?
-
-		GameObject bomb = (GameObject)Instantiate (bombPrefab, transform.position, transform.rotation);
+		GameObject bomb = (GameObject)Instantiate (bombComponent.gameObject, transform.position, transform.rotation);
 		bomb.transform.rotation = Quaternion.Euler (-90, 0, 0);
 
 		return bomb; //does this make sense? need to return to collect in BombList in playerinput
@@ -64,17 +65,18 @@ public class Bomb_Controller : MonoBehaviour {
 	public void handleTrigger(Collider other){
 		if (LayerMask.LayerToName (other.gameObject.layer).Equals ("bomb")) {//to activate a bomb
 			if (bombList.Contains (other.gameObject) == false) {
-				Debug.Log ("triggering bomb explosion");
-				Debug.Log (other.gameObject);
+				//Debug.Log ("triggering bomb explosion");
+				//Debug.Log (other.gameObject);
 				input.gameStats.numOfBombsDetonated+=0.5f;
-				StartCoroutine (Bomb.ActivateBomb (other.gameObject));
+				StartCoroutine (bombComponent.ActivateBomb (other.gameObject));
 			}
 		}
 
 		if (LayerMask.LayerToName (other.gameObject.layer).Equals ("explosion") && !input.invincible) {//check if ship is in range when a bomb is exploding
-			Debug.Log ("HITTING bomb explosion");
-			Debug.Log (other.gameObject);
+			//Debug.Log ("HITTING bomb explosion");
+			//Debug.Log (other.gameObject);
 			bool shouldGetHit = true;
+			bool stopHitting = false;
 			foreach (Vector3 explosion in explosionList) {	//makes sure that the explosion is not coming from a bomb dropped by this ship
 				if (explosion != null) {
 					if (other.gameObject.transform.position == explosion) {
@@ -82,11 +84,12 @@ public class Bomb_Controller : MonoBehaviour {
 					}
 				} 
 			}
-			if (shouldGetHit) {
+			if (shouldGetHit && !stopHitting) {
 				Debug.Log ("hit by explosion");
 				Collider cl;
 				cl = input.gameObject.GetComponent<Collider>();
-				Bomb.DestroyShip (other.gameObject, cl); 
+				bombComponent.DestroyShip (other.gameObject, cl);
+				other.enabled = false;
 			}
 		}
 	}
@@ -94,7 +97,7 @@ public class Bomb_Controller : MonoBehaviour {
 	public void activateAllBombs(){
 		foreach (GameObject bomb in bombList) { //destroy all bombs on field
 			if (bomb != null) {
-				StartCoroutine (Bomb.ActivateBomb (bomb));
+				StartCoroutine (bombComponent.ActivateBomb (bomb));
 			}
 		}
 	}
