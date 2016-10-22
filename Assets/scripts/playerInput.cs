@@ -498,7 +498,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	}
 
 	public void hit(float passedDamage = 0f,StatsInterface attacker=null) {
-		if (!invincible) {
+		if (!invincible && health>0) {
 			float actualDamage = (passedDamage > 0)?passedDamage:damage;
 			health -= actualDamage;
             SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
