@@ -410,7 +410,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         smash = false;
         attacking = false;
         submergeSprite.enabled = false;
-        enableSpray();
+     //   enableSpray();
 
     }
 
@@ -533,7 +533,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
         gameObject.layer = LayerMask.NameToLayer("kraken");
         submerged = false;
-        enableSpray();
+     //   enableSpray();
 
     }
 
