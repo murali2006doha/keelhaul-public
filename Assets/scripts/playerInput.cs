@@ -249,7 +249,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 	void OnTriggerStay(Collider other){
 		if (gameStarted) {
-			if (other.transform.root == scoreDestination.transform.parent && hook_component.isHooked ()) {
+			if (other.transform.root == scoreDestination.transform.parent && hook_component.isHooked () && other.gameObject.tag.Equals("ScoringZone")) {
 
 				hook_component.barrel.transform.position = Vector3.Lerp(hook_component.barrel.transform.position, scoreDestination.transform.position, Time.time);
 

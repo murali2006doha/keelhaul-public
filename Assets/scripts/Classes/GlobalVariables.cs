@@ -25,7 +25,7 @@ public static class GlobalVariables {
     public static string [] mapsToLoad = { MapEnum.Tropical.ToString(), MapEnum.Chinese.ToString() };
 
     public static string getMapToLoad() {
-        string mapToLoad = mapsToLoad[Random.Range(0, mapsToLoad.Length - 1)]; 
+        string mapToLoad = mapsToLoad[Random.Range(0, mapsToLoad.Length)]; 
 
         if (!firstTimeBoot) {
             firstTimeBoot = true;

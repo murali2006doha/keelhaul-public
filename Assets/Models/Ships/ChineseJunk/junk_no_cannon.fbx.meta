@@ -181,6 +181,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
+      - time: 0.009615385
+        functionName: onDeathAnimationEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 389b30b51468d584d936d5d9da5bd541,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
