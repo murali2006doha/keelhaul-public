@@ -7,7 +7,8 @@ public class Pulsate : MonoBehaviour {
     Graphic   graphic;
     public float duration;
     public float fadeOutDelay;
-	void Start () {
+    public float fadeInDelay;
+    void Start () {
         graphic = GetComponent<Graphic>();
         fadeOut();
 	}
@@ -22,6 +23,19 @@ public class Pulsate : MonoBehaviour {
     void fadeOut()
     {
         graphic.CrossFadeAlpha(0, duration, false);
-        Invoke("fadeIn", duration);
+        Invoke("fadeIn", duration + fadeInDelay);
+    }
+
+    public void changePulsate()
+    {
+        CancelInvoke();
+        graphic.CrossFadeAlpha(0, 0f, false);
+        fadeIn();
+    }
+
+    public void removePulsate()
+    {
+        graphic.CrossFadeAlpha(0, 0.2f, false);
+        CancelInvoke();
     }
 }
