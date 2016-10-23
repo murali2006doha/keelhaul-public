@@ -89,7 +89,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
         this.hook_component.playerCam = followCamera.camera;
 		this.hook_component.stats = gameStats;
         followCamera.cullingMask = cullingMask;
-		invincibilityParticle = (GameObject) Instantiate (invincibilyPrefab, this.transform.position, this.transform.rotation);
+		invincibilityParticle = (GameObject) Instantiate (invincibilyPrefab, this.transform.position, invincibilyPrefab.transform.rotation);
 		invincibilityParticle.SetActive (false);
 		invincibilityParticle.transform.parent = transform;
 		invinciblity = anim.GetComponentInChildren<Animator> ();
