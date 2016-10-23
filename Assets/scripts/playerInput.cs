@@ -562,8 +562,9 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		followCamera.zoomIn = false;
 		bombCannon.resetBombs ();
 		centralCannon.ResetShots ();
-		//shipMesh.enabled = false;
-		manager.respawnPlayer(this, startingPoint);	
+        stopPushForce();
+        //shipMesh.enabled = false;
+        manager.respawnPlayer(this, startingPoint);	
 		//anim.triggerRespawnAnimation ();
 		health = stats.max_health;
 		followCamera.setRespawn ();
