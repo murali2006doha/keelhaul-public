@@ -127,6 +127,11 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
             rotateKraken();
         }
 
+        if (gameStarted)
+        {
+            uiManager.updateTutorialPrompts(followCamera.camera, Actions);
+        }
+
         if (hasWon)
         {
             if (Actions.Green)
