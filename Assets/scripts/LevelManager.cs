@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour {
 	PlayerActions player = null;
 
 	int index = 0;
+    public List<Pulsate> pulsaters;
 	ControllerSelect cc;
 
 	PlayerSignIn pSignIn;
@@ -57,9 +58,16 @@ public class LevelManager : MonoBehaviour {
 		//signIn ();
 		if (startScreen.gameObject.active == true) {
 			if (InputManager.ActiveDevice.Action1.WasReleased || InputManager.AnyKeyIsPressed) {
-				selectmode.gameObject.SetActive(true);
-				//characterselectFFA.gameObject.SetActive (true);
-				startScreen.gameObject.SetActive (false);
+                //selectmode.gameObject.SetActive(true);
+                foreach(Pulsate p in pulsaters)
+                {
+                    p.fadeInDelay = 0;
+                    p.fadeOutDelay = 0;
+                    p.duration = 0.2f;
+                    p.changePulsate();
+                    p.Invoke("removePulsate", 1f);
+                }
+                Invoke("activateCharSelect", 1.5f);
 			}
 		}
 
@@ -81,6 +89,13 @@ public class LevelManager : MonoBehaviour {
 			cc.listening = false;
 		}
 	}
+
+    void activateCharSelect()
+    {
+        characterselectFFA.gameObject.SetActive(true);
+        startScreen.gameObject.GetComponent<Fade>().enabled = true;
+        //startScreen.gameObject.SetActive(false);
+    }
 
 
 	public void escape() { //going back a page
