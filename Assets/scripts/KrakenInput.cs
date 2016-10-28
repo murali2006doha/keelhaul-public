@@ -74,6 +74,11 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         currentStage = 0;
         cc = GetComponent<CharacterController>();
         krakenArmPosition = transform.Find("KrakenArm");
+        GameObject screen = GameObject.Find("Kraken Screen");
+        uiManager = screen.GetComponentInChildren<UIManager>();
+        followCamera = screen.GetComponent<cameraFollow>();
+        followCamera.target = this.gameObject;
+        followCamera.ready = true;
         animator.splashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Submerge");
         animator.emergeSplashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Emerge");
         manager = GameObject.FindObjectOfType<AbstractGameManager>();

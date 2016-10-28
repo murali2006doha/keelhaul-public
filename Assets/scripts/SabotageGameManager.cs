@@ -48,7 +48,8 @@ public class SabotageGameManager : AbstractGameManager {
 
 
 	void Start () {
-        GameObject[] winds = GameObject.FindObjectOfType<MapObjects>().winds;
+        MapObjects map = GameObject.FindObjectOfType<MapObjects>();
+        GameObject[] winds = map.winds;
 
         if (winds != null && winds.Length > 0)
         {
@@ -94,6 +95,14 @@ public class SabotageGameManager : AbstractGameManager {
         {
             int numDevices = 0;
             this.GetComponent<InControlManager>().enabled = true;
+            if (defaultKrakenNum > 0)
+            {
+                GameObject k = Instantiate(Resources.Load("Prefabs/Kraken 1", typeof(GameObject)), this.transform.parent) as GameObject;
+                k.transform.position = map.krakenStartPoint.transform.position;
+
+                kraken = k.GetComponent<KrakenInput>();
+                
+            }
             if (InputManager.Devices != null && InputManager.Devices.Count > 0) {
                
                 print("devices found");
@@ -116,8 +125,14 @@ public class SabotageGameManager : AbstractGameManager {
                     action.Device = device;
                     if (numDevices == 0)
                     {
-                        kraken.Actions = action;
-                        kraken.followCamera.ready = true;
+                        if(defaultKrakenNum > 0) {
+                            kraken.Actions = action;
+                           
+                        }
+                        else
+                        {
+                            num = createShipWithName(num, action, ShipEnum.BlackbeardShip.ToString());
+                        }
                     } else if (numDevices == 1)
                     {
 						num = createShipWithName(num, action, ShipEnum.AtlanteanShip.ToString());
@@ -144,8 +159,16 @@ public class SabotageGameManager : AbstractGameManager {
             if(numDevices == 0)
             {
                 print("no devices or characters selected - adding default");
-                kraken.Actions = PlayerActions.CreateWithKeyboardBindings();
-                kraken.followCamera.ready = true;
+                if (defaultKrakenNum > 0)
+                {
+                    kraken.Actions = PlayerActions.CreateWithKeyboardBindings();
+                  
+                }
+                else
+                {
+                    num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.BlackbeardShip.ToString());
+                }
+                
 				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
 				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
             }
@@ -158,8 +181,12 @@ public class SabotageGameManager : AbstractGameManager {
 
 				if (player.selectedCharacter == ShipEnum.Kraken.ToString())
                 {
+                    
+                    GameObject k = Instantiate(Resources.Load("Prefabs/Kraken 1", typeof(GameObject)), this.transform.parent) as GameObject;
+                    kraken = k.GetComponent<KrakenInput>();
+                    
                     kraken.Actions = player.Actions;
-                    kraken.followCamera.ready = true;
+                    
                 }
                 else
                 {
@@ -189,12 +216,10 @@ public class SabotageGameManager : AbstractGameManager {
                 {
                     UnityEngine.Object krakenUI = Resources.Load("Prefabs/UI/KrakenUI", typeof(GameObject));
                     GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
-                    newCamera.name = "Player " + (camCount + 1) + " Screen";
+                    newCamera.name = "Kraken Screen";
                     cams[camCount] = newCamera.GetComponent<cameraFollow>();
                     GameObject instantiatedUI = Instantiate(krakenUI, newCamera.transform) as GameObject;
-                    kraken.uiManager = instantiatedUI.GetComponentInChildren<UIManager>();
-                    kraken.followCamera = cams[camCount];
-                    kraken.followCamera.target = kraken.gameObject;
+                  
                     var camera1 = newCamera.GetComponentInChildren<Camera>();
                     setUpCameraOnCanvas(instantiatedUI, camera1);
                     camCount++;
@@ -246,16 +271,14 @@ public class SabotageGameManager : AbstractGameManager {
             {
                 UnityEngine.Object krakenUI = Resources.Load("Prefabs/UI/KrakenUI", typeof(GameObject));
                 GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
-                newCamera.name = "Player " + (camCount + 1) + " Screen";
+                newCamera.name = "Kraken Screen";
                 cams[camCount] = newCamera.GetComponent<cameraFollow>();
                 GameObject instantiatedUI = Instantiate(krakenUI, newCamera.transform) as GameObject;
                 
                 var camera1 = newCamera.GetComponentInChildren<Camera>();
                 setUpCameraOnCanvas(instantiatedUI, camera1);
                 
-                kraken.uiManager = instantiatedUI.GetComponentInChildren<UIManager>();
-                kraken.followCamera = cams[camCount];
-                kraken.followCamera.target = kraken.gameObject;
+               
                 if (defaultKrakenNum + defaultShipNum == 4)
                 {
                     camera1.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
