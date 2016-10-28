@@ -5,15 +5,19 @@ using UnityEngine.SceneManagement;
 using InControl;
 using System;
 
-public class gameManager : AbstractGameManager {
+public class SabotageGameManager : AbstractGameManager {
 	//Use this script for general things like managing the state of the game, tracking players and so on.
 
 	public float respawnTimer;
 	// Use this for initialization
-	public cameraFollow  [] cams;
+	cameraFollow  [] cams;
 	GameObject[] barrels;
 	Vector3[] barrels_start_pos;
-	public Vector3 barrel_start_pos;
+	Vector3 barrel_start_pos;
+
+    public int defaultShipNum = 2;
+    public int defaultKrakenNum = 1;
+    public bool team;
 	
 	public List<playerInput> players = new List<playerInput>();
 	public KrakenInput kraken;
@@ -58,7 +62,7 @@ public class gameManager : AbstractGameManager {
         controller = GameObject.FindObjectOfType<ControllerSelect>();
 
         initializeGlobalCanvas();
-        initalizeGameOverCamera();
+        
         initializePlayerCameras();
 
         globalCanvas = GameObject.FindObjectOfType<FFAGlobalCanvas>();
@@ -170,12 +174,170 @@ public class gameManager : AbstractGameManager {
 
     private void initializePlayerCameras()
     {
-        //throw new NotImplementedException();
+        UnityEngine.Object camera = Resources.Load("Prefabs/Cameras/TopdownCamera", typeof(GameObject));
+        if (ps)
+        {
+            bool foundKraken = false;
+            // Look for kraken
+            cams = new cameraFollow[ps.players.Count];
+            int camCount = 0;
+            foreach (CharacterSelect player in ps.players)
+            {
+
+                if (player.selectedCharacter == ShipEnum.Kraken.ToString())
+                {
+                    UnityEngine.Object krakenUI = Resources.Load("Prefabs/UI/KrakenUI", typeof(GameObject));
+                    GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                    cams[camCount] = newCamera.GetComponent<cameraFollow>();
+                    GameObject instantiatedUI = Instantiate(krakenUI, newCamera.transform) as GameObject;
+                    kraken.uiManager = instantiatedUI.GetComponent<UIManager>();
+                    kraken.followCamera = cams[camCount];
+                    var camera1 = newCamera.GetComponentInChildren<Camera>();
+                    setUpCameraOnCanvas(instantiatedUI, camera1);
+                    camCount++;
+                    //Only case where screen is small
+                    if (ps.players.Count == 4)
+                    {
+                        newCamera.GetComponentInChildren<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                    }
+                    else {
+                        newCamera.GetComponentInChildren<Camera>().rect = new Rect(0, 0.5f, 1, 0.5f);
+                    }
+                    foundKraken = true;
+                    break;
+                }
+              
+            }
+            UnityEngine.Object shipUI = Resources.Load("Prefabs/UI/shipUI", typeof(GameObject));
+
+            int shipCount = 0;
+            //Look for ships
+            foreach (CharacterSelect player in ps.players)
+            {
+
+                if (player.selectedCharacter != ShipEnum.Kraken.ToString())
+                {
+                    GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                    cams[camCount] = newCamera.GetComponent<cameraFollow>();
+                    camCount++;
+                    GameObject instantiatedUI = Instantiate(shipUI, newCamera.transform) as GameObject;
+                    //Wide Screen Case 1
+                    setUpCameraPositions(foundKraken, shipCount,ps.players.Count, newCamera);
+                    var camera1 = newCamera.GetComponentInChildren<Camera>();
+                    setUpCameraOnCanvas(instantiatedUI, camera1);
+                    shipCount++;
+                }
+
+            }
+
+
+
+        } else //Default behaviour use global variables to initialize
+        {
+            cams = new cameraFollow[defaultKrakenNum + defaultShipNum];
+            bool foundKraken = defaultKrakenNum>0;
+            UnityEngine.Object shipUI = Resources.Load("Prefabs/UI/shipUI", typeof(GameObject));
+            int camCount = 0;
+            if (defaultKrakenNum > 0)
+            {
+                UnityEngine.Object krakenUI = Resources.Load("Prefabs/UI/KrakenUI", typeof(GameObject));
+                GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                cams[camCount] = newCamera.GetComponent<cameraFollow>();
+                GameObject instantiatedUI = Instantiate(krakenUI, newCamera.transform) as GameObject;
+
+                var camera1 = newCamera.GetComponentInChildren<Camera>();
+                setUpCameraOnCanvas(instantiatedUI, camera1);
+                kraken.uiManager = instantiatedUI.GetComponentInChildren<UIManager>();
+                kraken.followCamera = cams[camCount];
+                kraken.followCamera.target = kraken.gameObject;
+                if (defaultKrakenNum + defaultShipNum == 4)
+                {
+                    camera1.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                }
+                else
+                {
+                    camera1.rect = new Rect(0, 0.5f, 1, 0.5f);
+                }
+                camCount++;
+            }
+            for (int x = 0; x < defaultShipNum; x++)
+            {
+                GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                cams[camCount] = newCamera.GetComponent<cameraFollow>();
+
+                camCount++;
+                GameObject instantiatedUI = Instantiate(shipUI, newCamera.transform) as GameObject;
+                var camera1 = newCamera.GetComponentInChildren<Camera>();
+                setUpCameraOnCanvas(instantiatedUI, camera1);
+                //Wide Screen Case 1
+                setUpCameraPositions(foundKraken, x, defaultKrakenNum + defaultShipNum, newCamera);
+               
+            }
+
+        }
     }
 
-    private void initalizeGameOverCamera()
+    private static void setUpCameraOnCanvas(GameObject instantiatedUI, Camera camera1)
     {
-        //throw new NotImplementedException();
+        Canvas[] canvas = instantiatedUI.GetComponentsInChildren<Canvas>();
+        foreach (Canvas can in canvas)
+        {
+            can.worldCamera = camera1;
+        }
+    }
+
+    private void setUpCameraPositions(bool foundKraken, int shipCount, int playerCount, GameObject newCamera)
+    {
+        var camera1 = newCamera.GetComponentInChildren<Camera>();
+        if (playerCount == 2)
+        {
+            
+            if (foundKraken)
+            {
+                print("yes");
+                camera1.rect = new Rect(0f, 0f, 1f, 0.5f);
+                print(camera1.rect);
+
+            }
+            else
+            {
+               
+                camera1.rect = new Rect(0f, 0.5f * (1 - shipCount), 1f, 0.5f);
+            }
+        }
+        else if (playerCount == 3)
+        {
+            if (foundKraken)
+            {
+                camera1.rect = new Rect(0.5f * shipCount, 0f, 0.5f, 0.5f);
+            }
+            else if (shipCount == 0)
+            {
+                camera1.rect = new Rect(0f, 0.5f, 1f, 0.5f);
+            }
+            else
+            {
+                camera1.rect = new Rect(0.5f * shipCount, 0.5f, 0.5f, 0.5f);
+            }
+        }
+        else
+        {
+            if (foundKraken)
+            {
+                if (shipCount == 0)
+                {
+                    camera1.rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                }
+                else
+                {
+                    camera1.rect = new Rect(0.5f * (shipCount - 1), 0f, 0.5f, 0.5f);
+                }
+            }
+            else
+            {
+                camera1.rect = new Rect(0.5f * (shipCount % 2), 0.5f * (shipCount > 1 ? 1 : 0), 0.5f, 0.5f);
+            }
+        }
     }
 
     private void initializeGlobalCanvas()
@@ -298,7 +460,7 @@ public class gameManager : AbstractGameManager {
 
 
 	}
-	public void respawnKraken(KrakenInput player, Vector3 startingPoint){
+	override public void respawnKraken(KrakenInput player, Vector3 startingPoint){
 
 		player.gameObject.transform.position = startingPoint;
 
@@ -335,7 +497,12 @@ public class gameManager : AbstractGameManager {
         barrel.GetComponent<barrel>().activatePillar();
 	}
 
-	public void incrementPoint(KrakenInput kraken){
+    public override bool isGameOver()
+    {
+        return gameOver;
+    }
+
+    override public void incrementPoint(KrakenInput kraken){
 		int points = kraken.uiManager.incrementPoint ();
 		kraken.uiManager.setScoreBar (points / krakenWinPoints);
 

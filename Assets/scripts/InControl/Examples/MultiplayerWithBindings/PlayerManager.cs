@@ -12,7 +12,7 @@ using InControl;
 	public class PlayerManager : MonoBehaviour
 	{
 		public GameObject playerPrefab;
-		public  gameManager manager;
+		public  SabotageGameManager manager;
 		const int maxPlayers = 4;
 		public bool listening = false;
 		List<Vector3> playerPositions = new List<Vector3>() {

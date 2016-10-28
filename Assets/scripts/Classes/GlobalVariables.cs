@@ -35,5 +35,6 @@ public static class GlobalVariables {
     }
 	public static float windFactor = 4f;
     public static float minCcVelocity = 0.2f;
-    internal static string ffaCanvasPath= "Prefabs/UI/Global Canvas FFA";
+    internal static string ffaCanvasPath = "Prefabs/UI/Global Canvas FFA";
+    internal static string gameOverCameraPath = "Prefabs/Cameras/GameOverCamera";
 }

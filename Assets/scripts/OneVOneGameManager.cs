@@ -26,7 +26,8 @@ public class OneVOneGameManager : AbstractGameManager {
 	public int maxNoOfShips = 2;
 	bool done = false;
 	public Animator globalCanvas;
-	MonoBehaviour script;
+    FFAGlobalCanvas globalCanvasS;
+    MonoBehaviour script;
     GameObject screenSplitter;
     PlayerSelectSettings ps;
 	public bool gameOver = false;
@@ -135,7 +136,12 @@ public class OneVOneGameManager : AbstractGameManager {
 		return num;
 	}
 
-	private int createPlayerShip(int num, CharacterSelect player)
+    public override bool isGameOver()
+    {
+        return gameOver;
+    }
+
+    private int createPlayerShip(int num, CharacterSelect player)
 	{
 		GameObject newShip = null;
 		string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter];
@@ -354,10 +360,11 @@ public class OneVOneGameManager : AbstractGameManager {
 		MapObjects map = GameObject.FindObjectOfType<MapObjects> ();
 		//Refactor out of map
 		map.gameOverCamera.GetComponent<Camera>().enabled = true;
-		map.ui.SetActive (true);
-		GameOverStatsUI gameOverUI = map.ui.GetComponent<GameOverStatsUI> ();
 
-		List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
+        GameOverStatsUI gameOverUI = globalCanvasS.gameOverUI;
+        gameOverUI.gameObject.SetActive(true);
+
+        List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
 		List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
 
 		FreeForAllStatistics winStat = null;

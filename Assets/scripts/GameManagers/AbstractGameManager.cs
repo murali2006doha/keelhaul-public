@@ -15,7 +15,18 @@ public abstract class AbstractGameManager : MonoBehaviour {
 
     public abstract void exitToCharacterSelect();
     public abstract void incrementPoint(playerInput player, GameObject barrel);
+    virtual public void incrementPoint(KrakenInput player)
+    {
+
+    }
     public abstract void respawnPlayer(playerInput player, Vector3 startingPoint);
+    virtual public void respawnKraken(KrakenInput player, Vector3 startingPoint)
+    {
+
+    }
+
+    public abstract bool isGameOver();
+    
 
 
 }
