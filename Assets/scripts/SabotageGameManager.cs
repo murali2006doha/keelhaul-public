@@ -153,7 +153,7 @@ public class SabotageGameManager : AbstractGameManager {
         }
         else
         {
-            foreach (CharacterSelect player in ps.players)
+            foreach (CharacterSelection player in ps.players)
             {
 
 				if (player.selectedCharacter == ShipEnum.Kraken.ToString())
@@ -182,17 +182,19 @@ public class SabotageGameManager : AbstractGameManager {
             // Look for kraken
             cams = new cameraFollow[ps.players.Count];
             int camCount = 0;
-            foreach (CharacterSelect player in ps.players)
+            foreach (CharacterSelection player in ps.players)
             {
 
                 if (player.selectedCharacter == ShipEnum.Kraken.ToString())
                 {
                     UnityEngine.Object krakenUI = Resources.Load("Prefabs/UI/KrakenUI", typeof(GameObject));
                     GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                    newCamera.name = "Player " + (camCount + 1) + " Screen";
                     cams[camCount] = newCamera.GetComponent<cameraFollow>();
                     GameObject instantiatedUI = Instantiate(krakenUI, newCamera.transform) as GameObject;
-                    kraken.uiManager = instantiatedUI.GetComponent<UIManager>();
+                    kraken.uiManager = instantiatedUI.GetComponentInChildren<UIManager>();
                     kraken.followCamera = cams[camCount];
+                    kraken.followCamera.target = kraken.gameObject;
                     var camera1 = newCamera.GetComponentInChildren<Camera>();
                     setUpCameraOnCanvas(instantiatedUI, camera1);
                     camCount++;
@@ -213,12 +215,13 @@ public class SabotageGameManager : AbstractGameManager {
 
             int shipCount = 0;
             //Look for ships
-            foreach (CharacterSelect player in ps.players)
+            foreach (CharacterSelection player in ps.players)
             {
 
                 if (player.selectedCharacter != ShipEnum.Kraken.ToString())
                 {
                     GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                    newCamera.name = "Player " + (camCount + 1) + " Screen";
                     cams[camCount] = newCamera.GetComponent<cameraFollow>();
                     camCount++;
                     GameObject instantiatedUI = Instantiate(shipUI, newCamera.transform) as GameObject;
@@ -243,6 +246,7 @@ public class SabotageGameManager : AbstractGameManager {
             {
                 UnityEngine.Object krakenUI = Resources.Load("Prefabs/UI/KrakenUI", typeof(GameObject));
                 GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                newCamera.name = "Player " + (camCount + 1) + " Screen";
                 cams[camCount] = newCamera.GetComponent<cameraFollow>();
                 GameObject instantiatedUI = Instantiate(krakenUI, newCamera.transform) as GameObject;
                 
@@ -265,6 +269,7 @@ public class SabotageGameManager : AbstractGameManager {
             for (int x = 0; x < defaultShipNum; x++)
             {
                 GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                newCamera.name = "Player " + (camCount + 1) + " Screen";
                 cams[camCount] = newCamera.GetComponent<cameraFollow>();
 
                 camCount++;
@@ -351,14 +356,13 @@ public class SabotageGameManager : AbstractGameManager {
 
     private int createShipWithName(int num, PlayerActions action, string name)
     {
-        CharacterSelect shipOne = new CharacterSelect();
-        shipOne.Actions = action;
-        shipOne.selectedCharacter = name;
+        CharacterSelection shipOne = new CharacterSelection(name,action);
+        
         num = createPlayerShip(num, shipOne);
         return num;
     }
 
-    private int createPlayerShip(int num, CharacterSelect player)
+    private int createPlayerShip(int num, CharacterSelection player)
     {
         GameObject newShip = null;
         string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter];

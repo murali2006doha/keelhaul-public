@@ -112,7 +112,7 @@ public class OneVOneGameManager : AbstractGameManager {
 		}
 		else
 		{
-			foreach (CharacterSelect player in ps.players)
+			foreach (CharacterSelection player in ps.players)
 			{
 					if (num <= maxNoOfShips)
 					{
@@ -129,9 +129,8 @@ public class OneVOneGameManager : AbstractGameManager {
 
 	private int createShipWithName(int num, PlayerActions action, string name)
 	{
-		CharacterSelect shipOne = new CharacterSelect();
-		shipOne.Actions = action;
-		shipOne.selectedCharacter = name;
+        CharacterSelection shipOne = new CharacterSelection(name,action);
+
 		num = createPlayerShip(num, shipOne);
 		return num;
 	}
@@ -141,7 +140,7 @@ public class OneVOneGameManager : AbstractGameManager {
         return gameOver;
     }
 
-    private int createPlayerShip(int num, CharacterSelect player)
+    private int createPlayerShip(int num, CharacterSelection player)
 	{
 		GameObject newShip = null;
 		string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter];
