@@ -67,6 +67,7 @@ public class SabotageGameManager : AbstractGameManager {
 
         globalCanvas = GameObject.FindObjectOfType<FFAGlobalCanvas>();
         screenSplitter = globalCanvas.splitscreenImages;
+        globalCanvas.setUpSplitScreen(ps ? ps.players.Count : defaultShipNum + defaultKrakenNum);
         fadeInAnimator = globalCanvas.fadePanelAnimator;
         countDown = globalCanvas.countDownTimer;
 
@@ -244,9 +245,10 @@ public class SabotageGameManager : AbstractGameManager {
                 GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
                 cams[camCount] = newCamera.GetComponent<cameraFollow>();
                 GameObject instantiatedUI = Instantiate(krakenUI, newCamera.transform) as GameObject;
-
+                
                 var camera1 = newCamera.GetComponentInChildren<Camera>();
                 setUpCameraOnCanvas(instantiatedUI, camera1);
+                
                 kraken.uiManager = instantiatedUI.GetComponentInChildren<UIManager>();
                 kraken.followCamera = cams[camCount];
                 kraken.followCamera.target = kraken.gameObject;

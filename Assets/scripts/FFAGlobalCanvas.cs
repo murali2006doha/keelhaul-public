@@ -11,4 +11,18 @@ public class FFAGlobalCanvas : MonoBehaviour {
     public GameOverStatsUI gameOverUI;
     public RawImage panel1;
     public RawImage panel2;
+
+
+    public void setUpSplitScreen(int numOfPlayers)
+    {
+
+        for(int x = 0;x< splitscreenImages.transform.childCount; x++)
+        {
+            Transform child = splitscreenImages.transform.GetChild(x);
+            if (int.Parse(child.name) > numOfPlayers)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
 }
