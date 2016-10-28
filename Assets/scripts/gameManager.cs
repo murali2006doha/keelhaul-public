@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using InControl;
+using System;
+
 public class gameManager : AbstractGameManager {
 	//Use this script for general things like managing the state of the game, tracking players and so on.
 
@@ -22,7 +24,7 @@ public class gameManager : AbstractGameManager {
 	int assign_index =0;
 	public bool freeForAll = true;
 	
-	public signInCamera cam;
+	
 	public PlayerManager manager;
 	public ControllerSelect controller;
 	public GameObject ship;
@@ -42,6 +44,23 @@ public class gameManager : AbstractGameManager {
 
 
 	void Start () {
+        GameObject[] winds = GameObject.FindObjectOfType<MapObjects>().winds;
+
+        if (winds != null && winds.Length > 0)
+        {
+            foreach (GameObject obj in winds)
+            {
+                obj.SetActive(false);
+            }
+        }
+
+        ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
+        controller = GameObject.FindObjectOfType<ControllerSelect>();
+
+        initializeGlobalCanvas();
+        initalizeGameOverCamera();
+        initializePlayerCameras();
+
         globalCanvas = GameObject.FindObjectOfType<FFAGlobalCanvas>();
         screenSplitter = globalCanvas.splitscreenImages;
         fadeInAnimator = globalCanvas.fadePanelAnimator;
@@ -49,16 +68,7 @@ public class gameManager : AbstractGameManager {
 
 		gameOver = false;
         
-        GameObject[] winds = GameObject.FindObjectOfType<MapObjects> ().winds;
-
-		if (winds != null && winds.Length > 0) {
-			foreach (GameObject obj in winds) {
-				obj.SetActive (false);
-			}
-		}
-
-		ps = GameObject.FindObjectOfType<PlayerSelectSettings> ();
-		controller = GameObject.FindObjectOfType<ControllerSelect> ();
+        
         Physics.gravity = new Vector3 (0f, -0.1f, 0f);
 		Application.targetFrameRate = -1; //Unlocks the framerate at start
 		Resources.UnloadUnusedAssets();
@@ -158,6 +168,23 @@ public class gameManager : AbstractGameManager {
         }
 	}
 
+    private void initializePlayerCameras()
+    {
+        //throw new NotImplementedException();
+    }
+
+    private void initalizeGameOverCamera()
+    {
+        //throw new NotImplementedException();
+    }
+
+    private void initializeGlobalCanvas()
+    {
+        
+        GameObject canvas = Instantiate(Resources.Load(GlobalVariables.ffaCanvasPath, typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
+        globalCanvas = canvas.GetComponent<FFAGlobalCanvas>();
+    }
+
     private int createShipWithName(int num, PlayerActions action, string name)
     {
         CharacterSelect shipOne = new CharacterSelect();
@@ -205,7 +232,7 @@ public class gameManager : AbstractGameManager {
 		//puts the camera in the starting positions as soon as the game starts
 		if (!done) {
 			if (!countDown.gameObject.activeSelf) {
-				cam.gameObject.SetActive (false);
+				
 				countDown.SetActive (true);
 				screenSplitter.SetActive (true);
 

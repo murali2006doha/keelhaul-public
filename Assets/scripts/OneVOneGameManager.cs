@@ -19,7 +19,7 @@ public class OneVOneGameManager : AbstractGameManager {
 	int assign_index =0;
 	public bool freeForAll = true;
 	public GameObject countDown;
-	public signInCamera cam;
+	
 	public PlayerManager manager;
 	public ControllerSelect controller;
 	public GameObject ship;
@@ -172,10 +172,9 @@ public class OneVOneGameManager : AbstractGameManager {
 		//puts the camera in the starting positions as soon as the game starts
 		if (!done) {
 			if (!countDown.gameObject.activeSelf) {
-				cam.gameObject.SetActive (false);
+			
 				countDown.SetActive (true);
 				screenSplitter.SetActive (true);
-
 				foreach (cameraFollow k  in cams) {
 					k.camera.gameObject.SetActive (true);
 				}
