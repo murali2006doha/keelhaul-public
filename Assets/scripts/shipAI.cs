@@ -4,7 +4,7 @@ using System.Collections;
 public class shipAI : MonoBehaviour {
 
 	public playerInput input;
-	public NavMeshAgent agent;
+	public UnityEngine.AI.NavMeshAgent agent;
 	public barrel barrel;
 	Camera cam;
 	GameObject otherShip;
@@ -21,7 +21,7 @@ public class shipAI : MonoBehaviour {
 		barrel = GameObject.FindObjectOfType<barrel> ();
 		input = this.GetComponent<playerInput> ();
 		hook_component = input.getHook ();
-		agent = this.GetComponent<NavMeshAgent> ();
+		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		cam = input.followCamera.camera;
 		foreach (playerInput player in GameObject.FindObjectsOfType<playerInput> ()) {
 			if (player.gameObject != this.gameObject) {

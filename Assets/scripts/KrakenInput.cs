@@ -125,7 +125,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
                 ai = false;
                 this.GetComponent<KrakenAi>().enabled = false;
                 aiSign.SetActive(false);
-                this.GetComponent<NavMeshAgent>().enabled = false;
+                this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
             }
         }
         else if (!gameStarted && manager.isGameOver())
@@ -154,7 +154,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
         aiSign.SetActive(true);
         //.GetComponent<CharacterController> ().enabled = false;
-        this.GetComponent<NavMeshAgent>().enabled = true;
+        this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         this.GetComponent<KrakenAi>().enabled = true;
 
     }

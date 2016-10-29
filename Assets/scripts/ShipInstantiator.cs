@@ -33,10 +33,11 @@ public class ShipInstantiator : MonoBehaviour {
 		}
 		ship.gameObject.GetComponentInChildren<CannonController> ().alternateFirePrefab = info.altFirePrefab;
 
-		//Refactor later
+        //Refactor later
+
+        int numKraken = GameObject.FindObjectOfType<KrakenInput>() ? 1 : 0;
 		
-		
-		int newLayer = LayerMask.NameToLayer ("p"+num + "_ui");
+		int newLayer = LayerMask.NameToLayer ("p"+(num+ numKraken) + "_ui");
 		for (int i = 0; i < ship.gameObject.transform.childCount; i++) {
 			GameObject child = ship.gameObject.transform.GetChild (i).gameObject;
 			if (LayerMask.LayerToName(child.layer).Contains("_ui")) {
@@ -52,7 +53,7 @@ public class ShipInstantiator : MonoBehaviour {
 			
 
 		GameObject[] uis = GameObject.FindGameObjectsWithTag ("UIManagers");
-
+        
         GameObject ui = uis[num - 1];
 
 		ship.uiManager = ui.GetComponent<UIManager>();
@@ -62,15 +63,15 @@ public class ShipInstantiator : MonoBehaviour {
 		ship.followCamera = ui.GetComponentInParent<cameraFollow> ();
 		ship.followCamera.target = ship.gameObject;
 		ship.followCamera.ready = true;
-        if(((num%2)+1) == 2)
-        {
-            LayerHelper.setLayerRecursively(ship.uiManager.worldSpace,LayerMask.NameToLayer("p"+num+"_ui"));
-        }
+        ship.followCamera.camera.cullingMask |= (1 << newLayer);
+
+        LayerHelper.setLayerRecursively(ship.uiManager.worldSpace,LayerMask.NameToLayer("p"+ (num + numKraken) + "_ui"));
+       
 				
 		GameObject splash = (GameObject) Instantiate (splashParticle, Vector3.zero, Quaternion.identity);
 		ship.GetComponent<Hookshot>().splashParticle = splash;
 				
-		ship.cullingMask = "p" + num + "_ui";
+		ship.cullingMask = "p" + (num + numKraken) + "_ui";
 		Destroy (this.gameObject);
 	}
 

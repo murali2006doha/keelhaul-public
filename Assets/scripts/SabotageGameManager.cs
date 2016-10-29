@@ -142,11 +142,9 @@ public class SabotageGameManager : AbstractGameManager {
                     }
                     PlayerActions action = PlayerActions.CreateWithJoystickBindings();
                     action.Device = device;
-                    if (numDevices == 0)
+                    if (numDevices == 0 && defaultKrakenNum > 0)
                     {
-                        if(defaultKrakenNum > 0) {
-                            kraken.Actions = action;
-                        }
+                        kraken.Actions = action;
                     }
                     else
                     {

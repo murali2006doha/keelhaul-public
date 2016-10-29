@@ -4,7 +4,51 @@ timeCreated: 1472346674
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Armature_001
+    100004: Bone
+    100006: Cube
+    100008: Cube_007
+    100010: hull
+    100012: //RootNode
+    100014: mast1
+    100016: mast2
+    100018: mast3
+    100020: sail1
+    100022: sail2
+    100024: sail3
+    400000: Armature
+    400002: Armature_001
+    400004: Bone
+    400006: Cube
+    400008: Cube_007
+    400010: hull
+    400012: //RootNode
+    400014: mast1
+    400016: mast2
+    400018: mast3
+    400020: sail1
+    400022: sail2
+    400024: sail3
+    4300000: Cube_007
+    4300002: Cube
+    7400000: Default Take
+    7400002: Armature_002_Armature_junk_dash_Armature_junk_dash
+    7400004: Armature_002_Armature_junk_idle_Armature_junk_idle
+    7400006: Armature_002_Armature_junk_sink_Armature_junk_sink
+    7400008: Armature_002_Armature_ship_respawn_Armature_ship_respawn
+    7400010: cannon_dash
+    7400012: cannon_idle
+    7400014: cannon_sink
+    7400016: cannon_spawn
+    7400018: junk_dash
+    7400020: junk_idle
+    7400022: junk_sink
+    7400024: ship_respawn
+    9500000: //RootNode
+    13700000: Cube
+    13700002: Cube_007
   materials:
     importMaterials: 1
     materialName: 0
@@ -51,6 +95,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -61,7 +106,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
