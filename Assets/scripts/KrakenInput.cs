@@ -79,6 +79,18 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         followCamera = screen.GetComponent<cameraFollow>();
         followCamera.target = this.gameObject;
         followCamera.ready = true;
+        int newLayer = LayerMask.NameToLayer("p1_ui");
+        int defaultLayer = LayerMask.NameToLayer("p4_ui");
+        for(int x = 0; x < this.transform.childCount; x++)
+        {
+            var child = transform.GetChild(x).gameObject;
+            if (transform.GetChild(x).gameObject.layer == defaultLayer)
+            {
+                child.layer = newLayer;
+            }
+        }
+        followCamera.camera.cullingMask |= (1 << newLayer);
+
         animator.splashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Submerge");
         animator.emergeSplashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Emerge");
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
