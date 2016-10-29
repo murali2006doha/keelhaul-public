@@ -143,7 +143,7 @@ public class OneVOneGameManager : AbstractGameManager {
     private int createPlayerShip(int num, CharacterSelection player)
 	{
 		GameObject newShip = null;
-		string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter];
+		string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter.ToString()];
 		if (path != null)
 		{
 			newShip = Instantiate(Resources.Load(path, typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;

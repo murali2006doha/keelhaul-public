@@ -15,7 +15,8 @@ public class SabotageGameManager : AbstractGameManager {
 	Vector3[] barrels_start_pos;
 	Vector3 barrel_start_pos;
 
-    public int defaultShipNum = 2;
+    int defaultShipNum = 2;
+    public List<CharacterSelection> shipSelections = new List<CharacterSelection>();
     public int defaultKrakenNum = 1;
     public bool team;
 	
@@ -48,6 +49,7 @@ public class SabotageGameManager : AbstractGameManager {
 
 
 	void Start () {
+
         MapObjects map = GameObject.FindObjectOfType<MapObjects>();
         GameObject[] winds = map.winds;
 
@@ -65,6 +67,12 @@ public class SabotageGameManager : AbstractGameManager {
         initializeGlobalCanvas();
         
         initializePlayerCameras();
+
+        defaultKrakenNum = Math.Min(defaultKrakenNum, 1);
+        if (shipSelections.Count != 0)
+        {
+            defaultShipNum = Math.Min(4 - defaultKrakenNum, shipSelections.Count);
+        }
 
         globalCanvas = GameObject.FindObjectOfType<FFAGlobalCanvas>();
         screenSplitter = globalCanvas.splitscreenImages;
@@ -94,6 +102,11 @@ public class SabotageGameManager : AbstractGameManager {
         if(ps == null || ps.players.Count == 0) //Default behaviour if didn't come from character select screen. 
         {
             int numDevices = 0;
+            if(shipSelections.Count == 0)
+            {
+                shipSelections.Add(new CharacterSelection(ShipEnum.AtlanteanShip.ToString(), null));
+                shipSelections.Add(new CharacterSelection(ShipEnum.ChineseJunkShip.ToString(), null));
+            }
             this.GetComponent<InControlManager>().enabled = true;
             if (defaultKrakenNum > 0)
             {
@@ -118,44 +131,38 @@ public class SabotageGameManager : AbstractGameManager {
                     }
                     
                 }
-                
-                foreach(InputDevice device in devices)
+
+                // Create joystick bindings for kraken and ships
+                foreach (InputDevice device in devices)
                 {
+                    if (num > shipSelections.Count)
+                    {
+                        break;
+                    }
                     PlayerActions action = PlayerActions.CreateWithJoystickBindings();
                     action.Device = device;
                     if (numDevices == 0)
                     {
                         if(defaultKrakenNum > 0) {
                             kraken.Actions = action;
-                           
                         }
-                        else
-                        {
-                            num = createShipWithName(num, action, ShipEnum.BlackbeardShip.ToString());
-                        }
-                    } else if (numDevices == 1)
+                    }
+                    else
                     {
-						num = createShipWithName(num, action, ShipEnum.AtlanteanShip.ToString());
-                       
-                    } else if (numDevices == 2)
-                    {
-                        num = createShipWithName(num, action, ShipEnum.ChineseJunkShip.ToString());
-
+                        num = createShipWithName(num, action, shipSelections[num].selectedCharacter.ToString());
                     }
                     numDevices++;
 
                 }
-
-                if(numDevices == 1)
+                // Create keyboard bindings for remaining ships
+                for (int z = numDevices-defaultKrakenNum; z < shipSelections.Count; z++)
                 {
-					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
-					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
-                }  else if (numDevices == 2)
-                {
-					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
-            
+                    num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), shipSelections[z].selectedCharacter.ToString());
                 }
+                    
+                
             }
+            
             if(numDevices == 0)
             {
                 print("no devices or characters selected - adding default");
@@ -164,13 +171,12 @@ public class SabotageGameManager : AbstractGameManager {
                     kraken.Actions = PlayerActions.CreateWithKeyboardBindings();
                   
                 }
-                else
-                {
-                    num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.BlackbeardShip.ToString());
-                }
                 
-				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
-				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
+               for(int z = 0; z < shipSelections.Count; z++)
+                {
+                    num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), shipSelections[z].selectedCharacter.ToString());
+                }
+				
             }
            
         }
@@ -179,12 +185,12 @@ public class SabotageGameManager : AbstractGameManager {
             foreach (CharacterSelection player in ps.players)
             {
 
-				if (player.selectedCharacter == ShipEnum.Kraken.ToString())
+				if (player.selectedCharacter == ShipEnum.Kraken)
                 {
                     
                     GameObject k = Instantiate(Resources.Load("Prefabs/Kraken 1", typeof(GameObject)), this.transform.parent) as GameObject;
                     kraken = k.GetComponent<KrakenInput>();
-                    
+                    k.transform.position = map.krakenStartPoint.transform.position;
                     kraken.Actions = player.Actions;
                     
                 }
@@ -212,7 +218,7 @@ public class SabotageGameManager : AbstractGameManager {
             foreach (CharacterSelection player in ps.players)
             {
 
-                if (player.selectedCharacter == ShipEnum.Kraken.ToString())
+                if (player.selectedCharacter == ShipEnum.Kraken)
                 {
                     UnityEngine.Object krakenUI = Resources.Load("Prefabs/UI/KrakenUI", typeof(GameObject));
                     GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
@@ -243,7 +249,7 @@ public class SabotageGameManager : AbstractGameManager {
             foreach (CharacterSelection player in ps.players)
             {
 
-                if (player.selectedCharacter != ShipEnum.Kraken.ToString())
+                if (player.selectedCharacter != ShipEnum.Kraken)
                 {
                     GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
                     newCamera.name = "Player " + (camCount + 1) + " Screen";
@@ -263,7 +269,7 @@ public class SabotageGameManager : AbstractGameManager {
 
         } else //Default behaviour use global variables to initialize
         {
-            cams = new cameraFollow[defaultKrakenNum + defaultShipNum];
+            cams = new cameraFollow[defaultKrakenNum + shipSelections.Count];
             bool foundKraken = defaultKrakenNum>0;
             UnityEngine.Object shipUI = Resources.Load("Prefabs/UI/shipUI", typeof(GameObject));
             int camCount = 0;
@@ -279,7 +285,7 @@ public class SabotageGameManager : AbstractGameManager {
                 setUpCameraOnCanvas(instantiatedUI, camera1);
                 
                
-                if (defaultKrakenNum + defaultShipNum == 4)
+                if (defaultKrakenNum + shipSelections.Count == 4)
                 {
                     camera1.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
                 }
@@ -289,7 +295,7 @@ public class SabotageGameManager : AbstractGameManager {
                 }
                 camCount++;
             }
-            for (int x = 0; x < defaultShipNum; x++)
+            for (int x = 0; x < shipSelections.Count; x++)
             {
                 GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
                 newCamera.name = "Player " + (camCount + 1) + " Screen";
@@ -300,7 +306,7 @@ public class SabotageGameManager : AbstractGameManager {
                 var camera1 = newCamera.GetComponentInChildren<Camera>();
                 setUpCameraOnCanvas(instantiatedUI, camera1);
                 //Wide Screen Case 1
-                setUpCameraPositions(foundKraken, x, defaultKrakenNum + defaultShipNum, newCamera);
+                setUpCameraPositions(foundKraken, x, defaultKrakenNum + shipSelections.Count, newCamera);
                
             }
 
@@ -388,7 +394,7 @@ public class SabotageGameManager : AbstractGameManager {
     private int createPlayerShip(int num, CharacterSelection player)
     {
         GameObject newShip = null;
-        string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter];
+        string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter.ToString()];
         if (path != null)
         {
             newShip = Instantiate(Resources.Load(path, typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
@@ -406,11 +412,13 @@ public class SabotageGameManager : AbstractGameManager {
     }
 
     void gameStart(){
-		signedIn = true;
+		
 		foreach (playerInput player in players) {
 			player.gameStarted = true;
 		}
-		kraken.gameStarted = true;
+        if (kraken) {
+		    kraken.gameStarted = true;
+        }
 	}
 
 	void destroyCountDown(){
@@ -435,7 +443,7 @@ public class SabotageGameManager : AbstractGameManager {
 			if (countDown.GetComponent<CountDown> ().done) {
 				gameStart ();
 				done = true;
-				print ("gamestart");
+				
 				Invoke ("destroyCountDown", 2f);
 			}
 		}

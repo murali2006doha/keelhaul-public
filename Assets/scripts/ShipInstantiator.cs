@@ -36,7 +36,7 @@ public class ShipInstantiator : MonoBehaviour {
 		//Refactor later
 		
 		
-		int newLayer = LayerMask.NameToLayer ("p"+num+"_ui");
+		int newLayer = LayerMask.NameToLayer ("p"+num + "_ui");
 		for (int i = 0; i < ship.gameObject.transform.childCount; i++) {
 			GameObject child = ship.gameObject.transform.GetChild (i).gameObject;
 			if (LayerMask.LayerToName(child.layer).Contains("_ui")) {
@@ -44,14 +44,15 @@ public class ShipInstantiator : MonoBehaviour {
 			}
 		}
 		
-		ship.scoreDestination = mapObjects.scoringZones[num-1];
-		mapObjects.islands [num - 1].enemyShip = ship;
+		ship.scoreDestination = mapObjects.scoringZones[((num % 2) + 1) - 1];
+		mapObjects.islands [(num%2)+1 - 1].enemyShip = ship;
 	
-		ship.startingPoint = mapObjects.shipStartingLocations[num-1].transform.position;
-		ship.transform.position =  mapObjects.shipStartingLocations[num-1].transform.position;
+		ship.startingPoint = mapObjects.shipStartingLocations[((num % 2) + 1) - 1].transform.position;
+		ship.transform.position =  mapObjects.shipStartingLocations[((num % 2) + 1) - 1].transform.position;
 			
 
 		GameObject[] uis = GameObject.FindGameObjectsWithTag ("UIManagers");
+
         GameObject ui = uis[num - 1];
 
 		ship.uiManager = ui.GetComponent<UIManager>();
@@ -61,7 +62,7 @@ public class ShipInstantiator : MonoBehaviour {
 		ship.followCamera = ui.GetComponentInParent<cameraFollow> ();
 		ship.followCamera.target = ship.gameObject;
 		ship.followCamera.ready = true;
-        if(num == 2)
+        if(((num%2)+1) == 2)
         {
             LayerHelper.setLayerRecursively(ship.uiManager.worldSpace,LayerMask.NameToLayer("p"+num+"_ui"));
         }
