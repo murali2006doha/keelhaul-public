@@ -353,7 +353,7 @@ public class SabotageGameManager : AbstractGameManager {
             }
             else
             {
-                camera1.rect = new Rect(0.5f * shipCount, 0.5f, 0.5f, 0.5f);
+                camera1.rect = new Rect(0.5f * (shipCount-1), 0f, 0.5f, 0.5f);
             }
         }
         else
