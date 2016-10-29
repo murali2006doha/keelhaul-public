@@ -64,15 +64,20 @@ public class SabotageGameManager : AbstractGameManager {
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         controller = GameObject.FindObjectOfType<ControllerSelect>();
 
+
+        defaultKrakenNum = Math.Min(defaultKrakenNum, 1);
+        if (shipSelections.Count == 0)
+        {
+            shipSelections.Add(new CharacterSelection(ShipEnum.AtlanteanShip.ToString(), null));
+            shipSelections.Add(new CharacterSelection(ShipEnum.ChineseJunkShip.ToString(), null));
+        }
+        
+        defaultShipNum = Math.Min(4 - defaultKrakenNum, shipSelections.Count);
+
+
         initializeGlobalCanvas();
         
         initializePlayerCameras();
-
-        defaultKrakenNum = Math.Min(defaultKrakenNum, 1);
-        if (shipSelections.Count != 0)
-        {
-            defaultShipNum = Math.Min(4 - defaultKrakenNum, shipSelections.Count);
-        }
 
         globalCanvas = GameObject.FindObjectOfType<FFAGlobalCanvas>();
         screenSplitter = globalCanvas.splitscreenImages;
@@ -102,11 +107,7 @@ public class SabotageGameManager : AbstractGameManager {
         if(ps == null || ps.players.Count == 0) //Default behaviour if didn't come from character select screen. 
         {
             int numDevices = 0;
-            if(shipSelections.Count == 0)
-            {
-                shipSelections.Add(new CharacterSelection(ShipEnum.AtlanteanShip.ToString(), null));
-                shipSelections.Add(new CharacterSelection(ShipEnum.ChineseJunkShip.ToString(), null));
-            }
+           
             this.GetComponent<InControlManager>().enabled = true;
             if (defaultKrakenNum > 0)
             {
@@ -168,11 +169,12 @@ public class SabotageGameManager : AbstractGameManager {
                 print("no devices or characters selected - adding default");
                 if (defaultKrakenNum > 0)
                 {
+                    print("Adding kraken");
                     kraken.Actions = PlayerActions.CreateWithKeyboardBindings();
                   
                 }
-                
-               for(int z = 0; z < shipSelections.Count; z++)
+                print("Adding " + shipSelections.Count + " Ships");
+                for (int z = 0; z < shipSelections.Count; z++)
                 {
                     num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), shipSelections[z].selectedCharacter.ToString());
                 }
@@ -285,7 +287,7 @@ public class SabotageGameManager : AbstractGameManager {
                 setUpCameraOnCanvas(instantiatedUI, camera1);
                 
                
-                if (defaultKrakenNum + shipSelections.Count == 4)
+                if (defaultKrakenNum + shipSelections.Count >= 4)
                 {
                     camera1.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
                 }
@@ -295,6 +297,7 @@ public class SabotageGameManager : AbstractGameManager {
                 }
                 camCount++;
             }
+            
             for (int x = 0; x < shipSelections.Count; x++)
             {
                 GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
