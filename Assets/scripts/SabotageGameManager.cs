@@ -3,15 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using InControl;
-public class gameManager : AbstractGameManager {
+using System;
+
+public class SabotageGameManager : AbstractGameManager {
 	//Use this script for general things like managing the state of the game, tracking players and so on.
 
 	public float respawnTimer;
 	// Use this for initialization
-	public cameraFollow  [] cams;
+	cameraFollow  [] cams;
 	GameObject[] barrels;
 	Vector3[] barrels_start_pos;
-	public Vector3 barrel_start_pos;
+	Vector3 barrel_start_pos;
+
+    int defaultShipNum = 2;
+    public List<CharacterSelection> shipSelections = new List<CharacterSelection>();
+    public int defaultKrakenNum = 1;
+    public bool team;
 	
 	public List<playerInput> players = new List<playerInput>();
 	public KrakenInput kraken;
@@ -22,7 +29,7 @@ public class gameManager : AbstractGameManager {
 	int assign_index =0;
 	public bool freeForAll = true;
 	
-	public signInCamera cam;
+	
 	public PlayerManager manager;
 	public ControllerSelect controller;
 	public GameObject ship;
@@ -42,23 +49,45 @@ public class gameManager : AbstractGameManager {
 
 
 	void Start () {
+
+        MapObjects map = GameObject.FindObjectOfType<MapObjects>();
+        GameObject[] winds = map.winds;
+
+        if (winds != null && winds.Length > 0)
+        {
+            foreach (GameObject obj in winds)
+            {
+                obj.SetActive(false);
+            }
+        }
+
+        ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
+        controller = GameObject.FindObjectOfType<ControllerSelect>();
+
+
+        defaultKrakenNum = Math.Min(defaultKrakenNum, 1);
+        if (shipSelections.Count == 0)
+        {
+            shipSelections.Add(new CharacterSelection(ShipEnum.AtlanteanShip.ToString(), null));
+            shipSelections.Add(new CharacterSelection(ShipEnum.ChineseJunkShip.ToString(), null));
+        }
+        
+        defaultShipNum = Math.Min(4 - defaultKrakenNum, shipSelections.Count);
+
+
+        initializeGlobalCanvas();
+        
+        initializePlayerCameras();
+
         globalCanvas = GameObject.FindObjectOfType<FFAGlobalCanvas>();
         screenSplitter = globalCanvas.splitscreenImages;
+        globalCanvas.setUpSplitScreen(ps ? ps.players.Count : defaultShipNum + defaultKrakenNum);
         fadeInAnimator = globalCanvas.fadePanelAnimator;
         countDown = globalCanvas.countDownTimer;
 
 		gameOver = false;
         
-        GameObject[] winds = GameObject.FindObjectOfType<MapObjects> ().winds;
-
-		if (winds != null && winds.Length > 0) {
-			foreach (GameObject obj in winds) {
-				obj.SetActive (false);
-			}
-		}
-
-		ps = GameObject.FindObjectOfType<PlayerSelectSettings> ();
-		controller = GameObject.FindObjectOfType<ControllerSelect> ();
+        
         Physics.gravity = new Vector3 (0f, -0.1f, 0f);
 		Application.targetFrameRate = -1; //Unlocks the framerate at start
 		Resources.UnloadUnusedAssets();
@@ -78,7 +107,16 @@ public class gameManager : AbstractGameManager {
         if(ps == null || ps.players.Count == 0) //Default behaviour if didn't come from character select screen. 
         {
             int numDevices = 0;
+           
             this.GetComponent<InControlManager>().enabled = true;
+            if (defaultKrakenNum > 0)
+            {
+                GameObject k = Instantiate(Resources.Load(PathVariables.krakenPath, typeof(GameObject)), this.transform.parent) as GameObject;
+                k.transform.position = map.krakenStartPoint.transform.position;
+
+                kraken = k.GetComponent<KrakenInput>();
+                
+            }
             if (InputManager.Devices != null && InputManager.Devices.Count > 0) {
                
                 print("devices found");
@@ -94,57 +132,67 @@ public class gameManager : AbstractGameManager {
                     }
                     
                 }
-                
-                foreach(InputDevice device in devices)
+
+                // Create joystick bindings for kraken and ships
+                foreach (InputDevice device in devices)
                 {
+                    if (num > shipSelections.Count)
+                    {
+                        break;
+                    }
                     PlayerActions action = PlayerActions.CreateWithJoystickBindings();
                     action.Device = device;
-                    if (numDevices == 0)
+                    if (numDevices == 0 && defaultKrakenNum > 0)
                     {
                         kraken.Actions = action;
-                        kraken.followCamera.ready = true;
-                    } else if (numDevices == 1)
+                    }
+                    else
                     {
-						num = createShipWithName(num, action, ShipEnum.AtlanteanShip.ToString());
-                       
-                    } else if (numDevices == 2)
-                    {
-                        num = createShipWithName(num, action, ShipEnum.ChineseJunkShip.ToString());
-
+                        num = createShipWithName(num, action, shipSelections[num].selectedCharacter.ToString());
                     }
                     numDevices++;
 
                 }
-
-                if(numDevices == 1)
+                // Create keyboard bindings for remaining ships
+                for (int z = numDevices-defaultKrakenNum; z < shipSelections.Count; z++)
                 {
-					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
-					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
-                }  else if (numDevices == 2)
-                {
-					num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
-            
+                    num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), shipSelections[z].selectedCharacter.ToString());
                 }
+                    
+                
             }
+            
             if(numDevices == 0)
             {
                 print("no devices or characters selected - adding default");
-                kraken.Actions = PlayerActions.CreateWithKeyboardBindings();
-                kraken.followCamera.ready = true;
-				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.ChineseJunkShip.ToString());
-				num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), ShipEnum.AtlanteanShip.ToString());
+                if (defaultKrakenNum > 0)
+                {
+                    print("Adding kraken");
+                    kraken.Actions = PlayerActions.CreateWithKeyboardBindings();
+                  
+                }
+                print("Adding " + shipSelections.Count + " Ships");
+                for (int z = 0; z < shipSelections.Count; z++)
+                {
+                    num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), shipSelections[z].selectedCharacter.ToString());
+                }
+				
             }
            
         }
         else
         {
-            foreach (CharacterSelect player in ps.players)
+            foreach (CharacterSelection player in ps.players)
             {
 
-				if (player.selectedCharacter == ShipEnum.Kraken.ToString())
+				if (player.selectedCharacter == ShipEnum.Kraken)
                 {
+                    
+                    GameObject k = Instantiate(Resources.Load(PathVariables.krakenPath, typeof(GameObject)), this.transform.parent) as GameObject;
+                    kraken = k.GetComponent<KrakenInput>();
+                    k.transform.position = map.krakenStartPoint.transform.position;
                     kraken.Actions = player.Actions;
-                    kraken.followCamera.ready = true;
+                    
                 }
                 else
                 {
@@ -158,19 +206,192 @@ public class gameManager : AbstractGameManager {
         }
 	}
 
+    private void initializePlayerCameras()
+    {
+        UnityEngine.Object camera = Resources.Load(PathVariables.topDownCameraPath, typeof(GameObject));
+        if (ps)
+        {
+            bool foundKraken = false;
+            // Look for kraken
+            cams = new cameraFollow[ps.players.Count];
+            int camCount = 0;
+            foreach (CharacterSelection player in ps.players)
+            {
+
+                if (player.selectedCharacter == ShipEnum.Kraken)
+                {
+                    UnityEngine.Object krakenUI = Resources.Load(PathVariables.krakenUIPath, typeof(GameObject));
+                    GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                    newCamera.name = "Kraken Screen";
+                    cams[camCount] = newCamera.GetComponent<cameraFollow>();
+                    GameObject instantiatedUI = Instantiate(krakenUI, newCamera.transform) as GameObject;
+                  
+                    var camera1 = newCamera.GetComponentInChildren<Camera>();
+                    setUpCameraOnCanvas(instantiatedUI, camera1);
+                    camCount++;
+                    //Only case where screen is small
+                    if (ps.players.Count == 4)
+                    {
+                        newCamera.GetComponentInChildren<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                    }
+                    else {
+                        newCamera.GetComponentInChildren<Camera>().rect = new Rect(0, 0.5f, 1, 0.5f);
+                    }
+                    foundKraken = true;
+                    break;
+                }
+              
+            }
+            UnityEngine.Object shipUI = Resources.Load(PathVariables.shipUIPath, typeof(GameObject));
+
+            int shipCount = 0;
+            //Look for ships
+            foreach (CharacterSelection player in ps.players)
+            {
+
+                if (player.selectedCharacter != ShipEnum.Kraken)
+                {
+                    GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                    newCamera.name = "Player " + (camCount + 1) + " Screen";
+                    cams[camCount] = newCamera.GetComponent<cameraFollow>();
+                    camCount++;
+                    GameObject instantiatedUI = Instantiate(shipUI, newCamera.transform) as GameObject;
+                    //Wide Screen Case 1
+                    setUpCameraPositions(foundKraken, shipCount,ps.players.Count, newCamera);
+                    var camera1 = newCamera.GetComponentInChildren<Camera>();
+                    setUpCameraOnCanvas(instantiatedUI, camera1);
+                    shipCount++;
+                }
+
+            }
+
+
+
+        } else //Default behaviour use global variables to initialize
+        {
+            cams = new cameraFollow[defaultKrakenNum + shipSelections.Count];
+            bool foundKraken = defaultKrakenNum>0;
+            UnityEngine.Object shipUI = Resources.Load(PathVariables.shipUIPath, typeof(GameObject));
+            int camCount = 0;
+            if (defaultKrakenNum > 0)
+            {
+                UnityEngine.Object krakenUI = Resources.Load(PathVariables.krakenUIPath, typeof(GameObject));
+                GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                newCamera.name = "Kraken Screen";
+                cams[camCount] = newCamera.GetComponent<cameraFollow>();
+                GameObject instantiatedUI = Instantiate(krakenUI, newCamera.transform) as GameObject;
+                
+                var camera1 = newCamera.GetComponentInChildren<Camera>();
+                setUpCameraOnCanvas(instantiatedUI, camera1);
+                
+               
+                if (defaultKrakenNum + shipSelections.Count >= 4)
+                {
+                    camera1.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                }
+                else
+                {
+                    camera1.rect = new Rect(0, 0.5f, 1, 0.5f);
+                }
+                camCount++;
+            }
+            
+            for (int x = 0; x < shipSelections.Count; x++)
+            {
+                GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
+                newCamera.name = "Player " + (camCount + 1) + " Screen";
+                cams[camCount] = newCamera.GetComponent<cameraFollow>();
+
+                camCount++;
+                GameObject instantiatedUI = Instantiate(shipUI, newCamera.transform) as GameObject;
+                var camera1 = newCamera.GetComponentInChildren<Camera>();
+                setUpCameraOnCanvas(instantiatedUI, camera1);
+                //Wide Screen Case 1
+                setUpCameraPositions(foundKraken, x, defaultKrakenNum + shipSelections.Count, newCamera);
+               
+            }
+
+        }
+    }
+
+    private static void setUpCameraOnCanvas(GameObject instantiatedUI, Camera camera1)
+    {
+        Canvas[] canvas = instantiatedUI.GetComponentsInChildren<Canvas>();
+        foreach (Canvas can in canvas)
+        {
+            can.worldCamera = camera1;
+        }
+    }
+
+    private void setUpCameraPositions(bool foundKraken, int shipCount, int playerCount, GameObject newCamera)
+    {
+        var camera1 = newCamera.GetComponentInChildren<Camera>();
+        if (playerCount == 2)
+        {
+            
+            if (foundKraken)
+            {
+                camera1.rect = new Rect(0f, 0f, 1f, 0.5f);
+            }
+            else
+            {
+                camera1.rect = new Rect(0f, 0.5f * (1 - shipCount), 1f, 0.5f);
+            }
+        }
+        else if (playerCount == 3)
+        {
+            if (foundKraken)
+            {
+                camera1.rect = new Rect(0.5f * shipCount, 0f, 0.5f, 0.5f);
+            }
+            else if (shipCount == 0)
+            {
+                camera1.rect = new Rect(0f, 0.5f, 1f, 0.5f);
+            }
+            else
+            {
+                camera1.rect = new Rect(0.5f * (shipCount-1), 0f, 0.5f, 0.5f);
+            }
+        }
+        else
+        {
+            if (foundKraken)
+            {
+                if (shipCount == 0)
+                {
+                    camera1.rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                }
+                else
+                {
+                    camera1.rect = new Rect(0.5f * (shipCount - 1), 0f, 0.5f, 0.5f);
+                }
+            }
+            else
+            {
+                camera1.rect = new Rect(0.5f * (shipCount % 2), 0.5f * (shipCount > 1 ? 1 : 0), 0.5f, 0.5f);
+            }
+        }
+    }
+
+    private void initializeGlobalCanvas()
+    {
+        
+        GameObject canvas = Instantiate(Resources.Load(PathVariables.ffaCanvasPath, typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
+        globalCanvas = canvas.GetComponent<FFAGlobalCanvas>();
+    }
+
     private int createShipWithName(int num, PlayerActions action, string name)
     {
-        CharacterSelect shipOne = new CharacterSelect();
-        shipOne.Actions = action;
-        shipOne.selectedCharacter = name;
+        CharacterSelection shipOne = new CharacterSelection(name,action);
+        
         num = createPlayerShip(num, shipOne);
         return num;
     }
 
-    private int createPlayerShip(int num, CharacterSelect player)
+    private int createPlayerShip(int num, CharacterSelection player)
     {
         GameObject newShip = null;
-        string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter];
+        string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter.ToString()];
         if (path != null)
         {
             newShip = Instantiate(Resources.Load(path, typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
@@ -188,11 +409,13 @@ public class gameManager : AbstractGameManager {
     }
 
     void gameStart(){
-		signedIn = true;
+		
 		foreach (playerInput player in players) {
 			player.gameStarted = true;
 		}
-		kraken.gameStarted = true;
+        if (kraken) {
+		    kraken.gameStarted = true;
+        }
 	}
 
 	void destroyCountDown(){
@@ -205,7 +428,7 @@ public class gameManager : AbstractGameManager {
 		//puts the camera in the starting positions as soon as the game starts
 		if (!done) {
 			if (!countDown.gameObject.activeSelf) {
-				cam.gameObject.SetActive (false);
+				
 				countDown.SetActive (true);
 				screenSplitter.SetActive (true);
 
@@ -217,7 +440,7 @@ public class gameManager : AbstractGameManager {
 			if (countDown.GetComponent<CountDown> ().done) {
 				gameStart ();
 				done = true;
-				print ("gamestart");
+				
 				Invoke ("destroyCountDown", 2f);
 			}
 		}
@@ -271,7 +494,7 @@ public class gameManager : AbstractGameManager {
 
 
 	}
-	public void respawnKraken(KrakenInput player, Vector3 startingPoint){
+	override public void respawnKraken(KrakenInput player, Vector3 startingPoint){
 
 		player.gameObject.transform.position = startingPoint;
 
@@ -308,7 +531,12 @@ public class gameManager : AbstractGameManager {
         barrel.GetComponent<barrel>().activatePillar();
 	}
 
-	public void incrementPoint(KrakenInput kraken){
+    public override bool isGameOver()
+    {
+        return gameOver;
+    }
+
+    override public void incrementPoint(KrakenInput kraken){
 		int points = kraken.uiManager.incrementPoint ();
 		kraken.uiManager.setScoreBar (points / krakenWinPoints);
 
@@ -515,7 +743,7 @@ public class gameManager : AbstractGameManager {
 		losers[1].transform.rotation  =Quaternion.Euler (new Vector3 (0f, 180f, 0f));
 
 
-		GameObject titlesPrefab = Resources.Load ("Prefabs/Titles", typeof(GameObject)) as GameObject;
+		GameObject titlesPrefab = Resources.Load (PathVariables.titlesPath, typeof(GameObject)) as GameObject;
 		Titles titles = titlesPrefab.GetComponent<Titles> ();
 		titles.calculateTitles (shipStats,krakenStats);
 

@@ -19,14 +19,15 @@ public class OneVOneGameManager : AbstractGameManager {
 	int assign_index =0;
 	public bool freeForAll = true;
 	public GameObject countDown;
-	public signInCamera cam;
+	
 	public PlayerManager manager;
 	public ControllerSelect controller;
 	public GameObject ship;
 	public int maxNoOfShips = 2;
 	bool done = false;
 	public Animator globalCanvas;
-	MonoBehaviour script;
+    FFAGlobalCanvas globalCanvasS;
+    MonoBehaviour script;
     GameObject screenSplitter;
     PlayerSelectSettings ps;
 	public bool gameOver = false;
@@ -111,7 +112,7 @@ public class OneVOneGameManager : AbstractGameManager {
 		}
 		else
 		{
-			foreach (CharacterSelect player in ps.players)
+			foreach (CharacterSelection player in ps.players)
 			{
 					if (num <= maxNoOfShips)
 					{
@@ -128,17 +129,21 @@ public class OneVOneGameManager : AbstractGameManager {
 
 	private int createShipWithName(int num, PlayerActions action, string name)
 	{
-		CharacterSelect shipOne = new CharacterSelect();
-		shipOne.Actions = action;
-		shipOne.selectedCharacter = name;
+        CharacterSelection shipOne = new CharacterSelection(name,action);
+
 		num = createPlayerShip(num, shipOne);
 		return num;
 	}
 
-	private int createPlayerShip(int num, CharacterSelect player)
+    public override bool isGameOver()
+    {
+        return gameOver;
+    }
+
+    private int createPlayerShip(int num, CharacterSelection player)
 	{
 		GameObject newShip = null;
-		string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter];
+		string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter.ToString()];
 		if (path != null)
 		{
 			newShip = Instantiate(Resources.Load(path, typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
@@ -172,10 +177,9 @@ public class OneVOneGameManager : AbstractGameManager {
 		//puts the camera in the starting positions as soon as the game starts
 		if (!done) {
 			if (!countDown.gameObject.activeSelf) {
-				cam.gameObject.SetActive (false);
+			
 				countDown.SetActive (true);
 				screenSplitter.SetActive (true);
-
 				foreach (cameraFollow k  in cams) {
 					k.camera.gameObject.SetActive (true);
 				}
@@ -355,10 +359,11 @@ public class OneVOneGameManager : AbstractGameManager {
 		MapObjects map = GameObject.FindObjectOfType<MapObjects> ();
 		//Refactor out of map
 		map.gameOverCamera.GetComponent<Camera>().enabled = true;
-		map.ui.SetActive (true);
-		GameOverStatsUI gameOverUI = map.ui.GetComponent<GameOverStatsUI> ();
 
-		List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
+        GameOverStatsUI gameOverUI = globalCanvasS.gameOverUI;
+        gameOverUI.gameObject.SetActive(true);
+
+        List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
 		List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
 
 		FreeForAllStatistics winStat = null;

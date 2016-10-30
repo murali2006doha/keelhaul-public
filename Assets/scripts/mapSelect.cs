@@ -21,7 +21,7 @@ public class MapSelect : MonoBehaviour {
 	int index = 0;
 	GameObject selectedMap;
 	PlayerSelectSettings ps;
-	List<CharacterSelect> players;
+	List<CharacterSelection> players;
 
 	// Use this for initialization
 	void Start () {

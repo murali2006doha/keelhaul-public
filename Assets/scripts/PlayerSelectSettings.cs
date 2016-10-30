@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerSelectSettings : MonoBehaviour {
 
-	public List<CharacterSelect> players = new List<CharacterSelect>();
+	public List<CharacterSelection> players = new List<CharacterSelection>();
 	// Use this for initialization
 	void Start () {
 		GameObject.DontDestroyOnLoad (this);
@@ -11,7 +11,7 @@ public class PlayerSelectSettings : MonoBehaviour {
 
 	public void setPlayerCharacters(List<CharacterSelect> playerList){
 		foreach (CharacterSelect player in playerList) {
-			players.Add (player);
+			players.Add (new CharacterSelection(player.selectedCharacter,player.Actions));
 		}
 	}
 

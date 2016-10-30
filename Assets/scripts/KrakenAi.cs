@@ -3,7 +3,7 @@ using System.Collections;
 
 public class KrakenAi : MonoBehaviour {
 	public KrakenInput input;
-	public NavMeshAgent agent;
+	public UnityEngine.AI.NavMeshAgent agent;
     public KrakenStats stats;
 	public barrel barrel;
 	Camera cam;
@@ -17,14 +17,14 @@ public class KrakenAi : MonoBehaviour {
 	void Start () {
 		barrel = GameObject.FindObjectOfType<barrel> ();
 		input = this.GetComponent<KrakenInput> ();
-		agent = this.GetComponent<NavMeshAgent> ();
+		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		cam = input.followCamera.camera;
 		print ("KrakenAI: " + State.SEARCHING);
 		currentState = State.SEARCHING;
 		//agent.velocity = Math.min (input.maxVelocity, agent.velocity);
 		agent.speed = stats.maxVelocity;
 		agent.SetDestination (barrel.transform.position);
-		agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+		agent.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.NoObstacleAvoidance;
 		agent.autoBraking = false;
 
 	}

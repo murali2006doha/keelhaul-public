@@ -32,7 +32,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     [Header("Scene Variables")]
     public cameraFollow followCamera;
-    public gameManager manager;
+    public AbstractGameManager manager;
     public UIManager uiManager;
     public GameObject bubbles;
     public float velocity;
@@ -74,11 +74,26 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         currentStage = 0;
         cc = GetComponent<CharacterController>();
         krakenArmPosition = transform.Find("KrakenArm");
+        GameObject screen = GameObject.Find("Kraken Screen");
+        uiManager = screen.GetComponentInChildren<UIManager>();
+        followCamera = screen.GetComponent<cameraFollow>();
+        followCamera.target = this.gameObject;
+        followCamera.ready = true;
+        int newLayer = LayerMask.NameToLayer("p1_ui");
+        int defaultLayer = LayerMask.NameToLayer("p4_ui");
+        for(int x = 0; x < this.transform.childCount; x++)
+        {
+            var child = transform.GetChild(x).gameObject;
+            if (transform.GetChild(x).gameObject.layer == defaultLayer)
+            {
+                child.layer = newLayer;
+            }
+        }
+        followCamera.camera.cullingMask |= (1 << newLayer);
+
         animator.splashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Submerge");
         animator.emergeSplashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Emerge");
-        //aiSign = this.followCamera.transform.FindChild("Canvas").FindChild("AI").gameObject;
-        //aiSign.SetActive(false);
-        // Disabled AI functionality until GDC.
+        manager = GameObject.FindObjectOfType<AbstractGameManager>();
         gameStats = new FreeForAllStatistics();
 
     }
@@ -99,7 +114,10 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     // Update is called once per frame
     void Update()
     {
+        if (gameStarted) {
 		updateHealth ();
+        }
+
         if (Actions != null && !animator.isCurrentAnimName("death") && gameStarted)
         {
             followCamera.cullingMask = cullingMask;
@@ -119,10 +137,10 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
                 ai = false;
                 this.GetComponent<KrakenAi>().enabled = false;
                 aiSign.SetActive(false);
-                this.GetComponent<NavMeshAgent>().enabled = false;
+                this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
             }
         }
-        else if (!gameStarted && manager.gameOver)
+        else if (!gameStarted && manager.isGameOver())
         {
             rotateKraken();
         }
@@ -148,7 +166,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
         aiSign.SetActive(true);
         //.GetComponent<CharacterController> ().enabled = false;
-        this.GetComponent<NavMeshAgent>().enabled = true;
+        this.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         this.GetComponent<KrakenAi>().enabled = true;
 
     }

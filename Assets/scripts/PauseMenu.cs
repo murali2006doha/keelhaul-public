@@ -12,12 +12,12 @@ public class PauseMenu : MonoBehaviour {
 	public List<PlayerActions> playerActions = new List<PlayerActions>(); //to pass on to 
 	bool CanPause; 
 	CountDown countdown;
-	gameManager gm;
+	SabotageGameManager gm;
 	AudioSource[] audios;
 	AudioSource pauseMusic;
 
 	// Use this for initialization
-	void Start () {
+	void InitializePause () {
 		CanPause = true;
         
 		//Controls.gameObject.SetActive (false);
@@ -29,9 +29,7 @@ public class PauseMenu : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void Update () {
-		gm = GameObject.FindObjectOfType<gameManager> ();
-
+	void UpdatePauseMenu (SabotageGameManager gm) {
 		if (gm.players.Count != 0) {
 			foreach (playerInput player in gm.players) {
 				playerActions.Add (player.Actions);
