@@ -111,7 +111,7 @@ public class SabotageGameManager : AbstractGameManager {
             this.GetComponent<InControlManager>().enabled = true;
             if (defaultKrakenNum > 0)
             {
-                GameObject k = Instantiate(Resources.Load("Prefabs/Kraken 1", typeof(GameObject)), this.transform.parent) as GameObject;
+                GameObject k = Instantiate(Resources.Load(PathVariables.krakenPath, typeof(GameObject)), this.transform.parent) as GameObject;
                 k.transform.position = map.krakenStartPoint.transform.position;
 
                 kraken = k.GetComponent<KrakenInput>();
@@ -188,7 +188,7 @@ public class SabotageGameManager : AbstractGameManager {
 				if (player.selectedCharacter == ShipEnum.Kraken)
                 {
                     
-                    GameObject k = Instantiate(Resources.Load("Prefabs/Kraken 1", typeof(GameObject)), this.transform.parent) as GameObject;
+                    GameObject k = Instantiate(Resources.Load(PathVariables.krakenPath, typeof(GameObject)), this.transform.parent) as GameObject;
                     kraken = k.GetComponent<KrakenInput>();
                     k.transform.position = map.krakenStartPoint.transform.position;
                     kraken.Actions = player.Actions;
@@ -208,7 +208,7 @@ public class SabotageGameManager : AbstractGameManager {
 
     private void initializePlayerCameras()
     {
-        UnityEngine.Object camera = Resources.Load("Prefabs/Cameras/TopdownCamera", typeof(GameObject));
+        UnityEngine.Object camera = Resources.Load(PathVariables.topDownCameraPath, typeof(GameObject));
         if (ps)
         {
             bool foundKraken = false;
@@ -220,7 +220,7 @@ public class SabotageGameManager : AbstractGameManager {
 
                 if (player.selectedCharacter == ShipEnum.Kraken)
                 {
-                    UnityEngine.Object krakenUI = Resources.Load("Prefabs/UI/KrakenUI", typeof(GameObject));
+                    UnityEngine.Object krakenUI = Resources.Load(PathVariables.krakenUIPath, typeof(GameObject));
                     GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
                     newCamera.name = "Kraken Screen";
                     cams[camCount] = newCamera.GetComponent<cameraFollow>();
@@ -242,7 +242,7 @@ public class SabotageGameManager : AbstractGameManager {
                 }
               
             }
-            UnityEngine.Object shipUI = Resources.Load("Prefabs/UI/shipUI", typeof(GameObject));
+            UnityEngine.Object shipUI = Resources.Load(PathVariables.shipUIPath, typeof(GameObject));
 
             int shipCount = 0;
             //Look for ships
@@ -271,11 +271,11 @@ public class SabotageGameManager : AbstractGameManager {
         {
             cams = new cameraFollow[defaultKrakenNum + shipSelections.Count];
             bool foundKraken = defaultKrakenNum>0;
-            UnityEngine.Object shipUI = Resources.Load("Prefabs/UI/shipUI", typeof(GameObject));
+            UnityEngine.Object shipUI = Resources.Load(PathVariables.shipUIPath, typeof(GameObject));
             int camCount = 0;
             if (defaultKrakenNum > 0)
             {
-                UnityEngine.Object krakenUI = Resources.Load("Prefabs/UI/KrakenUI", typeof(GameObject));
+                UnityEngine.Object krakenUI = Resources.Load(PathVariables.krakenUIPath, typeof(GameObject));
                 GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
                 newCamera.name = "Kraken Screen";
                 cams[camCount] = newCamera.GetComponent<cameraFollow>();
@@ -331,14 +331,10 @@ public class SabotageGameManager : AbstractGameManager {
             
             if (foundKraken)
             {
-                print("yes");
                 camera1.rect = new Rect(0f, 0f, 1f, 0.5f);
-                print(camera1.rect);
-
             }
             else
             {
-               
                 camera1.rect = new Rect(0f, 0.5f * (1 - shipCount), 1f, 0.5f);
             }
         }
@@ -380,7 +376,7 @@ public class SabotageGameManager : AbstractGameManager {
     private void initializeGlobalCanvas()
     {
         
-        GameObject canvas = Instantiate(Resources.Load(GlobalVariables.ffaCanvasPath, typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject canvas = Instantiate(Resources.Load(PathVariables.ffaCanvasPath, typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
         globalCanvas = canvas.GetComponent<FFAGlobalCanvas>();
     }
 
@@ -747,7 +743,7 @@ public class SabotageGameManager : AbstractGameManager {
 		losers[1].transform.rotation  =Quaternion.Euler (new Vector3 (0f, 180f, 0f));
 
 
-		GameObject titlesPrefab = Resources.Load ("Prefabs/Titles", typeof(GameObject)) as GameObject;
+		GameObject titlesPrefab = Resources.Load (PathVariables.titlesPath, typeof(GameObject)) as GameObject;
 		Titles titles = titlesPrefab.GetComponent<Titles> ();
 		titles.calculateTitles (shipStats,krakenStats);
 
