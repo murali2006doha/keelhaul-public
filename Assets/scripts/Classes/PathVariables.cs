@@ -10,4 +10,5 @@ public static class PathVariables {
     internal static string topDownCameraPath = "Prefabs/Cameras/TopdownCamera";
     internal static string krakenUIPath = "Prefabs/UI/KrakenUI";
     internal static string shipUIPath = "Prefabs/UI/shipUI";
+    internal static string sabotageManager = "Prefabs/GameManagers/SabotageGameManager";
 }

@@ -26,7 +26,7 @@ public class OneVOneGameManager : AbstractGameManager {
 	public int maxNoOfShips = 2;
 	bool done = false;
 	public Animator globalCanvas;
-    FFAGlobalCanvas globalCanvasS;
+    GlobalCanvas globalCanvasS;
     MonoBehaviour script;
     GameObject screenSplitter;
     PlayerSelectSettings ps;

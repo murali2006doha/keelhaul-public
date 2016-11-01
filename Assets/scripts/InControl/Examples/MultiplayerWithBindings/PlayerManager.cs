@@ -12,7 +12,7 @@ using InControl;
 	public class PlayerManager : MonoBehaviour
 	{
 		public GameObject playerPrefab;
-		public  SabotageGameManager manager;
+		//public  SabotageGameManager manager;
 		const int maxPlayers = 4;
 		public bool listening = false;
 		List<Vector3> playerPositions = new List<Vector3>() {
@@ -58,7 +58,7 @@ using InControl;
 				{
 					AssignListener (null, inputDevice);
 					listening = false;
-					manager.assign ();
+					//manager.assign ();
 				}
 			}
 
@@ -68,7 +68,7 @@ using InControl;
 				{
 					AssignListener (keyboardListener_1, null);
 					listening = false;
-					manager.assign ();
+					//manager.assign ();
 				}
 			}
 			if (JoinButtonWasPressedOnListener( keyboardListener_2 ))
@@ -77,7 +77,7 @@ using InControl;
 				{
 					AssignListener (keyboardListener_2, null);
 					listening = false;
-					manager.assign ();
+					//manager.assign ();
 				}
 			}
 
