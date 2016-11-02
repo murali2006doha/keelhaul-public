@@ -19,7 +19,8 @@ public class SabotageGameManager : AbstractGameManager
     /* Later refactor into abstract common things */
     [HideInInspector] public cameraFollow[] cams;
     [HideInInspector] public PlayerSelectSettings ps;
-    [HideInInspector] public bool team;
+    [HideInInspector] public bool isTeam;
+    [HideInInspector] public bool includeKraken;
     [HideInInspector] public List<playerInput> players = new List<playerInput>();
     [HideInInspector] public KrakenInput kraken;
     [HideInInspector] public GameObject countDown;
@@ -48,6 +49,10 @@ public class SabotageGameManager : AbstractGameManager
         {
             barrels_start_pos[x] = barrel.transform.position;
             x++;
+        }
+        if (includeKraken)
+        {
+            kraken = GameObject.FindObjectOfType<KrakenInput>();
         }
 
     }
@@ -180,9 +185,9 @@ public class SabotageGameManager : AbstractGameManager
         player.uiManager.decrementEnemyHealth(); //set in UIManager itself
 
         int x = 0;
-        foreach (GameObject barr in barrels)
+        foreach (GameObject barrelObj in barrels)
         {
-            if (barr == barrel)
+            if (barrelObj == barrel)
             {
                 barrel.transform.position = barrels_start_pos[x];
                 barrel.transform.rotation = Quaternion.Euler(new Vector3(-90f, 0f, 0f));
@@ -230,13 +235,13 @@ public class SabotageGameManager : AbstractGameManager
 
     }
 
-    override public void incrementPoint(playerInput player, GameObject barrl)
+    override public void incrementPoint(playerInput player, GameObject barrel)
     {
-        if (!team)
+        if (!isTeam)
         {
             player.GetComponent<Hookshot>().UnHook();
             player.GetComponent<Hookshot>().enabled = false;
-            StartCoroutine(teleportBarrel(player, barrl));
+            StartCoroutine(teleportBarrel(player, barrel));
             player.GetComponent<Hookshot>().enabled = true;
             float points = (float)(player.uiManager.incrementPoint());
             player.uiManager.setScoreBar(points / playerWinPoints);
@@ -283,7 +288,7 @@ public class SabotageGameManager : AbstractGameManager
         else
         {
             player.GetComponent<Hookshot>().UnHook();
-            StartCoroutine(teleportBarrel(player, barrl));
+            StartCoroutine(teleportBarrel(player, barrel));
             int points = 0;
             foreach (playerInput p in players)
             {
