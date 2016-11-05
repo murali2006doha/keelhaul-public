@@ -53,7 +53,6 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	public bool boosted = false;
 	bool ai = false;
     public GameObject wake;
-	public Bomb Bomb;
 	public ShipAnimator anim;
 	Animator invinciblity;
 	public GameObject invincibilyPrefab;
@@ -65,7 +64,6 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	public bool invincible = false;
 	public bool startSinking = false;
 	public bool aiFire;
-	public int bombs = 3;
 	public FreeForAllStatistics gameStats;
 	bool isPushed = false;
     public CharacterController cc;
@@ -109,8 +107,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		centralCannon.input = this;
 		bombCannon = this.GetComponentInChildren<Bomb_Controller> ();
 		bombCannon.input = this;
-		//bombCannon.Bomb = this.Bomb;
-		this.bombCannon.bombComponent.owner = this.transform;
+		bombCannon.bombComponent.parent = bombCannon;
 		//centralCannon.cannonForce = this.cannonForce;
 	}
 
@@ -556,7 +553,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 
 	public void setupRespawn() {
-		bombs = 3;
+		bombCannon.bombCount = 3;
         velocity = 0f;
         isPushed = false;
         boosted = false;
