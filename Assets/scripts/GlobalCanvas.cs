@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class FFAGlobalCanvas : MonoBehaviour {
+public class GlobalCanvas : MonoBehaviour {
 
     public GameObject countDownTimer;
     public Animator fadePanelAnimator;
