@@ -34,6 +34,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	AbstractGameManager manager;
 	KrakenInput kraken;
 	GameObject aiSign;
+    bool teamGame = false;
+    int teamTag = 0;
 
 
 	//AIM stuff
@@ -215,7 +217,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	public void sinkToYourDeath() { //not being used yet?
 		if(!invincible)
 		{
-			kraken.incrementPoint ();
+            manager.acknowledgeKill(kraken, this);
 			locked = true;
 			startSinking = true;
 
@@ -253,8 +255,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 			if (other.transform == scoreDestination.transform && hook_component.isHooked () && other.gameObject.tag.Equals("ScoringZone")) {
                 
 				hook_component.barrel.transform.position = Vector3.Lerp(hook_component.barrel.transform.position, scoreDestination.transform.position, Time.time);
-
-				manager.incrementPoint (this, hook_component.barrel);
+                manager.acknowledgeBarrelScore(this, hook_component.barrel);
+				//manager.incrementPoint (this, hook_component.barrel);
 				uiManager.targetBarrel();
 
 				LightPillar pillar = scoreDestination.transform.parent.GetComponentInChildren<LightPillar> ();
@@ -513,15 +515,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 				vibrate (1f, 1f);
 				hook_component.UnHook ();
 				checkColliders (false);
-				if (attacker is playerInput) {
-					((playerInput)attacker).gameStats.numOfKills++;
-
-				} else if (attacker is KrakenInput) {
-					((KrakenInput)attacker).gameStats.numOfKills++;
-					kraken.incrementPoint ();	
-
-				}
-				die ();
+                manager.acknowledgeKill(attacker, this);
+                die ();
 			} 
 			else {
 				vibrate (.5f, .5f);

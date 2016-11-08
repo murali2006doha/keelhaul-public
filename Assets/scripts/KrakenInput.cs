@@ -101,7 +101,6 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     public void incrementPoint()
     {
-        manager.incrementPoint(this);
         currentStage = Mathf.Min(currentStage, currentStage + 1);
     }
 

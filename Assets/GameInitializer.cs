@@ -17,6 +17,7 @@ public class GameInitializer : MonoBehaviour {
     public List<CharacterSelection> shipSelections = new List<CharacterSelection>();
     public bool includeKraken = true;
     public bool isTeam;
+    public bool isFirstControllerKraken = false;
 
     List<playerInput> players = new List<playerInput>();
     
@@ -25,6 +26,7 @@ public class GameInitializer : MonoBehaviour {
     GameObject screenSplitter;
 
     PlayerSelectSettings ps;
+    HashSet<int> teamNums = new HashSet<int>();
 
     
 
@@ -77,6 +79,20 @@ public class GameInitializer : MonoBehaviour {
             sabManager.globalCanvas = globalCanvas;
             sabManager.screenSplitter = globalCanvas.splitscreenImages;
             sabManager.fadeInAnimator = globalCanvas.fadePanelAnimator;
+            if (!isTeam) {
+                for (int x = 0; x < players.Count; x++)
+                {
+                    sabManager.shipPoints.Add(0);
+                }
+            }
+            else
+            {
+                for (int x = 0; x < teamNums.Count; x++)
+                {
+                    sabManager.shipPoints.Add(0);
+                }
+            }
+           
         }
     }
 
@@ -130,29 +146,52 @@ public class GameInitializer : MonoBehaviour {
                 }
 
             }
-
-            // Create joystick bindings for kraken and ships
-            foreach (InputDevice device in devices)
+            bool createdKraken = false;
+            numDevices = devices.Count;
+            if (devices.Count > 0)
             {
-                if (num > shipSelections.Count)
-                {
-                    break;
-                }
                 PlayerActions action = PlayerActions.CreateWithJoystickBindings();
-                action.Device = device;
-                if (numDevices == 0 && numOfKrakens > 0)
+                action.Device = devices[0];
+                if (isFirstControllerKraken && includeKraken)
                 {
                     createKraken(map, action);
+                    createdKraken = true;
                 }
                 else
                 {
                     num = createShipWithName(num, action, shipSelections[num].selectedCharacter.ToString());
                 }
-                numDevices++;
-
+                
             }
+            // Create joystick bindings for kraken and ships
+            
+            for (int n = 1; n< devices.Count;n++)
+            {
+                PlayerActions action = PlayerActions.CreateWithJoystickBindings();
+                action.Device = devices[n];
+                if (!createdKraken && includeKraken)
+                {
+                   
+                    createKraken(map, action);
+                    createdKraken = true;
+                }
+                else if (num < shipSelections.Count)
+                {
+                    num = createShipWithName(num, action, shipSelections[num].selectedCharacter.ToString());
+                }
+                else
+                {
+                    break;
+                }
+               
+            }
+            
             // Create keyboard bindings for remaining ships
-            for (int z = numDevices - numOfKrakens; z < shipSelections.Count; z++)
+            if (!createdKraken && includeKraken)
+            {
+                createKraken(map, PlayerActions.CreateWithKeyboardBindings());
+            }
+            for (int z = num; z < shipSelections.Count; z++)
             {
                 num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), shipSelections[z].selectedCharacter.ToString());
             }
@@ -396,6 +435,10 @@ public class GameInitializer : MonoBehaviour {
             input.shipNum = num;
             players.Add(input);
             num++;
+        }
+        if (isTeam)
+        {
+            teamNums.Add(player.team);
         }
 
         return num;

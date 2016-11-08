@@ -59,9 +59,8 @@ public class UIManager : MonoBehaviour {
 		setEnemyIslandBar ();
 	}
 
-	public int incrementPoint() {
+	public void updatePoint(int point) {
 
-		int point = int.Parse (points.text) + 1;
 		points.text = (point).ToString();
 		/*GameObject instantiated = ((GameObject)(Instantiate (scoreAnimation)));
 		instantiated.transform.parent = this.transform.GetChild(0);
@@ -70,7 +69,7 @@ public class UIManager : MonoBehaviour {
 		instantiated.GetComponent<RectTransform> ().localScale = scorePosition.GetComponent<RectTransform> ().localScale;
 		//instantiated.GetComponent<RectTransform> ().rotation= scorePosition.GetComponent<RectTransform> ().rotation;
 		*/
-		return point;
+
 	}
 
 

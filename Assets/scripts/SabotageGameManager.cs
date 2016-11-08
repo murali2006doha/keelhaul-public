@@ -16,6 +16,7 @@ public class SabotageGameManager : AbstractGameManager
     public int playerWinPoints = 3;
     public int krakenWinPoints = 5;
 
+
     /* Later refactor into abstract common things */
     [HideInInspector] public cameraFollow[] cams;
     [HideInInspector] public PlayerSelectSettings ps;
@@ -27,11 +28,15 @@ public class SabotageGameManager : AbstractGameManager
     [HideInInspector] public GlobalCanvas globalCanvas;
     [HideInInspector] public GameObject screenSplitter;
     [HideInInspector] public Animator fadeInAnimator;
+    [HideInInspector] public List<int> shipPoints = new List<int>();
 
     bool gameOver = false;
     bool done = false;
     MonoBehaviour winnerScript;
     GameObject winner;
+    int krakenPoints;
+    
+    
     string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
 
     void Start()
@@ -205,28 +210,37 @@ public class SabotageGameManager : AbstractGameManager
         return gameOver;
     }
 
-    override public void incrementPoint(KrakenInput kraken)
+    override public void acknowledgeKill(StatsInterface attacker, StatsInterface victim)
     {
-        int points = kraken.uiManager.incrementPoint();
-        kraken.uiManager.setScoreBar(points / krakenWinPoints);
-
-        if (points == (krakenWinPoints - 1))
+        if(attacker is KrakenInput)
         {
-
-            var textScripts = GameObject.FindObjectsOfType<ProgressScript>();
-            foreach (ProgressScript script in textScripts)
+            krakenPoints++;
+            kraken.uiManager.updatePoint(krakenPoints);
+            kraken.incrementPoint();
+            kraken.uiManager.setScoreBar(krakenPoints / krakenWinPoints);
+            ((KrakenInput)attacker).gameStats.numOfKills++;
+            if (krakenPoints == (krakenWinPoints - 1))
             {
-                var newText = lastPoint.Replace("Replace", "<color=purple>Kraken</color>");
-                script.activatePopup(newText, "Kraken", "Kraken");
-            }
 
-        }
-        if (points == krakenWinPoints && winner == null)
+                var textScripts = GameObject.FindObjectsOfType<ProgressScript>();
+                foreach (ProgressScript script in textScripts)
+                {
+                    var newText = lastPoint.Replace("Replace", "<color=purple>Kraken</color>");
+                    script.activatePopup(newText, "Kraken", "Kraken");
+                }
+
+            }
+            if (krakenPoints == krakenWinPoints && winner == null)
+            {
+                activateVictoryText();
+                Invoke("triggerVictory", 1.2f);
+                winner = kraken.gameObject;
+            }
+        } else if(attacker is playerInput)
         {
-            activateVictoryText();
-            Invoke("triggerVictory", 1.2f);
-            winner = kraken.gameObject;
+            ((playerInput)attacker).gameStats.numOfKills++;
         }
+       
 
     }
     public void decrementPoint(KrakenInput kraken)
@@ -235,7 +249,7 @@ public class SabotageGameManager : AbstractGameManager
 
     }
 
-    override public void incrementPoint(playerInput player, GameObject barrel)
+    override public void acknowledgeBarrelScore(playerInput player, GameObject barrel)
     {
         if (!isTeam)
         {
@@ -243,7 +257,10 @@ public class SabotageGameManager : AbstractGameManager
             player.GetComponent<Hookshot>().enabled = false;
             StartCoroutine(teleportBarrel(player, barrel));
             player.GetComponent<Hookshot>().enabled = true;
-            float points = (float)(player.uiManager.incrementPoint());
+            int index = players.IndexOf(player);
+            int points = shipPoints[index];
+            points++;
+            shipPoints[index] = points;
             player.uiManager.setScoreBar(points / playerWinPoints);
 
             //refactor so color in text script and just pass ship name into script.
@@ -287,14 +304,11 @@ public class SabotageGameManager : AbstractGameManager
         }
         else
         {
+            //TODO: Implement team score. 
             player.GetComponent<Hookshot>().UnHook();
             StartCoroutine(teleportBarrel(player, barrel));
             int points = 0;
-            foreach (playerInput p in players)
-            {
-                points = p.uiManager.incrementPoint();
-                p.uiManager.setScoreBar(points / playerWinPoints);
-            }
+           
             if (points == playerWinPoints)
             {
                 activateVictoryText();
@@ -507,6 +521,8 @@ public class SabotageGameManager : AbstractGameManager
 
         SceneManager.LoadScene("free for all_vig");
     }
+
+    
 
 
 }
