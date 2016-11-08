@@ -35,13 +35,24 @@ public class SabotageGameManager : AbstractGameManager
     MonoBehaviour winnerScript;
     GameObject winner;
     int krakenPoints;
-    
-    
+
+    List<string> teamNames = new List<string> { "Red Team", "Blue Team", "Green Team", "Yellow Team" };
+    Dictionary<string, string> teamToColor = new Dictionary<string, string> { { "Red Team", "red" }, { "Blue Team", "blue" }, { "Green Team", "green" }, { "Yellow Team", "yellow" } };
+
+
+
     string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
 
     void Start()
     {
+        MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
+        //Disable unused islands
+        for(int z = shipPoints.Count; z < mapObjects.islands.Length; z++)
+        {
+            mapObjects.islands[z].gameObject.SetActive(false);
+        }
        
+        
         Physics.gravity = new Vector3(0f, -0.1f, 0f);
         Application.targetFrameRate = -1; //Unlocks the framerate at start
         Resources.UnloadUnusedAssets();
@@ -187,7 +198,6 @@ public class SabotageGameManager : AbstractGameManager
         barrel b = barrel.GetComponent<barrel>();
         b.explodeBarrel();
 
-        player.uiManager.decrementEnemyHealth(); //set in UIManager itself
 
         int x = 0;
         foreach (GameObject barrelObj in barrels)
@@ -261,6 +271,7 @@ public class SabotageGameManager : AbstractGameManager
             int points = shipPoints[index];
             points++;
             shipPoints[index] = points;
+            player.uiManager.decrementEnemyHealth();
             player.uiManager.setScoreBar(points / playerWinPoints);
 
             //refactor so color in text script and just pass ship name into script.
@@ -304,11 +315,34 @@ public class SabotageGameManager : AbstractGameManager
         }
         else
         {
-            //TODO: Implement team score. 
+            
             player.GetComponent<Hookshot>().UnHook();
             StartCoroutine(teleportBarrel(player, barrel));
-            int points = 0;
-           
+            shipPoints[player.teamNo] = shipPoints[player.teamNo] + 1;
+            int points = shipPoints[player.teamNo];
+            foreach(playerInput playr in players)
+            {
+                if (playr.teamNo == player.teamNo)
+                {
+                    playr.uiManager.updatePoint(points);
+                    playr.uiManager.setScoreBar(points / playerWinPoints);
+                    playr.uiManager.decrementEnemyHealth();
+
+                }
+            }
+            if(points == playerWinPoints - 1)
+            {
+                
+                string teamName = teamNames[player.teamNo];
+                var textScripts = GameObject.FindObjectsOfType<ProgressScript>();
+                foreach (ProgressScript script in textScripts)
+                {
+                    var newText = "<color=" + teamToColor[teamName] + ">" + teamName + "</color>" + " needs one point to win!!!";
+                    script.activatePopup(newText, "Ship", "Ship");
+                }
+
+            }
+
             if (points == playerWinPoints)
             {
                 activateVictoryText();
@@ -327,7 +361,9 @@ public class SabotageGameManager : AbstractGameManager
         {
             p.uiManager.activateFinishAndColorTint();
         }
-        kraken.uiManager.activateFinishAndColorTint();
+        if (kraken) {
+            kraken.uiManager.activateFinishAndColorTint();
+        }
     }
 
     public void triggerVictory()
@@ -352,7 +388,10 @@ public class SabotageGameManager : AbstractGameManager
         {
             p.gameStarted = false;
         }
-        kraken.gameStarted = false;
+        if (kraken)
+        {
+            kraken.gameStarted = false;
+        }
 
 
         //globalCanvas.finishText.SetActive(true);
@@ -366,25 +405,94 @@ public class SabotageGameManager : AbstractGameManager
         globalCanvas.panel2.texture = texture;
         globalCanvas.panel1.gameObject.SetActive(true);
         globalCanvas.panel2.gameObject.SetActive(true);
-        triggerVictoryScreen();
+        Time.timeScale = 1f;
+        gameOver = true;
+        if (!isTeam)
+        {
+            triggerVictoryScreen();
+        }
+        else
+        {
+            triggerVictoryScreenForTeamGame();
+        }
+
+    }
+
+    private void triggerVictoryScreenForTeamGame()
+    {
+        Dictionary<int, List<playerInput>> teamToPlayers = new Dictionary<int, List<playerInput>>();
+        foreach (playerInput z in players)
+        {
+            z.reset();
+            z.followCamera.enabled = false;
+            if (!teamToPlayers.ContainsKey(z.teamNo))
+            {
+                teamToPlayers.Add(z.teamNo, new List<playerInput>());
+            }
+            teamToPlayers[z.teamNo].Add(z);
+        }
+        int winningTeam = ((playerInput)winnerScript).teamNo;
+        screenSplitter.SetActive(false);
+        MapObjects map = GameObject.FindObjectOfType<MapObjects>();
+        map.gameOverCamera.gameObject.SetActive(true);
+
+        GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
+        gameOverUI.gameObject.SetActive(true);
+
+        gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", teamNames[winningTeam]);
+
+
+        int losingTeamNum = 0;
+        for(int x = 0; x < shipPoints.Count; x++)
+        {
+            List<playerInput> teamPlayers = teamToPlayers[x];
+            if (x == winningTeam)
+            {
+                Transform winnerTransform = map.winnerLoc.transform;
+                foreach (playerInput player in teamPlayers)
+                {
+                    Transform t = winnerTransform.GetChild(player.placeInTeam);
+                    player.gameObject.transform.position = new Vector3(t.position.x, player.gameObject.transform.position.y, t.position.z);
+                    player.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+                    player.gameObject.transform.localScale *= 2f;
+                }
+            }
+            else
+            {
+
+                Transform loserTransform = losingTeamNum == 0 ? map.loser1loc.transform : map.loser2loc.transform;
+                foreach (playerInput player in teamPlayers)
+                {
+                    Transform t = loserTransform.GetChild(player.placeInTeam);
+                    player.gameObject.transform.position = new Vector3(t.position.x, player.gameObject.transform.position.y, t.position.z);
+                    player.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+                }
+
+            }
+            
+
+        }
+
+
+
+        
+        
+
 
 
     }
 
-
-
     public void triggerVictoryScreen()
     {
-        Time.timeScale = 1f;
-        //fadeInAnimator.SetBool("fade", true);
-        gameOver = true;
+      
         kraken.reset();
+        kraken.followCamera.enabled = false;
         foreach (playerInput z in players)
         {
             z.reset();
             z.followCamera.enabled = false;
         }
-        kraken.followCamera.enabled = false;
+        
         screenSplitter.SetActive(false);
         MapObjects map = GameObject.FindObjectOfType<MapObjects>();
         //Refactor out of map
@@ -522,7 +630,8 @@ public class SabotageGameManager : AbstractGameManager
         SceneManager.LoadScene("free for all_vig");
     }
 
-    
-
-
+    internal override int getNumberOfTeams()
+    {
+        return shipPoints.Count;
+    }
 }

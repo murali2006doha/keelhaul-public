@@ -34,8 +34,9 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	AbstractGameManager manager;
 	KrakenInput kraken;
 	GameObject aiSign;
-    bool teamGame = false;
-    int teamTag = 0;
+    public bool teamGame = false;
+    public int teamNo = 0;
+    public int placeInTeam = 1;
 
 
 	//AIM stuff
@@ -78,8 +79,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 	void Start () {
 		gameStats = new FreeForAllStatistics();
-		this.GetComponentInChildren<ShipInstantiator> ().setupShipNames (this, type, shipNum);
-		manager = GameObject.FindObjectOfType<AbstractGameManager> ();
+        manager = GameObject.FindObjectOfType<AbstractGameManager>();
+        this.GetComponentInChildren<ShipInstantiator> ().setupShipNames (this, type, shipNum, manager.getNumberOfTeams());
 		hook_component = this.GetComponent<Hookshot> ();
 		hook_component.scoreDestination = scoreDestination.transform;
         hook_component.uiManager = uiManager;
@@ -500,6 +501,14 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 	public void hit(float passedDamage = 0f,StatsInterface attacker=null) {
 		if (!invincible && health>0) {
+            if(this.teamGame && attacker is playerInput)
+            {
+                if(((playerInput)attacker).teamNo == this.teamNo)
+                {
+                    vibrate(.5f, .5f);
+                    return;
+                }
+            }
 			float actualDamage = (passedDamage > 0)?passedDamage:damage;
 			health -= actualDamage;
             SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
