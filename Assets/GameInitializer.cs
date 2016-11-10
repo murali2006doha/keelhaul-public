@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Specialized;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using InControl;
@@ -17,6 +17,7 @@ public class GameInitializer : MonoBehaviour {
     public List<CharacterSelection> shipSelections = new List<CharacterSelection>();
     public bool includeKraken = true;
     public bool isTeam;
+    public bool isFirstControllerKraken = false;
 
     List<playerInput> players = new List<playerInput>();
     
@@ -25,6 +26,7 @@ public class GameInitializer : MonoBehaviour {
     GameObject screenSplitter;
 
     PlayerSelectSettings ps;
+    Dictionary<int,int> teamNums = new Dictionary<int,int>();
 
     
 
@@ -39,8 +41,19 @@ public class GameInitializer : MonoBehaviour {
             shipSelections.Add(new CharacterSelection(ShipEnum.ChineseJunkShip.ToString(), null));
         }
         numOfKrakens = includeKraken ? 1 : 0;
-        numOfShips = Math.Min(4 - numOfKrakens, shipSelections.Count);
+        MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
 
+        if (!isTeam)
+        {
+            numOfShips = Math.Min(Math.Min(mapObjects.shipStartingLocations.Length, 4 - numOfKrakens), shipSelections.Count);
+            shipSelections.RemoveRange(numOfShips - 1, shipSelections.Count - numOfShips);
+        }
+        else
+        {
+            int numOfTeams = getNumberOfTeams();
+            removeTeams(numOfTeams - mapObjects.shipStartingLocations.Length);
+            numOfShips = Math.Min(4 - numOfKrakens, shipSelections.Count);
+        }
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
 
         initializeGlobalCanvas();
@@ -62,6 +75,37 @@ public class GameInitializer : MonoBehaviour {
 
     }
 
+    private void removeTeams(int v)
+    {
+        if (v == 0)
+        {
+            return;
+        }
+        Dictionary<int, List<CharacterSelection>> teamToList = new Dictionary<int, List<CharacterSelection>>();
+        foreach (CharacterSelection selection in shipSelections)
+        {
+            if (!teamToList.ContainsKey(selection.team))
+            {
+                teamToList.Add(selection.team, new List<CharacterSelection>());
+            }
+            teamToList[selection.team].Add(selection);
+        }
+        for(int x = 0; x < v; x++)
+        {
+            shipSelections.RemoveAll(z => teamToList[x].Contains(z));
+        }
+    }
+
+    private int getNumberOfTeams()
+    {
+        HashSet<int> teams = new HashSet<int>();
+        foreach(CharacterSelection selection in shipSelections)
+        {
+            teams.Add(selection.team);
+        }
+        return teams.Count;
+    }
+
     private void createGameManager()
     {
         if(gameType == GameTypeEnum.Sabotage)
@@ -77,6 +121,20 @@ public class GameInitializer : MonoBehaviour {
             sabManager.globalCanvas = globalCanvas;
             sabManager.screenSplitter = globalCanvas.splitscreenImages;
             sabManager.fadeInAnimator = globalCanvas.fadePanelAnimator;
+            if (!isTeam) {
+                for (int x = 0; x < players.Count; x++)
+                {
+                    sabManager.shipPoints.Add(0);
+                }
+            }
+            else
+            {
+                for (int x = 0; x < teamNums.Count; x++)
+                {
+                    sabManager.shipPoints.Add(0);
+                }
+            }
+           
         }
     }
 
@@ -130,31 +188,57 @@ public class GameInitializer : MonoBehaviour {
                 }
 
             }
-
-            // Create joystick bindings for kraken and ships
-            foreach (InputDevice device in devices)
+            bool createdKraken = false;
+            numDevices = devices.Count;
+            if (devices.Count > 0)
             {
-                if (num > shipSelections.Count)
-                {
-                    break;
-                }
                 PlayerActions action = PlayerActions.CreateWithJoystickBindings();
-                action.Device = device;
-                if (numDevices == 0 && numOfKrakens > 0)
+                action.Device = devices[0];
+                if (isFirstControllerKraken && includeKraken)
                 {
                     createKraken(map, action);
+                    createdKraken = true;
                 }
                 else
                 {
-                    num = createShipWithName(num, action, shipSelections[num].selectedCharacter.ToString());
+                    shipSelections[num].Actions = action;
+                    num = createShipWithName(num, shipSelections[num]);
                 }
-                numDevices++;
-
+                
             }
-            // Create keyboard bindings for remaining ships
-            for (int z = numDevices - numOfKrakens; z < shipSelections.Count; z++)
+            // Create joystick bindings for kraken and ships
+            
+            for (int n = 1; n< devices.Count;n++)
             {
-                num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), shipSelections[z].selectedCharacter.ToString());
+                PlayerActions action = PlayerActions.CreateWithJoystickBindings();
+                action.Device = devices[n];
+                if (!createdKraken && includeKraken)
+                {
+                   
+                    createKraken(map, action);
+                    createdKraken = true;
+                }
+                else if (num < shipSelections.Count)
+                {
+                    shipSelections[num].Actions = action;
+                    num = createShipWithName(num, shipSelections[num]);
+                }
+                else
+                {
+                    break;
+                }
+               
+            }
+            
+            // Create keyboard bindings for remaining ships
+            if (!createdKraken && includeKraken)
+            {
+                createKraken(map, PlayerActions.CreateWithKeyboardBindings());
+            }
+            for (int z = num; z < shipSelections.Count; z++)
+            {
+                shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
+                num = createShipWithName(num,shipSelections[z]);
             }
 
 
@@ -170,7 +254,8 @@ public class GameInitializer : MonoBehaviour {
 
             for (int z = 0; z < shipSelections.Count; z++)
             {
-                num = createShipWithName(num, PlayerActions.CreateWithKeyboardBindings_2(), shipSelections[z].selectedCharacter.ToString());
+                shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
+                num = createShipWithName(num, shipSelections[z]);
             }
 
         }
@@ -373,11 +458,9 @@ public class GameInitializer : MonoBehaviour {
         globalCanvas = canvas.GetComponent<GlobalCanvas>();
     }
 
-    private int createShipWithName(int num, PlayerActions action, string name)
+    private int createShipWithName(int num, CharacterSelection ship)
     {
-        CharacterSelection shipOne = new CharacterSelection(name, action);
-
-        num = createPlayerShip(num, shipOne);
+        num = createPlayerShip(num, ship);
         return num;
     }
 
@@ -394,6 +477,19 @@ public class GameInitializer : MonoBehaviour {
             playerInput input = newShip.GetComponent<playerInput>();
             input.Actions = player.Actions;
             input.shipNum = num;
+            if (isTeam)
+            {
+                if (!teamNums.ContainsKey(player.team))
+                {
+                    teamNums.Add(player.team, 0);
+                }
+                teamNums[player.team] = teamNums[player.team] + 1;
+
+                input.teamNo = player.team;
+                input.placeInTeam = teamNums[player.team] - 1;
+                input.teamGame = true;
+            }
+
             players.Add(input);
             num++;
         }

@@ -34,6 +34,9 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	AbstractGameManager manager;
 	KrakenInput kraken;
 	GameObject aiSign;
+    public bool teamGame = false;
+    public int teamNo = 0;
+    public int placeInTeam = 1;
 
 
 	//AIM stuff
@@ -76,8 +79,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 	void Start () {
 		gameStats = new FreeForAllStatistics();
-		this.GetComponentInChildren<ShipInstantiator> ().setupShipNames (this, type, shipNum);
-		manager = GameObject.FindObjectOfType<AbstractGameManager> ();
+        manager = GameObject.FindObjectOfType<AbstractGameManager>();
+        this.GetComponentInChildren<ShipInstantiator> ().setupShipNames (this, type, shipNum, manager.getNumberOfTeams());
 		hook_component = this.GetComponent<Hookshot> ();
 		hook_component.scoreDestination = scoreDestination.transform;
         hook_component.uiManager = uiManager;
@@ -215,7 +218,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	public void sinkToYourDeath() { //not being used yet?
 		if(!invincible)
 		{
-			kraken.incrementPoint ();
+            manager.acknowledgeKill(kraken, this);
 			locked = true;
 			startSinking = true;
 
@@ -253,8 +256,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 			if (other.transform == scoreDestination.transform && hook_component.isHooked () && other.gameObject.tag.Equals("ScoringZone")) {
                 
 				hook_component.barrel.transform.position = Vector3.Lerp(hook_component.barrel.transform.position, scoreDestination.transform.position, Time.time);
-
-				manager.incrementPoint (this, hook_component.barrel);
+                manager.acknowledgeBarrelScore(this, hook_component.barrel);
+				//manager.incrementPoint (this, hook_component.barrel);
 				uiManager.targetBarrel();
 
 				LightPillar pillar = scoreDestination.transform.parent.GetComponentInChildren<LightPillar> ();
@@ -498,6 +501,14 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 	public void hit(float passedDamage = 0f,StatsInterface attacker=null) {
 		if (!invincible && health>0) {
+            if(this.teamGame && attacker is playerInput)
+            {
+                if(((playerInput)attacker).teamNo == this.teamNo)
+                {
+                    vibrate(.5f, .5f);
+                    return;
+                }
+            }
 			float actualDamage = (passedDamage > 0)?passedDamage:damage;
 			health -= actualDamage;
             SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
@@ -513,15 +524,8 @@ public class playerInput : MonoBehaviour,StatsInterface {
 				vibrate (1f, 1f);
 				hook_component.UnHook ();
 				checkColliders (false);
-				if (attacker is playerInput) {
-					((playerInput)attacker).gameStats.numOfKills++;
-
-				} else if (attacker is KrakenInput) {
-					((KrakenInput)attacker).gameStats.numOfKills++;
-					kraken.incrementPoint ();	
-
-				}
-				die ();
+                manager.acknowledgeKill(attacker, this);
+                die ();
 			} 
 			else {
 				vibrate (.5f, .5f);
