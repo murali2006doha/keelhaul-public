@@ -108,10 +108,10 @@ public class GameInitializer : MonoBehaviour {
 
     private void createGameManager()
     {
-        if(gameType == GameTypeEnum.Sabotage)
+        if (gameType == GameTypeEnum.Sabotage)
         {
-           GameObject manager =  Instantiate(Resources.Load(PathVariables.sabotageManager, typeof(GameObject)), this.transform.parent) as GameObject;
-           SabotageGameManager sabManager = manager.GetComponent<SabotageGameManager>();
+            GameObject manager = Instantiate(Resources.Load(PathVariables.sabotageManager, typeof(GameObject)), this.transform.parent) as GameObject;
+            SabotageGameManager sabManager = manager.GetComponent<SabotageGameManager>();
             sabManager.cams = cams;
             sabManager.ps = ps;
             sabManager.isTeam = isTeam;
@@ -121,7 +121,8 @@ public class GameInitializer : MonoBehaviour {
             sabManager.globalCanvas = globalCanvas;
             sabManager.screenSplitter = globalCanvas.splitscreenImages;
             sabManager.fadeInAnimator = globalCanvas.fadePanelAnimator;
-            if (!isTeam) {
+            if (!isTeam)
+            {
                 for (int x = 0; x < players.Count; x++)
                 {
                     sabManager.shipPoints.Add(0);
@@ -134,7 +135,23 @@ public class GameInitializer : MonoBehaviour {
                     sabManager.shipPoints.Add(0);
                 }
             }
-           
+
+        }
+        else if (gameType == GameTypeEnum.KrakenHunt) {
+            GameObject manager = Instantiate(Resources.Load(PathVariables.krakenHuntManager, typeof(GameObject)), this.transform.parent) as GameObject;
+            KrakenHuntGameManager krakenHuntManager = manager.GetComponent<KrakenHuntGameManager>();
+            krakenHuntManager.cams = cams;
+            krakenHuntManager.ps = ps;
+            krakenHuntManager.players = players;
+            krakenHuntManager.includeKraken = includeKraken;
+            krakenHuntManager.countDown = globalCanvas.countDownTimer;
+            krakenHuntManager.globalCanvas = globalCanvas;
+            krakenHuntManager.screenSplitter = globalCanvas.splitscreenImages;
+            krakenHuntManager.fadeInAnimator = globalCanvas.fadePanelAnimator;
+            for (int x = 0; x < players.Count; x++)
+            {
+                krakenHuntManager.shipPoints.Add(0);
+            }
         }
     }
 

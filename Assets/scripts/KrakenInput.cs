@@ -461,6 +461,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
             {
                 ((playerInput)attacker).gameStats.addGivenDamage("kraken", dmg);
                 gameStats.addTakenDamage(((playerInput)attacker).type.ToString(), dmg);
+               
             }
 
             health -= dmg;
@@ -468,6 +469,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (health <= 0)
             {
+                manager.acknowledgeKill(attacker, this);
                 vibrate(1f, 1f);
                 die();
             }
