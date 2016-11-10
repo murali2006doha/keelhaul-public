@@ -31,7 +31,7 @@ public class PauseMenu : MonoBehaviour {
 	// Update is called once per frame
 	void UpdatePauseMenu (SabotageGameManager gm) {
 		if (gm.players.Count != 0) {
-			foreach (playerInput player in gm.players) {
+			foreach (PlayerInput player in gm.players) {
 				playerActions.Add (player.Actions);
 			}
 			playerActions.Add (gm.kraken.Actions);

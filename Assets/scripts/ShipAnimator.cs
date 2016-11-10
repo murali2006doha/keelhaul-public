@@ -4,14 +4,14 @@ using System.Collections;
 public class ShipAnimator : MonoBehaviour {
 
 	public Animator shipAnimator;
-	public playerInput ship;
+	public PlayerInput ship;
 	public float respawnTime;
     public SoundCategoryEnum category = SoundCategoryEnum.Generic;
    
 
     // Use this for initialization
     void Start () {
-		this.ship = this.GetComponentInParent<playerInput> ();
+		this.ship = this.GetComponentInParent<PlayerInput> ();
 	}
 
 	public void triggerDeathAnimation(){

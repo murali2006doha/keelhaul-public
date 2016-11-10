@@ -18,7 +18,7 @@ public class CannonController : MonoBehaviour {
     public float numberOfCannons = 2;
 	bool canShootAlt = true, canShootRight = true;
 	public GameObject aim;
-	public playerInput input;
+	public PlayerInput input;
     public int numOfCannonBalls = 3;
     public float angleOfCannonShots = 30;
 	float altTimer;

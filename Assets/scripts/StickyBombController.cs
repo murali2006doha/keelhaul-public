@@ -7,7 +7,7 @@ public class StickyBombController : MonoBehaviour {
 	public float lifeTime = 7f;
 	public float timeToExplode = 5f;
 	public float damage;
-	playerInput ship;
+	PlayerInput ship;
 	CannonController cannoncontroller;
 	Transform cannonballpos;
 
@@ -24,7 +24,7 @@ public class StickyBombController : MonoBehaviour {
 	void Start () {
 
 		parent = GetComponent<SecondaryFire>().parent;
-		ship = parent.GetComponent<playerInput>();
+		ship = parent.GetComponent<PlayerInput>();
 
 		cannonballpos = ship.getCannonPosition();
 
@@ -50,7 +50,7 @@ public class StickyBombController : MonoBehaviour {
 			if (LayerMask.LayerToName (collider.gameObject.layer).Contains ("playerMesh")) { 
 
 				Vector3 direction = GetComponent<Rigidbody> ().velocity.normalized;
-				playerInput ship = collider.transform.root.GetComponent<playerInput> ();
+				PlayerInput ship = collider.transform.root.GetComponent<PlayerInput> ();
 				print (ship);
 				ship.addPushForce (direction, magnitude);
 
@@ -97,7 +97,7 @@ public class StickyBombController : MonoBehaviour {
 
 	public void Explode(Collider collision) {
 	
-		playerInput collidedShip = collision.transform.root.GetComponent<playerInput> ();
+		PlayerInput collidedShip = collision.transform.root.GetComponent<PlayerInput> ();
 		collidedShip.hit (damage,ship);
 		Instantiate (explosion, transform.position, transform.rotation);
 		Destroy(gameObject);

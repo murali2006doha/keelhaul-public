@@ -17,7 +17,7 @@ public abstract class AbstractGameManager : MonoBehaviour {
         Resources.UnloadUnusedAssets();
     }
 
-    public virtual void acknowledgeBarrelScore(playerInput player, GameObject barrel)
+    public virtual void acknowledgeBarrelScore(PlayerInput player, GameObject barrel)
     {
 
     }
@@ -28,7 +28,7 @@ public abstract class AbstractGameManager : MonoBehaviour {
 
     public abstract void exitToCharacterSelect();
     
-    public abstract void respawnPlayer(playerInput player, Vector3 startingPoint);
+    public abstract void respawnPlayer(PlayerInput player, Vector3 startingPoint);
     virtual public void respawnKraken(KrakenInput player, Vector3 startingPoint)
     {
 

@@ -87,7 +87,7 @@ public class KrakenAnimator : MonoBehaviour {
 
 	public void sinkShip(){
 		if (sinkableShip!=null)
-			sinkableShip.GetComponent<playerInput> ().sinkToYourDeath ();
+			sinkableShip.GetComponent<PlayerInput> ().sinkToYourDeath ();
 		sinkableShip = null;
 	}
 	public void emergeKrakenAttack(GameObject ship){

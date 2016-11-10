@@ -7,7 +7,7 @@ public class Bomb_Controller : MonoBehaviour {
 
 	//public GameObject bombPrefab;
 
-	public playerInput input;
+	public PlayerInput input;
 	public Bomb bombComponent;
 	public bool canDropBomb = true;
 

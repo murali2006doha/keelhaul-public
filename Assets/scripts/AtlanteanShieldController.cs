@@ -7,7 +7,7 @@ public class AtlanteanShieldController : MonoBehaviour {
 	public float lifeTime;
 	public float powerShieldDuration;
 	public bool isReflecting = false;
-	playerInput ship;
+	PlayerInput ship;
 	public Vector3 offset;
 	float originalSpeed;
 	Quaternion rot;
@@ -16,7 +16,7 @@ public class AtlanteanShieldController : MonoBehaviour {
 
 	void Start () {
 		parent = GetComponent<SecondaryFire>().parent;
-		ship = parent.GetComponent<playerInput>();
+		ship = parent.GetComponent<PlayerInput>();
 		Invoke("DisablePowerShield", powerShieldDuration);
 		Invoke("KillSelf", lifeTime);
 		rot = this.transform.rotation;
