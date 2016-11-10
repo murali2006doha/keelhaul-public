@@ -135,7 +135,33 @@ public class GameInitializer : MonoBehaviour {
                     sabManager.shipPoints.Add(0);
                 }
             }
-
+        } else if (gameType == GameTypeEnum.DeathMatch)
+        {
+            GameObject manager = Instantiate(Resources.Load(PathVariables.deathMatchManager, typeof(GameObject)), this.transform.parent) as GameObject;
+            DeathMatchGameManager deathMatchManager = manager.GetComponent<DeathMatchGameManager>();
+            deathMatchManager.cams = cams;
+            deathMatchManager.ps = ps;
+            deathMatchManager.isTeam = isTeam;
+            deathMatchManager.players = players;
+            deathMatchManager.includeKraken = includeKraken;
+            deathMatchManager.countDown = globalCanvas.countDownTimer;
+            deathMatchManager.globalCanvas = globalCanvas;
+            deathMatchManager.screenSplitter = globalCanvas.splitscreenImages;
+            deathMatchManager.fadeInAnimator = globalCanvas.fadePanelAnimator;
+            if (!isTeam)
+            {
+                for (int x = 0; x < players.Count; x++)
+                {
+                    deathMatchManager.shipPoints.Add(0);
+                }
+            }
+            else
+            {
+                for (int x = 0; x < teamNums.Count; x++)
+                {
+                    deathMatchManager.shipPoints.Add(0);
+                }
+            }
         }
         else if (gameType == GameTypeEnum.KrakenHunt) {
             GameObject manager = Instantiate(Resources.Load(PathVariables.krakenHuntManager, typeof(GameObject)), this.transform.parent) as GameObject;
