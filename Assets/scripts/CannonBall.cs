@@ -43,11 +43,11 @@ public class CannonBall : MonoBehaviour {
 					this.GetComponent<Rigidbody> ().velocity = new Vector3 ();
 					this.GetComponent<Rigidbody> ().AddForce (this.transform.forward * reflectForce * reflectMult);
 					Invoke ("destroySelf", lifeTime);
-					parent.GetComponent<playerInput> ().gameStats.numOfReflectedShots++;
+					parent.GetComponent<PlayerInput> ().gameStats.numOfReflectedShots++;
 				} else {
                     if (!kraken)
                     {
-                        playerInput player = owner.GetComponent<playerInput>();
+                        PlayerInput player = owner.GetComponent<PlayerInput>();
                         player.gameStats.numOfShotHits++;
                     } else {
                         kraken.gameStats.numOfShotHits++;
@@ -58,7 +58,7 @@ public class CannonBall : MonoBehaviour {
 				}
 			} else {
 				if (LayerMask.LayerToName (collider.gameObject.layer).Contains ("playerMesh")) {
-                    playerInput controller = collider.GetComponentInParent<playerInput>();
+                    PlayerInput controller = collider.GetComponentInParent<PlayerInput>();
                    
                     Instantiate(shipHit, transform.position, transform.rotation);
 
@@ -72,7 +72,7 @@ public class CannonBall : MonoBehaviour {
                         }
                     }
                     else {
-                        playerInput player = owner.GetComponent<playerInput>();
+                        PlayerInput player = owner.GetComponent<PlayerInput>();
                         player.gameStats.numOfShotHits++;
                         if (controller != null)
                         {
@@ -84,7 +84,7 @@ public class CannonBall : MonoBehaviour {
 				
 
 				} else if (LayerMask.LayerToName (collider.gameObject.layer).Equals ("kraken") && !kraken) {
-					playerInput player = owner.GetComponent<playerInput> ();
+					PlayerInput player = owner.GetComponent<PlayerInput> ();
 					player.gameStats.numOfShotHits++;
 					KrakenInput controller = collider.GetComponentInParent<KrakenInput> ();
 					Instantiate (krakenHit, transform.position, transform.rotation);

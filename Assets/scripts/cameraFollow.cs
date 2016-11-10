@@ -88,9 +88,9 @@ public class cameraFollow : MonoBehaviour {
                     if (distance.magnitude <= .01f)
                     {
                         respawning = false;
-                        if (target.GetComponent<playerInput>())
+                        if (target.GetComponent<PlayerInput>())
                         {
-                            target.GetComponent<playerInput>().anim.triggerRespawnAnimation();
+                            target.GetComponent<PlayerInput>().anim.triggerRespawnAnimation();
                         }
                         else if (target.GetComponent<KrakenInput>())
                         {

@@ -86,8 +86,8 @@ public class Bomb : MonoBehaviour {
 		
 
 	public void DestroyShip(GameObject exp, Collider col) {
-		playerInput controller = col.GetComponentInParent<playerInput> ();
-		playerInput ownerPlayer = owner.GetComponent<playerInput> ();
+		PlayerInput controller = col.GetComponentInParent<PlayerInput> ();
+		PlayerInput ownerPlayer = owner.GetComponent<PlayerInput> ();
 		Instantiate (shipHit, exp.transform.position, exp.transform.rotation);
 		if (controller != null) {
 			print (Time.deltaTime);

@@ -22,7 +22,7 @@ public class SabotageGameManager : AbstractGameManager
     [HideInInspector] public PlayerSelectSettings ps;
     [HideInInspector] public bool isTeam;
     [HideInInspector] public bool includeKraken;
-    [HideInInspector] public List<playerInput> players = new List<playerInput>();
+    [HideInInspector] public List<PlayerInput> players = new List<PlayerInput>();
     [HideInInspector] public KrakenInput kraken;
     [HideInInspector] public GameObject countDown;
     [HideInInspector] public GlobalCanvas globalCanvas;
@@ -74,7 +74,7 @@ public class SabotageGameManager : AbstractGameManager
     void gameStart()
     {
 
-        foreach (playerInput player in players)
+        foreach (PlayerInput player in players)
         {
             player.gameStarted = true;
         }
@@ -163,7 +163,7 @@ public class SabotageGameManager : AbstractGameManager
     }
 
 
-    override public void respawnPlayer(playerInput player, Vector3 startingPoint)
+    override public void respawnPlayer(PlayerInput player, Vector3 startingPoint)
     {
 
         player.gameObject.transform.position = startingPoint;
@@ -179,7 +179,7 @@ public class SabotageGameManager : AbstractGameManager
     }
 
 
-    IEnumerator teleportBarrel(playerInput player, GameObject barrel)
+    IEnumerator teleportBarrel(PlayerInput player, GameObject barrel)
     {
 
         yield return new WaitForSeconds(1);
@@ -242,9 +242,9 @@ public class SabotageGameManager : AbstractGameManager
                 Invoke("triggerVictory", 1.2f);
                 winner = kraken.gameObject;
             }
-        } else if(attacker is playerInput)
+        } else if(attacker is PlayerInput)
         {
-            ((playerInput)attacker).gameStats.numOfKills++;
+            ((PlayerInput)attacker).gameStats.numOfKills++;
         }
        
 
@@ -255,7 +255,7 @@ public class SabotageGameManager : AbstractGameManager
 
     }
 
-    override public void acknowledgeBarrelScore(playerInput player, GameObject barrel)
+    override public void acknowledgeBarrelScore(PlayerInput player, GameObject barrel)
     {
         if (!isTeam)
         {
@@ -279,7 +279,7 @@ public class SabotageGameManager : AbstractGameManager
             StartCoroutine(teleportBarrel(player, barrel));
             shipPoints[player.teamNo] = shipPoints[player.teamNo] + 1;
             int points = shipPoints[player.teamNo];
-            foreach(playerInput playr in players)
+            foreach(PlayerInput playr in players)
             {
                 if (playr.teamNo == player.teamNo)
                 {
@@ -316,7 +316,7 @@ public class SabotageGameManager : AbstractGameManager
     public void activateVictoryText()
     {
         Time.timeScale = 0.3f;
-        foreach (playerInput p in players)
+        foreach (PlayerInput p in players)
         {
             p.uiManager.activateFinishAndColorTint();
         }
@@ -329,10 +329,10 @@ public class SabotageGameManager : AbstractGameManager
     {
 
 
-        if (winner.GetComponent<playerInput>())
+        if (winner.GetComponent<PlayerInput>())
         {
-            winnerScript = winner.GetComponent<playerInput>();
-            ((playerInput)winnerScript).hasWon = true;
+            winnerScript = winner.GetComponent<PlayerInput>();
+            ((PlayerInput)winnerScript).hasWon = true;
 
         }
         else
@@ -343,7 +343,7 @@ public class SabotageGameManager : AbstractGameManager
         }
 
         //player.victoryScreen.SetActive (true);
-        foreach (playerInput p in players)
+        foreach (PlayerInput p in players)
         {
             p.gameStarted = false;
         }
@@ -379,18 +379,18 @@ public class SabotageGameManager : AbstractGameManager
 
     private void triggerVictoryScreenForTeamGame()
     {
-        Dictionary<int, List<playerInput>> teamToPlayers = new Dictionary<int, List<playerInput>>();
-        foreach (playerInput z in players)
+        Dictionary<int, List<PlayerInput>> teamToPlayers = new Dictionary<int, List<PlayerInput>>();
+        foreach (PlayerInput z in players)
         {
             z.reset();
             z.followCamera.enabled = false;
             if (!teamToPlayers.ContainsKey(z.teamNo))
             {
-                teamToPlayers.Add(z.teamNo, new List<playerInput>());
+                teamToPlayers.Add(z.teamNo, new List<PlayerInput>());
             }
             teamToPlayers[z.teamNo].Add(z);
         }
-        int winningTeam = ((playerInput)winnerScript).teamNo;
+        int winningTeam = ((PlayerInput)winnerScript).teamNo;
         screenSplitter.SetActive(false);
         MapObjects map = GameObject.FindObjectOfType<MapObjects>();
         map.gameOverCamera.gameObject.SetActive(true);
@@ -404,11 +404,11 @@ public class SabotageGameManager : AbstractGameManager
         int losingTeamNum = 0;
         for(int x = 0; x < shipPoints.Count; x++)
         {
-            List<playerInput> teamPlayers = teamToPlayers[x];
+            List<PlayerInput> teamPlayers = teamToPlayers[x];
             if (x == winningTeam)
             {
                 Transform winnerTransform = map.winnerLoc.transform;
-                foreach (playerInput player in teamPlayers)
+                foreach (PlayerInput player in teamPlayers)
                 {
                     Transform t = winnerTransform.GetChild(player.placeInTeam);
                     player.gameObject.transform.position = new Vector3(t.position.x, player.gameObject.transform.position.y, t.position.z);
@@ -420,7 +420,7 @@ public class SabotageGameManager : AbstractGameManager
             {
 
                 Transform loserTransform = losingTeamNum == 0 ? map.loser1loc.transform : map.loser2loc.transform;
-                foreach (playerInput player in teamPlayers)
+                foreach (PlayerInput player in teamPlayers)
                 {
                     Transform t = loserTransform.GetChild(player.placeInTeam);
                     player.gameObject.transform.position = new Vector3(t.position.x, player.gameObject.transform.position.y, t.position.z);
@@ -446,7 +446,7 @@ public class SabotageGameManager : AbstractGameManager
       
         kraken.reset();
         kraken.followCamera.enabled = false;
-        foreach (playerInput z in players)
+        foreach (PlayerInput z in players)
         {
             z.reset();
             z.followCamera.enabled = false;
@@ -467,14 +467,14 @@ public class SabotageGameManager : AbstractGameManager
         FreeForAllStatistics winStat = null;
         List<GameObject> losers = new List<GameObject>();
 
-        if (winnerScript is playerInput)
+        if (winnerScript is PlayerInput)
         {
-            playerInput player = ((playerInput)winnerScript);
+            PlayerInput player = ((PlayerInput)winnerScript);
             winStat = player.gameStats;
             shipStats.Add(player.gameStats);
             gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", player.shipName);
             gameOverUI.winners[0].name.text = player.shipName;
-            foreach (playerInput input in players)
+            foreach (PlayerInput input in players)
             {
                 if (input != player)
                 {
@@ -492,7 +492,7 @@ public class SabotageGameManager : AbstractGameManager
             krakenStats.Add(player.gameStats);
             gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Kraken");
             gameOverUI.winners[0].name.text = "Kraken";
-            foreach (playerInput input in players)
+            foreach (PlayerInput input in players)
             {
                 losers.Add(input.gameObject);
                 shipStats.Add(input.gameStats);
@@ -532,7 +532,7 @@ public class SabotageGameManager : AbstractGameManager
         for (int x = 0; x < 2; x++)
         {
             num = 0;
-            playerInput loserInput = losers[x].GetComponent<playerInput>();
+            PlayerInput loserInput = losers[x].GetComponent<PlayerInput>();
             FreeForAllStatistics loserStat = null;
             if (loserInput != null)
             {

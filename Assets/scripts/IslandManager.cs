@@ -6,7 +6,7 @@ public class IslandManager : MonoBehaviour {
 	public GameObject[] smokeSetOne;
 	public GameObject[] smokeSetTwo;
 	public GameObject[] smokeSetThree;
-	public List<playerInput> enemyShips = new List<playerInput>();
+	public List<PlayerInput> enemyShips = new List<PlayerInput>();
 
 
 	// Use this for initialization
@@ -21,7 +21,7 @@ public class IslandManager : MonoBehaviour {
 	}
 
 	void manageDamageSmoke() {
-        foreach(playerInput enemyShip in enemyShips)
+        foreach(PlayerInput enemyShip in enemyShips)
         {
             if (enemyShip.uiManager.enemyIslandHealthBar.value == 2f)
             {

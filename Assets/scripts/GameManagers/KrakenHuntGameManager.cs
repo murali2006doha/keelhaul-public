@@ -21,7 +21,7 @@ public class KrakenHuntGameManager : AbstractGameManager
     [HideInInspector] public cameraFollow[] cams;
     [HideInInspector] public PlayerSelectSettings ps;
     [HideInInspector] public bool includeKraken;
-    [HideInInspector] public List<playerInput> players = new List<playerInput>();
+    [HideInInspector] public List<PlayerInput> players = new List<PlayerInput>();
     [HideInInspector] public KrakenInput kraken;
     [HideInInspector] public GameObject countDown;
     [HideInInspector] public GlobalCanvas globalCanvas;
@@ -56,7 +56,7 @@ public class KrakenHuntGameManager : AbstractGameManager
     void gameStart()
     {
 
-        foreach (playerInput player in players)
+        foreach (PlayerInput player in players)
         {
             player.gameStarted = true;
         }
@@ -109,7 +109,7 @@ public class KrakenHuntGameManager : AbstractGameManager
 
 
 
-    override public void respawnPlayer(playerInput player, Vector3 startingPoint)
+    override public void respawnPlayer(PlayerInput player, Vector3 startingPoint)
     {
 
         player.gameObject.transform.position = startingPoint;
@@ -156,9 +156,9 @@ public class KrakenHuntGameManager : AbstractGameManager
                 winner = kraken.gameObject;
             }
         }
-        else if (attacker is playerInput && victim is KrakenInput)
+        else if (attacker is PlayerInput && victim is KrakenInput)
         {
-            playerInput ship = ((playerInput) attacker);
+            PlayerInput ship = ((PlayerInput) attacker);
             ship.gameStats.numOfKills++;
             int index = players.IndexOf(ship);
             int points = shipPoints[index];
@@ -216,7 +216,7 @@ public class KrakenHuntGameManager : AbstractGameManager
     public void activateVictoryText()
     {
         Time.timeScale = 0.3f;
-        foreach (playerInput p in players)
+        foreach (PlayerInput p in players)
         {
             p.uiManager.activateFinishAndColorTint();
         }
@@ -230,10 +230,10 @@ public class KrakenHuntGameManager : AbstractGameManager
     {
 
 
-        if (winner.GetComponent<playerInput>())
+        if (winner.GetComponent<PlayerInput>())
         {
-            winnerScript = winner.GetComponent<playerInput>();
-            ((playerInput)winnerScript).hasWon = true;
+            winnerScript = winner.GetComponent<PlayerInput>();
+            ((PlayerInput)winnerScript).hasWon = true;
 
         }
         else
@@ -244,7 +244,7 @@ public class KrakenHuntGameManager : AbstractGameManager
         }
 
         //player.victoryScreen.SetActive (true);
-        foreach (playerInput p in players)
+        foreach (PlayerInput p in players)
         {
             p.gameStarted = false;
         }
@@ -275,7 +275,7 @@ public class KrakenHuntGameManager : AbstractGameManager
 
         kraken.reset();
         kraken.followCamera.enabled = false;
-        foreach (playerInput z in players)
+        foreach (PlayerInput z in players)
         {
             z.reset();
             z.followCamera.enabled = false;
@@ -296,14 +296,14 @@ public class KrakenHuntGameManager : AbstractGameManager
         FreeForAllStatistics winStat = null;
         List<GameObject> losers = new List<GameObject>();
 
-        if (winnerScript is playerInput)
+        if (winnerScript is PlayerInput)
         {
-            playerInput player = ((playerInput)winnerScript);
+            PlayerInput player = ((PlayerInput)winnerScript);
             winStat = player.gameStats;
             shipStats.Add(player.gameStats);
             gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", player.shipName);
             gameOverUI.winners[0].name.text = player.shipName;
-            foreach (playerInput input in players)
+            foreach (PlayerInput input in players)
             {
                 if (input != player)
                 {
@@ -321,7 +321,7 @@ public class KrakenHuntGameManager : AbstractGameManager
             krakenStats.Add(player.gameStats);
             gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Kraken");
             gameOverUI.winners[0].name.text = "Kraken";
-            foreach (playerInput input in players)
+            foreach (PlayerInput input in players)
             {
                 losers.Add(input.gameObject);
                 shipStats.Add(input.gameStats);
@@ -361,7 +361,7 @@ public class KrakenHuntGameManager : AbstractGameManager
         for (int x = 0; x < 2; x++)
         {
             num = 0;
-            playerInput loserInput = losers[x].GetComponent<playerInput>();
+            PlayerInput loserInput = losers[x].GetComponent<PlayerInput>();
             FreeForAllStatistics loserStat = null;
             if (loserInput != null)
             {

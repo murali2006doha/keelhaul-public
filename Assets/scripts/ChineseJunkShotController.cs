@@ -7,7 +7,7 @@ public class ChineseJunkShotController : MonoBehaviour {
     public float lifeTime;
     GameObject aim;
     Hookshot hook;
-    playerInput ship;
+    PlayerInput ship;
     public float damage = 0.1f;
     public Vector3 offset;
     public ParticleSystem firework;
@@ -17,7 +17,7 @@ public class ChineseJunkShotController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         parent = GetComponent<SecondaryFire>().parent;
-        ship = parent.GetComponent<playerInput>();
+        ship = parent.GetComponent<PlayerInput>();
 		transform.rotation = ship.getCannonRotation();
         transform.position = parent.transform.position + offset;
         float force = GetComponent<SecondaryFire>().force;

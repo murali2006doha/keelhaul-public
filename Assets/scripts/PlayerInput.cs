@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using InControl;
 using UnityEngine.SceneManagement;
-public class playerInput : MonoBehaviour,StatsInterface {
+public class PlayerInput : MonoBehaviour,StatsInterface {
 
 	//Refactor later into instantiator
 	public ShipEnum type;
@@ -284,7 +284,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 			}
 
             if (other.name == "nose") {
-                playerInput otherPlayer = other.transform.root.GetComponent<playerInput>();
+                PlayerInput otherPlayer = other.transform.root.GetComponent<PlayerInput>();
 				if (otherPlayer.velocity > otherPlayer.stats.maxVelocity) {
 					Instantiate (rammingSprite, other.transform.position, Quaternion.identity);
                     addPushForce(otherPlayer.cc.velocity.normalized, Mathf.Max(otherPlayer.stats.weight - stats.weight, 0f));
@@ -501,9 +501,9 @@ public class playerInput : MonoBehaviour,StatsInterface {
 
 	public void hit(float passedDamage = 0f,StatsInterface attacker=null) {
 		if (!invincible && health>0) {
-            if(this.teamGame && attacker is playerInput)
+            if(this.teamGame && attacker is PlayerInput)
             {
-                if(((playerInput)attacker).teamNo == this.teamNo)
+                if(((PlayerInput)attacker).teamNo == this.teamNo)
                 {
                     vibrate(.5f, .5f);
                     return;
@@ -513,9 +513,9 @@ public class playerInput : MonoBehaviour,StatsInterface {
 			health -= actualDamage;
             SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
 			gameStats.healthLost+=actualDamage;
-			if (attacker is playerInput) {
-				((playerInput)attacker).gameStats.addGivenDamage (type.ToString (), actualDamage);
-				this.gameStats.addTakenDamage (((playerInput)attacker).type.ToString (), actualDamage);
+			if (attacker is PlayerInput) {
+				((PlayerInput)attacker).gameStats.addGivenDamage (type.ToString (), actualDamage);
+				this.gameStats.addTakenDamage (((PlayerInput)attacker).type.ToString (), actualDamage);
 			} else if (attacker is KrakenInput) {
 				((KrakenInput)attacker).gameStats.addGivenDamage (type.ToString (), actualDamage);
 				this.gameStats.addTakenDamage ("kraken", actualDamage);

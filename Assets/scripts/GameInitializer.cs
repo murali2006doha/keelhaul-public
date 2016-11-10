@@ -19,7 +19,7 @@ public class GameInitializer : MonoBehaviour {
     public bool isTeam;
     public bool isFirstControllerKraken = false;
 
-    List<playerInput> players = new List<playerInput>();
+    List<PlayerInput> players = new List<PlayerInput>();
     
     public GameTypeEnum gameType;
     GlobalCanvas globalCanvas;
@@ -491,7 +491,7 @@ public class GameInitializer : MonoBehaviour {
         }
         if (newShip != null)
         {
-            playerInput input = newShip.GetComponent<playerInput>();
+            PlayerInput input = newShip.GetComponent<PlayerInput>();
             input.Actions = player.Actions;
             input.shipNum = num;
             if (isTeam)
