@@ -1,0 +1,216 @@
+fileFormatVersion: 2
+guid: a3e61f0471dc43a46903c67a45721951
+timeCreated: 1478746167
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Back Head
+    100002: Bone
+    100004: Bone.001
+    100006: Bone.002
+    100008: Bone.003
+    100010: Bone.004
+    100012: Bone.005
+    100014: Bone.011
+    100016: Bone.012
+    100018: Bone.013
+    100020: Bone.014
+    100022: Bone.016
+    100024: Bone.017
+    100026: Bone.018
+    100028: Bone.019
+    100030: Bone.021
+    100032: Bone.022
+    100034: Bone.023
+    100036: Bone.024
+    100038: Bone.030
+    100040: Bone.031
+    100042: Bone.032
+    100044: Bone.033
+    100046: Bone.035
+    100048: Bone.036
+    100050: Bone.037
+    100052: Bone.038
+    100054: Bone.040
+    100056: Bone.041
+    100058: Bone.042
+    100060: Bone.043
+    100062: buck_left2
+    100064: buck_left_1
+    100066: buck_right2
+    100068: buck_right_1
+    100070: canine_left1
+    100072: canine_left2
+    100074: canine_right1
+    100076: canine_right2
+    100078: center_left1
+    100080: center_right1
+    100082: Front Head
+    100084: front_left1
+    100086: front_right1
+    100088: IK_back_left
+    100090: IK_back_right
+    100092: IK_center_left
+    100094: IK_center_right
+    100096: IK_front_left
+    100098: IK_front_rght
+    100100: IK_rear_left
+    100102: IK_rear_right
+    100104: //RootNode
+    100106: mid_kraken
+    100108: mid_kraken_armature
+    100110: mid_kraken_crown
+    100112: rear_left1
+    100114: rear_right1
+    400000: Back Head
+    400002: Bone
+    400004: Bone.001
+    400006: Bone.002
+    400008: Bone.003
+    400010: Bone.004
+    400012: Bone.005
+    400014: Bone.011
+    400016: Bone.012
+    400018: Bone.013
+    400020: Bone.014
+    400022: Bone.016
+    400024: Bone.017
+    400026: Bone.018
+    400028: Bone.019
+    400030: Bone.021
+    400032: Bone.022
+    400034: Bone.023
+    400036: Bone.024
+    400038: Bone.030
+    400040: Bone.031
+    400042: Bone.032
+    400044: Bone.033
+    400046: Bone.035
+    400048: Bone.036
+    400050: Bone.037
+    400052: Bone.038
+    400054: Bone.040
+    400056: Bone.041
+    400058: Bone.042
+    400060: Bone.043
+    400062: buck_left2
+    400064: buck_left_1
+    400066: buck_right2
+    400068: buck_right_1
+    400070: canine_left1
+    400072: canine_left2
+    400074: canine_right1
+    400076: canine_right2
+    400078: center_left1
+    400080: center_right1
+    400082: Front Head
+    400084: front_left1
+    400086: front_right1
+    400088: IK_back_left
+    400090: IK_back_right
+    400092: IK_center_left
+    400094: IK_center_right
+    400096: IK_front_left
+    400098: IK_front_rght
+    400100: IK_rear_left
+    400102: IK_rear_right
+    400104: //RootNode
+    400106: mid_kraken
+    400108: mid_kraken_armature
+    400110: mid_kraken_crown
+    400112: rear_left1
+    400114: rear_right1
+    2300000: mid_kraken_crown
+    3300000: mid_kraken_crown
+    4300000: mid_kraken_crown
+    4300002: mid_kraken
+    7400000: mid_kraken_armature|bb_kraken_death
+    7400002: mid_kraken_armature|bb_kraken_emerge
+    7400004: mid_kraken_armature|bb_kraken_emerge_attack
+    7400006: mid_kraken_armature|bb_kraken_emerge_mega
+    7400008: mid_kraken_armature|bb_kraken_headbash_charge
+    7400010: mid_kraken_armature|bb_kraken_headbash_charge_mega
+    7400012: mid_kraken_armature|bb_kraken_headbash_heavy
+    7400014: mid_kraken_armature|bb_kraken_headbash_lite
+    7400016: mid_kraken_armature|bb_kraken_idle
+    7400018: mid_kraken_armature|bb_kraken_spawn
+    7400020: mid_kraken_armature|bb_kraken_spitball_charge
+    7400022: mid_kraken_armature|bb_kraken_spitball_heavy
+    7400024: mid_kraken_armature|bb_kraken_spitball_lite
+    7400026: mid_kraken_armature|bb_kraken_submerge
+    7400028: mid_kraken_armature|bb_kraken_submerge_mega
+    7400030: mid_kraken_armature|bb_kraken_swim
+    7400032: mid_kraken_armature|bb_kraken_swim2idle
+    7400034: mid_kraken_armature|bb_kraken_swipe
+    7400036: mid_kraken_armature|bb_kraken_swipe2
+    9500000: //RootNode
+    13700000: mid_kraken
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
