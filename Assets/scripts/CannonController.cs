@@ -6,8 +6,8 @@ public class CannonController : MonoBehaviour {
 	public GameObject cannonBallPrefab;
 	public GameObject alternateFirePrefab;
 	public Transform cannonBallPos;
-	public Transform cannonBallPosL;
-	public Transform cannonBallPosR;
+	public BroadsideCannonController broadSideCannons;
+
 	public int cannonForce = 1000; //Make this public so designers can easily manipulate it
 	public int altCannonForce = 400;
 	public int arcCannonForce = 10;
@@ -69,7 +69,7 @@ public class CannonController : MonoBehaviour {
 		input.gameStats.numOfAlternateShots++;
 
     }
-
+				
 
 	public void Fire (Vector3 position, Vector3 direction){
 
@@ -97,10 +97,15 @@ public class CannonController : MonoBehaviour {
 		if (canShootAlt && input.Actions.Alt_Fire.RawValue > .5f) {
 			if (shoot_direction.magnitude > 0) {
 				altTimer = Time.realtimeSinceStartup;
-				this.alternateFire ();
-				input.vibrate (.15f, .25f);
+				if (input.shipName.Equals ("Blackbeard Ship")) {
+					StartCoroutine (broadSideCannons.fireBroadside ());
+					Invoke ("ResetShotAlt", alternateShootDelay);
+				} else {
+					this.alternateFire ();
+					Invoke ("ResetShotAlt", alternateShootDelay);
+				}
 				canShootAlt = false;
-				Invoke ("ResetShotAlt", alternateShootDelay);
+				input.vibrate (.15f, .25f);
 				input.uiManager.resetAltFireMeter ();
 			}
 		} else if (!canShootAlt) {
