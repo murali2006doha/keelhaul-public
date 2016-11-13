@@ -5,9 +5,11 @@ using System.Collections.Generic;
 
 public class Bomb : MonoBehaviour {
 
-	public Bomb_Controller parent;
+	public BombController parent;
 	public int blinks = 5;
-	public GameObject bombZone;
+	public GameObject largeBombZone;
+	public GameObject smallBombZone;
+	public GameObject bombModel;
 	public float blinkTime = .5f;
 	//these are all the animations involved
 	public GameObject shipHit;
@@ -19,24 +21,20 @@ public class Bomb : MonoBehaviour {
 
 	public IEnumerator ActivateBomb() {
 
-
-		GameObject smallZone = gameObject.transform.Find ("bomb zone").gameObject;
-		GameObject model = gameObject.transform.Find ("bomb_model").gameObject;
-		smallZone.SetActive (false);
-
-		GameObject largeBombzone = (GameObject) Instantiate (bombZone, gameObject.transform.position, gameObject.transform.rotation);
+		smallBombZone.SetActive (false);
+		largeBombZone.SetActive (true);
 
 		for(int i = 0; i < blinks; i++){ //blinks when activated
-			largeBombzone.GetComponent<Renderer> ().material.color = Color.white;
-			model.GetComponent<Renderer> ().material.color = Color.white;
+			largeBombZone.GetComponent<Renderer> ().material.color = Color.white;
+			bombModel.GetComponent<Renderer> ().material.color = Color.white;
 			yield return new WaitForSeconds(blinkTime);
-			largeBombzone.GetComponent<Renderer> ().material.color = Color.yellow;
-			model.GetComponent<Renderer> ().material.color = Color.red;
+			largeBombZone.GetComponent<Renderer> ().material.color = Color.yellow;
+			bombModel.GetComponent<Renderer> ().material.color = Color.red;
 			yield return new WaitForSeconds(blinkTime);
 		}
 
 		//explode!
-		Destroy (largeBombzone); 			//destroy the parameter zone
+		Destroy (largeBombZone); 			//destroy the parameter zone
 		GameObject exp = explode(); //produces an explosion
 		//Invoke ("fadeHalo", .5f);
 		yield return new WaitForSeconds(explosion_duration); 
@@ -47,7 +45,8 @@ public class Bomb : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider other) {
-		if (LayerMask.LayerToName (other.gameObject.layer).Equals ("playerMesh") && 
+
+		if ((other.gameObject.name).Equals ("playerMesh") && 
 			parent.input.gameObject != other.GetComponentInParent<playerInput>().gameObject) {//to activate a bomb
 			if (parent.bombList.Contains (other.gameObject) == false) {
 				parent.input.gameStats.numOfBombsDetonated+=0.5f;
@@ -55,7 +54,7 @@ public class Bomb : MonoBehaviour {
 			}
 		}
 
-		if (LayerMask.LayerToName(other.gameObject.layer).Equals("kraken")) {
+		if ((other.gameObject.name).Equals("krakenMesh")) {
 			KrakenInput kraken = other.gameObject.GetComponent<KrakenInput> ();
 			if (kraken.submerged == false) { //only if not submerged
 				kraken.gameStats.numOfBombsDetonated++;

@@ -2,10 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Bomb_Controller : MonoBehaviour {
+public class BombController : MonoBehaviour {
 
-
-	//public GameObject bombPrefab;
 
 	public playerInput input;
 	public Bomb bombComponent;
@@ -75,12 +73,10 @@ public class Bomb_Controller : MonoBehaviour {
 	}
 
 
-	//called in triggerEnter in playerInput
 	public void handleTrigger(Collider other){
 		bool shouldGetHit = true;
 		bool stopHitting = false;
 		if (LayerMask.LayerToName (other.gameObject.layer).Equals ("explosion") && !input.invincible) {//check if ship is in range when a bomb is exploding
-			Debug.Log ("HITTING bomb explosion");
 			foreach (Vector3 explosion in explosionList) {	//makes sure that the explosion is not coming from a bomb dropped by this ship
 				if (explosion != null) {
 					if (other.gameObject.transform.position == explosion) {
@@ -89,7 +85,6 @@ public class Bomb_Controller : MonoBehaviour {
 				} 
 			}
 			if (shouldGetHit && !stopHitting) {
-				Debug.Log ("hit by explosion");
 				Collider cl = input.gameObject.GetComponent<Collider>();
 				bombComponent.DestroyShip (other.gameObject, cl);
 				other.enabled = false;
