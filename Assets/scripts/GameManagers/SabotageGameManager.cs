@@ -16,7 +16,6 @@ public class SabotageGameManager : AbstractGameManager
     public int playerWinPoints = 3;
     public int krakenWinPoints = 5;
 
-
     /* Later refactor into abstract common things */
     [HideInInspector] public cameraFollow[] cams;
     [HideInInspector] public PlayerSelectSettings ps;
@@ -27,7 +26,7 @@ public class SabotageGameManager : AbstractGameManager
     [HideInInspector] public GameObject countDown;
     [HideInInspector] public GlobalCanvas globalCanvas;
     [HideInInspector] public Animator fadeInAnimator;
-    [HideInInspector] public List<int> shipPoints = new List<int>();
+    public List<int> shipPoints = new List<int>();
 
     bool gameOver = false;
     bool done = false;
@@ -269,6 +268,24 @@ public class SabotageGameManager : AbstractGameManager
             shipPoints[index] = points;
             player.uiManager.decrementEnemyHealth();
             player.uiManager.setScoreBar(points / playerWinPoints);
+
+            if (points == playerWinPoints - 1)
+            {
+                var textScripts = GameObject.FindObjectsOfType<ProgressScript>();
+                foreach (ProgressScript script in textScripts)
+                {
+                    var newText = "<color=" + ">" + GlobalVariables.ShipToColor[player.type] + "</color>" + " needs one point to win!!!";
+                    script.activatePopup(newText, "Ship", "Ship");
+                }
+
+            }
+
+            if (points == playerWinPoints)
+            {
+                activateVictoryText();
+                Invoke("triggerVictory", 1.2f);
+                winner = player.gameObject;
+            }
 
             //refactor so color in text script and just pass ship name into script.
         }
