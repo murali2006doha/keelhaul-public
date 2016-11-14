@@ -47,7 +47,7 @@ public class Bomb : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 
 		if ((other.gameObject.name).Equals ("playerMesh") && 
-			parent.input.gameObject != other.GetComponentInParent<playerInput>().gameObject) {//to activate a bomb
+			parent.input.gameObject != other.GetComponentInParent<PlayerInput>().gameObject) {//to activate a bomb
 			if (parent.bombList.Contains (other.gameObject) == false) {
 				parent.input.gameStats.numOfBombsDetonated+=0.5f;
 				StartCoroutine (ActivateBomb ());
