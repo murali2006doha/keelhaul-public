@@ -196,17 +196,6 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
             hittingPlayer = true;
             hittingShip = other.gameObject;
         }
-
-        if ((LayerMask.LayerToName(other.gameObject.layer).Equals("bomb") || LayerMask.LayerToName(other.gameObject.layer).Equals("team bomb")))
-        {//to activate a bomb
-            if (submerged == false)
-            { //only if not submerged
-                gameStats.numOfBombsDetonated++;
-                Bomb b = other.gameObject.GetComponent<Bomb>();
-                StartCoroutine(b.ActivateBomb(other.gameObject));
-            }
-        }
-
         if ((LayerMask.LayerToName(other.gameObject.layer).Equals("explosion") || LayerMask.LayerToName(other.gameObject.layer).Equals("team explosion")))
         {//check if kraken is in range when a bomb is exploding
 

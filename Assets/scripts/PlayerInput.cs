@@ -44,7 +44,7 @@ public class PlayerInput : MonoBehaviour,StatsInterface {
 	CannonController centralCannon;
 
 	//BOMB stuff
-	Bomb_Controller bombCannon;
+	BombController bombCannon;
 
 	//Current stats
 	float pushMagnitude;
@@ -56,7 +56,6 @@ public class PlayerInput : MonoBehaviour,StatsInterface {
 	public bool boosted = false;
 	bool ai = false;
     public GameObject wake;
-	public Bomb Bomb;
 	public ShipAnimator anim;
 	Animator invinciblity;
 	public GameObject invincibilyPrefab;
@@ -68,7 +67,6 @@ public class PlayerInput : MonoBehaviour,StatsInterface {
 	public bool invincible = false;
 	public bool startSinking = false;
 	public bool aiFire;
-	public int bombs = 3;
 	public FreeForAllStatistics gameStats;
 	bool isPushed = false;
     public CharacterController cc;
@@ -102,7 +100,6 @@ public class PlayerInput : MonoBehaviour,StatsInterface {
 		health = stats.max_health;
 		oldEulerAngles = transform.rotation.eulerAngles;
 		originalRotation = ship_model.transform.localRotation; // save the initial rotation
-
 	}
 
 	void initCannons(){
@@ -110,10 +107,9 @@ public class PlayerInput : MonoBehaviour,StatsInterface {
 		centralCannon.aim = hook_component.aim;
 		centralCannon.setDelays (stats.shootDelay, stats.alternateShootDelay);
 		centralCannon.input = this;
-		bombCannon = this.GetComponentInChildren<Bomb_Controller> ();
+		bombCannon = this.GetComponentInChildren<BombController> ();
 		bombCannon.input = this;
-		//bombCannon.Bomb = this.Bomb;
-		this.bombCannon.bombComponent.owner = this.transform;
+		bombCannon.bombComponent.parent = bombCannon;
 		//centralCannon.cannonForce = this.cannonForce;
 	}
 
@@ -560,7 +556,7 @@ public class PlayerInput : MonoBehaviour,StatsInterface {
 
 
 	public void setupRespawn() {
-		bombs = 3;
+		bombCannon.bombCount = 3;
         velocity = 0f;
         isPushed = false;
         boosted = false;
