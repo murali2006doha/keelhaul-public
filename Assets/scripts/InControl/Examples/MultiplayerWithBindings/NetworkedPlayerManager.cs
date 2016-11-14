@@ -100,8 +100,8 @@ using InControl;
 			{
 				var player = players[i];
 
-			if (player.GetComponent<playerInput> () != null) {
-				playerInput temp = player.GetComponent<playerInput> ();
+			if (player.GetComponent<PlayerInput> () != null) {
+				PlayerInput temp = player.GetComponent<PlayerInput> ();
 				if (temp.Actions != null && temp.Actions.Device == inputDevice)
 				{
 					return player;
@@ -131,8 +131,8 @@ using InControl;
 			for (int i = 0; i < playerCount; i++)
 			{
 				var player = players[i];
-			if (player.GetComponent<playerInput> () != null) {
-				playerInput temp = player.GetComponent<playerInput> ();
+			if (player.GetComponent<PlayerInput> () != null) {
+				PlayerInput temp = player.GetComponent<PlayerInput> ();
 				if (temp.Actions == null && inputDevice != null) {
 					var actions = PlayerActions.CreateWithJoystickBindings ();
 					actions.Device = inputDevice;
@@ -179,8 +179,8 @@ using InControl;
 			for (int i = 0; i < playerCount; i++)
 			{
 				var player = players[i];
-			if (player.GetComponent<playerInput> () != null) {
-				PlayerActions temp = player.GetComponent<playerInput> ().Actions;
+			if (player.GetComponent<PlayerInput> () != null) {
+				PlayerActions temp = player.GetComponent<PlayerInput> ().Actions;
 				if (temp == keyboardListener_1) {
 					return player;
 				}
@@ -203,8 +203,8 @@ using InControl;
 			for (int i = 0; i < playerCount; i++)
 			{
 				var player = players[i];
-				if (player.GetComponent<playerInput> () != null) {
-					PlayerActions temp = player.GetComponent<playerInput> ().Actions;
+				if (player.GetComponent<PlayerInput> () != null) {
+					PlayerActions temp = player.GetComponent<PlayerInput> ().Actions;
 					if (temp == keyboardListener_1) {
 					return player;
 					}
@@ -254,8 +254,8 @@ using InControl;
 		{
 			playerPositions.Insert( 0, player.transform.position );
 			players.Remove( player );
-		if (player.GetComponent<playerInput> () != null)
-			player.GetComponent<playerInput> ().Actions = null;
+		if (player.GetComponent<PlayerInput> () != null)
+			player.GetComponent<PlayerInput> ().Actions = null;
 		else {
 			player.GetComponent<KrakenInput> ().Actions = null;
 		}

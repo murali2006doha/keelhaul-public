@@ -4,6 +4,7 @@ using System.Collections;
 public class CharacterSelection {
 
     public ShipEnum selectedCharacter;
+    public int team;
 
     public CharacterSelection(string selectedCharacter, PlayerActions actions)
     {

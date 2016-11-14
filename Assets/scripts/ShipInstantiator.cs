@@ -22,7 +22,7 @@ public class ShipInstantiator : MonoBehaviour {
 	public GameObject splashParticle;
 
 
-	public void setupShipNames(playerInput ship, ShipEnum type, int num){
+	public void setupShipNames(PlayerInput ship, ShipEnum type, int num, int numOfBases){
 		MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects> ();
 		num++;
 		ShipInformation info = getShip (type);
@@ -44,12 +44,21 @@ public class ShipInstantiator : MonoBehaviour {
 				child.layer = newLayer;
 			}
 		}
-		
-		ship.scoreDestination = mapObjects.scoringZones[((num % 2) + 1) - 1];
-		mapObjects.islands [(num%2)+1 - 1].enemyShip = ship;
-	
-		ship.startingPoint = mapObjects.shipStartingLocations[((num % 2) + 1) - 1].transform.position;
-		ship.transform.position =  mapObjects.shipStartingLocations[((num % 2) + 1) - 1].transform.position;
+        //TODO: Ship instantiator is too tied to sabotage game mode. Refactor out.
+        ship.scoreDestination = mapObjects.scoringZones[(ship.teamGame?(ship.teamNo+1):num) % numOfBases];
+		mapObjects.islands [(ship.teamGame ? (ship.teamNo+1) : num) % numOfBases].enemyShips.Add(ship);
+
+        if (ship.teamGame)
+        {
+            //Refactor later
+		    ship.startingPoint = mapObjects.shipStartingLocations[(ship.teamNo % numOfBases)].transform.GetChild(ship.placeInTeam).position;
+		    ship.transform.position = ship.startingPoint;
+        }
+        else
+        {
+            ship.startingPoint = mapObjects.shipStartingLocations[num-1].transform.position;
+            ship.transform.position = ship.startingPoint;
+        }
 			
 
 		GameObject[] uis = GameObject.FindGameObjectsWithTag ("UIManagers");
@@ -84,7 +93,7 @@ public class ShipInstantiator : MonoBehaviour {
 		return null;
 	}
 
-	public void InstantiateShipMesh(ShipInformation info,playerInput ship){
+	public void InstantiateShipMesh(ShipInformation info,PlayerInput ship){
 		GameObject obj = (GameObject)Instantiate (info.ship, Vector3.zero, Quaternion.identity);
 		obj.transform.parent = ship.transform;
 		obj.transform.localPosition = info.ship.transform.position;

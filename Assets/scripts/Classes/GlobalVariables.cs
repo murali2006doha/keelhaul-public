@@ -17,6 +17,12 @@ public static class GlobalVariables {
         Tropical, Chinese
     };
 
+    public static Dictionary<ShipEnum, string> ShipToColor = new Dictionary<ShipEnum, string>(){
+        { ShipEnum.AtlanteanShip, "blue"},
+        { ShipEnum.BlackbeardShip, "black"},
+        { ShipEnum.ChineseJunkShip, "yellow"}
+    };
+
     public static Dictionary<string, string> mapToScene = new Dictionary<string, string>() {
         {MapEnum.Tropical.ToString(),"free for all_vig"},
         {MapEnum.Chinese.ToString(),"free for all_marketplace"}
@@ -37,3 +43,4 @@ public static class GlobalVariables {
     public static float minCcVelocity = 0.2f;
 
 }
+

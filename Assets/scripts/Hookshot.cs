@@ -70,7 +70,7 @@ public class Hookshot : MonoBehaviour {
             uiManager.changeCompassColor(Color.green);
 			aim.GetComponent<Renderer> ().material.color = Color.white;
 		}
-		if (Actions != null && !ship.GetComponent<playerInput>().dying) {
+		if (Actions != null && !ship.GetComponent<PlayerInput>().dying) {
 			if (Actions.R_Rotate.IsPressed == true) { //when aim is moving, make it visible
 				aim_reticule ();
 			}
@@ -192,7 +192,7 @@ public class Hookshot : MonoBehaviour {
 			stats.hookshotNum++;
             SoundManager.playSound(SoundClipEnum.Hookshot, SoundCategoryEnum.Generic, transform.position);
             if (hittingBarrel) {
-				ship.GetComponent<playerInput> ().vibrate (.15f, .2f);
+				ship.GetComponent<PlayerInput> ().vibrate (.15f, .2f);
 				hookshotActive = true;
 			} else {
 				stats.hookshotMisses ++;
@@ -272,7 +272,7 @@ public class Hookshot : MonoBehaviour {
                 SoundManager.playSound(SoundClipEnum.Hookshothit, SoundCategoryEnum.Generic, transform.position);
                 if (barrel.GetComponent<barrel> ().owner) {
 					stats.numOfBarrelSteals += 1;
-					barrel.GetComponent<barrel> ().owner.GetComponent<playerInput> ().gameStats.numOfBarrelsLost += 1;
+					barrel.GetComponent<barrel> ().owner.GetComponent<PlayerInput> ().gameStats.numOfBarrelsLost += 1;
 					//If another player is already tethered to the barrel, unhook that player
 					barrel.GetComponent<barrel> ().owner.transform.GetComponent<Hookshot> ().UnHook ();
 				} /*else if (otherPlayer.isHooked () && otherPlayer.barrel==this.barrel) {

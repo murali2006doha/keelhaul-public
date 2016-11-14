@@ -5,12 +5,12 @@ public class barrel : MonoBehaviour {
 	public GameObject owner;
 	public LightPillar pillar;
 	public GameObject explosion; 
-	playerInput currentPlayer;
+	PlayerInput currentPlayer;
 
 	// Use this for initialization
 	void Start () {
 		pillar = GetComponentInChildren<LightPillar>();
-		currentPlayer = FindObjectOfType<playerInput> ();
+		currentPlayer = FindObjectOfType<PlayerInput> ();
 	}
 
 	public void activatePillar()

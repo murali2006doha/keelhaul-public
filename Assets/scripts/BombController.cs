@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BombController : MonoBehaviour {
-
-
-	public playerInput input;
+	public PlayerInput input;
 	public Bomb bombComponent;
 	public bool canDropBomb = true;
 	public int bombCount = 3;

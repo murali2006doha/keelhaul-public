@@ -101,7 +101,6 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     public void incrementPoint()
     {
-        manager.incrementPoint(this);
         currentStage = Mathf.Min(currentStage, currentStage + 1);
     }
 
@@ -399,7 +398,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
         if (previousShip != null)
         {
-            previousShip.GetComponent<playerInput>().locked = false;
+            previousShip.GetComponent<PlayerInput>().locked = false;
         }
         followCamera.zoomIn = true;
         animator.triggerDeathAnimation();
@@ -449,8 +448,9 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (attacker != null)
             {
-                ((playerInput)attacker).gameStats.addGivenDamage("kraken", dmg);
-                gameStats.addTakenDamage(((playerInput)attacker).type.ToString(), dmg);
+                ((PlayerInput)attacker).gameStats.addGivenDamage("kraken", dmg);
+                gameStats.addTakenDamage(((PlayerInput)attacker).type.ToString(), dmg);
+               
             }
 
             health -= dmg;
@@ -458,6 +458,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (health <= 0)
             {
+                manager.acknowledgeKill(attacker, this);
                 vibrate(1f, 1f);
                 die();
             }
@@ -508,7 +509,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         bubbles.SetActive(false);
         hasHitShip = false;
 
-        if (hittingShip && !hittingShip.GetComponent<playerInput>().invincible)
+        if (hittingShip && !hittingShip.GetComponent<PlayerInput>().invincible)
         {
             hasHitShip = true;
         }
@@ -517,7 +518,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         {
 
             transform.position = new Vector3(transform.position.x, startingPoint.y, transform.position.z);
-            Vector3 shipPos = hittingShip.GetComponent<playerInput>().transform.position;
+            Vector3 shipPos = hittingShip.GetComponent<PlayerInput>().transform.position;
             float distance = Vector3.Distance(krakenArmPosition.position, shipPos);
 
             Vector3 direction = shipPos - krakenArmPosition.position;
@@ -525,9 +526,9 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
             transform.position = transform.position + (direction * Mathf.Abs(distance));
             transform.position = new Vector3(transform.position.x, startingPoint.y, transform.position.z);
 
-            if (!hittingShip.GetComponent<playerInput>().invincible)
+            if (!hittingShip.GetComponent<PlayerInput>().invincible)
             {
-                hittingShip.GetComponent<playerInput>().locked = true;
+                hittingShip.GetComponent<PlayerInput>().locked = true;
             }
 
 

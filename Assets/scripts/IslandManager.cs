@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class IslandManager : MonoBehaviour {
 
 	public GameObject[] smokeSetOne;
 	public GameObject[] smokeSetTwo;
 	public GameObject[] smokeSetThree;
-	public playerInput enemyShip;
+	public List<PlayerInput> enemyShips = new List<PlayerInput>();
 
 
 	// Use this for initialization
@@ -21,21 +21,34 @@ public class IslandManager : MonoBehaviour {
 	}
 
 	void manageDamageSmoke() {
-		if (enemyShip.uiManager.enemyIslandHealthBar.value == 2f) {
-			foreach (GameObject smoke in smokeSetOne) {
-				smoke.SetActive (true);
-			}
+        foreach(PlayerInput enemyShip in enemyShips)
+        {
+            if (enemyShip.uiManager.enemyIslandHealthBar.value == 2f)
+            {
+                foreach (GameObject smoke in smokeSetOne)
+                {
+                    smoke.SetActive(true);
+                }
 
-		} else if (enemyShip.uiManager.enemyIslandHealthBar.value < 1.5f && enemyShip.uiManager.enemyIslandHealthBar.value > 0.5f) {
-			foreach (GameObject smoke in smokeSetTwo) {
-				smoke.SetActive (true);
-			}
+            }
+            else if (enemyShip.uiManager.enemyIslandHealthBar.value < 1.5f && enemyShip.uiManager.enemyIslandHealthBar.value > 0.5f)
+            {
+                foreach (GameObject smoke in smokeSetTwo)
+                {
+                    smoke.SetActive(true);
+                }
 
-		} else if (enemyShip.uiManager.enemyIslandHealthBar.value == 0f) {
-			
-			foreach (GameObject smoke in smokeSetThree) {
-				smoke.SetActive (true);
-			}
-		}
+            }
+            else if (enemyShip.uiManager.enemyIslandHealthBar.value == 0f)
+            {
+
+                foreach (GameObject smoke in smokeSetThree)
+                {
+                    smoke.SetActive(true);
+                }
+            }
+
+        }
+		
 	}
 }

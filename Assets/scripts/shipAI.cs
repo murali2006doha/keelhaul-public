@@ -3,7 +3,7 @@ using System.Collections;
 
 public class shipAI : MonoBehaviour {
 
-	public playerInput input;
+	public PlayerInput input;
 	public UnityEngine.AI.NavMeshAgent agent;
 	public barrel barrel;
 	Camera cam;
@@ -19,11 +19,11 @@ public class shipAI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		barrel = GameObject.FindObjectOfType<barrel> ();
-		input = this.GetComponent<playerInput> ();
+		input = this.GetComponent<PlayerInput> ();
 		hook_component = input.getHook ();
 		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		cam = input.followCamera.camera;
-		foreach (playerInput player in GameObject.FindObjectsOfType<playerInput> ()) {
+		foreach (PlayerInput player in GameObject.FindObjectsOfType<PlayerInput> ()) {
 			if (player.gameObject != this.gameObject) {
 				otherShip = player.gameObject;
 				print("otherShip:" + player.shipName + "  ." + this.input.shipName + "");

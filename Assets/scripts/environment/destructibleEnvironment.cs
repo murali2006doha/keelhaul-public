@@ -15,7 +15,7 @@ public class destructibleEnvironment : MonoBehaviour
         GameObject collidingObject = collider.gameObject;
 
         if (collidingObject.name == "nose") {
-            playerInput player = collidingObject.transform.root.GetComponent<playerInput>();
+            PlayerInput player = collidingObject.transform.root.GetComponent<PlayerInput>();
             if (player.cc.velocity.magnitude > GlobalVariables.minCcVelocity && player.boosted) {
                 Destroy(this.gameObject);
             }

@@ -3,7 +3,9 @@ using System.Collections;
 
 public enum GameTypeEnum
 {
-    Sabotage
+    Sabotage,
+    KrakenHunt,
+    DeathMatch
 }
 
 
