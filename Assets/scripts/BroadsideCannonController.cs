@@ -58,7 +58,7 @@ public class BroadsideCannonController : MonoBehaviour {
 		for (int x = 0; x < count; x++) {
 			float random_delay = Random.Range (minDelay, maxDelay);
 			Transform cannonShot = cannonList [0];			
-			RightFire (cannonShot);
+			fireShot (cannonShot);
 			cannonList.RemoveAt (0);
 
 			yield return new WaitForSeconds (random_delay);
@@ -79,18 +79,7 @@ public class BroadsideCannonController : MonoBehaviour {
 	}
 
 
-	void LeftFire (Transform cannonPos) {
-		GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonPos.position + (velocity * dampening), this.transform.rotation);
-		cannonBall.transform.rotation = cannonPos.rotation;
-
-		cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
-		cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.forward * cannonForce);
-		cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.up * arcCannonForce);
-
-	}
-
-
-	void RightFire (Transform cannonPos) {
+	void fireShot (Transform cannonPos) {
 		GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonPos.position + (velocity * dampening), this.transform.rotation);
 		cannonBall.transform.rotation = cannonPos.rotation;
 
