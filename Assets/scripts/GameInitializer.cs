@@ -33,8 +33,9 @@ public class GameInitializer : MonoBehaviour {
 
     void Start()
     {
-        
-       
+        ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
+        setGameTypeAndSettings();
+
         if (shipSelections.Count == 0)
         {
             shipSelections.Add(new CharacterSelection(ShipEnum.AtlanteanShip.ToString(), null));
@@ -54,7 +55,7 @@ public class GameInitializer : MonoBehaviour {
             removeTeams(numOfTeams - mapObjects.shipStartingLocations.Length);
             numOfShips = Math.Min(4 - numOfKrakens, shipSelections.Count);
         }
-        ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
+       
 
         initializeGlobalCanvas();
 
@@ -75,6 +76,13 @@ public class GameInitializer : MonoBehaviour {
 
     }
 
+    private void setGameTypeAndSettings() {
+        if (ps) {
+            gameType = ps.gameType;
+            isTeam = ps.isTeam;
+            includeKraken = ps.includeKraken;
+        }
+    }
     private void removeTeams(int v)
     {
         if (v == 0)
