@@ -99,12 +99,11 @@ public class CannonController : MonoBehaviour {
 				if (input.shipName.Equals ("Blackbeard Ship")) {
 					BroadsideCannonController broadSideCannons = input.GetComponentInChildren<BroadsideCannonController> ();
 					broadSideCannons.fireBroadside ();
-					Invoke ("ResetShotAlt", alternateShootDelay);
 				} else {
 					this.alternateFire ();
-					Invoke ("ResetShotAlt", alternateShootDelay);
 				}
 				canShootAlt = false;
+				Invoke ("ResetShotAlt", alternateShootDelay);
 				input.vibrate (.15f, .25f);
 				input.uiManager.resetAltFireMeter ();
 			}

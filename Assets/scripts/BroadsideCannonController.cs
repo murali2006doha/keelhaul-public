@@ -43,8 +43,8 @@ public class BroadsideCannonController : MonoBehaviour {
 		shuffle (rightCannons);
 		shuffle (leftCannons);
 
-		StartCoroutine (fire(leftCannons));
-		StartCoroutine (fire(rightCannons));
+		StartCoroutine (fireAll(leftCannons));
+		StartCoroutine (fireAll(rightCannons));
 
 		input.gameStats.numOfAlternateShots++;
 
@@ -52,7 +52,7 @@ public class BroadsideCannonController : MonoBehaviour {
 	}
 
 
-	IEnumerator fire(List<Transform> cannonList) {
+	IEnumerator fireAll(List<Transform> cannonList) {
 
 		int count = cannonList.Count;
 		for (int x = 0; x < count; x++) {
