@@ -41,7 +41,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 	CannonController centralCannon;
 
 	//BOMB stuff
-	Bomb_Controller bombCannon;
+	BombController bombCannon;
 
 	//Current stats
 	float pushMagnitude;
@@ -97,7 +97,6 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		health = stats.max_health;
 		oldEulerAngles = transform.rotation.eulerAngles;
 		originalRotation = ship_model.transform.localRotation; // save the initial rotation
-
 	}
 
 	void initCannons(){
@@ -105,7 +104,7 @@ public class playerInput : MonoBehaviour,StatsInterface {
 		centralCannon.aim = hook_component.aim;
 		centralCannon.setDelays (stats.shootDelay, stats.alternateShootDelay);
 		centralCannon.input = this;
-		bombCannon = this.GetComponentInChildren<Bomb_Controller> ();
+		bombCannon = this.GetComponentInChildren<BombController> ();
 		bombCannon.input = this;
 		bombCannon.bombComponent.parent = bombCannon;
 		//centralCannon.cannonForce = this.cannonForce;
