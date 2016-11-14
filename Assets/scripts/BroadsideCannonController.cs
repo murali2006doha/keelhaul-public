@@ -9,13 +9,9 @@ using InControl;
 
 public class BroadsideCannonController : MonoBehaviour {
 
-	public Transform ParentLeftCannon;
-	public Transform ParentRightCannon;
 	public GameObject cannonBallPrefab;
-
-	public int cannonBallsNumber = 3;
-	List<GameObject> leftCannons = new List<GameObject>();
-	List<GameObject> rightCannons = new List<GameObject>();
+	public List<Transform> rightCannons = new List<Transform>();
+	public List<Transform> leftCannons = new List<Transform>();
 
 	public Transform cannonBallPosL;
 	public Transform cannonBallPosR;
@@ -27,30 +23,65 @@ public class BroadsideCannonController : MonoBehaviour {
 	public PlayerInput input;
 	float altTimer;
 	public float speed = 1;
-	public float minDelay = 0.2f;
-	public float maxDelay = 0.5f;
+	public float minDelay; 
+	public float maxDelay; //will find random time between the two
+
+	List<Transform> tempCannonListL;
+	List<Transform> tempCannonListR;
 
 
-	public IEnumerator fireBroadside() {
+	void Start() {
 
-		for (int x = 0; x < cannonBallsNumber; x++) {
-			float wait_time = Random.Range (minDelay, maxDelay);
-			//GameObject CannonBallL = leftCannons [0];
-			LeftFire ();
-			//leftCannons.RemoveAt (0);
+		tempCannonListL = new List<Transform>(leftCannons);
+		tempCannonListR = new List<Transform>(rightCannons);
 
-			//GameObject CannonBallR = rightCannons [0];
-			RightFire ();
-			//rightCannons.RemoveAt (0);
-			yield return new WaitForSeconds (wait_time);
-		}
+	}
+
+
+	public void fireBroadside() {
+
+		shuffle (rightCannons);
+		shuffle (leftCannons);
+
+		StartCoroutine (fire(leftCannons));
+		StartCoroutine (fire(rightCannons));
 
 		input.gameStats.numOfAlternateShots++;
+
+		resetAllCannons ();
 	}
 
-	void LeftFire () {
-		GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonBallPosL.position + (velocity * dampening), this.transform.rotation);
-		cannonBall.transform.rotation = ParentLeftCannon.rotation;
+
+	IEnumerator fire(List<Transform> cannonList) {
+
+		int count = cannonList.Count;
+		for (int x = 0; x < count; x++) {
+			float random_delay = Random.Range (minDelay, maxDelay);
+			Transform cannonShot = cannonList [0];			
+			RightFire (cannonShot);
+			cannonList.RemoveAt (0);
+
+			yield return new WaitForSeconds (random_delay);
+		}
+	}
+
+
+	void shuffle(List<Transform> cannonList) {
+
+		for (int i = 0; i < cannonList.Count; i++) {
+
+			Transform temp = cannonList [i];
+			int randomCannon = Random.Range (0, cannonList.Count);
+			cannonList [i] = cannonList [randomCannon];
+			cannonList [randomCannon] = temp;
+
+		}
+	}
+
+
+	void LeftFire (Transform cannonPos) {
+		GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonPos.position + (velocity * dampening), this.transform.rotation);
+		cannonBall.transform.rotation = cannonPos.rotation;
 
 		cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
 		cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.forward * cannonForce);
@@ -59,13 +90,21 @@ public class BroadsideCannonController : MonoBehaviour {
 	}
 
 
-	void RightFire () {
-		GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonBallPosR.position + (velocity * dampening), this.transform.rotation);
-		cannonBall.transform.rotation = ParentRightCannon.rotation;
+	void RightFire (Transform cannonPos) {
+		GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonPos.position + (velocity * dampening), this.transform.rotation);
+		cannonBall.transform.rotation = cannonPos.rotation;
 
 		cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
 		cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.forward * cannonForce);
 		cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.up * arcCannonForce);
+
+	}
+
+
+	void resetAllCannons() {
+
+		leftCannons = new List<Transform>(tempCannonListL);
+		rightCannons = new List<Transform>(tempCannonListR);
 
 	}
 }

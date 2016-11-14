@@ -6,7 +6,6 @@ public class CannonController : MonoBehaviour {
 	public GameObject cannonBallPrefab;
 	public GameObject alternateFirePrefab;
 	public Transform cannonBallPos;
-	public BroadsideCannonController broadSideCannons;
 
 	public int cannonForce = 1000; //Make this public so designers can easily manipulate it
 	public int altCannonForce = 400;
@@ -98,7 +97,8 @@ public class CannonController : MonoBehaviour {
 			if (shoot_direction.magnitude > 0) {
 				altTimer = Time.realtimeSinceStartup;
 				if (input.shipName.Equals ("Blackbeard Ship")) {
-					StartCoroutine (broadSideCannons.fireBroadside ());
+					BroadsideCannonController broadSideCannons = input.GetComponentInChildren<BroadsideCannonController> ();
+					broadSideCannons.fireBroadside ();
 					Invoke ("ResetShotAlt", alternateShootDelay);
 				} else {
 					this.alternateFire ();
