@@ -60,6 +60,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public bool boosted = false;
     bool ai = false;
     public GameObject wake;
+    public ShipInput shipInput;
     public ShipAnimator anim;
     Animator invinciblity;
     public GameObject invincibilyPrefab;
@@ -82,6 +83,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     void Start()
     {
         motor.Initialize(cc, stats, transform);
+        InitializeShipInput();
         gameStats = new FreeForAllStatistics();
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
         this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams());
@@ -108,6 +110,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
     }
 
+    void InitializeShipInput() {
+        shipInput.actions = Actions;
+        shipInput.onRotateChanged = motor.UpdateInput;
+    }
     void initCannons()
     {
         centralCannon = this.GetComponentInChildren<CannonController>();
@@ -443,7 +449,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     //This function takes care of moving the boat
     void MoveBoat()
     {
-        motor.UpdateInput(new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y));
+       // motor.UpdateInput(new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y));
         /*
         Vector3 directionVector;
         directionVector = new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y); //Get the direction the user is pushing the left analog stick in
