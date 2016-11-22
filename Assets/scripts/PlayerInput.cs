@@ -60,7 +60,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public bool boosted = false;
     bool ai = false;
     public GameObject wake;
-    public ShipInput shipInput;
+    public AbstractInputManager shipInput;
     public ShipAnimator anim;
     Animator invinciblity;
     public GameObject invincibilyPrefab;
@@ -112,7 +112,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void InitializeShipInput() {
         shipInput.actions = Actions;
-        shipInput.onRotateChanged = motor.UpdateInput;
+        shipInput.onRotateChanged += motor.UpdateInput;
     }
     void initCannons()
     {

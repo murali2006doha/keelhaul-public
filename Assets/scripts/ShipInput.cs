@@ -1,13 +1,9 @@
 ﻿using System;
 using UnityEngine;
-using InControl;
 
+public class ShipInput : AbstractInputManager
+{        
 
-public class ShipInput : MonoBehaviour {
-
-
-    public PlayerActions actions { get; set; }
-    public Action<Vector3> onRotateChanged;
     // Use this for initialization
     void Start () {
 	    	
