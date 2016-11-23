@@ -10,7 +10,7 @@ public class ShipInput : AbstractInputManager
         onRotateChanged(new Vector3(actions.Rotate.X, 0f, actions.Rotate.Y));
         if (actions.Boost.WasPressed)
         {
-            onBlueButtonPress();
+            onLeftBumperDown();
         }
     }
 }

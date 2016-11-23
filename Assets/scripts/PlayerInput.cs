@@ -111,7 +111,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     void InitializeShipInput() {
         shipInput.actions = Actions;
         shipInput.onRotateChanged += motor.UpdateInput;
-        shipInput.onBlueButtonPress += motor.Boost;
+        shipInput.onLeftBumperDown += motor.Boost;
     }
     void initCannons()
     {
