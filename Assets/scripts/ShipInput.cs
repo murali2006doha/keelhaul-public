@@ -1,19 +1,21 @@
 ﻿using System;
 using UnityEngine;
 
-public class ShipInput : AbstractInputManager
-{        
+public class ShipInput : AbstractInputManager {        
+	
 	void Update () {
         
-		if (actions == null) {
-            return;
-        }
-        onRotateChanged(new Vector3(actions.Rotate.X, 0f, actions.Rotate.Y));
-		onBombPress (actions.Red);
+		if (actions == null) 
+		{
+		    return;
+		}
 
-        if (actions.Boost.WasPressed)
-        {
-            onLeftBumperDown();
-        }
-    }
+		onRotateChanged(new Vector3(actions.Rotate.X, 0f, actions.Rotate.Y));
+		onRedButtonPress (actions.Red);
+
+		if (actions.Boost.WasPressed)
+		{
+		    onLeftBumperDown();
+		}
+    	}
 }
