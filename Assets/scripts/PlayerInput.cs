@@ -17,7 +17,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public PlayerActions Actions { get; set; }
     public ShipMotorComponent motor;
-	public BombControllerComponent bombController;
+    public BombControllerComponent bombController;
     public GameObject rammingSprite;
     public GameObject stunEffect;
     public UIManager uiManager;
