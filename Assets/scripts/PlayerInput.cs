@@ -78,7 +78,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void Start()
     {
-		motor.Initialize(cc, stats, transform);
+	motor.Initialize(cc, stats, transform);
 
 ///        InitializeShipInput();
         gameStats = new FreeForAllStatistics();
@@ -106,14 +106,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         oldEulerAngles = transform.rotation.eulerAngles;
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
 
-		bombController.Initialize(cc, stats, transform, uiManager, gameStats);
+	bombController.Initialize(cc, stats, transform, uiManager, gameStats);
 
     }
 
     void InitializeShipInput() {
         shipInput.actions = Actions;
         shipInput.onRotateChanged += motor.UpdateInput;
-		shipInput.onBombPress += bombController.UpdateInput;
+	shipInput.onBombPress += bombController.UpdateInput;
         shipInput.onLeftBumperDown += motor.Boost;
     }
     void initCannons()
@@ -147,7 +147,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void deactivateInvincibility()
     {
-        invincible = false;
+         invincible = false;
         if (invinciblity)
         {
             invinciblity.SetBool("invincibility", false);
@@ -157,7 +157,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void reset()
     {
-        anim.resetToIdle();
+         anim.resetToIdle();
         setupRespawn();
         CancelInvoke();
     }
@@ -165,7 +165,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     void updateHealth()
     {
         uiManager.setHealthBar(health / stats.max_health);
-
     }
 
     void Update()
@@ -190,7 +189,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                     toggleDamageStates();
                     centralCannon.handleShoot(transform.forward * velocity * GlobalVariables.gameSpeed, velocity * GlobalVariables.gameSpeed);
                     //tiltBoat ();
-					InitializeShipInput();
+		    InitializeShipInput();
 
                 }
             }
