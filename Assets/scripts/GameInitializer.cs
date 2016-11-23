@@ -78,9 +78,22 @@ public class GameInitializer : MonoBehaviour {
 
     private void setGameTypeAndSettings() {
         if (ps) {
+
             gameType = ps.gameType;
             isTeam = ps.isTeam;
             includeKraken = ps.includeKraken;
+            shipSelections.Clear();
+            foreach(CharacterSelection selection in ps.players)
+            {
+                if (!(selection.selectedCharacter == ShipEnum.Kraken))
+                {
+                    shipSelections.Add(selection);
+                }
+                else
+                {
+                    includeKraken = true; //Refactor
+                }
+            }
         }
     }
     private void removeTeams(int v)
@@ -194,6 +207,7 @@ public class GameInitializer : MonoBehaviour {
         int num = 0;
         if (ps == null || ps.players.Count == 0) //Default behaviour if didn't come from character select screen. 
         {
+            print("tes");
             num = createPlayersWithoutCharacterSelection(map, num);
 
         }
@@ -204,7 +218,7 @@ public class GameInitializer : MonoBehaviour {
 
                 if (player.selectedCharacter == ShipEnum.Kraken)
                 {
-                    createKraken(map, PlayerActions.CreateWithKeyboardBindings());
+                    createKraken(map, player.Actions);
                 }
                 else
                 {

@@ -54,7 +54,6 @@ public class cameraFollow : MonoBehaviour {
             if (target) {
                 targetSet = true;
                 transform.position = target.transform.position + offset;
-                Debug.Log("reaching");
             }
         }
 		if (ready) {
