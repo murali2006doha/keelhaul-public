@@ -15,17 +15,11 @@ public class BombControllerComponent : MonoBehaviour {
 	public bool canDropBomb = true;
 
 	int bombCount = 3;
-	int i = 0;
-	bool bombPressed = false;
-
 	List<GameObject> bombList = new List<GameObject>();
 
-	internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, 
-		UIManager uiManager, FreeForAllStatistics gameStats)
+	internal void Initialize(ShipStats stats, PlayerInput input, UIManager uiManager, FreeForAllStatistics gameStats)
 	{
-		this.cc = characterController;
-		this.shipTransform = shipTransform;
-		this.input = shipTransform.gameObject.GetComponent<PlayerInput> ();
+		this.input = input;
 		this.uiManager = uiManager;
 		this.gameStats = gameStats;
 		this.stats = stats;
@@ -33,17 +27,10 @@ public class BombControllerComponent : MonoBehaviour {
 	}
 
 
-	void Update() {
-
-		handleBomb ();
-
-	}
-
-
 	public void handleBomb() {
-		if (bombPressed && canDropBomb) {
+		if (canDropBomb) {
 			if (bombCount != 0) {
-				GameObject b = this.spawnBomb ();
+				spawnBomb ();
                 SoundManager.playSound(SoundClipEnum.BombDrop, SoundCategoryEnum.Generic, transform.position);
 				gameStats.numOfBombsPlanted++;
 				decrementBomb ();
@@ -57,19 +44,12 @@ public class BombControllerComponent : MonoBehaviour {
 	}
 
 
-	internal void UpdateInput(bool isPressed) {
-		bombPressed = isPressed; 
-	}
-
-
-	private GameObject spawnBomb() {
+	private void spawnBomb() {
 		//maybe do an arc to throw bomb?
 		GameObject bombObject = Instantiate (bomb.gameObject, transform.position, transform.rotation);
 		bombObject.GetComponent<Bomb>().Initialize (this, this.input);
 		bombObject.transform.rotation = Quaternion.Euler (-90, 0, 0);
 		bombList.Add (bombObject);
-
-		return bombObject; //does this make sense? need to return to collect in BombList in playerinput
 	}
 
 
