@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public PlayerActions Actions { get; set; }
     public ShipMotorComponent motor;
+    public BombControllerComponent bombController;
     public GameObject rammingSprite;
     public GameObject stunEffect;
     public UIManager uiManager;
@@ -46,9 +47,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     //AIM stuff
     Hookshot hook_component;
     CannonController centralCannon;
-
-    //BOMB stuff
-    BombController bombCannon;
 
     //Current stats
     float pushMagnitude;
@@ -80,8 +78,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void Start()
     {
-        motor.Initialize(cc, stats, transform);
-        InitializeShipInput();
+		motor.Initialize(cc, stats, transform);
+
         gameStats = new FreeForAllStatistics();
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
         this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams());
@@ -106,11 +104,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         health = stats.max_health;
         oldEulerAngles = transform.rotation.eulerAngles;
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
+
+		bombController.Initialize(stats, this, uiManager, gameStats);
+
     }
 
     void InitializeShipInput() {
         shipInput.actions = Actions;
         shipInput.onRotateChanged += motor.UpdateInput;
+		shipInput.onRedButtonPress += bombController.handleBomb;
         shipInput.onLeftBumperDown += motor.Boost;
     }
     void initCannons()
@@ -119,9 +121,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         centralCannon.aim = hook_component.aim;
         centralCannon.setDelays(stats.shootDelay, stats.alternateShootDelay);
         centralCannon.input = this;
-        bombCannon = this.GetComponentInChildren<BombController>();
-        bombCannon.input = this;
-        bombCannon.bombComponent.parent = bombCannon;
         //centralCannon.cannonForce = this.cannonForce;
     }
 
@@ -147,7 +146,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void deactivateInvincibility()
     {
-        invincible = false;
+         invincible = false;
         if (invinciblity)
         {
             invinciblity.SetBool("invincibility", false);
@@ -165,7 +164,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     void updateHealth()
     {
         uiManager.setHealthBar(health / stats.max_health);
-
     }
 
     void Update()
@@ -189,7 +187,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 {
                     toggleDamageStates();
                     centralCannon.handleShoot(transform.forward * velocity * GlobalVariables.gameSpeed, velocity * GlobalVariables.gameSpeed);
-                    bombCannon.handleBomb();
+                    //tiltBoat ();
+		   	 		InitializeShipInput();
 
                 }
             }
@@ -317,7 +316,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             }
             else
             {
-                bombCannon.handleTrigger(other); //collider is bomb
+                bombController.handleTrigger(other); //collider is bomb
             }
 
             if (other.name == "nose")
@@ -495,7 +494,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         dying = true;
         SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
         centralCannon.gameObject.SetActive(false);
-        bombCannon.activateAllBombs();
+        bombController.activateAllBombs();
         anim.triggerDeathAnimation();
         gameStats.numOfDeaths++;
         followCamera.zoomIn = true;
@@ -504,11 +503,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void setupRespawn()
     {
-        bombCannon.bombCount = 3;
         velocity = 0f;
         isPushed = false;
         followCamera.zoomIn = false;
-        bombCannon.resetBombs();
+        bombController.resetBombs();
         centralCannon.ResetShots();
         stopPushForce();
         //shipMesh.enabled = false;
