@@ -1,21 +1,24 @@
 ﻿using System;
 using UnityEngine;
 
-public class ShipInput : AbstractInputManager
-{        
-
-    // Use this for initialization
-    void Start () {
-	    	
-	}
+public class ShipInput : AbstractInputManager {        
 	
-	// Update is called once per frame
 	void Update () {
-        if (actions == null) {
-            return;
-        }
-        onRotateChanged(new Vector3(actions.Rotate.X, 0f, actions.Rotate.Y));
-       
+        
+		if (actions == null) 
+		{
+		    return;
+		}
 
+		onRotateChanged(new Vector3(actions.Rotate.X, 0f, actions.Rotate.Y));
+
+		if (actions.Red.WasPressed) {
+			onRedButtonPress ();
+		}
+
+		if (actions.Boost.WasPressed)
+		{
+		    onLeftBumperDown();
+		}
     }
 }

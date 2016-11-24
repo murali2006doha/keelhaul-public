@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public PlayerActions Actions { get; set; }
     public ShipMotorComponent motor;
+    public BombControllerComponent bombController;
     public GameObject rammingSprite;
     public GameObject stunEffect;
     public UIManager uiManager;
@@ -47,17 +48,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     Hookshot hook_component;
     CannonController centralCannon;
 
-    //BOMB stuff
-    BombController bombCannon;
-
     //Current stats
     float pushMagnitude;
     Vector3 pushDirection;
     float velocity;
     float damage = 1;
     float health = 3;
-    float boostTimer;
-    public bool boosted = false;
     bool ai = false;
     public GameObject wake;
     public AbstractInputManager shipInput;
@@ -82,8 +78,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void Start()
     {
-        motor.Initialize(cc, stats, transform);
-        InitializeShipInput();
+		motor.Initialize(cc, stats, transform);
+
         gameStats = new FreeForAllStatistics();
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
         this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams());
@@ -108,11 +104,16 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         health = stats.max_health;
         oldEulerAngles = transform.rotation.eulerAngles;
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
+
+		bombController.Initialize(stats, this, uiManager, gameStats);
+
     }
 
     void InitializeShipInput() {
         shipInput.actions = Actions;
         shipInput.onRotateChanged += motor.UpdateInput;
+		shipInput.onRedButtonPress += bombController.handleBomb;
+        shipInput.onLeftBumperDown += motor.Boost;
     }
     void initCannons()
     {
@@ -120,9 +121,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         centralCannon.aim = hook_component.aim;
         centralCannon.setDelays(stats.shootDelay, stats.alternateShootDelay);
         centralCannon.input = this;
-        bombCannon = this.GetComponentInChildren<BombController>();
-        bombCannon.input = this;
-        bombCannon.bombComponent.parent = bombCannon;
         //centralCannon.cannonForce = this.cannonForce;
     }
 
@@ -148,7 +146,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void deactivateInvincibility()
     {
-        invincible = false;
+         invincible = false;
         if (invinciblity)
         {
             invinciblity.SetBool("invincibility", false);
@@ -166,7 +164,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     void updateHealth()
     {
         uiManager.setHealthBar(health / stats.max_health);
-
     }
 
     void Update()
@@ -188,23 +185,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             {
                 if (gameStarted)
                 {
-                    MoveBoat();
                     toggleDamageStates();
                     centralCannon.handleShoot(transform.forward * velocity * GlobalVariables.gameSpeed, velocity * GlobalVariables.gameSpeed);
-                    bombCannon.handleBomb();
                     //tiltBoat ();
+		   	 		InitializeShipInput();
 
-
-                }
-                else
-                {
-                    rotateBoat();
-                    //tiltBoat ();
                 }
             }
             if (hasWon)
             {
-                rotateBoat();
                 if (Actions.Green)
                 {
                     manager.exitToCharacterSelect();
@@ -327,7 +316,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             }
             else
             {
-                bombCannon.handleTrigger(other); //collider is bomb
+                bombController.handleTrigger(other); //collider is bomb
             }
 
             if (other.name == "nose")
@@ -369,62 +358,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
 
-    void rotateBoat()
-    {
-        Vector3 directionVector;
-        directionVector = new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y); //Get the direction the user is pushing the left analog stick in
-        if (directionVector.magnitude > 0f)
-        {
-            Quaternion wanted_rotation = Quaternion.LookRotation(directionVector); // get the rotation
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, wanted_rotation, stats.turnSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));
-        }
-    }
-
-
-    //how to check clockwise or counter-clockwise rotation?
-    void tiltBoat()
-    {
-
-        Vector3 directionVector;
-        directionVector = new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y); //Get the direction the user is pushing the left analog stick in
-        Quaternion wanted_rotation = directionVector.Equals(Vector3.zero) ? Quaternion.identity : Quaternion.LookRotation(directionVector); // get the rotation
-
-        if (oldEulerAngles == transform.rotation.eulerAngles)
-        { //if not rotating, go back to original rotation
-
-            ship_model.transform.localRotation = Quaternion.Lerp(ship_model.transform.localRotation, originalRotation, stats.tiltSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
-
-        }
-        else
-        {
-
-            float angle_difference = (wanted_rotation.eulerAngles.y - transform.rotation.eulerAngles.y);
-
-            if (angle_difference < 0)
-            {
-                angle_difference = angle_difference + 360f;
-            }
-
-
-            if ((angle_difference < 180) && (angle_difference > 0))
-            { //when tilting right
-
-                Quaternion newRotation = Quaternion.Euler(stats.tiltAngle, 0f, 0f);
-                ship_model.transform.localRotation = Quaternion.Lerp(ship_model.transform.localRotation, newRotation, stats.tiltSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));
-
-            }
-            else if ((angle_difference > 180) && (angle_difference < 360))
-            {
-                Quaternion newRotation = Quaternion.Euler(-stats.tiltAngle, 0f, 0f);
-                ship_model.transform.localRotation = Quaternion.Lerp(ship_model.transform.localRotation, newRotation, stats.tiltSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));
-            }
-
-            oldEulerAngles = transform.rotation.eulerAngles; //set new oldEulerAngles
-
-        }
-    }
-
-
 
     void rotateSpray()
     {
@@ -444,87 +377,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             spray.transform.localRotation = Quaternion.RotateTowards(spray.transform.localRotation, wanted_rotation, (stats.turnSpeed * directionVector.magnitude) * (Time.deltaTime * GlobalVariables.gameSpeed));
         }
     }
-
-
-    //This function takes care of moving the boat
-    void MoveBoat()
-    {
-       // motor.UpdateInput(new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y));
-        /*
-        Vector3 directionVector;
-        directionVector = new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y); //Get the direction the user is pushing the left analog stick in
-        if ((directionVector.magnitude == 0 && velocity != 0f) || (velocity > stats.maxVelocity) || isPushed)
-        {
-            velocity = Mathf.Max(0f, (velocity - (stats.deAccelerationSpeed * (Time.deltaTime * GlobalVariables.gameSpeed)))); //deaccelerate
-        }
-        
-        transform.position = new Vector3(transform.position.x, 0f, transform.position.z); //clamp y
-
-
-        
-        if (isPushed) {
-           
-			directionVector = pushDirection;
-            transform.Rotate(Vector3.up, rotationSpeed * cc.velocity.magnitude, Space.World);
-            cc.Move(pushDirection * velocity * (Time.deltaTime * GlobalVariables.gameSpeed));
-            if (velocity <= 0 || cc.velocity.magnitude <=0.2f) {
-                stopPushForce();
-            }
-            return;
-		}
-
-		if (boosted) {
-
-			uiManager.setBoostBar ((Time.realtimeSinceStartup - boostTimer) / stats.boostResetTime);
-			if ((Time.realtimeSinceStartup - boostTimer) > stats.boostResetTime)
-			{
-				boosted = false;
-			}
-		}
-
-		if (Actions.Boost && !boosted){
-            SoundManager.playSound(SoundClipEnum.Boost, SoundCategoryEnum.Generic, this.transform.position);
-            velocity = stats.boostVelocity;
-			gameStats.numOfBoosts++;
-			vibrate (.5f, .5f);
-			boosted = true;
-			boostTimer = Time.realtimeSinceStartup;
-
-		} 
-
-
-		
-
-		else if (directionVector.magnitude > 0f && velocity <= stats.maxVelocity) {
-			velocity = Mathf.Min (stats.maxVelocity, velocity + (directionVector.magnitude * stats.moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))); 
-		}
-
-		if (directionVector.magnitude >0f) { 
-				Quaternion wanted_rotation = Quaternion.LookRotation (directionVector); // get the rotation
-				transform.rotation = Quaternion.RotateTowards (transform.rotation, wanted_rotation, stats.turnSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));		
-		}
-
-
-		if (hook_component.isHooked ()) {	
-		   cc.Move (transform.forward * velocity * stats.barrelSlowDownFactor * (Time.deltaTime * GlobalVariables.gameSpeed));
-		} 
-
-		else {
-			if (touchingWind) {
-				velocity = GlobalVariables.windFactor;
-			}
-		   cc.Move (transform.forward * velocity * (Time.deltaTime * GlobalVariables.gameSpeed));
-    
-		}
-
-        if (this.transform.position.y !=0 && !dying)
-        {
-            transform.position = MathHelper.setY(transform.position,Mathf.Lerp(transform.position.y, 0, 1));
-        }		       
-		updateWake();
-        */
-    }
-
 
 
     public void addPushForce(Vector3 direction, float magnitude)
@@ -642,7 +494,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         dying = true;
         SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
         centralCannon.gameObject.SetActive(false);
-        bombCannon.activateAllBombs();
+        bombController.activateAllBombs();
         anim.triggerDeathAnimation();
         gameStats.numOfDeaths++;
         followCamera.zoomIn = true;
@@ -651,12 +503,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void setupRespawn()
     {
-        bombCannon.bombCount = 3;
         velocity = 0f;
         isPushed = false;
-        boosted = false;
         followCamera.zoomIn = false;
-        bombCannon.resetBombs();
+        bombController.resetBombs();
         centralCannon.ResetShots();
         stopPushForce();
         //shipMesh.enabled = false;

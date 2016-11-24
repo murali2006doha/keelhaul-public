@@ -5,18 +5,36 @@ using System.Collections.Generic;
 
 public class Bomb : MonoBehaviour {
 
-	public BombController parent;
-	public int blinks = 5;
+	BombControllerComponent parentCannon;
+	PlayerInput player;
+
+	int blinks = 5;
+	float blinkTime;
+
 	public GameObject largeBombZone;
 	public GameObject smallBombZone;
 	public GameObject bombModel;
-	public float blinkTime = .5f;
+
 	//these are all the animations involved
 	public GameObject shipHit;
 	public GameObject krakenHit;
 	public GameObject explosion; 
 	public float explosion_duration = 1.5f;
 	public float damage;
+	public float waitTimeToExplode;
+
+
+	void Start() {
+
+		blinkTime = (waitTimeToExplode / (float) blinks);
+
+	}
+
+
+	internal void Initialize(BombControllerComponent parent, PlayerInput input) {
+		this.parentCannon = parent;
+		this.player = input;
+	}
 
 
 	public IEnumerator ActivateBomb() {
@@ -47,9 +65,9 @@ public class Bomb : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 
 		if ((other.gameObject.name).Equals ("playerMesh") && 
-			parent.input.gameObject != other.GetComponentInParent<PlayerInput>().gameObject) {//to activate a bomb
-			if (parent.bombList.Contains (other.gameObject) == false) {
-				parent.input.gameStats.numOfBombsDetonated+=0.5f;
+			player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject) {//to activate a bomb
+			if (parentCannon.getBombs().Contains (other.gameObject) == false) {
+				player.gameStats.numOfBombsDetonated+=0.5f;
 				StartCoroutine (ActivateBomb ());
 			}
 		}
@@ -69,7 +87,7 @@ public class Bomb : MonoBehaviour {
 	public void DestroyShip(GameObject exp, Collider col) {
 
 		PlayerInput controller = col.GetComponentInParent<PlayerInput> ();
-        PlayerInput ownerPlayer = parent.input.GetComponent<PlayerInput> ();
+		PlayerInput ownerPlayer = player;
 
 		Instantiate (shipHit, exp.transform.position, exp.transform.rotation);
 		if (controller != null) {

@@ -15,6 +15,10 @@ public class ShipMotorComponent : MonoBehaviour
 
     private float velocity = 0f;
     Vector3 directionVector = Vector3.zero;
+    Vector3 oldEulerAngles;
+    Quaternion originalRotation;
+    Quaternion originalRotationValue;
+
     bool boosted;
     private float speedModifier = 1;
 
@@ -77,7 +81,7 @@ public class ShipMotorComponent : MonoBehaviour
 
     }
 
-    void Boost(float[] values)
+    public void Boost()
     {
         if (!boosted)
         {
@@ -86,6 +90,46 @@ public class ShipMotorComponent : MonoBehaviour
             Invoke("ResetBoost", stats.boostResetTime);
         }
 
+    }
+
+    void tiltBoat()
+    {
+
+        Quaternion wanted_rotation = directionVector.Equals(Vector3.zero) ? Quaternion.identity : Quaternion.LookRotation(directionVector); // get the rotation
+
+        if (oldEulerAngles == transform.rotation.eulerAngles)
+        { //if not rotating, go back to original rotation
+
+            shipTransform.localRotation = Quaternion.Lerp(shipTransform.localRotation, originalRotation, stats.tiltSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
+
+        }
+        else
+        {
+
+            float angle_difference = (wanted_rotation.eulerAngles.y - transform.rotation.eulerAngles.y);
+
+            if (angle_difference < 0)
+            {
+                angle_difference = angle_difference + 360f;
+            }
+
+
+            if ((angle_difference < 180) && (angle_difference > 0))
+            { //when tilting right
+
+                Quaternion newRotation = Quaternion.Euler(stats.tiltAngle, 0f, 0f);
+                shipTransform.localRotation = Quaternion.Lerp(shipTransform.localRotation, newRotation, stats.tiltSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));
+
+            }
+            else if ((angle_difference > 180) && (angle_difference < 360))
+            {
+                Quaternion newRotation = Quaternion.Euler(-stats.tiltAngle, 0f, 0f);
+                shipTransform.localRotation = Quaternion.Lerp(shipTransform.localRotation, newRotation, stats.tiltSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));
+            }
+
+            oldEulerAngles = transform.rotation.eulerAngles; //set new oldEulerAngles
+
+        }
     }
 
     void ResetBoost()
