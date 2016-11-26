@@ -5,7 +5,7 @@ public class KrakenAi : MonoBehaviour {
 	public KrakenInput input;
 	public UnityEngine.AI.NavMeshAgent agent;
     public KrakenStats stats;
-	public barrel barrel;
+	public Barrel barrel;
 	Camera cam;
 
 	Vector3 enemyLastPos = Vector3.zero;
@@ -15,7 +15,7 @@ public class KrakenAi : MonoBehaviour {
 	State currentState;
 	// Use this for initialization
 	void Start () {
-		barrel = GameObject.FindObjectOfType<barrel> ();
+		barrel = GameObject.FindObjectOfType<Barrel> ();
 		input = this.GetComponent<KrakenInput> ();
 		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		cam = input.followCamera.camera;

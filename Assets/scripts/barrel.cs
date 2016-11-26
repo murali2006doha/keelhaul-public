@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class barrel : MonoBehaviour {
+public class Barrel : MonoBehaviour {
 	public GameObject owner;
 	public LightPillar pillar;
 	public GameObject explosion; 

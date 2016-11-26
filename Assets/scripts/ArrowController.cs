@@ -15,7 +15,7 @@ public class ArrowController : MonoBehaviour {
 
 	public void Start() {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
-		barrel = GameObject.FindObjectOfType<barrel> ().gameObject.transform;
+		barrel = GameObject.FindObjectOfType<Barrel> ().gameObject.transform;
 		TargetBarrel ();
 		UpdateArrow ();
 	}
