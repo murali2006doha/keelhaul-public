@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour {
 	int wobbleCount = 0;
 	public Slider boostBar;
 	public SpriteRenderer barrelTooltip;
-	barrel barrelObj;
+	Barrel barrelObj;
 	public Vector3 tooltipOffset;
 	public TutorialUIManager tutorialManager;
 	public bool enableTutorials = true;
@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour {
 	void Start()
 	{
 
-		barrelObj = GameObject.FindObjectOfType<barrel>();
+		barrelObj = GameObject.FindObjectOfType<Barrel>();
 		barrelPos = barrelObj.transform.position;
 		if (compassArrow != null)
 		{

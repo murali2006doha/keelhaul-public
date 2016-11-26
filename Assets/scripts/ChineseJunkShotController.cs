@@ -6,7 +6,7 @@ public class ChineseJunkShotController : MonoBehaviour {
   	public GameObject parent;
     public float lifeTime;
     GameObject aim;
-    Hookshot hook;
+    HookshotComponent hook;
     PlayerInput ship;
     public float damage = 0.1f;
     public Vector3 offset;

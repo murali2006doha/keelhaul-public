@@ -5,12 +5,12 @@ public class shipAI : MonoBehaviour {
 
 	public PlayerInput input;
 	public UnityEngine.AI.NavMeshAgent agent;
-	public barrel barrel;
+	public Barrel barrel;
 	Camera cam;
 	GameObject otherShip;
 	GameObject kraken;
 	bool dying = false;
-	Hookshot hook_component;
+	HookshotComponent hook_component;
 
 	enum State  {SEARCHING,ATTACHING,SCORING,ESCAPING,DYING};
 	bool isSubmerged = false;
@@ -18,7 +18,7 @@ public class shipAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		barrel = GameObject.FindObjectOfType<barrel> ();
+		barrel = GameObject.FindObjectOfType<Barrel> ();
 		input = this.GetComponent<PlayerInput> ();
 		hook_component = input.getHook ();
 		agent = this.GetComponent<UnityEngine.AI.NavMeshAgent> ();
@@ -70,7 +70,6 @@ public class shipAI : MonoBehaviour {
 				if (barrel.owner == null) {
 					agent.Stop ();
 				}
-				this.hook_component.aim_reticule (move);
 				if (this.hook_component.aim.GetComponent<Renderer> ().material.color == Color.yellow && !hook_component.hookshotActive) {
 					hook_component.aiHook = true;
 				} else {
@@ -102,7 +101,7 @@ public class shipAI : MonoBehaviour {
 		if (Vector3.Distance (otherShip.transform.position, this.transform.position) < 5f) { //SHOOT
 			Vector3 move = (this.transform.position - otherShip.transform.position).normalized;
 			if (currentState != State.ATTACHING) {
-				this.hook_component.aim_reticule (this.transform.position - move);
+
 				input.aiFire = true;
 			}
 		} else {

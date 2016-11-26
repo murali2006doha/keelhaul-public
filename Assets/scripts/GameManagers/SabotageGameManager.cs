@@ -190,7 +190,7 @@ public class SabotageGameManager : AbstractGameManager
             Destroy(barrel.GetComponent<CharacterJoint>());
         }
 
-        barrel b = barrel.GetComponent<barrel>();
+        Barrel b = barrel.GetComponent<Barrel>();
         b.explodeBarrel();
 
 
@@ -207,7 +207,7 @@ public class SabotageGameManager : AbstractGameManager
         }
         barrel.AddComponent<CharacterJoint>();
         barrel.GetComponent<CharacterJoint>().anchor = anchor;
-        barrel.GetComponent<barrel>().activatePillar();
+        barrel.GetComponent<Barrel>().activatePillar();
     }
 
     public override bool isGameOver()
@@ -258,10 +258,10 @@ public class SabotageGameManager : AbstractGameManager
     {
         if (!isTeam)
         {
-            player.GetComponent<Hookshot>().UnHook();
-            player.GetComponent<Hookshot>().enabled = false;
+            player.GetComponent<HookshotComponent>().UnHook();
+            player.GetComponent<HookshotComponent>().enabled = false;
             StartCoroutine(teleportBarrel(player, barrel));
-            player.GetComponent<Hookshot>().enabled = true;
+            player.GetComponent<HookshotComponent>().enabled = true;
             int index = players.IndexOf(player);
             int points = shipPoints[index];
             points++;
@@ -292,7 +292,7 @@ public class SabotageGameManager : AbstractGameManager
         else
         {
             
-            player.GetComponent<Hookshot>().UnHook();
+            player.GetComponent<HookshotComponent>().UnHook();
             StartCoroutine(teleportBarrel(player, barrel));
             shipPoints[player.teamNo] = shipPoints[player.teamNo] + 1;
             int points = shipPoints[player.teamNo];

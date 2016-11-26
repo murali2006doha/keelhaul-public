@@ -14,10 +14,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public int shipNum;
     public GameObject scoreDestination;
     public Vector3 startingPoint;
-
     public PlayerActions Actions { get; set; }
+
+    [Header("Component Variables")]
     public ShipMotorComponent motor;
     public BombControllerComponent bombController;
+    public AimComponent aimComponent;
+    public HookshotComponent hookshotComponent;
+
+    [Header("Other Scene Variables")]
     public GameObject rammingSprite;
     public GameObject stunEffect;
     public UIManager uiManager;
@@ -45,7 +50,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
     //AIM stuff
-    Hookshot hook_component;
+   
     CannonController centralCannon;
 
     //Current stats
@@ -75,26 +80,27 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
     public float rotationSpeed = 1f;
+    private bool notInitalized = true;
 
     void Start()
     {
-		motor.Initialize(cc, stats, transform);
-
-        gameStats = new FreeForAllStatistics();
+        //Have to refactor this later
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
         this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams());
-        hook_component = this.GetComponent<Hookshot>();
-        hook_component.scoreDestination = scoreDestination.transform;
-        hook_component.uiManager = uiManager;
+
+        motor.Initialize(cc, stats, transform);
+        aimComponent.Initialize(transform);
+        bombController.Initialize(stats, this, uiManager, gameStats);
+        InitializeHookshot();
+
+        gameStats = new FreeForAllStatistics();
         initCannons();
         kraken = GameObject.FindObjectOfType<KrakenInput>();
         startingPoint = this.transform.position;
         anim = GetComponentInChildren<ShipAnimator>();
         anim.category = CategoryHelper.convertType(type);
-        this.hook_component.playerCam = followCamera.camera;
-        this.hook_component.stats = gameStats;
         followCamera.cullingMask = cullingMask;
-        invincibilityParticle = (GameObject)Instantiate(invincibilyPrefab, this.transform.position, invincibilyPrefab.transform.rotation);
+        invincibilityParticle = Instantiate(invincibilyPrefab, this.transform.position, invincibilyPrefab.transform.rotation);
         invincibilityParticle.SetActive(false);
         invincibilityParticle.transform.parent = transform;
         invinciblity = anim.GetComponentInChildren<Animator>();
@@ -105,8 +111,21 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         oldEulerAngles = transform.rotation.eulerAngles;
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
 
-		bombController.Initialize(stats, this, uiManager, gameStats);
 
+
+    }
+
+    private void InitializeHookshot()
+    {
+        if (hookshotComponent)
+        {
+            var aimPhysics = aimComponent.GetComponent<AimPhysicsComponent>();
+            if (aimPhysics)
+            {
+                hookshotComponent.Initialize(uiManager, gameStats, aimPhysics.isAimTouchingBarrel);
+            }
+
+        }
     }
 
     void InitializeShipInput() {
@@ -114,24 +133,25 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRotateChanged += motor.UpdateInput;
 		shipInput.onRedButtonPress += bombController.handleBomb;
         shipInput.onLeftBumperDown += motor.Boost;
+        shipInput.onRightRotateChanged += aimComponent.AimAt;
+        if (hookshotComponent)
+        {
+            shipInput.onLeftTriggerDown += hookshotComponent.HookBarrel;
+        }
     }
     void initCannons()
     {
         centralCannon = this.GetComponentInChildren<CannonController>();
-        centralCannon.aim = hook_component.aim;
+        centralCannon.aim = this.aimComponent.aim;
         centralCannon.setDelays(stats.shootDelay, stats.alternateShootDelay);
         centralCannon.input = this;
         //centralCannon.cannonForce = this.cannonForce;
     }
 
-    void updateWake()
-    {
-        wake.transform.rotation = this.transform.rotation;
-    }
 
-    public Hookshot getHook()
+    public HookshotComponent getHook()
     {
-        return hook_component;
+        return hookshotComponent;
     }
 
     public void activateInvincibility()
@@ -171,11 +191,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
         if (Actions != null)
         {
-
+            
             updateHealth();
-
-            if (hook_component.Actions == null)
-                hook_component.Actions = Actions;
 
             if (locked && startSinking)
             {
@@ -185,10 +202,16 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             {
                 if (gameStarted)
                 {
-                    toggleDamageStates();
+                    
                     centralCannon.handleShoot(transform.forward * velocity * GlobalVariables.gameSpeed, velocity * GlobalVariables.gameSpeed);
                     //tiltBoat ();
-		   	 		InitializeShipInput();
+                    if (notInitalized)
+                    {
+                        notInitalized = false;
+
+                        InitializeShipInput();
+
+                    }
 
                 }
             }
@@ -200,7 +223,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 }
             }
 
-            uiManager.updateShipUI(this.transform.position, hook_component.shouldShowTooltip());
+            uiManager.updateShipUI(this.transform.position, hookshotComponent.shouldShowTooltip());
             if (gameStarted)
             {
                 uiManager.updateTutorialPrompts(followCamera.camera, Actions);
@@ -267,7 +290,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (!invincible)
         {
             gameStats.numOfTimesSubmergedByKraken += 1;
-            hook_component.UnHook();
+            hookshotComponent.UnHook();
             hit(20);
             startSinking = false;
             locked = false;
@@ -280,11 +303,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (gameStarted)
         {
 
-            if (other.transform == scoreDestination.transform && hook_component.isHooked() && other.gameObject.tag.Equals("ScoringZone"))
+            if (other.transform == scoreDestination.transform && hookshotComponent.isHooked() && other.gameObject.tag.Equals("ScoringZone"))
             {
 
-                hook_component.barrel.transform.position = Vector3.Lerp(hook_component.barrel.transform.position, scoreDestination.transform.position, Time.time);
-                manager.acknowledgeBarrelScore(this, hook_component.barrel);
+                hookshotComponent.barrel.transform.position = Vector3.Lerp(hookshotComponent.barrel.transform.position, scoreDestination.transform.position, Time.time);
+                manager.acknowledgeBarrelScore(this, hookshotComponent.barrel);
                 //manager.incrementPoint (this, hook_component.barrel);
                 uiManager.targetBarrel();
 
@@ -383,7 +406,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (magnitude > 0 && !isPushed)
         {
-            hook_component.UnHook();
+            hookshotComponent.UnHook();
             velocity = stats.maxVelocity * magnitude;
             followCamera.startShake();
             pushMagnitude = magnitude;
@@ -434,6 +457,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (!invincible && health > 0)
         {
+            toggleDamageStates();
             if (this.teamGame && attacker is PlayerInput)
             {
                 if (((PlayerInput)attacker).teamNo == this.teamNo)
@@ -459,7 +483,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             if (health <= 0)
             {
                 vibrate(1f, 1f);
-                hook_component.UnHook();
+                hookshotComponent.UnHook();
                 checkColliders(false);
                 manager.acknowledgeKill(attacker, this);
                 die();
@@ -490,7 +514,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void die()
     {
-        hook_component.UnHook();
+        hookshotComponent.UnHook();
         dying = true;
         SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
         centralCannon.gameObject.SetActive(false);

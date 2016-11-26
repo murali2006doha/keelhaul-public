@@ -78,7 +78,10 @@ public class ShipInstantiator : MonoBehaviour {
        
 				
 		GameObject splash = (GameObject) Instantiate (splashParticle, Vector3.zero, Quaternion.identity);
-		ship.GetComponent<Hookshot>().splashParticle = splash;
+        if (ship.hookshotComponent)
+        {
+		    ship.hookshotComponent.splashParticle = splash;
+        }
 				
 		ship.cullingMask = "p" + (num + numKraken) + "_ui";
 		Destroy (this.gameObject);
