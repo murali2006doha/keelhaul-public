@@ -5,7 +5,6 @@ public class ChineseJunkShotController : MonoBehaviour {
 
   	public GameObject parent;
     public float lifeTime;
-    GameObject aim;
     HookshotComponent hook;
     PlayerInput ship;
     public float damage = 0.1f;
@@ -18,7 +17,7 @@ public class ChineseJunkShotController : MonoBehaviour {
 	void Start () {
         parent = GetComponent<SecondaryFire>().parent;
         ship = parent.GetComponent<PlayerInput>();
-		transform.rotation = ship.getCannonRotation();
+		transform.rotation = ship.getAltCannonRotation();
         transform.position = parent.transform.position + offset;
         float force = GetComponent<SecondaryFire>().force;
         GetComponent<CannonBall>().setOwner(parent.transform);
@@ -31,12 +30,10 @@ public class ChineseJunkShotController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-       // firework.startSpeed = Mathf.Clamp(hook.moveVector.magnitude, .5f, 1f);
-    
-
-    //  firework.collision.collidesWith &= ~(1 << LayerMask.NameToLayer("SomeLayer"));
-
+       	// firework.startSpeed = Mathf.Clamp(hook.moveVector.magnitude, .5f, 1f);
+    	//  firework.collision.collidesWith &= ~(1 << LayerMask.NameToLayer("SomeLayer"));
     }
+
     void KillSelf() {
         Destroy(this.gameObject);
     }

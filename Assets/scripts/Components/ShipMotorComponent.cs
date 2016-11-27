@@ -137,4 +137,9 @@ public class ShipMotorComponent : MonoBehaviour
         boosted = false;
     }
 
+
+	public float getVelocity() {
+		return velocity;
+	}
+
 }

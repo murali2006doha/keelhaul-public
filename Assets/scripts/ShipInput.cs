@@ -26,6 +26,14 @@ public class ShipInput : AbstractInputManager {
         {
             onLeftTriggerDown();
         }
+		if (actions.Fire.RawValue > .5f)
+		{
+			onRightTriggerDown();
+		}
+		if (actions.Alt_Fire.RawValue > .5f)
+		{
+			onRightBumperDown();
+		}
 
         // with controller
     }

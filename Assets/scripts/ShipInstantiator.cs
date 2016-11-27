@@ -31,7 +31,6 @@ public class ShipInstantiator : MonoBehaviour {
 		if (ship.shipMesh == null) {
 			InstantiateShipMesh (info ,ship);
 		}
-		ship.gameObject.GetComponentInChildren<CannonController> ().alternateFirePrefab = info.altFirePrefab;
 
         //Refactor later
 

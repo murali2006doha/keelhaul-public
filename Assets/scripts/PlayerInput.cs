@@ -21,6 +21,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public BombControllerComponent bombController;
     public AimComponent aimComponent;
     public HookshotComponent hookshotComponent;
+	public CentralCannonComponent centralCannon;
+	public AbstractAltCannonComponent altCannonComponent;
 
     [Header("Other Scene Variables")]
     public GameObject rammingSprite;
@@ -48,11 +50,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public int teamNo = 0;
     public int placeInTeam = 1;
 
-
-    //AIM stuff
-   
-    CannonController centralCannon;
-
+	   
     //Current stats
     float pushMagnitude;
     Vector3 pushDirection;
@@ -92,9 +90,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         aimComponent.Initialize(transform);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
+		centralCannon.Initialize(this.aimComponent.aim, stats, this);
+		altCannonComponent.Initialize(this.aimComponent.aim, stats, this);
 
         gameStats = new FreeForAllStatistics();
-        initCannons();
         kraken = GameObject.FindObjectOfType<KrakenInput>();
         startingPoint = this.transform.position;
         anim = GetComponentInChildren<ShipAnimator>();
@@ -133,21 +132,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRotateChanged += motor.UpdateInput;
 		shipInput.onRedButtonPress += bombController.handleBomb;
         shipInput.onLeftBumperDown += motor.Boost;
-        shipInput.onRightRotateChanged += aimComponent.AimAt;
+		shipInput.onRightRotateChanged += aimComponent.AimAt;
+		shipInput.onRightTriggerDown += centralCannon.handleShoot;
+		shipInput.onRightBumperDown += altCannonComponent.handleShoot;
+
         if (hookshotComponent)
         {
             shipInput.onLeftTriggerDown += hookshotComponent.HookBarrel;
         }
     }
-    void initCannons()
-    {
-        centralCannon = this.GetComponentInChildren<CannonController>();
-        centralCannon.aim = this.aimComponent.aim;
-        centralCannon.setDelays(stats.shootDelay, stats.alternateShootDelay);
-        centralCannon.input = this;
-        //centralCannon.cannonForce = this.cannonForce;
-    }
-
 
     public HookshotComponent getHook()
     {
@@ -201,9 +194,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             if (health > 0 && !hasWon && !locked && !dying)
             {
                 if (gameStarted)
-                {
-                    
-                    centralCannon.handleShoot(transform.forward * velocity * GlobalVariables.gameSpeed, velocity * GlobalVariables.gameSpeed);
+                {                    
                     //tiltBoat ();
                     if (notInitalized)
                     {
@@ -531,7 +522,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         isPushed = false;
         followCamera.zoomIn = false;
         bombController.resetBombs();
-        centralCannon.ResetShots();
+		centralCannon.ResetShotRight();
+		altCannonComponent.ResetShotAlt ();
         stopPushForce();
         //shipMesh.enabled = false;
         manager.respawnPlayer(this, startingPoint);
@@ -552,14 +544,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         checkColliders(true);
     }
 
-    public Quaternion getCannonRotation()
+    public Quaternion getAltCannonRotation()
     {
-        return this.centralCannon.transform.rotation;
+		return this.altCannonComponent.transform.rotation;
     }
 
-    public Transform getCannonPosition()
+    public Transform getAltCannonPosition()
     {
-        return this.centralCannon.cannonBallPos;
+		return this.altCannonComponent.cannonBallPos;
     }
 
 
