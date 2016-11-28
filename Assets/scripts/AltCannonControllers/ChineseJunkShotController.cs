@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ChineseJunkShotController : MonoBehaviour {
 
-  	public GameObject parent;
+    public GameObject parent;
     public float lifeTime;
     HookshotComponent hook;
     PlayerInput ship;
@@ -14,17 +14,15 @@ public class ChineseJunkShotController : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+    void Start () {
         parent = GetComponent<SecondaryFire>().parent;
         ship = parent.GetComponent<PlayerInput>();
-		transform.rotation = ship.getAltCannonRotation();
+	transform.rotation = ship.getAltCannonRotation();
         transform.position = parent.transform.position + offset;
         float force = GetComponent<SecondaryFire>().force;
         GetComponent<CannonBall>().setOwner(parent.transform);
-		GetComponent<CannonBall> ().reflectForce = force;
-        GetComponent<Rigidbody>().AddForce(transform.forward * force);
-       
-       
+	GetComponent<CannonBall> ().reflectForce = force;
+        GetComponent<Rigidbody>().AddForce(transform.forward * force);       
     }
 
     // Update is called once per frame
