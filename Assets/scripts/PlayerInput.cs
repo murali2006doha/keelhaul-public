@@ -158,7 +158,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void deactivateInvincibility()
     {
-         invincible = false;
+        invincible = false;
         if (invinciblity)
         {
             invinciblity.SetBool("invincibility", false);
