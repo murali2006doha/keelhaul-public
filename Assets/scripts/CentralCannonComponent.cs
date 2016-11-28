@@ -9,9 +9,9 @@ public class CentralCannonComponent : MonoBehaviour {
 	public int cannonForce = 1000; //Make this public so designers can easily manipulate it
 	public int arcCannonForce = 10;
 	public float dampening = 1f;
-    public float numberOfCannons = 2;
-    public int numOfCannonBalls = 3;
-    public float angleOfCannonShots = 30;
+    	public float numberOfCannons = 2;
+    	public int numOfCannonBalls = 3;
+    	public float angleOfCannonShots = 30;
 
 	bool canShootRight = true;
 	float altTimer;
@@ -44,23 +44,23 @@ public class CentralCannonComponent : MonoBehaviour {
 		} else if(angle >45 && angle < 100) {
 			vect = this.transform.forward * GlobalVariables.gameSpeed * forceMultiplier/2f * speed;
 		}
-        Vector3 cal = (aim.transform.position - this.transform.position);
-        cal.y = 0;
-        Vector3 look = MathHelper.setY(this.transform.rotation.eulerAngles,Quaternion.LookRotation(cal).eulerAngles.y);
-        Vector3 rot = MathHelper.addY(look, (numOfCannonBalls/2)*-angleOfCannonShots);
-        
-        for (int x = 0; x < numOfCannonBalls; x++)
-        {
-            Vector3 newRot = MathHelper.addY(rot, x * angleOfCannonShots);
-            GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonBallPos.position + (velocity * dampening), Quaternion.Euler(newRot));
-            cannonBall.transform.rotation = Quaternion.Euler(newRot);
-            cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
-            cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.forward * cannonForce + vect);
-            cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.up * arcCannonForce);
-        }
-       
+		Vector3 cal = (aim.transform.position - this.transform.position);
+		cal.y = 0;
+		Vector3 look = MathHelper.setY(this.transform.rotation.eulerAngles,Quaternion.LookRotation(cal).eulerAngles.y);
+		Vector3 rot = MathHelper.addY(look, (numOfCannonBalls/2)*-angleOfCannonShots);
+
+		for (int x = 0; x < numOfCannonBalls; x++)
+		{
+		    Vector3 newRot = MathHelper.addY(rot, x * angleOfCannonShots);
+		    GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonBallPos.position + (velocity * dampening), Quaternion.Euler(newRot));
+		    cannonBall.transform.rotation = Quaternion.Euler(newRot);
+		    cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
+		    cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.forward * cannonForce + vect);
+		    cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.up * arcCannonForce);
+		}
+
 		input.gameStats.numOfShots += this.numOfCannonBalls;
-        
+
 	}
 
 
