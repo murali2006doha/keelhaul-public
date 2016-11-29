@@ -45,7 +45,7 @@ public class ShipCannonComponent : MonoBehaviour {
 		} else if(angle >45 && angle < 100) {
 			vect = this.transform.forward * GlobalVariables.gameSpeed * forceMultiplier/2f * speed;
 		}
-        Vector3 cal = (aim.transform.position - this.transform.position);
+		Vector3 cal = (aim.transform.position - this.transform.position);
         cal.y = 0;
         Vector3 look = MathHelper.setY(this.transform.rotation.eulerAngles,Quaternion.LookRotation(cal).eulerAngles.y);
         Vector3 rot = MathHelper.addY(look, (numOfCannonBalls/2)*-angleOfCannonShots);
@@ -62,8 +62,7 @@ public class ShipCannonComponent : MonoBehaviour {
         }
        
 		this.gameStats.numOfShots += this.numOfCannonBalls;
-        
-	}
+    }
 
 
 	public void handleShoot(){

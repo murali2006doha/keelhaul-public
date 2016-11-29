@@ -109,10 +109,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         health = stats.max_health;
         oldEulerAngles = transform.rotation.eulerAngles;
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
-
-
-
     }
+    
 
     private void InitializeHookshot()
     {
@@ -126,6 +124,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
         }
     }
+    
 
     void InitializeShipInput() {
         shipInput.actions = Actions;
@@ -159,7 +158,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void deactivateInvincibility()
     {
-         invincible = false;
+        invincible = false;
         if (invinciblity)
         {
             invinciblity.SetBool("invincibility", false);
@@ -546,12 +545,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public Quaternion getAltCannonRotation()
     {
-		return this.altCannonComponent.transform.rotation;
+	return this.altCannonComponent.transform.rotation;
     }
 
     public Transform getAltCannonPosition()
     {
-		return this.altCannonComponent.cannonBallPos;
+	return this.altCannonComponent.cannonBallPos;
     }
 
 
