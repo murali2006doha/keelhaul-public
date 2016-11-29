@@ -13,10 +13,10 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
 	protected bool canShootAlt = true;
 
 	protected Transform shipTransform;
-	protected ShipMotorComponent motor;
 	protected GameObject aim;
 	protected PlayerInput input;
 	protected Vector3 shoot_direction;
+	protected UIManager uiManager;
 
 	abstract public void alternateFire ();
 	abstract public void setupRotation ();
@@ -27,6 +27,7 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
 		this.alternateShootDelay = stats.alternateShootDelay;
 		this.aim = aim;
 		this.shipTransform = input.gameObject.transform;
+		this.uiManager = input.uiManager;
 	}
 		
 
@@ -42,10 +43,10 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
 				canShootAlt = false;
 				Invoke ("ResetShotAlt", alternateShootDelay);
 				input.vibrate (.15f, .25f);
-				input.uiManager.resetAltFireMeter ();
+				uiManager.resetAltFireMeter ();
 			}
 		} else if (!canShootAlt) {
-			input.uiManager.setAltFireMeter ((Time.realtimeSinceStartup - altTimer) / alternateShootDelay);
+			uiManager.setAltFireMeter ((Time.realtimeSinceStartup - altTimer) / alternateShootDelay);
 		}
 
 	}

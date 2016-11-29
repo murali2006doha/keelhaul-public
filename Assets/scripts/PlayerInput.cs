@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public BombControllerComponent bombController;
     public AimComponent aimComponent;
     public HookshotComponent hookshotComponent;
-	public CentralCannonComponent centralCannon;
+	public ShipCannonComponent centralCannon;
 	public AbstractAltCannonComponent altCannonComponent;
 
     [Header("Other Scene Variables")]

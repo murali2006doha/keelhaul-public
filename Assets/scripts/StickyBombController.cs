@@ -8,7 +8,7 @@ public class StickyBombController : MonoBehaviour {
 	public float timeToExplode = 5f;
 	public float damage;
 	PlayerInput ship;
-	CentralCannonComponent cannoncontroller;
+	ShipCannonComponent cannoncontroller;
 	Transform cannonballpos;
 
 	public int cannonForce = 50; 

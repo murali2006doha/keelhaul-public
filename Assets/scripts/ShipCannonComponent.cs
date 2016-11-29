@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CentralCannonComponent : MonoBehaviour {
+public class ShipCannonComponent : MonoBehaviour {
 
 	public GameObject cannonBallPrefab;
 	public Transform cannonBallPos;
@@ -24,19 +24,20 @@ public class CentralCannonComponent : MonoBehaviour {
 	ShipMotorComponent motor;
 	GameObject aim;
 	PlayerInput input;
+	FreeForAllStatistics gameStats;
 
-	internal void Initialize(GameObject aim, ShipStats stats, PlayerInput input)
-	{
+	internal void Initialize(GameObject aim, ShipStats stats, PlayerInput input) {
 		this.input = input;
 		this.shootDelay = stats.shootDelay;
 		this.aim = aim;
 		this.shipTransform = input.gameObject.transform;
 		this.motor = input.motor;
+		this.gameStats = input.gameStats;
 	}
 
 
 	private void Fire () {
-		//
+
 		var angle = Vector3.Angle (shipTransform.forward, this.transform.forward);
 		Vector3 vect = Vector3.zero;
 		if (angle > 0 && angle < 45) {
@@ -55,11 +56,12 @@ public class CentralCannonComponent : MonoBehaviour {
             GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonBallPos.position + (velocity * dampening), Quaternion.Euler(newRot));
             cannonBall.transform.rotation = Quaternion.Euler(newRot);
             cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
-            cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.forward * cannonForce + vect);
-            cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.up * arcCannonForce);
+			Vector3 forwardForce = cannonBall.transform.forward * cannonForce + vect;
+			Vector3 upForce = cannonBall.transform.up * arcCannonForce;
+			cannonBall.GetComponent<Rigidbody>().AddForce(upForce+forwardForce);
         }
        
-		input.gameStats.numOfShots += this.numOfCannonBalls;
+		this.gameStats.numOfShots += this.numOfCannonBalls;
         
 	}
 
