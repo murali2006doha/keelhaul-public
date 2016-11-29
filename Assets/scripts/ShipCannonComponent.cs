@@ -16,7 +16,7 @@ public class ShipCannonComponent : MonoBehaviour {
 	bool canShootRight = true;
 	float altTimer;
 	float speed = 1;
-	float shootDelay;
+	ShipStats stats;
 	float forceMultiplier = 20f; //Forward facing force multiplier
 
 	Vector3 velocity;
@@ -26,13 +26,15 @@ public class ShipCannonComponent : MonoBehaviour {
 	PlayerInput input;
 	FreeForAllStatistics gameStats;
 
-	internal void Initialize(GameObject aim, ShipStats stats, PlayerInput input) {
-		this.input = input;
-		this.shootDelay = stats.shootDelay;
+	internal void Initialize(PlayerInput input, Transform shipTransform, GameObject aim, ShipStats stats, 
+		FreeForAllStatistics gameStats, ShipMotorComponent motor) {
+		//this.input = input;
+		this.stats = stats;
 		this.aim = aim;
-		this.shipTransform = input.gameObject.transform;
-		this.motor = input.motor;
-		this.gameStats = input.gameStats;
+		this.shipTransform = shipTransform;
+		this.motor = motor;
+		this.gameStats = gameStats;
+		this.input = input;
 	}
 
 
@@ -70,11 +72,11 @@ public class ShipCannonComponent : MonoBehaviour {
 		this.speed = motor.getVelocity() * GlobalVariables.gameSpeed;
 		Vector3 shoot_direction = aim.transform.position - shipTransform.position;
 		this.transform.rotation = Quaternion.LookRotation(shoot_direction.normalized);
-		if (canShootRight && shoot_direction.magnitude > 0 && input.Actions.Fire.RawValue > .5f) {
+		if (canShootRight && shoot_direction.magnitude > 0) {
 			this.Fire ();
 			input.vibrate (.15f, .25f);
 			canShootRight = false;
-			Invoke ("ResetShotRight", shootDelay);
+			Invoke ("ResetShotRight", stats.shootDelay);
 		}
 	}
 

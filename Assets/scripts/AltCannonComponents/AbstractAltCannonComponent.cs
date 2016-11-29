@@ -7,46 +7,46 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
 	public GameObject alternateFirePrefab;
 	public Transform cannonBallPos;
 	public int altCannonForce = 400;
-	public float alternateShootDelay = 0.1f;
 
 	protected float altTimer;
 	protected bool canShootAlt = true;
-
+	protected float alternateShootDelay;
 	protected Transform shipTransform;
 	protected GameObject aim;
 	protected PlayerInput input;
 	protected Vector3 shoot_direction;
 	protected UIManager uiManager;
+	protected ShipStats stats;
 
 	abstract public void alternateFire ();
 	abstract public void setupRotation ();
 
-	internal void Initialize(GameObject aim, ShipStats stats, PlayerInput input)
+	internal void Initialize(PlayerInput input, Transform shipTransform, GameObject aim, ShipStats stats, UIManager uiManager)
 	{
 		this.input = input;
-		this.alternateShootDelay = stats.alternateShootDelay;
+		this.stats = stats;
 		this.aim = aim;
-		this.shipTransform = input.gameObject.transform;
-		this.uiManager = input.uiManager;
+		this.shipTransform = shipTransform;
+		this.uiManager = uiManager;
 	}
 		
 
 	public void handleShoot(){
 		this.setupRotation ();
 
-		if (canShootAlt && input.Actions.Alt_Fire.RawValue > .5f) {
-			if (shoot_direction.magnitude > 0) {
-				altTimer = Time.realtimeSinceStartup;
+		//if (canShootAlt && input.Actions.Alt_Fire.RawValue > .5f) {
+		if (canShootAlt && shoot_direction.magnitude > 0) {
+			altTimer = Time.realtimeSinceStartup;
 
-				this.alternateFire ();
+			this.alternateFire ();
 
-				canShootAlt = false;
-				Invoke ("ResetShotAlt", alternateShootDelay);
-				input.vibrate (.15f, .25f);
-				uiManager.resetAltFireMeter ();
-			}
+			canShootAlt = false;
+			Invoke ("ResetShotAlt", stats.alternateShootDelay);
+			input.vibrate (.15f, .25f);
+			uiManager.resetAltFireMeter ();
+
 		} else if (!canShootAlt) {
-			uiManager.setAltFireMeter ((Time.realtimeSinceStartup - altTimer) / alternateShootDelay);
+			uiManager.setAltFireMeter ((Time.realtimeSinceStartup - altTimer) / stats.alternateShootDelay);
 		}
 
 	}

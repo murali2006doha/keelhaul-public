@@ -90,8 +90,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         aimComponent.Initialize(transform);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
-	centralCannon.Initialize(this.aimComponent.aim, stats, this);
-	altCannonComponent.Initialize(this.aimComponent.aim, stats, this);
+		centralCannon.Initialize(this, this.transform, this.aimComponent.aim, stats, gameStats, motor);
+		altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
 
         gameStats = new FreeForAllStatistics();
         kraken = GameObject.FindObjectOfType<KrakenInput>();
