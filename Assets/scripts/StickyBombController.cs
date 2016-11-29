@@ -8,7 +8,7 @@ public class StickyBombController : MonoBehaviour {
 	public float timeToExplode = 5f;
 	public float damage;
 	PlayerInput ship;
-	CannonController cannoncontroller;
+	ShipCannonComponent cannoncontroller;
 	Transform cannonballpos;
 
 	public int cannonForce = 50; 
@@ -26,7 +26,7 @@ public class StickyBombController : MonoBehaviour {
 		parent = GetComponent<SecondaryFire>().parent;
 		ship = parent.GetComponent<PlayerInput>();
 
-		cannonballpos = ship.getCannonPosition();
+		cannonballpos = ship.getAltCannonPosition();
 
 		gameObject.transform.position = cannonballpos.position + (velocity * dampening);
 		gameObject.transform.rotation = cannonballpos.rotation;

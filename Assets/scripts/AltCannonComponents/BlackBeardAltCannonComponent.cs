@@ -1,50 +1,41 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using InControl;
+using UnityEngine;
 
+public class BlackBeardAltCannonComponent : AbstractAltCannonComponent {
 
-
-public class BroadsideCannonController : MonoBehaviour {
-
-	public GameObject cannonBallPrefab;
 	public List<Transform> rightCannons = new List<Transform>();
 	public List<Transform> leftCannons = new List<Transform>();
 
-	public Transform cannonBallPosL;
-	public Transform cannonBallPosR;
-	public int cannonForce = 400; //Make this public so designers can easily manipulate it
 	public int arcCannonForce = 10;
 	public Vector3 velocity;
 	public float dampening = 1f;
-	private float passedTime;
-	public PlayerInput input;
-	float altTimer;
 	public float speed = 1;
 	public float minDelay; 
 	public float maxDelay; //will find random time between the two
 
 	List<Transform> tempCannonListL;
 	List<Transform> tempCannonListR;
-
+	Quaternion originalRotation;
 
 	void Start() {
-
-		tempCannonListL = new List<Transform>(leftCannons);
-		tempCannonListR = new List<Transform>(rightCannons);
-
+		originalRotation = this.transform.rotation;
 	}
 
 
-	public void fireBroadside() {
+	public override void setupRotation() {
+		shoot_direction = aim.transform.position - shipTransform.position;
+	}
+
+
+	public override void alternateFire() {
+		initializeCannonBalls ();
 
 		shuffle (rightCannons);
 		shuffle (leftCannons);
 
-		StartCoroutine (fireAll(leftCannons));
 		StartCoroutine (fireAll(rightCannons));
+		StartCoroutine (fireAll(leftCannons));
 
 		input.gameStats.numOfAlternateShots++;
 
@@ -80,12 +71,20 @@ public class BroadsideCannonController : MonoBehaviour {
 
 
 	void fireShot (Transform cannonPos) {
-		GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonPos.position + (velocity * dampening), this.transform.rotation);
+		GameObject cannonBall = (GameObject)Instantiate(alternateFirePrefab, cannonPos.position + (velocity * dampening), originalRotation);
 		cannonBall.transform.rotation = cannonPos.rotation;
 
 		cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
-		cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.forward * cannonForce);
+		cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.forward * altCannonForce);
 		cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.up * arcCannonForce);
+
+	}
+
+
+	void initializeCannonBalls() {
+
+		tempCannonListL = new List<Transform>(leftCannons);
+		tempCannonListR = new List<Transform>(rightCannons);
 
 	}
 
@@ -96,4 +95,6 @@ public class BroadsideCannonController : MonoBehaviour {
 		rightCannons = new List<Transform>(tempCannonListR);
 
 	}
+		
 }
+
