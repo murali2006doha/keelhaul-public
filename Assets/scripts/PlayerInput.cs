@@ -21,8 +21,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public BombControllerComponent bombController;
     public AimComponent aimComponent;
     public HookshotComponent hookshotComponent;
-	public ShipCannonComponent centralCannon;
-	public AbstractAltCannonComponent altCannonComponent;
+    public ShipCannonComponent centralCannon;
+    public AbstractAltCannonComponent altCannonComponent;
 
     [Header("Other Scene Variables")]
     public GameObject rammingSprite;
@@ -90,8 +90,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         aimComponent.Initialize(transform);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
-		centralCannon.Initialize(this.aimComponent.aim, stats, this);
-		altCannonComponent.Initialize(this.aimComponent.aim, stats, this);
+	centralCannon.Initialize(this.aimComponent.aim, stats, this);
+	altCannonComponent.Initialize(this.aimComponent.aim, stats, this);
 
         gameStats = new FreeForAllStatistics();
         kraken = GameObject.FindObjectOfType<KrakenInput>();
@@ -129,11 +129,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     void InitializeShipInput() {
         shipInput.actions = Actions;
         shipInput.onRotateChanged += motor.UpdateInput;
-		shipInput.onRedButtonPress += bombController.handleBomb;
+	shipInput.onRedButtonPress += bombController.handleBomb;
         shipInput.onLeftBumperDown += motor.Boost;
-		shipInput.onRightRotateChanged += aimComponent.AimAt;
-		shipInput.onRightTriggerDown += centralCannon.handleShoot;
-		shipInput.onRightBumperDown += altCannonComponent.handleShoot;
+	shipInput.onRightRotateChanged += aimComponent.AimAt;
+	shipInput.onRightTriggerDown += centralCannon.handleShoot;
+	shipInput.onRightBumperDown += altCannonComponent.handleShoot;
 
         if (hookshotComponent)
         {
@@ -521,8 +521,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         isPushed = false;
         followCamera.zoomIn = false;
         bombController.resetBombs();
-		centralCannon.ResetShotRight();
-		altCannonComponent.ResetShotAlt ();
+	centralCannon.ResetShotRight();
+	altCannonComponent.ResetShotAlt ();
         stopPushForce();
         //shipMesh.enabled = false;
         manager.respawnPlayer(this, startingPoint);
