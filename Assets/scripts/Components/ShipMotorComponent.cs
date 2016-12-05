@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,13 +22,14 @@ public class ShipMotorComponent : MonoBehaviour
 
     bool boosted;
     private float speedModifier = 1;
+    private UIManager uiManager;
 
-
-    internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform)
+    internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, UIManager uiManager)
     {
         this.cc = characterController;
         this.stats = stats;
         this.shipTransform = shipTransform;
+        this.uiManager = uiManager;
     }
 
     void Update()
@@ -36,18 +38,20 @@ public class ShipMotorComponent : MonoBehaviour
         UpdateWake();
     }
 
-    void UpdateShipPosition() {
-        if ((directionVector.magnitude == 0 && velocity != 0f) || (velocity * speedModifier > stats.maxVelocity))
+    void UpdateShipPosition()
+    {
+        //Must be in Boost?
+        if ((directionVector.magnitude == 0 && velocity != 0f) || (velocity > stats.maxVelocity))
         {
-            velocity = Mathf.Max(0f, (velocity * speedModifier - (stats.deAccelerationSpeed * (Time.deltaTime * GlobalVariables.gameSpeed)))); 
+            velocity = Mathf.Max(0f, (velocity - (stats.deAccelerationSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))));
         }
 
         shipTransform.position = new Vector3(shipTransform.position.x, 0f, shipTransform.position.z); //Clamp Y
 
 
-        if (directionVector.magnitude > 0f && velocity * speedModifier <= stats.maxVelocity)
+        if (directionVector.magnitude > 0f && velocity <= stats.maxVelocity)
         {
-            velocity = Mathf.Min(stats.maxVelocity, velocity * speedModifier + (directionVector.magnitude * stats.moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed)));
+            velocity = Mathf.Min(stats.maxVelocity, velocity + (directionVector.magnitude * stats.moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed)));
         }
 
         RotateBoat();
@@ -77,7 +81,7 @@ public class ShipMotorComponent : MonoBehaviour
 
     internal void UpdateInput(Vector3 input)
     {
-        directionVector = input; 
+        directionVector = input;
 
     }
 
@@ -85,6 +89,7 @@ public class ShipMotorComponent : MonoBehaviour
     {
         if (!boosted)
         {
+            uiManager.setBoostBar(0);
             boosted = true;
             velocity = stats.boostVelocity;
             Invoke("ResetBoost", stats.boostResetTime);
@@ -138,8 +143,21 @@ public class ShipMotorComponent : MonoBehaviour
     }
 
 
-	public float getVelocity() {
-		return velocity;
-	}
+    public float getVelocity()
+    {
+        return velocity;
+    }
 
+    internal void reset()
+    {
+        ResetBoost();
+        velocity = 0;
+        speedModifier = 1;
+        directionVector = Vector3.zero;
+    }
+
+    public void setSpeedModifier(float val)
+    {
+        this.speedModifier = val;
+    }
 }

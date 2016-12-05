@@ -125,6 +125,12 @@ public class UIManager : MonoBehaviour {
 		{
 			barrelTooltip.enabled = false;
 		}
+        if(boostBar.value < 1f)
+        {
+            float step = Time.deltaTime/ 6f; //Todo: take from ship
+            boostBar.value = Mathf.MoveTowards(boostBar.value, 1f, step);
+
+        }
 
 	}
 
@@ -227,7 +233,8 @@ public class UIManager : MonoBehaviour {
 
 	public void setTarget(GameObject target)
 	{
-		this.arrowTarget = target;
+        changeCompassColor(Color.green);
+        this.arrowTarget = target;
 	}
 
 	void changeWobbleIntensity()

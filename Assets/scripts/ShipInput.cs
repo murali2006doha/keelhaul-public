@@ -9,28 +9,32 @@ public class ShipInput : AbstractInputManager {
 		{
 		    return;
 		}
+        if (onRotateChanged !=null)
+        {
+		    onRotateChanged(new Vector3(actions.Rotate.X, 0f, actions.Rotate.Y));
+        }
+        if (onRightRotateChanged != null)
+        {
+            onRightRotateChanged(new Vector3(actions.R_Rotate.X, 0f, actions.R_Rotate.Y));
+        }
 
-		onRotateChanged(new Vector3(actions.Rotate.X, 0f, actions.Rotate.Y));
-        onRightRotateChanged(new Vector3(actions.R_Rotate.X, 0f, actions.R_Rotate.Y));
-
-
-        if (actions.Red.WasPressed) {
+        if (actions.Red.WasPressed && onRedButtonPress != null) {
 			onRedButtonPress ();
 		}
 
-		if (actions.Boost.WasPressed)
+		if (actions.Boost.WasPressed &&  onLeftBumperDown != null)
 		{
 		    onLeftBumperDown();
 		}
-        if (actions.Fire_Hook.WasPressed)
+        if (actions.Fire_Hook.WasPressed && onLeftTriggerDown != null)
         {
             onLeftTriggerDown();
         }
-		if (actions.Fire.RawValue > .5f)
+		if (actions.Fire.RawValue > .5f && onRightTriggerDown != null)
 		{
 			onRightTriggerDown();
 		}
-		if (actions.Alt_Fire.RawValue > .5f)
+		if (actions.Alt_Fire.RawValue > .5f && onRightBumperDown != null)
 		{
 			onRightBumperDown();
 		}

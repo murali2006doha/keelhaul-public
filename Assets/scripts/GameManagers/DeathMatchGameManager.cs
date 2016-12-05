@@ -85,6 +85,7 @@ public class DeathMatchGameManager : AbstractGameManager
         foreach (PlayerInput player in players)
         {
             player.gameStarted = true;
+            player.setStatus(ShipStatus.Alive);
         }
         if (kraken)
         {
@@ -384,6 +385,7 @@ public class DeathMatchGameManager : AbstractGameManager
         foreach (PlayerInput z in players)
         {
             z.reset();
+            z.setStatus(ShipStatus.Waiting);
             z.followCamera.enabled = false;
             if (!teamToPlayers.ContainsKey(z.teamNo))
             {
@@ -444,6 +446,7 @@ public class DeathMatchGameManager : AbstractGameManager
         foreach (PlayerInput z in players)
         {
             z.reset();
+            z.setStatus(ShipStatus.Waiting);
             z.followCamera.enabled = false;
         }
 

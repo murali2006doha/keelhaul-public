@@ -3,12 +3,13 @@ using System.Collections;
 using InControl;
 using System;
 
-public class HookshotComponent : MonoBehaviour {
+public class HookshotComponent : MonoBehaviour
+{
 
-	//Ship instantiate
-	
+    //Ship instantiate
 
-	//Already Present in Prefab and variables to tweak
+
+    //Already Present in Prefab and variables to tweak
 
     [Header("Scene Variables")]
     public Transform hook;
@@ -24,35 +25,37 @@ public class HookshotComponent : MonoBehaviour {
 
     [Header("Other/AutoSet Variables")]
     public GameObject barrel = null;
-	public bool hookshotActive = false;
-	public bool aiHook = false;
-	public FreeForAllStatistics stats;
+    public GameObject baseObj = null;
+    public bool hookshotActive = false;
+    public bool aiHook = false;
+    public FreeForAllStatistics stats;
     public UIManager uiManager;
     public Func<bool> isAimOnBarrel;
     public Action<float> changeSpeed;
     public GameObject splashParticle;
 
     Transform ship;
-	Rigidbody rb;
-	LineRenderer tether;
+    Rigidbody rb;
+    LineRenderer tether;
 
     Vector3 missedLocation;
-	Vector3 barrel_anchor;
+    Vector3 barrel_anchor;
 
     float distanceCounter = 0;
     bool reverseTether = false;
     private bool hooking = false;
     private bool hooked = false;
     private bool stuck = false;
+    internal Action<bool> onHook;
 
+    void Start()
+    {
+        this.ship = this.gameObject.transform;
+        tether = GetComponent<LineRenderer>();
+        barrel = GameObject.FindObjectOfType<Barrel>().gameObject;
+        rb = barrel.GetComponent<Rigidbody>();
 
-    void Start () {
-		this.ship = this.gameObject.transform;
-		tether = GetComponent<LineRenderer> ();
-		barrel = GameObject.FindObjectOfType<Barrel> ().gameObject;
-		rb = barrel.GetComponent<Rigidbody> ();
-		
-	}
+    }
 
     void Update()
     {
@@ -90,6 +93,8 @@ public class HookshotComponent : MonoBehaviour {
                 }
                 hookshotActive = false;
                 hooking = true;
+                onHook(true);
+
 
             }
             else
@@ -100,7 +105,7 @@ public class HookshotComponent : MonoBehaviour {
             yield return null;
         }
         StartCoroutine("PullInBarrel");
-       
+
     }
 
     internal void Initialize(UIManager uiManager, FreeForAllStatistics gameStats, Func<bool> aimCheckFunction)
@@ -128,7 +133,7 @@ public class HookshotComponent : MonoBehaviour {
             //In Reverse Animation state
             if (reverseTether)
             {
-                distanceCounter -= distance * missedTetherRollbackSpeed * (Time.deltaTime * GlobalVariables.gameSpeed);
+                distanceCounter -= distance * missedTetherRollbackSpeed * 2 * (Time.deltaTime * GlobalVariables.gameSpeed);
                 if (distanceCounter <= 0f)
                 {
                     tether.enabled = false;
@@ -157,7 +162,7 @@ public class HookshotComponent : MonoBehaviour {
             yield return null;
         }
 
-       
+
     }
 
     public void ResetStuck()
@@ -183,7 +188,8 @@ public class HookshotComponent : MonoBehaviour {
                 ShowHookshotMiss(new Vector3(aim.position.x, 0f, aim.position.z));
             }
 
-        } else if (hooked)
+        }
+        else if (hooked)
         {
             UnHook();
         }
@@ -204,7 +210,8 @@ public class HookshotComponent : MonoBehaviour {
         StartCoroutine("animateMissed");
     }
 
-    IEnumerator PullInBarrel() {
+    IEnumerator PullInBarrel()
+    {
         while (hooking)
         {
             if (barrel != null && rb != null)
@@ -224,7 +231,7 @@ public class HookshotComponent : MonoBehaviour {
                         barrel_anchor = barrelJoint.anchor;
                         Destroy(barrelJoint);
                     }
-                    
+
                     var relativePoint = transform.InverseTransformPoint(barrel.transform.position);
                     //checks which side the barrel is on
                     MoveTowardsTarget();
@@ -239,78 +246,87 @@ public class HookshotComponent : MonoBehaviour {
                     barrel.GetComponent<CharacterJoint>().connectedBody = barrel_dest.GetComponent<Rigidbody>();
                     hooking = false;
                     hooked = true;
+                    uiManager.setTarget(baseObj);
 
                 }
             }
             yield return null;
         }
-		// rotates barrel around the ship and pulls it in behind the ship at the same time
-		
-	}
+        // rotates barrel around the ship and pulls it in behind the ship at the same time
+
+    }
 
     internal bool shouldShowTooltip()
     {
         return !hooked && isAimOnBarrel();
     }
 
-    private void MoveTowardsTarget() {
+    private void MoveTowardsTarget()
+    {
 
-		// pulls in the barrel towards the empty game object, which sits directly behind the ship 
+        // pulls in the barrel towards the empty game object, which sits directly behind the ship 
 
-		//the speed, in units per second, we want to move towards the target
-		float speed = 5;
+        //the speed, in units per second, we want to move towards the target
+        float speed = 5;
 
-		Vector3 targetPosition = barrel_dest.transform.position;
-		Vector3 barrelPosition = barrel.transform.position;
+        Vector3 targetPosition = barrel_dest.transform.position;
+        Vector3 barrelPosition = barrel.transform.position;
 
-		Vector3 directionOfTravel = targetPosition - barrelPosition;
-		//now normalize the direction, since we only want the direction information
-		directionOfTravel.Normalize();
-		//scale the movement on each axis by the directionOfTravel vector components
-		//barrel.transform.position = Vector3.Lerp(barrelPosition,targetPosition,Time.deltaTime);
-		barrel.transform.Translate(
-			(directionOfTravel.x * speed * (Time.deltaTime * GlobalVariables.gameSpeed)),
-			(directionOfTravel.y * speed * (Time.deltaTime * GlobalVariables.gameSpeed)),
-			(directionOfTravel.z * speed * (Time.deltaTime * GlobalVariables.gameSpeed)), Space.World);
-	}
-
-
-
-	//checks if aim reticule's collider is touching the barrel. I could put this in a new script just for the reticule, but 
-	//its good for now. 
-	public bool isHooked(){
-		if(barrel ==null){
-			return false;
-		}
-		return (barrel.GetComponent<Barrel> ().owner == this.gameObject || hooked);
-
-	}
+        Vector3 directionOfTravel = targetPosition - barrelPosition;
+        //now normalize the direction, since we only want the direction information
+        directionOfTravel.Normalize();
+        //scale the movement on each axis by the directionOfTravel vector components
+        //barrel.transform.position = Vector3.Lerp(barrelPosition,targetPosition,Time.deltaTime);
+        barrel.transform.Translate(
+            (directionOfTravel.x * speed * (Time.deltaTime * GlobalVariables.gameSpeed)),
+            (directionOfTravel.y * speed * (Time.deltaTime * GlobalVariables.gameSpeed)),
+            (directionOfTravel.z * speed * (Time.deltaTime * GlobalVariables.gameSpeed)), Space.World);
+    }
 
 
 
-	//Basically reset hookshot variables to before the barrel was hooked
-	public void UnHook() {
+    //checks if aim reticule's collider is touching the barrel. I could put this in a new script just for the reticule, but 
+    //its good for now. 
+    public bool isHooked()
+    {
+        if (barrel == null)
+        {
+            return false;
+        }
+        return (barrel.GetComponent<Barrel>().owner == this.gameObject || hooked);
+
+    }
+
+
+
+    //Basically reset hookshot variables to before the barrel was hooked
+    public void UnHook()
+    {
         uiManager.targetBarrel();
-        if (barrel != null) {
-			if (barrel.GetComponent<CharacterJoint> ()!=null && barrel.GetComponent<CharacterJoint> ().connectedBody) {
-				var other = barrel.GetComponent<CharacterJoint> ().connectedBody.gameObject; 
-				if (other == barrel_dest) {
-					barrel.GetComponent<CharacterJoint> ().connectedBody = null;
-					barrel.GetComponent<Barrel> ().owner = null;
-				}
+        if (barrel != null)
+        {
+            if (barrel.GetComponent<CharacterJoint>() != null && barrel.GetComponent<CharacterJoint>().connectedBody)
+            {
+                var other = barrel.GetComponent<CharacterJoint>().connectedBody.gameObject;
+                if (other == barrel_dest)
+                {
+                    barrel.GetComponent<CharacterJoint>().connectedBody = null;
+                    barrel.GetComponent<Barrel>().owner = null;
+                }
 
-			}
+            }
             rb.isKinematic = false;
-			tether.enabled = false;
-			hookshotActive = false;
+            tether.enabled = false;
+            hookshotActive = false;
             stuck = false;
             hooked = false;
             hooking = false;
-			distanceCounter = 0;
+            distanceCounter = 0;
+            onHook(false);
             StopAllCoroutines();
         }
 
-	}
+    }
 
 
 }
