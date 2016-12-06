@@ -60,21 +60,24 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void updatePoint(int point) {
-
 		points.text = (point).ToString();
-		/*GameObject instantiated = ((GameObject)(Instantiate (scoreAnimation)));
-		instantiated.transform.parent = this.transform.GetChild(0);
-		instantiated.GetComponent<RectTransform> ().localPosition = scorePosition.GetComponent<RectTransform> ().localPosition;
-		instantiated.GetComponent<RectTransform> ().localRotation = scorePosition.GetComponent<RectTransform> ().localRotation;
-		instantiated.GetComponent<RectTransform> ().localScale = scorePosition.GetComponent<RectTransform> ().localScale;
-		//instantiated.GetComponent<RectTransform> ().rotation= scorePosition.GetComponent<RectTransform> ().rotation;
-		*/
-
+        spawnScoreAnim();
 	}
 
+    private void spawnScoreAnim() {
+        Debug.Log("reaching spawns");
+        GameObject instantiated = ((GameObject)(Instantiate(scoreAnimation)));
+        instantiated.transform.parent = this.transform.GetChild(0);
+        instantiated.GetComponent<RectTransform>().localPosition = scorePosition.GetComponent<RectTransform>().localPosition;
+        instantiated.GetComponent<RectTransform>().localRotation = scorePosition.GetComponent<RectTransform>().localRotation;
+        instantiated.GetComponent<RectTransform>().localScale = scorePosition.GetComponent<RectTransform>().localScale;
+        //instantiated.GetComponent<RectTransform> ().rotation= scorePosition.GetComponent<RectTransform> ().rotation;
+    }
 
-	public void decrementEnemyHealth() {
+
+    public void decrementEnemyHealth() {
 		enemyHealth = enemyIslandHealthBar.value - (enemyIslandHealthBar.maxValue/3.0f);
+        spawnScoreAnim();
 	}
 
 
