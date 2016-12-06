@@ -59,6 +59,7 @@ public class KrakenHuntGameManager : AbstractGameManager
         foreach (PlayerInput player in players)
         {
             player.gameStarted = true;
+            player.setStatus(ShipStatus.Alive);
         }
         if (kraken)
         {
@@ -278,6 +279,7 @@ public class KrakenHuntGameManager : AbstractGameManager
         foreach (PlayerInput z in players)
         {
             z.reset();
+            z.setStatus(ShipStatus.Waiting);
             z.followCamera.enabled = false;
         }
 
