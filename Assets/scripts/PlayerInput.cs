@@ -122,8 +122,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             var aimPhysics = aimComponent.GetComponent<AimPhysicsComponent>();
             if (aimPhysics)
             {
-                hookshotComponent.Initialize(uiManager, gameStats, aimPhysics.isAimTouchingBarrel);
-                hookshotComponent.baseObj = scoreDestination;
+                hookshotComponent.Initialize(uiManager, gameStats, aimPhysics.isAimTouchingBarrel,scoreDestination);
             }
 
         }

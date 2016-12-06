@@ -25,7 +25,7 @@ public class HookshotComponent : MonoBehaviour
 
     [Header("Other/AutoSet Variables")]
     public GameObject barrel = null;
-    public GameObject baseObj = null;
+    public GameObject destination = null;
     public bool hookshotActive = false;
     public bool aiHook = false;
     public FreeForAllStatistics stats;
@@ -108,11 +108,12 @@ public class HookshotComponent : MonoBehaviour
 
     }
 
-    internal void Initialize(UIManager uiManager, FreeForAllStatistics gameStats, Func<bool> aimCheckFunction)
+    internal void Initialize(UIManager uiManager, FreeForAllStatistics gameStats, Func<bool> aimCheckFunction, GameObject destination)
     {
         stats = gameStats;
         isAimOnBarrel = aimCheckFunction;
         this.uiManager = uiManager;
+        this.destination = destination;
 
     }
 
@@ -246,7 +247,7 @@ public class HookshotComponent : MonoBehaviour
                     barrel.GetComponent<CharacterJoint>().connectedBody = barrel_dest.GetComponent<Rigidbody>();
                     hooking = false;
                     hooked = true;
-                    uiManager.setTarget(baseObj);
+                    uiManager.setTarget(destination);
 
                 }
             }
