@@ -101,7 +101,7 @@ public class PlayerActions : PlayerActionSet
 			actions.Red.AddDefaultBinding( Key.S );
 			actions.Blue.AddDefaultBinding( Key.D );
 			actions.Yellow.AddDefaultBinding( Key.F );
-
+        	actions.Boost.AddDefaultBinding (Key.Return);
 			actions.Up.AddDefaultBinding( Key.UpArrow );
 			actions.Down.AddDefaultBinding( Key.DownArrow );
 			actions.Left.AddDefaultBinding( Key.LeftArrow );

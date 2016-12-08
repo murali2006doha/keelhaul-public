@@ -29,13 +29,16 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     public bool attacking = false;
     public int currentState;
     public int currentStage;
+    public bool canSquirt = false;
 
     [Header("Scene Variables")]
+    public GameObject krakenInk;
     public cameraFollow followCamera;
     public AbstractGameManager manager;
     public UIManager uiManager;
     public GameObject bubbles;
     public float velocity;
+    public bool boosted;
     public GameObject wake;
     public GameObject spray;
     public spitBallCannon spitter;
@@ -52,7 +55,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     float headbashChargeTime = 0f;
     public CharacterController cc;
     GameObject aiSign;
-    
+    float boostResetTimer;
 
 
     public FreeForAllStatistics gameStats;
@@ -271,6 +274,13 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
                 //animator.chargeHeadbash();
                 //headbashChargeTime = Time.realtimeSinceStartup;
             }
+
+            if (Actions.Boost.WasPressed && !boosted) {
+                boosted = true;
+                canSquirt = true;
+                velocity = stats.stages[currentStage].boostVelocity;
+                Invoke("resetBoost", stats.stages[currentStage].boostResetTime);
+            }
         }
 
         if (animator.isCurrentAnimName("spitCharge")) {
@@ -312,6 +322,14 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     internal float getCurrentWeight()
     {
         return stats.stages[currentStage].weight;
+    }
+
+    void resetBoost() {
+        boosted = false;
+    }
+
+    void resetSquirt() {
+        canSquirt = true;
     }
 
     void disableSpray()
@@ -367,8 +385,18 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         Vector3 directionVector;
         directionVector = new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y); //Get the direction the user is pushing the left analog stick in
 
-        velocity = Mathf.Max(0f, (velocity - (stats.stages[currentStage].deaccelaration * (Time.deltaTime * GlobalVariables.gameSpeed)))); //Deaccelerate
-		velocity = Mathf.Min(maxVelocity, velocity + (directionVector.magnitude * moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))); ////Accelerate
+        if (!boosted) {
+            velocity = Mathf.Max(0f, (velocity - (stats.stages[currentStage].deaccelaration * (Time.deltaTime * GlobalVariables.gameSpeed)))); //Deaccelerate
+        }
+
+        if (boosted && canSquirt) {
+            Instantiate(krakenInk, transform.position, krakenInk.transform.rotation);
+            canSquirt = false;
+            Invoke("resetSquirt", stats.stages[currentStage].squirtResetTime);
+        }
+        if (velocity < stats.stages[currentStage].maxVelocity) {
+            velocity = Mathf.Min(maxVelocity, velocity + (directionVector.magnitude * moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))); ////Accelerate
+        }
 
         if (animator.isCurrentAnimName("headbash") && velocity <= 0f)
         {

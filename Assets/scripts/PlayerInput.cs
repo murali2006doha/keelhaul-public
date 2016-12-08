@@ -283,6 +283,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (gameStarted)
         {
 
+            if (other.tag == "krakenInk")
+            {
+                motor.setSpeedModifier(stats.inkSlowDownFactor);
+                Invoke("resetInkSpeed", 1f);
+            }
+
             if (other.transform == scoreDestination.transform && hookshotComponent.isHooked() && other.gameObject.tag.Equals("ScoringZone"))
             {
 
@@ -297,6 +303,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                     pillar.activatePillar();
                 }
             }
+        }
+    }
+
+    private void resetInkSpeed()
+    {
+        if (!hookshotComponent.isHooked())
+        {
+            motor.setSpeedModifier(1);
         }
     }
 
@@ -339,6 +353,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                     addPushForce(kraken.cc.velocity, kraken.getCurrentWeight() - stats.weight);
                 }
             }
+
 
             if (other.name == "KrakenBubbles")
             {

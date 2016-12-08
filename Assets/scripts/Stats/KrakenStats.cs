@@ -16,6 +16,8 @@ public class KrakenStats : MonoBehaviour
         public float damage;
         public float moveSpeed;
         public float emergeTime;
+        public float boostResetTime;
+        public float squirtResetTime;
         public float deaccelaration;
         public float turnSpeed;
 		public float emergingTurnSpeed;
@@ -25,6 +27,7 @@ public class KrakenStats : MonoBehaviour
         public float submergedMoveSpeed;
         public float submergedMaxVelocity;
         public float maxVelocity;
+        public float boostVelocity;
         public float lineAttackVelocity;
         public float headbashChargeVelocity;
         public float maxHeadbashChargeVelocity;

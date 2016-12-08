@@ -24,7 +24,7 @@ public class ShipStats : MonoBehaviour {
 	public float sinkSpeed = 1f;
 	public float deAccelerationSpeed= 2f;
 	public float invinciblityTime = 5f;
-
+    public float inkSlowDownFactor = .2f;
 	public float kraken_damage = 1f;
 
 }
