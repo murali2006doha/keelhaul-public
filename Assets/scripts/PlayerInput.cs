@@ -53,6 +53,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     //Current stats
     float pushMagnitude;
+    float lastInkHitTime;
     Vector3 pushDirection;
     float velocity;
     float damage = 1;
@@ -286,6 +287,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             if (other.tag == "krakenInk")
             {
                 motor.setSpeedModifier(stats.inkSlowDownFactor);
+                lastInkHitTime = Time.realtimeSinceStartup;
                 Invoke("resetInkSpeed", 1f);
             }
 
@@ -308,7 +310,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     private void resetInkSpeed()
     {
-        if (!hookshotComponent.isHooked())
+        if (!hookshotComponent.isHooked() && (Time.realtimeSinceStartup - lastInkHitTime) > stats.inkSlowDownTime)
         {
             motor.setSpeedModifier(1);
         }

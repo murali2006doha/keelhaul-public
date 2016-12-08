@@ -84,7 +84,7 @@ public class HookshotComponent : MonoBehaviour
                 barrel.GetComponent<Rigidbody>().isKinematic = true;
                 newpos = hook.transform.position + Vector3.Normalize(heading) * distance;
                 SoundManager.playSound(SoundClipEnum.Hookshothit, SoundCategoryEnum.Generic, transform.position);
-                if (barrel.GetComponent<Barrel>().owner)
+                if (barrel.GetComponent<Barrel>().owner && barrel.GetComponent<Barrel>().owner.GetComponent<PlayerInput>())
                 {
                     stats.numOfBarrelSteals += 1;
                     barrel.GetComponent<Barrel>().owner.GetComponent<PlayerInput>().gameStats.numOfBarrelsLost += 1;

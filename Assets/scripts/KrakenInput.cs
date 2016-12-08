@@ -33,6 +33,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     [Header("Scene Variables")]
     public GameObject krakenInk;
+    public KrakenMouth mouth;
     public cameraFollow followCamera;
     public AbstractGameManager manager;
     public UIManager uiManager;
@@ -253,13 +254,23 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         uiManager.updateCompass(this.transform.position);
         if (animator.isCurrentAnimName("idle"))
         {
-            if (Actions.Fire.WasPressed && stats.canPerformAction(Actions.Fire.Name, currentStage)) {
+
+            if (Actions.Fire_Hook.WasPressed) {
+                if (mouth.isHooked())
+                {
+                    mouth.UnHook();
+                }
+                else {
+                    mouth.hook();
+                }
+            }
+            if (Actions.Fire.WasPressed && stats.canPerformAction(Actions.Fire.Name, currentStage) && !mouth.isHooked()) {
                 //animator.startFire(); re-enable for spitball
 				animator.executeSmash();
 				Invoke("resetSmash", 0.1f);
             }
 
-            if (Actions.Blue.WasPressed && stats.canPerformAction(Actions.Blue.Name, currentStage))
+            if (Actions.Blue.WasPressed && stats.canPerformAction(Actions.Blue.Name, currentStage) && !mouth.isHooked())
             { //Submerge
                 SoundManager.playSound(SoundClipEnum.KrakenSubmerge,SoundCategoryEnum.KrakenStageOne, transform.position);
                 velocity = 0;
@@ -275,7 +286,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
                 //headbashChargeTime = Time.realtimeSinceStartup;
             }
 
-            if (Actions.Boost.WasPressed && !boosted) {
+            if (Actions.Boost.WasPressed && !boosted && !mouth.isHooked()) {
                 boosted = true;
                 canSquirt = true;
                 velocity = stats.stages[currentStage].boostVelocity;
@@ -395,6 +406,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
             Invoke("resetSquirt", stats.stages[currentStage].squirtResetTime);
         }
         if (velocity < stats.stages[currentStage].maxVelocity) {
+
             velocity = Mathf.Min(maxVelocity, velocity + (directionVector.magnitude * moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))); ////Accelerate
         }
 
@@ -406,10 +418,15 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
             if (directionVector != Vector3.zero)
         {
             Quaternion wanted_rotation = Quaternion.LookRotation(directionVector); // get the rotation
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, wanted_rotation, stats.stages[currentStage].turnSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));
+            if (!mouth.isHooked()) {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, wanted_rotation, stats.stages[currentStage].turnSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));
+            }
         }
 
-        cc.Move(transform.forward * velocity * (Time.deltaTime * GlobalVariables.gameSpeed));
+        if (mouth.isHooked()) {
+            velocity = velocity / stats.stages[currentStage].headbashChargeVelocity;
+        }
+        cc.Move(directionVector.normalized * velocity * (Time.deltaTime * GlobalVariables.gameSpeed));
 
         if (transform.position.y != startingPoint.y)
         {
