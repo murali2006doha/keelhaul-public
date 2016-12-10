@@ -14,14 +14,15 @@ public class ShipMotorComponent : MonoBehaviour
     public GameObject wake;
 
 
-    private float velocity = 0f;
+    [SerializeField] private float velocity = 0f;
+    [SerializeField] private bool boosted;
+    [SerializeField] private float speedModifier = 1;
     Vector3 directionVector = Vector3.zero;
     Vector3 oldEulerAngles;
     Quaternion originalRotation;
     Quaternion originalRotationValue;
 
-    bool boosted;
-    private float speedModifier = 1;
+
     private UIManager uiManager;
 
     internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, UIManager uiManager)
