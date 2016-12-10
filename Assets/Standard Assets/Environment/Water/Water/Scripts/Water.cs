@@ -66,6 +66,63 @@ namespace UnityStandardAssets.Water
             m_HardwareWaterSupport = FindHardwareWaterSupport();
             WaterMode mode = GetWaterMode();
 
+            Camera reflectionCamera, refractionCamera;
+            CreateWaterObjects(cam, out reflectionCamera, out refractionCamera);
+
+            // find out the reflection plane: position and normal in world space
+            Vector3 pos = transform.position;
+            Vector3 normal = transform.up;
+
+            // Optionally disable pixel lights for reflection/refraction
+            int oldPixelLightCount = QualitySettings.pixelLightCount;
+            if (disablePixelLights)
+            {
+                QualitySettings.pixelLightCount = 0;
+            }
+
+            if (reflect)
+            {
+                UpdateCameraModes(cam, reflectionCamera);
+            }
+
+            if (!customRefract)
+            {
+                UpdateCameraModes(cam, refractionCamera);
+            }
+
+
+            // Render reflection if needed
+            if (mode >= WaterMode.Reflective && reflect)
+            {
+                // Reflect camera around reflection plane
+                float d = -Vector3.Dot(normal, pos) - clipPlaneOffset;
+                Vector4 reflectionPlane = new Vector4(normal.x, normal.y, normal.z, d);
+
+                Matrix4x4 reflection = Matrix4x4.zero;
+                CalculateReflectionMatrix(ref reflection, reflectionPlane);
+                Vector3 oldpos = cam.transform.position;
+                Vector3 newpos = reflection.MultiplyPoint(oldpos);
+                reflectionCamera.worldToCameraMatrix = cam.worldToCameraMatrix * reflection;
+
+                // Setup oblique projection matrix so that near plane is our reflection
+                // plane. This way we clip everything below/above it for free.
+                Vector4 clipPlane = CameraSpacePlane(reflectionCamera, pos, normal, 1.0f);
+                reflectionCamera.projectionMatrix = cam.CalculateObliqueMatrix(clipPlane);
+
+                reflectionCamera.cullingMask = ~(1 << 4) & reflectLayers.value; // never render water layer
+                reflectionCamera.targetTexture = m_ReflectionTexture;
+                bool oldCulling = GL.invertCulling;
+                GL.invertCulling = !oldCulling;
+                reflectionCamera.transform.position = newpos;
+                Vector3 euler = cam.transform.eulerAngles;
+                reflectionCamera.transform.eulerAngles = new Vector3(-euler.x, euler.y, euler.z);
+                reflectionCamera.Render();
+                reflectionCamera.transform.position = oldpos;
+                GL.invertCulling = oldCulling;
+                GetComponent<Renderer>().sharedMaterial.SetTexture("_ReflectionTex", m_ReflectionTexture);
+
+            }
+
             if (customRefract)
             {
                 createRenderTexture tex = cam.GetComponent<createRenderTexture>();
@@ -74,6 +131,29 @@ namespace UnityStandardAssets.Water
                     GetComponent<Renderer>().sharedMaterial.SetTexture("_RefractionTex", tex.refract);
                 }
 
+            }
+            // Render refraction
+            if (mode >= WaterMode.Refractive && !customRefract)
+            {
+                refractionCamera.worldToCameraMatrix = cam.worldToCameraMatrix;
+
+                // Setup oblique projection matrix so that near plane is our reflection
+                // plane. This way we clip everything below/above it for free.
+                Vector4 clipPlane = CameraSpacePlane(refractionCamera, pos, normal, -1.0f);
+                refractionCamera.projectionMatrix = cam.CalculateObliqueMatrix(clipPlane);
+
+                refractionCamera.cullingMask = ~(1 << 4) & refractLayers.value; // never render water layer
+                refractionCamera.targetTexture = m_RefractionTexture;
+                refractionCamera.transform.position = cam.transform.position;
+                refractionCamera.transform.rotation = cam.transform.rotation;
+                refractionCamera.Render();
+                GetComponent<Renderer>().sharedMaterial.SetTexture("_RefractionTex", m_RefractionTexture);
+            }
+
+            // Restore pixel light count
+            if (disablePixelLights)
+            {
+                QualitySettings.pixelLightCount = oldPixelLightCount;
             }
 
             // Setup shader keywords based on water mode
@@ -314,19 +394,19 @@ namespace UnityStandardAssets.Water
         static void CalculateReflectionMatrix(ref Matrix4x4 reflectionMat, Vector4 plane)
         {
             reflectionMat.m00 = (1F - 2F * plane[0] * plane[0]);
-            reflectionMat.m01 = (- 2F * plane[0] * plane[1]);
-            reflectionMat.m02 = (- 2F * plane[0] * plane[2]);
-            reflectionMat.m03 = (- 2F * plane[3] * plane[0]);
+            reflectionMat.m01 = (-2F * plane[0] * plane[1]);
+            reflectionMat.m02 = (-2F * plane[0] * plane[2]);
+            reflectionMat.m03 = (-2F * plane[3] * plane[0]);
 
-            reflectionMat.m10 = (- 2F * plane[1] * plane[0]);
+            reflectionMat.m10 = (-2F * plane[1] * plane[0]);
             reflectionMat.m11 = (1F - 2F * plane[1] * plane[1]);
-            reflectionMat.m12 = (- 2F * plane[1] * plane[2]);
-            reflectionMat.m13 = (- 2F * plane[3] * plane[1]);
+            reflectionMat.m12 = (-2F * plane[1] * plane[2]);
+            reflectionMat.m13 = (-2F * plane[3] * plane[1]);
 
-            reflectionMat.m20 = (- 2F * plane[2] * plane[0]);
-            reflectionMat.m21 = (- 2F * plane[2] * plane[1]);
+            reflectionMat.m20 = (-2F * plane[2] * plane[0]);
+            reflectionMat.m21 = (-2F * plane[2] * plane[1]);
             reflectionMat.m22 = (1F - 2F * plane[2] * plane[2]);
-            reflectionMat.m23 = (- 2F * plane[3] * plane[2]);
+            reflectionMat.m23 = (-2F * plane[3] * plane[2]);
 
             reflectionMat.m30 = 0F;
             reflectionMat.m31 = 0F;
