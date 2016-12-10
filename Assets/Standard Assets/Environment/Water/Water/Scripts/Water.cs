@@ -119,15 +119,17 @@ namespace UnityStandardAssets.Water
                 GL.invertCulling = oldCulling;
                 GetComponent<Renderer>().sharedMaterial.SetTexture("_ReflectionTex", m_ReflectionTexture);
 
-                if (customRefract) {
-                    createRenderTexture tex = cam.GetComponent<createRenderTexture>();
-                    if (tex) {
-                        GetComponent<Renderer>().sharedMaterial.SetTexture("_RefractionTex", tex.refract);
-                    }
-                    
-                }
             }
 
+            if (customRefract)
+            {
+                createRenderTexture tex = cam.GetComponent<createRenderTexture>();
+                if (tex)
+                {
+                    GetComponent<Renderer>().sharedMaterial.SetTexture("_RefractionTex", tex.refract);
+                }
+
+            }
             // Render refraction
             if (mode >= WaterMode.Refractive && !customRefract)
             {
