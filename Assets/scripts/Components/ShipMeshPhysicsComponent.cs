@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipMeshComponent : MonoBehaviour {
+public class ShipMeshPhysicsComponent : MonoBehaviour {
 
 	ShipStats stats;
 	UIManager uiManager;
@@ -47,6 +47,8 @@ public class ShipMeshComponent : MonoBehaviour {
 		if (input != null && input.gameStarted) {
 
 			if (LayerMask.LayerToName(other.gameObject.layer).Equals("kraken_arm") && !input.invincible) {
+				print (other);
+
 				handleKrakenArm (other);
 			}
 

@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public HookshotComponent hookshotComponent;
     public ShipCannonComponent centralCannon;
     public AbstractAltCannonComponent altCannonComponent;
-	public ShipMeshComponent shipMeshComponent;
+	public ShipMeshPhysicsComponent shipMeshComponent;
 
     [Header("Other Scene Variables")]
     public GameObject rammingSprite;
