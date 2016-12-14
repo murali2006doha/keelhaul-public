@@ -196,6 +196,15 @@ public class HookshotComponent : MonoBehaviour
         }
     }
 
+
+	public Vector3 getBarrelPosition() {
+		return barrel.transform.position;
+	}
+
+	public void setBarrelPosition(Vector3 transform) {
+		barrel.transform.position = transform;
+	}
+
     private void ShowHookShot()
     {
         tether.enabled = true;

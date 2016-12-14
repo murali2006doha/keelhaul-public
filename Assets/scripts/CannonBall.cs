@@ -93,7 +93,6 @@ public class CannonBall : MonoBehaviour {
 					}
 
 				} else {
-					Debug.Log (collider.gameObject);
 					Instantiate (normalHit, transform.position, transform.rotation);
 				}
 

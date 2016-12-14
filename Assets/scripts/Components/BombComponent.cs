@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Bomb : MonoBehaviour {
+public class BombComponent : MonoBehaviour {
 
 	BombControllerComponent parentCannon;
 	PlayerInput player;
@@ -37,6 +37,11 @@ public class Bomb : MonoBehaviour {
 	}
 
 
+	public PlayerInput getPlayer() {
+		return player;
+	}
+
+
 	public IEnumerator ActivateBomb() {
 
 		smallBombZone.SetActive (false);
@@ -66,7 +71,7 @@ public class Bomb : MonoBehaviour {
 
 		if ((other.gameObject.name).Equals ("playerMesh") && 
 			player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject) {//to activate a bomb
-			if (parentCannon.getBombs().Contains (other.gameObject) == false) {
+			if (parentCannon.getBombList().Contains (other.gameObject) == false) {
 				player.gameStats.numOfBombsDetonated+=0.5f;
 				StartCoroutine (ActivateBomb ());
 			}
