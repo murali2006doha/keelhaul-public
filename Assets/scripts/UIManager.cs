@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour {
 	public Slider bombBar;
 	public Slider healthBar;
 	public Slider enemyIslandHealthBar;
-	public Text points;
+    public Slider submergeBar;
+    public Text points;
 
 	//ship exclamation
 	public GameObject shipAlert;
@@ -107,6 +108,10 @@ public class UIManager : MonoBehaviour {
 		return point;
 	}
 
+
+    public void setSubmergeBar(float breath) {
+        submergeBar.value = breath;
+    }
 
 	public void setHealthBar(float health) {
 		float step = UISpeed * Time.deltaTime; //Lerp Speed

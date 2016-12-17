@@ -85,7 +85,13 @@ public class KrakenAnimator : MonoBehaviour {
 
 	}
 
-	public void sinkShip(){
+    public void cancelEmergeKraken()
+    {
+        animKraken.SetBool("submerge", false);
+
+    }
+
+    public void sinkShip(){
 		if (sinkableShip!=null)
 			sinkableShip.GetComponent<PlayerInput> ().sinkToYourDeath ();
 		sinkableShip = null;
