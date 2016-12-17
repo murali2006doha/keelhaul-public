@@ -6,24 +6,24 @@ using UnityEngine;
 public class ShipMotorComponent : MonoBehaviour
 {
 
-    CharacterController cc;
-    ShipStats stats;
-    Transform shipTransform;
+    protected CharacterController cc;
+    protected ShipStats stats;
+    protected Transform shipTransform;
 
     [Header("Scene Variables")]
     public GameObject wake;
 
 
-    [SerializeField] private float velocity = 0f;
-    [SerializeField] private bool boosted;
-    [SerializeField] private float speedModifier = 1;
-    Vector3 directionVector = Vector3.zero;
-    Vector3 oldEulerAngles;
-    Quaternion originalRotation;
-    Quaternion originalRotationValue;
+    [SerializeField] protected float velocity = 0f;
+    [SerializeField] protected bool boosted;
+    [SerializeField] protected float speedModifier = 1;
+    protected Vector3 directionVector = Vector3.zero;
+    protected Vector3 oldEulerAngles;
+    protected Quaternion originalRotation;
+    protected Quaternion originalRotationValue;
 
 
-    private UIManager uiManager;
+    protected UIManager uiManager;
 
     internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, UIManager uiManager)
     {
@@ -33,14 +33,16 @@ public class ShipMotorComponent : MonoBehaviour
         this.uiManager = uiManager;
     }
 
-    void Update()
+    public virtual void Update()
     {
+       
         UpdateShipPosition();
         UpdateWake();
     }
 
-    void UpdateShipPosition()
+    protected void UpdateShipPosition()
     {
+
         //Must be in Boost?
         if ((directionVector.magnitude == 0 && velocity != 0f) || (velocity > stats.maxVelocity))
         {
@@ -86,7 +88,7 @@ public class ShipMotorComponent : MonoBehaviour
 
     }
 
-    public void Boost()
+    public virtual void Boost()
     {
         if (!boosted)
         {
