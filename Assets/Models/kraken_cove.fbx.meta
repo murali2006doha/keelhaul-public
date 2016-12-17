@@ -1,0 +1,132 @@
+fileFormatVersion: 2
+guid: 010ee2d4d56d10543b702d3e5fcd9dcb
+timeCreated: 1481325253
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: shovel_island
+    100004: skull_island
+    100006: spawn_angria
+    100008: spawn_blackbeard
+    100010: spawn_gung
+    100012: spawn_angria.001
+    100014: spawn_angria.002
+    100016: whale_skull
+    100018: whalerib1
+    100020: whalerib1.001
+    100022: whalerib2
+    400000: //RootNode
+    400002: shovel_island
+    400004: skull_island
+    400006: spawn_angria
+    400008: spawn_blackbeard
+    400010: spawn_gung
+    400012: spawn_angria.001
+    400014: spawn_angria.002
+    400016: whale_skull
+    400018: whalerib1
+    400020: whalerib1.001
+    400022: whalerib2
+    2300000: shovel_island
+    2300002: skull_island
+    2300004: spawn_angria
+    2300006: spawn_blackbeard
+    2300008: spawn_gung
+    2300010: spawn_angria.001
+    2300012: spawn_angria.002
+    2300014: whale_skull
+    2300016: whalerib1
+    2300018: whalerib1.001
+    2300020: whalerib2
+    3300000: shovel_island
+    3300002: skull_island
+    3300004: spawn_angria
+    3300006: spawn_blackbeard
+    3300008: spawn_gung
+    3300010: spawn_angria.001
+    3300012: spawn_angria.002
+    3300014: whale_skull
+    3300016: whalerib1
+    3300018: whalerib1.001
+    3300020: whalerib2
+    4300000: spawn_gung
+    4300002: spawn_blackbeard
+    4300004: skull_island
+    4300006: spawn_angria
+    4300008: shovel_island
+    4300010: whalerib1.001
+    4300012: spawn_angria.002
+    4300014: spawn_angria.001
+    4300016: whalerib2
+    4300018: whalerib1
+    4300020: whale_skull
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
