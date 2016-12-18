@@ -67,6 +67,11 @@ public class DriftHaulMotorComponent : ShipMotorComponent
 
         shipVelocity = Vector3.ClampMagnitude(shipVelocity + acceleration, getMaxVelocity());
 
+        if (boosted && boosting && shipVelocity.magnitude <= maxVelocity) {
+            this.onBoostFinish();
+            boosting = false;
+        }
+
         cc.Move(shipVelocity * this.speedModifier *  (Time.deltaTime * GlobalVariables.gameSpeed));
 
         if (this.transform.position.y != 0)
@@ -104,12 +109,12 @@ public class DriftHaulMotorComponent : ShipMotorComponent
     {
         if (!boosted)
         {
-            uiManager.setBoostBar(0);
+            this.onBoost();
             boosted = true;
+            boosting = true;
             shipVelocity = Vector3.ClampMagnitude(transform.forward * boostVelocity + shipVelocity, boostVelocity);
             Invoke("ResetBoost", stats.boostResetTime);
         }
-
     }
 
     void stopPushForce()
