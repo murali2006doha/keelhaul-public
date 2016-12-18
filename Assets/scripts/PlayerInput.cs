@@ -425,7 +425,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (!invincible && health > 0)
         {
             followCamera.startShake();
-            TurnRed();
+            anim.playDamageAnimation();
 
             if (this.teamGame && attacker is PlayerInput)
             {
@@ -466,10 +466,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         }
     }
 
-    private void TurnRed()
-    {
-        invinciblity.CrossFade("damageBlink",0.2f);
-    }
 
 
     void checkColliders(bool check)
