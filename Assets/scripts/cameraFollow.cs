@@ -5,7 +5,7 @@ public class cameraFollow : MonoBehaviour {
 
 	public GameObject target;
 	public Camera camera;
-	public string cullingMask;
+    public string cullingMask;
 	public float x_diff, y_diff, z_diff = 0;
 	public bool respawning = false;
 	Vector3 offset;
@@ -23,6 +23,7 @@ public class cameraFollow : MonoBehaviour {
 	public float magnitude = .5f;
 	float shakeTime;
 	bool shaking;
+    [SerializeField] UnityStandardAssets.ImageEffects.MotionBlur blurEffect;
     CharacterController character;
 	// Use this for initialization
 	void Start () {
@@ -33,6 +34,10 @@ public class cameraFollow : MonoBehaviour {
     void getCharacterController() {
         if (target)
             character = target.GetComponent<CharacterController>();
+    }
+
+    public void SetRectsOfCameras(Rect rect) {
+        camera.rect = rect;
     }
 
 	public void setCullingMasks()
@@ -111,6 +116,14 @@ public class cameraFollow : MonoBehaviour {
 		}
 
 	}
+
+    public void ActivateMotionBlur() {
+        blurEffect.enabled = true;
+    }
+
+    public void DeActivateMotionBlur() {
+        blurEffect.enabled = false;
+    }
 
 	public void shake(){
 		float percentComplete = (Time.realtimeSinceStartup - shakeTime) / duration;         
