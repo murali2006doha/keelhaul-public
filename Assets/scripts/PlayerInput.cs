@@ -424,6 +424,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (!invincible && health > 0)
         {
+            followCamera.startShake();
+            anim.playDamageAnimation();
 
             if (this.teamGame && attacker is PlayerInput)
             {

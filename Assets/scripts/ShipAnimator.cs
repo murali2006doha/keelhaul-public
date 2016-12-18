@@ -7,7 +7,8 @@ public class ShipAnimator : MonoBehaviour {
 	public PlayerInput ship;
 	public float respawnTime;
     public SoundCategoryEnum category = SoundCategoryEnum.Generic;
-   
+    private float damageFadeSeconds = 0.2f;
+
 
     // Use this for initialization
     void Start () {
@@ -46,6 +47,11 @@ public class ShipAnimator : MonoBehaviour {
 		}
 
 	}
+
+    public void playDamageAnimation()
+    {
+        shipAnimator.CrossFade("damageBlink", damageFadeSeconds);
+    }
 
 	public void onRespawnAnimationEnd(){
 		
