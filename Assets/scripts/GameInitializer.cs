@@ -377,11 +377,11 @@ public class GameInitializer : MonoBehaviour {
                 //Only case where screen is small
                 if (ps.players.Count == 4)
                 {
-                    newCamera.GetComponentInChildren<Camera>().rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                    newCamera.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
                 }
                 else
                 {
-                    newCamera.GetComponentInChildren<Camera>().rect = new Rect(0, 0.5f, 1, 0.5f);
+                    newCamera.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0, 0.5f, 1, 0.5f));
                 }
                 foundKraken = true;
                 break;
@@ -432,11 +432,11 @@ public class GameInitializer : MonoBehaviour {
 
             if (numOfKrakens + shipSelections.Count >= 4)
             {
-                camera1.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
             }
             else
             {
-                camera1.rect = new Rect(0, 0.5f, 1, 0.5f);
+                camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0, 0.5f, 1, 0.5f));
             }
             camCount++;
         }
@@ -468,32 +468,32 @@ public class GameInitializer : MonoBehaviour {
 
     private void setUpCameraPositions(bool includeKraken, int shipCount, int playerCount, GameObject newCamera)
     {
-        var camera1 = newCamera.GetComponentInChildren<Camera>();
+        var camera1 = newCamera.GetComponentInChildren<cameraFollow>();
         if (playerCount == 2)
         {
 
             if (includeKraken)
             {
-                camera1.rect = new Rect(0f, 0f, 1f, 0.5f);
+                camera1.SetRectsOfCameras(new Rect(0f, 0f, 1f, 0.5f));
             }
             else
             {
-                camera1.rect = new Rect(0f, 0.5f * (1 - shipCount), 1f, 0.5f);
+                camera1.SetRectsOfCameras(new Rect(0f, 0.5f * (1 - shipCount), 1f, 0.5f));
             }
         }
         else if (playerCount == 3)
         {
             if (includeKraken)
             {
-                camera1.rect = new Rect(0.5f * shipCount, 0f, 0.5f, 0.5f);
+                camera1.SetRectsOfCameras(new Rect(0.5f * shipCount, 0f, 0.5f, 0.5f));
             }
             else if (shipCount == 0)
             {
-                camera1.rect = new Rect(0f, 0.5f, 1f, 0.5f);
+                camera1.SetRectsOfCameras(new Rect(0f, 0.5f, 1f, 0.5f));
             }
             else
             {
-                camera1.rect = new Rect(0.5f * (shipCount - 1), 0f, 0.5f, 0.5f);
+                camera1.SetRectsOfCameras(new Rect(0.5f * (shipCount - 1), 0f, 0.5f, 0.5f));
             }
         }
         else
@@ -502,16 +502,16 @@ public class GameInitializer : MonoBehaviour {
             {
                 if (shipCount == 0)
                 {
-                    camera1.rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+                    camera1.SetRectsOfCameras(new Rect(0, 0.5f, 0.5f, 0.5f));
                 }
                 else
                 {
-                    camera1.rect = new Rect(0.5f * (shipCount - 1), 0f, 0.5f, 0.5f);
+                    camera1.SetRectsOfCameras(new Rect(0.5f * (shipCount - 1), 0f, 0.5f, 0.5f));
                 }
             }
             else
             {
-                camera1.rect = new Rect(0.5f * (shipCount % 2), 0.5f * (shipCount > 1 ? 1 : 0), 0.5f, 0.5f);
+                camera1.SetRectsOfCameras(new Rect(0.5f * (shipCount % 2), 0.5f * (shipCount > 1 ? 1 : 0), 0.5f, 0.5f));
             }
         }
     }
