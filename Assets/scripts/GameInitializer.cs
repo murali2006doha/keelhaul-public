@@ -432,11 +432,11 @@ public class GameInitializer : MonoBehaviour {
 
             if (numOfKrakens + shipSelections.Count >= 4)
             {
-                camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
+                camera1.GetComponentInParent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
             }
             else
             {
-                camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0, 0.5f, 1, 0.5f));
+                camera1.GetComponentInParent<cameraFollow>().SetRectsOfCameras(new Rect(0, 0.5f, 1, 0.5f));
             }
             camCount++;
         }
