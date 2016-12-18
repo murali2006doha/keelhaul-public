@@ -87,7 +87,18 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
         this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams());
 
-        motor.Initialize(cc, stats, transform, uiManager);
+        motor.Initialize(
+            cc, 
+            stats, 
+            transform, 
+            () => {
+                uiManager.setBoostBar(0);
+                followCamera.ActivateMotionBlur();
+            },
+            () => {
+                followCamera.DeActivateMotionBlur();
+            }
+        );
         aimComponent.Initialize(transform);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
