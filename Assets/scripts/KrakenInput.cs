@@ -30,6 +30,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     public int currentState;
     public int currentStage;
     public bool canSquirt = false;
+    public float wallSpeed = 10f;
 
     [Header("Scene Variables")]
     public GameObject krakenInk;
@@ -43,6 +44,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     public GameObject wake;
     public GameObject spray;
     public spitBallCannon spitter;
+    public GameObject theWall;
 
     //properties | variables like speed and health that change over time inside this script only
 
@@ -60,6 +62,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     float submergeResetTimer;
 
     bool canSubmerge = true;
+    bool blockMovement = false;
     float submergeTimer;
 
     public FreeForAllStatistics gameStats;
@@ -114,7 +117,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     void UpdateSubmergeBar() {
 
-        if (bubbles.active)
+        if (bubbles.activeSelf)
             uiManager.setBoostBar(1 - (Time.realtimeSinceStartup - submergeTimer) / stats.stages[currentStage].submergeTime);
         else {
             uiManager.setBoostBar((Time.realtimeSinceStartup - submergeTimer) / stats.stages[currentStage].submergeRechargeTime);
@@ -271,8 +274,9 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         uiManager.updateCompass(this.transform.position);
         if (animator.isCurrentAnimName("idle"))
         {
-
+            
             if (Actions.Fire_Hook.WasPressed) {
+                
                 if (mouth.isHooked())
                 {
                     mouth.UnHook();
@@ -301,6 +305,18 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 				// re-enable after evolution
                 //animator.chargeHeadbash();
                 //headbashChargeTime = Time.realtimeSinceStartup;
+            }
+            if (Actions.Green.IsPressed && !boosted && !mouth.isHooked() && !isSubmerging)
+            {
+                theWall.transform.localPosition = Vector3.Slerp(theWall.transform.localPosition, new Vector3(0.135f, 0f, 0.482f),Time.deltaTime * wallSpeed);
+                blockMovement = true;
+                canSubmerge = false;
+            }
+            else
+            {
+               blockMovement = false;
+               canSubmerge = true;
+               theWall.transform.localPosition = new Vector3(0.3f,-.8f,0.3f);
             }
 
             if (Actions.Boost.WasPressed && !boosted && !mouth.isHooked()) {
@@ -389,7 +405,18 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     void moveKraken()
     {
+        Vector3 directionVector;
+        directionVector = new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y); //Get the direction the user is pushing the left analog stick in
 
+        if (blockMovement)
+        {
+            Quaternion wanted_rotation = Quaternion.LookRotation(directionVector); // get the rotation
+            if (!mouth.isHooked())
+            {
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, wanted_rotation, stats.stages[currentStage].turnSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));
+            }
+            return;
+        }
         if (animator.isCurrentAnimName("death") || animator.isCurrentAnimName("emergeAttack"))
         {
             return;
@@ -423,8 +450,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
             moveSpeed = 0;
         }
 
-        Vector3 directionVector;
-        directionVector = new Vector3(Actions.Rotate.X, 0f, Actions.Rotate.Y); //Get the direction the user is pushing the left analog stick in
+        
 
         if (!boosted) {
             velocity = Mathf.Max(0f, (velocity - (stats.stages[currentStage].deaccelaration * (Time.deltaTime * GlobalVariables.gameSpeed)))); //Deaccelerate
@@ -467,7 +493,9 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     public void die()
     {
-
+        theWall.transform.localPosition = new Vector3(0.3f, -.8f, 0.3f);
+        blockMovement = false;
+        canSubmerge = true;
         dying = true;
         gameStats.numOfDeaths++;
 
@@ -484,7 +512,8 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     public void setupRespawn()
     {
-
+        blockMovement = false;
+        canSubmerge = true;
         //shipMesh.enabled = false;
         followCamera.zoomIn = false;
         manager.respawnKraken(this, startingPoint);
@@ -503,7 +532,8 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     public void rebirth()
     {
-
+        blockMovement = false;
+        canSubmerge = true;
         dying = false;
         enableCollisions();
         isSubmerging = false;
@@ -517,6 +547,8 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         {
             dmg = stats.stages[currentStage].damage;
         }
+
+        followCamera.startShake();
 
         if (!animator.isCurrentAnimName("death"))
         {
