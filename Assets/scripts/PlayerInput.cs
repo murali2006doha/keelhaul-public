@@ -88,7 +88,18 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
         this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams());
 
-        motor.Initialize(cc, stats, transform, uiManager);
+        motor.Initialize(
+            cc, 
+            stats, 
+            transform, 
+            () => {
+                uiManager.setBoostBar(0);
+                followCamera.ActivateMotionBlur();
+            },
+            () => {
+                followCamera.DeActivateMotionBlur();
+            }
+        );
         aimComponent.Initialize(transform);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
@@ -356,6 +367,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (!invincible && health > 0)
         {
+            followCamera.startShake();
+            anim.playDamageAnimation();
 
             if (this.teamGame && attacker is PlayerInput)
             {

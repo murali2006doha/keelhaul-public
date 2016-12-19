@@ -6,41 +6,43 @@ using UnityEngine;
 public class ShipMotorComponent : MonoBehaviour
 {
 
-    CharacterController cc;
-    ShipStats stats;
-    Transform shipTransform;
+    protected CharacterController cc;
+    protected ShipStats stats;
+    protected Transform shipTransform;
+    protected Action onBoost, onBoostFinish;
 
     [Header("Scene Variables")]
     public GameObject wake;
 
 
-    [SerializeField] private float velocity = 0f;
-    [SerializeField] private bool boosted;
-    [SerializeField] private float speedModifier = 1;
-    Vector3 directionVector = Vector3.zero;
-    Vector3 oldEulerAngles;
-    Quaternion originalRotation;
-    Quaternion originalRotationValue;
+    [SerializeField] protected float velocity = 0f;
+    [SerializeField] protected bool boosted, boosting;
+    [SerializeField] protected float speedModifier = 1;
+    protected Vector3 directionVector = Vector3.zero;
+    protected Vector3 oldEulerAngles;
+    protected Quaternion originalRotation;
+    protected Quaternion originalRotationValue;
 
 
-    private UIManager uiManager;
-
-    internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, UIManager uiManager)
+    internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish)
     {
         this.cc = characterController;
         this.stats = stats;
         this.shipTransform = shipTransform;
-        this.uiManager = uiManager;
+        this.onBoost = onBoost;
+        this.onBoostFinish = onBoostFinish;
     }
 
-    void Update()
+    public virtual void Update()
     {
+       
         UpdateShipPosition();
         UpdateWake();
     }
 
-    void UpdateShipPosition()
+    protected void UpdateShipPosition()
     {
+
         //Must be in Boost?
         if ((directionVector.magnitude == 0 && velocity != 0f) || (velocity > stats.maxVelocity))
         {
@@ -53,6 +55,13 @@ public class ShipMotorComponent : MonoBehaviour
         if (directionVector.magnitude > 0f && velocity <= stats.maxVelocity)
         {
             velocity = Mathf.Min(stats.maxVelocity, velocity + (directionVector.magnitude * stats.moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed)));
+
+            if (boosting)
+            {
+                Debug.Log("reaching boost finish");
+                boosting = false;
+                this.onBoostFinish();
+            }
         }
 
         RotateBoat();
@@ -86,16 +95,15 @@ public class ShipMotorComponent : MonoBehaviour
 
     }
 
-    public void Boost()
+    public virtual void Boost()
     {
-        if (!boosted)
-        {
-            uiManager.setBoostBar(0);
+        if (!boosted) {
+            this.onBoost();
             boosted = true;
+            boosting = true;
             velocity = stats.boostVelocity;
             Invoke("ResetBoost", stats.boostResetTime);
         }
-
     }
 
     void tiltBoat()
