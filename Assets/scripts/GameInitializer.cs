@@ -207,8 +207,7 @@ public class GameInitializer : MonoBehaviour {
         int num = 0;
         if (ps == null || ps.players.Count == 0) //Default behaviour if didn't come from character select screen. 
         {
-            print("tes");
-            num = createPlayersWithoutCharacterSelection(map, num);
+			num = createPlayersWithoutCharacterSelection(map, num);
 
         }
         else // Easy case, create kraken or ships with selection

@@ -23,6 +23,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public HookshotComponent hookshotComponent;
     public ShipCannonComponent centralCannon;
     public AbstractAltCannonComponent altCannonComponent;
+	public ShipMeshPhysicsComponent shipMeshComponent;
 
     [Header("Other Scene Variables")]
     public GameObject rammingSprite;
@@ -54,7 +55,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     //Current stats
     float pushMagnitude;
     Vector3 pushDirection;
-    float velocity;
+    public float velocity;
     float damage = 1;
     float health = 3;
     bool ai = false;
@@ -102,8 +103,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         aimComponent.Initialize(transform);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
+		shipMeshComponent.Initialize (this, stats, uiManager, scoreDestination, hookshotComponent, manager, bombController);
         centralCannon.Initialize(this, this.transform, this.aimComponent.aim, stats, gameStats, motor);
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
+
 
         gameStats = new FreeForAllStatistics();
         kraken = GameObject.FindObjectOfType<KrakenInput>();
@@ -286,77 +289,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             startSinking = false;
             locked = false;
         }
-    }
-
-
-    void OnTriggerStay(Collider other)
-    {
-        if (gameStarted)
-        {
-
-            if (other.transform == scoreDestination.transform && hookshotComponent.isHooked() && other.gameObject.tag.Equals("ScoringZone"))
-            {
-
-                hookshotComponent.barrel.transform.position = Vector3.Lerp(hookshotComponent.barrel.transform.position, scoreDestination.transform.position, Time.time);
-                manager.acknowledgeBarrelScore(this, hookshotComponent.barrel);
-                //manager.incrementPoint (this, hook_component.barrel);
-                uiManager.targetBarrel();
-
-                LightPillar pillar = scoreDestination.transform.parent.GetComponentInChildren<LightPillar>();
-                if (pillar != null)
-                {
-                    pillar.activatePillar();
-                }
-            }
-        }
-    }
-
-
-
-    //checks collisions for kraken attachs, bombs, and barrel destination
-    void OnTriggerEnter(Collider other)
-    {
-        if (gameStarted)
-        {
-            if (LayerMask.LayerToName(other.gameObject.layer).Equals("kraken_arm") && !invincible)
-            {
-                KrakenInput kraken = other.gameObject.transform.root.GetComponent<KrakenInput>();
-                hit(stats.kraken_damage, kraken);
-                other.gameObject.transform.root.GetComponent<KrakenInput>().vibrate(.5f, .5f);
-            }
-            else
-            {
-                bombController.handleTrigger(other); //collider is bomb
-            }
-
-            if (other.name == "nose")
-            {
-                PlayerInput otherPlayer = other.transform.root.GetComponent<PlayerInput>();
-                if (otherPlayer.velocity > otherPlayer.stats.maxVelocity)
-                {
-                    Instantiate(rammingSprite, other.transform.position, Quaternion.identity);
-                    addPushForce(otherPlayer.cc.velocity.normalized, Mathf.Max(otherPlayer.stats.weight - stats.weight, 0f));
-                    otherPlayer.velocity = 0;
-                }
-
-            }
-
-            if (other.name == "krakenNose")
-            {
-                KrakenInput kraken = other.transform.root.GetComponent<KrakenInput>();
-                if (kraken.animator.isCurrentAnimName("headbash"))
-                {
-                    kraken.velocity = 0;
-                    addPushForce(kraken.cc.velocity, kraken.getCurrentWeight() - stats.weight);
-                }
-            }
-
-            if (other.name == "KrakenBubbles")
-            {
-                uiManager.triggerShipAlert();
-            }
-        }
-
     }
 
 
@@ -548,7 +480,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public void setStatus(ShipStatus status)
     {
         this.status = status;
-        print("lol");
         motor.reset();
         centralCannon.ResetShotRight();
         altCannonComponent.ResetShotAlt();

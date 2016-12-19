@@ -11,11 +11,14 @@ public class BombControllerComponent : MonoBehaviour {
 	UIManager uiManager;
 	PlayerInput input;
 
-	public Bomb bomb;
-	public bool canDropBomb = true;
-
 	int bombCount = 3;
 	List<GameObject> bombList = new List<GameObject>();
+
+	public bool canDropBomb = true;
+
+	[Header("Scene Variables")]
+	public BombComponent bomb;
+
 
 	internal void Initialize(ShipStats stats, PlayerInput input, UIManager uiManager, FreeForAllStatistics gameStats)
 	{
@@ -47,7 +50,7 @@ public class BombControllerComponent : MonoBehaviour {
 	private void spawnBomb() {
 		//maybe do an arc to throw bomb?
 		GameObject bombObject = Instantiate (bomb.gameObject, transform.position, transform.rotation);
-		bombObject.GetComponent<Bomb>().Initialize (this, this.input);
+		bombObject.GetComponent<BombComponent>().Initialize (this, this.input);
 		bombObject.transform.rotation = Quaternion.Euler (-90, 0, 0);
 		bombList.Add (bombObject);
 	}
@@ -56,7 +59,7 @@ public class BombControllerComponent : MonoBehaviour {
 	public void activateAllBombs(){
 		foreach (GameObject bomb in bombList) { //destroy all bombs on field
 			if (bomb != null) {
-				StartCoroutine(bomb.GetComponent<Bomb> ().ActivateBomb ());
+				StartCoroutine(bomb.GetComponent<BombComponent> ().ActivateBomb ());
 			}
 		}
 	}
@@ -80,7 +83,7 @@ public class BombControllerComponent : MonoBehaviour {
 		canDropBomb = true;
 	}
 
-	public List<GameObject> getBombs(){
+	public List<GameObject> getBombList(){
 		return bombList;
 	}
 		
@@ -104,5 +107,7 @@ public class BombControllerComponent : MonoBehaviour {
 			}
 		}
 	}
+
+
 
 }
