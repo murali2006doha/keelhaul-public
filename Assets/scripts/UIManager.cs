@@ -2,71 +2,75 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
 
-	public Text bombs;
-	public Slider bombBar;
-	public Slider healthBar;
-	public Slider enemyIslandHealthBar;
+    public Text bombs;
+    public Slider bombBar;
+    public Slider healthBar;
+    public Slider enemyIslandHealthBar;
     public Slider submergeBar;
     public Text points;
 
-	//ship exclamation
-	public GameObject shipAlert;
-	public float alertTime;
-	//public Slider altFireBar;
-	public Slider altFireBar;
-	public Slider scoreBar;
-	public GameObject scorePosition;
-	public GameObject scoreAnimation;
-	public RectTransform compassArrow;
-	Vector3 barrelPos;
-	GameObject arrowTarget;
-	Vector3 arrowTargetPos;
-	Image arrowImage;
-	Vector3 compassRotationTarget;
-	public float wobbleSpeed = 3.5f;
-	float wobbleIntensity = 5f;
-	float currentIntensity = 5f;
-	float UISpeed = 2.5f;
-	float enemyHealth = 3f;
-	int wobbleCount = 0;
-	public Slider boostBar;
-	public SpriteRenderer barrelTooltip;
-	Barrel barrelObj;
-	public Vector3 tooltipOffset;
-	public TutorialUIManager tutorialManager;
-	public bool enableTutorials = true;
+    //ship exclamation
+    public GameObject shipAlert;
+    public float alertTime;
+    //public Slider altFireBar;
+    public Slider altFireBar;
+    public Slider scoreBar;
+    public GameObject scorePosition;
+    public GameObject scoreAnimation;
+    public RectTransform compassArrow;
+    Vector3 barrelPos;
+    GameObject arrowTarget;
+    Vector3 arrowTargetPos;
+    Image arrowImage;
+    Vector3 compassRotationTarget;
+    public float wobbleSpeed = 3.5f;
+    float wobbleIntensity = 5f;
+    float currentIntensity = 5f;
+    float UISpeed = 2.5f;
+    float enemyHealth = 3f;
+    int wobbleCount = 0;
+    public Slider boostBar;
+    public SpriteRenderer barrelTooltip;
+    Barrel barrelObj;
+    public Vector3 tooltipOffset;
+    public TutorialUIManager tutorialManager;
+    public bool enableTutorials = true;
     public GameObject finishText;
     public GameObject colorTint;
     public GameObject worldSpace;
 
     bool highlight = true;
 
-	void Start()
-	{
+    void Start()
+    {
 
-		barrelObj = GameObject.FindObjectOfType<Barrel>();
-		barrelPos = barrelObj.transform.position;
-		if (compassArrow != null)
-		{
-			arrowImage = compassArrow.GetComponent<Image>();
-			targetBarrel();
-		}
-	}
+        barrelObj = GameObject.FindObjectOfType<Barrel>();
+        barrelPos = barrelObj.transform.position;
+        if (compassArrow != null)
+        {
+            arrowImage = compassArrow.GetComponent<Image>();
+            targetBarrel();
+        }
+    }
 
 
-	void Update() {
-		setEnemyIslandBar ();
-	}
+    void Update()
+    {
+        setEnemyIslandBar();
+    }
 
-	public void updatePoint(int point) {
-		points.text = (point).ToString();
+    public void updatePoint(int point)
+    {
+        points.text = (point).ToString();
         spawnScoreAnim();
-	}
+    }
 
-    private void spawnScoreAnim() {
-        
+    private void spawnScoreAnim()
+    {
+
         GameObject instantiated = ((GameObject)(Instantiate(scoreAnimation)));
         instantiated.transform.parent = this.transform.GetChild(0);
         instantiated.GetComponent<RectTransform>().localPosition = scorePosition.GetComponent<RectTransform>().localPosition;
@@ -76,180 +80,199 @@ public class UIManager : MonoBehaviour {
     }
 
 
-    public void decrementEnemyHealth() {
-		enemyHealth = enemyIslandHealthBar.value - (enemyIslandHealthBar.maxValue/3.0f);
+    public void decrementEnemyHealth()
+    {
+        enemyHealth = enemyIslandHealthBar.value - (enemyIslandHealthBar.maxValue / 3.0f);
         spawnScoreAnim();
-	}
+    }
 
 
-	public void setEnemyIslandBar() {
-		if (enemyIslandHealthBar != null) {
-			float step = UISpeed * Time.deltaTime; //Lerp Speed
+    public void setEnemyIslandBar()
+    {
+        if (enemyIslandHealthBar != null)
+        {
+            float step = UISpeed * Time.deltaTime; //Lerp Speed
 
-			enemyIslandHealthBar.value = Mathf.MoveTowards (enemyIslandHealthBar.value, enemyHealth, step);
-		}
-	}
+            enemyIslandHealthBar.value = Mathf.MoveTowards(enemyIslandHealthBar.value, enemyHealth, step);
+        }
+    }
 
-	public void triggerShipAlert()
-	{
-		if (!shipAlert.activeSelf) {
-			shipAlert.SetActive (true);
-			Invoke ("disableShipAlert", alertTime);
-		}
-	}
+    public void triggerShipAlert()
+    {
+        if (!shipAlert.activeSelf)
+        {
+            shipAlert.SetActive(true);
+            Invoke("disableShipAlert", alertTime);
+        }
+    }
 
-	void disableShipAlert(){
-		shipAlert.SetActive (false);
-	}
+    void disableShipAlert()
+    {
+        shipAlert.SetActive(false);
+    }
 
-	public int decrementPoint() {
-		int point = Mathf.Max(int.Parse (points.text) - 1,0);
-		points.text = (point).ToString();
-		return point;
-	}
+    public int decrementPoint()
+    {
+        int point = Mathf.Max(int.Parse(points.text) - 1, 0);
+        points.text = (point).ToString();
+        return point;
+    }
 
 
-    public void setSubmergeBar(float breath) {
+    public void setSubmergeBar(float breath)
+    {
         submergeBar.value = breath;
     }
 
-	public void setHealthBar(float health) {
-		float step = UISpeed * Time.deltaTime; //Lerp Speed
+    public void setHealthBar(float health)
+    {
+        float step = UISpeed * Time.deltaTime; //Lerp Speed
 
-		healthBar.value = Mathf.MoveTowards (healthBar.value, health, step);
+        healthBar.value = Mathf.MoveTowards(healthBar.value, health, step);
 
-	}
+    }
 
-	public void updateShipUI(Vector3 pos, bool hittingBarrel)
-	{
-		updateCompass(pos);
-		if (hittingBarrel && barrelTooltip!=null)
-		{
-			barrelTooltip.enabled = true;
-			barrelTooltip.transform.position = barrelObj.transform.position + tooltipOffset;
-
-		}
-		else
-		{
-			barrelTooltip.enabled = false;
-		}
-        if(boostBar.value < 1f)
+    public void updateShipUI(Vector3 pos, bool hittingBarrel)
+    {
+        updateCompass(pos);
+        if (hittingBarrel && barrelTooltip != null)
         {
-            float step = Time.deltaTime/ 6f; //Todo: take from ship
+            barrelTooltip.enabled = true;
+            barrelTooltip.transform.position = barrelObj.transform.position + tooltipOffset;
+
+        }
+        else
+        {
+            barrelTooltip.enabled = false;
+        }
+        if (boostBar.value < 1f)
+        {
+            float step = Time.deltaTime / 6f; //Todo: take from ship
             boostBar.value = Mathf.MoveTowards(boostBar.value, 1f, step);
 
         }
 
-	}
+    }
 
-	public void updateTutorialPrompts(Camera cam, PlayerActions input)
-	{
-		if (enableTutorials && tutorialManager != null && !tutorialManager.isEmpty())
-		{
-			tutorialManager.updateTutorial(cam, input);
-		}
-	}
+    public void updateTutorialPrompts(Camera cam, PlayerActions input)
+    {
+        if (enableTutorials && tutorialManager != null && !tutorialManager.isEmpty())
+        {
+            tutorialManager.updateTutorial(cam, input);
+        }
+    }
 
-	public void updateCompass(Vector3 pos)
-	{
-		if (compassArrow!=null && arrowTarget!=null)
-		{
-			arrowTargetPos = arrowTarget.transform.position;
-			Vector3 difference = arrowTargetPos - pos;
-			float sign = (arrowTargetPos.z < pos.z) ? -1.0f : 1.0f;
-			float angle =  Vector3.Angle(Vector2.right, difference) * sign;
-			float sinVal = Mathf.Sin(wobbleSpeed * Time.time * GlobalVariables.gameSpeed);
-			if(sinVal > 0.00001 || sinVal < -0.00001)
-			{
-				wobbleCount++;
-			}
-			if (wobbleCount == 10)
-			{
-				changeWobbleIntensity();
-			}
-			compassArrow.transform.rotation = Quaternion.Euler(MathHelper.setZ(Vector3.zero, angle - 50 + sinVal*wobbleIntensity));
-		}
-	}
-
-
-	public void changeCompassColor(Color color)
-	{
-		if (compassArrow !=null && arrowImage.color!=color)
-		{
-			arrowImage.color = color;
-		}
-	}
+    public void updateCompass(Vector3 pos)
+    {
+        if (compassArrow != null && arrowTarget != null)
+        {
+            arrowTargetPos = arrowTarget.transform.position;
+            Vector3 difference = arrowTargetPos - pos;
+            float sign = (arrowTargetPos.z < pos.z) ? -1.0f : 1.0f;
+            float angle = Vector3.Angle(Vector2.right, difference) * sign;
+            float sinVal = Mathf.Sin(wobbleSpeed * Time.time * GlobalVariables.gameSpeed);
+            if (sinVal > 0.00001 || sinVal < -0.00001)
+            {
+                wobbleCount++;
+            }
+            if (wobbleCount == 10)
+            {
+                changeWobbleIntensity();
+            }
+            compassArrow.transform.rotation = Quaternion.Euler(MathHelper.setZ(Vector3.zero, angle - 50 + sinVal * wobbleIntensity));
+        }
+    }
 
 
-	public void setBoostBar(float value) {
-		boostBar.value = value;
-	}
+    public void changeCompassColor(Color color)
+    {
+        if (compassArrow != null && arrowImage.color != color)
+        {
+            arrowImage.color = color;
+        }
+    }
 
 
-	public void setScoreBar(float score) {
-		if (scoreBar != null) {
-			scoreBar.value = score;
-		}
-	}
+    public void setBoostBar(float value)
+    {
+        boostBar.value = value;
+    }
 
 
-	public void setBombBar(float score) {
-		if (bombBar != null) {
-			bombBar.value = score;
-		}
-	}
+    public void setScoreBar(float score)
+    {
+        if (scoreBar != null)
+        {
+            scoreBar.value = score;
+        }
+    }
 
 
-	public int decrementBomb() {
-		if (int.Parse (bombs.text) > 0) {
-			int bomb = int.Parse (bombs.text) - 1;
-			bombs.text = (bomb).ToString ();
-			return bomb;
-		}
-
-		else{
-			int bomb = 0;
-			bombs.text = (bomb).ToString ();
-			return bomb;
-		}
-	}
+    public void setBombBar(float score)
+    {
+        if (bombBar != null)
+        {
+            bombBar.value = score;
+        }
+    }
 
 
-	public  void resetBomb() {
-		int bomb = 3;
-		bombs.text = (bomb).ToString ();
-		bombBar.value = 1.0f;
-	}
+    public int decrementBomb()
+    {
+        if (int.Parse(bombs.text) > 0)
+        {
+            int bomb = int.Parse(bombs.text) - 1;
+            bombs.text = (bomb).ToString();
+            return bomb;
+        }
 
-	public void resetAltFireMeter() {
+        else
+        {
+            int bomb = 0;
+            bombs.text = (bomb).ToString();
+            return bomb;
+        }
+    }
 
-		altFireBar.value = 0;
-		//altfireFill.GetComponent<Image> ().fillAmount = 0;
 
-	}
+    public void resetBomb()
+    {
+        int bomb = 3;
+        bombs.text = (bomb).ToString();
+        bombBar.value = 1.0f;
+    }
 
-	public void setAltFireMeter(float value) {
-		altFireBar.value = value;
-		//altfireFill.GetComponent<Image> ().fillAmount = value;
-	}
+    public void resetAltFireMeter()
+    {
 
-	public void targetBarrel()
-	{
-		this.arrowTarget = barrelObj.gameObject;
-		changeCompassColor(Color.yellow);
-	}
+        altFireBar.value = 0;
+        //altfireFill.GetComponent<Image> ().fillAmount = 0;
 
-	public void setTarget(GameObject target)
-	{
+    }
+
+    public void setAltFireMeter(float value)
+    {
+        altFireBar.value = value;
+        //altfireFill.GetComponent<Image> ().fillAmount = value;
+    }
+
+    public void targetBarrel()
+    {
+        this.arrowTarget = barrelObj.gameObject;
+        changeCompassColor(Color.yellow);
+    }
+
+    public void setTarget(GameObject target)
+    {
         changeCompassColor(Color.green);
         this.arrowTarget = target;
-	}
+    }
 
-	void changeWobbleIntensity()
-	{
-		currentIntensity = Random.Range(2, wobbleIntensity*5);
-		wobbleCount = 0;
-	}
+    void changeWobbleIntensity()
+    {
+        currentIntensity = Random.Range(2, wobbleIntensity * 5);
+        wobbleCount = 0;
+    }
 
     public void activateFinishAndColorTint()
     {

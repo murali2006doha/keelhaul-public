@@ -275,7 +275,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         if (animator.isCurrentAnimName("idle"))
         {
             
-            if (Actions.Fire_Hook.WasPressed) {
+           /* if (Actions.Fire_Hook.WasPressed) {
                 
                 if (mouth.isHooked())
                 {
@@ -284,7 +284,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
                 else {
                     mouth.hook();
                 }
-            }
+            }*/
             if (Actions.Fire.WasPressed && stats.canPerformAction(Actions.Fire.Name, currentStage) && !mouth.isHooked()) {
                 //animator.startFire(); re-enable for spitball
 				animator.executeSmash();
