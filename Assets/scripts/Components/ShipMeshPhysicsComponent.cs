@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,9 +14,10 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 
 	[Header("Scene Variables")]
 	public GameObject rammingSprite;
+    private Action onInk;
 
-	internal void Initialize(PlayerInput input, ShipStats stats, UIManager uiManager, GameObject scoreDestination, 
-		HookshotComponent hookshotComponent, AbstractGameManager manager, BombControllerComponent bombController) {
+    internal void Initialize(PlayerInput input, ShipStats stats, UIManager uiManager, GameObject scoreDestination, 
+		HookshotComponent hookshotComponent, AbstractGameManager manager, BombControllerComponent bombController, Action onInk) {
 		this.input = input;
 		this.scoreDestination = scoreDestination;
 		this.hookshotComponent = hookshotComponent;
@@ -24,6 +25,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 		this.uiManager = uiManager;
 		this.stats = stats;
 		this.bombController = bombController;
+        this.onInk = onInk;
 	}
 
 
@@ -45,14 +47,17 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		
 		if (input != null && input.gameStarted) {
-
-			if (LayerMask.LayerToName(other.gameObject.layer).Equals("kraken_arm") && !input.invincible) {
-				print (other);
+            if (LayerMask.LayerToName(other.gameObject.layer).Equals("kraken_arm") && !input.invincible) {
 
 				handleKrakenArm (other);
 			}
 
-			if (LayerMask.LayerToName (other.gameObject.layer).Equals ("explosion") && !input.invincible) {
+            if (other.tag == "krakenInk")
+            {
+                onInk();
+            }
+
+            if (LayerMask.LayerToName (other.gameObject.layer).Equals ("explosion") && !input.invincible) {
 				handleBombExplosion (other);
 			}
 
@@ -67,7 +72,9 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 			if (other.name == "KrakenBubbles") {
 				uiManager.triggerShipAlert();
 			}
-		}
+
+           
+        }
 	}
 
 

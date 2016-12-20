@@ -114,6 +114,10 @@ public class cameraFollow : MonoBehaviour {
 			shaking = true;
 			shakeTime = Time.realtimeSinceStartup;
 		}
+        else
+        {
+            shakeTime = Time.realtimeSinceStartup;
+        }
 
 	}
 

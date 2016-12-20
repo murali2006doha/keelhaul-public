@@ -60,7 +60,9 @@ public class PlayerActions : PlayerActionSet
 			actions.Left.AddDefaultBinding( Key.LeftArrow );
 			actions.Right.AddDefaultBinding( Key.RightArrow );
 			actions.Fire.AddDefaultBinding (Key.RightShift);
-			actions.Boost.AddDefaultBinding (Key.Return);
+            actions.Fire_Hook.AddDefaultBinding(Key.M);
+            actions.Boost.AddDefaultBinding(Key.X);
+            actions.Boost.AddDefaultBinding (Key.Return);
 			actions.Green.AddDefaultBinding (Key.Alt);
 			actions.Yellow.AddDefaultBinding (Key.Z);
 			
@@ -101,8 +103,11 @@ public class PlayerActions : PlayerActionSet
 			actions.Red.AddDefaultBinding( Key.S );
 			actions.Blue.AddDefaultBinding( Key.D );
 			actions.Yellow.AddDefaultBinding( Key.F );
-
-			actions.Up.AddDefaultBinding( Key.UpArrow );
+        	actions.Boost.AddDefaultBinding (Key.Return);
+            actions.Fire.AddDefaultBinding(Key.RightShift);
+            actions.Fire_Hook.AddDefaultBinding(Key.M);
+            actions.Boost.AddDefaultBinding(Key.X);
+            actions.Up.AddDefaultBinding( Key.UpArrow );
 			actions.Down.AddDefaultBinding( Key.DownArrow );
 			actions.Left.AddDefaultBinding( Key.LeftArrow );
 			actions.Right.AddDefaultBinding( Key.RightArrow );
