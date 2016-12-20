@@ -213,7 +213,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
             if (locked && startSinking)
             {
-                transform.Translate(transform.up * -1 * stats.sinkSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
+                transform.Translate(transform.up * -2 * stats.sinkSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
             }
             if (hasWon)
             {
@@ -262,9 +262,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     { //not being used yet?
         if (!invincible)
         {
+            print("hyes");
             manager.acknowledgeKill(kraken, this);
             locked = true;
             startSinking = true;
+            setStatus(ShipStatus.Dead);
 
             Invoke("takeSinkDamage", stats.sinkTime);
         }
@@ -510,6 +512,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (hookshotComponent)
         {
             shipInput.onLeftTriggerDown -= hookshotComponent.HookBarrel;
+        }
+        if (status == ShipStatus.Dead)
+        {
+            motor.enabled = false;
+        }
+        else
+        {
+            motor.enabled = true;
         }
 
         if (status == ShipStatus.Waiting)

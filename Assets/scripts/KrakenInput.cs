@@ -306,25 +306,26 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
                 //animator.chargeHeadbash();
                 //headbashChargeTime = Time.realtimeSinceStartup;
             }
-            if (Actions.Green.IsPressed && !boosted && !mouth.isHooked() && !isSubmerging)
-            {
-                theWall.transform.localPosition = Vector3.Slerp(theWall.transform.localPosition, new Vector3(0.135f, 0f, 0.482f),Time.deltaTime * wallSpeed);
-                blockMovement = true;
-                canSubmerge = false;
-            }
-            else
-            {
-               blockMovement = false;
-               canSubmerge = true;
-               theWall.transform.localPosition = new Vector3(0.3f,-.8f,0.3f);
-            }
+            // BOOOOST + wall
+            /* if (Actions.Green.IsPressed && !boosted && !mouth.isHooked() && !isSubmerging)
+             {
+                 theWall.transform.localPosition = Vector3.Slerp(theWall.transform.localPosition, new Vector3(0.135f, 0f, 0.482f),Time.deltaTime * wallSpeed);
+                 blockMovement = true;
+                 canSubmerge = false;
+             }
+             else
+             {
+                blockMovement = false;
+                canSubmerge = true;
+                theWall.transform.localPosition = new Vector3(0.3f,-.8f,0.3f);
+             }
 
-            if (Actions.Boost.WasPressed && !boosted && !mouth.isHooked()) {
-                boosted = true;
-                canSquirt = true;
-                velocity = stats.stages[currentStage].boostVelocity;
-                Invoke("resetBoost", stats.stages[currentStage].boostResetTime);
-            }
+             if (Actions.Boost.WasPressed && !boosted && !mouth.isHooked()) {
+                 boosted = true;
+                 canSquirt = true;
+                 velocity = stats.stages[currentStage].boostVelocity;
+                 Invoke("resetBoost", stats.stages[currentStage].boostResetTime);
+             }*/
         }
 
         if (animator.isCurrentAnimName("spitCharge")) {
@@ -366,7 +367,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
                 emergeKraken();
             }
 
-            else if (Actions.Blue.WasReleased && stats.canPerformAction(Actions.Blue.Name, currentStage))
+            else if ((Actions.Blue.WasReleased || !Actions.Blue.IsPressed) && stats.canPerformAction(Actions.Blue.Name, currentStage))
             {  //rise up 
                 SoundManager.playSound(SoundClipEnum.KrakenBubble, SoundCategoryEnum.Generic,transform.position);
                 isSubmerging = true;
@@ -616,6 +617,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         animator.cancelEmergeKraken();
         isSubmerging = false;
         gameObject.layer = LayerMask.NameToLayer("kraken");
+        bubbles.SetActive(false);
         submerged = false;
     }
 

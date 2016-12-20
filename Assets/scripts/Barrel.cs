@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Barrel : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Barrel : MonoBehaviour
     public LightPillar pillar;
     public GameObject explosion;
     PlayerInput currentPlayer;
+    bool shouldDenotate = true;
 
     // Use this for initialization
     void Start()
@@ -23,9 +25,15 @@ public class Barrel : MonoBehaviour
 
     public void explodeBarrel()
     {
-        GameObject exp = (GameObject)Instantiate(explosion, this.gameObject.transform.position, Quaternion.identity);
-
+        if (shouldDenotate)
+        {
+            GameObject exp = (GameObject)Instantiate(explosion, this.gameObject.transform.position, Quaternion.identity);
+        }
 
     }
 
+    internal void disableDetonate()
+    {
+        shouldDenotate = false;
+    }
 }
