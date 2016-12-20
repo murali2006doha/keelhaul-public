@@ -103,7 +103,16 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         aimComponent.Initialize(transform);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
-		shipMeshComponent.Initialize (this, stats, uiManager, scoreDestination, hookshotComponent, manager, bombController);
+		shipMeshComponent.Initialize (
+            this, 
+            stats, 
+            uiManager, 
+            scoreDestination, 
+            hookshotComponent, 
+            manager, 
+            bombController, 
+            hit
+            );
         centralCannon.Initialize(this, this.transform, this.aimComponent.aim, stats, gameStats, motor);
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
 
@@ -363,43 +372,22 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         Actions.Device.StopVibration();
     }
 
-    public void hit(float passedDamage = 0f, StatsInterface attacker = null)
+
+
+    public void hit(float passedDamage)
     {
         if (!invincible && health > 0)
         {
-            followCamera.startShake();
-            anim.playDamageAnimation();
 
-            if (this.teamGame && attacker is PlayerInput)
-            {
-                if (((PlayerInput)attacker).teamNo == this.teamNo)
-                {
-                    vibrate(.5f, .5f);
-                    return;
-                }
-            }
             float actualDamage = (passedDamage > 0) ? passedDamage : damage;
             health -= actualDamage;
             SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
             gameStats.healthLost += actualDamage;
-            if (attacker is PlayerInput)
-            {
-                ((PlayerInput)attacker).gameStats.addGivenDamage(type.ToString(), actualDamage);
-                this.gameStats.addTakenDamage(((PlayerInput)attacker).type.ToString(), actualDamage);
-            }
-            else if (attacker is KrakenInput)
-            {
-                ((KrakenInput)attacker).gameStats.addGivenDamage(type.ToString(), actualDamage);
-                this.gameStats.addTakenDamage("kraken", actualDamage);
-            }
-            toggleDamageStates();
             if (health <= 0)
             {
-                setStatus(ShipStatus.Dead);
                 vibrate(1f, 1f);
                 hookshotComponent.UnHook();
                 checkColliders(false);
-                manager.acknowledgeKill(attacker, this);
                 die();
             }
             else

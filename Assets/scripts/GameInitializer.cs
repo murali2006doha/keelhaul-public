@@ -534,7 +534,7 @@ public class GameInitializer : MonoBehaviour {
         string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter.ToString()];
         if (path != null)
         {
-            newShip = Instantiate(Resources.Load(path, typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
+            newShip = PhotonNetwork.Instantiate(path, Vector3.zero, Quaternion.identity, 0);
         }
         if (newShip != null)
         {

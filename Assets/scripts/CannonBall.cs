@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CannonBall : MonoBehaviour {
+public class CannonBall : Photon.MonoBehaviour {
 
 	private Transform owner;
 	private float timeAlive;
@@ -58,26 +58,26 @@ public class CannonBall : MonoBehaviour {
 				}
 			} else {
 				if (LayerMask.LayerToName (collider.gameObject.layer).Contains ("playerMesh")) {
-                    PlayerInput controller = collider.GetComponentInParent<PlayerInput>();
+                    ShipMeshPhysicsComponent mesh = collider.GetComponent<ShipMeshPhysicsComponent>();
                    
                     Instantiate(shipHit, transform.position, transform.rotation);
 
                     if (kraken)
                     {
                         kraken.gameStats.numOfShotHits++;
-                        if (controller != null)
+                        if (mesh != null)
                         {
-                            controller.hit(damage * reflectMult, kraken);
-                            controller.addPushForce(this.GetComponent<Rigidbody>().velocity.normalized, pushMagnitude);
+                            //controller.hit(damage * reflectMult, kraken);
+                            //controller.addPushForce(this.GetComponent<Rigidbody>().velocity.normalized, pushMagnitude);
+                            mesh.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.All, damage);
                         }
                     }
                     else {
                         PlayerInput player = owner.GetComponent<PlayerInput>();
                         player.gameStats.numOfShotHits++;
-                        if (controller != null)
+                        if (mesh != null)
                         {
-                            controller.hit(damage * reflectMult, player);
-                            controller.addPushForce(this.GetComponent<Rigidbody>().velocity.normalized, pushMagnitude);
+                            mesh.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.All, damage);
                         }
                     } 
 					

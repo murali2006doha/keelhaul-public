@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class ShipMeshPhysicsComponent : MonoBehaviour {
@@ -11,12 +10,13 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 	AbstractGameManager manager;
 	HookshotComponent hookshotComponent;
 	BombControllerComponent bombController;
-
-	[Header("Scene Variables")]
+    Action<float> takeDamageAction { get; set; }
+    [Header("Scene Variables")]
 	public GameObject rammingSprite;
 
-	internal void Initialize(PlayerInput input, ShipStats stats, UIManager uiManager, GameObject scoreDestination, 
-		HookshotComponent hookshotComponent, AbstractGameManager manager, BombControllerComponent bombController) {
+	internal void Initialize(
+        PlayerInput input, ShipStats stats, UIManager uiManager, GameObject scoreDestination, 
+		HookshotComponent hookshotComponent, AbstractGameManager manager, BombControllerComponent bombController, Action<float> takeDamage) {
 		this.input = input;
 		this.scoreDestination = scoreDestination;
 		this.hookshotComponent = hookshotComponent;
@@ -24,6 +24,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 		this.uiManager = uiManager;
 		this.stats = stats;
 		this.bombController = bombController;
+        this.takeDamageAction = takeDamage;
 	}
 
 
@@ -81,10 +82,15 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 		if (pillar != null) {
 			pillar.activatePillar ();
 		}
-	}
+    }
 
+    [PunRPC]
+    public void TakeDamage(float damage)
+    {
+        this.takeDamageAction(damage);
+    }
 
-	void handleBombExplosion (Collider other) {
+void handleBombExplosion (Collider other) {
 		
 		bool shouldGetHit = true;
 		bool stopHitting = false;
@@ -126,7 +132,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 
 	void handleKrakenArm (Collider other) {
 		KrakenInput kraken = other.gameObject.transform.root.GetComponent<KrakenInput> ();
-		input.hit (stats.kraken_damage, kraken);
+		input.hit (stats.kraken_damage);
 		other.gameObject.transform.root.GetComponent<KrakenInput> ().vibrate (.5f, .5f);
 	}
 }
