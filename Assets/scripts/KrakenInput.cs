@@ -245,7 +245,12 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     void OnTriggerExit(Collider other)
     {
 
-        if (LayerMask.LayerToName(other.gameObject.layer).Equals("player"))
+        if (animator.sinkableShip!=null && LayerMask.LayerToName(other.gameObject.layer).Equals("player") && other.transform.root == animator.sinkableShip.transform.root)
+        {
+            hittingPlayer = false;
+            hittingShip = null;
+            animator.sinkableShip = null;
+        } else if (hittingShip!=null && LayerMask.LayerToName(other.gameObject.layer).Equals("player") && other.transform.root == hittingShip.transform.root)
         {
             hittingPlayer = false;
             hittingShip = null;
@@ -675,6 +680,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         isSubmerging = false;
         bubbles.SetActive(false);
         submergeTimer = Time.realtimeSinceStartup;
+
     }
 
 
@@ -705,6 +711,8 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         gameObject.layer = LayerMask.NameToLayer("kraken_submerged");
         bubbles.SetActive(true);
         submergeTimer = Time.realtimeSinceStartup;
+        previousShip = null;
+        hittingShip = null;
     }
 
 

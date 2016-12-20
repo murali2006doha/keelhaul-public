@@ -31,6 +31,16 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
 		this.shipTransform = shipTransform;
 		this.uiManager = uiManager;
 	}
+
+    public void Update()
+    {
+        if (!canShootAlt)
+        {
+            float val = (Time.realtimeSinceStartup - altTimer) / stats.alternateShootDelay;
+            uiManager.setAltFireMeter(val > 1 ? 1f : val);
+        }
+    }
+
 		
 
 	public void handleShoot(){
@@ -39,21 +49,19 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
 		//if (canShootAlt && input.Actions.Alt_Fire.RawValue > .5f) {
 		if (canShootAlt && shoot_direction.magnitude > 0) {
 			altTimer = Time.realtimeSinceStartup;
-
 			this.alternateFire ();
-
 			canShootAlt = false;
 			Invoke ("ResetShotAlt", stats.alternateShootDelay);
 			input.vibrate (.15f, .25f);
 			uiManager.resetAltFireMeter ();
 
-		} else if (!canShootAlt) {
-			uiManager.setAltFireMeter ((Time.realtimeSinceStartup - altTimer) / stats.alternateShootDelay);
-		}
+		} 
 
 	}
 
 	public void ResetShotAlt() {
 		canShootAlt = true;
-	}
+        uiManager.setAltFireMeter(1);
+
+    }
 }
