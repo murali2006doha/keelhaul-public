@@ -54,6 +54,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     //Current stats
     float pushMagnitude;
+    float lastInkHitTime;
     Vector3 pushDirection;
     public float velocity;
     float damage = 1;
@@ -103,7 +104,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         aimComponent.Initialize(transform);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
-		shipMeshComponent.Initialize (this, stats, uiManager, scoreDestination, hookshotComponent, manager, bombController);
+		shipMeshComponent.Initialize (this, stats, uiManager, scoreDestination, hookshotComponent, manager, bombController, ()=>
+        {
+            motor.setSpeedModifier(stats.inkSlowDownFactor);
+            lastInkHitTime = Time.realtimeSinceStartup;
+            Invoke("resetInkSpeed", 1f);
+        });
         centralCannon.Initialize(this, this.transform, this.aimComponent.aim, stats, gameStats, motor);
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
 
@@ -288,6 +294,17 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             hit(20);
             startSinking = false;
             locked = false;
+        }
+    }
+
+
+
+
+    private void resetInkSpeed()
+    {
+        if (!hookshotComponent.isHooked() && (Time.realtimeSinceStartup - lastInkHitTime) > stats.inkSlowDownTime)
+        {
+            motor.setSpeedModifier(1);
         }
     }
 

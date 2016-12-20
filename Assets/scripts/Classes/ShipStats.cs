@@ -18,13 +18,14 @@ public class ShipStats : MonoBehaviour {
 	public float alternateShootDelay = 2f;
 	public float boostVelocity = 5f;
 	public float boostResetTime= 6f;
-	public float barrelSlowDownFactor = 0.75f;
+    public float inkSlowDownTime = 1f;
+    public float barrelSlowDownFactor = 0.75f;
 
 	public float sinkTime = 0.5f;
 	public float sinkSpeed = 1f;
 	public float deAccelerationSpeed= 2f;
 	public float invinciblityTime = 5f;
-
+    public float inkSlowDownFactor = .2f;
 	public float kraken_damage = 1f;
 
 }

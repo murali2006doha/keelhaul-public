@@ -35,14 +35,14 @@ public class ShipAnimator : MonoBehaviour {
 		ship.setupRespawn ();		
 	}
 	public void onDeathAnimationEnd(int dying){
-		Debug.Log ("reaching death animation end");
+		
 		if (dying==1 && shipAnimator.GetBool ("death") == true) { //this function is called at end of dying
 			Invoke("setupRespawn",respawnTime);
 	
 
 		}
 		else if (dying==0 && shipAnimator.GetBool("death") == false){
-			Debug.Log ("reaching respawn");
+			
 			ship.rebirth ();
 		}
 
