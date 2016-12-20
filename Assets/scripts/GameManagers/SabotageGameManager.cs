@@ -65,6 +65,29 @@ public class SabotageGameManager : AbstractGameManager
         {
             kraken = GameObject.FindObjectOfType<KrakenInput>();
         }
+        if(includeKraken && shipPoints.Count == 1)
+        {
+            //Temp fix
+            var uis = GameObject.FindObjectsOfType<UIManager>();
+            foreach (UIManager ui in uis)
+            {
+                if (ui.gameObject.transform.FindChild("P1panel/Compass") != null)
+                {
+                   
+                    ui.gameObject.transform.FindChild("P1panel/doubloonImage").gameObject.SetActive(true);
+                    ui.gameObject.transform.FindChild("P1panel/doubloonText").gameObject.SetActive(true);
+                    ui.gameObject.transform.FindChild("P1panel/enemyIslandSlider").gameObject.SetActive(false);
+                }
+               
+            }
+            foreach (GameObject barrel in barrels)
+            {
+                barrel.GetComponent<Barrel>().disableDetonate();
+               
+            }
+
+        }
+       
 
     }
 
