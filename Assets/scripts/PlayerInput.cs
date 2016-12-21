@@ -110,8 +110,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             scoreDestination, 
             hookshotComponent, 
             manager, 
-            bombController, 
-            hit
+            bombController,
+            (dmg) => { } 
             );
         centralCannon.Initialize(this, this.transform, this.aimComponent.aim, stats, gameStats, motor);
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
@@ -282,7 +282,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             if (particle.parent != this.transform.gameObject)
             {
                 gameStats.damageTakenFromChinese += particle.damage;
-                hit(particle.damage);
+           //     hit(particle.damage);
             }
         }
 
@@ -294,7 +294,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         {
             gameStats.numOfTimesSubmergedByKraken += 1;
             hookshotComponent.UnHook();
-            hit(20);
+       //     hit(20);
             startSinking = false;
             locked = false;
         }

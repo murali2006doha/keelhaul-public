@@ -132,7 +132,7 @@ void handleBombExplosion (Collider other) {
 
 	void handleKrakenArm (Collider other) {
 		KrakenInput kraken = other.gameObject.transform.root.GetComponent<KrakenInput> ();
-		input.hit (stats.kraken_damage);
+	//	input.hit (stats.kraken_damage);
 		other.gameObject.transform.root.GetComponent<KrakenInput> ().vibrate (.5f, .5f);
 	}
 }

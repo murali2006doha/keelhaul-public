@@ -96,7 +96,7 @@ public class BombComponent : MonoBehaviour {
 
 		Instantiate (shipHit, exp.transform.position, exp.transform.rotation);
 		if (controller != null) {
-			controller.hit (damage);
+		//	controller.hit (damage);
 		}
 	}
 
