@@ -41,6 +41,8 @@ public class UIManager : MonoBehaviour
     public GameObject finishText;
     public GameObject colorTint;
     public GameObject worldSpace;
+    Image boostBarPanel;
+
 
     bool highlight = true;
 
@@ -54,6 +56,7 @@ public class UIManager : MonoBehaviour
             arrowImage = compassArrow.GetComponent<Image>();
             targetBarrel();
         }
+        boostBarPanel = boostBar.transform.GetChild(0).GetComponentInChildren<Image>();
     }
 
 
@@ -196,6 +199,20 @@ public class UIManager : MonoBehaviour
     public void setBoostBar(float value)
     {
         boostBar.value = value;
+    }
+
+
+    public void setBoostBar(float value,bool disabled)
+    {
+        this.setBoostBar(value);
+        if (disabled)
+        {
+            boostBarPanel.color = Color.gray;
+        }
+        else
+        {
+            boostBarPanel.color = Color.white;
+        }
     }
 
 
