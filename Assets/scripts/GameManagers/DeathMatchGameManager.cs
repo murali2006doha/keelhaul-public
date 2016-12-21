@@ -38,6 +38,8 @@ public class DeathMatchGameManager : AbstractGameManager
     [HideInInspector]
     public List<int> shipPoints = new List<int>();
 
+    Dictionary<string, int> gamePoints;
+
     bool gameOver = false;
     bool done = false;
     MonoBehaviour winnerScript;
@@ -77,12 +79,18 @@ public class DeathMatchGameManager : AbstractGameManager
 
     }
 
-
+    [PunRPC]
+    public void AddPlayer(string id) {
+        gamePoints[id] = 0;
+        if (gamePoints.Keys.Count >= 2) {
+            gameStart();
+        }
+    }
 
     void gameStart()
     {
-
-        foreach (PlayerInput player in players)
+        PlayerInput [] playerInputs = FindObjectsOfType<PlayerInput>();
+        foreach (PlayerInput player in playerInputs)
         {
             player.gameStarted = true;
             player.setStatus(ShipStatus.Alive);
@@ -313,6 +321,10 @@ public class DeathMatchGameManager : AbstractGameManager
 
     }
 
+    [PunRPC]
+    public void incrementPoint(string id) {
+
+    }
 
     public void activateVictoryText()
     {

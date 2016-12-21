@@ -374,7 +374,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
 
-    public void hit(float passedDamage)
+    public void hit(float passedDamage, string id)
     {
         if (!invincible && health > 0)
         {
