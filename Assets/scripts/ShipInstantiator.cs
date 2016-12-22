@@ -15,6 +15,7 @@ public class ShipInstantiator : MonoBehaviour {
 		public GameObject altFirePrefab;
 		public Sprite altFireSprite;
 		public Sprite altFireOutline;
+        public Sprite portrait;
 
 	}
 
@@ -68,7 +69,9 @@ public class ShipInstantiator : MonoBehaviour {
      
 		ship.uiManager.altFireBar.gameObject.transform.GetChild(1).gameObject.GetComponentInChildren<Image> ().sprite = info.altFireSprite;
 		ship.uiManager.altFireBar.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Image> ().sprite = info.altFireOutline;
-		ship.followCamera = ui.GetComponentInParent<cameraFollow> ();
+        ship.uiManager.transform.GetChild(0).Find("Portrait").GetComponent<Image>().sprite = info.portrait;
+
+        ship.followCamera = ui.GetComponentInParent<cameraFollow> ();
 		ship.followCamera.target = ship.gameObject;
 		ship.followCamera.ready = true;
         ship.followCamera.camera.cullingMask |= (1 << newLayer);
