@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-
+using System.Collections.Generic;
 public class CannonBall : Photon.MonoBehaviour {
 
 	private Transform owner;
@@ -77,7 +76,8 @@ public class CannonBall : Photon.MonoBehaviour {
                         player.gameStats.numOfShotHits++;
                         if (mesh != null)
                         {
-                            mesh.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.All, damage);
+                            List<float> valuesToSend = new List<float>(new float[] {damage, (float)player.playerId });
+                            mesh.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.All, damage, player.playerId);
                         }
                     } 
 					

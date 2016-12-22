@@ -7,7 +7,7 @@ public class NetworkManager : MonoBehaviour
 
     [SerializeField]
     Text connectionText;
-    public GameObject initializer;
+    public GameInitializer initializer;
 
     void Start()
     {
@@ -35,6 +35,17 @@ public class NetworkManager : MonoBehaviour
 
     void StartSpawnProcess(float respawnTime)
     {
-        initializer.SetActive(true);
+
+        initializer.isMaster = true;
+        initializer.playerId = PhotonNetwork.player.ID;
+        initializer.onGameManagerCreated = onGameManagerCreated;
+        initializer.gameObject.SetActive(true);
+    }
+
+    void onGameManagerCreated() {
+        AbstractGameManager manager = FindObjectOfType<AbstractGameManager>();
+        manager.enabled = true;
+     //   manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, PhotonNetwork.player.ID);
+
     }
 }

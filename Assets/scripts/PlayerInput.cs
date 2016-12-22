@@ -81,12 +81,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public float rotationSpeed = 1f;
     private bool notInitalized = true;
     public ShipStatus status = ShipStatus.Waiting;
+    public int playerId;
+
 
     void Start()
     {
         //Have to refactor this later
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
-        this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams());
+        this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams(), playerId);
 
         motor.Initialize(
             cc, 
@@ -111,7 +113,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             hookshotComponent, 
             manager, 
             bombController,
-            (dmg) => { } 
+            hit
             );
         centralCannon.Initialize(this, this.transform, this.aimComponent.aim, stats, gameStats, motor);
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
@@ -374,7 +376,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
 
-    public void hit(float passedDamage, string id)
+    public void hit(float passedDamage, int id)
     {
         if (!invincible && health > 0)
         {
@@ -388,6 +390,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 vibrate(1f, 1f);
                 hookshotComponent.UnHook();
                 checkColliders(false);
+                manager.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
                 die();
             }
             else

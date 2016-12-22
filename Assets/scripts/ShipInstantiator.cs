@@ -22,7 +22,7 @@ public class ShipInstantiator : MonoBehaviour {
 	public GameObject splashParticle;
 
 
-	public void setupShipNames(PlayerInput ship, ShipEnum type, int num, int numOfBases){
+	public void setupShipNames(PlayerInput ship, ShipEnum type, int num, int numOfBases, int id){
 		MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects> ();
 		num++;
 		ShipInformation info = getShip (type);
@@ -55,7 +55,7 @@ public class ShipInstantiator : MonoBehaviour {
         }
         else
         {
-            ship.startingPoint = mapObjects.shipStartingLocations[num-1].transform.position;
+            ship.startingPoint = mapObjects.shipStartingLocations[id-1].transform.position;
             ship.transform.position = ship.startingPoint;
         }
 			

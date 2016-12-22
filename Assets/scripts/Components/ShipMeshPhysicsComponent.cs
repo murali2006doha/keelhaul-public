@@ -10,13 +10,13 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 	AbstractGameManager manager;
 	HookshotComponent hookshotComponent;
 	BombControllerComponent bombController;
-    Action<float> takeDamageAction { get; set; }
+    Action<float,int> takeDamageAction { get; set; }
     [Header("Scene Variables")]
 	public GameObject rammingSprite;
 
 	internal void Initialize(
         PlayerInput input, ShipStats stats, UIManager uiManager, GameObject scoreDestination, 
-		HookshotComponent hookshotComponent, AbstractGameManager manager, BombControllerComponent bombController, Action<float> takeDamage) {
+		HookshotComponent hookshotComponent, AbstractGameManager manager, BombControllerComponent bombController, Action<float,int> takeDamage) {
 		this.input = input;
 		this.scoreDestination = scoreDestination;
 		this.hookshotComponent = hookshotComponent;
@@ -85,9 +85,9 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
     }
 
     [PunRPC]
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, int id)
     {
-        this.takeDamageAction(damage);
+        this.takeDamageAction(damage, id);
     }
 
 void handleBombExplosion (Collider other) {

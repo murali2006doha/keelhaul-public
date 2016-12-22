@@ -61,7 +61,7 @@ public class ShipCannonComponent : MonoBehaviour
         for (int x = 0; x < numOfCannonBalls; x++)
         {
             Vector3 newRot = MathHelper.addY(rot, x * angleOfCannonShots);
-            GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, cannonBallPos.position + (velocity * dampening), Quaternion.Euler(newRot));
+            GameObject cannonBall = PhotonNetwork.Instantiate(PathVariables.cannonBallPath, cannonBallPos.position + (velocity * dampening), Quaternion.Euler(newRot), 0);
             cannonBall.transform.rotation = Quaternion.Euler(newRot);
             cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
             Vector3 forwardForce = cannonBall.transform.forward * cannonForce + vect;

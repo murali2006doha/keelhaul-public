@@ -27,9 +27,9 @@ public class GameInitializer : MonoBehaviour {
 
     PlayerSelectSettings ps;
     Dictionary<int,int> teamNums = new Dictionary<int,int>();
-
-    
-
+    public bool isMaster;
+    public int playerId;
+    public Action onGameManagerCreated;
 
     void Start()
     {
@@ -71,8 +71,10 @@ public class GameInitializer : MonoBehaviour {
 
         MapObjects map = GameObject.FindObjectOfType<MapObjects>();
         createPlayersAndMapControllers(map);
-
-        createGameManager();
+        if (isMaster) {
+            createGameManager();
+        }
+        
 
     }
 
@@ -158,7 +160,7 @@ public class GameInitializer : MonoBehaviour {
             }
         } else if (gameType == GameTypeEnum.DeathMatch)
         {
-            GameObject manager = Instantiate(Resources.Load(PathVariables.deathMatchManager, typeof(GameObject)), this.transform.parent) as GameObject;
+            GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
             DeathMatchGameManager deathMatchManager = manager.GetComponent<DeathMatchGameManager>();
             deathMatchManager.cams = cams;
             deathMatchManager.ps = ps;
@@ -183,6 +185,8 @@ public class GameInitializer : MonoBehaviour {
                     deathMatchManager.shipPoints.Add(0);
                 }
             }
+
+            onGameManagerCreated();
         }
         else if (gameType == GameTypeEnum.KrakenHunt) {
             GameObject manager = Instantiate(Resources.Load(PathVariables.krakenHuntManager, typeof(GameObject)), this.transform.parent) as GameObject;
@@ -539,6 +543,7 @@ public class GameInitializer : MonoBehaviour {
         if (newShip != null)
         {
             PlayerInput input = newShip.GetComponent<PlayerInput>();
+            input.playerId = playerId;
             input.Actions = player.Actions;
             input.shipNum = num;
             if (isTeam)

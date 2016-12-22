@@ -41,7 +41,7 @@ public class DeathMatchGameManager : AbstractGameManager
     Dictionary<string, int> gamePoints;
 
     bool gameOver = false;
-    bool done = false;
+    bool done = true;
     MonoBehaviour winnerScript;
     GameObject winner;
     int krakenPoints;
@@ -53,7 +53,7 @@ public class DeathMatchGameManager : AbstractGameManager
     void Start()
     {
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
-
+        gamePoints = new Dictionary<string, int>();
         //Disable unused islands
         for (int z = shipPoints.Count; z < mapObjects.islands.Length; z++)
         {
@@ -77,16 +77,35 @@ public class DeathMatchGameManager : AbstractGameManager
             ui.gameObject.transform.FindChild("P1panel/enemyIslandSlider").gameObject.SetActive(false);
         }
 
+        foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>()) {
+            manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, PhotonNetwork.player.ID);
+        }
+     
     }
 
     [PunRPC]
-    public void AddPlayer(string id) {
-        gamePoints[id] = 0;
-        if (gamePoints.Keys.Count >= 2) {
-            gameStart();
+    public void AddPlayer(int id) {
+        //        Debug.Log(gamePoints.Keys.Count.ToString());
+        if (GetComponent<PhotonView>().isMine) {
+            gamePoints.Add(id.ToString(), 0);
+            Debug.Log("reaching addplayer");
+            Debug.Log(id);
+            Debug.Log(gamePoints.Keys.Count);
+            if (gamePoints.Keys.Count >= 2)
+            {
+                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                {
+                    manager.GetComponent<PhotonView>().RPC("SetDone", PhotonTargets.All);
+                }
+            }
         }
+
     }
 
+    [PunRPC]
+    public void SetDone() {
+        done = false;
+    }
     void gameStart()
     {
         PlayerInput [] playerInputs = FindObjectsOfType<PlayerInput>();
@@ -200,6 +219,7 @@ public class DeathMatchGameManager : AbstractGameManager
     {
         return gameOver;
     }
+
 
     override public void acknowledgeKill(StatsInterface attacker, StatsInterface victim)
     {
@@ -322,8 +342,21 @@ public class DeathMatchGameManager : AbstractGameManager
     }
 
     [PunRPC]
-    public void incrementPoint(string id) {
+    public void IncrementPoint(int id) {
+        Debug.Log(gamePoints.Keys.ToString());
+        foreach (string key in gamePoints.Keys) {
+            Debug.Log(key);
+        }
+        Debug.Log("Id geting hit: " + id.ToString());
 
+        if (gamePoints.ContainsKey(id.ToString())) {
+            gamePoints[id.ToString()]++;
+            if (gamePoints[id.ToString()] >= playerWinPoints)
+            {
+                Debug.Log(id.ToString() + " Won");
+            }
+        }
+        
     }
 
     public void activateVictoryText()
