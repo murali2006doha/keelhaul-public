@@ -413,9 +413,70 @@ public class SabotageGameManager : AbstractGameManager
         }
         else
         {
-            triggerVictoryScreenForTeamGame();
+            if (includeKraken && shipPoints.Count == 1)
+            {
+                triggerVictorForKrakenVsPirates();
+            }
+            else
+            {
+                triggerVictoryScreenForTeamGame();
+            }
         }
 
+    }
+
+    private void triggerVictorForKrakenVsPirates()
+    {
+        kraken.reset();
+        kraken.followCamera.enabled = false;
+        foreach (PlayerInput z in players)
+        {
+            z.reset();
+            z.setStatus(ShipStatus.Waiting);
+            z.followCamera.enabled = false;
+        }
+        screenSplitter.SetActive(false);
+        MapObjects map = GameObject.FindObjectOfType<MapObjects>();
+        map.gameOverCamera.gameObject.SetActive(true);
+
+        GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
+        gameOverUI.gameObject.SetActive(true);
+        if (winnerScript.GetType() == typeof(PlayerInput))
+        {
+            gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "The Pirates");
+            Transform winnerTransform = map.winnerLoc.transform;
+            foreach (PlayerInput player in players)
+            {
+                Transform trans = winnerTransform.GetChild(player.placeInTeam);
+                player.gameObject.transform.position = new Vector3(trans.position.x, player.gameObject.transform.position.y, trans.position.z);
+                player.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+                player.gameObject.transform.localScale *= 2f;
+            }
+
+            Transform loserTransform = map.loser1loc.transform;
+
+            Transform t = loserTransform;
+            kraken.gameObject.transform.position = new Vector3(t.position.x, kraken.gameObject.transform.position.y, t.position.z);
+            kraken.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+
+       }
+        else
+        {
+            gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Kraken");
+            Transform winnerTransform = map.winnerLoc.transform;
+            Transform trans = winnerTransform;
+            kraken.gameObject.transform.position = new Vector3(trans.position.x, kraken.gameObject.transform.position.y, trans.position.z);
+            kraken.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+            kraken.gameObject.transform.localScale *= 2f;
+
+            Transform loserTransform = map.loser1loc.transform;
+            foreach (PlayerInput player in players)
+            {
+                Transform t = loserTransform.GetChild(player.placeInTeam);
+                player.gameObject.transform.position = new Vector3(t.position.x, player.gameObject.transform.position.y, t.position.z);
+                player.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+            }
+        }
     }
 
     private void triggerVictoryScreenForTeamGame()
