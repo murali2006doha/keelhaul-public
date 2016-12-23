@@ -378,9 +378,13 @@ public class GameInitializer : MonoBehaviour {
                 setUpCameraOnCanvas(instantiatedUI, camera1);
                 camCount++;
                 //Only case where screen is small
+
                 if (ps.players.Count == 4)
                 {
                     newCamera.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
+                }
+                else if (ps.players.Count == 1) {
+                    newCamera.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
                 }
                 else
                 {
@@ -432,10 +436,14 @@ public class GameInitializer : MonoBehaviour {
             var camera1 = newCamera.GetComponentInChildren<Camera>();
             setUpCameraOnCanvas(instantiatedUI, camera1);
 
-
+            camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
             if (numOfKrakens + shipSelections.Count >= 4)
             {
                 camera1.GetComponentInParent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
+            }
+            else if (shipSelections.Count == 1)
+            {
+                camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
             }
             else
             {
@@ -472,7 +480,11 @@ public class GameInitializer : MonoBehaviour {
     private void setUpCameraPositions(bool includeKraken, int shipCount, int playerCount, GameObject newCamera)
     {
         var camera1 = newCamera.GetComponentInChildren<cameraFollow>();
-        if (playerCount == 2)
+
+        if (playerCount == 1) {
+            camera1.SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
+        }
+        else if (playerCount == 2)
         {
 
             if (includeKraken)

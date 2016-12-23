@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using InControl;
 using System;
+using UnityEngine.UI;
 
 public class DeathMatchGameManager : AbstractGameManager
 {
@@ -91,7 +92,7 @@ public class DeathMatchGameManager : AbstractGameManager
             Debug.Log("reaching addplayer");
             Debug.Log(id);
             Debug.Log(gamePoints.Keys.Count);
-            if (gamePoints.Keys.Count >= 2)
+            if (id  >= 2)
             {
                 foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                 {
@@ -104,7 +105,12 @@ public class DeathMatchGameManager : AbstractGameManager
 
     [PunRPC]
     public void SetDone() {
-        done = false;
+
+        if (GetComponent<PhotonView>().isMine) {
+            globalCanvas.waitingForPlayers.SetActive(false);
+            done = false;
+        }
+        
     }
     void gameStart()
     {
@@ -307,6 +313,7 @@ public class DeathMatchGameManager : AbstractGameManager
                 {
                     if (playr.teamNo == attackingPlayer.teamNo)
                     {
+                     
                         playr.uiManager.updatePoint(points);
 
                     }
@@ -343,17 +350,31 @@ public class DeathMatchGameManager : AbstractGameManager
 
     [PunRPC]
     public void IncrementPoint(int id) {
+        if (!GetComponent<PhotonView>().isMine) {
+            return;
+        }
+
         Debug.Log(gamePoints.Keys.ToString());
         foreach (string key in gamePoints.Keys) {
             Debug.Log(key);
         }
         Debug.Log("Id geting hit: " + id.ToString());
 
+        if (PhotonNetwork.player.ID == id) {
+
+            players[0].uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
+        }
+
         if (gamePoints.ContainsKey(id.ToString())) {
             gamePoints[id.ToString()]++;
             if (gamePoints[id.ToString()] >= playerWinPoints)
             {
                 Debug.Log(id.ToString() + " Won");
+                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                {
+                    manager.GetComponent<PhotonView>().RPC("TriggerNetworkedVictory", PhotonTargets.All, id);
+                }
+
             }
         }
         
@@ -372,6 +393,23 @@ public class DeathMatchGameManager : AbstractGameManager
         }
     }
 
+    [PunRPC]
+    public void TriggerNetworkedVictory(int id) {
+
+        if (!GetComponent<PhotonView>().isMine) {
+            return;
+        }
+
+        if (PhotonNetwork.player.ID == id) {
+            globalCanvas.networkText.transform.parent.gameObject.SetActive(true);
+            globalCanvas.networkText.GetComponent<Text>().text = "You win";
+        } else {
+            globalCanvas.networkText.transform.parent.gameObject.SetActive(true);
+            globalCanvas.networkText.GetComponent<Text>().text = "You Lost";
+        }
+        players[0].gameStarted = false;
+
+    }
     public void triggerVictory()
     {
 

@@ -390,7 +390,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 vibrate(1f, 1f);
                 hookshotComponent.UnHook();
                 checkColliders(false);
-                manager.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
+                foreach (DeathMatchGameManager manager1 in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                {
+                    manager1.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
+                }
                 die();
             }
             else

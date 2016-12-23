@@ -96,15 +96,15 @@ public class CannonBall : Photon.MonoBehaviour {
 					Instantiate (normalHit, transform.position, transform.rotation);
 				}
 
-				Destroy (gameObject);
+                PhotonNetwork.Destroy(GetComponent<PhotonView>());
+
 			}
 
 		}
 	}
 	void destroySelf(){
-		Destroy (this.gameObject);
-
-	}
+        PhotonNetwork.Destroy(GetComponent<PhotonView>());
+    }
 
 	void FixedUpdate(){
 		this.GetComponent<Rigidbody> ().AddForce (new Vector3 (0, gravity, 0));

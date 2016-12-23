@@ -11,7 +11,8 @@ public class GlobalCanvas : MonoBehaviour {
     public GameOverStatsUI gameOverUI;
     public RawImage panel1;
     public RawImage panel2;
-
+    public GameObject networkText;
+    public GameObject waitingForPlayers;
 
     public void setUpSplitScreen(int numOfPlayers)
     {
