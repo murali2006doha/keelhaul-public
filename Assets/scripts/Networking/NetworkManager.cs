@@ -25,7 +25,7 @@ public class NetworkManager : MonoBehaviour
     void OnJoinedLobby()
     {
         RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 10 };
-        PhotonNetwork.JoinOrCreateRoom("Mike", ro, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom("Mike2", ro, TypedLobby.Default);
     }
 
     void OnJoinedRoom()
