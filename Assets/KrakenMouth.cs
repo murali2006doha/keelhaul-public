@@ -26,7 +26,8 @@ public class KrakenMouth : MonoBehaviour {
 
 
     public bool isHooked() {
-        return (barrel.GetComponent<Barrel>().owner == this.gameObject);
+//        return (barrel.GetComponent<Barrel>().owner == this.gameObject);
+		return false;
     }
 
     public void UnHook() {
