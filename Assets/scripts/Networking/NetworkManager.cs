@@ -8,38 +8,51 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     Text connectionText;
     public GameInitializer initializer;
-
+    public bool offlineMode = false;
     void Start()
     {
 
         PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
+        PhotonNetwork.offlineMode = offlineMode;
         PhotonNetwork.ConnectUsingSettings("0.2");
 
     }
 
     void Update()
     {
-        connectionText.text = PhotonNetwork.connectionStateDetailed.ToString();
+        if (connectionText) {
+            connectionText.text = PhotonNetwork.connectionStateDetailed.ToString();
+        }
+        
     }
 
     void OnJoinedLobby()
     {
-        RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 10 };
-        PhotonNetwork.JoinOrCreateRoom("Mike2", ro, TypedLobby.Default);
+        RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 };
+        PhotonNetwork.JoinOrCreateRoom("default", ro, TypedLobby.Default);
     }
 
     void OnJoinedRoom()
     {
-        StartSpawnProcess(0f);
+        if (PhotonNetwork.offlineMode)
+        {
+            initializer.isMaster = true;
+            initializer.playerId = 1;
+            initializer.gameObject.SetActive(true);
+        }
+        else {
+            StartSpawnProcess();
+        }
+    
     }
 
-    void StartSpawnProcess(float respawnTime)
+    void StartSpawnProcess()
     {
 
         initializer.isMaster = true;
         initializer.playerId = PhotonNetwork.player.ID;
         initializer.onGameManagerCreated = onGameManagerCreated;
-        initializer.gameObject.SetActive(true);
+        initializer.enabled = true;
     }
 
     void onGameManagerCreated() {

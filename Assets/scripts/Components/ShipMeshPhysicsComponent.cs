@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipMeshPhysicsComponent : MonoBehaviour {
@@ -46,14 +47,12 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		
 		if (input != null && input.gameStarted) {
-
-			if (LayerMask.LayerToName(other.gameObject.layer).Equals("kraken_arm") && !input.invincible) {
-				print (other);
+            if (LayerMask.LayerToName(other.gameObject.layer).Equals("kraken_arm") && !input.invincible) {
 
 				handleKrakenArm (other);
 			}
 
-			if (LayerMask.LayerToName (other.gameObject.layer).Equals ("explosion") && !input.invincible) {
+            if (LayerMask.LayerToName (other.gameObject.layer).Equals ("explosion") && !input.invincible) {
 				handleBombExplosion (other);
 			}
 
@@ -68,7 +67,9 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 			if (other.name == "KrakenBubbles") {
 				uiManager.triggerShipAlert();
 			}
-		}
+
+           
+        }
 	}
 
 

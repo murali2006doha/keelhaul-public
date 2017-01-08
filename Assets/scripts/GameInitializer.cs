@@ -70,10 +70,13 @@ public class GameInitializer : MonoBehaviour {
         SoundManager.initLibrary();
 
         MapObjects map = GameObject.FindObjectOfType<MapObjects>();
-        createPlayersAndMapControllers(map);
-        if (isMaster) {
-            createGameManager();
+        if (isMaster)
+        {
+            Debug.Log("creating manager");
+            createGameManager(() => createPlayersAndMapControllers(map));
         }
+     
+
         
 
     }
@@ -129,7 +132,7 @@ public class GameInitializer : MonoBehaviour {
         return teams.Count;
     }
 
-    private void createGameManager()
+    private void createGameManager(Action onInitialize)
     {
         if (gameType == GameTypeEnum.Sabotage)
         {
@@ -185,7 +188,7 @@ public class GameInitializer : MonoBehaviour {
                     deathMatchManager.shipPoints.Add(0);
                 }
             }
-
+            deathMatchManager.onInitialize = onInitialize;
             onGameManagerCreated();
         }
         else if (gameType == GameTypeEnum.KrakenHunt) {
@@ -271,6 +274,10 @@ public class GameInitializer : MonoBehaviour {
                 {
                     shipSelections[num].Actions = action;
                     num = createShipWithName(num, shipSelections[num]);
+                    foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                    {
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                    }
                 }
                 
             }
@@ -290,6 +297,10 @@ public class GameInitializer : MonoBehaviour {
                 {
                     shipSelections[num].Actions = action;
                     num = createShipWithName(num, shipSelections[num]);
+                    foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                    {
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                    }
                 }
                 else
                 {
@@ -307,6 +318,10 @@ public class GameInitializer : MonoBehaviour {
             {
                 shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
                 num = createShipWithName(num,shipSelections[z]);
+                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                {
+                    manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                }
             }
 
 
@@ -324,6 +339,10 @@ public class GameInitializer : MonoBehaviour {
             {
                 shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
                 num = createShipWithName(num, shipSelections[z]);
+                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                {
+                    manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                }
             }
 
         }
@@ -555,6 +574,7 @@ public class GameInitializer : MonoBehaviour {
         if (newShip != null)
         {
             PlayerInput input = newShip.GetComponent<PlayerInput>();
+
             input.playerId = playerId;
             input.Actions = player.Actions;
             input.shipNum = num;

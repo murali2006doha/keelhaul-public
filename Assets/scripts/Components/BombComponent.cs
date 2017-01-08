@@ -77,7 +77,7 @@ public class BombComponent : MonoBehaviour {
 			}
 		}
 
-		if ((other.gameObject.name).Equals("krakenMesh")) {
+		if (other.gameObject.name.Contains("Kraken")) {
 			KrakenInput kraken = other.gameObject.GetComponent<KrakenInput> ();
 			if (kraken.submerged == false) { //only if not submerged
 				kraken.gameStats.numOfBombsDetonated++;

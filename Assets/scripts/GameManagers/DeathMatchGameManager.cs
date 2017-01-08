@@ -50,11 +50,12 @@ public class DeathMatchGameManager : AbstractGameManager
     List<string> teamNames = new List<string> { "Red Team", "Blue Team", "Green Team", "Yellow Team" };
     Dictionary<string, string> teamToColor = new Dictionary<string, string> { { "Red Team", "red" }, { "Blue Team", "blue" }, { "Green Team", "green" }, { "Yellow Team", "yellow" } };
     string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
-
+    public Action onInitialize;
     void Start()
     {
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
         gamePoints = new Dictionary<string, int>();
+        Debug.Log("reaching start");
         //Disable unused islands
         for (int z = shipPoints.Count; z < mapObjects.islands.Length; z++)
         {
@@ -78,10 +79,9 @@ public class DeathMatchGameManager : AbstractGameManager
             ui.gameObject.transform.FindChild("P1panel/enemyIslandSlider").gameObject.SetActive(false);
         }
 
-        foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>()) {
-            manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, PhotonNetwork.player.ID);
-        }
-     
+        onInitialize();
+
+
     }
 
     [PunRPC]
@@ -673,6 +673,6 @@ public class DeathMatchGameManager : AbstractGameManager
 
     internal override int getNumberOfTeams()
     {
-        return shipPoints.Count;
+        return gamePoints.Count;
     }
 }

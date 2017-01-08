@@ -54,6 +54,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     //Current stats
     float pushMagnitude;
+    float lastInkHitTime;
     Vector3 pushDirection;
     public float velocity;
     float damage = 1;
@@ -102,10 +103,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 followCamera.DeActivateMotionBlur();
             }
         );
+
         aimComponent.Initialize(transform);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
-		shipMeshComponent.Initialize (
+        
+		shipMeshComponent.Initialize(
             this, 
             stats, 
             uiManager, 
@@ -114,7 +117,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             manager, 
             bombController,
             hit
-            );
+        );
+
         centralCannon.Initialize(this, this.transform, this.aimComponent.aim, stats, gameStats, motor);
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
 
@@ -218,7 +222,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
             if (locked && startSinking)
             {
-                transform.Translate(transform.up * -1 * stats.sinkSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
+                transform.Translate(transform.up * -2 * stats.sinkSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
             }
             if (hasWon)
             {
@@ -267,9 +271,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     { //not being used yet?
         if (!invincible)
         {
+            print("hyes");
             manager.acknowledgeKill(kraken, this);
             locked = true;
             startSinking = true;
+            setStatus(ShipStatus.Dead);
 
             Invoke("takeSinkDamage", stats.sinkTime);
         }
@@ -299,6 +305,17 @@ public class PlayerInput : MonoBehaviour, StatsInterface
        //     hit(20);
             startSinking = false;
             locked = false;
+        }
+    }
+
+
+
+
+    private void resetInkSpeed()
+    {
+        if (!hookshotComponent.isHooked() && (Time.realtimeSinceStartup - lastInkHitTime) > stats.inkSlowDownTime)
+        {
+            motor.setSpeedModifier(1);
         }
     }
 
@@ -487,6 +504,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (hookshotComponent)
         {
             shipInput.onLeftTriggerDown -= hookshotComponent.HookBarrel;
+        }
+        if (status == ShipStatus.Dead)
+        {
+            motor.enabled = false;
+        }
+        else
+        {
+            motor.enabled = true;
         }
 
         if (status == ShipStatus.Waiting)

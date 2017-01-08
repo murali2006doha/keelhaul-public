@@ -63,7 +63,15 @@ public class KrakenAnimator : MonoBehaviour {
 		//smashTentacle2.GetComponent<AudioSource>().enabled = !smashTentacle2.GetComponent<AudioSource>().enabled;
 
 	}
-	public void resetSmash(){
+
+    public void disableCollider()
+    {
+        smashTentacle1.GetComponent<BoxCollider>().enabled = false;
+        smashTentacle2.GetComponent<BoxCollider>().enabled = false;
+        
+
+    }
+    public void resetSmash(){
 		kraken.resetSmash ();
 	}
 	public void setSmash(bool Bool){
@@ -85,7 +93,13 @@ public class KrakenAnimator : MonoBehaviour {
 
 	}
 
-	public void sinkShip(){
+    public void cancelEmergeKraken()
+    {
+        animKraken.SetBool("submerge", false);
+
+    }
+
+    public void sinkShip(){
 		if (sinkableShip!=null)
 			sinkableShip.GetComponent<PlayerInput> ().sinkToYourDeath ();
 		sinkableShip = null;
