@@ -18,13 +18,15 @@ public class CannonBall : Photon.MonoBehaviour {
 	bool splashed = false;
     public float pushMagnitude =0f;
 	public bool reflected = false;
+    PhotonView view;
 	void Start(){
 		Invoke ("destroySelf", lifeTime);
+        view = GetComponent<PhotonView>();
 	}
 
 	public void OnTriggerEnter(Collider collider){
 
-        if (!GetComponent<PhotonView>().isMine) {
+        if (!view.isMine) {
             return;
         }
 		if (collider.transform.root != owner) {

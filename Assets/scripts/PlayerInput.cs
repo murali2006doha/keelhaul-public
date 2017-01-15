@@ -84,11 +84,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public ShipStatus status = ShipStatus.Waiting;
     public int playerId;
 
-
+    PhotonView view;
     void Start()
     {
         //Have to refactor this later
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
+        view = this.GetComponent<PhotonView>();
         this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams(), playerId);
 
         motor.Initialize(
@@ -182,7 +183,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void activateInvincibility()
     {
-        if (!GetComponent<PhotonView>().isMine)
+        if (!view.isMine)
         {
             return;
         }
@@ -456,7 +457,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void setupRespawn()
     {
-        if (!GetComponent<PhotonView>().isMine) {
+        if (!view.isMine) {
             return;
         }
         velocity = 0f;
@@ -498,7 +499,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public void setStatus(ShipStatus status)
     {
 
-        if (!GetComponent<PhotonView>().isMine) {
+        if (!view.isMine) {
             return;
         }
 
