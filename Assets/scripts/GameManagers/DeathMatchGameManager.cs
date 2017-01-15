@@ -88,8 +88,9 @@ public class DeathMatchGameManager : AbstractGameManager
     public void AddPlayer(int id) {
         //        Debug.Log(gamePoints.Keys.Count.ToString());
         if (GetComponent<PhotonView>().isMine) {
+            Debug.Log("reaching addplayer with id : " + id.ToString());
             gamePoints.Add(id.ToString(), 0);
-            Debug.Log("reaching addplayer");
+           
             Debug.Log(id);
             Debug.Log(gamePoints.Keys.Count);
             if (id  >= 2)

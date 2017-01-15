@@ -68,7 +68,16 @@ public class ShipInstantiator : MonoBehaviour {
 
         GameObject[] uis = GameObject.FindGameObjectsWithTag("UIManagers");
 
-        GameObject ui = uis[num - 1];
+        GameObject ui;
+
+        if (!PhotonNetwork.offlineMode)
+        {
+            ui = uis[0];
+
+        }
+        else {
+            ui = uis[num - 1];
+        }
 
         ship.uiManager = ui.GetComponent<UIManager>();
 

@@ -13,9 +13,12 @@ public class NetworkManager : MonoBehaviour
     {
 
         PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
-        PhotonNetwork.offlineMode = offlineMode;
         PhotonNetwork.ConnectUsingSettings("0.2");
+        PhotonNetwork.offlineMode = offlineMode;
 
+        if (offlineMode) {
+            this.OnJoinedLobby();
+        }
     }
 
     void Update()
@@ -38,7 +41,9 @@ public class NetworkManager : MonoBehaviour
         {
             initializer.isMaster = true;
             initializer.playerId = 1;
+            initializer.enabled = true;
             initializer.gameObject.SetActive(true);
+            initializer.onGameManagerCreated = this.onGameManagerCreated;
         }
         else {
             StartSpawnProcess();
