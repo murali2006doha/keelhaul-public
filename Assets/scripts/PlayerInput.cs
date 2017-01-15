@@ -384,7 +384,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void hit(float passedDamage = 0f, StatsInterface attacker = null)
     {
-        if (!invincible && health > 0)
+        if (!invincible && health > 0 && this.status == ShipStatus.Alive)
         {
             followCamera.startShake();
             anim.playDamageAnimation();
