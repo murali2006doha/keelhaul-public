@@ -23,6 +23,10 @@ public class CannonBall : Photon.MonoBehaviour {
 	}
 
 	public void OnTriggerEnter(Collider collider){
+
+        if (!GetComponent<PhotonView>().isMine) {
+            return;
+        }
 		if (collider.transform.root != owner) {
 			if (collider.transform.root.gameObject.name.Contains ("Force")) {
 				var shield = collider.transform.root.gameObject.GetComponent<AtlanteanShieldController> ();

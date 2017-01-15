@@ -182,6 +182,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void activateInvincibility()
     {
+        if (!GetComponent<PhotonView>().isMine)
+        {
+            return;
+        }
         invincible = true;
         if (invinciblity)
         {
@@ -452,6 +456,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void setupRespawn()
     {
+        if (!GetComponent<PhotonView>().isMine) {
+            return;
+        }
         velocity = 0f;
         isPushed = false;
         followCamera.zoomIn = false;
@@ -490,6 +497,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void setStatus(ShipStatus status)
     {
+
+        if (!GetComponent<PhotonView>().isMine) {
+            return;
+        }
+
         this.status = status;
         motor.reset();
         centralCannon.ResetShotRight();
