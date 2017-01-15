@@ -8,8 +8,11 @@ public class ShipViewToggler : Photon.MonoBehaviour {
     { 
         if (photonView.isMine)
         {
-            GetComponent<PlayerInput>().enabled = true;
-            GetComponent<ShipMotorComponent>().enabled = true;
+            PlayerInput playerInput = GetComponent<PlayerInput>();
+            playerInput.enabled = true;
+            playerInput.altCannonComponent.enabled = true;
+            playerInput.motor.enabled = true;
+            //GetComponent<ShipMotorComponent>().enabled = true;
         }
     }
 
