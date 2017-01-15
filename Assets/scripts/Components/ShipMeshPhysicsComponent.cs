@@ -88,6 +88,9 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
     [PunRPC]
     public void TakeDamage(float damage, int id)
     {
+        if (!GetComponent<PhotonView>().isMine) {
+            return; 
+        }
         this.takeDamageAction(damage, id);
     }
 
