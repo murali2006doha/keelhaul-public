@@ -400,7 +400,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void hit(float passedDamage, int id)
     {
-        if (!invincible && health > 0)
+        if (!invincible && health > 0 && this.status == ShipStatus.Alive)
         {
 
             float actualDamage = (passedDamage > 0) ? passedDamage : damage;
