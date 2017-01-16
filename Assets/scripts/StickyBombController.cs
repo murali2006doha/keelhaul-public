@@ -98,7 +98,7 @@ public class StickyBombController : MonoBehaviour {
 	public void Explode(Collider collision) {
 	
 		PlayerInput collidedShip = collision.transform.root.GetComponent<PlayerInput> ();
-		collidedShip.hit (damage,ship);
+	//	collidedShip.hit (damage);
 		Instantiate (explosion, transform.position, transform.rotation);
 		Destroy(gameObject);
 		Invoke ("destroyExplosion", timeToDestroyExplosion);

@@ -3,38 +3,37 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ShipInstantiator : MonoBehaviour
-{
 
-    [System.Serializable]
-    public class ShipInformation
-    {
-        public ShipEnum type;
-        public ShipStats stats;
-        public GameObject ship;
-        public string name;
-        public GameObject altFirePrefab;
-        public Sprite altFireSprite;
-        public Sprite altFireOutline;
+public class ShipInstantiator : MonoBehaviour {
+
+	[System.Serializable]
+	public class ShipInformation
+	{
+		public ShipEnum type;
+		public ShipStats stats;
+		public GameObject ship;
+		public string name;
+		public GameObject altFirePrefab;
+		public Sprite altFireSprite;
+		public Sprite altFireOutline;
         public Sprite portrait;
 
     }
 
-    public ShipInformation[] ships;
-    public GameObject splashParticle;
+	public ShipInformation[] ships;
+	public GameObject splashParticle;
 
 
-    public void setupShipNames(PlayerInput ship, ShipEnum type, int num, int numOfBases)
-    {
-        MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
-        num++;
-        ShipInformation info = getShip(type);
-        ship.shipName = info.name;
-        ship.stats = info.stats;
-        if (ship.shipMesh == null)
-        {
-            InstantiateShipMesh(info, ship);
-        }
+	public void setupShipNames(PlayerInput ship, ShipEnum type, int num, int numOfBases, int id){
+		MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects> ();
+		num++;
+		ShipInformation info = getShip (type);
+		ship.shipName = info.name;
+		ship.stats = info.stats;
+		if (ship.shipMesh == null) {
+			InstantiateShipMesh (info ,ship);
+		}
+
 
         //Refactor later
 
@@ -50,6 +49,7 @@ public class ShipInstantiator : MonoBehaviour
             }
         }
         //TODO: Ship instantiator is too tied to sabotage game mode. Refactor out.
+        Debug.Log("num of bases :" + numOfBases.ToString());
         ship.scoreDestination = mapObjects.scoringZones[(ship.teamGame ? (ship.teamNo + 1) : num) % numOfBases];
         mapObjects.islands[(ship.teamGame ? (ship.teamNo + 1) : num) % numOfBases].enemyShips.Add(ship);
 
@@ -61,14 +61,23 @@ public class ShipInstantiator : MonoBehaviour
         }
         else
         {
-            ship.startingPoint = mapObjects.shipStartingLocations[num - 1].transform.position;
+            ship.startingPoint = mapObjects.shipStartingLocations[num-1].transform.position;
             ship.transform.position = ship.startingPoint;
         }
 
 
         GameObject[] uis = GameObject.FindGameObjectsWithTag("UIManagers");
 
-        GameObject ui = uis[num - 1];
+        GameObject ui;
+
+        if (!PhotonNetwork.offlineMode)
+        {
+            ui = uis[0];
+
+        }
+        else {
+            ui = uis[num - 1];
+        }
 
         ship.uiManager = ui.GetComponent<UIManager>();
 

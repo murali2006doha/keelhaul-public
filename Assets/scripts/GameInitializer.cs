@@ -27,15 +27,16 @@ public class GameInitializer : MonoBehaviour {
 
     PlayerSelectSettings ps;
     Dictionary<int,int> teamNums = new Dictionary<int,int>();
-
-    
-
+    public bool isMaster;
+    public int playerId;
+    public Action onGameManagerCreated;
 
     void Start()
     {
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         setGameTypeAndSettings();
 
+        Debug.Log(PhotonNetwork.offlineMode);
         if (shipSelections.Count == 0)
         {
             shipSelections.Add(new CharacterSelection(ShipEnum.AtlanteanShip.ToString(), null));
@@ -70,9 +71,14 @@ public class GameInitializer : MonoBehaviour {
         SoundManager.initLibrary();
 
         MapObjects map = GameObject.FindObjectOfType<MapObjects>();
-        createPlayersAndMapControllers(map);
+        if (isMaster)
+        {
+            Debug.Log("creating manager");
+            createGameManager(() => createPlayersAndMapControllers(map));
+        }
+     
 
-        createGameManager();
+        
 
     }
 
@@ -127,7 +133,7 @@ public class GameInitializer : MonoBehaviour {
         return teams.Count;
     }
 
-    private void createGameManager()
+    private void createGameManager(Action onInitialize)
     {
         if (gameType == GameTypeEnum.Sabotage)
         {
@@ -158,7 +164,7 @@ public class GameInitializer : MonoBehaviour {
             }
         } else if (gameType == GameTypeEnum.DeathMatch)
         {
-            GameObject manager = Instantiate(Resources.Load(PathVariables.deathMatchManager, typeof(GameObject)), this.transform.parent) as GameObject;
+            GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
             DeathMatchGameManager deathMatchManager = manager.GetComponent<DeathMatchGameManager>();
             deathMatchManager.cams = cams;
             deathMatchManager.ps = ps;
@@ -183,6 +189,11 @@ public class GameInitializer : MonoBehaviour {
                     deathMatchManager.shipPoints.Add(0);
                 }
             }
+            deathMatchManager.onInitialize = onInitialize;
+            if (onGameManagerCreated != null) {
+                onGameManagerCreated();
+            }
+            
         }
         else if (gameType == GameTypeEnum.KrakenHunt) {
             GameObject manager = Instantiate(Resources.Load(PathVariables.krakenHuntManager, typeof(GameObject)), this.transform.parent) as GameObject;
@@ -235,6 +246,9 @@ public class GameInitializer : MonoBehaviour {
         int numDevices = 0;
 
         this.GetComponent<InControlManager>().enabled = true;
+        if (!PhotonNetwork.offlineMode) {
+            num = playerId -1;
+        }
 
         if (InputManager.Devices != null && InputManager.Devices.Count > 0)
         {
@@ -267,6 +281,18 @@ public class GameInitializer : MonoBehaviour {
                 {
                     shipSelections[num].Actions = action;
                     num = createShipWithName(num, shipSelections[num]);
+                    foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                    {
+                        if (PhotonNetwork.offlineMode)
+                        {
+                            Debug.Log("reaching here in offline");
+                            manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                        }
+                        else {
+                            manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, playerId);
+                        }
+                        
+                    }
                 }
                 
             }
@@ -286,6 +312,18 @@ public class GameInitializer : MonoBehaviour {
                 {
                     shipSelections[num].Actions = action;
                     num = createShipWithName(num, shipSelections[num]);
+                    foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                    {
+                        if (PhotonNetwork.offlineMode)
+                        {
+                            Debug.Log("reaching here in offline");
+                            manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                        }
+                        else
+                        {
+                            manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, playerId);
+                        }
+                    }
                 }
                 else
                 {
@@ -303,6 +341,17 @@ public class GameInitializer : MonoBehaviour {
             {
                 shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
                 num = createShipWithName(num,shipSelections[z]);
+                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                {
+                    if (PhotonNetwork.offlineMode)
+                    { 
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                    }
+                    else
+                    {
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, playerId);
+                    }
+                }
             }
 
 
@@ -320,6 +369,18 @@ public class GameInitializer : MonoBehaviour {
             {
                 shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
                 num = createShipWithName(num, shipSelections[z]);
+                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                {
+                    if (PhotonNetwork.offlineMode)
+                    {
+                        Debug.Log("reaching here in offline");
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                    }
+                    else
+                    {
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, playerId);
+                    }
+                }
             }
 
         }
@@ -374,9 +435,13 @@ public class GameInitializer : MonoBehaviour {
                 setUpCameraOnCanvas(instantiatedUI, camera1);
                 camCount++;
                 //Only case where screen is small
+
                 if (ps.players.Count == 4)
                 {
                     newCamera.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
+                }
+                else if (ps.players.Count == 1) {
+                    newCamera.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
                 }
                 else
                 {
@@ -428,10 +493,14 @@ public class GameInitializer : MonoBehaviour {
             var camera1 = newCamera.GetComponentInChildren<Camera>();
             setUpCameraOnCanvas(instantiatedUI, camera1);
 
-
+            camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
             if (numOfKrakens + shipSelections.Count >= 4)
             {
                 camera1.GetComponentInParent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
+            }
+            else if (shipSelections.Count == 1)
+            {
+                camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
             }
             else
             {
@@ -468,7 +537,11 @@ public class GameInitializer : MonoBehaviour {
     private void setUpCameraPositions(bool includeKraken, int shipCount, int playerCount, GameObject newCamera)
     {
         var camera1 = newCamera.GetComponentInChildren<cameraFollow>();
-        if (playerCount == 2)
+
+        if (playerCount == 1) {
+            camera1.SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
+        }
+        else if (playerCount == 2)
         {
 
             if (includeKraken)
@@ -534,11 +607,13 @@ public class GameInitializer : MonoBehaviour {
         string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter.ToString()];
         if (path != null)
         {
-            newShip = Instantiate(Resources.Load(path, typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
+            newShip = PhotonNetwork.Instantiate(path, Vector3.zero, Quaternion.identity, 0);
         }
         if (newShip != null)
         {
             PlayerInput input = newShip.GetComponent<PlayerInput>();
+
+            input.playerId = playerId;
             input.Actions = player.Actions;
             input.shipNum = num;
             if (isTeam)

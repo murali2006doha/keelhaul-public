@@ -11,13 +11,13 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 	AbstractGameManager manager;
 	HookshotComponent hookshotComponent;
 	BombControllerComponent bombController;
-
-	[Header("Scene Variables")]
+    Action<float,int> takeDamageAction { get; set; }
+    [Header("Scene Variables")]
 	public GameObject rammingSprite;
-    private Action onInk;
 
-    internal void Initialize(PlayerInput input, ShipStats stats, UIManager uiManager, GameObject scoreDestination, 
-		HookshotComponent hookshotComponent, AbstractGameManager manager, BombControllerComponent bombController, Action onInk) {
+	internal void Initialize(
+        PlayerInput input, ShipStats stats, UIManager uiManager, GameObject scoreDestination, 
+		HookshotComponent hookshotComponent, AbstractGameManager manager, BombControllerComponent bombController, Action<float,int> takeDamage) {
 		this.input = input;
 		this.scoreDestination = scoreDestination;
 		this.hookshotComponent = hookshotComponent;
@@ -25,7 +25,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 		this.uiManager = uiManager;
 		this.stats = stats;
 		this.bombController = bombController;
-        this.onInk = onInk;
+        this.takeDamageAction = takeDamage;
 	}
 
 
@@ -51,11 +51,6 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 
 				handleKrakenArm (other);
 			}
-
-            if (other.tag == "krakenInk")
-            {
-                onInk();
-            }
 
             if (LayerMask.LayerToName (other.gameObject.layer).Equals ("explosion") && !input.invincible) {
 				handleBombExplosion (other);
@@ -88,10 +83,18 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 		if (pillar != null) {
 			pillar.activatePillar ();
 		}
-	}
+    }
 
+    [PunRPC]
+    public void TakeDamage(float damage, int id)
+    {
+        if (!GetComponent<PhotonView>().isMine) {
+            return; 
+        }
+        this.takeDamageAction(damage, id);
+    }
 
-	void handleBombExplosion (Collider other) {
+void handleBombExplosion (Collider other) {
 		
 		bool shouldGetHit = true;
 		bool stopHitting = false;
@@ -133,7 +136,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 
 	void handleKrakenArm (Collider other) {
 		KrakenInput kraken = other.gameObject.transform.root.GetComponent<KrakenInput> ();
-		input.hit (stats.kraken_damage, kraken);
+	//	input.hit (stats.kraken_damage);
 		other.gameObject.transform.root.GetComponent<KrakenInput> ().vibrate (.5f, .5f);
 	}
 }

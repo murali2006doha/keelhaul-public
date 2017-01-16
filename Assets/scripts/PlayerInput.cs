@@ -82,12 +82,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public float rotationSpeed = 1f;
     private bool notInitalized = true;
     public ShipStatus status = ShipStatus.Waiting;
+    public int playerId;
 
+    PhotonView view;
     void Start()
     {
         //Have to refactor this later
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
-        this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams());
+        view = this.GetComponent<PhotonView>();
+        this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams(), playerId);
 
         motor.Initialize(
             cc, 
@@ -101,15 +104,22 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 followCamera.DeActivateMotionBlur();
             }
         );
+
         aimComponent.Initialize(transform);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
-		shipMeshComponent.Initialize (this, stats, uiManager, scoreDestination, hookshotComponent, manager, bombController, ()=>
-        {
-            motor.setSpeedModifier(stats.inkSlowDownFactor);
-            lastInkHitTime = Time.realtimeSinceStartup;
-            Invoke("resetInkSpeed", 1f);
-        });
+        
+		shipMeshComponent.Initialize(
+            this, 
+            stats, 
+            uiManager, 
+            scoreDestination, 
+            hookshotComponent, 
+            manager, 
+            bombController,
+            hit
+        );
+
         centralCannon.Initialize(this, this.transform, this.aimComponent.aim, stats, gameStats, motor);
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
 
@@ -173,6 +183,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void activateInvincibility()
     {
+        if (!view.isMine)
+        {
+            return;
+        }
         invincible = true;
         if (invinciblity)
         {
@@ -281,7 +295,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             if (particle.parent != this.transform.gameObject)
             {
                 gameStats.damageTakenFromChinese += particle.damage;
-                hit(particle.damage);
+           //     hit(particle.damage);
             }
         }
 
@@ -293,7 +307,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         {
             gameStats.numOfTimesSubmergedByKraken += 1;
             hookshotComponent.UnHook();
-            hit(20);
+       //     hit(20);
             startSinking = false;
             locked = false;
         }
@@ -382,43 +396,26 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         Actions.Device.StopVibration();
     }
 
-    public void hit(float passedDamage = 0f, StatsInterface attacker = null)
+
+
+    public void hit(float passedDamage, int id)
     {
         if (!invincible && health > 0)
         {
-            followCamera.startShake();
-            anim.playDamageAnimation();
 
-            if (this.teamGame && attacker is PlayerInput)
-            {
-                if (((PlayerInput)attacker).teamNo == this.teamNo)
-                {
-                    vibrate(.5f, .5f);
-                    return;
-                }
-            }
             float actualDamage = (passedDamage > 0) ? passedDamage : damage;
             health -= actualDamage;
             SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
             gameStats.healthLost += actualDamage;
-            if (attacker is PlayerInput)
-            {
-                ((PlayerInput)attacker).gameStats.addGivenDamage(type.ToString(), actualDamage);
-                this.gameStats.addTakenDamage(((PlayerInput)attacker).type.ToString(), actualDamage);
-            }
-            else if (attacker is KrakenInput)
-            {
-                ((KrakenInput)attacker).gameStats.addGivenDamage(type.ToString(), actualDamage);
-                this.gameStats.addTakenDamage("kraken", actualDamage);
-            }
-            toggleDamageStates();
             if (health <= 0)
             {
-                setStatus(ShipStatus.Dead);
                 vibrate(1f, 1f);
                 hookshotComponent.UnHook();
                 checkColliders(false);
-                manager.acknowledgeKill(attacker, this);
+                foreach (DeathMatchGameManager manager1 in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                {
+                    manager1.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
+                }
                 die();
             }
             else
@@ -460,6 +457,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void setupRespawn()
     {
+        if (!view.isMine) {
+            return;
+        }
         velocity = 0f;
         isPushed = false;
         followCamera.zoomIn = false;
@@ -498,6 +498,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void setStatus(ShipStatus status)
     {
+
+        if (!view.isMine) {
+            return;
+        }
+
         this.status = status;
         motor.reset();
         centralCannon.ResetShotRight();

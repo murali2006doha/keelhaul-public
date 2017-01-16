@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-
-public class CannonBall : MonoBehaviour {
+using System.Collections.Generic;
+public class CannonBall : Photon.MonoBehaviour {
 
 	private Transform owner;
 	private float timeAlive;
@@ -19,11 +18,17 @@ public class CannonBall : MonoBehaviour {
 	bool splashed = false;
     public float pushMagnitude =0f;
 	public bool reflected = false;
+    PhotonView view;
 	void Start(){
 		Invoke ("destroySelf", lifeTime);
+        view = GetComponent<PhotonView>();
 	}
 
 	public void OnTriggerEnter(Collider collider){
+
+        if (!view.isMine) {
+            return;
+        }
 		if (collider.transform.root != owner) {
 			if (collider.transform.root.gameObject.name.Contains ("Force")) {
 				var shield = collider.transform.root.gameObject.GetComponent<AtlanteanShieldController> ();
@@ -58,26 +63,27 @@ public class CannonBall : MonoBehaviour {
 				}
 			} else {
 				if (LayerMask.LayerToName (collider.gameObject.layer).Contains ("playerMesh")) {
-                    PlayerInput controller = collider.GetComponentInParent<PlayerInput>();
+                    ShipMeshPhysicsComponent mesh = collider.GetComponent<ShipMeshPhysicsComponent>();
                    
                     Instantiate(shipHit, transform.position, transform.rotation);
 
                     if (kraken)
                     {
                         kraken.gameStats.numOfShotHits++;
-                        if (controller != null)
+                        if (mesh != null)
                         {
-                            controller.hit(damage * reflectMult, kraken);
-                            controller.addPushForce(this.GetComponent<Rigidbody>().velocity.normalized, pushMagnitude);
+                            //controller.hit(damage * reflectMult, kraken);
+                            //controller.addPushForce(this.GetComponent<Rigidbody>().velocity.normalized, pushMagnitude);
+                            mesh.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.All, damage);
                         }
                     }
                     else {
                         PlayerInput player = owner.GetComponent<PlayerInput>();
                         player.gameStats.numOfShotHits++;
-                        if (controller != null)
+                        if (mesh != null)
                         {
-                            controller.hit(damage * reflectMult, player);
-                            controller.addPushForce(this.GetComponent<Rigidbody>().velocity.normalized, pushMagnitude);
+                            List<float> valuesToSend = new List<float>(new float[] {damage, (float)player.playerId });
+                            mesh.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.All, damage, player.playerId);
                         }
                     } 
 					
@@ -96,15 +102,15 @@ public class CannonBall : MonoBehaviour {
 					Instantiate (normalHit, transform.position, transform.rotation);
 				}
 
-				Destroy (gameObject);
+                PhotonNetwork.Destroy(GetComponent<PhotonView>());
+
 			}
 
 		}
 	}
 	void destroySelf(){
-		Destroy (this.gameObject);
-
-	}
+        PhotonNetwork.Destroy(GetComponent<PhotonView>());
+    }
 
 	void FixedUpdate(){
 		this.GetComponent<Rigidbody> ().AddForce (new Vector3 (0, gravity, 0));
