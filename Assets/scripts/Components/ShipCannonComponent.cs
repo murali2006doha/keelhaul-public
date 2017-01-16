@@ -66,6 +66,7 @@ public class ShipCannonComponent : MonoBehaviour
             cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
             Vector3 forwardForce = cannonBall.transform.forward * cannonForce + vect;
             Vector3 upForce = cannonBall.transform.up * arcCannonForce;
+            cannonBall.GetComponent<Rigidbody>().isKinematic = false;
             cannonBall.GetComponent<Rigidbody>().AddForce(upForce + forwardForce);
         }
 
