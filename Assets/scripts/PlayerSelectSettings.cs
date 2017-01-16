@@ -22,4 +22,10 @@ public class PlayerSelectSettings : MonoBehaviour {
 		}
 	}
 
+	public void setPlayerCharacters(List<CharacterSelectPanel> playerList){
+		foreach (CharacterSelectPanel player in playerList) {
+			players.Add (new CharacterSelection(player.selectedCharacter,player.Actions));
+		}
+	}
+
 }

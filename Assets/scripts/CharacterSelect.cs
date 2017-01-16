@@ -59,11 +59,6 @@ public class CharacterSelect : MonoBehaviour {
 	}
 
 
-	public void setIndex(int i) {
-		index = i;
-	}
-
-
 	/*
 	 * navigate the characters selection options and set the character when chosen
 	 */
@@ -110,7 +105,7 @@ public class CharacterSelect : MonoBehaviour {
 		} else {
 			
 			if (ps.characterStatuses [getCharacterKeys () [index]]) {
-				foreImage.sprite = ps.CharacterItems [getCharacterKeys () [index]] [2];  //READY
+				foreImage.sprite = ps.CharacterItems [getCharacterKeys () [index]] [2];  //LOCK
 				foreImage.enabled = true;
 			} else {
 				foreImage.enabled = false;
@@ -173,8 +168,5 @@ public class CharacterSelect : MonoBehaviour {
 	public List<string> getCharacterKeys() {
 		return ps.getCharacterKeys();
 	}
-					public void toggleShake(){
-
-					}
 
 }
