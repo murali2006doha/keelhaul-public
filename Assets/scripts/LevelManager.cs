@@ -13,8 +13,8 @@ public class LevelManager : MonoBehaviour {
 	public Transform mainMenu;
 	public Transform selectmode;
 	//public Transform optionmenu;
-	public Transform characterselect1v1;
-	public Transform characterselectFFA;
+	public Transform characterselectDM;
+	public Transform characterselectPlunder;
 
 	//public CharacterSelect player1;
 	public Button select;
@@ -23,13 +23,9 @@ public class LevelManager : MonoBehaviour {
 	public Button plunder;
 	Button[] menuOptions = new Button[2];
 	Button[] modeOptions = new Button[2];
-	PlayerActions player = null;
-
 	int index = 0;
     public List<Pulsate> pulsaters;
 	ControllerSelect cc;
-
-	PlayerSignIn pSignIn;
 
 
 	void Start () {
@@ -41,13 +37,12 @@ public class LevelManager : MonoBehaviour {
 		menuOptions[1] = options;
 		modeOptions [0] = threevone;
 		modeOptions [1] = plunder;
-		pSignIn = GameObject.FindObjectOfType<PlayerSignIn> ();
 
 		startScreen.gameObject.SetActive (true); //True
 		mainMenu.gameObject.SetActive (false);
 		//optionmenu.gameObject.SetActive (false);
-		characterselect1v1.gameObject.SetActive (false);
-		characterselectFFA.gameObject.SetActive (false);
+		characterselectDM.gameObject.SetActive (false);
+		characterselectPlunder.gameObject.SetActive (false);
 		selectmode.gameObject.SetActive (false);
 	}
 
@@ -55,10 +50,10 @@ public class LevelManager : MonoBehaviour {
 	void Update () {
 
 		escape ();
-		//signIn ();
 		if (startScreen.gameObject.active == true) {
 			if (InputManager.ActiveDevice.Action1.WasReleased || InputManager.AnyKeyIsPressed) {
-                //selectmode.gameObject.SetActive(true);
+
+				selectmode.gameObject.SetActive(true);
                 foreach(Pulsate p in pulsaters)
                 {
                     p.fadeInDelay = 0;
@@ -67,7 +62,7 @@ public class LevelManager : MonoBehaviour {
                     p.changePulsate();
                     p.Invoke("removePulsate", 1f);
                 }
-                Invoke("activateCharSelect", 1.5f);
+                //Invoke("activateCharSelect", 1.5f);
 			}
 		}
 
@@ -82,19 +77,12 @@ public class LevelManager : MonoBehaviour {
 	}
 
 
-	//if controller connects before character selection
-	void signIn() {
-		if (cc.players.Count == 1) {
-			player = (PlayerActions)cc.players [0];
-			cc.listening = false;
-		}
-	}
 
-    void activateCharSelect()
-    {
-        characterselectFFA.gameObject.SetActive(true);
+    void activateCharSelect() {
+		characterselectPlunder.gameObject.SetActive(true);
+		//characterselectDM.gameObject.SetActive(true);
         startScreen.gameObject.GetComponent<Fade>().enabled = true;
-        //startScreen.gameObject.SetActive(false);
+		startScreen.gameObject.SetActive (false);
     }
 
 
@@ -108,11 +96,11 @@ public class LevelManager : MonoBehaviour {
 			} else if (selectmode.gameObject.active == true) {
 				selectmode.gameObject.SetActive (false);
 				startScreen.gameObject.SetActive (true);
-			} else if (characterselectFFA.gameObject.active == true) {
-				characterselectFFA.gameObject.SetActive (false);
+			} else if (characterselectPlunder.gameObject.active == true) {
+				characterselectPlunder.gameObject.SetActive (false);
 				selectmode.gameObject.SetActive (true);
-			} else if (characterselect1v1.gameObject.active == true) {
-				characterselect1v1.gameObject.SetActive (false);
+			} else if (characterselectDM.gameObject.active == true) {
+				characterselectDM.gameObject.SetActive (false);
 				selectmode.gameObject.SetActive (true);
 			}
 		}
@@ -136,11 +124,11 @@ public class LevelManager : MonoBehaviour {
 		if (clicked == true) {
 			threevone.Select ();
 
-			characterselectFFA.gameObject.SetActive (clicked);
+			characterselectPlunder.gameObject.SetActive (clicked);
 			selectmode.gameObject.SetActive (false);
 
 		} else {
-			characterselectFFA.gameObject.SetActive (clicked);
+			characterselectPlunder.gameObject.SetActive (clicked);
 			selectmode.gameObject.SetActive (true);
 		}
 	}
@@ -150,11 +138,11 @@ public class LevelManager : MonoBehaviour {
 		if (clicked == true) {
 			plunder.Select ();
 
-			characterselect1v1.gameObject.SetActive (clicked);
+			characterselectDM.gameObject.SetActive (clicked);
 			selectmode.gameObject.SetActive (false);
 
 		} else {
-			characterselect1v1.gameObject.SetActive (clicked);
+			characterselectDM.gameObject.SetActive (clicked);
 			selectmode.gameObject.SetActive (true);
 		}
 	}

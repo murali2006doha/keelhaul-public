@@ -27,9 +27,9 @@ public class CharacterSelectPanel : MonoBehaviour {
 	private Sprite lockImage;
 	private Sprite charImage;
 	private List<ShipEnum> characters = new List<ShipEnum> ();
-	protected int index;
-	protected int selectedCharacterIndex;
-	AbstractCharacterSelectController csc;
+	private int index;
+	private int selectedCharacterIndex;
+	private AbstractCharacterSelectController csc;
 
 
 	// Use this for initialization
@@ -40,6 +40,23 @@ public class CharacterSelectPanel : MonoBehaviour {
 		selectedCharacter = "";
 		backPanel.sprite = Resources.Load<Sprite>(CharacterSelectModel.ShipToImage [ShipEnum.Kraken]);
 		forePanel.GetComponent<Image> ().enabled = false;
+
+	}
+
+
+	public void initializePanel(AbstractCharacterSelectController csc, List<ShipEnum> characters, PlayerActions actions) {
+
+		this.characters = characters;
+		this.Actions = actions;
+		this.csc = csc;
+
+		Vector3 localscale = this.gameObject.transform.localScale;
+		this.gameObject.transform.SetParent(GameObject.Find ("Container").transform);
+		this.gameObject.transform.position = GameObject.Find ("Container").transform.position;
+		this.gameObject.transform.rotation = GameObject.Find ("Container").transform.rotation;
+		this.gameObject.transform.localScale = localscale;
+
+
 	}
 		
 	
@@ -105,7 +122,6 @@ public class CharacterSelectPanel : MonoBehaviour {
 			deselect.gameObject.SetActive (true);
 
 		} else {
-
 			if (csc.getCharacterStatuses() [characters [index].ToString()]) {
 				forePanel.sprite = Resources.Load<Sprite>(CharacterSelectModel.ShipToLockImage [characters[index]]);
 				forePanel.GetComponent<Image> ().enabled = true;
@@ -148,15 +164,6 @@ public class CharacterSelectPanel : MonoBehaviour {
 		downLitArrow.gameObject.SetActive (false);
 
 	}
-
-
-
-
-	public void setCharacterList(List<ShipEnum> characters) {
-		this.characters = characters;
-	}
-
-
 
 
 }

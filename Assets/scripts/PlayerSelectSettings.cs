@@ -16,11 +16,6 @@ public class PlayerSelectSettings : MonoBehaviour {
         includeKraken = true;
 	}
 
-	public void setPlayerCharacters(List<CharacterSelect> playerList){
-		foreach (CharacterSelect player in playerList) {
-			players.Add (new CharacterSelection(player.selectedCharacter,player.Actions));
-		}
-	}
 
 	public void setPlayerCharacters(List<CharacterSelectPanel> playerList){
 		foreach (CharacterSelectPanel player in playerList) {
