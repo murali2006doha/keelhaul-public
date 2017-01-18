@@ -120,6 +120,10 @@ public class CannonBall : Photon.MonoBehaviour {
 		}
 	}
 
+    [PunRPC]
+    public void AddForce(Vector3 force) {
+        GetComponent<Rigidbody>().AddForce(force);
+    }
 	public void setOwner(Transform owner) {
 		this.owner = owner;
 	}
