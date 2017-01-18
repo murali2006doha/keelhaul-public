@@ -26,9 +26,10 @@ public class ShipCannonComponent : MonoBehaviour
     GameObject aim;
     PlayerInput input;
     FreeForAllStatistics gameStats;
+    string cannonballPath;
 
     internal void Initialize(PlayerInput input, Transform shipTransform, GameObject aim, ShipStats stats,
-        FreeForAllStatistics gameStats, ShipMotorComponent motor)
+        FreeForAllStatistics gameStats, ShipMotorComponent motor, string path)
     {
         //this.input = input;
         this.stats = stats;
@@ -37,6 +38,7 @@ public class ShipCannonComponent : MonoBehaviour
         this.motor = motor;
         this.gameStats = gameStats;
         this.input = input;
+        this.cannonballPath = path;
     }
 
 
@@ -61,7 +63,7 @@ public class ShipCannonComponent : MonoBehaviour
         for (int x = 0; x < numOfCannonBalls; x++)
         {
             Vector3 newRot = MathHelper.addY(rot, x * angleOfCannonShots);
-            GameObject cannonBall = PhotonNetwork.Instantiate(PathVariables.cannonBallPath, cannonBallPos.position + (velocity * dampening), Quaternion.Euler(newRot), 0);
+            GameObject cannonBall = PhotonNetwork.Instantiate(cannonballPath, cannonBallPos.position + (velocity * dampening), Quaternion.Euler(newRot), 0);
             cannonBall.transform.rotation = Quaternion.Euler(newRot);
             cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
             Vector3 forwardForce = cannonBall.transform.forward * cannonForce + vect;

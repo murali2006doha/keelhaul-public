@@ -118,7 +118,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             hit
         );
 
-        centralCannon.Initialize(this, this.transform, this.aimComponent.aim, stats, gameStats, motor);
+        centralCannon.Initialize(
+            this, 
+            this.transform, 
+            this.aimComponent.aim, 
+            stats, 
+            gameStats, 
+            motor,
+            PathVariables.GetAssociatedCannonballForShip(type));
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
 
 
