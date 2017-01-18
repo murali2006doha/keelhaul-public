@@ -7,11 +7,13 @@ public class NetworkManager : MonoBehaviour
 
     [SerializeField]
     Text connectionText;
+    public GameObject NetworkedCharacterSelect;
     public GameInitializer initializer;
     public bool offlineMode = false;
+
     void Start()
     {
-
+        
         PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
         PhotonNetwork.ConnectUsingSettings("0.2");
         PhotonNetwork.offlineMode = offlineMode;
@@ -46,14 +48,21 @@ public class NetworkManager : MonoBehaviour
             initializer.onGameManagerCreated = this.onGameManagerCreated;
         }
         else {
-            StartSpawnProcess();
+
+            GameObject instantiated = Instantiate(NetworkedCharacterSelect);
+            instantiated.GetComponent<NetworkedCharacterSelectView>().Initialize(
+                (shipType) => {
+                    StartSpawnProcess(shipType);
+                    Destroy(instantiated);
+            });
         }
     
     }
 
-    void StartSpawnProcess()
+    void StartSpawnProcess(ShipEnum type)
     {
-
+        Debug.Log(type);
+        initializer.shipSelections[0].selectedCharacter = type;
         initializer.isMaster = true;
         initializer.playerId = PhotonNetwork.player.ID;
         initializer.onGameManagerCreated = onGameManagerCreated;
