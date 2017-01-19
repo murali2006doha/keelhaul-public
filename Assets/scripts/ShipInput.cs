@@ -15,7 +15,13 @@ public class ShipInput : AbstractInputManager {
         }
         if (onRightRotateChanged != null)
         {
-            onRightRotateChanged(new Vector3(actions.R_Rotate.X, 0f, actions.R_Rotate.Y));
+            if(actions.Device == null)
+            {
+                onRightRotateChanged(Input.mousePosition);
+            }
+            else {
+                onRightRotateChanged(new Vector3(actions.R_Rotate.X, 0f, actions.R_Rotate.Y));
+            }
         }
 
         if (actions.Red.WasPressed && onRedButtonPress != null) {

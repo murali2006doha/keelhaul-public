@@ -33,6 +33,8 @@ public class GameInitializer : MonoBehaviour {
 
     void Start()
     {
+        Cursor.visible = false;
+
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         setGameTypeAndSettings();
 

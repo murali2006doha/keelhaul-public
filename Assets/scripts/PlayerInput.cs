@@ -91,19 +91,20 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams(), playerId);
 
         motor.Initialize(
-            cc, 
-            stats, 
-            transform, 
+            cc,
+            stats,
+            transform,
             () => {
                 uiManager.setBoostBar(0);
                 followCamera.ActivateMotionBlur();
             },
             () => {
                 followCamera.DeActivateMotionBlur();
-            }
+            },
+            Actions.Device == null
         );
 
-        aimComponent.Initialize(transform);
+        aimComponent.Initialize(transform, Actions.Device == null,followCamera.camera);
         bombController.Initialize(stats, this, uiManager, gameStats);
         InitializeHookshot();
         

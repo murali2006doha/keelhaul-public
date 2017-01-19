@@ -13,11 +13,16 @@ public class AimComponent : MonoBehaviour {
 
     public GameObject aim;
     private Transform shipTransform;
+    private bool keyboardControls;
+    private Camera cam;
 
     public void AimAt(Vector3 moveVector)
     {
- 
-        if (moveVector.magnitude >= minDistance)
+        if (keyboardControls)
+        {
+            AimWithMouseAt(new Vector2(moveVector.x, moveVector.y));
+        }
+        else if (moveVector.magnitude >= minDistance)
         {
             aim.transform.position = Vector3.MoveTowards(aim.transform.position, (shipTransform.position) + (moveVector * maxDistance), moveSpeed);
         }
@@ -26,20 +31,30 @@ public class AimComponent : MonoBehaviour {
 
     void AimWithMouseAt(Vector2 mousePos)
     {
-        Vector2 normalized = mousePos.normalized;
-        Vector2 mousePosCentered = new Vector2(mousePos.x - Screen.width / 2, mousePos.y - Screen.height / 2);
-        float magniture = mousePosCentered.magnitude;
-        float ratio = Screen.width / Screen.height;
-        aim.transform.position =  new Vector3(normalized.x * Mathf.Max(Mathf.Min(magniture * mouseClamp, maxDistance), minDistance), 0f, normalized.y * Mathf.Max(Mathf.Min(magniture * mouseClamp, maxDistance), minDistance) * ratio);
+        //TODO: Instead of screen to world - use delta mouse x,y
 
+        /*Requires z to calculate cam to world point: given by 134f to get to middle of screen +/- y pos of mouse relative to middle of screen*/
+        var ray = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane+34f+ (mousePos.y - Screen.height / 2) / (Screen.height / 2)*6));
+
+        aim.transform.position = new Vector3(ray.x,0.1f,ray.z);
+
+        //Aim clamp
+        if ((aim.transform.position - this.shipTransform.position).magnitude > maxDistance)
+        {
+            var newVec = Vector3.ClampMagnitude((aim.transform.position - this.shipTransform.position), maxDistance);
+            aim.transform.position = (shipTransform.position) + newVec;
+        }
+    
     }
 
-   
-   
 
-    internal void Initialize(Transform shipTransform)
+
+
+    internal void Initialize(Transform shipTransform,bool keyboardControls,Camera cam)
     {
         this.shipTransform = shipTransform;
+        this.keyboardControls = keyboardControls;
+        this.cam = cam;
     }
 
     
