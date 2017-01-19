@@ -24,7 +24,27 @@ public static class PathVariables {
 
     //cannonball
     internal static string cannonBallPath = "Prefabs/Cannon Shots/team cannonball";
+    internal static string atlantisCannonBallPath = "Prefabs/Cannon Shots/atlantis cannonball";
+    internal static string chineseCannonBallPath = "Prefabs/Cannon Shots/chinese cannonball";
+    internal static string blackbeardCannonBallPath = "Prefabs/Cannon Shots/blackbeard cannonball";
 
     //Ship Effects
     internal static string shipInvincibility = "Prefabs/Effects/Star Power";
+
+
+    public static string GetAssociatedCannonballForShip(ShipEnum shipType) {
+        if (shipType == ShipEnum.AtlanteanShip)
+        {
+            return atlantisCannonBallPath;
+        }
+        else if (shipType == ShipEnum.BlackbeardShip)
+        {
+            return blackbeardCannonBallPath;
+        }
+        else if (shipType == ShipEnum.ChineseJunkShip) {
+            return chineseCannonBallPath;
+        }
+
+        return string.Empty;
+    }
 }
