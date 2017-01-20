@@ -22,15 +22,16 @@ public class ShipMotorComponent : MonoBehaviour
     protected Vector3 oldEulerAngles;
     protected Quaternion originalRotation;
     protected Quaternion originalRotationValue;
+    protected bool keyboardControls;
 
-
-    internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish)
+    internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish, bool keyboardControls)
     {
         this.cc = characterController;
         this.stats = stats;
         this.shipTransform = shipTransform;
         this.onBoost = onBoost;
         this.onBoostFinish = onBoostFinish;
+        this.keyboardControls = keyboardControls;
     }
 
     public virtual void Update()
@@ -44,7 +45,7 @@ public class ShipMotorComponent : MonoBehaviour
     {
 
         //Must be in Boost?
-        if ((directionVector.magnitude == 0 && velocity != 0f) || (velocity > stats.maxVelocity))
+        if ((directionVector.magnitude == 0 || keyboardControls && directionVector.z == 0) && velocity != 0f  || (velocity > stats.maxVelocity))
         {
             velocity = Mathf.Max(0f, (velocity - (stats.deAccelerationSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))));
         }
@@ -54,7 +55,18 @@ public class ShipMotorComponent : MonoBehaviour
 
         if (directionVector.magnitude > 0f && velocity <= stats.maxVelocity)
         {
-            velocity = Mathf.Min(stats.maxVelocity, velocity + (directionVector.magnitude * stats.moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed)));
+            if (keyboardControls)
+            {
+                print(directionVector.z);
+                if(directionVector.z > 0)
+                {
+                    velocity = Mathf.Min(stats.maxVelocity, velocity + (directionVector.z * stats.moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed)));
+                }
+            }
+            else
+            {
+                velocity = Mathf.Min(stats.maxVelocity, velocity + (directionVector.magnitude * stats.moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed)));
+            }
 
             if (boosting)
             {
@@ -79,8 +91,17 @@ public class ShipMotorComponent : MonoBehaviour
     {
         if (directionVector.magnitude > 0f)
         {
-            Quaternion wanted_rotation = Quaternion.LookRotation(directionVector);
-            shipTransform.rotation = Quaternion.RotateTowards(shipTransform.rotation, wanted_rotation, stats.turnSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));
+            if (keyboardControls)
+            {
+                if (directionVector.x != 0)
+                {
+                    shipTransform.Rotate(0f, directionVector.x * stats.turnSpeed * Time.deltaTime * GlobalVariables.gameSpeed, 0f);
+                }
+            }
+            else {
+                Quaternion wanted_rotation = Quaternion.LookRotation(directionVector);
+                shipTransform.rotation = Quaternion.RotateTowards(shipTransform.rotation, wanted_rotation, stats.turnSpeed * directionVector.magnitude * (Time.deltaTime * GlobalVariables.gameSpeed));
+            }
         }
     }
 
