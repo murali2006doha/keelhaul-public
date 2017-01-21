@@ -47,8 +47,7 @@ GameObject:
   - component: {fileID: 6550752}
   - component: {fileID: 11402936}
   - component: {fileID: 8216498}
-  - component: {fileID: 11471008}
-  - component: {fileID: 11480740}
+  - component: {fileID: 114282273172016462}
   m_Layer: 8
   m_Name: Firework Shot
   m_TagString: Untagged
@@ -310,42 +309,13 @@ MonoBehaviour:
   normalHit: {fileID: 190058, guid: a44c340993f5b40268d5b248e28194b0, type: 2}
   splash: {fileID: 148634, guid: 45d7af1078698594bbbc6ddaf3929f99, type: 2}
   kraken: {fileID: 0}
-  gravity: -1.5
+  gravity: -0.5
   force: 0
   reflectForce: 100
   reflectMult: 1
-  damage: 3
+  damage: 2
   pushMagnitude: 0
   reflected: 0
---- !u!114 &11471008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 132918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e29c7d3fe879c54d90b9252d57de961, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  force: 0
---- !u!114 &11480740
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 132918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e25b0d672450eed4f84f89bfc0f3426d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  lifeTime: 0
-  damage: 2
-  offset: {x: 0, y: 0.5, z: 0}
-  firework: {fileID: 0}
 --- !u!198 &19862828
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -5827,6 +5797,32 @@ Transform:
   m_Father: {fileID: 4144981413356258}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114282273172016462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!198 &198361758621572932
 ParticleSystem:
   m_ObjectHideFlags: 1
