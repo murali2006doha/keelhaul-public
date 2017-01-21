@@ -28,6 +28,13 @@ public static class PathVariables {
     internal static string chineseCannonBallPath = "Prefabs/Cannon Shots/chinese cannonball";
     internal static string blackbeardCannonBallPath = "Prefabs/Cannon Shots/blackbeard cannonball";
 
+
+    //alternate shots
+
+    internal static string alternateChineseShot = "Prefabs/Alt Cannon shots/Firework Shot";
+    internal static string alternateAtlantisShot = "Prefabs/Alt Cannon shots/Firework Shot";
+    internal static string alternateBlackbeardShot = "Prefabs/Alt Cannon shots/Firework Shot";
+
     //Ship Effects
     internal static string shipInvincibility = "Prefabs/Effects/Star Power";
 
