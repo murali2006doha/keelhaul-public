@@ -246,11 +246,9 @@ public class GameInitializer : MonoBehaviour {
     private int createPlayersWithoutCharacterSelection(MapObjects map, int num)
     {
         int numDevices = 0;
-
+        num = GetRightShipIndex(num);
+        int shipIndex = GetRightShipSelection(num);
         this.GetComponent<InControlManager>().enabled = true;
-        if (!PhotonNetwork.offlineMode) {
-            num = playerId -1;
-        }
 
         if (InputManager.Devices != null && InputManager.Devices.Count > 0)
         {
@@ -281,8 +279,10 @@ public class GameInitializer : MonoBehaviour {
                 }
                 else
                 {
-                    shipSelections[num].Actions = action;
-                    num = createShipWithName(num, shipSelections[num]);
+                    Debug.Log(num.ToString() + "  nummm");
+                    shipSelections[shipIndex].Actions = action;
+                    
+                    num = createShipWithName(num, shipSelections[shipIndex]);
                     foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                     {
                         if (PhotonNetwork.offlineMode)
@@ -312,8 +312,8 @@ public class GameInitializer : MonoBehaviour {
                 }
                 else if (num < shipSelections.Count)
                 {
-                    shipSelections[num].Actions = action;
-                    num = createShipWithName(num, shipSelections[num]);
+                    shipSelections[shipIndex].Actions = action;
+                    num = createShipWithName(num, shipSelections[shipIndex]);
                     foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                     {
                         if (PhotonNetwork.offlineMode)
@@ -342,7 +342,7 @@ public class GameInitializer : MonoBehaviour {
             for (int z = num; z < shipSelections.Count; z++)
             {
                 shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
-                num = createShipWithName(num,shipSelections[z]);
+                num = createShipWithName(num, shipSelections[z]);
                 foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                 {
                     if (PhotonNetwork.offlineMode)
@@ -370,7 +370,7 @@ public class GameInitializer : MonoBehaviour {
             for (int z = 0; z < shipSelections.Count; z++)
             {
                 shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
-                num = createShipWithName(num, shipSelections[z]);
+                num = createShipWithName(GetRightShipSelection(num), shipSelections[z]);
                 foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                 {
                     if (PhotonNetwork.offlineMode)
@@ -636,6 +636,15 @@ public class GameInitializer : MonoBehaviour {
         }
 
         return num;
+    }
+
+    private int GetRightShipSelection(int num) {
+        return PhotonNetwork.offlineMode ? num : 0;
+    }
+
+    private int GetRightShipIndex(int num)
+    {
+        return PhotonNetwork.offlineMode ? num : playerId - 1;
     }
 
 }
