@@ -15,11 +15,14 @@ public class NetworkManager : MonoBehaviour
     {
         
         PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
-        PhotonNetwork.ConnectUsingSettings("0.2");
         PhotonNetwork.offlineMode = offlineMode;
 
-        if (offlineMode) {
+        if (offlineMode)
+        {
             this.OnJoinedLobby();
+        }
+        else {
+            PhotonNetwork.ConnectUsingSettings("0.2");
         }
     }
 
