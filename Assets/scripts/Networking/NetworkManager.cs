@@ -10,6 +10,7 @@ public class NetworkManager : MonoBehaviour
     public GameObject NetworkedCharacterSelect;
     public GameInitializer initializer;
     public bool offlineMode = false;
+	public AbstractCharacterSelectController csc; 
 
     void Start()
     {
@@ -27,8 +28,8 @@ public class NetworkManager : MonoBehaviour
     {
         if (connectionText) {
             connectionText.text = PhotonNetwork.connectionStateDetailed.ToString();
-        }
-        
+		}
+
     }
 
     void OnJoinedLobby()
@@ -48,14 +49,21 @@ public class NetworkManager : MonoBehaviour
             initializer.onGameManagerCreated = this.onGameManagerCreated;
         }
         else {
+			
+//            GameObject instantiated = Instantiate(NetworkedCharacterSelect);
+//			instantiated.GetComponent<NetworkedCharacterSelectView>().Initialize(
+//                (shipType) => {
+//                    StartSpawnProcess(shipType);
+//                    Destroy(instantiated);
+//            });
 
-            GameObject instantiated = Instantiate(NetworkedCharacterSelect);
-            instantiated.GetComponent<NetworkedCharacterSelectView>().Initialize(
-                (shipType) => {
-                    StartSpawnProcess(shipType);
-                    Destroy(instantiated);
-            });
-        }
+//			GameObject instantiated = Instantiate(NetworkedCharacterSelect);
+//			ShipEnum shipType = instantiated.GetComponent<NetworkedCharacterSelectView> ().initializePanel ();
+//			StartSpawnProcess(shipType);
+//			Destroy(instantiated);
+			GameObject instantiated= Instantiate(NetworkedCharacterSelect);
+		
+		}
     
     }
 

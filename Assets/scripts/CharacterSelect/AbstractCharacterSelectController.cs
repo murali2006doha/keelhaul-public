@@ -32,6 +32,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 		cc.withKeyboard = withKeyboard;
 		cc.listening = false;
 
+
 		for(int i = 0; i < numPlayers; i++) {
 			initializePanel ();
 		}	
@@ -46,9 +47,14 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
 	public void initializePanel() {
 		Object panel = Resources.Load(CharacterSelectModel.CSPanelPrefab, typeof(GameObject));
-		GameObject csPanel = Instantiate(panel, GameObject.Find ("Container").transform.position, GameObject.Find ("Container").transform.rotation) as GameObject;
 
+		GameObject csPanel = Instantiate(panel, GameObject.Find ("Container").transform.position, GameObject.Find ("Container").transform.rotation) as GameObject;
+		Vector3 localscale = csPanel.gameObject.transform.localScale;
 		csPanel.gameObject.GetComponent<CharacterSelectPanel> ().initializePanel (this, characters, Actions);
+
+		csPanel.gameObject.transform.SetParent(GameObject.Find ("Container").transform);
+		csPanel.gameObject.transform.localScale = localscale;
+
 
 		players.Add (csPanel.gameObject.GetComponent<CharacterSelectPanel>());
 
@@ -94,12 +100,15 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 		var inputDevice = InputManager.ActiveDevice;
 
 		int playerCount = cc.players.Count;
-		if (playerCount > 0) {
-			players [playerCount - 1].Actions = (PlayerActions)cc.players [playerCount - 1];
-			if (players [playerCount - 1].Actions.Green.WasReleased) {
-				players [playerCount - 1].isSignedIn = true;
-				players [playerCount - 1].gameObject.GetComponent<CharacterSelectPanel> ().enabled = true;
-			}
+		if (playerCount > 0 && playerCount <= numPlayers) {
+
+			//if (playerCount < players.Count) {
+				players [playerCount - 1].Actions = (PlayerActions)cc.players [playerCount - 1];
+				if (players [playerCount - 1].Actions.Green.WasReleased) {
+					players [playerCount - 1].isSignedIn = true;
+					players [playerCount - 1].gameObject.GetComponent<CharacterSelectPanel> ().enabled = true;
+				}
+			//}
 		}
 	}
 
@@ -153,6 +162,19 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
 	public Dictionary<string, bool> getCharacterStatuses() {
 		return characterStatuses;
+	}
+
+
+
+	public ShipEnum getShipType(int playerNum) {
+		
+		ShipEnum type = (ShipEnum)System.Enum.Parse (typeof(ShipEnum), players [playerNum].selectedCharacter, true);
+
+		return type;
+	}
+
+	public bool isStarted() {
+		return started;
 	}
 		
 

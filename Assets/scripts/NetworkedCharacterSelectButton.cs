@@ -16,6 +16,7 @@ public class NetworkedCharacterSelectButton : MonoBehaviour {
 
     public void OnClickAction() { 
         this.onClickAction(character.selectedCharacter);
+
     }
     
 }

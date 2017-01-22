@@ -19,6 +19,14 @@ public class ControllerSelect : MonoBehaviour {
 
 	}
 
+
+
+	void Awake() {
+
+		GameObject.DontDestroyOnLoad (this.gameObject);
+
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (listening && players.Count < 4) {
