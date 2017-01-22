@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using InControl;
+using System;
 
 public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
 	public PlayerActions Actions { get; set; }
 	public AsyncOperation asyncLoad;
 	public bool loadingScene;
+	public bool Offline;
 
 	// Use this for initialization
 	public bool withKeyboard;
@@ -23,6 +25,13 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 	protected ControllerSelect cc;
 	protected int playersInPlay;
 	protected bool started = false;
+	protected Action onSelectCharacter;
+
+
+	public void OnSelectCharacterAction(Action action)  {
+		this.onSelectCharacter = action;
+	}
+
 
 	// Use this for initialization
 	void Start () {
@@ -46,9 +55,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
 
 	public void initializePanel() {
-		Object panel = Resources.Load(CharacterSelectModel.CSPanelPrefab, typeof(GameObject));
-
-		GameObject csPanel = Instantiate(panel, GameObject.Find ("Container").transform.position, GameObject.Find ("Container").transform.rotation) as GameObject;
+		GameObject csPanel = Instantiate(Resources.Load(CharacterSelectModel.CSPanelPrefab, typeof(GameObject)), GameObject.Find ("Container").transform.position, GameObject.Find ("Container").transform.rotation) as GameObject;
 		Vector3 localscale = csPanel.gameObject.transform.localScale;
 		csPanel.gameObject.GetComponent<CharacterSelectPanel> ().initializePanel (this, characters, Actions);
 
@@ -64,36 +71,35 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		var inputDevice = InputManager.ActiveDevice; //last device to
+		update();
+	}
+		
 
+	public void update ()
+	{
+		var inputDevice = InputManager.ActiveDevice;
+		//last device to
 		if (this.gameObject.activeSelf) {
 			cc.listening = true;
 			signIn ();
-		} else {
+		}
+		else {
 			cc.listening = false;
 		}
-
 		if (this.gameObject != null) {
-
 			if (playersInPlay == 0) {
-
-				start.gameObject.SetActive (true); //change to next when there is map selection
-				if (!started && players.Exists(p => p.Actions.Green.IsPressed)) {
+				start.gameObject.SetActive (true);
+				//change to next when there is map selection
+				if (!started && players.Exists (p => p.Actions.Green.IsPressed)) {
 					started = true;
-					GameObject.FindObjectOfType<PlayerSelectSettings> ().setPlayerCharacters (players);
-
-					if (!loadingScene) {
-						loadingScreen.SetActive(true);  
-						StartCoroutine(LoadNewScene());
-						loadingScene = true;
-					}
+					this.onSelectCharacter ();
 				}
-			} else {
+			}
+			else {
 				start.gameObject.SetActive (false);
 			}
 		}
-	}
-		
+	}	
 
 
 	public void signIn() {
@@ -150,7 +156,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 	}
 
 
-	IEnumerator LoadNewScene() {
+	public IEnumerator LoadNewScene() {
 		//To do: move this logic out of playerSignIn, make it more generic
 		AsyncOperation async = SceneManager.LoadSceneAsync(GlobalVariables.getMapToLoad());
 		while (!async.isDone) {
@@ -163,19 +169,25 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 	public Dictionary<string, bool> getCharacterStatuses() {
 		return characterStatuses;
 	}
-
-
-
-	public ShipEnum getShipType(int playerNum) {
 		
-		ShipEnum type = (ShipEnum)System.Enum.Parse (typeof(ShipEnum), players [playerNum].selectedCharacter, true);
-
-		return type;
-	}
 
 	public bool isStarted() {
 		return started;
 	}
+
+
+	public void setPlayerSelectSettings() {
+
+		GameObject.FindObjectOfType<PlayerSelectSettings> ().setPlayerCharacters (players);
+
+	}
 		
+
+	public PlayerSelectSettings getPlayerSelectSettings() {
+
+		return GameObject.FindObjectOfType<PlayerSelectSettings> ();
+
+	}
+
 
 }

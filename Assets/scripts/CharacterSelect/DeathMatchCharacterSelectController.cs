@@ -31,37 +31,11 @@ public class DeathMatchCharacterSelectController : AbstractCharacterSelectContro
 	// Update is called once per frame
 	void Update () {
 
-		var inputDevice = InputManager.ActiveDevice; //last device to
+		update (); 
 
-		if (this.gameObject.activeSelf) {
-			cc.listening = true;
-			signIn ();
-		} else {
-			cc.listening = false;
-		}
 
-		if (this.gameObject != null) {
-
-			if (playersInPlay == 0) {
-
-				start.gameObject.SetActive (true); //change to next when there is map selection
-				if (!started && players.Exists(p => p.Actions.Green.IsPressed)) {
-					started = true;
-					GameObject.FindObjectOfType<PlayerSelectSettings> ().setPlayerCharacters (players);
-
-					if (!loadingScene)
-					{
-						loadingScreen.SetActive(true);  
-						StartCoroutine(LoadNewScene());
-						loadingScene = true;
-					}
-				}
-			} else {
-				start.gameObject.SetActive (false);
-			}
-		}
 	}
-		
+
 
 	public override bool lockCharacter(int index) {
 
@@ -79,15 +53,6 @@ public class DeathMatchCharacterSelectController : AbstractCharacterSelectContro
 		return true;	
 	}
 
-
-	IEnumerator LoadNewScene() {
-		//To do: move this logic out of playerSignIn, make it more generic
-		AsyncOperation async = SceneManager.LoadSceneAsync(GlobalVariables.getMapToLoad());
-		while (!async.isDone) {
-			yield return null;
-		}
-
-	}
 
 
 }

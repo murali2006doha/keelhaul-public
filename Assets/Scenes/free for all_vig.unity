@@ -55433,11 +55433,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: shipSelections.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4957737826062860, guid: bd3c9678da9ed7c45a9542502ea0337d, type: 2}
       propertyPath: m_LocalPosition.x
       value: -18.306156
@@ -55472,114 +55467,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
         type: 2}
-      propertyPath: includeKraken
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: shipSelections.Array.data[2].selectedCharacter
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: shipSelections.Array.data[1].team
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: isTeam
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: shipSelections.Array.data[3].selectedCharacter
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: shipSelections.Array.data[3].team
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: isFirstControllerKraken
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: gameType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: isMaster
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: shipSelections.Array.data[1].selectedCharacter
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: shipSelections.Array.data[0].selectedCharacter
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1854575883002100, guid: bd3c9678da9ed7c45a9542502ea0337d, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114879928171835194, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: dontDestroyOnLoad
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114879928171835194, guid: bd3c9678da9ed7c45a9542502ea0337d,
-        type: 2}
-      propertyPath: logDebugInfo
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114879928171835194, guid: bd3c9678da9ed7c45a9542502ea0337d,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd3c9678da9ed7c45a9542502ea0337d, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1995570200 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1854575883002100, guid: bd3c9678da9ed7c45a9542502ea0337d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1995570199}
---- !u!114 &1995570201 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1995570199}
-  m_Script: {fileID: 11500000, guid: 090d7ab216eafbf46b279c3a88310932, type: 3}
---- !u!114 &1995570202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1995570200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a61d6d3334053f47be157084fedaadf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectionText: {fileID: 0}
-  NetworkedCharacterSelect: {fileID: 1094443328089532, guid: 645a1f2311c084ae882b673e34b8e787,
-    type: 2}
-  initializer: {fileID: 1995570201}
-  offlineMode: 0
-  csc: {fileID: 114575166429551640, guid: 645a1f2311c084ae882b673e34b8e787, type: 2}
 --- !u!1 &1997808270
 GameObject:
   m_ObjectHideFlags: 0

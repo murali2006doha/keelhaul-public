@@ -12,8 +12,8 @@ public class NetworkedCharacterSelectView : MonoBehaviour {
     public NetworkedCharacterSelectButton [] buttons;
 	private List<ShipEnum> characters = new List<ShipEnum> ();
 	public ControllerSelect cc;
+	public NetworkManager nm;
 	GameObject csPanel;
-	AbstractCharacterSelectController csc;
 	public bool withKeyboard;
 
 	//new CharacterSelection(player.selectedCharacter,player.Actions);
@@ -32,22 +32,8 @@ public class NetworkedCharacterSelectView : MonoBehaviour {
 		cc.withKeyboard = withKeyboard;
 		cc.listening = false;
 	}
-		
-
-	public void getSelectCharacter(AbstractCharacterSelectController csc) {
-		this.csc = csc;
-		this.csc.getShipType (0);
-	}
-
-	public void initializePanel(AbstractCharacterSelectController csc) {
-
-		Object panelPrefab = Resources.Load(CharacterSelectModel.CSPanelPrefab, typeof(GameObject));
-		csPanel = Instantiate(panelPrefab, GameObject.Find ("Container").transform.position, GameObject.Find ("Container").transform.rotation) as GameObject;
-		Vector3 localscale = csPanel.gameObject.transform.localScale;
-		csPanel.gameObject.GetComponent<CharacterSelectPanel> ().initializePanel (csc, csc.characters, csc.Actions);
 
 
-		csPanel.gameObject.transform.SetParent(GameObject.Find ("Container").transform);
-		csPanel.gameObject.transform.localScale = localscale;
-	}
+
+
 }

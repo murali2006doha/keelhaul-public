@@ -24,7 +24,7 @@ public static class GlobalVariables {
     };
 
     public static Dictionary<string, string> mapToScene = new Dictionary<string, string>() {
-        {MapEnum.Tropical.ToString(),"free for all_vig"},
+		{MapEnum.Tropical.ToString(),"free for all_vig"},
         {MapEnum.Chinese.ToString(),"free for all_marketplace"}
     };
 

@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4053724471008198}
-  - component: {fileID: 114543629005011144}
   - component: {fileID: 114200235897782174}
   m_Layer: 0
   m_Name: ControllerManager
@@ -267,26 +266,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114543629005011144
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1081106894608712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b5e8de77c5b4597ae7fbfb49a95e22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  logDebugInfo: 0
-  invertYAxis: 0
-  useFixedUpdate: 0
-  dontDestroyOnLoad: 1
-  enableXInput: 1
-  xInputUpdateRate: 0
-  xInputBufferSize: 0
-  enableICade: 0
-  customProfiles: []
 --- !u!114 &114560851279806116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -402,7 +381,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  cc: {fileID: 0}
+  cc: {fileID: 114200235897782174}
+  nm: {fileID: 0}
   withKeyboard: 0
 --- !u!114 &114898485197525384
 MonoBehaviour:
