@@ -50,10 +50,17 @@ public class ShipAnimator : MonoBehaviour {
 
     public void playDamageAnimation()
     {
-        shipAnimator.CrossFade("damageBlink", damageFadeSeconds);
+        shipAnimator.SetBool("damage", true);
+        Invoke("stopDamageAnimation", 0.2f);
     }
 
-	public void onRespawnAnimationEnd(){
+    public void stopDamageAnimation()
+    {
+        shipAnimator.SetBool("damage", false);
+    }
+
+
+    public void onRespawnAnimationEnd(){
 		
 	}
 

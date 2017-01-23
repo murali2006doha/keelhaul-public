@@ -252,9 +252,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         }
     }
 
-
-
-    public void toggleDamageStates()
+    [PunRPC]
+    public void toggleDamageStates(float health)
     {
         if (health / stats.max_health <= 0)
         {
@@ -402,19 +401,37 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         Actions.Device.StopVibration();
     }
 
+    [PunRPC]
+    public void playHitSound()
+    {
+        SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
+    }
 
-
-    public void hit(float passedDamage, int id)
+    public void hit(float passedDamage, int id,bool isKraken = false)
     {
         if (!invincible && health > 0 && this.status == ShipStatus.Alive)
         {
-
             float actualDamage = (passedDamage > 0) ? passedDamage : damage;
             health -= actualDamage;
-            SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
+            
             gameStats.healthLost += actualDamage;
-            if (health <= 0)
+            followCamera.startShake();
+            var photonView = GetComponent<PhotonView>();
+            TurnRed();
+            photonView.RPC("playHitSound", PhotonTargets.All, null);
+            photonView.RPC("toggleDamageStates", PhotonTargets.All, health);
+            if (!isKraken)
             {
+                //TODO: get ship name that damaged me and add taken damage
+                //TODO: Call given damage RPC on that ship.
+            }
+            else
+            {
+                gameStats.addTakenDamage("kraken", actualDamage);
+            }
+                if (health <= 0)
+            {
+                setStatus(ShipStatus.Dead);
                 vibrate(1f, 1f);
                 hookshotComponent.UnHook();
                 checkColliders(false);
@@ -431,6 +448,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         }
     }
 
+    
+    public void TurnRed()
+    {
+        anim.playDamageAnimation();
+    }
 
 
     void checkColliders(bool check)

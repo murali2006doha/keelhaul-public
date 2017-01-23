@@ -38,7 +38,7 @@ public class GameInitializer : MonoBehaviour {
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         setGameTypeAndSettings();
 
-        Debug.Log(PhotonNetwork.offlineMode);
+       
         if (shipSelections.Count == 0)
         {
             shipSelections.Add(new CharacterSelection(ShipEnum.AtlanteanShip.ToString(), null));
@@ -58,7 +58,6 @@ public class GameInitializer : MonoBehaviour {
             removeTeams(numOfTeams - mapObjects.shipStartingLocations.Length);
             numOfShips = Math.Min(4 - numOfKrakens, shipSelections.Count);
         }
-       
 
         initializeGlobalCanvas();
 
@@ -75,7 +74,6 @@ public class GameInitializer : MonoBehaviour {
         MapObjects map = GameObject.FindObjectOfType<MapObjects>();
         if (isMaster)
         {
-            Debug.Log("creating manager");
             createGameManager(() => createPlayersAndMapControllers(map));
         }
      
@@ -287,7 +285,7 @@ public class GameInitializer : MonoBehaviour {
                     {
                         if (PhotonNetwork.offlineMode)
                         {
-                            Debug.Log("reaching here in offline");
+                           
                             manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
                         }
                         else {
