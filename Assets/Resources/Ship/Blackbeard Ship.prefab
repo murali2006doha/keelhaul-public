@@ -1407,7 +1407,7 @@ MonoBehaviour:
   velocity: 0
   wake: {fileID: 161306}
   shipInput: {fileID: 114371219138913600}
-  anim: {fileID: 0}
+  anim: {fileID: 11485838}
   invincibilyPrefab: {fileID: 1000010893256384, guid: 96db08b74f03b43f4b246b4666e7b4a5,
     type: 2}
   gameStarted: 0
@@ -10829,6 +10829,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 2
     Name: death
+  - Type: 4
+    SynchronizeType: 2
+    Name: damage
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
