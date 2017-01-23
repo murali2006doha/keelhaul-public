@@ -20,7 +20,7 @@ public class NetworkManager : MonoBehaviour
 
 		if (offlineMode) {
 			this.OnJoinedLobby();
-		}
+		}    		
 	}
 
 	void Update()
@@ -53,8 +53,8 @@ public class NetworkManager : MonoBehaviour
 			AbstractCharacterSelectController csc = instantiated.GetComponent<AbstractCharacterSelectController> ();
 			csc.OnSelectCharacterAction(
 				() => {
-					csc.setPlayerSelectSettings ();
-
+					csc.setPlayerSelectSettings ();					
+						
 					foreach(CharacterSelection cs in csc.getPlayerSelectSettings().players) {
 						print(cs.selectedCharacter);
 					}

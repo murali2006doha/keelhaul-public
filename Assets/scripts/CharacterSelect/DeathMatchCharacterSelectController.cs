@@ -28,15 +28,6 @@ public class DeathMatchCharacterSelectController : AbstractCharacterSelectContro
 	}
 
 
-	// Update is called once per frame
-	void Update () {
-
-		update (); 
-
-
-	}
-
-
 	public override bool lockCharacter(int index) {
 
 		playersInPlay--;

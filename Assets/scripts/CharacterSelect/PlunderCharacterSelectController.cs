@@ -28,15 +28,6 @@ public class PlunderCharacterSelectController : AbstractCharacterSelectControlle
 	}
 
 
-	// Update is called once per frame
-	public void Update () {
-
-		update ();
-	}
-
-
-
-
 
 	public override bool lockCharacter(int index) {
 		if (!characterStatuses [getCharacterKeys() [index]]) {

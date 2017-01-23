@@ -9,22 +9,10 @@ using InControl;
 public class NetworkedCharacterSelectView : MonoBehaviour {
 
 	public PlayerActions Actions { get; set; }
-    public NetworkedCharacterSelectButton [] buttons;
-	private List<ShipEnum> characters = new List<ShipEnum> ();
 	public ControllerSelect cc;
 	public NetworkManager nm;
 	GameObject csPanel;
 	public bool withKeyboard;
-
-	//new CharacterSelection(player.selectedCharacter,player.Actions);
-
-    // Use this for initialization
-//   	public void Initialize(Action<ShipEnum> onClick) {
-//        foreach (NetworkedCharacterSelectButton button in buttons) {
-//            button.onClickAction = onClick;
-//      }
-//
-//    }
 
 
 	void Start() {

@@ -69,13 +69,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void Update () {
-
-		update();
-	}
-		
-
-	public void update ()
+	public void Update ()
 	{
 		var inputDevice = InputManager.ActiveDevice;
 		//last device to
@@ -185,7 +179,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
 	public PlayerSelectSettings getPlayerSelectSettings() {
 
-		return GameObject.FindObjectOfType<PlayerSelectSettings> ();
+        return GameObject.FindObjectOfType<PlayerSelectSettings> ();
 
 	}
 

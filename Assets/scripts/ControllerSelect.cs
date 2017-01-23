@@ -18,9 +18,7 @@ public class ControllerSelect : MonoBehaviour {
 		GameObject.DontDestroyOnLoad (this.gameObject);
 
 	}
-
-
-
+		
 	void Awake() {
 
 		GameObject.DontDestroyOnLoad (this.gameObject);
