@@ -851,7 +851,7 @@ MonoBehaviour:
   velocity: 0
   wake: {fileID: 122676}
   shipInput: {fileID: 114190790248285026}
-  anim: {fileID: 0}
+  anim: {fileID: 114000013867850790}
   invincibilyPrefab: {fileID: 1000010893256384, guid: 96db08b74f03b43f4b246b4666e7b4a5,
     type: 2}
   gameStarted: 0

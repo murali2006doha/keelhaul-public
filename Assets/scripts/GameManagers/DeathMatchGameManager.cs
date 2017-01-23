@@ -33,8 +33,6 @@ public class DeathMatchGameManager : AbstractGameManager
     [HideInInspector]
     public GlobalCanvas globalCanvas;
     [HideInInspector]
-    public GameObject screenSplitter;
-    [HideInInspector]
     public Animator fadeInAnimator;
     [HideInInspector]
     public List<int> shipPoints = new List<int>();
@@ -55,7 +53,6 @@ public class DeathMatchGameManager : AbstractGameManager
     {
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
         gamePoints = new Dictionary<string, int>();
-        Debug.Log("reaching start");
         //Disable unused islands
         for (int z = shipPoints.Count; z < mapObjects.islands.Length; z++)
         {
@@ -91,8 +88,7 @@ public class DeathMatchGameManager : AbstractGameManager
             Debug.Log("reaching addplayer with id : " + id.ToString());
             gamePoints.Add(id.ToString(), 0);
            
-            Debug.Log(id);
-            Debug.Log(gamePoints.Keys.Count);
+    
             if (id  >= 2)
             {
                 foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
