@@ -11,9 +11,6 @@ public class PlayerSelectSettings : MonoBehaviour {
 
 	void Start () {
 		GameObject.DontDestroyOnLoad (this);
-        isTeam = false;
-        gameType = GameTypeEnum.Sabotage;
-        includeKraken = true;
 	}
 
 
