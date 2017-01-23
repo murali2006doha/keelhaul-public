@@ -417,7 +417,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             gameStats.healthLost += actualDamage;
             followCamera.startShake();
             var photonView = GetComponent<PhotonView>();
-            photonView.RPC("TurnRed", PhotonTargets.All,null);
+            TurnRed();
             photonView.RPC("playHitSound", PhotonTargets.All, null);
             photonView.RPC("toggleDamageStates", PhotonTargets.All, health);
             if (!isKraken)
@@ -448,10 +448,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         }
     }
 
-    [PunRPC]
+    
     public void TurnRed()
     {
-        anim.shipAnimator.CrossFade("damageBlink", 0.2f);
+        anim.playDamageAnimation();
     }
 
 
