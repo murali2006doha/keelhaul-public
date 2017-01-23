@@ -381,9 +381,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  cc: {fileID: 114200235897782174}
-  nm: {fileID: 0}
-  withKeyboard: 0
 --- !u!114 &114898485197525384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -397,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   isTeam: 0
-  gameType: 0
+  gameType: 2
   includeKraken: 0
 --- !u!114 &114971876526143572
 MonoBehaviour:
