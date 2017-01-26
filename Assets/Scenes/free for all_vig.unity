@@ -55433,6 +55433,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
+        type: 2}
+      propertyPath: shipSelections.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4957737826062860, guid: bd3c9678da9ed7c45a9542502ea0337d, type: 2}
       propertyPath: m_LocalPosition.x
       value: -18.306156
@@ -55474,6 +55479,16 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114771866673502022, guid: bd3c9678da9ed7c45a9542502ea0337d,
+        type: 2}
+      propertyPath: offlineMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114529735256869592, guid: bd3c9678da9ed7c45a9542502ea0337d,
+        type: 2}
+      propertyPath: gameType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd3c9678da9ed7c45a9542502ea0337d, type: 2}
