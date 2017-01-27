@@ -33,9 +33,10 @@ public class FreeForAllStatistics {
 	public int numOfBoosts;//Done
 	public int numOfKrakenSmash;//Done
 
-	public List<Title> titles = new List<Title>();
+    [System.NonSerialized]
+    public List<Title> titles = new List<Title>();
 
-
+    
 	public void addGivenDamage(string type, float damage){
 		if (type == ShipEnum.AtlanteanShip.ToString ()) {
 			damageGivenToAtlantis += damage;

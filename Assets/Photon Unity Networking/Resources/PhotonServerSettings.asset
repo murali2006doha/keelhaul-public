@@ -50,4 +50,11 @@ MonoBehaviour:
   - toggleDamageStates
   - TurnRed
   - playHitSound
+  - addDamageStats
+  - addKillStats
+  - SyncStats
+  - SetPLayerID
+  - SetPlayerId
+  - SyncStat
+  - ActivateLastPointPrompt
   DisableAutoOpenWizard: 1

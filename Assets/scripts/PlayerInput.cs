@@ -148,6 +148,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
+        
     }
 
 
@@ -208,7 +209,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         {
             invinciblity.SetBool("invincibility", false);
         }
-        invincibilityParticle.SetActive(false);
+        if (invincibilityParticle != null)
+        {
+            invincibilityParticle.SetActive(false);
+
+        }
     }
 
     public void reset()
@@ -420,10 +425,18 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             TurnRed();
             photonView.RPC("playHitSound", PhotonTargets.All, null);
             photonView.RPC("toggleDamageStates", PhotonTargets.All, health);
+            
             if (!isKraken)
             {
-                //TODO: get ship name that damaged me and add taken damage
-                //TODO: Call given damage RPC on that ship.
+                photonView.RPC("addDamageStats", PhotonTargets.All, id, type.ToString(), actualDamage, true);
+                var players = manager.getPlayers();
+                foreach (PlayerInput player in players)
+                {
+                    if (getId() == id)
+                    {
+                        gameStats.addTakenDamage(player.type.ToString(), actualDamage);
+                    }
+                }
             }
             else
             {
@@ -448,7 +461,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         }
     }
 
-    
+    [PunRPC]
+    public void SetPlayerId()
+    {
+        this.playerId = PhotonNetwork.offlineMode?shipNum:GetComponent<PhotonView>().ownerId;
+    }
+
+
+
     public void TurnRed()
     {
         anim.playDamageAnimation();
@@ -469,6 +489,36 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipMesh.enabled = check;
     }
 
+    [PunRPC]
+    public void addDamageStats(int id, string name,float damage, bool given)
+    {
+        if (PhotonNetwork.player.ID == id)
+        {
+            if (given)
+            {
+                gameStats.addGivenDamage(name, damage);
+            }
+            else
+            {
+                gameStats.addTakenDamage(name, damage);
+
+            }
+        }
+    }
+
+    [PunRPC]
+    public void addKillStats(int id)
+    {
+        if (PhotonNetwork.player.ID == id)
+        {
+                gameStats.numOfKills++;     
+        }
+    }
+
+    public int getId()
+    {
+        return PhotonNetwork.offlineMode ? shipNum : GetComponent<PhotonView>().ownerId;
+    }
 
     public void die()
     {

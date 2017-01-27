@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenSplitter: {fileID: 0}
-  playerWinPoints: 5
+  playerWinPoints: 2
   krakenWinPoints: 5
   cams: []
   ps: {fileID: 0}
@@ -90,7 +90,6 @@ MonoBehaviour:
   kraken: {fileID: 0}
   countDown: {fileID: 0}
   globalCanvas: {fileID: 0}
-  screenSplitter: {fileID: 0}
   fadeInAnimator: {fileID: 0}
   shipPoints: 
 --- !u!114 &114743175055306008

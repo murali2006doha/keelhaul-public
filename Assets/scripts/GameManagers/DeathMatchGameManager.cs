@@ -11,7 +11,7 @@ public class DeathMatchGameManager : AbstractGameManager
     //Use this script for general things like managing the state of the game, tracking players and so on.
 
 
-    public int playerWinPoints = 5;
+    public int playerWinPoints = 2;
     public int krakenWinPoints = 5;
 
 
@@ -30,7 +30,7 @@ public class DeathMatchGameManager : AbstractGameManager
     public KrakenInput kraken;
     [HideInInspector]
     public GameObject countDown;
-    [HideInInspector]
+    
     public GlobalCanvas globalCanvas;
     [HideInInspector]
     public Animator fadeInAnimator;
@@ -44,6 +44,9 @@ public class DeathMatchGameManager : AbstractGameManager
     MonoBehaviour winnerScript;
     GameObject winner;
     int krakenPoints;
+
+    int numOfStatsSynced = 1;
+    int winnerId= -1;
 
     List<string> teamNames = new List<string> { "Red Team", "Blue Team", "Green Team", "Yellow Team" };
     Dictionary<string, string> teamToColor = new Dictionary<string, string> { { "Red Team", "red" }, { "Blue Team", "blue" }, { "Green Team", "green" }, { "Yellow Team", "yellow" } };
@@ -347,34 +350,95 @@ public class DeathMatchGameManager : AbstractGameManager
 
     [PunRPC]
     public void IncrementPoint(int id) {
-        if (!GetComponent<PhotonView>().isMine) {
+        
+        if (!GetComponent<PhotonView>().isMine || id != PhotonNetwork.player.ID) {
             return;
         }
-
-        Debug.Log(gamePoints.Keys.ToString());
-        foreach (string key in gamePoints.Keys) {
-            Debug.Log(key);
-        }
-        Debug.Log("Id geting hit: " + id.ToString());
-
+       
         if (PhotonNetwork.player.ID == id) {
 
             players[0].uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
+            
         }
-
-        if (gamePoints.ContainsKey(id.ToString())) {
+        var players2 = GameObject.FindObjectsOfType<PlayerInput>();
+        foreach (PlayerInput player in players2)
+        {
+            if(player.getId() == id)
+            {
+                player.addKillStats(id);
+                break;
+            }
+        }
+       
+        if (gamePoints.ContainsKey(id.ToString()))
+        {
+            
             gamePoints[id.ToString()]++;
             if (gamePoints[id.ToString()] >= playerWinPoints)
             {
                 Debug.Log(id.ToString() + " Won");
-                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                foreach(DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                 {
                     manager.GetComponent<PhotonView>().RPC("TriggerNetworkedVictory", PhotonTargets.All, id);
                 }
+                
+            }
+            else if (gamePoints[id.ToString()] == playerWinPoints - 1)
+            {
+                ActivateLastPointPrompt(id);
 
             }
         }
+        else
+        {
+            foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+            {
+                manager.GetComponent<PhotonView>().RPC("ActivateLastPointPrompt", PhotonTargets.All, id);
+            }
+           
+        }
         
+    }
+
+    [PunRPC]
+    private void ActivateLastPointPrompt(int id)
+    {
+        if (!GetComponent<PhotonView>().isMine)
+        {
+            return;
+        }
+        //TODO: Refactor into score keeper/kill feed controller
+        if (PhotonNetwork.offlineMode)
+        {
+            foreach (PlayerInput player in players)
+            {
+                if (player.GetComponent<PhotonView>().ownerId == id)
+                {
+                    var newText = lastPoint.Replace("The Replace", "You").Replace("Needs", "Need");
+                    player.uiManager.GetComponentInChildren<ProgressScript>().activatePopup(newText, "You", "Ship");
+                }
+                else
+                {
+                    var newText = lastPoint.Replace("The Replace", "Player " + id.ToString());
+                    player.uiManager.GetComponentInChildren<ProgressScript>().activatePopup(newText, "They", "Ship");
+                }
+
+            }
+
+        }
+        else
+        {
+            var textScript = GameObject.FindObjectOfType<ProgressScript>();
+            if (PhotonNetwork.player.ID == id)
+            {
+                var newText = lastPoint.Replace("The Replace", "You").Replace("Needs", "Need");
+                textScript.activatePopup(newText, "You", "Ship");
+            }
+            else {
+                var newText = lastPoint.Replace("The Replace", "Player " + id.ToString());
+                textScript.activatePopup(newText, "They", "Ship");
+            }
+        }
     }
 
     public void activateVictoryText()
@@ -396,17 +460,190 @@ public class DeathMatchGameManager : AbstractGameManager
         if (!GetComponent<PhotonView>().isMine) {
             return;
         }
+        
+        //Calculate Stats
+        
+        winnerId = id;
+        print("winnerID" + id);
+        SyncStats();
 
-        if (PhotonNetwork.player.ID == id) {
-            globalCanvas.networkText.transform.parent.gameObject.SetActive(true);
-            globalCanvas.networkText.GetComponent<Text>().text = "You win";
-        } else {
-            globalCanvas.networkText.transform.parent.gameObject.SetActive(true);
-            globalCanvas.networkText.GetComponent<Text>().text = "You Lost";
-        }
         players[0].gameStarted = false;
 
     }
+
+    private void SyncStats()
+    {
+        if (PhotonNetwork.offlineMode)
+        {
+            activateVictoryText();
+            Invoke("TriggerStatsAnimation", 1.4f);
+            return;
+        }
+
+        var players = GameObject.FindObjectsOfType<PlayerInput>();
+
+        foreach (PlayerInput player in players)
+        {
+            var photonView = player.GetComponent<PhotonView>();
+          
+            if (photonView.ownerId == PhotonNetwork.player.ID)
+            {
+                foreach(DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                {
+                    if (!manager.GetComponent<PhotonView>().isMine)
+                    {
+                        manager.GetComponent<PhotonView>().RPC("SyncStat", PhotonTargets.Others, player.getId(), ArrayHelper.ObjectToByteArray(player.gameStats));
+                    }
+                }
+                
+                break;
+            }
+        }
+    }
+
+    [PunRPC]
+    public void SyncStat(int id, byte[] statsBinary)
+    {
+        if (!GetComponent<PhotonView>().isMine)
+        {
+            return;
+        }
+        var players = GameObject.FindObjectsOfType<PlayerInput>();
+        foreach (PlayerInput player in players)
+        {
+            if (player.GetComponent<PhotonView>().ownerId == id)
+            { 
+                FreeForAllStatistics stats = (FreeForAllStatistics)ArrayHelper.ByteArrayToObject(statsBinary);
+                player.gameStats = stats;
+                numOfStatsSynced++;
+                break;
+            }
+        }
+        if (numOfStatsSynced == players.Length)
+        {
+            activateVictoryText();
+            Invoke("TriggerStatsAnimation", 1.4f);
+            
+        }
+    }
+
+    public void TriggerStatsAnimation()
+    {
+        triggerScreenAnimation();
+        triggerStatScreen();
+    }
+
+    private void triggerStatScreen()
+    {
+        screenSplitter.SetActive(false);
+        MapObjects map = GameObject.FindObjectOfType<MapObjects>();
+        map.gameOverCamera.gameObject.SetActive(true);
+        GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
+        gameOverUI.gameObject.SetActive(true);
+        List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
+        List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
+        List<GameObject> losers = new List<GameObject>();
+        var players = GameObject.FindObjectsOfType<PlayerInput>();
+        PlayerInput winner = null;
+        foreach (PlayerInput ship in players)
+        {
+            ship.reset();
+            ship.gameStats.titles = new List<Title>();
+            ship.setStatus(ShipStatus.Waiting);
+            if (ship.followCamera)
+            {
+                ship.followCamera.enabled = false;
+            }
+            if (ship.getId() == winnerId)
+            {
+                gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Player " + winnerId.ToString());
+                gameOverUI.winners[0].name.text = !PhotonNetwork.offlineMode && winnerId == PhotonNetwork.player.ID ? "You" : "Player " + winnerId.ToString();
+                winner = ship;
+                
+            }
+            else
+            {
+                losers.Add(ship.gameObject);
+            }
+
+            shipStats.Add(ship.gameStats);
+        }
+        winner.gameObject.transform.position = new Vector3(map.winnerLoc.transform.position.x, winner.gameObject.transform.position.y, map.winnerLoc.transform.position.z);
+        winner.gameObject.transform.localScale *= 2f;
+        winner.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+
+        //Losers
+        losers[0].transform.position = new Vector3(map.loser1loc.transform.position.x, losers[0].transform.position.y, map.loser1loc.transform.position.z);
+        losers[0].transform.position = map.loser1loc.transform.position;
+        losers[0].transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+
+        if (losers.Count > 1)
+        {
+            losers[1].transform.position = new Vector3(map.loser2loc.transform.position.x, losers[1].transform.position.y, map.loser2loc.transform.position.z);
+            losers[1].transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+        }
+
+        GameObject titlesPrefab = Resources.Load(PathVariables.titlesPath, typeof(GameObject)) as GameObject;
+        Titles titles = titlesPrefab.GetComponent<Titles>();
+        titles.calculateTitles(shipStats, krakenStats);
+ 
+        int num = 0;
+        foreach (Title title in winner.gameStats.titles)
+        {
+            if (num >= gameOverUI.winners[0].titles.Length)
+            {
+                break;
+            }
+            gameOverUI.winners[0].titles[num].text = title.name;
+            gameOverUI.winners[0].titleStats[num].text = title.statsString;
+            num++;
+        }
+
+        for (int x = 0; x < losers.Count; x++)
+        {
+            num = 0;
+            PlayerInput loserInput = losers[x].GetComponent<PlayerInput>();
+            FreeForAllStatistics loserStat = null;
+            if (loserInput != null)
+            {
+                loserStat = loserInput.gameStats;
+                gameOverUI.losers[x].name.text = !PhotonNetwork.offlineMode && loserInput.getId() == PhotonNetwork.player.ID?"You":"Player " + loserInput.getId();
+            }
+
+            foreach (Title title in loserStat.titles)
+            {
+                if (num >= gameOverUI.winners[0].titles.Length)
+                {
+                    break;
+                }
+                gameOverUI.losers[x].titles[num].text = title.name;
+                gameOverUI.losers[x].titleStats[num].text = title.statsString;
+                num++;
+            }
+
+        }
+        Invoke("enableStats", 4f);
+    }
+
+    private void triggerScreenAnimation()
+    {
+        Texture2D texture = new Texture2D(Screen.width, Screen.height / 2, TextureFormat.RGB24, true);
+        texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height / 2), 0, 0);
+        texture.Apply();
+        Texture2D texture2 = new Texture2D(Screen.width, Screen.height / 2, TextureFormat.RGB24, true);
+        texture2.ReadPixels(new Rect(0, Screen.height / 2, Screen.width, Screen.height / 2), 0, 0);
+        texture2.Apply();
+        globalCanvas.panel1.texture = texture2;
+        globalCanvas.panel2.texture = texture;
+        globalCanvas.panel1.gameObject.SetActive(true);
+        globalCanvas.panel2.gameObject.SetActive(true);
+        Time.timeScale = 1f;
+        gameOver = true;
+
+        
+
+    }
+
     public void triggerVictory()
     {
 
@@ -436,18 +673,6 @@ public class DeathMatchGameManager : AbstractGameManager
 
 
         //globalCanvas.finishText.SetActive(true);
-        Texture2D texture = new Texture2D(Screen.width, Screen.height / 2, TextureFormat.RGB24, true);
-        texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height / 2), 0, 0);
-        texture.Apply();
-        Texture2D texture2 = new Texture2D(Screen.width, Screen.height / 2, TextureFormat.RGB24, true);
-        texture2.ReadPixels(new Rect(0, Screen.height / 2, Screen.width, Screen.height / 2), 0, 0);
-        texture2.Apply();
-        globalCanvas.panel1.texture = texture2;
-        globalCanvas.panel2.texture = texture;
-        globalCanvas.panel1.gameObject.SetActive(true);
-        globalCanvas.panel2.gameObject.SetActive(true);
-        Time.timeScale = 1f;
-        gameOver = true;
         if (!isTeam)
         {
             triggerVictoryScreen();
@@ -671,5 +896,10 @@ public class DeathMatchGameManager : AbstractGameManager
     internal override int getNumberOfTeams()
     {
         return gamePoints.Count;
+    }
+
+    public override List<PlayerInput> getPlayers()
+    {
+        return players;
     }
 }
