@@ -9,24 +9,23 @@ public class ShipCannonComponent : MonoBehaviour
 
     public int cannonForce = 1000; //Make this public so designers can easily manipulate it
     public int arcCannonForce = 10;
-    float dampening = 0.2f;
-    public float numberOfCannons = 2;
+	protected float dampening = 0.2f;
     public int numOfCannonBalls = 3;
     public float angleOfCannonShots = 30;
 
-    bool canShootRight = true;
-    float altTimer;
-    float speed = 1;
-    ShipStats stats;
-    float forceMultiplier = 20f; //Forward facing force multiplier
+	protected bool canShootRight = true;
+	protected float altTimer;
+	protected float speed = 1;
+	protected ShipStats stats;
+	protected float forceMultiplier = 20f; //Forward facing force multiplier
 
-    Vector3 velocity;
-    Transform shipTransform;
-    ShipMotorComponent motor;
-    GameObject aim;
-    PlayerInput input;
-    FreeForAllStatistics gameStats;
-    string cannonballPath;
+	protected Vector3 velocity;
+	protected Transform shipTransform;
+	protected ShipMotorComponent motor;
+	protected GameObject aim;
+	protected PlayerInput input;
+	protected FreeForAllStatistics gameStats;
+    protected string cannonballPath;
 
     internal void Initialize(PlayerInput input, Transform shipTransform, GameObject aim, ShipStats stats,
         FreeForAllStatistics gameStats, ShipMotorComponent motor, string path)
@@ -42,7 +41,7 @@ public class ShipCannonComponent : MonoBehaviour
     }
 
 
-    private void Fire()
+	public virtual void Fire()
     {
 
         var angle = Vector3.Angle(shipTransform.forward, this.transform.forward);
@@ -83,7 +82,7 @@ public class ShipCannonComponent : MonoBehaviour
         this.transform.rotation = Quaternion.LookRotation(shoot_direction.normalized);
         if (canShootRight && shoot_direction.magnitude > 0)
         {
-            this.Fire();
+            Fire();
             input.vibrate(.15f, .25f);
             canShootRight = false;
             Invoke("ResetShotRight", stats.shootDelay);
