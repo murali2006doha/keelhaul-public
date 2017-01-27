@@ -23,7 +23,6 @@ public class BlackbeardCannonComponent : ShipCannonComponent {
 
 	public override void Fire() {
 
-		print ("inher");
 		var angle = Vector3.Angle(shipTransform.forward, this.transform.forward);
 		Vector3 vect = Vector3.zero;
 		if (angle > 0 && angle < 45)
