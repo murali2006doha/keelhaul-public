@@ -17,10 +17,6 @@ public class BlackbeardCannonComponent : ShipCannonComponent {
 
 	public cannonToCannonBall[] prefabs;
 
-	void Start() {
-		handleShoot ();
-	}
-
 	public override void Fire() {
 
 		var angle = Vector3.Angle(shipTransform.forward, this.transform.forward);
