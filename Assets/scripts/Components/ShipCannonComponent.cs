@@ -9,22 +9,22 @@ public class ShipCannonComponent : MonoBehaviour
 
     public int cannonForce = 1000; //Make this public so designers can easily manipulate it
     public int arcCannonForce = 10;
-	protected float dampening = 0.2f;
+    protected float dampening = 0.2f;
     public int numOfCannonBalls = 3;
     public float angleOfCannonShots = 30;
 
-	protected bool canShootRight = true;
-	protected float altTimer;
-	protected float speed = 1;
-	protected ShipStats stats;
-	protected float forceMultiplier = 20f; //Forward facing force multiplier
+    protected bool canShootRight = true;
+    protected float altTimer;
+    protected float speed = 1;
+    protected ShipStats stats;
+    protected float forceMultiplier = 20f; //Forward facing force multiplier
 
-	protected Vector3 velocity;
-	protected Transform shipTransform;
-	protected ShipMotorComponent motor;
-	protected GameObject aim;
-	protected PlayerInput input;
-	protected FreeForAllStatistics gameStats;
+    protected Vector3 velocity;
+    protected Transform shipTransform;
+    protected ShipMotorComponent motor;
+    protected GameObject aim;
+    protected PlayerInput input;
+    protected FreeForAllStatistics gameStats;
     protected string cannonballPath;
 
     internal void Initialize(PlayerInput input, Transform shipTransform, GameObject aim, ShipStats stats,
@@ -41,7 +41,7 @@ public class ShipCannonComponent : MonoBehaviour
     }
 
 
-	public virtual void Fire()
+    public virtual void Fire()
     {
 
         var angle = Vector3.Angle(shipTransform.forward, this.transform.forward);
