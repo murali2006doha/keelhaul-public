@@ -11,7 +11,7 @@ public class DeathMatchGameManager : AbstractGameManager
     //Use this script for general things like managing the state of the game, tracking players and so on.
 
 
-    public int playerWinPoints = 2;
+    public int playerWinPoints = 5;
     public int krakenWinPoints = 5;
 
 
@@ -30,7 +30,7 @@ public class DeathMatchGameManager : AbstractGameManager
     public KrakenInput kraken;
     [HideInInspector]
     public GameObject countDown;
-    
+    [HideInInspector]
     public GlobalCanvas globalCanvas;
     [HideInInspector]
     public Animator fadeInAnimator;
@@ -92,7 +92,7 @@ public class DeathMatchGameManager : AbstractGameManager
             gamePoints.Add(id.ToString(), 0);
            
     
-            if (id  >= 2)
+            if (id  >= 2 || (PhotonNetwork.offlineMode && id>=1))
             {
                 foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                 {
@@ -351,11 +351,11 @@ public class DeathMatchGameManager : AbstractGameManager
     [PunRPC]
     public void IncrementPoint(int id) {
         
-        if (!GetComponent<PhotonView>().isMine || id != PhotonNetwork.player.ID) {
+        if (!GetComponent<PhotonView>().isMine) {
             return;
         }
        
-        if (PhotonNetwork.player.ID == id) {
+        if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode) {
 
             players[0].uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
             
@@ -366,18 +366,22 @@ public class DeathMatchGameManager : AbstractGameManager
             if(player.getId() == id)
             {
                 player.addKillStats(id);
+                if (PhotonNetwork.offlineMode)
+                {
+                    player.uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
+                }
                 break;
             }
         }
-       
+
         if (gamePoints.ContainsKey(id.ToString()))
         {
             
             gamePoints[id.ToString()]++;
-            if (gamePoints[id.ToString()] >= playerWinPoints)
+            if (gamePoints[id.ToString()] >= playerWinPoints && PhotonNetwork.isMasterClient)
             {
-                Debug.Log(id.ToString() + " Won");
-                foreach(DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                
+                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                 {
                     manager.GetComponent<PhotonView>().RPC("TriggerNetworkedVictory", PhotonTargets.All, id);
                 }
@@ -385,18 +389,14 @@ public class DeathMatchGameManager : AbstractGameManager
             }
             else if (gamePoints[id.ToString()] == playerWinPoints - 1)
             {
-                ActivateLastPointPrompt(id);
+                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                {
+                    manager.GetComponent<PhotonView>().RPC("ActivateLastPointPrompt", PhotonTargets.All, id);
+                }
 
             }
         }
-        else
-        {
-            foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
-            {
-                manager.GetComponent<PhotonView>().RPC("ActivateLastPointPrompt", PhotonTargets.All, id);
-            }
-           
-        }
+        
         
     }
 
@@ -412,7 +412,7 @@ public class DeathMatchGameManager : AbstractGameManager
         {
             foreach (PlayerInput player in players)
             {
-                if (player.GetComponent<PhotonView>().ownerId == id)
+                if (player.getId() == id)
                 {
                     var newText = lastPoint.Replace("The Replace", "You").Replace("Needs", "Need");
                     player.uiManager.GetComponentInChildren<ProgressScript>().activatePopup(newText, "You", "Ship");
@@ -675,7 +675,7 @@ public class DeathMatchGameManager : AbstractGameManager
         //globalCanvas.finishText.SetActive(true);
         if (!isTeam)
         {
-            triggerVictoryScreen();
+            
         }
         else
         {
@@ -741,130 +741,6 @@ public class DeathMatchGameManager : AbstractGameManager
 
     }
 
-    public void triggerVictoryScreen()
-    {
-        if (kraken)
-        {
-            kraken.reset();
-            kraken.followCamera.enabled = false;
-        }
-        foreach (PlayerInput z in players)
-        {
-            z.reset();
-            z.setStatus(ShipStatus.Waiting);
-            z.followCamera.enabled = false;
-        }
-
-        screenSplitter.SetActive(false);
-        MapObjects map = GameObject.FindObjectOfType<MapObjects>();
-        //Refactor out of map
-
-        map.gameOverCamera.gameObject.SetActive(true);
-
-        GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
-        gameOverUI.gameObject.SetActive(true);
-
-        List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
-        List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
-
-        FreeForAllStatistics winStat = null;
-        List<GameObject> losers = new List<GameObject>();
-
-        if (winnerScript is PlayerInput)
-        {
-            PlayerInput player = ((PlayerInput)winnerScript);
-            winStat = player.gameStats;
-            shipStats.Add(player.gameStats);
-            gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", player.shipName);
-            gameOverUI.winners[0].name.text = player.shipName;
-            foreach (PlayerInput input in players)
-            {
-                if (input != player)
-                {
-                    losers.Add(input.gameObject);
-                    shipStats.Add(input.gameStats);
-                }
-            }
-            losers.Add(kraken.gameObject);
-            krakenStats.Add(kraken.gameStats);
-        }
-        else if (winnerScript is KrakenInput)
-        {
-            KrakenInput player = ((KrakenInput)winnerScript);
-            winStat = player.gameStats;
-            krakenStats.Add(player.gameStats);
-            gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Kraken");
-            gameOverUI.winners[0].name.text = "Kraken";
-            foreach (PlayerInput input in players)
-            {
-                losers.Add(input.gameObject);
-                shipStats.Add(input.gameStats);
-            }
-        }
-
-        //Winner
-        winnerScript.gameObject.transform.position = new Vector3(map.winnerLoc.transform.position.x, winnerScript.gameObject.transform.position.y, map.winnerLoc.transform.position.z);
-        winnerScript.gameObject.transform.localScale *= 2f;
-        winnerScript.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-
-        //Losers
-        losers[0].transform.position = new Vector3(map.loser1loc.transform.position.x, losers[0].transform.position.y, map.loser1loc.transform.position.z);
-        losers[0].transform.position = map.loser1loc.transform.position;
-        losers[0].transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-
-        losers[1].transform.position = new Vector3(map.loser2loc.transform.position.x, losers[1].transform.position.y, map.loser2loc.transform.position.z);
-        losers[1].transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-
-
-        GameObject titlesPrefab = Resources.Load(PathVariables.titlesPath, typeof(GameObject)) as GameObject;
-        Titles titles = titlesPrefab.GetComponent<Titles>();
-        titles.calculateTitles(shipStats, krakenStats);
-
-        int num = 0;
-        foreach (Title title in winStat.titles)
-        {
-            if (num >= gameOverUI.winners[0].titles.Length)
-            {
-                break;
-            }
-            gameOverUI.winners[0].titles[num].text = title.name;
-            gameOverUI.winners[0].titleStats[num].text = title.statsString;
-            num++;
-        }
-
-        for (int x = 0; x < 2; x++)
-        {
-            num = 0;
-            PlayerInput loserInput = losers[x].GetComponent<PlayerInput>();
-            FreeForAllStatistics loserStat = null;
-            if (loserInput != null)
-            {
-                loserStat = loserInput.gameStats;
-                gameOverUI.losers[x].name.text = loserInput.shipName;
-            }
-            else
-            {
-                KrakenInput krakn = losers[x].GetComponent<KrakenInput>();
-                loserStat = krakn.gameStats;
-                gameOverUI.losers[x].name.text = "Kraken";
-            }
-
-            foreach (Title title in loserStat.titles)
-            {
-                if (num >= gameOverUI.winners[0].titles.Length)
-                {
-                    break;
-                }
-                gameOverUI.losers[x].titles[num].text = title.name;
-                gameOverUI.losers[x].titleStats[num].text = title.statsString;
-                num++;
-            }
-
-        }
-        Invoke("enableStats", 4f);
-
-
-    }
 
     public void enableStats()
     {

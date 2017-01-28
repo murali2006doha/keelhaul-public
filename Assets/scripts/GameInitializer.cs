@@ -615,7 +615,7 @@ public class GameInitializer : MonoBehaviour {
 
             input.playerId = playerId;
             input.Actions = player.Actions;
-            input.shipNum = num;
+            input.shipNum = num+1;
             if (isTeam)
             {
                 if (!teamNums.ContainsKey(player.team))

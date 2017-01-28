@@ -461,11 +461,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         }
     }
 
-    [PunRPC]
-    public void SetPlayerId()
-    {
-        this.playerId = PhotonNetwork.offlineMode?shipNum:GetComponent<PhotonView>().ownerId;
-    }
 
 
 
