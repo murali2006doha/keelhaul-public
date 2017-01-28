@@ -31,8 +31,12 @@ public static class PathVariables {
     //Ship Effects
     internal static string shipInvincibility = "Prefabs/Effects/Star Power";
 
+    //Alternate Textures
+    internal static string blackbeardAltTexturePath = "Ship/Alternate_Textures/blackbeard_texture";
 
-    public static string GetAssociatedCannonballForShip(ShipEnum shipType) {
+
+    public static string GetAssociatedCannonballForShip(ShipEnum shipType)
+    {
         if (shipType == ShipEnum.AtlanteanShip)
         {
             return atlantisCannonBallPath;
@@ -41,8 +45,28 @@ public static class PathVariables {
         {
             return blackbeardCannonBallPath;
         }
-        else if (shipType == ShipEnum.ChineseJunkShip) {
+        else if (shipType == ShipEnum.ChineseJunkShip)
+        {
             return chineseCannonBallPath;
+        }
+
+        return string.Empty;
+
+    }
+
+        public static string GetAssociatedTextureSkinPath(ShipEnum shipType,int altSkinNum)
+    {
+        if (shipType == ShipEnum.AtlanteanShip)
+        {
+            return "";
+        }
+        else if (shipType == ShipEnum.BlackbeardShip)
+        {
+            return blackbeardAltTexturePath + altSkinNum;
+        }
+        else if (shipType == ShipEnum.ChineseJunkShip)
+        {
+            return "";
         }
 
         return string.Empty;
