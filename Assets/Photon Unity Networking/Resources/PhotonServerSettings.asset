@@ -47,4 +47,8 @@ MonoBehaviour:
   - triggerVictory
   - TriggerNetworkedVictory
   - AddForce
+  - toggleDamageStates
+  - TurnRed
+  - playHitSound
+  - ChangeSkin
   DisableAutoOpenWizard: 1

@@ -8,7 +8,7 @@ public class CharacterSelectModel : MonoBehaviour {
 	internal static string pressA = "sprites/character_portraits_assets/press_A";
 	internal static string pressB = "sprites/Character Select UI/B";
 	internal static string deselect = "sprites/Character Select UI/deselect";
-	internal static string CSPanelPrefab = "Prefabs/CSPanelPrefab";
+	internal static string CSPanelPrefab = "Prefabs/UI/CSPanelPrefab";
 
 	public static Dictionary<ShipEnum, string> ShipToImage = new Dictionary<ShipEnum, string>(){
 		{ ShipEnum.AtlanteanShip, "character_portraits_assets/angria"},

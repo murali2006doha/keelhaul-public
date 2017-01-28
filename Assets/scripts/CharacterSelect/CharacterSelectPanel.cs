@@ -50,13 +50,6 @@ public class CharacterSelectPanel : MonoBehaviour {
 		this.Actions = actions;
 		this.csc = csc;
 
-		Vector3 localscale = this.gameObject.transform.localScale;
-		this.gameObject.transform.SetParent(GameObject.Find ("Container").transform);
-		this.gameObject.transform.position = GameObject.Find ("Container").transform.position;
-		this.gameObject.transform.rotation = GameObject.Find ("Container").transform.rotation;
-		this.gameObject.transform.localScale = localscale;
-
-
 	}
 		
 	
@@ -136,12 +129,6 @@ public class CharacterSelectPanel : MonoBehaviour {
 
 
 
-
-
-
-		
-
-
 	public void lightArrows() {
 
 		if (Actions.Down.IsPressed) {
@@ -165,5 +152,9 @@ public class CharacterSelectPanel : MonoBehaviour {
 
 	}
 
+
+	public String getSelectedCharacter() {
+		return selectedCharacter;
+	}
 
 }

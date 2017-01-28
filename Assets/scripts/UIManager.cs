@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     Barrel barrelObj;
     public Vector3 tooltipOffset;
     public TutorialUIManager tutorialManager;
-    public bool enableTutorials = true;
+    public bool enableTutorials = false;
     public GameObject finishText;
     public GameObject colorTint;
     public GameObject worldSpace;

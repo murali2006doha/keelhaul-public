@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4957737826062860}
   - component: {fileID: 114529735256869592}
   - component: {fileID: 114879928171835194}
+  - component: {fileID: 114771866673502022}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1854575883002100}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 090d7ab216eafbf46b279c3a88310932, type: 3}
   m_Name: 
@@ -55,14 +56,29 @@ MonoBehaviour:
   shipSelections:
   - selectedCharacter: 0
     team: 0
-  - selectedCharacter: 1
-    team: 0
-  includeKraken: 1
+  includeKraken: 0
   isTeam: 0
   isFirstControllerKraken: 0
   gameType: 0
-  isMaster: 0
+  isMaster: 1
   playerId: 0
+--- !u!114 &114771866673502022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854575883002100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a61d6d3334053f47be157084fedaadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectionText: {fileID: 0}
+  NetworkedCharacterSelect: {fileID: 1094443328089532, guid: 645a1f2311c084ae882b673e34b8e787,
+    type: 2}
+  initializer: {fileID: 114529735256869592}
+  offlineMode: 0
+  csc: {fileID: 114575166429551640, guid: 645a1f2311c084ae882b673e34b8e787, type: 2}
 --- !u!114 &114879928171835194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -74,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b5e8de77c5b4597ae7fbfb49a95e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logDebugInfo: 0
+  logDebugInfo: 1
   invertYAxis: 0
   useFixedUpdate: 0
   dontDestroyOnLoad: 0
