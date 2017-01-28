@@ -6,9 +6,9 @@ public class ChineseAltCannonComponent : AbstractAltCannonComponent {
 
 	public override void alternateFire () {
 
-		GameObject instantiated = (GameObject) Instantiate(alternateFirePrefab, cannonBallPos.position, this.transform.rotation);
-		instantiated.GetComponent<SecondaryFire>().parent = transform.root.gameObject;
-		instantiated.GetComponent<SecondaryFire>().force = altCannonForce;
+		GameObject instantiated = PhotonNetwork.Instantiate(PathVariables.alternateChineseShot, cannonBallPos.position, this.transform.rotation, 0);
+        instantiated.GetComponent<CannonBall>().setOwner(transform.root);
+        instantiated.GetComponent<PhotonView>().RPC("AddForce", PhotonTargets.All, this.transform.forward * altCannonForce);
 		input.gameStats.numOfAlternateShots++;
 
 	}

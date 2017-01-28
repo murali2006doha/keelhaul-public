@@ -8,4 +8,10 @@ public class SecondaryFire:MonoBehaviour {
     public SecondaryFire(GameObject parent) {
         this.parent = parent;
     }
+
+    [PunRPC]
+    public void AddForce(float force)
+    {
+        this.force = force;
+    }
 }
