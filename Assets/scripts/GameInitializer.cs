@@ -627,7 +627,7 @@ public class GameInitializer : MonoBehaviour {
                         altSkinCount++;
                     }
                 }
-                if (altSkinCount > 1 && input.type == ShipEnum.BlackbeardShip)
+                if (altSkinCount > 1)
                 {
                     input.GetComponent<PhotonView>().RPC("changeSkin", PhotonTargets.AllBuffered, altSkinCount);
                 }

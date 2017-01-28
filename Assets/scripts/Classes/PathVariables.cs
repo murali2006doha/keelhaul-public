@@ -33,7 +33,8 @@ public static class PathVariables {
 
     //Alternate Textures
     internal static string blackbeardAltTexturePath = "Ship/Alternate_Textures/blackbeard_texture";
-
+    internal static string chineseAltTexturePath = "Ship/Alternate_Textures/junk_with_emit_and_gloss";
+    internal static string atlanteanAltTexturePath = "Ship/Alternate_Textures/atlantis_diffuse_and_AO";
 
     public static string GetAssociatedCannonballForShip(ShipEnum shipType)
     {
@@ -58,7 +59,7 @@ public static class PathVariables {
     {
         if (shipType == ShipEnum.AtlanteanShip)
         {
-            return "";
+            return atlanteanAltTexturePath + altSkinNum;
         }
         else if (shipType == ShipEnum.BlackbeardShip)
         {
@@ -66,7 +67,7 @@ public static class PathVariables {
         }
         else if (shipType == ShipEnum.ChineseJunkShip)
         {
-            return "";
+            return chineseAltTexturePath + altSkinNum;
         }
 
         return string.Empty;
