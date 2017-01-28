@@ -603,6 +603,7 @@ public class GameInitializer : MonoBehaviour {
 
     private int createPlayerShip(int num, CharacterSelection player)
     {
+        var otherShips = FindObjectsOfType<PlayerInput>();
         GameObject newShip = null;
         string path = GlobalVariables.shipToPrefabLocation[player.selectedCharacter.ToString()];
         if (path != null)
@@ -616,6 +617,21 @@ public class GameInitializer : MonoBehaviour {
             input.playerId = playerId;
             input.Actions = player.Actions;
             input.shipNum = num;
+            if (num > 0)
+            {
+                int altSkinCount = 1;
+                foreach(PlayerInput otherShip in otherShips)
+                {
+                    if(otherShip.type == input.type)
+                    {
+                        altSkinCount++;
+                    }
+                }
+                if (altSkinCount > 1)
+                {
+                    input.GetComponent<PhotonView>().RPC("ChangeSkin", PhotonTargets.AllBuffered, altSkinCount);
+                }
+            }
             if (isTeam)
             {
                 if (!teamNums.ContainsKey(player.team))

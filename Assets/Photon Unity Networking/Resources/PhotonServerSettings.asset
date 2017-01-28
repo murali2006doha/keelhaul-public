@@ -50,4 +50,5 @@ MonoBehaviour:
   - toggleDamageStates
   - TurnRed
   - playHitSound
+  - ChangeSkin
   DisableAutoOpenWizard: 1

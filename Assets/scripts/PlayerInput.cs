@@ -575,5 +575,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         }
     }
 
-
+    [PunRPC]
+    public void ChangeSkin(int altSkinCount)
+    {
+        shipMeshComponent.GetComponent<Renderer>().material.mainTexture = Resources.Load<Texture>(PathVariables.GetAssociatedTextureSkinPath(type, altSkinCount));
+    }
 }
