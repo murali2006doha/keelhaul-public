@@ -258,7 +258,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
     [PunRPC]
-    public void toggleDamageStates(float health)
+    public void ToggleDamageStates(float health)
     {
         if (health / stats.max_health <= 0)
         {
@@ -407,7 +407,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
     [PunRPC]
-    public void playHitSound()
+    public void PlayHitSound()
     {
         SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
     }
@@ -423,8 +423,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             followCamera.startShake();
             var photonView = GetComponent<PhotonView>();
             TurnRed();
-            photonView.RPC("playHitSound", PhotonTargets.All, null);
-            photonView.RPC("toggleDamageStates", PhotonTargets.All, health);
+            photonView.RPC("PlayHitSound", PhotonTargets.All, null);
+            photonView.RPC("ToggleDamageStates", PhotonTargets.All, health);
             
             if (!isKraken)
             {
@@ -432,7 +432,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 var players = manager.getPlayers();
                 foreach (PlayerInput player in players)
                 {
-                    if (player.getId() == id)
+                    if (player.GetId() == id)
                     {
                         gameStats.addTakenDamage(player.type.ToString(), actualDamage);
                     }
@@ -502,7 +502,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
     [PunRPC]
-    public void addKillStats(int id)
+    public void AddKillStats(int id)
     {
         if (PhotonNetwork.player.ID == id)
         {
@@ -510,7 +510,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         }
     }
 
-    public int getId()
+    public int GetId()
     {
         return PhotonNetwork.offlineMode ? shipNum : GetComponent<PhotonView>().ownerId;
     }

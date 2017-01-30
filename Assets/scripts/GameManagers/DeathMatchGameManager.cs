@@ -363,9 +363,9 @@ public class DeathMatchGameManager : AbstractGameManager
         var players2 = GameObject.FindObjectsOfType<PlayerInput>();
         foreach (PlayerInput player in players2)
         {
-            if(player.getId() == id)
+            if(player.GetId() == id)
             {
-                player.addKillStats(id);
+                player.AddKillStats(id);
                 if (PhotonNetwork.offlineMode)
                 {
                     player.uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
@@ -412,7 +412,7 @@ public class DeathMatchGameManager : AbstractGameManager
         {
             foreach (PlayerInput player in players)
             {
-                if (player.getId() == id)
+                if (player.GetId() == id)
                 {
                     var newText = lastPoint.Replace("The Replace", "You").Replace("Needs", "Need");
                     player.uiManager.GetComponentInChildren<ProgressScript>().activatePopup(newText, "You", "Ship");
@@ -492,7 +492,7 @@ public class DeathMatchGameManager : AbstractGameManager
                 {
                     if (!manager.GetComponent<PhotonView>().isMine)
                     {
-                        manager.GetComponent<PhotonView>().RPC("SyncStat", PhotonTargets.Others, player.getId(), ArrayHelper.ObjectToByteArray(player.gameStats));
+                        manager.GetComponent<PhotonView>().RPC("SyncStat", PhotonTargets.Others, player.GetId(), ArrayHelper.ObjectToByteArray(player.gameStats));
                     }
                 }
                 
@@ -554,7 +554,7 @@ public class DeathMatchGameManager : AbstractGameManager
             {
                 ship.followCamera.enabled = false;
             }
-            if (ship.getId() == winnerId)
+            if (ship.GetId() == winnerId)
             {
                 gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Player " + winnerId.ToString());
                 gameOverUI.winners[0].name.text = !PhotonNetwork.offlineMode && winnerId == PhotonNetwork.player.ID ? "You" : "Player " + winnerId.ToString();
@@ -607,7 +607,7 @@ public class DeathMatchGameManager : AbstractGameManager
             if (loserInput != null)
             {
                 loserStat = loserInput.gameStats;
-                gameOverUI.losers[x].name.text = !PhotonNetwork.offlineMode && loserInput.getId() == PhotonNetwork.player.ID?"You":"Player " + loserInput.getId();
+                gameOverUI.losers[x].name.text = !PhotonNetwork.offlineMode && loserInput.GetId() == PhotonNetwork.player.ID?"You":"Player " + loserInput.GetId();
             }
 
             foreach (Title title in loserStat.titles)

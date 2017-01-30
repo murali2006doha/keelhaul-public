@@ -82,7 +82,7 @@ public class CannonBall : Photon.MonoBehaviour {
                         if (mesh != null)
                         {
                             List<float> valuesToSend = new List<float>(new float[] {damage, (float)player.playerId });
-                            mesh.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.All, damage, player.getId());
+                            mesh.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.All, damage, player.GetId());
                         }
                     } 
 					
