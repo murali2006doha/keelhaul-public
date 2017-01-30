@@ -1383,7 +1383,7 @@ MonoBehaviour:
   bombController: {fileID: 11408324}
   aimComponent: {fileID: 114935699512470294}
   hookshotComponent: {fileID: 11488598}
-  centralCannon: {fileID: 114388610505000550}
+  centralCannon: {fileID: 114880632613870280}
   altCannonComponent: {fileID: 114772614782576044}
   shipMeshComponent: {fileID: 114074521364270248}
   rammingSprite: {fileID: 1000012759723786, guid: 7c4e08141feac2e43b56d7e858909689,
@@ -10270,7 +10270,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4702941016621384}
-  - component: {fileID: 114388610505000550}
+  - component: {fileID: 114880632613870280}
   m_Layer: 0
   m_Name: Cannons
   m_TagString: Untagged
@@ -10927,18 +10927,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4678edd0f544edc94a9c771643ef67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallPrefab: {fileID: 1000012426025908, guid: 053834a644e214eadb21217d43d317c4,
-    type: 2}
+  cannonBallPrefab: {fileID: 0, guid: 053834a644e214eadb21217d43d317c4, type: 2}
   rightCannons:
-  - {fileID: 4256125560351852}
-  - {fileID: 4215508578651858}
-  - {fileID: 4390246810902858}
-  - {fileID: 4965603175978648}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   leftCannons:
-  - {fileID: 4745065239025686}
-  - {fileID: 4815465262860132}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 452790}
-  - {fileID: 4804570600975850}
+  - {fileID: 0}
   cannonForce: 400
   arcCannonForce: 10
   velocity: {x: 0, y: 0, z: 0}
@@ -10961,24 +10960,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b789c7aa562a5743a0393c53c5db844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114388610505000550
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1932526289603008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e8f723ba966e4ab4bca262a2cdd47f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cannonBallPrefab: {fileID: 191016, guid: 7b33f55a999e19543aa12bdbe859b72b, type: 2}
-  cannonBallPos: {fileID: 4674787312191394}
-  cannonForce: 400
-  arcCannonForce: 10
-  numberOfCannons: 3
-  numOfCannonBalls: 3
-  angleOfCannonShots: 10
 --- !u!114 &114634779960153016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11075,6 +11056,27 @@ MonoBehaviour:
   speed: 1
   minDelay: 0.01
   maxDelay: 0.1
+--- !u!114 &114880632613870280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1932526289603008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec853457a8da840c8bd50113f207028f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cannonBallPrefab: {fileID: 0}
+  cannonBallPos: {fileID: 4674787312191394}
+  cannonForce: 400
+  arcCannonForce: 10
+  numOfCannonBalls: 3
+  angleOfCannonShots: 10
+  prefabs:
+  - cannonBallPath: Prefabs/Cannon Shots/blackbeard cannonball
+  - cannonBallPath: Prefabs/Cannon Shots/chinese cannonball
+  - cannonBallPath: Prefabs/Cannon Shots/atlantis cannonball
 --- !u!114 &114935699512470294
 MonoBehaviour:
   m_ObjectHideFlags: 1

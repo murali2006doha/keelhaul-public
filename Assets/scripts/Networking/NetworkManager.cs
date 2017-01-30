@@ -10,35 +10,34 @@ public class NetworkManager : MonoBehaviour
   public GameObject NetworkedCharacterSelect;
   public GameInitializer initializer;
   public bool offlineMode = false;
+  
+  void Start() {
+        PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
+        PhotonNetwork.offlineMode = offlineMode;
 
-  void Start()
-  {
-
-    PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
-    PhotonNetwork.ConnectUsingSettings("0.2");
-    PhotonNetwork.offlineMode = offlineMode;
-
-    if (offlineMode) {
-      this.OnJoinedLobby();
+        if (offlineMode)
+        {
+            this.OnJoinedLobby();
+        }
+        else {
+            PhotonNetwork.ConnectUsingSettings("0.2");
+        }
     }
-  }
 
-  void Update()
-  {
+
+  void Update() {
     if (connectionText) {
       connectionText.text = PhotonNetwork.connectionStateDetailed.ToString();
     }
 
   }
 
-  void OnJoinedLobby()
-  {
+   void OnJoinedLobby() {
     RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 };
     PhotonNetwork.JoinOrCreateRoom("default", ro, TypedLobby.Default);
   }
 
-  void OnJoinedRoom()
-  {
+  void OnJoinedRoom() {
     if (PhotonNetwork.offlineMode)
     {
       initializer.isMaster = true;
@@ -67,8 +66,7 @@ public class NetworkManager : MonoBehaviour
     }
   }
 
-  void StartSpawnProcess(ShipEnum type)
-  {
+  void StartSpawnProcess(ShipEnum type) {
     Debug.Log(type);
     initializer.shipSelections[0].selectedCharacter = type;
     initializer.isMaster = true;
@@ -80,7 +78,5 @@ public class NetworkManager : MonoBehaviour
   void onGameManagerCreated() {
     AbstractGameManager manager = FindObjectOfType<AbstractGameManager>();
     manager.enabled = true;
-    //   manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, PhotonNetwork.player.ID);
-
   }
 }

@@ -45,7 +45,7 @@ public class ShipMotorComponent : MonoBehaviour
     {
 
         //Must be in Boost?
-        if ((directionVector.magnitude == 0 || keyboardControls && directionVector.z == 0) && velocity != 0f  || (velocity > stats.maxVelocity))
+        if ((directionVector.magnitude == 0 || keyboardControls && directionVector.z <= 0) && velocity != 0f  || (velocity > stats.maxVelocity))
         {
             velocity = Mathf.Max(0f, (velocity - (stats.deAccelerationSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))));
         }
