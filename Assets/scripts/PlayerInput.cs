@@ -428,11 +428,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             
             if (!isKraken)
             {
-                photonView.RPC("addDamageStats", PhotonTargets.All, id, type.ToString(), actualDamage, true);
+                photonView.RPC("AddDamageStats", PhotonPlayer.Find(id), id, type.ToString(), actualDamage, true);
                 var players = manager.getPlayers();
                 foreach (PlayerInput player in players)
                 {
-                    if (getId() == id)
+                    if (player.getId() == id)
                     {
                         gameStats.addTakenDamage(player.type.ToString(), actualDamage);
                     }
@@ -485,7 +485,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
     [PunRPC]
-    public void addDamageStats(int id, string name,float damage, bool given)
+    public void AddDamageStats(int id, string name,float damage, bool given)
     {
         if (PhotonNetwork.player.ID == id)
         {
