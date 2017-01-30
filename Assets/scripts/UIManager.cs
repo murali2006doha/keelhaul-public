@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -57,8 +58,18 @@ public class UIManager : MonoBehaviour
             targetBarrel();
         }
         boostBarPanel = boostBar.transform.GetChild(0).GetComponentInChildren<Image>();
+        tutorialManager.enabled = false;
+        resizeFont();
     }
 
+    private void resizeFont()
+    {
+        var texts = GetComponentsInChildren<Text>();
+        foreach (Text text in texts)
+        {
+            text.fontSize *= 2;
+        }
+    }
 
     void Update()
     {
@@ -287,7 +298,7 @@ public class UIManager : MonoBehaviour
 
     void changeWobbleIntensity()
     {
-        currentIntensity = Random.Range(2, wobbleIntensity * 5);
+        currentIntensity = UnityEngine.Random.Range(2, wobbleIntensity * 5);
         wobbleCount = 0;
     }
 

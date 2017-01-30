@@ -26,7 +26,7 @@ public class ShipInstantiator : MonoBehaviour {
 
 	public void setupShipNames(PlayerInput ship, ShipEnum type, int num, int numOfBases, int id){
 		MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects> ();
-		num++;
+
 		ShipInformation info = getShip (type);
 		ship.shipName = info.name;
 		ship.stats = info.stats;

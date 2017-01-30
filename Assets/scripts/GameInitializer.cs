@@ -616,7 +616,7 @@ public class GameInitializer : MonoBehaviour {
 
             input.playerId = playerId;
             input.Actions = player.Actions;
-            input.shipNum = num;
+            input.shipNum = num+1;
             int altSkinCount = 1;
             foreach(PlayerInput otherShip in otherShips)
             {

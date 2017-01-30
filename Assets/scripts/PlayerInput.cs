@@ -148,6 +148,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
+        
     }
 
 
@@ -208,7 +209,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         {
             invinciblity.SetBool("invincibility", false);
         }
-        invincibilityParticle.SetActive(false);
+        if (invincibilityParticle != null)
+        {
+            invincibilityParticle.SetActive(false);
+
+        }
     }
 
     public void reset()
@@ -253,7 +258,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
     [PunRPC]
-    public void toggleDamageStates(float health)
+    public void ToggleDamageStates(float health)
     {
         if (health / stats.max_health <= 0)
         {
@@ -402,7 +407,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
     [PunRPC]
-    public void playHitSound()
+    public void PlayHitSound()
     {
         SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);
     }
@@ -418,12 +423,20 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             followCamera.startShake();
             var photonView = GetComponent<PhotonView>();
             TurnRed();
-            photonView.RPC("playHitSound", PhotonTargets.All, null);
-            photonView.RPC("toggleDamageStates", PhotonTargets.All, health);
+            photonView.RPC("PlayHitSound", PhotonTargets.All, null);
+            photonView.RPC("ToggleDamageStates", PhotonTargets.All, health);
+            
             if (!isKraken)
             {
-                //TODO: get ship name that damaged me and add taken damage
-                //TODO: Call given damage RPC on that ship.
+                photonView.RPC("AddDamageStats", PhotonPlayer.Find(id), id, type.ToString(), actualDamage, true);
+                var players = manager.getPlayers();
+                foreach (PlayerInput player in players)
+                {
+                    if (player.GetId() == id)
+                    {
+                        gameStats.addTakenDamage(player.type.ToString(), actualDamage);
+                    }
+                }
             }
             else
             {
@@ -448,7 +461,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         }
     }
 
-    
+
+
+
     public void TurnRed()
     {
         anim.playDamageAnimation();
@@ -469,6 +484,36 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipMesh.enabled = check;
     }
 
+    [PunRPC]
+    public void AddDamageStats(int id, string name,float damage, bool given)
+    {
+        if (PhotonNetwork.player.ID == id)
+        {
+            if (given)
+            {
+                gameStats.addGivenDamage(name, damage);
+            }
+            else
+            {
+                gameStats.addTakenDamage(name, damage);
+
+            }
+        }
+    }
+
+    [PunRPC]
+    public void AddKillStats(int id)
+    {
+        if (PhotonNetwork.player.ID == id)
+        {
+                gameStats.numOfKills++;     
+        }
+    }
+
+    public int GetId()
+    {
+        return PhotonNetwork.offlineMode ? shipNum : GetComponent<PhotonView>().ownerId;
+    }
 
     public void die()
     {

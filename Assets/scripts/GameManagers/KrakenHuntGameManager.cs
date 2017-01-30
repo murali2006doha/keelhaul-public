@@ -425,4 +425,8 @@ public class KrakenHuntGameManager : AbstractGameManager
     {
         return shipPoints.Count;
     }
+    public override List<PlayerInput> getPlayers()
+    {
+        return players;
+    }
 }

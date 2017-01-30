@@ -57,7 +57,6 @@ public class ShipMotorComponent : MonoBehaviour
         {
             if (keyboardControls)
             {
-                
                 if(directionVector.z > 0)
                 {
                     velocity = Mathf.Min(stats.maxVelocity, velocity + (directionVector.z * stats.moveSpeed * (Time.deltaTime * GlobalVariables.gameSpeed)));

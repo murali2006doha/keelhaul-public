@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 public abstract class AbstractGameManager : MonoBehaviour {
 
@@ -69,4 +69,5 @@ public abstract class AbstractGameManager : MonoBehaviour {
 
     public abstract bool isGameOver();
     internal abstract int getNumberOfTeams();
+    public abstract List<PlayerInput> getPlayers();
 }
