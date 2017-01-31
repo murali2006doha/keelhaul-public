@@ -56,4 +56,6 @@ MonoBehaviour:
   - SyncStat
   - ActivateLastPointPrompt
   - ChangeSkin
+  - PlayHitSound
+  - ToggleDamageStates
   DisableAutoOpenWizard: 1

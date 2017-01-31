@@ -2,5 +2,5 @@
 using System.Collections;
 
 public enum ShipEnum {
-	ChineseJunkShip,AtlanteanShip,BlackbeardShip,Kraken
+	ChineseJunkShip,AtlanteanShip,BlackbeardShip,VikingShip,Kraken
 }

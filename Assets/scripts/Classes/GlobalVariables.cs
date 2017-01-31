@@ -9,7 +9,8 @@ public static class GlobalVariables {
     public static Dictionary<string,string> shipToPrefabLocation = new Dictionary<string, string> () {
       {ShipEnum.BlackbeardShip.ToString(),"Ship/Blackbeard Ship"},
       {ShipEnum.AtlanteanShip.ToString(),"Ship/Atlantean Ship"},
-      {ShipEnum.ChineseJunkShip.ToString(),"Ship/Chinese Junk Ship"}
+      {ShipEnum.ChineseJunkShip.ToString(),"Ship/Chinese Junk Ship"},
+      {ShipEnum.VikingShip.ToString(),"Ship/Viking Ship"}
     };
     
     public enum MapEnum
@@ -20,7 +21,8 @@ public static class GlobalVariables {
     public static Dictionary<ShipEnum, string> ShipToColor = new Dictionary<ShipEnum, string>(){
       { ShipEnum.AtlanteanShip, "blue"},
       { ShipEnum.BlackbeardShip, "black"},
-      { ShipEnum.ChineseJunkShip, "yellow"}
+      { ShipEnum.ChineseJunkShip, "yellow"},
+      { ShipEnum.VikingShip, "red"}
     };
 
     public static Dictionary<string, string> mapToScene = new Dictionary<string, string>() {

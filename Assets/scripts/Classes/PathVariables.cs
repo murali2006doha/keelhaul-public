@@ -57,6 +57,10 @@ public static class PathVariables {
         {
             return chineseCannonBallPath;
         }
+        else if(shipType == ShipEnum.VikingShip)
+        {
+            return blackbeardCannonBallPath;
+        }
 
         return string.Empty;
 
@@ -75,6 +79,10 @@ public static class PathVariables {
         else if (shipType == ShipEnum.ChineseJunkShip)
         {
             return chineseAltTexturePath + altSkinNum;
+        }
+        else if (shipType == ShipEnum.VikingShip)
+        {
+            return blackbeardAltTexturePath + altSkinNum;
         }
 
         return string.Empty;

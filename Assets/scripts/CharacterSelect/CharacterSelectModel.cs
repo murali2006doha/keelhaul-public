@@ -14,7 +14,8 @@ public class CharacterSelectModel : MonoBehaviour {
 		{ ShipEnum.AtlanteanShip, "character_portraits_assets/angria"},
 		{ ShipEnum.BlackbeardShip, "character_portraits_assets/blackbeard"},
 		{ ShipEnum.ChineseJunkShip, "character_portraits_assets/gung"},
-		{ ShipEnum.Kraken, "character_portraits_assets/kraken"} 
+        { ShipEnum.VikingShip, "character_portraits_assets/viking"},
+        { ShipEnum.Kraken, "character_portraits_assets/kraken"} 
 	};
 
 
@@ -22,7 +23,8 @@ public class CharacterSelectModel : MonoBehaviour {
 		{ ShipEnum.AtlanteanShip, "character_portraits_assets/angria_ready"},
 		{ ShipEnum.BlackbeardShip, "character_portraits_assets/blackbeard_ready"},
 		{ ShipEnum.ChineseJunkShip, "character_portraits_assets/gung_ready"},
-		{ ShipEnum.Kraken, "character_portraits_assets/kraken_ready"} 
+        { ShipEnum.VikingShip, "character_portraits_assets/viking_ready"},
+        { ShipEnum.Kraken, "character_portraits_assets/kraken_ready"} 
 	};
 
 
@@ -30,7 +32,8 @@ public class CharacterSelectModel : MonoBehaviour {
 		{ ShipEnum.AtlanteanShip, "character_portraits_assets/angria_lock"},
 		{ ShipEnum.BlackbeardShip, "character_portraits_assets/blackbeard_lock"},
 		{ ShipEnum.ChineseJunkShip, "character_portraits_assets/gung_lock"},
-		{ ShipEnum.Kraken, "character_portraits_assets/kraken_lock"} 
+        { ShipEnum.VikingShip, "character_portraits_assets/viking_lock"},
+        { ShipEnum.Kraken, "character_portraits_assets/kraken_lock"} 
 	};
 		
 

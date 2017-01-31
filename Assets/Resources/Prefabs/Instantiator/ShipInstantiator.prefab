@@ -65,6 +65,14 @@ MonoBehaviour:
     altFireSprite: {fileID: 21300000, guid: c85aab098c513e247a08a64eb5e948ef, type: 3}
     altFireOutline: {fileID: 21300000, guid: fec59a478c0af7f438503c9574a009b0, type: 3}
     portrait: {fileID: 0}
+  - type: 3
+    stats: {fileID: 11477640, guid: 0acd9cbb3b3528a4286efbedea05916f, type: 2}
+    ship: {fileID: 175570, guid: 97a0aefb4ef70db4a8c085c3ed066b24, type: 2}
+    name: Blackbeard Ship
+    altFirePrefab: {fileID: 188264, guid: e7a4040985e3aa740b9a24ddf95f0267, type: 2}
+    altFireSprite: {fileID: 21300000, guid: c85aab098c513e247a08a64eb5e948ef, type: 3}
+    altFireOutline: {fileID: 21300000, guid: fec59a478c0af7f438503c9574a009b0, type: 3}
+    portrait: {fileID: 0}
   splashParticle: {fileID: 115088, guid: 5809b8054bf544e7a96a86ab6bcb9364, type: 2}
 --- !u!1001 &100100000
 Prefab:

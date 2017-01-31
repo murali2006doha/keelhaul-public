@@ -305,10 +305,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScene: 0
+  Offline: 0
   withKeyboard: 1
   start: {fileID: 224659506959335378}
   numPlayers: 1
-  characters: 000000000100000002000000
+  characters: 00000000010000000200000003000000
   loadingScreen: {fileID: 1611943618378102}
 --- !u!114 &114739045620052696
 MonoBehaviour:
@@ -377,10 +378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e4131da004a8e4584cc74a96f40aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  cc: {fileID: 0}
+  nm: {fileID: 0}
+  withKeyboard: 0
 --- !u!114 &114898485197525384
 MonoBehaviour:
   m_ObjectHideFlags: 1
