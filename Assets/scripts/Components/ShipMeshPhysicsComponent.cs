@@ -100,17 +100,20 @@ void handleBombExplosion (Collider other) {
 		bool stopHitting = false;
 		foreach (GameObject bomb in bombController.getBombList ()) {
 			//makes sure that the explosion is not coming from a bomb dropped by this ship
-			if (bomb != null) {
+			if (bomb != null) { 
 				if (other.gameObject.transform.position == bomb.transform.position) {
 					shouldGetHit = false;
 				}
 			}
 		}
 		if (shouldGetHit && !stopHitting) {
-			Collider cl = input.gameObject.GetComponent<Collider> ();
-			bombController.bomb.DestroyShip (other.gameObject, cl);
-			other.enabled = false;
-			stopHitting = true;
+            Explosion exp = other.GetComponent<Explosion>();
+            if (exp.id != input.GetId()) {
+                this.TakeDamage(exp.damage, exp.id);
+                other.enabled = false;
+                stopHitting = true;
+            }
+            
 		}
 	}
 
