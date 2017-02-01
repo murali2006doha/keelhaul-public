@@ -29,12 +29,19 @@ public static class PathVariables {
     internal static string blackbeardCannonBallPath = "Prefabs/Cannon Shots/blackbeard cannonball";
 
 
+    //Bombs
+    internal static string atlantisBombPath = "Prefabs/Bombs/atlantis bomb";
+    internal static string chineseBombPath = "Prefabs/Bombs/gung bomb";
+    internal static string blackbeardBombPath = "Prefabs/Bombs/atlantis bomb";
+
+
     //alternate shots
 
     internal static string alternateChineseShot = "Prefabs/Alt Cannon shots/Firework Shot";
     internal static string alternateAtlantisShot = "Prefabs/Alt Cannon shots/Firework Shot";
     internal static string alternateBlackbeardShot = "Prefabs/Alt Cannon shots/Firework Shot";
 
+    internal static string explosionPath = "Prefabs/Explosion";
     //Ship Effects
     internal static string shipInvincibility = "Prefabs/Effects/Star Power";
 
@@ -62,7 +69,26 @@ public static class PathVariables {
 
     }
 
-        public static string GetAssociatedTextureSkinPath(ShipEnum shipType,int altSkinNum)
+    public static string GetAssociatedBombForShip(ShipEnum shipType)
+    {
+        if (shipType == ShipEnum.AtlanteanShip)
+        {
+            return atlantisBombPath;
+        }
+        else if (shipType == ShipEnum.BlackbeardShip)
+        {
+            return blackbeardBombPath;
+        }
+        else if (shipType == ShipEnum.ChineseJunkShip)
+        {
+            return chineseBombPath;
+        }
+
+        return string.Empty;
+
+    }
+
+    public static string GetAssociatedTextureSkinPath(ShipEnum shipType,int altSkinNum)
     {
         if (shipType == ShipEnum.AtlanteanShip)
         {
