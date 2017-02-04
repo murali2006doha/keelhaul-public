@@ -58,4 +58,6 @@ MonoBehaviour:
   - ChangeSkin
   - PlayHitSound
   - ToggleDamageStates
+  - Initialize
+  - DestroySelf
   DisableAutoOpenWizard: 1

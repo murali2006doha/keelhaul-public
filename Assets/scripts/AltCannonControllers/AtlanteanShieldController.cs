@@ -19,9 +19,9 @@ public class AtlanteanShieldController : MonoBehaviour {
 		ship = parent.GetComponent<PlayerInput>();
 		Invoke("DisablePowerShield", powerShieldDuration);
 		Invoke("KillSelf", lifeTime);
-		rot = this.transform.rotation;
+		rot = Quaternion.Euler(0, 0, -180);
 		isReflecting = true;
-		ship.activateInvincibility ();
+		//ship.activateInvincibility ();
 	}
 	
 	// Update is called once per frame

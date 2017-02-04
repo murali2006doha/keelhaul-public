@@ -10,19 +10,19 @@ public class BombControllerComponent : MonoBehaviour {
 	Transform shipTransform;
 	UIManager uiManager;
 	PlayerInput input;
-
+    string bombPath;
 	int bombCount = 3;
 	List<GameObject> bombList = new List<GameObject>();
 
 	public bool canDropBomb = true;
 
-	[Header("Scene Variables")]
-	public BombComponent bomb;
+	
 
 
-	internal void Initialize(ShipStats stats, PlayerInput input, UIManager uiManager, FreeForAllStatistics gameStats)
+	internal void Initialize(ShipStats stats, PlayerInput input, UIManager uiManager, FreeForAllStatistics gameStats, string bombPath)
 	{
 		this.input = input;
+        this.bombPath = bombPath;
 		this.uiManager = uiManager;
 		this.gameStats = gameStats;
 		this.stats = stats;
@@ -48,10 +48,9 @@ public class BombControllerComponent : MonoBehaviour {
 
 
 	private void spawnBomb() {
-		//maybe do an arc to throw bomb?
-		GameObject bombObject = Instantiate (bomb.gameObject, transform.position, transform.rotation);
+        //maybe do an arc to throw bomb?
+        GameObject bombObject = PhotonNetwork.Instantiate(bombPath, transform.position, transform.rotation, 0);
 		bombObject.GetComponent<BombComponent>().Initialize (this, this.input);
-		bombObject.transform.rotation = Quaternion.Euler (-90, 0, 0);
 		bombList.Add (bombObject);
 	}
 
@@ -88,25 +87,7 @@ public class BombControllerComponent : MonoBehaviour {
 	}
 		
 
-	public void handleTrigger(Collider other){
-		bool shouldGetHit = true;
-		bool stopHitting = false;
-		if (LayerMask.LayerToName (other.gameObject.layer).Equals ("explosion") && !input.invincible) {//check if ship is in range when a bomb is exploding
-			foreach (GameObject bomb in bombList) {	//makes sure that the explosion is not coming from a bomb dropped by this ship
-				if (bomb != null) {
-					if (other.gameObject.transform.position == bomb.transform.position) {
-						shouldGetHit = false;
-					}
-				} 
-			}
-			if (shouldGetHit && !stopHitting) {
-				Collider cl = input.gameObject.GetComponent<Collider>();
-				bomb.DestroyShip (other.gameObject, cl);
-				other.enabled = false;
-				stopHitting = true;
-			}
-		}
-	}
+
 
 
 

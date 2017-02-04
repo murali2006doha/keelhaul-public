@@ -105,7 +105,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         );
 
         aimComponent.Initialize(transform, Actions.Device == null,followCamera.camera);
-        bombController.Initialize(stats, this, uiManager, gameStats);
+        bombController.Initialize(
+            stats, 
+            this, 
+            uiManager, 
+            gameStats,
+            PathVariables.GetAssociatedBombForShip(type));
         InitializeHookshot();
         
 		shipMeshComponent.Initialize(

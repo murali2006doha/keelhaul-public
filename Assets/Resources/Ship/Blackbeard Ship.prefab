@@ -1698,7 +1698,7 @@ LineRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 08f965b752c83bb429c2d14b82a5cd26, type: 2}
+  - {fileID: 2100000, guid: ab89fde51990148d681ca0cc87365353, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1721,7 +1721,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 2
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1787,7 +1787,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
   m_UseWorldSpace: 1
 --- !u!137 &13768374
 SkinnedMeshRenderer:
@@ -11023,7 +11023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   altCannonForce: 400
-  alternateFirePrefab: {fileID: 1000012426025908, guid: 053834a644e214eadb21217d43d317c4,
+  alternateFirePrefab: {fileID: 1417406341514410, guid: d30dc595a3df2400f9fcb2a6faa4f470,
     type: 2}
   cannonBallPos: {fileID: 0}
   rightCannons:
@@ -11052,12 +11052,12 @@ MonoBehaviour:
   - {fileID: 4815465262860132}
   - {fileID: 452790}
   - {fileID: 4804570600975850}
-  arcCannonForce: 10
+  arcCannonForce: 120
   velocity: {x: 0, y: 0, z: 0}
   dampening: 1
   speed: 1
-  minDelay: 0.01
-  maxDelay: 0.1
+  minDelay: 0.2
+  maxDelay: 0.3
 --- !u!114 &114880632613870280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11072,13 +11072,13 @@ MonoBehaviour:
   cannonBallPrefab: {fileID: 0}
   cannonBallPos: {fileID: 4674787312191394}
   cannonForce: 400
-  arcCannonForce: 10
+  arcCannonForce: 100
   numOfCannonBalls: 3
   angleOfCannonShots: 10
   prefabs:
-  - cannonBallPath: Prefabs/Cannon Shots/blackbeard cannonball
-  - cannonBallPath: Prefabs/Cannon Shots/chinese cannonball
-  - cannonBallPath: Prefabs/Cannon Shots/atlantis cannonball
+  - cannonBallPath: Prefabs/Cannon Shots/burst blackbeard cannonball
+  - cannonBallPath: Prefabs/Cannon Shots/burst blackbeard cannonball
+  - cannonBallPath: Prefabs/Cannon Shots/burst blackbeard cannonball
 --- !u!114 &114935699512470294
 MonoBehaviour:
   m_ObjectHideFlags: 1
