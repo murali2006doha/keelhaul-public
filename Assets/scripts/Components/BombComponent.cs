@@ -27,8 +27,9 @@ public class BombComponent : MonoBehaviour {
 	void Start() {
 
 		blinkTime = (waitTimeToExplode / (float) blinks);
+        transform.rotation = Quaternion.Euler(-90, 0, 0); //prefabs should be adjusted so this is no longer necc
 
-	}
+    }
 
 
 	internal void Initialize(BombControllerComponent parent, PlayerInput input) {
@@ -41,6 +42,10 @@ public class BombComponent : MonoBehaviour {
 		return player;
 	}
 
+    [PunRPC]
+    public void DestroySelf() {
+        Destroy(this.gameObject);
+    }
 
 	public IEnumerator ActivateBomb() {
 
@@ -57,24 +62,40 @@ public class BombComponent : MonoBehaviour {
 		}
 
 		//explode!
-		Destroy (largeBombZone); 			//destroy the parameter zone
-		GameObject exp = explode(); //produces an explosion
-		//Invoke ("fadeHalo", .5f);
-		yield return new WaitForSeconds(explosion_duration); 
+		Destroy (largeBombZone);            //destroy the parameter zone
 
-		Destroy(exp);					//destroy the explosion
+        if (GetComponent<PhotonView>().isMine) {
+            GameObject exp = explode(); //produces an explosion
+                                        //Invoke ("fadeHalo", .5f);
+            yield return new WaitForSeconds(explosion_duration);
+
+            Destroy(exp);					//destroy the explosion
+        }
+        
 	}
+
+    [PunRPC]
+    public void RPCActivateBomb()
+    {
+        StartCoroutine(ActivateBomb());
+    }
 
 
 
 	void OnTriggerEnter(Collider other) {
+        if (!GetComponent<PhotonView>().isMine)
+        {
+            return;
+        }
 
-		if ((other.gameObject.name).Equals ("playerMesh") && 
+        if ((other.gameObject.name).Equals ("playerMesh") && 
 			player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject) {//to activate a bomb
+
+ 
 			if (parentCannon.getBombList().Contains (other.gameObject) == false) {
-				player.gameStats.numOfBombsDetonated+=0.5f;
-				StartCoroutine (ActivateBomb ());
-			}
+                player.gameStats.numOfBombsDetonated += 0.5f;
+                GetComponent<PhotonView>().RPC("RPCActivateBomb", PhotonTargets.All);
+            }
 		}
 
 		if (other.gameObject.name.Contains("Kraken")) {
@@ -87,33 +108,21 @@ public class BombComponent : MonoBehaviour {
 
 	}
 
-
-
-	public void DestroyShip(GameObject exp, Collider col) {
-
-		PlayerInput controller = col.GetComponentInParent<PlayerInput> ();
-		PlayerInput ownerPlayer = player;
-
-		Instantiate (shipHit, exp.transform.position, exp.transform.rotation);
-		if (controller != null) {
-		//	controller.hit (damage);
-		}
-	}
-
  
 	private GameObject explode(){
-		if (gameObject != null) {
-			GameObject exp = (GameObject) Instantiate (explosion, gameObject.transform.position, Quaternion.identity);
-			Destroy (gameObject);
-			return exp;
-		}
-		return null;
-	}
+        if (gameObject != null)
+        {
+            Destroy(gameObject);
+        }
 
+        if (!GetComponent<PhotonView>().isMine) {
+            return null;
+        }
 
-	private void fadeHalo() {
-		Behaviour halo = (Behaviour) explosion.GetComponent("Halo");
-		halo.enabled = false;
+        GameObject exp = PhotonNetwork.Instantiate(PathVariables.explosionPath, gameObject.transform.position, Quaternion.identity, 0);
+        exp.GetComponent<PhotonView>().RPC("Initialize", PhotonTargets.All, this.damage, this.player.GetId());
+        GetComponent<PhotonView>().RPC("DestroySelf", PhotonTargets.All);
+        return exp;
 	}
 
 
