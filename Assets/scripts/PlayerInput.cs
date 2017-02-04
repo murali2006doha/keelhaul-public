@@ -440,6 +440,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                     if (player.GetId() == id)
                     {
                         gameStats.addTakenDamage(player.type.ToString(), actualDamage);
+                        if (PhotonNetwork.offlineMode)
+                        {
+                            player.gameStats.addGivenDamage(type.ToString(), actualDamage);
+                        }
                     }
                 }
             }

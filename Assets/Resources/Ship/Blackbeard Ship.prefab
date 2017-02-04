@@ -1370,7 +1370,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124574}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 380a3da3285e24f578a44623b7e85240, type: 3}
   m_Name: 
@@ -1431,6 +1431,8 @@ MonoBehaviour:
     damageTakenFromBlackBeard: 0
     damageGivenToAtlantis: 0
     damageTakenFromAtlantis: 0
+    damageGivenToViking: 0
+    damageTakenFromViking: 0
     damageTakenFromKraken: 0
     damageGivenToKraken: 0
     numOfBarrelSteals: 0
@@ -1561,6 +1563,8 @@ MonoBehaviour:
     damageTakenFromBlackBeard: 0
     damageGivenToAtlantis: 0
     damageTakenFromAtlantis: 0
+    damageGivenToViking: 0
+    damageTakenFromViking: 0
     damageTakenFromKraken: 0
     damageGivenToKraken: 0
     numOfBarrelSteals: 0

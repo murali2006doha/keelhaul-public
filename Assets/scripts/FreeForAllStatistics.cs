@@ -18,7 +18,9 @@ public class FreeForAllStatistics {
 	public float damageTakenFromBlackBeard;//Done
 	public float damageGivenToAtlantis;//Done
 	public float damageTakenFromAtlantis;//Done
-	public float damageTakenFromKraken;//Done
+    public float damageGivenToViking;//Done
+    public float damageTakenFromViking;//Done
+    public float damageTakenFromKraken;//Done
 	public float damageGivenToKraken;//Done
 	public int numOfBarrelSteals;//Done
 	public int numOfBarrelsLost;//Done
@@ -44,6 +46,8 @@ public class FreeForAllStatistics {
 			damageGivenToChinese += damage;
 		} else if (type == ShipEnum.BlackbeardShip.ToString ()) {
 			damageGivenToBlackBeard += damage;
+		} else if (type == ShipEnum.VikingShip.ToString ()) {
+			damageGivenToViking += damage;
 		} else {
 			damageGivenToKraken += damage;
 		}
@@ -56,6 +60,8 @@ public class FreeForAllStatistics {
 			damageTakenFromChinese += damage;
 		} else if (type == ShipEnum.BlackbeardShip.ToString ()) {
 			damageTakenFromBlackBeard += damage;
+		} else if (type == ShipEnum.VikingShip.ToString ()) {
+			damageTakenFromViking += damage;
 		} else {
 			damageTakenFromKraken += damage;
 		}
