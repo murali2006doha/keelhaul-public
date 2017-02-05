@@ -41,6 +41,9 @@ namespace UnityStandardAssets.Water
         // camera will just work!
         public void OnWillRenderObject()
         {
+            ShadowQuality preRender = QualitySettings.shadows;
+
+
             if (!enabled || !GetComponent<Renderer>() || !GetComponent<Renderer>().sharedMaterial ||
                 !GetComponent<Renderer>().enabled)
             {
@@ -65,7 +68,7 @@ namespace UnityStandardAssets.Water
             // if they won't be visible in the end.
             m_HardwareWaterSupport = FindHardwareWaterSupport();
             WaterMode mode = GetWaterMode();
-
+            QualitySettings.shadows = ShadowQuality.Disable;
             Camera reflectionCamera, refractionCamera;
             CreateWaterObjects(cam, out reflectionCamera, out refractionCamera);
 
@@ -155,6 +158,8 @@ namespace UnityStandardAssets.Water
             {
                 QualitySettings.pixelLightCount = oldPixelLightCount;
             }
+
+            QualitySettings.shadows = preRender;
 
             // Setup shader keywords based on water mode
             switch (mode)
