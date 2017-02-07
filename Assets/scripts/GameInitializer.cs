@@ -281,6 +281,7 @@ public class GameInitializer : MonoBehaviour {
                     shipSelections[shipIndex].Actions = action;
                     
                     num = createShipWithName(num, shipSelections[shipIndex]);
+                    shipIndex++;
                     foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                     {
                         if (PhotonNetwork.offlineMode)
@@ -312,6 +313,7 @@ public class GameInitializer : MonoBehaviour {
                 {
                     shipSelections[shipIndex].Actions = action;
                     num = createShipWithName(num, shipSelections[shipIndex]);
+                    shipIndex++;
                     foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                     {
                         if (PhotonNetwork.offlineMode)
