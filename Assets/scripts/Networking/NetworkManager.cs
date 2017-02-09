@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using ExitGames.Client.Photon;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -8,9 +12,11 @@ public class NetworkManager : MonoBehaviour
   [SerializeField]
   Text connectionText;
   public GameObject NetworkedCharacterSelect;
+  public MatchMakingController matchMaker;
   public GameInitializer initializer;
   public bool offlineMode = false;
-  
+
+  private MatchMakingController instantiatedController;
   void Start() {
         PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
         PhotonNetwork.offlineMode = offlineMode;
@@ -27,17 +33,58 @@ public class NetworkManager : MonoBehaviour
 
   void Update() {
     if (connectionText) {
-      connectionText.text = PhotonNetwork.connectionStateDetailed.ToString();
+  //    connectionText.text = PhotonNetwork.connectionStateDetailed.ToString();
     }
 
   }
 
    void OnJoinedLobby() {
-    RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 };
-    PhotonNetwork.JoinOrCreateRoom("default", ro, TypedLobby.Default);
+
+
+     instantiatedController = Instantiate(matchMaker);
+    instantiatedController.Initiailze(this.FindOrCreateRoom);
+   
   }
 
+    void FindOrCreateRoom(Dictionary<int, bool> matchOptions) {
+
+        string roomName = "";
+        bool hasFoundRoom = false;
+
+        foreach (RoomInfo info in PhotonNetwork.GetRoomList()) {
+            Dictionary<int, bool> roomOptions = (Dictionary<int, bool>)info.customProperties["matchOptions"];
+            for (int i = 0; i < 3; i++) {
+
+                if (matchOptions.ContainsKey(i) && roomOptions.ContainsKey(i) && !hasFoundRoom) {
+
+                    if (matchOptions[i] && roomOptions[i]) {
+                        hasFoundRoom = true;
+                        roomName = info.name;
+                    }
+                }
+            }
+        }
+
+        if (hasFoundRoom)
+        {
+            PhotonNetwork.JoinRoom(roomName);
+        }
+        else {
+            RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 };
+            ExitGames.Client.Photon.Hashtable h = new ExitGames.Client.Photon.Hashtable();
+            h.Add("matchOptions", matchOptions);
+            string [] options = new string[] {"matchOptions"};
+            ro.customRoomPropertiesForLobby = options;
+            ro.customRoomProperties = h;
+            PhotonNetwork.CreateRoom(null, ro, TypedLobby.Default);
+        }
+        Destroy(instantiatedController);
+
+    }
+    
+
   void OnJoinedRoom() {
+        connectionText.text = PhotonNetwork.room.name;
     if (PhotonNetwork.offlineMode)
     {
       initializer.isMaster = true;
@@ -67,7 +114,6 @@ public class NetworkManager : MonoBehaviour
   }
 
   void StartSpawnProcess(ShipEnum type) {
-    Debug.Log(type);
     initializer.shipSelections[0].selectedCharacter = type;
     initializer.isMaster = true;
     initializer.playerId = PhotonNetwork.player.ID;
