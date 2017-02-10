@@ -46,7 +46,8 @@ public class DeathMatchGameManager : AbstractGameManager
     int krakenPoints;
 
     int numOfStatsSynced = 1;
-    int winnerId= -1;
+	int winnerId = -1;
+	float gameTime;
 
     List<string> teamNames = new List<string> { "Red Team", "Blue Team", "Green Team", "Yellow Team" };
     Dictionary<string, string> teamToColor = new Dictionary<string, string> { { "Red Team", "red" }, { "Blue Team", "blue" }, { "Green Team", "green" }, { "Yellow Team", "yellow" } };
@@ -81,8 +82,12 @@ public class DeathMatchGameManager : AbstractGameManager
 
         onInitialize();
 
+		LogAnalytics.startGame (players, this.countDown.GetComponent<CountDown>());
+		LogAnalytics.fpsSnapshot ();
+		LogAnalytics.ping ();
+	}
 
-    }
+
 
     [PunRPC]
     public void AddPlayer(int id) {
@@ -124,18 +129,21 @@ public class DeathMatchGameManager : AbstractGameManager
         {
             kraken.gameStarted = true;
         }
-    }
+
+		gameTime += Time.deltaTime;
+
+	}
 
     void destroyCountDown()
     {
         Destroy(countDown);
     }
+		
 
 
     void Update()
     {
-
-        //puts the camera in the starting positions as soon as the game starts
+		//puts the camera in the starting positions as soon as the game starts
         if (!done)
         {
             if (!countDown.gameObject.activeSelf)
@@ -640,7 +648,7 @@ public class DeathMatchGameManager : AbstractGameManager
         Time.timeScale = 1f;
         gameOver = true;
 
-        
+		LogAnalytics.endgame (players, gameTime);
 
     }
 

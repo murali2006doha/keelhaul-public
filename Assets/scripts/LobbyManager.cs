@@ -9,6 +9,13 @@ using System;
 public class LobbyManager : MonoBehaviour {
 
 	public AbstractCharacterSelectController csc;
+	public ModalController modalCanvasPrefab;
+
+
+	void Start() {
+		modalCanvasPrefab.initialize ("are you sure?!", Color.yellow, "sure", "nah", () => {}	);
+
+	}
 
 	// Update is called once per frame
 	void Update () {

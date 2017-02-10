@@ -191,7 +191,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public HookshotComponent getHook()
     {
         return hookshotComponent;
-    }
+	}
 
     public void activateInvincibility()
     {
@@ -235,10 +235,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void Update()
     {
-
         if (Actions != null)
         {
-
             updateHealth();
 
             if (locked && startSinking)

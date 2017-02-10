@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Analytics;
 
 public class GameOverStatsUI : MonoBehaviour {
 
@@ -22,6 +23,16 @@ public class GameOverStatsUI : MonoBehaviour {
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+
+
+//		Analytics.CustomEvent("Match Ended", new Dictionary<string, object>
+//			{
+//				{ "Mode", gameType.ToString() },
+//				{ "Map", map.ToString() },
+//				{ "Local", PhotonNetwork.offlineMode },
+//				{ "Characters", "ASD"},//Dictionary<players[0]., players[0].ToString()> },
+//				{ "time_to_match", globalCanvas.countDownTimer}
+//			});
     }
 
     void Update()
