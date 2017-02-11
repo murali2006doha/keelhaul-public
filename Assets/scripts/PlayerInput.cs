@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public HookshotComponent hookshotComponent;
     public ShipCannonComponent centralCannon;
     public AbstractAltCannonComponent altCannonComponent;
-	public ShipMeshPhysicsComponent shipMeshComponent;
+    public ShipMeshPhysicsComponent shipMeshComponent;
 
     [Header("Other Scene Variables")]
     public GameObject rammingSprite;
@@ -113,7 +113,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             PathVariables.GetAssociatedBombForShip(type));
         InitializeHookshot();
         
-		shipMeshComponent.Initialize(
+        shipMeshComponent.Initialize(
             this, 
             stats, 
             uiManager, 
@@ -191,7 +191,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public HookshotComponent getHook()
     {
         return hookshotComponent;
-	}
+    }
 
     public void activateInvincibility()
     {
