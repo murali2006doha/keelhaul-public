@@ -12,48 +12,45 @@ public class ModalController : MonoBehaviour {
     public Animator modalAnimator;
     public Text text;
     public Image image;
-    public Text ok;
-    public Text cancel;
-    Action onButtonPress;
+	public Button ok; //these will eventually have the ActionButton.cs script attached 
+	public Button cancel; 
+    Action onYesButtonPress;
+	Action onNoButtonPress;
 
     void Start() {
-        //initialize ("are you sure?!", Color.yellow, "sure", "nah", () => {actionMethod(); }   );
-
-    }
-
+		//modalAnimator.Play ("ModalEnter");
+	}
 
     /**
-     * the buttons are always white
+     * can choose the message text, the color of the text box, and the texts for the two buttons
      **/
-    public void initialize(string messageText, Color color, string okText, String cancelText, Action action) {
+	public void initialize(string messageText, Color color, string okText, String cancelText, Action yesAction, Action noAction) {
 
-        this.gameObject.SetActive (true);
         image.color = color;
-        ok.text = okText;
-        cancel.text = cancelText;
+		ok.GetComponentInChildren<Text>().text = okText;
+		cancel.GetComponentInChildren<Text>().text = cancelText;
         text.text = messageText;
-        modalAnimator.Play ("ModalEnter");
-        this.onButtonPress = action;
+       // modalAnimator.Play ("ModalEnter");
+		cancel.Select ();
+		this.onYesButtonPress = yesAction;
+		this.onNoButtonPress = noAction;
 
     }
 
+	public void OnClickButton(string choice) {
+		if( choice == "continue") {
+		//	modalAnimator.Play ("ModalExit");
+			this.onYesButtonPress ();
+			DestroyObject (this);
+		}
 
-    void actionMethod() {
+		if( choice == "cancel") {
+		//	modalAnimator.Play ("ModalExit");
+			this.onNoButtonPress ();
+			DestroyObject (this.transform.gameObject);
+		}
+	}
 
-        print("ok");
-    }
-
-    
-    // Update is called once per frame
-    void Update () {
-    }
-
-
-    public void OnClickButton(string choice) {
-        if( choice == "continue") {
-            modalAnimator.Play ("ModalExit");
-            this.onButtonPress ();
-        }
-    }
+   
 
 }

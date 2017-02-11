@@ -14,18 +14,19 @@ public class LobbyManager : MonoBehaviour {
 	void Update () {
 
 		csc = GameObject.FindObjectOfType<AbstractCharacterSelectController> ();
+		if (csc != null) {
+			csc.OnSelectCharacterAction (
+				() => {
+					csc.setPlayerSelectSettings ();
 
-		csc.OnSelectCharacterAction (
-			() => {
-				csc.setPlayerSelectSettings ();
-
-				if (!csc.loadingScene) {
-					csc.loadingScreen.SetActive (true);  
-					StartCoroutine (LoadNewScene ());
-					csc.loadingScene = true;
-				}
-				;
-			});
+					if (!csc.loadingScene) {
+						csc.loadingScreen.SetActive (true);  
+						StartCoroutine (LoadNewScene ());
+						csc.loadingScene = true;
+					}
+					;
+				});
+		}
 	}
 
 
