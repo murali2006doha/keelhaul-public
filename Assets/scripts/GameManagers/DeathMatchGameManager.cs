@@ -82,9 +82,9 @@ public class DeathMatchGameManager : AbstractGameManager
 
         onInitialize();
 
-		LogAnalytics.startGame (players, this.countDown.GetComponent<CountDown>());
-		LogAnalytics.fpsSnapshot ();
-		LogAnalytics.ping ();
+		LogAnalyticsGame.startGame (players, this.countDown.GetComponent<CountDown>());
+		LogAnalyticsGame.fpsSnapshot ();
+		LogAnalyticsGame.ping ();
 	}
 
 
@@ -648,7 +648,7 @@ public class DeathMatchGameManager : AbstractGameManager
         Time.timeScale = 1f;
         gameOver = true;
 
-		LogAnalytics.endgame (players, gameTime);
+		LogAnalyticsGame.endgame (players, gameTime);
 
     }
 

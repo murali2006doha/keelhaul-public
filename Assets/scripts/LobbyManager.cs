@@ -13,8 +13,6 @@ public class LobbyManager : MonoBehaviour {
 
 
 	void Start() {
-		modalCanvasPrefab.initialize ("are you sure?!", Color.yellow, "sure", "nah", () => {}	);
-
 	}
 
 	// Update is called once per frame
@@ -22,17 +20,20 @@ public class LobbyManager : MonoBehaviour {
 
 		csc = GameObject.FindObjectOfType<AbstractCharacterSelectController> ();
 
-		csc.OnSelectCharacterAction (
-			() => {
-				csc.setPlayerSelectSettings ();
+		if (csc != null) {
+			csc.OnSelectCharacterAction (
+				() => {
+					csc.setPlayerSelectSettings ();
 
-				if (!csc.loadingScene) {
-					csc.loadingScreen.SetActive (true);  
-					StartCoroutine (LoadNewScene ());
-					csc.loadingScene = true;
-				}
-				;
-			});
+					if (!csc.loadingScene) {
+						csc.loadingScreen.SetActive (true);  
+						StartCoroutine (LoadNewScene ());
+						csc.loadingScene = true;
+					}
+					;
+				});
+
+		}
 	}
 
 

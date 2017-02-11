@@ -26,7 +26,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 	protected int playersInPlay;
 	protected bool started = false;
 	protected Action onSelectCharacter;
-
+	protected string  mode;
 
 	public void OnSelectCharacterAction(Action action)  {
 		this.onSelectCharacter = action;
@@ -40,7 +40,6 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 		cc = GameObject.FindObjectOfType<ControllerSelect> ();
 		cc.withKeyboard = withKeyboard;
 		cc.listening = false;
-
 
 		for(int i = 0; i < numPlayers; i++) {
 			initializePanel ();
@@ -85,6 +84,9 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 				start.gameObject.SetActive (true);
 				//change to next when there is map selection
 				if (!started && players.Exists (p => p.Actions.Green.IsPressed)) {
+
+					LogAnalyticsUI.mainMenuGameStartedWithCharacters (getMode(), GlobalVariables.getMapToLoad().ToString(), players);
+
 					started = true;
 					this.onSelectCharacter ();
 				}
@@ -150,16 +152,6 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 	}
 
 
-	public IEnumerator LoadNewScene() {
-		//To do: move this logic out of playerSignIn, make it more generic
-		AsyncOperation async = SceneManager.LoadSceneAsync(GlobalVariables.getMapToLoad());
-		while (!async.isDone) {
-			yield return null;
-		}
-
-	}
-
-
 	public Dictionary<string, bool> getCharacterStatuses() {
 		return characterStatuses;
 	}
@@ -175,11 +167,15 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 		GameObject.FindObjectOfType<PlayerSelectSettings> ().setPlayerCharacters (players);
 
 	}
-		
+
+
+	public string getMode() {
+		return mode;
+	}
 
 	public PlayerSelectSettings getPlayerSelectSettings() {
 
-        return GameObject.FindObjectOfType<PlayerSelectSettings> ();
+		return GameObject.FindObjectOfType<PlayerSelectSettings> ();
 
 	}
 
