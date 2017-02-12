@@ -153,8 +153,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
-        
-    }
+
+	}
 
 
     private void InitializeHookshot()
@@ -180,13 +180,26 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightRotateChanged += aimComponent.AimAt;
         shipInput.onRightTriggerDown += centralCannon.handleShoot;
         shipInput.onRightBumperDown += altCannonComponent.handleShoot;
-
+		shipInput.onStartButtonPress += this.instantiatePauseMenu; //ENTER on keyboard
+			
         if (hookshotComponent)
         {
             shipInput.onLeftTriggerDown += hookshotComponent.HookBarrel;
             hookshotComponent.onHook += (x) => { if (x) { motor.setSpeedModifier(stats.barrelSlowDownFactor); } else { motor.setSpeedModifier(1); } };
         }
     }
+
+
+	void instantiatePauseMenu() {
+		if (FindObjectOfType<pauseMenuController> () == null) {
+			UnityEngine.Object modalPrefab = Resources.Load ("Prefabs/PauseModalCanvas"); // note: not .prefab!
+			GameObject modalObject = (GameObject)GameObject.Instantiate (modalPrefab, Vector3.zero, Quaternion.identity);
+			modalObject.GetComponent<pauseMenuController> ().initialize (this.Actions);
+		} else {
+			FindObjectOfType<pauseMenuController> ().resumeGame();
+		}
+	}
+
 
     public HookshotComponent getHook()
     {
