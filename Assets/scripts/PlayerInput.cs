@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public HookshotComponent hookshotComponent;
     public ShipCannonComponent centralCannon;
     public AbstractAltCannonComponent altCannonComponent;
-	public ShipMeshPhysicsComponent shipMeshComponent;
+    public ShipMeshPhysicsComponent shipMeshComponent;
 
     [Header("Other Scene Variables")]
     public GameObject rammingSprite;
@@ -113,7 +113,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             PathVariables.GetAssociatedBombForShip(type));
         InitializeHookshot();
         
-		shipMeshComponent.Initialize(
+        shipMeshComponent.Initialize(
             this, 
             stats, 
             uiManager, 
@@ -154,7 +154,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
 
-	}
+    }
 
 
     private void InitializeHookshot()
@@ -180,8 +180,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightRotateChanged += aimComponent.AimAt;
         shipInput.onRightTriggerDown += centralCannon.handleShoot;
         shipInput.onRightBumperDown += altCannonComponent.handleShoot;
-		shipInput.onStartButtonPress += this.instantiatePauseMenu; //ENTER on keyboard
-			
+        shipInput.onStartButtonPress += this.instantiatePauseMenu; //ENTER on keyboard
+            
         if (hookshotComponent)
         {
             shipInput.onLeftTriggerDown += hookshotComponent.HookBarrel;
@@ -190,13 +190,13 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
 
-	void instantiatePauseMenu() {
-		if (FindObjectOfType<pauseMenuController> () == null) {
-			UnityEngine.Object modalPrefab = Resources.Load ("Prefabs/PauseMenuCanvas"); 
-			GameObject modalObject = (GameObject)GameObject.Instantiate (modalPrefab, Vector3.zero, Quaternion.identity);
-			modalObject.GetComponent<pauseMenuController> ().initialize (this.Actions);
-		}
-	}
+    void instantiatePauseMenu() {
+        if (FindObjectOfType<pauseMenuController> () == null) {
+            UnityEngine.Object modalPrefab = Resources.Load ("Prefabs/PauseMenuCanvas"); 
+            GameObject modalObject = (GameObject)GameObject.Instantiate (modalPrefab, Vector3.zero, Quaternion.identity);
+            modalObject.GetComponent<pauseMenuController> ().initialize (this.Actions);
+        }
+    }
 
 
     public HookshotComponent getHook()
