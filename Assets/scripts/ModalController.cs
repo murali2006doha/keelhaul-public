@@ -41,13 +41,14 @@ public class ModalController : MonoBehaviour {
 		if( choice == "continue") {
 		//	modalAnimator.Play ("ModalExit");
 			this.onYesButtonPress ();
-			DestroyObject (this);
+			DestroyObject (this.transform.gameObject);
 		}
 
 		if( choice == "cancel") {
 		//	modalAnimator.Play ("ModalExit");
 			this.onNoButtonPress ();
 			DestroyObject (this.transform.gameObject);
+
 		}
 	}
 

@@ -192,11 +192,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 	void instantiatePauseMenu() {
 		if (FindObjectOfType<pauseMenuController> () == null) {
-			UnityEngine.Object modalPrefab = Resources.Load ("Prefabs/PauseModalCanvas"); // note: not .prefab!
+			UnityEngine.Object modalPrefab = Resources.Load ("Prefabs/PauseMenuCanvas"); 
 			GameObject modalObject = (GameObject)GameObject.Instantiate (modalPrefab, Vector3.zero, Quaternion.identity);
 			modalObject.GetComponent<pauseMenuController> ().initialize (this.Actions);
-		} else {
-			FindObjectOfType<pauseMenuController> ().resumeGame();
 		}
 	}
 
