@@ -39,10 +39,7 @@ public class pauseMenuController : MonoBehaviour {
 
 
 
-    /**  The player who paused game has access. 
-    * In offline, everyone's game is paused.
-    * In online, only that players game is paused.
-     **/
+    //The player who paused game has access. 
     public void initialize(PlayerActions actions) {
 
         allButtons [0] = resumeButton;
