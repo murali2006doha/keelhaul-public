@@ -93,19 +93,19 @@ public class LevelManager : MonoBehaviour {
 			} else if (mainMenu.gameObject.active == true) {
 				mainMenu.gameObject.SetActive (false);
 				startScreen.gameObject.SetActive (true);
-				LogAnalyticsUI.mainMenuBackSelected ("startscreen");
+				LogAnalyticsUI.MainMenuBackSelected ("startscreen");
 			} else if (selectmode.gameObject.active == true) {
 				selectmode.gameObject.SetActive (false);
 				startScreen.gameObject.SetActive (true);
-				LogAnalyticsUI.mainMenuBackSelected ("startscreen");
+				LogAnalyticsUI.MainMenuBackSelected ("startscreen");
 			} else if (characterselectPlunder.gameObject.active == true) {
 				characterselectPlunder.gameObject.SetActive (false);
 				selectmode.gameObject.SetActive (true);
-				LogAnalyticsUI.mainMenuBackSelected ("selectmode");
+				LogAnalyticsUI.MainMenuBackSelected ("selectmode");
 			} else if (characterselectDM.gameObject.active == true) {
 				characterselectDM.gameObject.SetActive (false);
 				selectmode.gameObject.SetActive (true);
-				LogAnalyticsUI.mainMenuBackSelected ("selectmode");
+				LogAnalyticsUI.MainMenuBackSelected ("selectmode");
 			}
 		}
 	}
@@ -131,7 +131,7 @@ public class LevelManager : MonoBehaviour {
 			characterselectDM.gameObject.SetActive (clicked);
 			selectmode.gameObject.SetActive (false);
 
-			LogAnalyticsUI.mainMenuGameModeSelected ("deathmatch selected");
+			LogAnalyticsUI.MainMenuGameModeSelected (GameTypeEnum.DeathMatch);
 		} else {
 			characterselectDM.gameObject.SetActive (clicked);
 			selectmode.gameObject.SetActive (true);
@@ -146,7 +146,7 @@ public class LevelManager : MonoBehaviour {
 			characterselectPlunder.gameObject.SetActive (clicked);
 			selectmode.gameObject.SetActive (false);
 
-			LogAnalyticsUI.mainMenuGameModeSelected ("plunder selected");
+			LogAnalyticsUI.MainMenuGameModeSelected (GameTypeEnum.Sabotage);
 
 		} else {
 			characterselectPlunder.gameObject.SetActive (clicked);

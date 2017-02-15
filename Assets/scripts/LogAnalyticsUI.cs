@@ -12,7 +12,7 @@ using InControl;
 public class LogAnalyticsUI : MonoBehaviour {
 
 
-    public static void splashScreenEnter () {
+    public static void SplashScreenEnter () {
 
         Analytics.CustomEvent("Splash Screen Enter", new Dictionary<string, object> {
             { "Event_category", "ui" },
@@ -21,7 +21,7 @@ public class LogAnalyticsUI : MonoBehaviour {
     }
 
 
-    public static void splashScreenFinished () {
+    public static void SplashScreenFinished () {
 
         Analytics.CustomEvent("Spash Screen Finished", new Dictionary<string, object> {
             { "Event_category", "ui" },
@@ -30,7 +30,7 @@ public class LogAnalyticsUI : MonoBehaviour {
     }
 
 
-    public static void splashScreenSkipped () {
+    public static void SplashScreenSkipped () {
 
         Analytics.CustomEvent("Spash Screen Skipped", new Dictionary<string, object> {
             { "Event_category", "ui" },
@@ -39,7 +39,7 @@ public class LogAnalyticsUI : MonoBehaviour {
     }
 
     // after main menu has the offline/online option
-    public static void mainMenuOnlineSelected () {
+    public static void MainMenuOnlineSelected () {
 
         Analytics.CustomEvent("Main Menu Online Select", new Dictionary<string, object> {
             { "Event_category", "ui" },
@@ -48,7 +48,7 @@ public class LogAnalyticsUI : MonoBehaviour {
     }
 
     // after main menu has the offline/online option
-    public static void mainMenuLocalSelected () {
+    public static void MainMenuLocalSelected () {
 
         Analytics.CustomEvent("Main Menu Local Select", new Dictionary<string, object> {
             { "Event_category", "ui" },
@@ -57,7 +57,7 @@ public class LogAnalyticsUI : MonoBehaviour {
     }
 
     // put this in levelmanager after menu has been polished
-    public static void mainMenuBackSelected (string page) {
+    public static void MainMenuBackSelected (string page) {
 
         Analytics.CustomEvent("Main Menu Back Select", new Dictionary<string, object> {
             { "Event_category", "ui" },
@@ -67,7 +67,7 @@ public class LogAnalyticsUI : MonoBehaviour {
     }
 
     // put this in level manager 
-    public static void mainMenuGameModeSelected (string mode) {
+	public static void MainMenuGameModeSelected (GameTypeEnum mode) {
 
         Analytics.CustomEvent("Main Menu Gamemode Select", new Dictionary<string, object> {
             { "Event_category", "ui" },
@@ -78,7 +78,7 @@ public class LogAnalyticsUI : MonoBehaviour {
     }
 
     //put this in character select or lobby manager or network manager
-    public static void mainMenuGameStartedWithCharacters (string mode, string map, List<CharacterSelectPanel> shipSelections) {
+	public static void MainMenuGameStartedWithCharacters (GameTypeEnum mode, string map, List<CharacterSelectPanel> shipSelections) {
         Dictionary<String, String> players = new Dictionary<String, String> ();
 
         int i = 1;

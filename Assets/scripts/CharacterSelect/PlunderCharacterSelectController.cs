@@ -15,7 +15,7 @@ public class PlunderCharacterSelectController : AbstractCharacterSelectControlle
 		cc = GameObject.FindObjectOfType<ControllerSelect> ();
 		cc.withKeyboard = withKeyboard;
 		cc.listening = false;
-		mode = "Plunder";
+		mode = GameTypeEnum.Sabotage;
 
 		for(int i = 0; i < numPlayers; i++) {
 			initializePanel ();

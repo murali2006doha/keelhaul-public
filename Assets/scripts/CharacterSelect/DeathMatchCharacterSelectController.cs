@@ -15,7 +15,7 @@ public class DeathMatchCharacterSelectController : AbstractCharacterSelectContro
 		cc = GameObject.FindObjectOfType<ControllerSelect> ();
 		cc.withKeyboard = withKeyboard;
 		cc.listening = false;
-		mode = "Death Match";
+		mode = GameTypeEnum.DeathMatch;
 
 		for(int i = 0; i < numPlayers; i++) {
 			initializePanel ();

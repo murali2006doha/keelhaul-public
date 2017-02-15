@@ -26,7 +26,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
     protected int playersInPlay;
     protected bool started = false;
     protected Action onSelectCharacter;
-    protected string  mode;
+	protected GameTypeEnum  mode;
 
     public void OnSelectCharacterAction(Action action)  {
         this.onSelectCharacter = action;
@@ -85,7 +85,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
                 //change to next when there is map selection
                 if (!started && players.Exists (p => p.Actions.Green.IsPressed)) {
 
-                    LogAnalyticsUI.mainMenuGameStartedWithCharacters (getMode(), GlobalVariables.getMapToLoad().ToString(), players);
+					LogAnalyticsUI.MainMenuGameStartedWithCharacters (mode, GlobalVariables.getMapToLoad().ToString(), players);
 
                     started = true;
                     this.onSelectCharacter ();
@@ -169,7 +169,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
     }
 
 
-    public string getMode() {
+	public GameTypeEnum getMode() {
         return mode;
     }
 

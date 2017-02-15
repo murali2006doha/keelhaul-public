@@ -14,7 +14,7 @@ public class LogAnalyticsGame : MonoBehaviour {
 
 
 
-    public static void startGame (List<PlayerInput> shipSelections, CountDown countdown) {
+    public static void StartGame (List<PlayerInput> shipSelections, CountDown countdown) {
 
         GameInitializer gi = FindObjectOfType<GameInitializer> ();
         Dictionary<String, String> players = new Dictionary<String, String> ();
@@ -48,7 +48,7 @@ public class LogAnalyticsGame : MonoBehaviour {
     
 
 
-    public static void endgame (List<PlayerInput> shipSelections, float gameTime) {
+    public static void EndGame (List<PlayerInput> shipSelections, float gameTime) {
         GameInitializer gi = FindObjectOfType<GameInitializer> ();
         AbstractGameManager gameManager = GameObject.FindObjectOfType<AbstractGameManager> ();
 
@@ -80,7 +80,7 @@ public class LogAnalyticsGame : MonoBehaviour {
     }
 
     //can be called at anytime
-    public static void fpsSnapshot() {
+    public static void FpsSnapshot() {
 
         Scene scene = SceneManager.GetActiveScene();
         GameInitializer gi = FindObjectOfType<GameInitializer> ();
@@ -128,7 +128,7 @@ public class LogAnalyticsGame : MonoBehaviour {
 
 
     //one for each player (put this in playerInput or networkManager);
-    //DONE
+    
     public static void MatchPlayerDisconnect(PlayerInput player) {
 
         Scene scene = SceneManager.GetActiveScene();
@@ -146,7 +146,7 @@ public class LogAnalyticsGame : MonoBehaviour {
 
 
     //one for each player (put this in playerInput or networkManager);
-    //DONE
+    
     public static void MatchPlayerConnect(PlayerInput player) {
 
         Scene scene = SceneManager.GetActiveScene();
@@ -163,8 +163,8 @@ public class LogAnalyticsGame : MonoBehaviour {
     }
 
 
-    //DONE
-    public static void ping() {
+    
+    public static void Ping() {
 
         Scene scene = SceneManager.GetActiveScene();
         GameInitializer gi = FindObjectOfType<GameInitializer> ();

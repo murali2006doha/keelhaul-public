@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using InControl;
 using System;
-using UnityEngine.Analytics;
+
+
 public class GameInitializer : MonoBehaviour {
 
 
@@ -19,7 +20,7 @@ public class GameInitializer : MonoBehaviour {
     public bool isTeam;
     public bool isFirstControllerKraken = false;
 
-	List<PlayerInput> players = new List<PlayerInput>();
+    List<PlayerInput> players = new List<PlayerInput>();
     
     public GameTypeEnum gameType;
     GlobalCanvas globalCanvas;
@@ -77,7 +78,7 @@ public class GameInitializer : MonoBehaviour {
             createGameManager(() => createPlayersAndMapControllers(map));
         }   
 
-			
+            
     }
 
     private void setGameTypeAndSettings() {
@@ -192,7 +193,7 @@ public class GameInitializer : MonoBehaviour {
             if (onGameManagerCreated != null) {
                 onGameManagerCreated();
             }
-				
+                
         }
         else if (gameType == GameTypeEnum.KrakenHunt) {
             GameObject manager = Instantiate(Resources.Load(PathVariables.krakenHuntManager, typeof(GameObject)), this.transform.parent) as GameObject;
@@ -218,7 +219,7 @@ public class GameInitializer : MonoBehaviour {
         int num = 0;
         if (ps == null || ps.players.Count == 0) //Default behaviour if didn't come from character select screen. 
         {
-			num = createPlayersWithoutCharacterSelection(map, num);
+            num = createPlayersWithoutCharacterSelection(map, num);
 
         }
         else // Easy case, create kraken or ships with selection
