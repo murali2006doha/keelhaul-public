@@ -186,13 +186,12 @@ public class SabotageGameManager : AbstractGameManager
     }
 
 
-    override public void respawnPlayer(PlayerInput player, Vector3 startingPoint)
+    override public void respawnPlayer(PlayerInput player, Vector3 startingPoint, Quaternion startingRotation)
     {
-
         player.gameObject.transform.position = startingPoint;
-
-
+        player.gameObject.transform.rotation = startingRotation;
     }
+
     override public void respawnKraken(KrakenInput player, Vector3 startingPoint)
     {
 

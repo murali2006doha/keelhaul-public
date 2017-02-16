@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public int shipNum;
     public GameObject scoreDestination;
     public Vector3 startingPoint;
+    public Quaternion startingRotation;
     public PlayerActions Actions { get; set; }
 
     [Header("Component Variables")]
@@ -138,6 +139,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         gameStats = new FreeForAllStatistics();
         kraken = GameObject.FindObjectOfType<KrakenInput>();
         startingPoint = this.transform.position;
+        startingRotation = this.transform.rotation;
         anim = GetComponentInChildren<ShipAnimator>();
         anim.category = CategoryHelper.convertType(type);
         followCamera.cullingMask = cullingMask;
@@ -550,7 +552,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         altCannonComponent.ResetShotAlt();
         stopPushForce();
         //shipMesh.enabled = false;
-        manager.respawnPlayer(this, startingPoint);
+        manager.respawnPlayer(this, startingPoint, startingRotation);
         //anim.triggerRespawnAnimation ();
         health = stats.max_health;
         followCamera.setRespawn();
