@@ -103,14 +103,11 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
         int playerCount = cc.players.Count;
         if (playerCount > 0 && playerCount <= numPlayers) {
-
-            //if (playerCount < players.Count) {
-                players [playerCount - 1].Actions = (PlayerActions)cc.players [playerCount - 1];
-                if (players [playerCount - 1].Actions.Green.WasReleased) {
-                    players [playerCount - 1].isSignedIn = true;
-                    players [playerCount - 1].gameObject.GetComponent<CharacterSelectPanel> ().enabled = true;
-                }
-            //}
+        	players [playerCount - 1].Actions = (PlayerActions)cc.players [playerCount - 1];
+		    if (players [playerCount - 1].Actions.Green.WasReleased) {
+                players [playerCount - 1].isSignedIn = true;
+                players [playerCount - 1].gameObject.GetComponent<CharacterSelectPanel> ().enabled = true;
+            }
         }
     }
 
