@@ -6,7 +6,7 @@ public abstract class AbstractGameManager : MonoBehaviour {
     // Use this for initialization
     [HideInInspector]
     public GameObject screenSplitter;
-
+    public int minPlayersRequiredToStartGame = 2;
     void Start () {
 	
 	}
