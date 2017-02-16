@@ -9,23 +9,31 @@ using System;
 public class LobbyManager : MonoBehaviour {
 
 	public AbstractCharacterSelectController csc;
+	public ModalController modalCanvasPrefab;
+
+
+	void Start() {
+	}
 
 	// Update is called once per frame
 	void Update () {
 
 		csc = GameObject.FindObjectOfType<AbstractCharacterSelectController> ();
 
-		csc.OnSelectCharacterAction (
-			() => {
-				csc.setPlayerSelectSettings ();
+		if (csc != null) {
+			csc.OnSelectCharacterAction (
+				() => {
+					csc.setPlayerSelectSettings ();
 
-				if (!csc.loadingScene) {
-					csc.loadingScreen.SetActive (true);  
-					StartCoroutine (LoadNewScene ());
-					csc.loadingScene = true;
-				}
-				;
-			});
+					if (!csc.loadingScene) {
+						csc.loadingScreen.SetActive (true);  
+						StartCoroutine (LoadNewScene ());
+						csc.loadingScene = true;
+					}
+					;
+				});
+
+		}
 	}
 
 
