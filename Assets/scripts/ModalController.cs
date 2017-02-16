@@ -17,9 +17,6 @@ public class ModalController : MonoBehaviour {
     Action onYesButtonPress;
     Action onNoButtonPress;
 
-    void Start() {
-        //modalAnimator.Play ("ModalEnter");
-    }
 
     /**
      * can choose the message text, the color of the text box, and the texts for the two buttons
@@ -30,7 +27,7 @@ public class ModalController : MonoBehaviour {
         ok.GetComponentInChildren<Text>().text = okText;
         cancel.GetComponentInChildren<Text>().text = cancelText;
         text.text = messageText;
-       // modalAnimator.Play ("ModalEnter");
+        modalAnimator.Play ("ModalEnter");
         cancel.Select ();
         this.onYesButtonPress = yesAction;
         this.onNoButtonPress = noAction;
@@ -39,19 +36,21 @@ public class ModalController : MonoBehaviour {
 
     public void OnClickButton(string choice) {
         if( choice == "continue") {
-        //  modalAnimator.Play ("ModalExit");
             this.onYesButtonPress ();
-            DestroyObject (this.transform.gameObject);
+			StartCoroutine (exit ());
         }
 
         if( choice == "cancel") {
-        //  modalAnimator.Play ("ModalExit");
             this.onNoButtonPress ();
-            DestroyObject (this.transform.gameObject);
-
+			StartCoroutine (exit ());
         }
     }
 
-   
 
+	private IEnumerator exit()
+	{
+		modalAnimator.Play ("ModalExit");
+		yield return new WaitForSeconds(1.0f);  
+		Destroy(gameObject);
+	}
 }
