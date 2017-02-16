@@ -47,7 +47,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
     int numOfStatsSynced = 1;
     int winnerId= -1;
-
+    
     List<string> teamNames = new List<string> { "Red Team", "Blue Team", "Green Team", "Yellow Team" };
     Dictionary<string, string> teamToColor = new Dictionary<string, string> { { "Red Team", "red" }, { "Blue Team", "blue" }, { "Green Team", "green" }, { "Yellow Team", "yellow" } };
     string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
@@ -92,7 +92,7 @@ public class DeathMatchGameManager : AbstractGameManager
             gamePoints.Add(id.ToString(), 0);
            
     
-            if (id  >= 2 || (PhotonNetwork.offlineMode && id>=1))
+            if (id  >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id>=1))
             {
                 foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                 {
