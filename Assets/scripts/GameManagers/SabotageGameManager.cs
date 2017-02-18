@@ -88,7 +88,7 @@ public class SabotageGameManager : AbstractGameManager
             }
 
         }
-        LogAnalyticsGame.startGame (players, this.countDown.GetComponent<CountDown>());
+        LogAnalyticsGame.StartGame (players, this.countDown.GetComponent<CountDown>());
 
 
     }
