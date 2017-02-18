@@ -44,6 +44,11 @@ public class ModalController : MonoBehaviour {
             this.onNoButtonPress ();
 			StartCoroutine (exit ());
         }
+
+		if( choice == "cancel") {
+			modalAnimator.Play ("ModalExit");
+			this.onButtonPress ();
+		}
     }
 
 

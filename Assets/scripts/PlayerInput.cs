@@ -246,10 +246,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void Update()
     {
-
         if (Actions != null)
         {
-
             updateHealth();
 
             if (locked && startSinking)
