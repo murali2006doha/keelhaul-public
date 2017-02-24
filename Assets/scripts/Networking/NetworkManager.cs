@@ -8,9 +8,6 @@ using ExitGames.Client.Photon;
 
 public class NetworkManager : MonoBehaviour
 {
-
-  [SerializeField]
-  Text connectionText;
   public GameObject NetworkedCharacterSelect;
   public MatchMakingController matchMaker;
   public GameInitializer initializer;
@@ -31,14 +28,6 @@ public class NetworkManager : MonoBehaviour
             PhotonNetwork.ConnectUsingSettings("0.2");
         }
     }
-
-
-  void Update() {
-    if (connectionText) {
-  //    connectionText.text = PhotonNetwork.connectionStateDetailed.ToString();
-    }
-
-  }
 
    void OnJoinedLobby() {
 
@@ -86,13 +75,12 @@ public class NetworkManager : MonoBehaviour
             ro.customRoomProperties = h;
             PhotonNetwork.CreateRoom(null, ro, TypedLobby.Default);
         }
-        Destroy(instantiatedController);
+        Destroy(instantiatedController.gameObject);
 
     }
     
 
   void OnJoinedRoom() {
-        connectionText.text = PhotonNetwork.room.name;
     if (PhotonNetwork.offlineMode)
     {
       initializer.isMaster = true;
@@ -173,7 +161,5 @@ public class NetworkManager : MonoBehaviour
                 roomOptions[i] = false;
             }
         }
-        PrintDictionary(roomOptions);
-
     }
 }
