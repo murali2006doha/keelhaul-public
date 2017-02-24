@@ -8,180 +8,173 @@ using System;
 
 public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
-	public PlayerActions Actions { get; set; }
-	public AsyncOperation asyncLoad;
-	public bool loadingScene;
-	public bool Offline;
+    public PlayerActions Actions { get; set; }
+    public AsyncOperation asyncLoad;
+    public bool loadingScene;
+    public bool Offline;
 
-	// Use this for initialization
-	public bool withKeyboard;
-	public Transform start;
-	public int numPlayers;
-	public List<ShipEnum> characters;
-	public GameObject loadingScreen; //put this in mainMenuModel later
+    // Use this for initialization
+    public bool withKeyboard;
+    public Transform start;
+    public int numPlayers;
+    public List<ShipEnum> characters;
+    public GameObject loadingScreen; //put this in mainMenuModel later
 
-	protected Dictionary<string, bool> characterStatuses = new Dictionary<string, bool>();
-	protected List<CharacterSelectPanel> players = new List<CharacterSelectPanel>(); //to pass on to 
-	protected ControllerSelect cc;
-	protected int playersInPlay;
-	protected bool started = false;
-	protected Action onSelectCharacter;
+    protected Dictionary<string, bool> characterStatuses = new Dictionary<string, bool>();
+    protected List<CharacterSelectPanel> players = new List<CharacterSelectPanel>(); //to pass on to 
+    protected ControllerSelect cc;
+    protected int playersInPlay;
+    protected bool started = false;
+    protected Action onSelectCharacter;
+	protected GameTypeEnum  mode;
 
-
-	public void OnSelectCharacterAction(Action action)  {
-		this.onSelectCharacter = action;
-	}
-
-
-	// Use this for initialization
-	void Start () {
-		
-		//GameObject.DontDestroyOnLoad (this.gameObject);
-		cc = GameObject.FindObjectOfType<ControllerSelect> ();
-		cc.withKeyboard = withKeyboard;
-		cc.listening = false;
+    public void OnSelectCharacterAction(Action action)  {
+        this.onSelectCharacter = action;
+    }
 
 
-		for(int i = 0; i < numPlayers; i++) {
-			initializePanel ();
-		}	
-			
-		foreach (ShipEnum character in characters) {
-			characterStatuses.Add (character.ToString(), false);
-		}
-			
-		playersInPlay = players.Count;
-	}
+    // Use this for initialization
+    void Start () {
+        
+        //GameObject.DontDestroyOnLoad (this.gameObject);
+        cc = GameObject.FindObjectOfType<ControllerSelect> ();
+        cc.withKeyboard = withKeyboard;
+        cc.listening = false;
+
+        for(int i = 0; i < numPlayers; i++) {
+            initializePanel ();
+        }   
+            
+        foreach (ShipEnum character in characters) {
+            characterStatuses.Add (character.ToString(), false);
+        }
+            
+        playersInPlay = players.Count;
+    }
 
 
-	public void initializePanel() {
-		GameObject csPanel = Instantiate(Resources.Load(CharacterSelectModel.CSPanelPrefab, typeof(GameObject)), GameObject.Find ("Container").transform.position, GameObject.Find ("Container").transform.rotation) as GameObject;
-		Vector3 localscale = csPanel.gameObject.transform.localScale;
-		csPanel.gameObject.GetComponent<CharacterSelectPanel> ().initializePanel (this, characters, Actions);
+    public void initializePanel() {
+        GameObject csPanel = Instantiate(Resources.Load(CharacterSelectModel.CSPanelPrefab, typeof(GameObject)), GameObject.Find ("Container").transform.position, GameObject.Find ("Container").transform.rotation) as GameObject;
+        Vector3 localscale = csPanel.gameObject.transform.localScale;
+        csPanel.gameObject.GetComponent<CharacterSelectPanel> ().initializePanel (this, characters, Actions);
 
-		csPanel.gameObject.transform.SetParent(GameObject.Find ("Container").transform);
-		csPanel.gameObject.transform.localScale = localscale;
-
-
-		players.Add (csPanel.gameObject.GetComponent<CharacterSelectPanel>());
-
-	}
+        csPanel.gameObject.transform.SetParent(GameObject.Find ("Container").transform);
+        csPanel.gameObject.transform.localScale = localscale;
 
 
-	// Update is called once per frame
-	public void Update ()
-	{
-		var inputDevice = InputManager.ActiveDevice;
-		//last device to
-		if (this.gameObject.activeSelf) {
-			cc.listening = true;
-			signIn ();
-		}
-		else {
-			cc.listening = false;
-		}
-		if (this.gameObject != null) {
-			if (playersInPlay == 0) {
-				start.gameObject.SetActive (true);
-				//change to next when there is map selection
-				if (!started && players.Exists (p => p.Actions.Green.IsPressed)) {
-					started = true;
-					this.onSelectCharacter ();
-				}
-			}
-			else {
-				start.gameObject.SetActive (false);
-			}
-		}
-	}	
+        players.Add (csPanel.gameObject.GetComponent<CharacterSelectPanel>());
+
+    }
 
 
-	public void signIn() {
-		var inputDevice = InputManager.ActiveDevice;
+    // Update is called once per frame
+    public void Update ()
+    {
+        var inputDevice = InputManager.ActiveDevice;
+        //last device to
+        if (this.gameObject.activeSelf) {
+            cc.listening = true;
+            signIn ();
+        }
+        else {
+            cc.listening = false;
+        }
+        if (this.gameObject != null) {
+            if (playersInPlay == 0) {
+                start.gameObject.SetActive (true);
+                //change to next when there is map selection
+                if (!started && players.Exists (p => p.Actions.Green.IsPressed)) {
 
-		int playerCount = cc.players.Count;
-		if (playerCount > 0 && playerCount <= numPlayers) {
+					LogAnalyticsUI.MainMenuGameStartedWithCharacters (mode, GlobalVariables.getMapToLoad().ToString(), players);
 
-			//if (playerCount < players.Count) {
-				players [playerCount - 1].Actions = (PlayerActions)cc.players [playerCount - 1];
-				if (players [playerCount - 1].Actions.Green.WasReleased) {
-					players [playerCount - 1].isSignedIn = true;
-					players [playerCount - 1].gameObject.GetComponent<CharacterSelectPanel> ().enabled = true;
-				}
-			//}
-		}
-	}
-
-
-	public abstract bool lockCharacter (int index);
-
-	public abstract bool unlockCharacter (int index);
+                    started = true;
+                    this.onSelectCharacter ();
+                }
+            }
+            else {
+                start.gameObject.SetActive (false);
+            }
+        }
+    }   
 
 
+    public void signIn() {
+        var inputDevice = InputManager.ActiveDevice;
 
-	/*
-	 * cycles through a list 
-	 */ 
-	public int getIndexPosition (int listSize, int i, string direction) {
+        int playerCount = cc.players.Count;
+        if (playerCount > 0 && playerCount <= numPlayers) {
+        	players [playerCount - 1].Actions = (PlayerActions)cc.players [playerCount - 1];
+		    if (players [playerCount - 1].Actions.Green.WasReleased) {
+                players [playerCount - 1].isSignedIn = true;
+                players [playerCount - 1].gameObject.GetComponent<CharacterSelectPanel> ().enabled = true;
+            }
+        }
+    }
 
-		if (direction == "up") {
-			if (i == 0) {
-				i = listSize - 1;
-			} else {
-				i -= 1;
-			}
-		}
-		if (direction == "down") {
-			if (i == listSize - 1) {
-				i = 0;
-			} else {
-				i += 1;
-			}
-		}
 
-		return i;
-	}
+    public abstract bool lockCharacter (int index);
+
+    public abstract bool unlockCharacter (int index);
 
 
 
-	public List<string> getCharacterKeys() {
-		List<string> keys = new List<string> (characterStatuses.Keys);
-		return keys;
-	}
+    /*
+     * cycles through a list 
+     */ 
+    public int getIndexPosition (int listSize, int i, string direction) {
+
+        if (direction == "up") {
+            if (i == 0) {
+                i = listSize - 1;
+            } else {
+                i -= 1;
+            }
+        }
+        if (direction == "down") {
+            if (i == listSize - 1) {
+                i = 0;
+            } else {
+                i += 1;
+            }
+        }
+
+        return i;
+    }
 
 
-	public IEnumerator LoadNewScene() {
-		//To do: move this logic out of playerSignIn, make it more generic
-		AsyncOperation async = SceneManager.LoadSceneAsync(GlobalVariables.getMapToLoad());
-		while (!async.isDone) {
-			yield return null;
-		}
 
-	}
+    public List<string> getCharacterKeys() {
+        List<string> keys = new List<string> (characterStatuses.Keys);
+        return keys;
+    }
 
 
-	public Dictionary<string, bool> getCharacterStatuses() {
-		return characterStatuses;
-	}
-		
+    public Dictionary<string, bool> getCharacterStatuses() {
+        return characterStatuses;
+    }
+        
 
-	public bool isStarted() {
-		return started;
-	}
+    public bool isStarted() {
+        return started;
+    }
 
 
-	public void setPlayerSelectSettings() {
+    public void setPlayerSelectSettings() {
 
-		GameObject.FindObjectOfType<PlayerSelectSettings> ().setPlayerCharacters (players);
+        GameObject.FindObjectOfType<PlayerSelectSettings> ().setPlayerCharacters (players);
 
-	}
-		
+    }
 
-	public PlayerSelectSettings getPlayerSelectSettings() {
+
+	public GameTypeEnum getMode() {
+        return mode;
+    }
+
+    public PlayerSelectSettings getPlayerSelectSettings() {
 
         return GameObject.FindObjectOfType<PlayerSelectSettings> ();
 
-	}
+    }
 
 
 }

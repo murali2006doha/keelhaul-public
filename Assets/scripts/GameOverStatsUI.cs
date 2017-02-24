@@ -22,6 +22,7 @@ public class GameOverStatsUI : MonoBehaviour {
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+
     }
 
     void Update()

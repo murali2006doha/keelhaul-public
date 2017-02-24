@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using InControl;
 using System;
 
+
 public class GameInitializer : MonoBehaviour {
 
 
@@ -75,11 +76,9 @@ public class GameInitializer : MonoBehaviour {
         if (isMaster)
         {
             createGameManager(() => createPlayersAndMapControllers(map));
-        }
-     
+        }   
 
-        
-
+            
     }
 
     private void setGameTypeAndSettings() {
@@ -162,6 +161,7 @@ public class GameInitializer : MonoBehaviour {
                     sabManager.shipPoints.Add(0);
                 }
             }
+
         } else if (gameType == GameTypeEnum.DeathMatch)
         {
             GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
@@ -193,7 +193,7 @@ public class GameInitializer : MonoBehaviour {
             if (onGameManagerCreated != null) {
                 onGameManagerCreated();
             }
-            
+                
         }
         else if (gameType == GameTypeEnum.KrakenHunt) {
             GameObject manager = Instantiate(Resources.Load(PathVariables.krakenHuntManager, typeof(GameObject)), this.transform.parent) as GameObject;
@@ -211,6 +211,7 @@ public class GameInitializer : MonoBehaviour {
                 krakenHuntManager.shipPoints.Add(0);
             }
         }
+
     }
 
     private int createPlayersAndMapControllers(MapObjects map)
@@ -218,7 +219,7 @@ public class GameInitializer : MonoBehaviour {
         int num = 0;
         if (ps == null || ps.players.Count == 0) //Default behaviour if didn't come from character select screen. 
         {
-			num = createPlayersWithoutCharacterSelection(map, num);
+            num = createPlayersWithoutCharacterSelection(map, num);
 
         }
         else // Easy case, create kraken or ships with selection
@@ -281,6 +282,7 @@ public class GameInitializer : MonoBehaviour {
                     shipSelections[shipIndex].Actions = action;
                     
                     num = createShipWithName(num, shipSelections[shipIndex]);
+                    shipIndex++;
                     foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                     {
                         if (PhotonNetwork.offlineMode)
@@ -312,6 +314,7 @@ public class GameInitializer : MonoBehaviour {
                 {
                     shipSelections[shipIndex].Actions = action;
                     num = createShipWithName(num, shipSelections[shipIndex]);
+                    shipIndex++;
                     foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                     {
                         if (PhotonNetwork.offlineMode)
@@ -646,7 +649,6 @@ public class GameInitializer : MonoBehaviour {
             players.Add(input);
             num++;
         }
-
         return num;
     }
 
