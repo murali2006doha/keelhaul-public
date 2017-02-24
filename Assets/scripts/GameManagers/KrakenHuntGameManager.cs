@@ -33,6 +33,7 @@ public class KrakenHuntGameManager : AbstractGameManager
     MonoBehaviour winnerScript;
     GameObject winner;
     int krakenPoints;
+    float gameTime;
 
     string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
 
