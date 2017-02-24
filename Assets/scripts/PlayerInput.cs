@@ -190,12 +190,27 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
 
+	void clearShipInput()
+	{
+		shipInput.onRotateChanged = null;
+		shipInput.onRedButtonPress = null;
+		shipInput.onLeftBumperDown = null;
+		shipInput.onRightRotateChanged = null;
+		shipInput.onRightTriggerDown = null;
+		shipInput.onRightBumperDown = null;
+		shipInput.onLeftTriggerDown = null;
+	}
+
+
     void instantiatePauseMenu() {
-		if (FindObjectOfType<pauseMenuController> () == null && FindObjectOfType<CountDown>() == null) {
-            UnityEngine.Object modalPrefab = Resources.Load ("Prefabs/PauseMenuCanvas"); 
-            GameObject modalObject = (GameObject)GameObject.Instantiate (modalPrefab, Vector3.zero, Quaternion.identity);
-            modalObject.GetComponent<pauseMenuController> ().initialize (this.Actions);
-        }
+		if (FindObjectOfType<PauseModalComponent> () == null && FindObjectOfType<CountDown>() == null) {
+
+			Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
+			modalActions.Add (ModalActionEnum.onOpenAction, () => {clearShipInput();});
+			modalActions.Add (ModalActionEnum.onCloseAction, () => {InitializeShipInput();});
+
+			ModalStack.initialize (this.Actions, ModalsEnum.pauseModal, modalActions);
+		} 
     }
 
 

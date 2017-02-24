@@ -9,8 +9,6 @@ using System;
 public class LobbyManager : MonoBehaviour {
 
 	public AbstractCharacterSelectController csc;
-	public ModalController modalCanvasPrefab;
-
 
 	void Start() {
 	}

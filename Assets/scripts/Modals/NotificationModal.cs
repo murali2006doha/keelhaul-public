@@ -6,21 +6,29 @@ using UnityEngine.UI;
 using InControl;
 using System;
 
-public class ModalController : MonoBehaviour {
+public class NotificationModal : AbstractModalComponent {
 
-
-    public Animator modalAnimator;
     public Text text;
     public Image image;
     public Button ok; //these will eventually have the ActionButton.cs script attached 
     public Button cancel; 
+
     Action onYesButtonPress;
     Action onNoButtonPress;
 
+    void Update() {
+        if (isActive) {
+            control ();  
+        }
+    }
 
-    /**
-     * can choose the message text, the color of the text box, and the texts for the two buttons
-     **/
+    public override void initializeModal(PlayerActions actions) {
+        this.actions = actions;
+        this.isActive = true;
+        this.popAction += goBack;
+    }
+
+
     public void initialize(string messageText, Color color, string okText, String cancelText, Action yesAction, Action noAction) {
 
         image.color = color;
@@ -28,29 +36,21 @@ public class ModalController : MonoBehaviour {
         cancel.GetComponentInChildren<Text>().text = cancelText;
         text.text = messageText;
         modalAnimator.Play ("ModalEnter");
-        cancel.Select ();
-        this.onYesButtonPress = yesAction;
         this.onNoButtonPress = noAction;
+        this.onYesButtonPress = yesAction;
+
+        buttonToAction.Add (ok, () =>  {
+            this.onYesButtonPress();
+            this.popAction ();
+        });
+
+        buttonToAction.Add (cancel, () =>  {
+            this.onNoButtonPress();
+            this.popAction ();
+        });
+
+        this.buttons = new List<Button> (buttonToAction.Keys).ToArray ();
+        this.index = buttons.Length - 1;
 
     }
-
-    public void OnClickButton(string choice) {
-        if( choice == "continue") {
-            this.onYesButtonPress ();
-			StartCoroutine (exit ());
-        }
-
-        if( choice == "cancel") {
-            this.onNoButtonPress ();
-			StartCoroutine (exit ());
-        }
-    }
-
-
-	private IEnumerator exit()
-	{
-		modalAnimator.Play ("ModalExit");
-		yield return new WaitForSeconds(1.0f);  
-		Destroy(gameObject);
-	}
 }
