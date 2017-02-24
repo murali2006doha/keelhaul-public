@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Grey Box Rocks
-  m_Shader: {fileID: 4800000, guid: 48dca5b99d113b8d11006bab44295342, type: 3}
-  m_ShaderKeywords: _EMISSION
+  m_Name: seafloor
+  m_Shader: {fileID: 4800000, guid: 0a4b0bce1e250a14bb534d70bce205fa, type: 3}
+  m_ShaderKeywords: _EMISSION _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -18,7 +18,7 @@ Material:
     - first:
         name: _BumpMap
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 0bcb5eec8868240aa9fcfd575383131a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -40,21 +40,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _Diffuse
-      second:
-        m_Texture: {fileID: 2800000, guid: 5754c5b7d00782346ad230cf6f0d437f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d5cd733b6a61846a5a7f1c41163796e8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -72,31 +66,13 @@ Material:
     - first:
         name: _ParallaxMap
       second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Ramp
-      second:
-        m_Texture: {fileID: 2800000, guid: e3d273b1443a24542907bd2d5551a199, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ToonShade
-      second:
-        m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _bump
-      second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d5cd733b6a61846a5a7f1c41163796e8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
         name: _BumpScale
-      second: 1
+      second: 0.07
     - first:
         name: _Cutoff
       second: 0.5
@@ -107,11 +83,14 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _EdgeLength
+      second: 3
+    - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 0.5
+      second: 1
     - first:
         name: _GlossyReflections
       second: 1
@@ -125,14 +104,11 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
-        name: _Outline
-      second: 0.005
-    - first:
         name: _Parallax
-      second: 0.02
+      second: 1
     - first:
-        name: _ShadowDarkness
-      second: 0.031
+        name: _Shininess
+      second: 0.048
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -143,27 +119,18 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
-        name: _Tones
-      second: 3
-    - first:
         name: _UVSec
       second: 0
     - first:
         name: _ZWrite
       second: 1
-    - first:
-        name: _width
-      second: 0.01
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 1}
+      second: {r: 0, g: 0.122363105, b: 0.1397059, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 0, g: 0, b: 0, a: 1}
+      second: {r: 0, g: 0.6766733, b: 0.7058823, a: 1}
     - first:
-        name: _OutlineColor
-      second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _node_9426
-      second: {r: 0.19852942, g: 0.19852942, b: 0.19852942, a: 1}
+        name: _SpecColor
+      second: {r: 0, g: 0.46323532, b: 0.3482252, a: 1}
