@@ -138,6 +138,10 @@ public class NetworkManager : MonoBehaviour
     }
   int GetLowestRequiredPlayersToStartGame() {
         int lowestRequiredPlayers = 0;
+        if (PhotonNetwork.offlineMode)
+        {
+            return 2;
+        }
         Dictionary<int, bool> roomOptions = (Dictionary<int, bool>)PhotonNetwork.room.customProperties["matchOptions"];
         for (int i = 0; i < 3; i++) {
             if (roomOptions.ContainsKey(i)) {

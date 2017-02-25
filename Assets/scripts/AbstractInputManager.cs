@@ -13,4 +13,5 @@ public abstract class AbstractInputManager : MonoBehaviour {
 	public Action onLeftTriggerDown { get; set; }
 	public Action onRightBumperDown { get; set; }
 	public Action onRightTriggerDown { get; set; }
+	public Action onStartButtonPress { get; set; }
 }

@@ -39,7 +39,17 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 				handleScoringZone ();
 
 			}
-		}
+
+            if (other.transform.root.name.Contains("iceberg"))
+            {
+                var iceSpike = other.GetComponent<IceSpike>();
+                var parentId = iceSpike.parentId;
+                if(parentId != input.GetId())
+                {
+                    takeDamageAction(iceSpike.damage* Time.deltaTime, parentId, false);
+                }
+            }
+        }
 	}
 		
 
