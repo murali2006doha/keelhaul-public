@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 public class CannonBall : Photon.MonoBehaviour {
 
-	private Transform owner;
+	protected Transform owner;
 	private float timeAlive;
 	public GameObject shipHit;
 	public float lifeTime = 2.5f;
@@ -15,7 +15,7 @@ public class CannonBall : Photon.MonoBehaviour {
 	public float reflectForce = 100;
 	public int reflectMult = 1;
 	public float damage = 1;
-	bool splashed = false;
+	protected bool splashed = false;
     public float pushMagnitude =0f;
 	public bool reflected = false;
 
@@ -58,7 +58,7 @@ public class CannonBall : Photon.MonoBehaviour {
                     }
 					
 					Instantiate (normalHit, transform.position, transform.rotation);
-					Destroy (gameObject);
+                    destroySelf();
 				}
 			} else {
 				if (LayerMask.LayerToName (collider.gameObject.layer).Contains ("playerMesh")) {
@@ -100,28 +100,37 @@ public class CannonBall : Photon.MonoBehaviour {
 				} else {
 					Instantiate (normalHit, transform.position, transform.rotation);
 				}
-
-                PhotonNetwork.Destroy(GetComponent<PhotonView>());
+                destroySelf();
+               
 
 			}
 
 		}
 	}
-	void destroySelf(){
+
+	virtual public void destroySelf(){
         if (GetComponent<PhotonView>().isMine)
         {
+           
             PhotonNetwork.Destroy(GetComponent<PhotonView>());
         }
     }
 
-	void FixedUpdate(){
-		this.GetComponent<Rigidbody> ().AddForce (new Vector3 (0, gravity, 0));
-		if (this.transform.position.y < 0.01f && !splashed) {
-			Instantiate (splash, transform.position, transform.rotation);
-			splashed = true;
-			Invoke ("destroySelf", lifeTime);
-		}
-	}
+	void FixedUpdate()
+    {
+        this.GetComponent<Rigidbody>().AddForce(new Vector3(0, gravity, 0));
+        CheckSplash();
+    }
+
+    public virtual void CheckSplash()
+    {
+        if (this.transform.position.y < 0.01f && !splashed)
+        {
+            Instantiate(splash, transform.position, transform.rotation);
+            splashed = true;
+            Invoke("destroySelf", lifeTime);
+        }
+    }
 
     [PunRPC]
     public void AddForce(Vector3 force) {

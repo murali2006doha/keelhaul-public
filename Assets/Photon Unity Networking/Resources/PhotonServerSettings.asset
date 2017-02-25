@@ -63,4 +63,6 @@ MonoBehaviour:
   - RPCActivateBomb
   - SetUpParent
   - ResetLowestRequiredPlayers
+  - ActivateFreeze
+  - SetSpikeParent
   DisableAutoOpenWizard: 1

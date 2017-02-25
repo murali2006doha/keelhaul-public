@@ -8,8 +8,8 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: rock2diffuse
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -46,6 +46,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _Fresnel
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _MainTex
       second:
         m_Texture: {fileID: 0}
@@ -69,7 +75,34 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ReflectionTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ReflectiveColor
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _RefractionTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _SpecGlossMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - first:
+        name: _BumpAmt
+      second: 10
     - first:
         name: _BumpScale
       second: 1
@@ -84,7 +117,7 @@ Material:
       second: 0
     - first:
         name: _GlossMapScale
-      second: 1
+      second: 0
     - first:
         name: _Glossiness
       second: 0.5
@@ -92,8 +125,11 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
+        name: _MainAlpha
+      second: 1
+    - first:
         name: _Metallic
-      second: 0
+      second: 0.731
     - first:
         name: _Mode
       second: 0
@@ -103,6 +139,15 @@ Material:
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _ReflDistort
+      second: 0.44
+    - first:
+        name: _ReflectionAlpha
+      second: 1
+    - first:
+        name: _RefrDistort
+      second: 0.4
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -116,12 +161,30 @@ Material:
         name: _UVSec
       second: 0
     - first:
+        name: _WaveScale
+      second: 0.063
+    - first:
         name: _ZWrite
       second: 1
     m_Colors:
+    - first:
+        name: WaveSpeed
+      second: {r: 19, g: 9, b: -16, a: -7}
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _HorizonColor
+      second: {r: 0.172, g: 0.463, b: 0.435, a: 1}
+    - first:
+        name: _RefrColor
+      second: {r: 0.34, g: 0.85, b: 0.92, a: 1}
+    - first:
+        name: _SpecColor
+      second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - first:
+        name: _TintColor
+      second: {r: 1, g: 1, b: 1, a: 1}
