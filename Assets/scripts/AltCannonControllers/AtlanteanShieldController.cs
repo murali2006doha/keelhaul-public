@@ -4,19 +4,22 @@ using System.Collections;
 public class AtlanteanShieldController : MonoBehaviour {
 
 	public GameObject parent;
-	public float lifeTime;
+    public GameObject ampedUpCannonballPrefab;
+    public float lifeTime;
 	public float powerShieldDuration;
 	public bool isReflecting = false;
 	PlayerInput ship;
 	public Vector3 offset;
 	float originalSpeed;
 	Quaternion rot;
+    GameObject originalCannonballPrefab;
 	// Use this for initialization
 
 
 	void Start () {
 		parent = GetComponent<SecondaryFire>().parent;
 		ship = parent.GetComponent<PlayerInput>();
+        ship.centralCannon.AmpUpCannonball();
 		Invoke("DisablePowerShield", powerShieldDuration);
 		Invoke("KillSelf", lifeTime);
 		rot = Quaternion.Euler(0, 0, -180);
@@ -32,7 +35,8 @@ public class AtlanteanShieldController : MonoBehaviour {
 
 	void KillSelf() {
 		ship.deactivateInvincibility ();
-		Destroy(this.gameObject);
+        ship.centralCannon.DeAmpCannonball();
+        Destroy(this.gameObject);
 	}
 
 	void DisablePowerShield(){
