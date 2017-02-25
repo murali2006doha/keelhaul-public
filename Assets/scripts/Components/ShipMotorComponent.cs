@@ -192,4 +192,9 @@ public class ShipMotorComponent : MonoBehaviour
     {
         this.speedModifier = val;
     }
+
+
+	public bool isBoosting() {
+		return boosting;
+	}
 }

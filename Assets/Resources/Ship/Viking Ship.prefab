@@ -652,6 +652,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1661787260633358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4735950875536320}
+  - component: {fileID: 114247683356119922}
+  m_Layer: 9
+  m_Name: ShipSounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1662536791073928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,6 +1762,7 @@ Transform:
   - {fileID: 4448984246838228}
   - {fileID: 4856581994308490}
   - {fileID: 4396230972672876}
+  - {fileID: 4735950875536320}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 151.81, z: 0}
@@ -1762,6 +1779,19 @@ Transform:
   m_Father: {fileID: 4640419662176214}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 86.1112, y: -167.8095, z: -28.478899}
+--- !u!4 &4735950875536320
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1661787260633358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4676488738246948}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4751183996569586
 Transform:
   m_ObjectHideFlags: 1
@@ -2378,7 +2408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec853457a8da840c8bd50113f207028f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallPrefab: {fileID: 0}
   cannonBallPos: {fileID: 4947350598752414}
   cannonForce: 400
   arcCannonForce: 10
@@ -2388,6 +2417,7 @@ MonoBehaviour:
   - cannonBallPath: Prefabs/Cannon Shots/blackbeard cannonball
   - cannonBallPath: Prefabs/Cannon Shots/chinese cannonball
   - cannonBallPath: Prefabs/Cannon Shots/atlantis cannonball
+  soundClip: {fileID: 0}
 --- !u!114 &114186087409521954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2441,6 +2471,19 @@ MonoBehaviour:
   ship: {fileID: 0}
   respawnTime: 0
   category: 0
+--- !u!114 &114247683356119922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1661787260633358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a116f3d7a3241feab0783274284314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostSound: {fileID: 8300000, guid: 0fcb39057f3e44fd1b932e9e07a360ef, type: 3}
+  movementSound: {fileID: 8300000, guid: 8ba1d415158f147d9b54d87ba4ac6fe9, type: 3}
 --- !u!114 &114341636214950598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2501,6 +2544,7 @@ MonoBehaviour:
   shipNum: 0
   scoreDestination: {fileID: 0}
   startingPoint: {x: 0, y: 0, z: 0}
+  startingRotation: {x: 0, y: 0, z: 0, w: 0}
   motor: {fileID: 114771546866688374}
   bombController: {fileID: 114799525471838902}
   aimComponent: {fileID: 114186087409521954}
@@ -2772,6 +2816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wake: {fileID: 1800753792342090}
+  boostParticle: {fileID: 0}
   velocity: 0
   boosted: 0
   boosting: 0
@@ -2801,7 +2846,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDropBomb: 1
-  bomb: {fileID: 114000012920254950, guid: d243b9b03b707ad469354d4cbd8befd1, type: 2}
 --- !u!114 &114799681859917644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3276,7 +3320,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1955437759083594}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -5877,7 +5921,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1232348017040358}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -8478,7 +8522,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1805821507978660}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -11001,7 +11045,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1198236477413222}
   serializedVersion: 5
   lengthInSec: 1.5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -13638,7 +13682,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1351865066350310}
   serializedVersion: 5
   lengthInSec: 1.5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -16275,7 +16319,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1679012534807410}
   serializedVersion: 5
   lengthInSec: 1.5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -18912,7 +18956,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1552137082565572}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -21471,7 +21515,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1704917180732238}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1

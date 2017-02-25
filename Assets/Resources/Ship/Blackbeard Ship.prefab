@@ -1378,6 +1378,7 @@ MonoBehaviour:
   shipNum: 0
   scoreDestination: {fileID: 0}
   startingPoint: {x: 0, y: 0, z: 0}
+  startingRotation: {x: 0, y: 0, z: 0, w: 0}
   motor: {fileID: 114003146381988642}
   bombController: {fileID: 11408324}
   aimComponent: {fileID: 114935699512470294}
@@ -1881,7 +1882,7 @@ ParticleSystem:
   m_GameObject: {fileID: 173294}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -4482,7 +4483,7 @@ ParticleSystem:
   m_GameObject: {fileID: 110758}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -7041,7 +7042,7 @@ ParticleSystem:
   m_GameObject: {fileID: 180266}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -9948,8 +9949,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4354659187954668}
+  - component: {fileID: 114294636734613596}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ShipSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10920,8 +10922,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114118730019144946
 MonoBehaviour:
@@ -10946,8 +10948,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114986819729048736}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 3
-  instantiationId: 3
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114240729712812926
 MonoBehaviour:
@@ -10982,6 +10984,19 @@ MonoBehaviour:
   maxDelay: 0.4
   tempCannonListL: []
   tempCannonListR: []
+--- !u!114 &114294636734613596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070976121436662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a116f3d7a3241feab0783274284314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostSound: {fileID: 8300000, guid: 0fcb39057f3e44fd1b932e9e07a360ef, type: 3}
+  movementSound: {fileID: 8300000, guid: 8ba1d415158f147d9b54d87ba4ac6fe9, type: 3}
 --- !u!114 &114371219138913600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11039,8 +11054,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114001535506412288}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114772614782576044
 MonoBehaviour:
@@ -11100,7 +11115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec853457a8da840c8bd50113f207028f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallPrefab: {fileID: 0}
   cannonBallPos: {fileID: 4674787312191394}
   cannonForce: 400
   arcCannonForce: 100
@@ -11110,6 +11124,7 @@ MonoBehaviour:
   - cannonBallPath: Prefabs/Cannon Shots/burst blackbeard cannonball
   - cannonBallPath: Prefabs/Cannon Shots/burst blackbeard cannonball
   - cannonBallPath: Prefabs/Cannon Shots/burst blackbeard cannonball
+  soundClip: {fileID: 8300000, guid: 47ba73d448dfa4bdf863e3e07a2aa79f, type: 3}
 --- !u!114 &114935699512470294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11232,7 +11247,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000013322688638}
   serializedVersion: 5
   lengthInSec: 1.5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -13869,7 +13884,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012172141296}
   serializedVersion: 5
   lengthInSec: 1.5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -16506,7 +16521,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000014136731806}
   serializedVersion: 5
   lengthInSec: 1.5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -19143,7 +19158,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012056405624}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -21810,7 +21825,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000010157690508}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -24333,7 +24348,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1351898272422770}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
