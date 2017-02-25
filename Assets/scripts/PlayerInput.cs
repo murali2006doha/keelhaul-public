@@ -97,10 +97,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             transform,
             () => {
                 uiManager.setBoostBar(0);
-                followCamera.ActivateMotionBlur();
             },
             () => {
-                followCamera.DeActivateMotionBlur();
             },
             Actions.Device == null
         );

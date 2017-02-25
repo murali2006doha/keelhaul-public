@@ -37,8 +37,8 @@ public static class PathVariables {
     //alternate shots
 
     internal static string alternateChineseShot = "Prefabs/Alt Cannon shots/Firework Shot";
-    internal static string alternateAtlantisShot = "Prefabs/Alt Cannon shots/Firework Shot";
-    internal static string alternateBlackbeardShot = "Prefabs/Alt Cannon shots/Firework Shot";
+    internal static string alternateAtlantisShot = "Prefabs/Alt Cannon shots/Force Field";
+    internal static string alternateBlackbeardShot = "Prefabs/Cannon Shots/centre blackbeard cannonball";
 
     internal static string explosionPath = "Prefabs/Explosion";
     //Ship Effects

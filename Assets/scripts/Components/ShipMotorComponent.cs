@@ -12,7 +12,8 @@ public class ShipMotorComponent : MonoBehaviour
     protected Action onBoost, onBoostFinish;
 
     [Header("Scene Variables")]
-    public GameObject wake;
+    [SerializeField] public GameObject wake;
+    [SerializeField] private GameObject boostParticle;
 
 
     [SerializeField] protected float velocity = 0f;
@@ -71,6 +72,7 @@ public class ShipMotorComponent : MonoBehaviour
             {
                 Debug.Log("reaching boost finish");
                 boosting = false;
+                this.boostParticle.SetActive(false);
                 this.onBoostFinish();
             }
         }
@@ -119,6 +121,7 @@ public class ShipMotorComponent : MonoBehaviour
     {
         if (!boosted) {
             this.onBoost();
+            this.boostParticle.SetActive(true);
             boosted = true;
             boosting = true;
             velocity = stats.boostVelocity;

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 11438146}
   - component: {fileID: 11453680}
   - component: {fileID: 11459538}
+  - component: {fileID: 114873303432334470}
   m_Layer: 29
   m_Name: Force Field
   m_TagString: Untagged
@@ -206,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  lifeTime: 10
+  lifeTime: 4
   powerShieldDuration: 0
   isReflecting: 0
   offset: {x: 0, y: 0, z: 0}
@@ -8438,6 +8439,32 @@ Transform:
   m_Father: {fileID: 429394}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114873303432334470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
 --- !u!198 &198011259038639106
 ParticleSystem:
   m_ObjectHideFlags: 1
