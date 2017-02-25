@@ -9,8 +9,6 @@ using System;
 public class LobbyManager : MonoBehaviour {
 
 	public AbstractCharacterSelectController csc;
-	public ModalController modalCanvasPrefab;
-
 
 	void Start() {
 	}
@@ -19,7 +17,6 @@ public class LobbyManager : MonoBehaviour {
 	void Update () {
 
 		csc = GameObject.FindObjectOfType<AbstractCharacterSelectController> ();
-
 		if (csc != null) {
 			csc.OnSelectCharacterAction (
 				() => {
@@ -32,7 +29,6 @@ public class LobbyManager : MonoBehaviour {
 					}
 					;
 				});
-
 		}
 	}
 
