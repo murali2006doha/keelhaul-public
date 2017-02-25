@@ -14,13 +14,13 @@ public class SettingsModalComponent : AbstractModalComponent {
 
 	void Update() {
 		if (isActive) {
-			control ();  
+			Control ();  
 		}
 	}
 
 
 	// Use this for initialization
-	public override void initializeModal (PlayerActions actions) {
+	public override void InitializeModal (PlayerActions actions) {
 		this.actions = actions;
 		this.buttons = new List<Button> (buttonToAction.Keys).ToArray ();
 

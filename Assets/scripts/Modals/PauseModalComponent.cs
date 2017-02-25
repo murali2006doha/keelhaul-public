@@ -27,38 +27,38 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
 
     void Update() {
         if (isPaused && isActive) {
-            control (); 
+            Control (); 
         }
     }
 
     //The player who paused game has access. 
-    public override void initializeModal(PlayerActions actions) {
+    public override void InitializeModal(PlayerActions actions) {
 
-        this.setUpButtonToActionDictionary (actions);
+        this.SetUpButtonToActionDictionary (actions);
 
         this.gm = FindObjectOfType<AbstractGameManager> ();
         this.actions = actions;
         this.buttons = new List<Button> (buttonToAction.Keys).ToArray ();
         this.index = buttons.Length - 1;
-        this.pauseGame ();
-        this.popAction += resumeGame; //because this will be no modal before this so game will resume
+        this.PauseGame ();
+        this.popAction += ResumeGame; //because this will be no modal before this so game will resume
     }
 
-    void setUpButtonToActionDictionary (PlayerActions actions) {
+    void SetUpButtonToActionDictionary (PlayerActions actions) {
 
 
         Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
-        modalActions.Add (ModalActionEnum.onOpenAction, () => {toggleButtons();});
-        modalActions.Add (ModalActionEnum.onCloseAction, () => {toggleButtons();});
+        modalActions.Add (ModalActionEnum.onOpenAction, () => {ToggleButtons();});
+        modalActions.Add (ModalActionEnum.onCloseAction, () => {ToggleButtons();});
     
 
         buttonToAction.Add (exitToMenuButton, () =>  {
             this.pushAction ();
 
             ModalStack.initialize (this.actions, ModalsEnum.notificationModal, modalActions);
-            FindObjectOfType<NotificationModal>().initialize ("Are you sure?", Color.yellow, "Yes", "No", 
+            FindObjectOfType<NotificationModal>().Initialize ("Are you sure?", Color.yellow, "Yes", "No", 
                 () =>  {
-                exitToMainMenu ();
+                ExitToMainMenu ();
                     isActive = true;
             }, 
                 () =>  {
@@ -71,9 +71,9 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
             this.pushAction ();
 
             ModalStack.initialize (this.actions, ModalsEnum.notificationModal, modalActions);
-            FindObjectOfType<NotificationModal>().initialize ("Are you sure?", Color.yellow, "Yes", "No",
+            FindObjectOfType<NotificationModal>().Initialize ("Are you sure?", Color.yellow, "Yes", "No",
                 () =>  {
-                exitToDesktop ();
+                ExitToDesktop ();
                 isActive = true;
                     }, 
                 () =>  {
@@ -94,28 +94,28 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     }
 
 
-    public void pauseGame() {
+    public void PauseGame() {
 
         audios = FindObjectsOfType <AudioSource> ();
         otherActions = FindObjectsOfType <PlayerInput> ();
 
         Time.timeScale = 0;
-        pauseAudio ();
+        PauseAudio ();
 
-        togglePlayerActions ();
+        TogglePlayerActions ();
         isPaused = true;
     }
 
 
-    public void resumeGame() {
+    public void ResumeGame() {
 
         Time.timeScale = 1;
-        resumeAudio ();
-        togglePlayerActions ();
+        ResumeAudio ();
+        TogglePlayerActions ();
     }
 
 
-    private void exitToMainMenu() {
+    private void ExitToMainMenu() {
 
         Time.timeScale = 1;
         gm.exitToCharacterSelect ();
@@ -123,12 +123,12 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     }
 
 
-    private void exitToDesktop() {
+    private void ExitToDesktop() {
         Application.Quit();
     }
 
 
-    private void pauseAudio() {
+    private void PauseAudio() {
 
         foreach (AudioSource audio in audios) {
             audio.Pause();
@@ -138,7 +138,7 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     }
 
 
-    private void resumeAudio() {
+    private void ResumeAudio() {
         foreach (AudioSource audio in audios) {
             audio.Play();
         }
@@ -149,7 +149,7 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     /**
      * turns of all the players actions except the player who paused the game
      **/
-    private void togglePlayerActions() {
+    private void TogglePlayerActions() {
         foreach (PlayerInput input in otherActions) {
             if (input.Actions != actions) {
                 input.Actions.Enabled = !input.Actions.Enabled;

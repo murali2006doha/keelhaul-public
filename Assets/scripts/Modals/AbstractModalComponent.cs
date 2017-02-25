@@ -34,11 +34,11 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     /// </summary>
     /// <param name="actions">Actions.</param>
 
-    public abstract void initializeModal(PlayerActions actions);
+    public abstract void InitializeModal(PlayerActions actions);
 
 
-    public void control() {
-        navigateModal (buttons);  
+    public void Control() {
+        NavigateModal (buttons);  
 
         if (this.getActions ().Green.WasReleased) { 
             this.doAction ();   
@@ -70,13 +70,37 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
 
 
-    public void toggleButtons() {
+    public void ToggleButtons() {
         foreach (Button b in buttons) {
             b.interactable = !b.interactable;
         }
     }
+
+
+	public void NavigateModal (Button[] passedInButtons) { //navigating main menu  
+
+		passedInButtons [index].Select ();
+
+		if (actions.Down.WasReleased || actions.R_Down.RawValue > 0.5f) {
+			index = getPositionIndex (passedInButtons, index, "down");
+		}
+
+		if (actions.Up.WasReleased || actions.R_Up.RawValue > 0.5f) {
+			index = getPositionIndex (passedInButtons, index, "up");
+		}
+
+		if (actions.Right.WasReleased || actions.R_Right.RawValue > 0.5f) {
+			index = getPositionIndex (passedInButtons, index, "right");
+		}
+
+		if (actions.Left.WasReleased || actions.R_Left.RawValue > 0.5f) {
+			index = getPositionIndex (passedInButtons, index, "left");
+		}
+
+	}
+
         
-    public int getPositionIndex (Button[] items, int item, string direction) {
+	private int getPositionIndex (Button[] items, int item, string direction) {
         if (direction == "up") {
             if (item == 0) {
                 item = items.Length - 1;
@@ -113,40 +137,19 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     }
 
 
-    public void navigateModal (Button[] buttonsX) { //navigating main menu  
-
-        buttonsX [index].Select ();
-
-        if (actions.Down.WasReleased || actions.R_Down.RawValue > 0.5f) {
-            index = getPositionIndex (buttonsX, index, "down");
-        }
-
-        if (actions.Up.WasReleased || actions.R_Up.RawValue > 0.5f) {
-            index = getPositionIndex (buttonsX, index, "up");
-        }
-
-        if (actions.Right.WasReleased || actions.R_Right.RawValue > 0.5f) {
-            index = getPositionIndex (buttonsX, index, "right");
-        }
-
-        if (actions.Left.WasReleased || actions.R_Left.RawValue > 0.5f) {
-            index = getPositionIndex (buttonsX, index, "left");
-        }
-
-    }
 
     public void goBack() {
-        StartCoroutine (exit ());
+        StartCoroutine (Exit ());
     }
 
-    private IEnumerator exit() {
+    private IEnumerator Exit() {
         //this.gameObject.SetActive (false);
         modalAnimator.Play ("ModalExit");
         yield return new WaitForSeconds(1.0f); 
     }
 
 
-    public void setUpMouseControls() {
+    public void SetUpMouseControls() {
 
         int i = 0;
         foreach (Button b in buttons) {

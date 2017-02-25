@@ -18,18 +18,18 @@ public class NotificationModal : AbstractModalComponent {
 
     void Update() {
         if (isActive) {
-            control ();  
+            Control ();  
         }
     }
 
-    public override void initializeModal(PlayerActions actions) {
+    public override void InitializeModal(PlayerActions actions) {
         this.actions = actions;
         this.isActive = true;
         this.popAction += goBack;
     }
 
 
-    public void initialize(string messageText, Color color, string okText, String cancelText, Action yesAction, Action noAction) {
+    public void Initialize(string messageText, Color color, string okText, String cancelText, Action yesAction, Action noAction) {
 
         image.color = color;
         ok.GetComponentInChildren<Text>().text = okText;

@@ -31,21 +31,21 @@ public class ModalStack : MonoBehaviour {
         GameObject modalObject = (GameObject) GameObject.Instantiate (modalPrefab, Vector3.zero, Quaternion.identity);
         AbstractModalComponent modalComponent = (AbstractModalComponent) modalObject.GetComponent<AbstractModalComponent> ();
 
-        modalComponent.initializeModal (actions);
-        modalComponent.pushAction += push;
-        modalComponent.popAction += pop;
+        modalComponent.InitializeModal (actions);
+        modalComponent.pushAction += Push;
+        modalComponent.popAction += Pop;
         modalComponent.popAction += ModalActions [ModalActionEnum.onCloseAction];
         workingModals.Push (modalComponent);
 
         ModalActions [ModalActionEnum.onOpenAction]();  //gets called as soon as the object is initialized
 
         selectedModal = getActiveModal(); //always 0th item in the list
-        setModalStatus ();
+        SetModalStatus ();
 
     }
 
 
-    static void push () {
+    static void Push () {
 
         //if an another NEW modal opens 
         if (FindObjectOfType<AbstractModalComponent> () != selectedModal) {
@@ -53,7 +53,7 @@ public class ModalStack : MonoBehaviour {
         }   
     }
 
-    static void pop () {
+    static void Pop () {
 
         if (workingModals.ToArray().Length > 0) {
             workingModals.Pop ();
@@ -63,17 +63,17 @@ public class ModalStack : MonoBehaviour {
 
         //go back to game
         if (workingModals.ToArray().Length == 0) {
-            clearStack ();
+            ClearStack ();
         } else {
             selectedModal = getActiveModal(); 
-            setModalStatus ();
+            SetModalStatus ();
         }
 
 
     }
 
 
-    static void setModalStatus() {
+    static void SetModalStatus() {
         getActiveModal().isActive = true;
         getActiveModal().gameObject.SetActive (true);
 
@@ -90,7 +90,7 @@ public class ModalStack : MonoBehaviour {
 
 
 
-    static void clearStack() {
+    static void ClearStack() {
         workingModals = new Stack<AbstractModalComponent> ();
         selectedModal = null;
     }
