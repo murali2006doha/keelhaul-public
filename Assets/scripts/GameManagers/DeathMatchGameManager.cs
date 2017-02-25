@@ -97,7 +97,7 @@ public class DeathMatchGameManager : AbstractGameManager
             gamePoints.Add(id.ToString(), 0);
            
     
-            if (id  >= 2 || (PhotonNetwork.offlineMode && id>=1))
+            if (id  >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id>=1))
             {
                 foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                 {
@@ -213,13 +213,11 @@ public class DeathMatchGameManager : AbstractGameManager
     }
 
 
-    override public void respawnPlayer(PlayerInput player, Vector3 startingPoint)
-    {
-
+    override public void respawnPlayer(PlayerInput player, Vector3 startingPoint, Quaternion startingRotation) {
         player.gameObject.transform.position = startingPoint;
-
-
+        player.gameObject.transform.rotation = startingRotation;
     }
+
     override public void respawnKraken(KrakenInput player, Vector3 startingPoint)
     {
 

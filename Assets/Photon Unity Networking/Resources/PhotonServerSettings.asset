@@ -62,4 +62,5 @@ MonoBehaviour:
   - DestroySelf
   - RPCActivateBomb
   - SetUpParent
+  - ResetLowestRequiredPlayers
   DisableAutoOpenWizard: 1

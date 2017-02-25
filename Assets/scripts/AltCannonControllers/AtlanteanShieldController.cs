@@ -4,13 +4,15 @@ using System.Collections;
 public class AtlanteanShieldController : MonoBehaviour {
 
 	public GameObject parent;
-	public float lifeTime;
+    public GameObject ampedUpCannonballPrefab;
+    public float lifeTime;
 	public float powerShieldDuration;
 	public bool isReflecting = false;
 	PlayerInput ship;
 	public Vector3 offset;
 	float originalSpeed;
 	Quaternion rot;
+    GameObject originalCannonballPrefab;
 	// Use this for initialization
 
 
@@ -28,8 +30,10 @@ public class AtlanteanShieldController : MonoBehaviour {
 	}
 
 	void KillSelf() {
+
+        ship.centralCannon.DeAmpCannonball();
         PhotonNetwork.Destroy(GetComponent<PhotonView>());
-    }
+  }
 
 	void DisablePowerShield(){
 		isReflecting = false;
@@ -44,6 +48,7 @@ public class AtlanteanShieldController : MonoBehaviour {
             {
                 parent = player.gameObject;
                 ship = player;
+                ship.centralCannon.AmpUpCannonball();
                 break;
             }
         }

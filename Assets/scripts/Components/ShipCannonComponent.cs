@@ -89,6 +89,14 @@ public class ShipCannonComponent : MonoBehaviour
         }
     }
 
+    public void AmpUpCannonball() {
+        this.cannonballPath += "Amp";
+    }
+
+    public void DeAmpCannonball()
+    {
+        this.cannonballPath = this.cannonballPath.Substring(0,this.cannonballPath.IndexOf("Amp"));
+    }
 
     public void ResetShotRight()
     {
