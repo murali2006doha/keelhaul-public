@@ -82,7 +82,6 @@ public class GameInitializer : MonoBehaviour {
     }
 
     private void InstantiateMap() {
-        Debug.Log(PathVariables.GetMapForMode(gameType, map));
         GameObject mapToInstantiate = Resources.Load(PathVariables.GetMapForMode(gameType, map)) as GameObject;
         Instantiate(mapToInstantiate);
     }
