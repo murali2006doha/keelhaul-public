@@ -1,16 +1,54 @@
 fileFormatVersion: 2
-guid: a181ad66926fc48ca8d665454cbd7b6f
-timeCreated: 1472715008
+guid: 60cb527baf18ea747a248aa013e5b767
+timeCreated: 1488045747
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: pCone1
+    100004: pCone2
+    100006: pCone3
+    100008: pCone4
+    100010: pCone5
+    100012: pCone6
+    100014: pCone7
+    100016: pCone8
+    100018: pCube66
+    100020: rock21
+    100022: transform53
+    100024: transform54
+    100026: transform55
+    100028: transform56
+    100030: transform57
+    100032: transform58
+    100034: transform59
+    100036: transform60
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cylinder
-    7400000: Default Take
+    400002: pCone1
+    400004: pCone2
+    400006: pCone3
+    400008: pCone4
+    400010: pCone5
+    400012: pCone6
+    400014: pCone7
+    400016: pCone8
+    400018: pCube66
+    400020: rock21
+    400022: transform53
+    400024: transform54
+    400026: transform55
+    400028: transform56
+    400030: transform57
+    400032: transform58
+    400034: transform59
+    400036: transform60
+    2300000: pCone8
+    2300002: pCube66
+    3300000: pCone8
+    3300002: pCube66
+    4300000: pCube66
+    4300002: pCone8
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -52,8 +90,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 180
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
@@ -72,7 +110,7 @@ ModelImporter:
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
-    skeletonHasParents: 0
+    skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1

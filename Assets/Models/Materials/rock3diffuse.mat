@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Grey Box Rocks
-  m_Shader: {fileID: 4800000, guid: 48dca5b99d113b8d11006bab44295342, type: 3}
-  m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_Name: rock3diffuse
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -40,12 +40,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _Diffuse
-      second:
-        m_Texture: {fileID: 2800000, guid: 5754c5b7d00782346ad230cf6f0d437f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
@@ -54,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 31f5a8611c4ed1245b18456206e798dc, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -71,24 +65,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ParallaxMap
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Ramp
-      second:
-        m_Texture: {fileID: 2800000, guid: e3d273b1443a24542907bd2d5551a199, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ToonShade
-      second:
-        m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _bump
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -125,14 +101,8 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
-        name: _Outline
-      second: 0.005
-    - first:
         name: _Parallax
       second: 0.02
-    - first:
-        name: _ShadowDarkness
-      second: 0.031
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -143,27 +113,15 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
-        name: _Tones
-      second: 3
-    - first:
         name: _UVSec
       second: 0
     - first:
         name: _ZWrite
       second: 1
-    - first:
-        name: _width
-      second: 0.01
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _OutlineColor
-      second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _node_9426
-      second: {r: 0.19852942, g: 0.19852942, b: 0.19852942, a: 1}

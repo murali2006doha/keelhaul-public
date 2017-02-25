@@ -153,7 +153,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
-        
+
     }
 
 
@@ -180,13 +180,39 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightRotateChanged += aimComponent.AimAt;
         shipInput.onRightTriggerDown += centralCannon.handleShoot;
         shipInput.onRightBumperDown += altCannonComponent.handleShoot;
-
+        shipInput.onStartButtonPress += this.instantiatePauseMenu; //ENTER on keyboard
+            
         if (hookshotComponent)
         {
             shipInput.onLeftTriggerDown += hookshotComponent.HookBarrel;
             hookshotComponent.onHook += (x) => { if (x) { motor.setSpeedModifier(stats.barrelSlowDownFactor); } else { motor.setSpeedModifier(1); } };
         }
     }
+
+
+	void clearShipInput()
+	{
+		shipInput.onRotateChanged = null;
+		shipInput.onRedButtonPress = null;
+		shipInput.onLeftBumperDown = null;
+		shipInput.onRightRotateChanged = null;
+		shipInput.onRightTriggerDown = null;
+		shipInput.onRightBumperDown = null;
+		shipInput.onLeftTriggerDown = null;
+	}
+
+
+    void instantiatePauseMenu() {
+		if (FindObjectOfType<PauseModalComponent> () == null && FindObjectOfType<CountDown>() == null) {
+
+			Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
+			modalActions.Add (ModalActionEnum.onOpenAction, () => {clearShipInput();});
+			modalActions.Add (ModalActionEnum.onCloseAction, () => {InitializeShipInput();});
+
+			ModalStack.initialize (this.Actions, ModalsEnum.pauseModal, modalActions);
+		} 
+    }
+
 
     public HookshotComponent getHook()
     {
