@@ -97,7 +97,7 @@ public class DeathMatchGameManager : AbstractGameManager
             gamePoints.Add(id.ToString(), 0);
            
     
-            if (id  >= 2 || (PhotonNetwork.offlineMode && id>=1))
+            if (id  >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id>=1))
             {
                 foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                 {
