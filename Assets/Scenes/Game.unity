@@ -177,18 +177,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipSelections:
-  - selectedCharacter: 0
+  - selectedCharacter: 1
     team: 0
-  - selectedCharacter: 0
-    team: 0
-  - selectedCharacter: 0
-    team: 0
-  - selectedCharacter: 0
+  - selectedCharacter: 2
     team: 0
   includeKraken: 0
   isTeam: 0
   isFirstControllerKraken: 0
-  map: 2
+  map: 4
   gameType: 2
   isMaster: 1
   playerId: 0

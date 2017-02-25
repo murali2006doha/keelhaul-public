@@ -2527,7 +2527,7 @@ MonoBehaviour:
   krakenSpot: {fileID: 1291868237611920}
   dmgState1: {fileID: 1750151607285162}
   dmgState2: {fileID: 1323878499690156}
-  stats: {fileID: 11485794, guid: 4d22fd2dcc48e1542844f127edf4aa68, type: 2}
+  stats: {fileID: 114983519774361312, guid: dd56bcfc49452c74d958ae708bffe484, type: 2}
   cullingMask: p2_ui
   followCamera: {fileID: 0}
   victoryScreen: {fileID: 0}
@@ -2877,7 +2877,7 @@ MonoBehaviour:
   cannonBallPos: {fileID: 4947350598752414}
   cannonForce: 1000
   arcCannonForce: 10
-  numOfCannonBalls: 3
+  numOfCannonBalls: 1
   angleOfCannonShots: 30
 --- !u!120 &120039731021375306
 LineRenderer:
