@@ -36,7 +36,6 @@ public class BlackbeardCannonComponent : ShipCannonComponent {
 
         for (int x = 0; x < prefabs.Length; x++) {
             cannonToCannonBall prefab = prefabs [x];
-            print (prefab.cannonBallPath);
             Vector3 newRot = MathHelper.addY (rot, x * angleOfCannonShots);
             GameObject cannonBall = PhotonNetwork.Instantiate (prefab.cannonBallPath, cannonBallPos.position + (velocity * dampening), Quaternion.Euler (newRot), 0);
             cannonBall.transform.rotation = Quaternion.Euler (newRot);

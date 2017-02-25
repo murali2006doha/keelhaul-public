@@ -6,9 +6,8 @@ public class AtlanteanAltCannonComponent : AbstractAltCannonComponent {
 
 	public override void alternateFire () {
 
-		GameObject instantiated = (GameObject) Instantiate(alternateFirePrefab, cannonBallPos.position, this.transform.rotation);
-		instantiated.GetComponent<SecondaryFire>().parent = transform.root.gameObject;
-		instantiated.GetComponent<SecondaryFire>().force = altCannonForce;
+		GameObject instantiated = (GameObject) PhotonNetwork.Instantiate(PathVariables.alternateAtlantisShot, cannonBallPos.position, this.transform.rotation, 0);
+        instantiated.GetComponent<PhotonView>().RPC("SetUpParent", PhotonTargets.All,this.shipTransform.GetComponent<PlayerInput>().GetId());
 		input.gameStats.numOfAlternateShots++;
 
 	}
@@ -16,6 +15,7 @@ public class AtlanteanAltCannonComponent : AbstractAltCannonComponent {
 	public override void setupRotation() {
 		shoot_direction = aim.transform.position - shipTransform.position;
 		this.transform.rotation = Quaternion.LookRotation (shoot_direction.normalized);
-
 	}
+
+
 }

@@ -60,4 +60,6 @@ MonoBehaviour:
   - ToggleDamageStates
   - Initialize
   - DestroySelf
+  - RPCActivateBomb
+  - SetUpParent
   DisableAutoOpenWizard: 1

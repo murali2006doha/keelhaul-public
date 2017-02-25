@@ -71,13 +71,9 @@ public class BlackBeardAltCannonComponent : AbstractAltCannonComponent {
 
 
 	void fireShot (Transform cannonPos) {
-		GameObject cannonBall = (GameObject)Instantiate(alternateFirePrefab, cannonPos.position + (velocity * dampening), originalRotation);
-		cannonBall.transform.rotation = cannonPos.rotation;
-
-		cannonBall.GetComponent<CannonBall>().setOwner(transform.root);
-		cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.forward * altCannonForce);
-		cannonBall.GetComponent<Rigidbody>().AddForce(cannonBall.transform.up * arcCannonForce);
-
+		GameObject cannonBall = PhotonNetwork.Instantiate(PathVariables.alternateBlackbeardShot, cannonPos.position + (velocity * dampening), cannonPos.rotation, 0);
+        cannonBall.GetComponent<CannonBall>().setOwner(shipTransform);
+        cannonBall.GetComponent<PhotonView>().RPC("AddForce", PhotonTargets.All, cannonBall.transform.forward * altCannonForce + cannonBall.transform.up * arcCannonForce);
 	}
 
 
