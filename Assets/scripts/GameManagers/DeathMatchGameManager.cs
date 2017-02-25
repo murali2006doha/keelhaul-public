@@ -57,11 +57,7 @@ public class DeathMatchGameManager : AbstractGameManager
     {
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
         gamePoints = new Dictionary<string, int>();
-        //Disable unused islands
-        for (int z = shipPoints.Count; z < mapObjects.islands.Length; z++)
-        {
-            mapObjects.islands[z].gameObject.SetActive(false);
-        }
+
         GameObject.FindObjectOfType<Barrel>().gameObject.SetActive(false);
         Physics.gravity = new Vector3(0f, -0.1f, 0f);
         Application.targetFrameRate = -1; //Unlocks the framerate at start
