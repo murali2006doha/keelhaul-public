@@ -4,7 +4,6 @@ using System.Collections;
 public class ShipCannonComponent : MonoBehaviour
 {
 
-    public GameObject cannonBallPrefab;
     public Transform cannonBallPos;
 
     public int cannonForce = 1000; //Make this public so designers can easily manipulate it

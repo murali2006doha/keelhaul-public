@@ -4,7 +4,6 @@ using System.Collections;
 public class AtlanteanShieldController : MonoBehaviour {
 
 	public GameObject parent;
-    public GameObject ampedUpCannonballPrefab;
     public float lifeTime;
 	public float powerShieldDuration;
 	public bool isReflecting = false;

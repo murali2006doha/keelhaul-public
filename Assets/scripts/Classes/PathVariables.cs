@@ -26,6 +26,7 @@ public static class PathVariables {
     internal static string atlantisCannonBallPath = "Prefabs/Cannon Shots/atlantis cannonball";
     internal static string chineseCannonBallPath = "Prefabs/Cannon Shots/chinese cannonball";
     internal static string blackbeardCannonBallPath = "Prefabs/Cannon Shots/blackbeard cannonball";
+    internal static string vikingCannonBallPath = "Prefabs/Cannon Shots/small blackbeard cannonball";
 
 
     //Bombs
@@ -39,6 +40,7 @@ public static class PathVariables {
     internal static string alternateChineseShot = "Prefabs/Alt Cannon shots/Firework Shot";
     internal static string alternateAtlantisShot = "Prefabs/Alt Cannon shots/Force Field";
     internal static string alternateBlackbeardShot = "Prefabs/Cannon Shots/centre blackbeard cannonball";
+    internal static string alternateVikingShot = "Prefabs/Alt Cannon shots/Viking Field";
 
     internal static string explosionPath = "Prefabs/Explosion";
     //Ship Effects
@@ -48,6 +50,7 @@ public static class PathVariables {
     internal static string blackbeardAltTexturePath = "Ship/Alternate_Textures/blackbeard_texture";
     internal static string chineseAltTexturePath = "Ship/Alternate_Textures/junk_with_emit_and_gloss";
     internal static string atlanteanAltTexturePath = "Ship/Alternate_Textures/atlantis_diffuse_and_AO";
+    internal static string spike = "Prefabs/Alt Cannon shots/iceberg";
 
     public static string GetAssociatedCannonballForShip(ShipEnum shipType)
     {
@@ -65,7 +68,7 @@ public static class PathVariables {
         }
         else if(shipType == ShipEnum.VikingShip)
         {
-            return blackbeardCannonBallPath;
+            return vikingCannonBallPath;
         }
 
         return string.Empty;
