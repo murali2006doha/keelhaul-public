@@ -41,8 +41,13 @@ public static class PathVariables {
     internal static string alternateBlackbeardShot = "Prefabs/Cannon Shots/centre blackbeard cannonball";
 
     internal static string explosionPath = "Prefabs/Explosion";
+    
     //Ship Effects
     internal static string shipInvincibility = "Prefabs/Effects/Star Power";
+
+    //Maps
+    internal static string genericMapPath = "Prefabs/Maps/@/";
+
 
     //Alternate Textures
     internal static string blackbeardAltTexturePath = "Ship/Alternate_Textures/blackbeard_texture";
@@ -70,6 +75,10 @@ public static class PathVariables {
 
         return string.Empty;
 
+    }
+
+    public static string GetMapForMode(GameTypeEnum mode, MapEnum map) {
+        return genericMapPath.Replace("@", mode.ToString()) + map.ToString();   
     }
 
     public static string GetAssociatedBombForShip(ShipEnum shipType)
