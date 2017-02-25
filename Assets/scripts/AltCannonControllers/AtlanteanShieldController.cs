@@ -17,14 +17,10 @@ public class AtlanteanShieldController : MonoBehaviour {
 
 
 	void Start () {
-		parent = GetComponent<SecondaryFire>().parent;
-		ship = parent.GetComponent<PlayerInput>();
-        ship.centralCannon.AmpUpCannonball();
 		Invoke("DisablePowerShield", powerShieldDuration);
 		Invoke("KillSelf", lifeTime);
 		rot = Quaternion.Euler(0, 0, -180);
 		isReflecting = true;
-		//ship.activateInvincibility ();
 	}
 	
 	// Update is called once per frame
@@ -34,13 +30,29 @@ public class AtlanteanShieldController : MonoBehaviour {
 	}
 
 	void KillSelf() {
-		ship.deactivateInvincibility ();
+
         ship.centralCannon.DeAmpCannonball();
-        Destroy(this.gameObject);
-	}
+        PhotonNetwork.Destroy(GetComponent<PhotonView>());
+  }
 
 	void DisablePowerShield(){
 		isReflecting = false;
 	}
+
+    [PunRPC]
+    public void SetUpParent(int id) {
+        var players = FindObjectsOfType<PlayerInput>();
+        foreach(PlayerInput player in players)
+        {
+            if(player.GetId() == id)
+            {
+                parent = player.gameObject;
+                ship = player;
+                ship.centralCannon.AmpUpCannonball();
+                break;
+            }
+        }
+
+    }
 
 }

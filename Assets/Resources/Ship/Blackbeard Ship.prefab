@@ -1326,7 +1326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDropBomb: 1
-  bomb: {fileID: 114000012920254950, guid: d243b9b03b707ad469354d4cbd8befd1, type: 2}
 --- !u!114 &11414024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1532,7 +1531,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124574}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 851f29f1febc94bc8b618453c0ffd1b7, type: 3}
   m_Name: 
@@ -10843,7 +10842,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124574}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c33481d16665304ebe86187586abc77, type: 3}
   m_Name: 
