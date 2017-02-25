@@ -21,7 +21,8 @@ public class GameInitializer : MonoBehaviour {
     public bool isFirstControllerKraken = false;
 
     List<PlayerInput> players = new List<PlayerInput>();
-    
+
+    public MapEnum map;
     public GameTypeEnum gameType;
     GlobalCanvas globalCanvas;
     GameObject screenSplitter;
@@ -35,7 +36,7 @@ public class GameInitializer : MonoBehaviour {
     void Start()
     {
         Cursor.visible = false;
-
+        InstantiateMap();
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         setGameTypeAndSettings();
 
@@ -61,7 +62,6 @@ public class GameInitializer : MonoBehaviour {
         }
 
         initializeGlobalCanvas();
-
         initializePlayerCameras();
 
         globalCanvas = GameObject.FindObjectOfType<GlobalCanvas>();
@@ -79,6 +79,12 @@ public class GameInitializer : MonoBehaviour {
         }   
 
             
+    }
+
+    private void InstantiateMap() {
+        Debug.Log(PathVariables.GetMapForMode(gameType, map));
+        GameObject mapToInstantiate = Resources.Load(PathVariables.GetMapForMode(gameType, map)) as GameObject;
+        Instantiate(mapToInstantiate);
     }
 
     private void setGameTypeAndSettings() {
