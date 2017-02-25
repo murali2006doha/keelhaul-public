@@ -25,7 +25,7 @@ public class NotificationModal : AbstractModalComponent {
     public override void InitializeModal(PlayerActions actions) {
         this.actions = actions;
         this.isActive = true;
-        this.popAction += goBack;
+        this.popAction += GoBack;
     }
 
 

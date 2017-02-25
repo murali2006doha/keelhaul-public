@@ -40,31 +40,31 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     public void Control() {
         NavigateModal (buttons);  
 
-        if (this.getActions ().Green.WasReleased) { 
-            this.doAction ();   
-        } else if (this.getActions ().Red.WasReleased) { 
+        if (this.GetActions ().Green.WasReleased) { 
+            this.DoAction ();   
+        } else if (this.GetActions ().Red.WasReleased) { 
             this.popAction ();
         }
 
     }
 
 
-    public PlayerActions getActions() {
+    public PlayerActions GetActions() {
         return actions;
     }
 
 
-    public Button getButtons() {
+    public Button GetButtons() {
         return new List<Button> (buttonToAction.Keys).ToArray () [index];
     }
 
     //do action might contain closeAction or openAction depending on what type of button is pressed
-    public void doAction() {
+    public void DoAction() {
         this.buttonToAction [new List<Button> (buttonToAction.Keys).ToArray ()[index]]();
     }
 
     //for mouse
-    public void doAction(int i) {
+    public void DoAction(int i) {
         this.buttonToAction [new List<Button> (buttonToAction.Keys).ToArray ()[i]]();
     }
 
@@ -82,25 +82,25 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 		passedInButtons [index].Select ();
 
 		if (actions.Down.WasReleased || actions.R_Down.RawValue > 0.5f) {
-			index = getPositionIndex (passedInButtons, index, "down");
+			index = GetPositionIndex (passedInButtons, index, "down");
 		}
 
 		if (actions.Up.WasReleased || actions.R_Up.RawValue > 0.5f) {
-			index = getPositionIndex (passedInButtons, index, "up");
+			index = GetPositionIndex (passedInButtons, index, "up");
 		}
 
 		if (actions.Right.WasReleased || actions.R_Right.RawValue > 0.5f) {
-			index = getPositionIndex (passedInButtons, index, "right");
+			index = GetPositionIndex (passedInButtons, index, "right");
 		}
 
 		if (actions.Left.WasReleased || actions.R_Left.RawValue > 0.5f) {
-			index = getPositionIndex (passedInButtons, index, "left");
+			index = GetPositionIndex (passedInButtons, index, "left");
 		}
 
 	}
 
         
-	private int getPositionIndex (Button[] items, int item, string direction) {
+	private int GetPositionIndex (Button[] items, int item, string direction) {
         if (direction == "up") {
             if (item == 0) {
                 item = items.Length - 1;
@@ -138,7 +138,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
 
 
-    public void goBack() {
+    public void GoBack() {
         StartCoroutine (Exit ());
     }
 
@@ -153,7 +153,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
         int i = 0;
         foreach (Button b in buttons) {
-            buttons[i].onClick.AddListener(delegate {doAction(i);});//adds a listener for when you click the button
+            buttons[i].onClick.AddListener(delegate {DoAction(i);});//adds a listener for when you click the button
             i++;
         }
     }
