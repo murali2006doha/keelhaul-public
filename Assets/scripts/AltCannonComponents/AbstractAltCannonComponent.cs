@@ -7,7 +7,6 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
 	public int altCannonForce = 400;
 
 	[Header("Scene Variables")]
-	public GameObject alternateFirePrefab;
 	public Transform cannonBallPos;
 
 	protected float altTimer;
