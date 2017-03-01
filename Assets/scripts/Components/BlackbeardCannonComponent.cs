@@ -9,6 +9,8 @@ using System;
 public class BlackbeardCannonComponent : ShipCannonComponent {
 
     ShipCannonComponent cannonComponent;
+    bool canMultiplyDamage = false;
+    float damageMultiplier = 0f;
 
     [Serializable]
     public struct cannonToCannonBall {
@@ -40,6 +42,11 @@ public class BlackbeardCannonComponent : ShipCannonComponent {
             GameObject cannonBall = PhotonNetwork.Instantiate (prefab.cannonBallPath, cannonBallPos.position + (velocity * dampening), Quaternion.Euler (newRot), 0);
             cannonBall.transform.rotation = Quaternion.Euler (newRot);
             cannonBall.GetComponent<CannonBall> ().setOwner (transform.root);
+
+            if (canMultiplyDamage) {
+                cannonBall.GetComponent<CannonBall> ().damage = cannonBall.GetComponent<CannonBall> ().damage * damageMultiplier;
+            }
+
             Vector3 forwardForce = cannonBall.transform.forward * cannonForce + vect;
             Vector3 upForce = cannonBall.transform.up * arcCannonForce;
             cannonBall.GetComponent<PhotonView> ().RPC ("AddForce", PhotonTargets.All, upForce + forwardForce);
@@ -48,4 +55,14 @@ public class BlackbeardCannonComponent : ShipCannonComponent {
         this.gameStats.numOfShots += this.numOfCannonBalls;
 
     }
+
+
+
+    public void CanDamageMultiply(bool canMultiplyDamage, float damageMultiplier) {
+        this.canMultiplyDamage = canMultiplyDamage;
+        this.damageMultiplier = damageMultiplier;
+    }
+
+
+        
 }

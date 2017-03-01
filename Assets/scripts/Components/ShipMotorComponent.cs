@@ -192,4 +192,9 @@ public class ShipMotorComponent : MonoBehaviour
     {
         this.speedModifier = val;
     }
+
+	public float getSpeedModifier()
+	{
+		return this.speedModifier;
+	}
 }

@@ -1378,12 +1378,13 @@ MonoBehaviour:
   shipNum: 0
   scoreDestination: {fileID: 0}
   startingPoint: {x: 0, y: 0, z: 0}
+  startingRotation: {x: 0, y: 0, z: 0, w: 0}
   motor: {fileID: 114003146381988642}
   bombController: {fileID: 11408324}
   aimComponent: {fileID: 114935699512470294}
   hookshotComponent: {fileID: 11488598}
   centralCannon: {fileID: 114880632613870280}
-  altCannonComponent: {fileID: 114772614782576044}
+  altCannonComponent: {fileID: 114942993433985648}
   shipMeshComponent: {fileID: 114074521364270248}
   rammingSprite: {fileID: 1000012759723786, guid: 7c4e08141feac2e43b56d7e858909689,
     type: 2}
@@ -1881,7 +1882,7 @@ ParticleSystem:
   m_GameObject: {fileID: 173294}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -4482,7 +4483,7 @@ ParticleSystem:
   m_GameObject: {fileID: 110758}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -7041,7 +7042,7 @@ ParticleSystem:
   m_GameObject: {fileID: 180266}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -10010,7 +10011,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4443820705709602}
   - component: {fileID: 114240729712812926}
-  - component: {fileID: 114772614782576044}
+  - component: {fileID: 114942993433985648}
+  - component: {fileID: 114544223826437596}
   m_Layer: 9
   m_Name: AltCannons
   m_TagString: Untagged
@@ -10920,8 +10922,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114118730019144946
 MonoBehaviour:
@@ -10946,8 +10948,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114986819729048736}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 3
-  instantiationId: 3
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114240729712812926
 MonoBehaviour:
@@ -10993,6 +10995,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b789c7aa562a5743a0393c53c5db844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114544223826437596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1226620902254298}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fb544dbdccf4ba4a777ca68e93f656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  altCannonForce: 400
+  alternateFirePrefab: {fileID: 1417406341514410, guid: d30dc595a3df2400f9fcb2a6faa4f470,
+    type: 2}
+  cannonBallPos: {fileID: 0}
+  rightCannons:
+  - {fileID: 4390246810902858}
+  - {fileID: 4256125560351852}
+  - {fileID: 4215508578651858}
+  - {fileID: 4965603175978648}
+  - {fileID: 4390246810902858}
+  - {fileID: 4256125560351852}
+  - {fileID: 4215508578651858}
+  - {fileID: 4965603175978648}
+  - {fileID: 4390246810902858}
+  - {fileID: 4256125560351852}
+  - {fileID: 4215508578651858}
+  - {fileID: 4965603175978648}
+  leftCannons:
+  - {fileID: 4745065239025686}
+  - {fileID: 4815465262860132}
+  - {fileID: 452790}
+  - {fileID: 4804570600975850}
+  - {fileID: 4745065239025686}
+  - {fileID: 4815465262860132}
+  - {fileID: 452790}
+  - {fileID: 4804570600975850}
+  - {fileID: 4745065239025686}
+  - {fileID: 4815465262860132}
+  - {fileID: 452790}
+  - {fileID: 4804570600975850}
+  arcCannonForce: 120
+  velocity: {x: 0, y: 0, z: 0}
+  dampening: 1
+  speed: 1
+  minDelay: 0.2
+  maxDelay: 0.3
 --- !u!114 &114634779960153016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11039,56 +11088,9 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114001535506412288}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
---- !u!114 &114772614782576044
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1226620902254298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fb544dbdccf4ba4a777ca68e93f656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  altCannonForce: 400
-  alternateFirePrefab: {fileID: 1417406341514410, guid: d30dc595a3df2400f9fcb2a6faa4f470,
-    type: 2}
-  cannonBallPos: {fileID: 0}
-  rightCannons:
-  - {fileID: 4390246810902858}
-  - {fileID: 4256125560351852}
-  - {fileID: 4215508578651858}
-  - {fileID: 4965603175978648}
-  - {fileID: 4390246810902858}
-  - {fileID: 4256125560351852}
-  - {fileID: 4215508578651858}
-  - {fileID: 4965603175978648}
-  - {fileID: 4390246810902858}
-  - {fileID: 4256125560351852}
-  - {fileID: 4215508578651858}
-  - {fileID: 4965603175978648}
-  leftCannons:
-  - {fileID: 4745065239025686}
-  - {fileID: 4815465262860132}
-  - {fileID: 452790}
-  - {fileID: 4804570600975850}
-  - {fileID: 4745065239025686}
-  - {fileID: 4815465262860132}
-  - {fileID: 452790}
-  - {fileID: 4804570600975850}
-  - {fileID: 4745065239025686}
-  - {fileID: 4815465262860132}
-  - {fileID: 452790}
-  - {fileID: 4804570600975850}
-  arcCannonForce: 120
-  velocity: {x: 0, y: 0, z: 0}
-  dampening: 1
-  speed: 1
-  minDelay: 0.2
-  maxDelay: 0.3
 --- !u!114 &114880632613870280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11100,7 +11102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec853457a8da840c8bd50113f207028f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallPrefab: {fileID: 0}
   cannonBallPos: {fileID: 4674787312191394}
   cannonForce: 400
   arcCannonForce: 100
@@ -11122,6 +11123,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aim: {fileID: 153656}
+--- !u!114 &114942993433985648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1226620902254298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0c8c4e1730f4fa3996882d1c6dafeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  altCannonForce: 400
+  alternateFirePrefab: {fileID: 0}
+  cannonBallPos: {fileID: 0}
+  altPowerLength: 10
+  altDamageMultiplier: 2
+  altFiringDelayMultiplier: 2
+  altSpeedMultiplier: 2
 --- !u!114 &114986819729048736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11232,7 +11251,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000013322688638}
   serializedVersion: 5
   lengthInSec: 1.5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -13869,7 +13888,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012172141296}
   serializedVersion: 5
   lengthInSec: 1.5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -16506,7 +16525,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000014136731806}
   serializedVersion: 5
   lengthInSec: 1.5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -19143,7 +19162,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012056405624}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -21810,7 +21829,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000010157690508}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -24333,7 +24352,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1351898272422770}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
