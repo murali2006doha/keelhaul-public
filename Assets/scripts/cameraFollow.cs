@@ -21,6 +21,9 @@ public class cameraFollow : MonoBehaviour {
     public float normalZoomValue = 3.25f;
 	public float duration = 2f;
 	public float magnitude = .5f;
+
+	float origDuration;
+	float origMagnitude;
 	float shakeTime;
 	bool shaking;
     [SerializeField] UnityStandardAssets.ImageEffects.MotionBlur blurEffect;
@@ -29,7 +32,9 @@ public class cameraFollow : MonoBehaviour {
 	void Start () {
 		offset = new Vector3 (x_diff, y_diff, z_diff);
         getCharacterController();
-    }
+		origDuration = duration;
+		origMagnitude = magnitude;
+	}
 
     void getCharacterController() {
         if (target)
@@ -118,8 +123,31 @@ public class cameraFollow : MonoBehaviour {
         {
             shakeTime = Time.realtimeSinceStartup;
         }
+	}
+
+	public void startShake(float randMag, float randDur){
+		duration = randDur;
+		magnitude = randMag;
+
+		if (!shaking) {
+			shaking = true;
+			shakeTime = Time.realtimeSinceStartup;
+		}
+		else
+		{
+			shakeTime = Time.realtimeSinceStartup;
+		}
+
 
 	}
+
+
+	void resetDurationMagnitude() {
+		duration = origDuration;
+		magnitude = origMagnitude;
+	}
+
+
 
     public void ActivateMotionBlur() {
         blurEffect.enabled = true;
@@ -130,6 +158,7 @@ public class cameraFollow : MonoBehaviour {
     }
 
 	public void shake(){
+
 		float percentComplete = (Time.realtimeSinceStartup - shakeTime) / duration;         
 	    float damper = 1.0f - Mathf.Clamp(4.0f * percentComplete - 3.0f, 0.0f, 1.0f);    
 
@@ -143,7 +172,10 @@ public class cameraFollow : MonoBehaviour {
 			shaking = false;
 			shakeTime = 0;
 		}
+		resetDurationMagnitude ();
 	}
+
+
 
 	public void setRespawn(){
 		respawning = true;

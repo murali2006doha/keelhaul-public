@@ -29,6 +29,8 @@ public class BlackBeardAltCannonComponent : AbstractAltCannonComponent {
 
 
 	public override void alternateFire() {
+		this.input.followCamera.startShake (Random.Range (0.1f, 0.3f), Random.Range (1f, 3f));
+
 		initializeCannonBalls ();
 
 		shuffle (rightCannons);
