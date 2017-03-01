@@ -603,13 +603,13 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
 
-	public void AddToHealth(float extraHealth) {
-		if (extraHealth > (stats.max_health - this.health)) {	//if greater than difference
-			extraHealth = stats.max_health;
-		} else if (this.health < stats.max_health) {
-			this.health += extraHealth;
-		}
+    public void AddToHealth(float extraHealth) {
+	if (extraHealth > (stats.max_health - this.health)) {	//if greater than difference
+		this.health = stats.max_health;
+	} else if (this.health < stats.max_health) {
+		this.health += extraHealth;
 	}
+    }
 
     public void setStatus(ShipStatus status)
     {
