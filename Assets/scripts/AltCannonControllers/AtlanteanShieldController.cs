@@ -13,6 +13,7 @@ public class AtlanteanShieldController : MonoBehaviour {
 	Quaternion rot;
     GameObject originalCannonballPrefab;
 	// Use this for initialization
+	public int absorbPercent;
 
 
 	void Start () {

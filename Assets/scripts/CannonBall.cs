@@ -35,6 +35,7 @@ public class CannonBall : Photon.MonoBehaviour {
 				if (parent.transform == owner) {
 					return;
 				} else if (shield.isReflecting) {
+					print ("Is");
 					CancelInvoke ();
 
 					reflectMult++;
@@ -51,6 +52,9 @@ public class CannonBall : Photon.MonoBehaviour {
 				} else {
                     if (!kraken)
                     {
+						shield.parent.GetComponentInChildren<AtlanteanAltCannonComponent>().getInput().AddToHealth(damage * (shield.absorbPercent / 100f));
+						destroySelf ();
+
                         PlayerInput player = owner.GetComponent<PlayerInput>();
                         player.gameStats.numOfShotHits++;
                     } else {

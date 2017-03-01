@@ -602,6 +602,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         return this.altCannonComponent.cannonBallPos;
     }
 
+
+	public void AddToHealth(float extraHealth) {
+		if (extraHealth > (stats.max_health - this.health)) {	//if greater than difference
+			extraHealth = stats.max_health;
+		} else if (this.health < stats.max_health) {
+			this.health += extraHealth;
+		}
+	}
+
     public void setStatus(ShipStatus status)
     {
 
