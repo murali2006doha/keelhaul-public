@@ -1018,6 +1018,8 @@ MonoBehaviour:
     damageTakenFromBlackBeard: 0
     damageGivenToAtlantis: 0
     damageTakenFromAtlantis: 0
+    damageGivenToViking: 0
+    damageTakenFromViking: 0
     damageTakenFromKraken: 0
     damageGivenToKraken: 0
     numOfBarrelSteals: 0
@@ -1063,6 +1065,7 @@ MonoBehaviour:
   shipNum: 0
   scoreDestination: {fileID: 0}
   startingPoint: {x: 0, y: 0, z: 0}
+  startingRotation: {x: 0, y: 0, z: 0, w: 0}
   motor: {fileID: 114358724233102334}
   bombController: {fileID: 114247642520699438}
   aimComponent: {fileID: 114147462181035602}
@@ -1115,6 +1118,8 @@ MonoBehaviour:
     damageTakenFromBlackBeard: 0
     damageGivenToAtlantis: 0
     damageTakenFromAtlantis: 0
+    damageGivenToViking: 0
+    damageTakenFromViking: 0
     damageTakenFromKraken: 0
     damageGivenToKraken: 0
     numOfBarrelSteals: 0
@@ -11056,8 +11061,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114961205758043600}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 3
-  instantiationId: 3
+  viewIdField: 4
+  instantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114147462181035602
 MonoBehaviour:
@@ -11094,8 +11099,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 1
-  instantiationId: 1
+  viewIdField: 2
+  instantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &114247642520699438
 MonoBehaviour:
@@ -11109,7 +11114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDropBomb: 1
-  bomb: {fileID: 114000012407542428, guid: e6bcf3a6563bd5448bc4f66cf01b1bce, type: 2}
 --- !u!114 &114279451915966054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11133,8 +11137,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999716085284838}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 3
+  instantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!114 &114352039611953602
 MonoBehaviour:
@@ -11175,10 +11179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8f723ba966e4ab4bca262a2cdd47f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallPrefab: {fileID: 191016, guid: 7b33f55a999e19543aa12bdbe859b72b, type: 2}
   cannonBallPos: {fileID: 4823967534544870}
   cannonForce: 420
-  arcCannonForce: 10
+  arcCannonForce: 20
   numOfCannonBalls: 1
   angleOfCannonShots: 30
 --- !u!114 &114426165432869570

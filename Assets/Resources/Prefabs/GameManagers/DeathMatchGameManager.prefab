@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4014095883926406}
-  - component: {fileID: 114743175055306008}
   - component: {fileID: 114375056186594972}
   - component: {fileID: 114075599686875892}
   m_Layer: 0
@@ -80,7 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenSplitter: {fileID: 0}
-  playerWinPoints: 2
+  minPlayersRequiredToStartGame: 2
+  playerWinPoints: 5
   krakenWinPoints: 5
   cams: []
   ps: {fileID: 0}
@@ -92,15 +92,3 @@ MonoBehaviour:
   globalCanvas: {fileID: 0}
   fadeInAnimator: {fileID: 0}
   shipPoints: 
---- !u!114 &114743175055306008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888129532380142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b4ba3642184247d290f3b9bcf28a1dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
