@@ -24,7 +24,7 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
         this.stats.shootDelay = this.stats.shootDelay / altFiringDelayMultiplier;
         this.input.motor.setSpeedModifier (this.input.motor.getSpeedModifier () * altSpeedMultiplier);
         this.input.followCamera.followSpeed = this.input.followCamera.followSpeed * altSpeedMultiplier;
-        this.transform.parent.GetComponentInChildren<BlackbeardCannonComponent>().CanDamageMultiply(true, altDamageMultiplier);
+		this.transform.parent.GetComponentInChildren<BlackbeardCannonComponent>().setDamageMultiplier(altDamageMultiplier);
     }
 
 
@@ -45,6 +45,6 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
         this.stats.shootDelay = origFiringDelay;
         this.input.motor.setSpeedModifier (origSpeed);
         this.input.followCamera.followSpeed = origCameraSpeed;
-        this.transform.parent.GetComponentInChildren<BlackbeardCannonComponent>().CanDamageMultiply(false, 0f);
+		this.transform.parent.GetComponentInChildren<BlackbeardCannonComponent>().resetDamageMultiplier();
     }
 }
