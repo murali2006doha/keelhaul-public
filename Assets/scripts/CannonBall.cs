@@ -35,7 +35,6 @@ public class CannonBall : Photon.MonoBehaviour {
 				if (parent.transform == owner) {
 					return;
 				} else if (shield.isReflecting) {
-					print ("Is");
 					CancelInvoke ();
 
 					reflectMult++;
@@ -50,13 +49,17 @@ public class CannonBall : Photon.MonoBehaviour {
 					Invoke ("destroySelf", lifeTime);
 					parent.GetComponent<PlayerInput> ().gameStats.numOfReflectedShots++;
 				} else {
-                    if (!kraken)
+                    if (!kraken) 
                     {
-						shield.parent.GetComponentInChildren<AtlanteanAltCannonComponent>().getInput().AddToHealth(damage * (shield.absorbPercent / 100f));
-						destroySelf ();
+						ShipMeshPhysicsComponent mesh = shield.parent.GetComponent<PlayerInput> ().shipMeshComponent;
+						//ShipMeshPhysicsComponent meshb = shield.GetComponent<ShipMeshPhysicsComponent>();
 
                         PlayerInput player = owner.GetComponent<PlayerInput>();
                         player.gameStats.numOfShotHits++;
+
+						mesh.GetComponent<PhotonView>().RPC("TakeDamage", PhotonTargets.All, damage, player.GetId());
+						destroySelf ();
+
                     } else {
                         kraken.gameStats.numOfShotHits++;
                     }

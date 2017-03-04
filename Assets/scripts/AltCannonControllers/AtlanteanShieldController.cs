@@ -21,6 +21,8 @@ public class AtlanteanShieldController : MonoBehaviour {
 		Invoke("KillSelf", lifeTime);
 		rot = Quaternion.Euler(0, 0, -180);
 		isReflecting = true;
+		PlayerInput.onHitRegister += AddToHealth;
+		parent.GetComponent<PlayerInput> ().invincible = true;
 	}
 	
 	// Update is called once per frame
@@ -32,11 +34,19 @@ public class AtlanteanShieldController : MonoBehaviour {
 	void KillSelf() {
 
         ship.centralCannon.DeAmpCannonball();
+		PlayerInput.onHitRegister -= AddToHealth;
+		parent.GetComponent<PlayerInput> ().invincible = false;
         PhotonNetwork.Destroy(GetComponent<PhotonView>());
-  }
+
+  	}
+
+	void AddToHealth() {
+		parent.GetComponent<PlayerInput> ().AddToHealth ((absorbPercent / 100f));
+	}
 
 	void DisablePowerShield(){
 		isReflecting = false;
+
 	}
 
     [PunRPC]

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using InControl;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.Events;
 
 public class PlayerInput : MonoBehaviour, StatsInterface
 {
@@ -84,6 +85,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     private bool notInitalized = true;
     public ShipStatus status = ShipStatus.Waiting;
     public int playerId;
+	public static UnityAction onHitRegister;	//extra actions for when player is hit
 
     void Start()
     {
@@ -443,6 +445,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void hit(float passedDamage, int id,bool isKraken = false)
     {
+		if (onHitRegister != null) {
+			onHitRegister ();
+		}
         if (!invincible && health > 0 && this.status == ShipStatus.Alive)
         {
             float actualDamage = (passedDamage > 0) ? passedDamage : damage;
