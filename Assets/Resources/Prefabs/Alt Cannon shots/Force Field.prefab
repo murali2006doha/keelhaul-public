@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 11453680}
   - component: {fileID: 11459538}
   - component: {fileID: 114873303432334470}
+  - component: {fileID: 114595203141401336}
   m_Layer: 29
   m_Name: Force Field
   m_TagString: Untagged
@@ -207,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
+  ampedUpCannonballPrefab: {fileID: 0}
   lifeTime: 4
   powerShieldDuration: 0
   isReflecting: 0
@@ -8440,6 +8442,18 @@ Transform:
   m_Father: {fileID: 429394}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114595203141401336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b43fbea14054212885e6b25c506555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundClip: {fileID: 8300000, guid: 18fe25612e3764fdd85bdb9e2a4a30b3, type: 3}
 --- !u!114 &114873303432334470
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/free for all.unity
   - enabled: 0
     path: Assets/Scenes/FFA Lightmapped.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/free for all_vig.unity
   - enabled: 0
     path: Assets/Scenes/new map experiment.unity
@@ -31,3 +31,5 @@ EditorBuildSettings:
     path: Assets/Scenes/free for all_marketplace.unity
   - enabled: 0
     path: Assets/Scenes/Networking.unity
+  - enabled: 1
+    path: Assets/Scenes/Game.unity

@@ -16,6 +16,7 @@ public class BlackbeardCannonComponent : ShipCannonComponent {
     }
 
     public cannonToCannonBall[] prefabs;
+	public AudioClip soundClip;
 
     public override void Fire() {
 
