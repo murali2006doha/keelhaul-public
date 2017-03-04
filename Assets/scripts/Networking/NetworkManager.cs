@@ -70,7 +70,8 @@ public class NetworkManager : MonoBehaviour
             RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 };
             ExitGames.Client.Photon.Hashtable h = new ExitGames.Client.Photon.Hashtable();
             h.Add("matchOptions", matchOptions);
-            string [] options = new string[] {"matchOptions"};
+            h.Add("map", MapTypeHelper.GetRandomMap());
+            string [] options = new string[] {"matchOptions","map"};
             ro.customRoomPropertiesForLobby = options;
             ro.customRoomProperties = h;
             PhotonNetwork.CreateRoom(null, ro, TypedLobby.Default);
@@ -96,6 +97,7 @@ public class NetworkManager : MonoBehaviour
       ExitGames.Client.Photon.Hashtable h = new ExitGames.Client.Photon.Hashtable();
       h.Add("matchOptions", roomOptions);
       PhotonNetwork.room.SetCustomProperties(h);
+      MapEnum mapType = (MapEnum)PhotonNetwork.room.customProperties["map"];
       GameObject instantiated = Instantiate(NetworkedCharacterSelect);
       this.GetComponent<PhotonView>().RPC("ResetLowestRequiredPlayers",PhotonTargets.MasterClient);
       AbstractCharacterSelectController csc = instantiated.GetComponent<AbstractCharacterSelectController> ();
@@ -107,7 +109,7 @@ public class NetworkManager : MonoBehaviour
             print(cs.selectedCharacter);
           }
 
-          StartSpawnProcess(csc.getPlayerSelectSettings().players[0].selectedCharacter);
+          StartSpawnProcess(csc.getPlayerSelectSettings().players[0].selectedCharacter, mapType);
           print(csc.getPlayerSelectSettings().players[0].selectedCharacter);
           Destroy(instantiated);
 
@@ -115,9 +117,10 @@ public class NetworkManager : MonoBehaviour
     }
   }
 
-  void StartSpawnProcess(ShipEnum type) {
+  void StartSpawnProcess(ShipEnum type, MapEnum map) {
     initializer.shipSelections[0].selectedCharacter = type;
     initializer.isMaster = true;
+    initializer.map = map;
     initializer.playerId = PhotonNetwork.player.ID;
     initializer.onGameManagerCreated = onGameManagerCreated;
     initializer.enabled = true;
