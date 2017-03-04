@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 54211998846869026}
   - component: {fileID: 65576509985275318}
   - component: {fileID: 114409542399402234}
-  - component: {fileID: 82687269250044378}
   - component: {fileID: 114924956681922214}
+  - component: {fileID: 114720447073868504}
   m_Layer: 8
   m_Name: atlantis cannonballAmp
   m_TagString: Untagged
@@ -327,86 +327,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.09444302, y: 0.23625731, z: 0.067614146}
   m_Center: {x: -0.027359009, y: -0.086577296, z: 0.00395298}
---- !u!82 &82687269250044378
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1086616812507090}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2be7f97ede73fd24a94ab183b8fddd20, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.033
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!108 &108146588578755678
 Light:
   m_ObjectHideFlags: 1
@@ -462,9 +382,21 @@ MonoBehaviour:
   force: 0
   reflectForce: 200
   reflectMult: 1
-  damage: 2
+  damage: 1.25
   pushMagnitude: 0
   reflected: 0
+--- !u!114 &114720447073868504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086616812507090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b43fbea14054212885e6b25c506555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundClip: {fileID: 8300000, guid: 86a9c387cd7b1484392f4e9191bbfb76, type: 3}
 --- !u!114 &114755982034834378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -528,7 +460,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1748158531157652}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -3129,7 +3061,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1750038956762348}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -5754,7 +5686,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1112622667591412}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -8355,7 +8287,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1293268319134338}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -10992,7 +10924,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1184153680604530}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1

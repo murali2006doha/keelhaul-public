@@ -9949,8 +9949,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4354659187954668}
+  - component: {fileID: 114294636734613596}
+  - component: {fileID: 82064325958511732}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ShipSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10812,6 +10814,86 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1552817664611292}
   m_Mesh: {fileID: 4300000, guid: 947b660ecb20ad84693a4d27d9ea164e, type: 3}
+--- !u!82 &82064325958511732
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070976121436662}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8ba1d415158f147d9b54d87ba4ac6fe9, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95644368722293922
 Animator:
   serializedVersion: 3
@@ -10984,6 +11066,19 @@ MonoBehaviour:
   maxDelay: 0.4
   tempCannonListL: []
   tempCannonListR: []
+--- !u!114 &114294636734613596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070976121436662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a116f3d7a3241feab0783274284314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostSound: {fileID: 8300000, guid: 0fcb39057f3e44fd1b932e9e07a360ef, type: 3}
+  movementSound: {fileID: 8300000, guid: 8ba1d415158f147d9b54d87ba4ac6fe9, type: 3}
 --- !u!114 &114371219138913600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11111,6 +11206,7 @@ MonoBehaviour:
   - cannonBallPath: Prefabs/Cannon Shots/burst blackbeard cannonball
   - cannonBallPath: Prefabs/Cannon Shots/burst blackbeard cannonball
   - cannonBallPath: Prefabs/Cannon Shots/burst blackbeard cannonball
+  soundClip: {fileID: 8300000, guid: 47ba73d448dfa4bdf863e3e07a2aa79f, type: 3}
 --- !u!114 &114935699512470294
 MonoBehaviour:
   m_ObjectHideFlags: 1

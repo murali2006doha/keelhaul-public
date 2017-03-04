@@ -1,6 +1,6 @@
 ﻿public enum SoundCategoryEnum
 {
-    Generic,Chinese,Atlantean,Blackbeard,KrakenStageOne,KrakenStageTwo,KrakenStageThree
+    Generic,Chinese,Atlantean,Blackbeard,Viking,KrakenStageOne,KrakenStageTwo,KrakenStageThree
 }
 
 public class CategoryHelper
@@ -19,6 +19,10 @@ public class CategoryHelper
         if(shipType == ShipEnum.ChineseJunkShip)
         {
             return SoundCategoryEnum.Chinese;
+        }
+        if (shipType == ShipEnum.VikingShip)
+        {
+            return SoundCategoryEnum.Viking;
         }
         return SoundCategoryEnum.Generic;
     }

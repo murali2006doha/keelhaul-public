@@ -70,7 +70,7 @@ public class ShipCannonComponent : MonoBehaviour
         }
 
         this.gameStats.numOfShots += this.numOfCannonBalls;
-    }
+    }	
 
 
     public void handleShoot()
