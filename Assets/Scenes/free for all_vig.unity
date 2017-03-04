@@ -12965,7 +12965,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fac1999a6621f0e4a8dd5ead5ef75fe2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0dddc8ba99af343b08be30cb2bfcd29c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.015
   m_Pitch: 1
@@ -14076,7 +14076,7 @@ ParticleSystem:
   m_GameObject: {fileID: 3}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -16630,7 +16630,7 @@ ParticleSystem:
   m_GameObject: {fileID: 4}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -19232,7 +19232,7 @@ ParticleSystem:
   m_GameObject: {fileID: 7}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -21834,7 +21834,7 @@ ParticleSystem:
   m_GameObject: {fileID: 9}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -24436,7 +24436,7 @@ ParticleSystem:
   m_GameObject: {fileID: 23}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -27038,7 +27038,7 @@ ParticleSystem:
   m_GameObject: {fileID: 37}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -29640,7 +29640,7 @@ ParticleSystem:
   m_GameObject: {fileID: 42}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -32230,7 +32230,7 @@ ParticleSystem:
   m_GameObject: {fileID: 43}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -34844,7 +34844,7 @@ ParticleSystem:
   m_GameObject: {fileID: 50}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -37386,7 +37386,7 @@ ParticleSystem:
   m_GameObject: {fileID: 72}
   serializedVersion: 5
   lengthInSec: 10
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -40012,7 +40012,7 @@ ParticleSystem:
   m_GameObject: {fileID: 77}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -42650,7 +42650,7 @@ ParticleSystem:
   m_GameObject: {fileID: 80}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -45252,7 +45252,7 @@ ParticleSystem:
   m_GameObject: {fileID: 87}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -47854,7 +47854,7 @@ ParticleSystem:
   m_GameObject: {fileID: 96}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -50408,7 +50408,7 @@ ParticleSystem:
   m_GameObject: {fileID: 99}
   serializedVersion: 5
   lengthInSec: 10
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -53034,7 +53034,7 @@ ParticleSystem:
   m_GameObject: {fileID: 109}
   serializedVersion: 5
   lengthInSec: 10
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -55660,7 +55660,7 @@ ParticleSystem:
   m_GameObject: {fileID: 112}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -58298,7 +58298,7 @@ ParticleSystem:
   m_GameObject: {fileID: 121}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -60894,7 +60894,7 @@ ParticleSystem:
   m_GameObject: {fileID: 129}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -63532,7 +63532,7 @@ ParticleSystem:
   m_GameObject: {fileID: 141}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -66170,7 +66170,7 @@ ParticleSystem:
   m_GameObject: {fileID: 147}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -68733,7 +68733,7 @@ ParticleSystem:
   m_GameObject: {fileID: 151}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -71335,7 +71335,7 @@ ParticleSystem:
   m_GameObject: {fileID: 170}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -73877,7 +73877,7 @@ ParticleSystem:
   m_GameObject: {fileID: 177}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -76515,7 +76515,7 @@ ParticleSystem:
   m_GameObject: {fileID: 178}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -79105,7 +79105,7 @@ ParticleSystem:
   m_GameObject: {fileID: 179}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -81707,7 +81707,7 @@ ParticleSystem:
   m_GameObject: {fileID: 186}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -84309,7 +84309,7 @@ ParticleSystem:
   m_GameObject: {fileID: 189}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -86911,7 +86911,7 @@ ParticleSystem:
   m_GameObject: {fileID: 191}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -89501,7 +89501,7 @@ ParticleSystem:
   m_GameObject: {fileID: 201}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -92139,7 +92139,7 @@ ParticleSystem:
   m_GameObject: {fileID: 207}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -94741,7 +94741,7 @@ ParticleSystem:
   m_GameObject: {fileID: 220}
   serializedVersion: 5
   lengthInSec: 10
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -97367,7 +97367,7 @@ ParticleSystem:
   m_GameObject: {fileID: 222}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -99957,7 +99957,7 @@ ParticleSystem:
   m_GameObject: {fileID: 232}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -102547,7 +102547,7 @@ ParticleSystem:
   m_GameObject: {fileID: 234}
   serializedVersion: 5
   lengthInSec: 10
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -105173,7 +105173,7 @@ ParticleSystem:
   m_GameObject: {fileID: 238}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -107775,7 +107775,7 @@ ParticleSystem:
   m_GameObject: {fileID: 245}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -110329,7 +110329,7 @@ ParticleSystem:
   m_GameObject: {fileID: 255}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -112967,7 +112967,7 @@ ParticleSystem:
   m_GameObject: {fileID: 257}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -115605,7 +115605,7 @@ ParticleSystem:
   m_GameObject: {fileID: 258}
   serializedVersion: 5
   lengthInSec: 10
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -118231,7 +118231,7 @@ ParticleSystem:
   m_GameObject: {fileID: 259}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -120869,7 +120869,7 @@ ParticleSystem:
   m_GameObject: {fileID: 267}
   serializedVersion: 5
   lengthInSec: 2
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -126387,9 +126387,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipSelections:
+<<<<<<< HEAD
+  - selectedCharacter: 1
+=======
   - selectedCharacter: 3
     team: 0
   - selectedCharacter: 0
+>>>>>>> 168d9e3980b199da7f207d3ccf85b602270387d7
     team: 0
   includeKraken: 0
   isTeam: 0
