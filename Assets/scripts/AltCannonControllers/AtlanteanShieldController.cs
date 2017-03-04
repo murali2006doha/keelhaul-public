@@ -17,10 +17,10 @@ public class AtlanteanShieldController : MonoBehaviour {
 
 
 	void Start () {
-		Invoke("DisablePowerShield", powerShieldDuration);
+		///Invoke("DisablePowerShield", powerShieldDuration);
 		Invoke("KillSelf", lifeTime);
 		rot = Quaternion.Euler(0, 0, -180);
-		isReflecting = true;
+		//isReflecting = true;
 		PlayerInput.onHitRegister += AddToHealth;
 		parent.GetComponent<PlayerInput> ().invincible = true;
 	}
@@ -32,10 +32,9 @@ public class AtlanteanShieldController : MonoBehaviour {
 	}
 
 	void KillSelf() {
-
         ship.centralCannon.DeAmpCannonball();
 		PlayerInput.onHitRegister -= AddToHealth;
-        ship.deactivateInvincibility();
+		ship.deactivateInvincibility ();
         PhotonNetwork.Destroy(GetComponent<PhotonView>());
 
   	}
