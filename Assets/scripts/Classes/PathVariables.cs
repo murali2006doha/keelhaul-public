@@ -98,6 +98,10 @@ public static class PathVariables {
         {
             return chineseBombPath;
         }
+        else if (shipType == ShipEnum.VikingShip)
+        {
+            return blackbeardBombPath;
+        }
 
         return string.Empty;
 

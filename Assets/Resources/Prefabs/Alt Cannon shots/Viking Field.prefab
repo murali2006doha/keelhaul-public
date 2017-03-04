@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  lifeTime: 4
+  lifeTime: 3
   offset: {x: 0, y: 0, z: 0}
 --- !u!114 &114924905038185076
 MonoBehaviour:
