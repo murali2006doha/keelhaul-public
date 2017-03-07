@@ -29,6 +29,7 @@ public class BlackBeardAltCannonComponent : AbstractAltCannonComponent {
 
 
 	public override void alternateFire() {
+
 		initializeCannonBalls ();
 
 		shuffle (rightCannons);
