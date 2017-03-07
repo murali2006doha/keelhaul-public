@@ -213,6 +213,7 @@ MonoBehaviour:
   powerShieldDuration: 0
   isReflecting: 0
   offset: {x: 0, y: 0, z: 0}
+  absorbPercent: 50
 --- !u!114 &11459538
 MonoBehaviour:
   m_ObjectHideFlags: 1

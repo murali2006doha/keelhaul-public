@@ -13,13 +13,16 @@ public class AtlanteanShieldController : MonoBehaviour {
 	Quaternion rot;
     GameObject originalCannonballPrefab;
 	// Use this for initialization
+	public int absorbPercent;
 
 
 	void Start () {
-		Invoke("DisablePowerShield", powerShieldDuration);
+		///Invoke("DisablePowerShield", powerShieldDuration);
 		Invoke("KillSelf", lifeTime);
 		rot = Quaternion.Euler(0, 0, -180);
-		isReflecting = true;
+		//isReflecting = true;
+		PlayerInput.onHitRegister += AddToHealth;
+		parent.GetComponent<PlayerInput> ().invincible = true;
 	}
 	
 	// Update is called once per frame
@@ -29,14 +32,20 @@ public class AtlanteanShieldController : MonoBehaviour {
 	}
 
 	void KillSelf() {
-
         ship.centralCannon.DeAmpCannonball();
-        ship.deactivateInvincibility();
+		PlayerInput.onHitRegister -= AddToHealth;
+		ship.deactivateInvincibility ();
         PhotonNetwork.Destroy(GetComponent<PhotonView>());
-  }
+
+  	}
+
+	void AddToHealth() {
+		parent.GetComponent<PlayerInput> ().AddToHealth ((absorbPercent / 100f));
+	}
 
 	void DisablePowerShield(){
 		isReflecting = false;
+
 	}
 
     [PunRPC]
