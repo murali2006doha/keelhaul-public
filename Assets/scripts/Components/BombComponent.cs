@@ -16,12 +16,11 @@ public class BombComponent : MonoBehaviour {
 	public GameObject bombModel;
 
 	//these are all the animations involved
-	public GameObject shipHit;
-	public GameObject krakenHit;
-	public GameObject explosion; 
 	public float explosion_duration = 1.5f;
 	public float damage;
 	public float waitTimeToExplode;
+	public AudioClip fuseSound;
+	public AudioClip explosionSound;
 
 
 	void Start() {
@@ -47,8 +46,14 @@ public class BombComponent : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
+
+	void startSound(AudioClip sound) {
+		this.gameObject.AddComponent<SoundInitializer> ().soundClip = sound;
+	}
+
 	public IEnumerator ActivateBomb() {
 
+		startSound (fuseSound);
 		smallBombZone.SetActive (false);
 		largeBombZone.SetActive (true);
 
@@ -65,6 +70,7 @@ public class BombComponent : MonoBehaviour {
 		Destroy (largeBombZone);            //destroy the parameter zone
 
         if (GetComponent<PhotonView>().isMine) {
+			startSound (explosionSound);
             GameObject exp = explode(); //produces an explosion
                                         //Invoke ("fadeHalo", .5f);
             yield return new WaitForSeconds(explosion_duration);
@@ -119,7 +125,7 @@ public class BombComponent : MonoBehaviour {
             return null;
         }
 
-        GameObject exp = PhotonNetwork.Instantiate(PathVariables.explosionPath, gameObject.transform.position, Quaternion.identity, 0);
+		GameObject exp = PhotonNetwork.Instantiate(PathVariables.bombExplosionPath, gameObject.transform.position, Quaternion.identity, 0);
         exp.GetComponent<PhotonView>().RPC("Initialize", PhotonTargets.All, this.damage, this.player.GetId());
         GetComponent<PhotonView>().RPC("DestroySelf", PhotonTargets.All);
         return exp;

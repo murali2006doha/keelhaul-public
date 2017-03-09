@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 114982753293548822}
   - component: {fileID: 135954475782034520}
   - component: {fileID: 114667867864436994}
+  - component: {fileID: 114512847035748088}
   m_Layer: 22
   m_Name: atlantis bomb
   m_TagString: Untagged
@@ -189,6 +190,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114512847035748088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935121599578484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b43fbea14054212885e6b25c506555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundClip: {fileID: 8300000, guid: eb77da1fa19fc4e6d8f0de94abc0bb9a, type: 3}
 --- !u!114 &114667867864436994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -235,6 +248,8 @@ MonoBehaviour:
   explosion_duration: 1.5
   damage: 2
   waitTimeToExplode: 0.5
+  fuseSound: {fileID: 8300000, guid: 9bfb6441e9815489783e12ef2ef228cc, type: 3}
+  explosionSound: {fileID: 8300000, guid: c45fce1b6241f4dcdb3c5392c12b98f5, type: 3}
 --- !u!135 &135954475782034520
 SphereCollider:
   m_ObjectHideFlags: 1
