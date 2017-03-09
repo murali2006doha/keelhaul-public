@@ -17,5 +17,9 @@ public class AtlanteanAltCannonComponent : AbstractAltCannonComponent {
 		this.transform.rotation = Quaternion.LookRotation (shoot_direction.normalized);
 	}
 
+	public PlayerInput getInput() {
+
+		return this.input;
+	}
 
 }

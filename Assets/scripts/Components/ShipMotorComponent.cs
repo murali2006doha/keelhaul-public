@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -191,5 +191,14 @@ public class ShipMotorComponent : MonoBehaviour
     public void setSpeedModifier(float val)
     {
         this.speedModifier = val;
+    }
+
+    public float getSpeedModifier()
+    {
+      return this.speedModifier;
+    }
+    
+    public bool isBoosting() {
+      return boosting;
     }
 }

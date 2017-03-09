@@ -43,6 +43,7 @@ public static class PathVariables {
     internal static string alternateVikingShot = "Prefabs/Alt Cannon shots/Viking Field";
 
     internal static string explosionPath = "Prefabs/Explosion";
+    internal static string bombExplosionPath = "Prefabs/BombExplosion";
     
     //Ship Effects
     internal static string shipInvincibility = "Prefabs/Effects/Star Power";
@@ -97,6 +98,10 @@ public static class PathVariables {
         else if (shipType == ShipEnum.ChineseJunkShip)
         {
             return chineseBombPath;
+        }
+        else if (shipType == ShipEnum.VikingShip)
+        {
+            return blackbeardBombPath;
         }
 
         return string.Empty;
