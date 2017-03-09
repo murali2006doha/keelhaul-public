@@ -462,6 +462,7 @@ GameObject:
   - component: {fileID: 64101615552150406}
   - component: {fileID: 114771304007707522}
   - component: {fileID: 114018827427991174}
+  - component: {fileID: 65501744754051798}
   m_Layer: 11
   m_Name: playerMesh
   m_TagString: Untagged
@@ -2174,6 +2175,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.926668, y: 12.328674, z: 2.2104645}
   m_Center: {x: 0.025508292, y: 2.3038101, z: 0.73982036}
+--- !u!65 &65501744754051798
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1419326365107536}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08, y: 0.045020137, z: 0.08}
+  m_Center: {x: -0, y: 0, z: 0.01}
 --- !u!82 &82972645133148890
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2466,8 +2479,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 7
-  instantiationId: 7
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114024918608436392
 MonoBehaviour:
@@ -2815,8 +2828,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114742814549290554}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 6
-  instantiationId: 6
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114687119095539344
 MonoBehaviour:
@@ -2841,8 +2854,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114192596627240678}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 5
-  instantiationId: 5
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114742814549290554
 MonoBehaviour:
@@ -3365,7 +3378,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1955437759083594}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -5966,7 +5979,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1232348017040358}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -8567,7 +8580,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1805821507978660}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -11090,7 +11103,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1198236477413222}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -13727,7 +13740,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1351865066350310}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -16364,7 +16377,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1680705440492042}
   serializedVersion: 5
   lengthInSec: 2
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -18851,7 +18864,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1679012534807410}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -21488,7 +21501,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1552137082565572}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -24047,7 +24060,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1704917180732238}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1

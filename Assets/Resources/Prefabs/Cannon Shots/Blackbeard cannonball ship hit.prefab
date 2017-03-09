@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 4065759486287672}
   - component: {fileID: 82953527841610768}
   - component: {fileID: 82902577853695840}
+  - component: {fileID: 114949393850463860}
   m_Layer: 8
   m_Name: Blackbeard cannonball ship hit
   m_TagString: Untagged
@@ -449,6 +450,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114949393850463860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713327145219862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b096e9a51a44335429ceaebafe9075e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 4
 --- !u!198 &198060853182355864
 ParticleSystem:
   m_ObjectHideFlags: 1
