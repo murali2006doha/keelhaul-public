@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BlackbeardAltPower : AbstractAltCannonComponent {
 
+
+    [SerializeField]
+    private GameObject chargedUpEffect;
     public float altPowerLength;
 	public float altDamageMultiplier;
 	public float altFiringDelayMultiplier;
@@ -17,6 +20,7 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
 
     void ChangeStats () {
 
+        this.GetComponent<PhotonView>().RPC("ShowChargedUpEffect", PhotonTargets.All);
         origFiringDelay = this.stats.shootDelay;
         origSpeed = this.input.motor.getSpeedModifier ();
         origCameraSpeed = this.input.followCamera.followSpeed;
@@ -41,10 +45,21 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
 
 
     void ResetStats() {
-
         this.stats.shootDelay = origFiringDelay;
         this.input.motor.setSpeedModifier (origSpeed);
         this.input.followCamera.followSpeed = origCameraSpeed;
 		this.transform.parent.GetComponentInChildren<BlackbeardCannonComponent>().resetDamageMultiplier();
+        this.GetComponent<PhotonView>().RPC("DisableChargedUpEffect", PhotonTargets.All);
+    }
+
+    [PunRPC]
+    public void ShowChargedUpEffect() {
+        this.chargedUpEffect.SetActive(true);
+    }
+
+    [PunRPC]
+    public void DisableChargedUpEffect()
+    {
+        this.chargedUpEffect.SetActive(false);
     }
 }
