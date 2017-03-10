@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     public Slider altFireBar;
     public Slider scoreBar;
     public GameObject scorePosition;
+    public GameObject scoreDestinationPosition;
     public GameObject scoreAnimation;
     public RectTransform compassArrow;
     Vector3 barrelPos;
@@ -86,10 +87,17 @@ public class UIManager : MonoBehaviour
     {
 
         GameObject instantiated = ((GameObject)(Instantiate(scoreAnimation)));
+
         instantiated.transform.parent = this.transform.GetChild(0);
         instantiated.GetComponent<RectTransform>().localPosition = scorePosition.GetComponent<RectTransform>().localPosition;
         instantiated.GetComponent<RectTransform>().localRotation = scorePosition.GetComponent<RectTransform>().localRotation;
         instantiated.GetComponent<RectTransform>().localScale = scorePosition.GetComponent<RectTransform>().localScale;
+
+
+        LeanTween.move(instantiated, scoreDestinationPosition.transform.position, 2f);
+        LeanTween.alphaCanvas(instantiated.GetComponent<CanvasGroup>(), 0f, 2f);
+        LeanTween.scale(instantiated, scoreDestinationPosition.transform.localScale, 2f);
+
         //instantiated.GetComponent<RectTransform> ().rotation= scorePosition.GetComponent<RectTransform> ().rotation;
     }
 
