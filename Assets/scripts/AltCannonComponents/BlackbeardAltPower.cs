@@ -5,9 +5,9 @@ using UnityEngine;
 public class BlackbeardAltPower : AbstractAltCannonComponent {
 
     public float altPowerLength;
-    public int altDamageMultiplier;
-    public int altFiringDelayMultiplier;
-    public int altSpeedMultiplier;
+	public float altDamageMultiplier;
+	public float altFiringDelayMultiplier;
+	public float altSpeedMultiplier;
 
     float origDamage;
     float origFiringDelay;
