@@ -10,9 +10,9 @@ GameObject:
   - component: {fileID: 22407384}
   - component: {fileID: 22227318}
   - component: {fileID: 11478884}
-  - component: {fileID: 9515686}
   - component: {fileID: 11431946}
   - component: {fileID: 8206020}
+  - component: {fileID: 225910497106617582}
   m_Layer: 5
   m_Name: score
   m_TagString: Untagged
@@ -100,34 +100,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!95 &9515686
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122746}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8008e67c18e0445459dbc9e0202fc4b6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11431946
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122746}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 537291bb9465148479ce65d14db1e958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationTime: 10
 --- !u!114 &11478884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,3 +174,14 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 122746}
   m_IsPrefabParent: 1
+--- !u!225 &225910497106617582
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122746}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
