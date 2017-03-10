@@ -5,7 +5,8 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
-
+    [SerializeField]
+    private const float SCORE_ANIMATION_TIME = 2f;
     public Text bombs;
     public Slider bombBar;
     public Slider healthBar;
@@ -94,9 +95,9 @@ public class UIManager : MonoBehaviour
         instantiated.GetComponent<RectTransform>().localScale = scorePosition.GetComponent<RectTransform>().localScale;
 
 
-        LeanTween.move(instantiated, scoreDestinationPosition.transform.position, 2f);
-        LeanTween.alphaCanvas(instantiated.GetComponent<CanvasGroup>(), 0f, 2f);
-        LeanTween.scale(instantiated, scoreDestinationPosition.transform.localScale, 2f);
+        LeanTween.move(instantiated, scoreDestinationPosition.transform.position, SCORE_ANIMATION_TIME);
+        LeanTween.alphaCanvas(instantiated.GetComponent<CanvasGroup>(), 0f, SCORE_ANIMATION_TIME);
+        LeanTween.scale(instantiated, scoreDestinationPosition.transform.localScale, SCORE_ANIMATION_TIME);
 
         //instantiated.GetComponent<RectTransform> ().rotation= scorePosition.GetComponent<RectTransform> ().rotation;
     }
