@@ -402,6 +402,18 @@ public class DeathMatchGameManager : AbstractGameManager
         
     }
 
+    public override string getShipById(int id)
+    {
+        foreach(PlayerInput player in players)
+        {
+            if (player.GetId() == id)
+            {
+                return player.shipName;
+            }
+        }
+        return "";
+    }
+
     [PunRPC]
     private void ActivateLastPointPrompt(int id)
     {

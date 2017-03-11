@@ -322,10 +322,13 @@ public class UIManager : MonoBehaviour
         activateFinishText();
     }
 
-    public void showDeathAnimation()
+    public void showDeathAnimation(int player, string ship)
     {
         fadePanel.SetActive(true);
         killText.SetActive(true);
+        var tex = killText.GetComponent<Text>().text;
+        tex = tex.Replace("r1", "player " + player);
+        killText.GetComponent<Text>().text = tex;
     }
 
     public void hideDeathAnimation()
@@ -339,4 +342,8 @@ public class UIManager : MonoBehaviour
         finishText.SetActive(true);
     }
 
+    internal void showDeathAnimation(string v)
+    {
+        throw new NotImplementedException();
+    }
 }
