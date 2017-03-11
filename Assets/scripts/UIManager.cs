@@ -48,6 +48,7 @@ public class UIManager : MonoBehaviour
 
 
     public GameObject killText;
+    string temp;
     public GameObject fadePanel;
 
 
@@ -327,6 +328,7 @@ public class UIManager : MonoBehaviour
         fadePanel.SetActive(true);
         killText.SetActive(true);
         var tex = killText.GetComponent<Text>().text;
+        temp = tex;
         tex = tex.Replace("r1", "player " + player);
         killText.GetComponent<Text>().text = tex;
     }
@@ -335,6 +337,7 @@ public class UIManager : MonoBehaviour
     {
         fadePanel.SetActive(false);
         killText.SetActive(false);
+        killText.GetComponent<Text>().text = temp;
     }
 
     void activateFinishText()

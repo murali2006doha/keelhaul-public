@@ -553,14 +553,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         return PhotonNetwork.offlineMode ? shipNum : GetComponent<PhotonView>().ownerId;
     }
 
-    public void die(int id)
+    public void die(int killerID)
     {
         hookshotComponent.UnHook();
         dying = true;
         SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
         centralCannon.gameObject.SetActive(false);
         bombController.activateAllBombs();
-        uiManager.showDeathAnimation(id,manager.getShipById(id));
+        uiManager.showDeathAnimation(killerID, manager.getShipById(killerID));
         anim.triggerDeathAnimation();
         gameStats.numOfDeaths++;
         followCamera.zoomIn = true;
