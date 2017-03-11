@@ -24,7 +24,7 @@ public class ShipCannonComponent : MonoBehaviour
     protected GameObject aim;
     protected PlayerInput input;
     protected FreeForAllStatistics gameStats;
-    protected string cannonballPath;
+    public string cannonballPath;
 
     internal void Initialize(PlayerInput input, Transform shipTransform, GameObject aim, ShipStats stats,
         FreeForAllStatistics gameStats, ShipMotorComponent motor, string path)
