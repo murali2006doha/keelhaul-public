@@ -44,6 +44,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     Quaternion originalRotationValue;
     public GameObject ship_model;
     public GameObject spray;
+    public ShipWorldCanvas worldCanvas;
 
     //Fixed vars
     AbstractGameManager manager;
@@ -154,6 +155,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         oldEulerAngles = transform.rotation.eulerAngles;
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
         InitializeShipInput();
+        worldCanvas = Instantiate(worldCanvas);
+        this.worldCanvas.transform.SetParent(this.transform, false);
+        this.worldCanvas.Initiialize(this.shipNum);
         setStatus(ShipStatus.Waiting);
 
     }
@@ -259,6 +263,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     void updateHealth()
     {
         uiManager.setHealthBar(health / stats.max_health);
+        this.worldCanvas.UpdateHealthSlider(health / stats.max_health);
     }
 
     void Update()

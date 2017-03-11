@@ -32,7 +32,6 @@ public class UIManager : MonoBehaviour
     public float wobbleSpeed = 3.5f;
     float wobbleIntensity = 5f;
     float currentIntensity = 5f;
-    float UISpeed = 2.5f;
     float enemyHealth = 3f;
     int wobbleCount = 0;
     public Slider boostBar;
@@ -45,10 +44,16 @@ public class UIManager : MonoBehaviour
     public GameObject colorTint;
     public GameObject worldSpace;
     Image boostBarPanel;
-
+    private int playerNum = 1;
+    private bool isShip = false;
 
     bool highlight = true;
 
+    public void Initialize(int playerNum, bool isShip)
+    {
+        this.isShip = isShip;
+        this.playerNum = playerNum;
+    }
     void Start()
     {
 
@@ -114,7 +119,7 @@ public class UIManager : MonoBehaviour
     {
         if (enemyIslandHealthBar != null)
         {
-            float step = UISpeed * Time.deltaTime; //Lerp Speed
+            float step = GlobalVariables.uiSliderSpeed * Time.deltaTime; //Lerp Speed
 
             enemyIslandHealthBar.value = Mathf.MoveTowards(enemyIslandHealthBar.value, enemyHealth, step);
         }
@@ -149,7 +154,7 @@ public class UIManager : MonoBehaviour
 
     public void setHealthBar(float health)
     {
-        float step = UISpeed * Time.deltaTime; //Lerp Speed
+        float step = GlobalVariables.uiSliderSpeed * Time.deltaTime; //Lerp Speed
 
         healthBar.value = Mathf.MoveTowards(healthBar.value, health, step);
 
