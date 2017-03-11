@@ -155,13 +155,24 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         oldEulerAngles = transform.rotation.eulerAngles;
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
         InitializeShipInput();
-        worldCanvas = Instantiate(worldCanvas);
-        this.worldCanvas.transform.SetParent(this.transform, false);
-        this.worldCanvas.Initiialize(this.shipNum);
         setStatus(ShipStatus.Waiting);
+        this.GetComponent<PhotonView>().RPC("InstantiateWorldSpaceCanvas", PhotonTargets.OthersBuffered, this.shipNum);
 
     }
 
+    [PunRPC]
+    public void InstantiateWorldSpaceCanvas(int shipNum) {
+      worldCanvas = Instantiate(worldCanvas);
+      this.worldCanvas.transform.SetParent(this.transform, false);
+      this.worldCanvas.Initiialize(this.shipNum);
+    }
+
+
+    [PunRPC]
+    public void UpdateWorldSpaceHealthBar(float sliderVal)
+    {
+        this.worldCanvas.UpdateHealthSlider(sliderVal);
+    }
 
     private void InitializeHookshot()
     {
@@ -262,8 +273,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void updateHealth()
     {
-        uiManager.setHealthBar(health / stats.max_health);
-        this.worldCanvas.UpdateHealthSlider(health / stats.max_health);
+        var sliderVal = health / stats.max_health;
+        uiManager.setHealthBar(sliderVal);
+        this.GetComponent<PhotonView>().RPC("UpdateWorldSpaceHealthBar", PhotonTargets.Others, sliderVal);
     }
 
     void Update()
