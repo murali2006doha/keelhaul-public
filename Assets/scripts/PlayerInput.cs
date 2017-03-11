@@ -560,6 +560,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
         centralCannon.gameObject.SetActive(false);
         bombController.activateAllBombs();
+        uiManager.showDeathAnimation();
         anim.triggerDeathAnimation();
         gameStats.numOfDeaths++;
         followCamera.zoomIn = true;
@@ -574,6 +575,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         velocity = 0f;
         isPushed = false;
         followCamera.zoomIn = false;
+        uiManager.hideDeathAnimation();
         bombController.resetBombs();
         centralCannon.ResetShotRight();
         altCannonComponent.ResetShotAlt();

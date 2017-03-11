@@ -47,6 +47,10 @@ public class UIManager : MonoBehaviour
     Image boostBarPanel;
 
 
+    public GameObject killText;
+    public GameObject fadePanel;
+
+
     bool highlight = true;
 
     void Start()
@@ -313,8 +317,21 @@ public class UIManager : MonoBehaviour
 
     public void activateFinishAndColorTint()
     {
+        hideDeathAnimation();
         colorTint.SetActive(true);
         activateFinishText();
+    }
+
+    public void showDeathAnimation()
+    {
+        fadePanel.SetActive(true);
+        killText.SetActive(true);
+    }
+
+    public void hideDeathAnimation()
+    {
+        fadePanel.SetActive(false);
+        killText.SetActive(false);
     }
 
     void activateFinishText()
