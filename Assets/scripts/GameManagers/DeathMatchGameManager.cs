@@ -547,7 +547,6 @@ public class DeathMatchGameManager : AbstractGameManager
         List<GameObject> losers = new List<GameObject>();
         var players = GameObject.FindObjectsOfType<PlayerInput>();
         PlayerInput winner = null;
-        var i = 0;
         GameObject worst = null;
         int points = 999;
         foreach (PlayerInput ship in players)
@@ -574,7 +573,6 @@ public class DeathMatchGameManager : AbstractGameManager
                     worst = ship.gameObject;
                     points = point;
                 }
-                i++;
             }
 
             shipStats.Add(ship.gameStats);
