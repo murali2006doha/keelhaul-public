@@ -45,5 +45,6 @@ public static class GlobalVariables {
     public static float windFactor = 4f;
     public static float minCcVelocity = 0.2f;
 
+    public static float killFeedDuration = 6f;
 }
 

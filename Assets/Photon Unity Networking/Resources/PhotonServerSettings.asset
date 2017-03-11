@@ -67,4 +67,5 @@ MonoBehaviour:
   - SetSpikeParent
   - DisableChargedUpEffect
   - ShowChargedUpEffect
+  - AddToKillFeed
   DisableAutoOpenWizard: 1

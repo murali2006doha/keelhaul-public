@@ -490,6 +490,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 {
                     manager1.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
                 }
+                foreach(PlayerInput player in manager.getPlayers())
+                {
+                    player.GetComponent<PhotonView>().RPC("AddToKillFeed", PhotonTargets.All, "P" + id, manager.getShipById(id),"P" + GetId(),type.ToString());
+                }
                 die();
             }
             else
@@ -563,6 +567,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         anim.triggerDeathAnimation();
         gameStats.numOfDeaths++;
         followCamera.zoomIn = true;
+    }
+
+    [PunRPC]
+    public void AddToKillFeed(string killer, string killerShip,string victim, string victimShip)
+    {
+        if (GetComponent<PhotonView>().isMine)
+        {
+            uiManager.AddToKillFeed(killer,killerShip,victim,victimShip);
+        }
     }
 
 
