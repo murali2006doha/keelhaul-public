@@ -1401,6 +1401,8 @@ MonoBehaviour:
   shipName: Atlantean Ship
   ship_model: {fileID: 196788}
   spray: {fileID: 110758}
+  worldCanvas: {fileID: 114298058526718654, guid: 8e750c2e2df0fa441a9738e5b59e1f86,
+    type: 2}
   teamGame: 0
   teamNo: 0
   placeInTeam: 1
@@ -11251,8 +11253,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114118730019144946
 MonoBehaviour:
@@ -11277,8 +11279,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114986819729048736}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 4
-  instantiationId: 4
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114240729712812926
 MonoBehaviour:
@@ -11360,8 +11362,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114942993433985648}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 5
-  instantiationId: 5
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114544223826437596
 MonoBehaviour:
@@ -11456,8 +11458,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114001535506412288}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 3
-  instantiationId: 3
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114880632613870280
 MonoBehaviour:
