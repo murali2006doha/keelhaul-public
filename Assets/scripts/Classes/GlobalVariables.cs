@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public static class GlobalVariables {
 
     public static float gameSpeed = 1.25f;
+    public static float uiSliderSpeed = 2.5f;
     public static bool firstTimeBoot = false;
     public static Dictionary<string,string> shipToPrefabLocation = new Dictionary<string, string> () {
       {ShipEnum.BlackbeardShip.ToString(),"Ship/Blackbeard Ship"},

@@ -67,4 +67,6 @@ MonoBehaviour:
   - SetSpikeParent
   - DisableChargedUpEffect
   - ShowChargedUpEffect
+  - InstantiateWorldSpaceCanvas
+  - UpdateWorldSpaceHealthBar
   DisableAutoOpenWizard: 1

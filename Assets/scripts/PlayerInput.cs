@@ -44,6 +44,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     Quaternion originalRotationValue;
     public GameObject ship_model;
     public GameObject spray;
+    public ShipWorldCanvas worldCanvas;
 
     //Fixed vars
     AbstractGameManager manager;
@@ -155,9 +156,23 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
+        this.GetComponent<PhotonView>().RPC("InstantiateWorldSpaceCanvas", PhotonTargets.OthersBuffered, this.shipNum);
 
     }
 
+    [PunRPC]
+    public void InstantiateWorldSpaceCanvas(int shipNum) {
+      worldCanvas = Instantiate(worldCanvas);
+      this.worldCanvas.transform.SetParent(this.transform, false);
+      this.worldCanvas.Initiialize(this.shipNum);
+    }
+
+
+    [PunRPC]
+    public void UpdateWorldSpaceHealthBar(float sliderVal)
+    {
+        this.worldCanvas.UpdateHealthSlider(sliderVal);
+    }
 
     private void InitializeHookshot()
     {
@@ -268,7 +283,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void updateHealth()
     {
-        uiManager.setHealthBar(health / stats.max_health);
+        var sliderVal = health / stats.max_health;
+        uiManager.setHealthBar(sliderVal);
+        this.GetComponent<PhotonView>().RPC("UpdateWorldSpaceHealthBar", PhotonTargets.Others, sliderVal);
     }
 
     void Update()
@@ -500,7 +517,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 {
                     manager1.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
                 }
-                die();
+                die(id);
             }
             else
             {
@@ -563,13 +580,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         return PhotonNetwork.offlineMode ? shipNum : GetComponent<PhotonView>().ownerId;
     }
 
-    public void die()
+    public void die(int killerID)
     {
         hookshotComponent.UnHook();
         dying = true;
         SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
         centralCannon.gameObject.SetActive(false);
         bombController.activateAllBombs();
+        uiManager.showDeathAnimation(killerID, manager.getShipById(killerID));
         anim.triggerDeathAnimation();
         gameStats.numOfDeaths++;
         followCamera.zoomIn = true;
@@ -584,6 +602,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         velocity = 0f;
         isPushed = false;
         followCamera.zoomIn = false;
+        uiManager.hideDeathAnimation();
         bombController.resetBombs();
         centralCannon.ResetShotRight();
         altCannonComponent.ResetShotAlt();

@@ -70,4 +70,8 @@ public abstract class AbstractGameManager : MonoBehaviour {
     public abstract bool isGameOver();
     internal abstract int getNumberOfTeams();
     public abstract List<PlayerInput> getPlayers();
+    public virtual string getShipById(int id)
+    {
+        return "";
+    }
 }
