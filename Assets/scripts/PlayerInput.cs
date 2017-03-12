@@ -490,7 +490,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 {
                     manager1.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
                 }
-                die();
+                die(id);
             }
             else
             {
@@ -553,13 +553,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         return PhotonNetwork.offlineMode ? shipNum : GetComponent<PhotonView>().ownerId;
     }
 
-    public void die()
+    public void die(int killerID)
     {
         hookshotComponent.UnHook();
         dying = true;
         SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
         centralCannon.gameObject.SetActive(false);
         bombController.activateAllBombs();
+        uiManager.showDeathAnimation(killerID, manager.getShipById(killerID));
         anim.triggerDeathAnimation();
         gameStats.numOfDeaths++;
         followCamera.zoomIn = true;
@@ -574,6 +575,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         velocity = 0f;
         isPushed = false;
         followCamera.zoomIn = false;
+        uiManager.hideDeathAnimation();
         bombController.resetBombs();
         centralCannon.ResetShotRight();
         altCannonComponent.ResetShotAlt();

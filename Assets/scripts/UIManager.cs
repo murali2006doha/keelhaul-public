@@ -47,6 +47,11 @@ public class UIManager : MonoBehaviour
     Image boostBarPanel;
 
 
+    public GameObject killText;
+    string temp;
+    public GameObject fadePanel;
+
+
     bool highlight = true;
 
     void Start()
@@ -313,8 +318,26 @@ public class UIManager : MonoBehaviour
 
     public void activateFinishAndColorTint()
     {
+        hideDeathAnimation();
         colorTint.SetActive(true);
         activateFinishText();
+    }
+
+    public void showDeathAnimation(int player, string ship)
+    {
+        fadePanel.SetActive(true);
+        killText.SetActive(true);
+        var tex = killText.GetComponent<Text>().text;
+        temp = tex;
+        tex = tex.Replace("r1", "player " + player);
+        killText.GetComponent<Text>().text = tex;
+    }
+
+    public void hideDeathAnimation()
+    {
+        fadePanel.SetActive(false);
+        killText.SetActive(false);
+        killText.GetComponent<Text>().text = temp;
     }
 
     void activateFinishText()
@@ -322,4 +345,8 @@ public class UIManager : MonoBehaviour
         finishText.SetActive(true);
     }
 
+    internal void showDeathAnimation(string v)
+    {
+        throw new NotImplementedException();
+    }
 }
