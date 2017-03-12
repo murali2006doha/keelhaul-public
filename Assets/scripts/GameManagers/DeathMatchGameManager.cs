@@ -77,7 +77,10 @@ public class DeathMatchGameManager : AbstractGameManager
         }
 
         onInitialize();
-
+        foreach(PlayerInput player in FindObjectsOfType<PlayerInput>())
+        {
+            gamePoints[player.GetId().ToString()] = 0;
+        }
         LogAnalyticsGame.StartGame (players, this.countDown.GetComponent<CountDown>());
         LogAnalyticsGame.FpsSnapshot ();
         LogAnalyticsGame.Ping ();
@@ -89,6 +92,7 @@ public class DeathMatchGameManager : AbstractGameManager
     public void AddPlayer(int id) {
         //        Debug.Log(gamePoints.Keys.Count.ToString());
         if (GetComponent<PhotonView>().isMine) {
+
             Debug.Log("reaching addplayer with id : " + id.ToString());
             gamePoints.Add(id.ToString(), 0);
            
