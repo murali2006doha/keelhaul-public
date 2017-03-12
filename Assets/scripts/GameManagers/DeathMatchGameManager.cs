@@ -547,6 +547,8 @@ public class DeathMatchGameManager : AbstractGameManager
         List<GameObject> losers = new List<GameObject>();
         var players = GameObject.FindObjectsOfType<PlayerInput>();
         PlayerInput winner = null;
+        GameObject worst = null;
+        int points = 999;
         foreach (PlayerInput ship in players)
         {
             ship.reset();
@@ -561,15 +563,25 @@ public class DeathMatchGameManager : AbstractGameManager
                 gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Player " + winnerId.ToString());
                 gameOverUI.winners[0].name.text = !PhotonNetwork.offlineMode && winnerId == PhotonNetwork.player.ID ? "You" : "Player " + winnerId.ToString();
                 winner = ship;
-                
             }
             else
             {
                 losers.Add(ship.gameObject);
+                var point = gamePoints[ship.GetId().ToString()];
+                if (point <= points)
+                {
+                    worst = ship.gameObject;
+                    points = point;
+                }
             }
 
             shipStats.Add(ship.gameStats);
         }
+        if (losers.Count == 3)
+        {
+            losers.Remove(worst);
+        }
+
         winner.gameObject.transform.position = new Vector3(map.winnerLoc.transform.position.x, winner.gameObject.transform.position.y, map.winnerLoc.transform.position.z);
         winner.gameObject.transform.localScale *= 2f;
         winner.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
