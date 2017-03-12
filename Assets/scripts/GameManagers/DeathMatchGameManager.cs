@@ -77,7 +77,10 @@ public class DeathMatchGameManager : AbstractGameManager
         }
 
         onInitialize();
-
+        foreach(PlayerInput player in FindObjectsOfType<PlayerInput>())
+        {
+            gamePoints[player.GetId().ToString()] = 0;
+        }
         LogAnalyticsGame.StartGame (players, this.countDown.GetComponent<CountDown>());
         LogAnalyticsGame.FpsSnapshot ();
         LogAnalyticsGame.Ping ();
@@ -89,6 +92,7 @@ public class DeathMatchGameManager : AbstractGameManager
     public void AddPlayer(int id) {
         //        Debug.Log(gamePoints.Keys.Count.ToString());
         if (GetComponent<PhotonView>().isMine) {
+
             Debug.Log("reaching addplayer with id : " + id.ToString());
             gamePoints.Add(id.ToString(), 0);
            
@@ -408,11 +412,12 @@ public class DeathMatchGameManager : AbstractGameManager
         {
             if (player.GetId() == id)
             {
-                return player.shipName;
+                return player.type.ToString();
             }
         }
         return "";
     }
+
 
     [PunRPC]
     private void ActivateLastPointPrompt(int id)
@@ -804,4 +809,20 @@ public class DeathMatchGameManager : AbstractGameManager
     {
         return players;
     }
+
+    public string getTeamName(PlayerInput player)
+    {
+        return teamNames[player.teamNo];
+    }
+
+
+    public Dictionary<string, int> getGamepoints() {
+
+        return gamePoints;
+    }
+
+    public int getPlayerPointsToWIn () {
+        return playerWinPoints;
+    }
+
 }

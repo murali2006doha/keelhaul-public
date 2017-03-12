@@ -43,7 +43,9 @@ public class UIManager : MonoBehaviour
     public GameObject finishText;
     public GameObject colorTint;
     public GameObject worldSpace;
+	public StatsModal statsModal;
     Image boostBarPanel;
+	bool x = true;
     private int playerNum = 1;
     private bool isShip = false;
 
@@ -51,8 +53,9 @@ public class UIManager : MonoBehaviour
     string temp;
     public GameObject fadePanel;
 
-
     bool highlight = true;
+
+    public TMPro.TextMeshProUGUI killFeed;
 
     public void Initialize(int playerNum, bool isShip)
     {
@@ -61,7 +64,7 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
-
+		statsModal.gameObject.SetActive (false);
         barrelObj = GameObject.FindObjectOfType<Barrel>();
         barrelPos = barrelObj.transform.position;
         if (compassArrow != null)
@@ -350,8 +353,32 @@ public class UIManager : MonoBehaviour
         finishText.SetActive(true);
     }
 
-    internal void showDeathAnimation(string v)
+    public void AddToKillFeed(string killer, string killerShip, string victim, string victimShip)
     {
-        throw new NotImplementedException();
+        killFeed.text += "<sprite=\"atlas\" name=\""+ killerShip + "\"> <size=60%>"+killer + "</size> <color=\"red\"> X </color> <sprite=\"atlas\" name=\"" + victimShip + "\" > <size=60%>" +victim +" </size>\n";
+        Invoke("RemoveKillFeed", GlobalVariables.killFeedDuration);
     }
+
+    public void RemoveKillFeed()
+    {
+        killFeed.text = killFeed.text.Substring(killFeed.text.IndexOf("\n"));
+    }
+
+
+	public void InitializeStatsScreen(AbstractGameManager gm, PlayerInput input) {
+		if (x) {
+			statsModal.gameObject.SetActive (true);
+			statsModal.InitializeStats ();
+			x = false;
+		}
+	}
+
+
+	public void SetOffStatsScreen() {
+		if (statsModal.gameObject.activeSelf) {
+			statsModal.ClearStats ();
+			statsModal.gameObject.SetActive (false);
+			x = true;
+		}
+	}
 }

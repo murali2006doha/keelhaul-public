@@ -6,6 +6,7 @@ public enum ModalsEnum
 
     pauseModal,
     settingsModal,
-    notificationModal
+    notificationModal,
+	statsModal
 }
 

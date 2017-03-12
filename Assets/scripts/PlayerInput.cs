@@ -86,7 +86,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     private bool notInitalized = true;
     public ShipStatus status = ShipStatus.Waiting;
     public int playerId;
-	public static UnityAction onHitRegister;	//extra actions for when player is hit
+    public static UnityAction onHitRegister;    //extra actions for when player is hit
 
     void Start()
     {
@@ -198,6 +198,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightTriggerDown += centralCannon.handleShoot;
         shipInput.onRightBumperDown += altCannonComponent.handleShoot;
         shipInput.onStartButtonPress += this.instantiatePauseMenu; //ENTER on keyboard
+        shipInput.onSelectButtonHoldDown += this.showStatsScreen;
+        shipInput.onSelectButtonRelease += this.uiManager.SetOffStatsScreen;
             
         if (hookshotComponent)
         {
@@ -207,32 +209,40 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
 
-	void clearShipInput()
-	{
-		shipInput.onRotateChanged = null;
-		shipInput.onRedButtonPress = null;
-		shipInput.onLeftBumperDown = null;
-		shipInput.onRightRotateChanged = null;
-		shipInput.onRightTriggerDown = null;
-		shipInput.onRightBumperDown = null;
-		shipInput.onLeftTriggerDown = null;
-	}
-
-
-    void instantiatePauseMenu() {
-		if (FindObjectOfType<PauseModalComponent> () == null && FindObjectOfType<CountDown>() == null) {
-
-			Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
-			modalActions.Add (ModalActionEnum.onOpenAction, () => {clearShipInput();});
-			modalActions.Add (ModalActionEnum.onCloseAction, () => {InitializeShipInput();});
-
-			ModalStack.initialize (this.Actions, ModalsEnum.pauseModal, modalActions);
-		} 
+    void clearShipInput()
+    {
+        shipInput.onRotateChanged = null;
+        shipInput.onRedButtonPress = null;
+        shipInput.onLeftBumperDown = null;
+        shipInput.onRightRotateChanged = null;
+        shipInput.onRightTriggerDown = null;
+        shipInput.onRightBumperDown = null;
+        shipInput.onLeftTriggerDown = null;
+        shipInput.onSelectButtonHoldDown = null;
+        shipInput.onSelectButtonRelease = null;
     }
 
 
-    public HookshotComponent getHook()
-    {
+    void instantiatePauseMenu() {
+        if (FindObjectOfType<PauseModalComponent> () == null && FindObjectOfType<CountDown>() == null) {
+
+            Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
+            modalActions.Add (ModalActionEnum.onOpenAction, () => {clearShipInput();});
+            modalActions.Add (ModalActionEnum.onCloseAction, () => {InitializeShipInput();});
+
+            ModalStack.initialize (this.Actions, ModalsEnum.pauseModal, modalActions);
+        } 
+    }
+
+
+    void showStatsScreen() {
+        uiManager.InitializeStatsScreen (manager, this);
+
+    }
+
+
+
+    public HookshotComponent getHook() {
         return hookshotComponent;
     }
 
@@ -462,9 +472,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void hit(float passedDamage, int id,bool isKraken = false)
     {
-		if (onHitRegister != null) {
-			onHitRegister ();
-		}
+        if (onHitRegister != null) {
+            onHitRegister ();
+        }
         if (!invincible && health > 0 && this.status == ShipStatus.Alive)
         {
             float actualDamage = (passedDamage > 0) ? passedDamage : damage;
@@ -508,6 +518,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                     manager1.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
                 }
                 die(id);
+                foreach(PlayerInput player in manager.getPlayers())
+                {
+                    player.GetComponent<PhotonView>().RPC("AddToKillFeed", PhotonTargets.All, "P" + id, manager.getShipById(id),"P" + GetId(),type.ToString());
+                }
             }
             else
             {
@@ -583,6 +597,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         followCamera.zoomIn = true;
     }
 
+    [PunRPC]
+    public void AddToKillFeed(string killer, string killerShip,string victim, string victimShip)
+    {
+        if (GetComponent<PhotonView>().isMine)
+        {
+            uiManager.AddToKillFeed(killer,killerShip,victim,victimShip);
+        }
+    }
+
 
     public void setupRespawn()
     {
@@ -628,11 +651,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
     public void AddToHealth(float extraHealth) {
-	if (extraHealth > (stats.max_health - this.health)) {	//if greater than difference
-		this.health = stats.max_health;
-	} else if (this.health < stats.max_health) {
-		this.health += extraHealth;
-	}
+    if (extraHealth > (stats.max_health - this.health)) {   //if greater than difference
+        this.health = stats.max_health;
+    } else if (this.health < stats.max_health) {
+        this.health += extraHealth;
+    }
     }
 
     public void setStatus(ShipStatus status)
