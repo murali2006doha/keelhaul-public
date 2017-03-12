@@ -848,6 +848,8 @@ MonoBehaviour:
   shipName: Atlantean Ship
   ship_model: {fileID: 1000010102031204}
   spray: {fileID: 170664}
+  worldCanvas: {fileID: 114298058526718654, guid: 8e750c2e2df0fa441a9738e5b59e1f86,
+    type: 2}
   teamGame: 0
   teamNo: 0
   placeInTeam: 1
@@ -1233,7 +1235,7 @@ ParticleSystem:
   m_GameObject: {fileID: 118272}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -3834,7 +3836,7 @@ ParticleSystem:
   m_GameObject: {fileID: 186720}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -6435,7 +6437,7 @@ ParticleSystem:
   m_GameObject: {fileID: 170664}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -10404,7 +10406,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000011079958410}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -13041,7 +13043,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000011598795814}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -15678,7 +15680,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000011429414444}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -18201,7 +18203,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000010567740646}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -20868,7 +20870,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012646761078}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -23505,7 +23507,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1097441826641644}
   serializedVersion: 5
   lengthInSec: 2
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1

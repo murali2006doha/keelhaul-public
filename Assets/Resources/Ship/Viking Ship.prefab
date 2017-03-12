@@ -2466,8 +2466,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 7
-  instantiationId: 7
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114024918608436392
 MonoBehaviour:
@@ -2629,6 +2629,8 @@ MonoBehaviour:
   shipName: Viking Ship
   ship_model: {fileID: 1411639244422892}
   spray: {fileID: 1552137082565572}
+  worldCanvas: {fileID: 114298058526718654, guid: 8e750c2e2df0fa441a9738e5b59e1f86,
+    type: 2}
   teamGame: 0
   teamNo: 0
   placeInTeam: 1
@@ -2815,8 +2817,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114742814549290554}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 6
-  instantiationId: 6
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114687119095539344
 MonoBehaviour:
@@ -2841,8 +2843,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114192596627240678}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 5
-  instantiationId: 5
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114742814549290554
 MonoBehaviour:
@@ -3365,7 +3367,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1955437759083594}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -5966,7 +5968,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1232348017040358}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -8567,7 +8569,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1805821507978660}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -11090,7 +11092,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1198236477413222}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -13727,7 +13729,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1351865066350310}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -16364,7 +16366,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1680705440492042}
   serializedVersion: 5
   lengthInSec: 2
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -18851,7 +18853,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1679012534807410}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -21488,7 +21490,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1552137082565572}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -24047,7 +24049,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1704917180732238}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1

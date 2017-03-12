@@ -44,6 +44,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     Quaternion originalRotationValue;
     public GameObject ship_model;
     public GameObject spray;
+    public ShipWorldCanvas worldCanvas;
 
     //Fixed vars
     AbstractGameManager manager;
@@ -155,9 +156,23 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
+        this.GetComponent<PhotonView>().RPC("InstantiateWorldSpaceCanvas", PhotonTargets.OthersBuffered, this.shipNum);
 
     }
 
+    [PunRPC]
+    public void InstantiateWorldSpaceCanvas(int shipNum) {
+      worldCanvas = Instantiate(worldCanvas);
+      this.worldCanvas.transform.SetParent(this.transform, false);
+      this.worldCanvas.Initiialize(this.shipNum);
+    }
+
+
+    [PunRPC]
+    public void UpdateWorldSpaceHealthBar(float sliderVal)
+    {
+        this.worldCanvas.UpdateHealthSlider(sliderVal);
+    }
 
     private void InitializeHookshot()
     {
@@ -258,7 +273,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void updateHealth()
     {
-        uiManager.setHealthBar(health / stats.max_health);
+        var sliderVal = health / stats.max_health;
+        uiManager.setHealthBar(sliderVal);
+        this.GetComponent<PhotonView>().RPC("UpdateWorldSpaceHealthBar", PhotonTargets.Others, sliderVal);
     }
 
     void Update()
