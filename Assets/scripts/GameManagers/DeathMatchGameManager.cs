@@ -412,11 +412,12 @@ public class DeathMatchGameManager : AbstractGameManager
         {
             if (player.GetId() == id)
             {
-                return player.shipName;
+                return player.type.ToString();
             }
         }
         return "";
     }
+
 
     [PunRPC]
     private void ActivateLastPointPrompt(int id)

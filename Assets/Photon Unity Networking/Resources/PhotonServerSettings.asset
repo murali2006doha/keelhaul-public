@@ -68,5 +68,6 @@ MonoBehaviour:
   - DisableChargedUpEffect
   - ShowChargedUpEffect
   - InstantiateWorldSpaceCanvas
+  - AddToKillFeed
   - UpdateWorldSpaceHealthBar
   DisableAutoOpenWizard: 1

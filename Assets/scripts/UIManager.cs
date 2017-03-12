@@ -55,6 +55,8 @@ public class UIManager : MonoBehaviour
 
     bool highlight = true;
 
+    public TMPro.TextMeshProUGUI killFeed;
+
     public void Initialize(int playerNum, bool isShip)
     {
         this.isShip = isShip;
@@ -349,6 +351,17 @@ public class UIManager : MonoBehaviour
     void activateFinishText()
     {
         finishText.SetActive(true);
+    }
+
+    public void AddToKillFeed(string killer, string killerShip, string victim, string victimShip)
+    {
+        killFeed.text += "<sprite=\"atlas\" name=\""+ killerShip + "\"> <size=60%>"+killer + "</size> <color=\"red\"> X </color> <sprite=\"atlas\" name=\"" + victimShip + "\" > <size=60%>" +victim +" </size>\n";
+        Invoke("RemoveKillFeed", GlobalVariables.killFeedDuration);
+    }
+
+    public void RemoveKillFeed()
+    {
+        killFeed.text = killFeed.text.Substring(killFeed.text.IndexOf("\n"));
     }
 
 

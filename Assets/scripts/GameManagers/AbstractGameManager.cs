@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System;
+
 public abstract class AbstractGameManager : MonoBehaviour {
 
     // Use this for initialization
@@ -74,4 +76,5 @@ public abstract class AbstractGameManager : MonoBehaviour {
     {
         return "";
     }
+    
 }
