@@ -44,14 +44,15 @@ public class UIManager : MonoBehaviour
     public GameObject finishText;
     public GameObject colorTint;
     public GameObject worldSpace;
+	public StatsModal statsModal;
     Image boostBarPanel;
-
+	bool x = true;
 
     bool highlight = true;
 
     void Start()
     {
-
+		statsModal.gameObject.SetActive (false);
         barrelObj = GameObject.FindObjectOfType<Barrel>();
         barrelPos = barrelObj.transform.position;
         if (compassArrow != null)
@@ -322,4 +323,21 @@ public class UIManager : MonoBehaviour
         finishText.SetActive(true);
     }
 
+
+	public void InitializeStatsScreen(AbstractGameManager gm, PlayerInput input) {
+		if (x) {
+			statsModal.gameObject.SetActive (true);
+			statsModal.InitializeStats ();
+			x = false;
+		}
+	}
+
+
+	public void SetOffStatsScreen() {
+		if (statsModal.gameObject.activeSelf) {
+			statsModal.ClearStats ();
+			statsModal.gameObject.SetActive (false);
+			x = true;
+		}
+	}
 }

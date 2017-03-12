@@ -296,7 +296,7 @@ public class GameInitializer : MonoBehaviour {
                             manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
                         }
                         else {
-                            manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, playerId);
+							manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                         }
                         
                     }
@@ -329,7 +329,7 @@ public class GameInitializer : MonoBehaviour {
                         }
                         else
                         {
-                            manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, playerId);
+							manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                         }
                     }
                 }
@@ -357,7 +357,7 @@ public class GameInitializer : MonoBehaviour {
                     }
                     else
                     {
-                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, playerId);
+						manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                     }
                 }
             }
@@ -386,7 +386,7 @@ public class GameInitializer : MonoBehaviour {
                     }
                     else
                     {
-                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, playerId);
+						manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                     }
                 }
             }

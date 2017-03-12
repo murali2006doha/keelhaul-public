@@ -48,6 +48,12 @@ public class ShipInput : AbstractInputManager {
 		{
 			onStartButtonPress ();
 		}
+		if (actions.Select.IsPressed && onSelectButtonHoldDown != null) {
+			onSelectButtonHoldDown ();
+		}
+		if (actions.Select.WasReleased && onSelectButtonRelease != null) {
+			onSelectButtonRelease ();
+		}
 
         // with controller
     }

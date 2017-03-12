@@ -21,6 +21,7 @@ public class PlayerActions : PlayerActionSet
     public PlayerAction R_Left;
     public PlayerAction R_Right;
     public PlayerAction Start;
+	public PlayerAction Select;
 
     public PlayerTwoAxisAction Rotate;   //left analog stick
     public PlayerTwoAxisAction R_Rotate;    //right analog stick
@@ -48,6 +49,7 @@ public class PlayerActions : PlayerActionSet
         Alt_Fire = CreatePlayerAction("Alt_Fire");
         Fire_Hook = CreatePlayerAction("Fire_Hook");
         Start = CreatePlayerAction("Start");
+		Select = CreatePlayerAction ("Select");
     }
 
 
@@ -90,7 +92,8 @@ public class PlayerActions : PlayerActionSet
         actions.R_Left.AddDefaultBinding(Mouse.NegativeX);
         actions.R_Right.AddDefaultBinding(Mouse.PositiveX);
 
-        actions.Start.AddDefaultBinding(Key.Return);
+		actions.Start.AddDefaultBinding(Key.Escape);
+		actions.Select.AddDefaultBinding (Key.Tab);
 
         return actions;
     }
@@ -148,6 +151,7 @@ public class PlayerActions : PlayerActionSet
 
         actions.Start.AddDefaultBinding(InputControlType.Start);
         actions.Start.AddDefaultBinding(InputControlType.Options);
+		actions.Select.AddDefaultBinding (InputControlType.Select);
 
         return actions;
     }

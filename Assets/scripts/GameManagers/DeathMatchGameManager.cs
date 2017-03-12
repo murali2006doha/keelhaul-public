@@ -780,4 +780,20 @@ public class DeathMatchGameManager : AbstractGameManager
     {
         return players;
     }
+
+    public string getTeamName(PlayerInput player)
+    {
+        return teamNames[player.teamNo];
+    }
+
+
+    public Dictionary<string, int> getGamepoints() {
+
+        return gamePoints;
+    }
+
+    public int getPlayerPointsToWIn () {
+        return playerWinPoints;
+    }
+
 }
