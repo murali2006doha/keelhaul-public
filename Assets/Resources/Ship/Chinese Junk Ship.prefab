@@ -590,7 +590,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190322}
-  m_LocalRotation: {x: 0, y: 0.96989334, z: 0, w: 0.24353029}
+  m_LocalRotation: {x: -0, y: 0.9988678, z: -0, w: -0.047572922}
   m_LocalPosition: {x: -13.570733, y: 1.4422884, z: -1.746407}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
@@ -615,7 +615,7 @@ Transform:
   - {fileID: 4188953429969916}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 151.81, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 185.454, z: 0}
 --- !u!4 &470570
 Transform:
   m_ObjectHideFlags: 1
@@ -1089,6 +1089,8 @@ MonoBehaviour:
   shipName: Atlantean Ship
   ship_model: {fileID: 1000011478340956}
   spray: {fileID: 190726}
+  worldCanvas: {fileID: 114298058526718654, guid: 8e750c2e2df0fa441a9738e5b59e1f86,
+    type: 2}
   teamGame: 0
   teamNo: 0
   placeInTeam: 1
@@ -1523,7 +1525,7 @@ ParticleSystem:
   m_GameObject: {fileID: 145532}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -4124,7 +4126,7 @@ ParticleSystem:
   m_GameObject: {fileID: 190726}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -4171,7 +4173,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 0
+  randomSeed: -847825255
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6683,7 +6685,7 @@ ParticleSystem:
   m_GameObject: {fileID: 195942}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -11210,8 +11212,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 3
-  instantiationId: 3
+  viewIdField: 2
+  instantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &114247642520699438
 MonoBehaviour:
@@ -11248,8 +11250,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999716085284838}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
+  viewIdField: 3
+  instantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!114 &114352039611953602
 MonoBehaviour:
@@ -11630,7 +11632,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012270394108}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -14267,7 +14269,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000010326287180}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -16934,7 +16936,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012351153394}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -19571,7 +19573,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000010362605038}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -22094,7 +22096,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000013317355230}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -24731,7 +24733,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1064227694621572}
   serializedVersion: 5
   lengthInSec: 2
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
