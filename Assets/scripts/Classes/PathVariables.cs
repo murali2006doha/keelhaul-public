@@ -27,7 +27,7 @@ public static class PathVariables {
     internal static string atlantisCannonBallPath = "Prefabs/Cannon Shots/atlantis cannonball";
     internal static string chineseCannonBallPath = "Prefabs/Cannon Shots/chinese cannonball";
     internal static string blackbeardCannonBallPath = "Prefabs/Cannon Shots/blackbeard cannonball";
-    internal static string vikingCannonBallPath = "Prefabs/Cannon Shots/small blackbeard cannonball";
+    internal static string vikingCannonBallPath = "Prefabs/Cannon Shots/Viking arrow";
 
 
     //Bombs
