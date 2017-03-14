@@ -32,7 +32,7 @@ public class AtlanteanShieldController : MonoBehaviour {
 	}
 
 	void KillSelf() {
-        ship.centralCannon.DeAmpCannonball();
+        //ship.centralCannon.DeAmpCannonball();
 		PlayerInput.onHitRegister -= AddToHealth;
 		ship.deactivateInvincibility ();
         PhotonNetwork.Destroy(GetComponent<PhotonView>());
@@ -57,7 +57,7 @@ public class AtlanteanShieldController : MonoBehaviour {
             {
                 parent = player.gameObject;
                 ship = player;
-                ship.centralCannon.AmpUpCannonball();
+                //ship.centralCannon.AmpUpCannonball();
                 ship.activateInvincibility();
                 break;
             }
