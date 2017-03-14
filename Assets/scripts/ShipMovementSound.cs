@@ -31,10 +31,10 @@ public class ShipMovementSound : MonoBehaviour {
 
         maxVelocity = player.stats.maxVelocity;
         speed = player.motor.getVelocity ();
-		volume = (speed / maxVelocity) / 3.0f;
+	volume = (speed / maxVelocity) / 3.0f;
 
         if (player.motor.isBoosting ()) {
-			audioSource.volume = volume / 3.0f;
+	    audioSource.volume = volume / 3.0f;
         } else {
             audioSource.volume = volume;
         }
@@ -56,7 +56,7 @@ public class ShipMovementSound : MonoBehaviour {
         AudioSource audio = boostObject.GetComponent<AudioSource> ();
         audio.clip = boostSound;
         audio.Play ();
-		audio.volume = 0.3f;
+	audio.volume = 0.3f;
         Invoke ("ResumeMovementSound", boostSound.length);
         Invoke ("resetBoosted", player.stats.boostResetTime);
     }
