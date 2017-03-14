@@ -4,14 +4,14 @@ using System.Collections;
 public class AtlanteanShieldController : MonoBehaviour {
 
 	public GameObject parent;
-    public float lifeTime;
+    	public float lifeTime;
 	public float powerShieldDuration;
 	public bool isReflecting = false;
 	PlayerInput ship;
 	public Vector3 offset;
 	float originalSpeed;
 	Quaternion rot;
-    GameObject originalCannonballPrefab;
+    	GameObject originalCannonballPrefab;
 	// Use this for initialization
 	public int absorbPercent;
 
@@ -35,7 +35,7 @@ public class AtlanteanShieldController : MonoBehaviour {
         //ship.centralCannon.DeAmpCannonball();
 		PlayerInput.onHitRegister -= AddToHealth;
 		ship.deactivateInvincibility ();
-        PhotonNetwork.Destroy(GetComponent<PhotonView>());
+        	PhotonNetwork.Destroy(GetComponent<PhotonView>());
 
   	}
 
