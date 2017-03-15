@@ -308,7 +308,7 @@ Rigidbody:
   m_GameObject: {fileID: 1000011164763794}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.3
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
   normalHit: {fileID: 145378, guid: f61565664dac5bd49b5b596ac403dee4, type: 2}
   splash: {fileID: 148634, guid: 45d7af1078698594bbbc6ddaf3929f99, type: 2}
   kraken: {fileID: 0}
-  gravity: -1.5
+  gravity: -5.2
   force: 0
   reflectForce: 200
   reflectMult: 1
@@ -460,7 +460,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000010477868556}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -3097,7 +3097,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000013227571550}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -5722,7 +5722,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000010200906220}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -8323,7 +8323,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000010738411872}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -10924,7 +10924,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000012849372434}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
