@@ -92,29 +92,20 @@ public class DeathMatchGameManager : AbstractGameManager
     public void AddPlayer(int id) {
         //        Debug.Log(gamePoints.Keys.Count.ToString());
         if (GetComponent<PhotonView>().isMine) {
-
-            Debug.Log("reaching addplayer with id : " + id.ToString());
             gamePoints.Add(id.ToString(), 0);
            
-    
             if (id  >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id>=1))
             {
-                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
-                {
-                    manager.GetComponent<PhotonView>().RPC("SetDone", PhotonTargets.All);
-                }
+                this.GetComponent<PhotonView>().RPC("SetDone", PhotonTargets.All);
             }
         }
 
     }
 
     [PunRPC]
-    public void SetDone() {
-
-        if (GetComponent<PhotonView>().isMine) {
-            globalCanvas.waitingForPlayers.SetActive(false);
-            done = false;
-        }
+    public void SetDone() { 
+        globalCanvas.waitingForPlayers.SetActive(false);
+        done = false;
         
     }
     void gameStart()
@@ -357,10 +348,6 @@ public class DeathMatchGameManager : AbstractGameManager
     [PunRPC]
     public void IncrementPoint(int id) {
         
-        if (!GetComponent<PhotonView>().isMine) {
-            return;
-        }
-       
         if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode) {
 
             players[0].uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
@@ -386,19 +373,11 @@ public class DeathMatchGameManager : AbstractGameManager
             gamePoints[id.ToString()]++;
             if (gamePoints[id.ToString()] >= playerWinPoints && PhotonNetwork.isMasterClient)
             {
-                
-                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
-                {
-                    manager.GetComponent<PhotonView>().RPC("TriggerNetworkedVictory", PhotonTargets.All, id);
-                }
-                
+                this.GetComponent<PhotonView>().RPC("TriggerNetworkedVictory", PhotonTargets.All, id);
             }
             else if (gamePoints[id.ToString()] == playerWinPoints - 1)
             {
-                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
-                {
-                    manager.GetComponent<PhotonView>().RPC("ActivateLastPointPrompt", PhotonTargets.All, id);
-                }
+                this.GetComponent<PhotonView>().RPC("ActivateLastPointPrompt", PhotonTargets.All, id);
 
             }
         }
@@ -422,10 +401,6 @@ public class DeathMatchGameManager : AbstractGameManager
     [PunRPC]
     private void ActivateLastPointPrompt(int id)
     {
-        if (!GetComponent<PhotonView>().isMine)
-        {
-            return;
-        }
         //TODO: Refactor into score keeper/kill feed controller
         if (PhotonNetwork.offlineMode)
         {
@@ -476,10 +451,6 @@ public class DeathMatchGameManager : AbstractGameManager
     [PunRPC]
     public void TriggerNetworkedVictory(int id) {
 
-        if (!GetComponent<PhotonView>().isMine) {
-            return;
-        }
-        
         //Calculate Stats
         
         winnerId = id;
@@ -507,15 +478,7 @@ public class DeathMatchGameManager : AbstractGameManager
           
             if (photonView.ownerId == PhotonNetwork.player.ID)
             {
-                foreach(DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
-                {
-                    if (!manager.GetComponent<PhotonView>().isMine)
-                    {
-                        manager.GetComponent<PhotonView>().RPC("SyncStat", PhotonTargets.Others, player.GetId(), ArrayHelper.ObjectToByteArray(player.gameStats));
-                    }
-                }
-                
-                break;
+                this.GetComponent<PhotonView>().RPC("SyncStat", PhotonTargets.Others, player.GetId(), ArrayHelper.ObjectToByteArray(player.gameStats));
             }
         }
     }
@@ -523,10 +486,6 @@ public class DeathMatchGameManager : AbstractGameManager
     [PunRPC]
     public void SyncStat(int id, byte[] statsBinary)
     {
-        if (!GetComponent<PhotonView>().isMine)
-        {
-            return;
-        }
         var players = GameObject.FindObjectsOfType<PlayerInput>();
         foreach (PlayerInput player in players)
         {

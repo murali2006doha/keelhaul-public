@@ -21,6 +21,7 @@ public class GameInitializer : MonoBehaviour {
     public bool isFirstControllerKraken = false;
 
     List<PlayerInput> players = new List<PlayerInput>();
+    DeathMatchGameManager deathMatchManager;
 
     public MapEnum map;
     public GameTypeEnum gameType;
@@ -169,8 +170,20 @@ public class GameInitializer : MonoBehaviour {
 
         } else if (gameType == GameTypeEnum.DeathMatch)
         {
-            GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
-            DeathMatchGameManager deathMatchManager = manager.GetComponent<DeathMatchGameManager>();
+
+    
+
+            if ((!PhotonNetwork.offlineMode && PhotonNetwork.isMasterClient) || (PhotonNetwork.offlineMode))
+            {
+                GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
+                deathMatchManager = manager.GetComponent<DeathMatchGameManager>();
+            }
+            else {
+                deathMatchManager = GameObject.FindObjectOfType<DeathMatchGameManager>();
+            }
+
+            
+            
             deathMatchManager.cams = cams;
             deathMatchManager.ps = ps;
             deathMatchManager.isTeam = isTeam;
@@ -288,18 +301,16 @@ public class GameInitializer : MonoBehaviour {
                     
                     num = createShipWithName(num, shipSelections[shipIndex]);
                     shipIndex++;
-                    foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                    if (PhotonNetwork.offlineMode)
                     {
-                        if (PhotonNetwork.offlineMode)
-                        {
-                           
-                            manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
-                        }
-                        else {
-							manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
-                        }
-                        
+
+                        deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
                     }
+                    else
+                    {
+                        deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
+                    }
+
                 }
                 
             }
@@ -320,17 +331,13 @@ public class GameInitializer : MonoBehaviour {
                     shipSelections[shipIndex].Actions = action;
                     num = createShipWithName(num, shipSelections[shipIndex]);
                     shipIndex++;
-                    foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                    if (PhotonNetwork.offlineMode)
                     {
-                        if (PhotonNetwork.offlineMode)
-                        {
-                            Debug.Log("reaching here in offline");
-                            manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
-                        }
-                        else
-                        {
-							manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
-                        }
+                        deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                    }
+                    else
+                    {
+                        deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                     }
                 }
                 else
@@ -349,16 +356,13 @@ public class GameInitializer : MonoBehaviour {
             {
                 shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
                 num = createShipWithName(num, shipSelections[z]);
-                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                if (PhotonNetwork.offlineMode)
                 {
-                    if (PhotonNetwork.offlineMode)
-                    { 
-                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
-                    }
-                    else
-                    {
-						manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
-                    }
+                    deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                }
+                else
+                {
+                    deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                 }
             }
 
@@ -377,17 +381,13 @@ public class GameInitializer : MonoBehaviour {
             {
                 shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
                 num = createShipWithName(GetRightShipSelection(num), shipSelections[z]);
-                foreach (DeathMatchGameManager manager in GameObject.FindObjectsOfType<DeathMatchGameManager>())
+                if (PhotonNetwork.offlineMode)
                 {
-                    if (PhotonNetwork.offlineMode)
-                    {
-                        Debug.Log("reaching here in offline");
-                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
-                    }
-                    else
-                    {
-						manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
-                    }
+                    deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                }
+                else
+                {
+                    deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                 }
             }
 
