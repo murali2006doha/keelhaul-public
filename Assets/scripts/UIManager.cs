@@ -363,7 +363,7 @@ public class UIManager : MonoBehaviour
 
     public void RemoveKillFeed()
     {
-        killFeed.text = killFeed.text.Substring(killFeed.text.IndexOf("\n"));
+        killFeed.text = killFeed.text.Substring(killFeed.text.IndexOf("\n")+1);
     }
 
 
