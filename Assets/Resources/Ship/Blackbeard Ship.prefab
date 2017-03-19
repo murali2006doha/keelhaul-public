@@ -1408,7 +1408,7 @@ MonoBehaviour:
   teamNo: 0
   placeInTeam: 1
   velocity: 0
-  wake: {fileID: 161306}
+  wake: {fileID: 1198352762836918}
   shipInput: {fileID: 114371219138913600}
   anim: {fileID: 11485838}
   invincibilyPrefab: {fileID: 1000010893256384, guid: 96db08b74f03b43f4b246b4666e7b4a5,
@@ -4533,7 +4533,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2012078769
+  randomSeed: -210908023
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11778,7 +11778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c33481d16665304ebe86187586abc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wake: {fileID: 0}
+  wake: {fileID: 1198352762836918}
   boostParticle: {fileID: 1351898272422770}
   velocity: 0
   boosted: 0
