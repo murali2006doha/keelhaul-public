@@ -54,14 +54,17 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
 			Invoke ("ResetShotAlt", stats.alternateShootDelay);
 			input.vibrate (.15f, .25f);
 			uiManager.resetAltFireMeter ();
+            uiManager.animManager.onAlternateFire();
 
-		} 
+
+        } 
 
 	}
 
 	public void ResetShotAlt() {
 		canShootAlt = true;
         uiManager.setAltFireMeter(1);
+        uiManager.animManager.onAlternateFireRecharged();
 
     }
 }

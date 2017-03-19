@@ -37,6 +37,7 @@ public class BombControllerComponent : MonoBehaviour {
                 SoundManager.playSound(SoundClipEnum.BombDrop, SoundCategoryEnum.Generic, transform.position);
 				gameStats.numOfBombsPlanted++;
 				decrementBomb ();
+                uiManager.animManager.onBomb();
 				canDropBomb = false;
 
 			} else {
@@ -56,7 +57,9 @@ public class BombControllerComponent : MonoBehaviour {
 
 
 	public void activateAllBombs(){
-		foreach (GameObject bomb in bombList) { //destroy all bombs on field
+        uiManager.animManager.onBombExplosion();
+        foreach (GameObject bomb in bombList) { //destroy all bombs on field
+
 			if (bomb != null) {
 				StartCoroutine(bomb.GetComponent<BombComponent> ().ActivateBomb ());
 			}
