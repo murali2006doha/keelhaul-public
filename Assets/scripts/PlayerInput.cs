@@ -517,7 +517,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                     manager1.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
                 }
                 die(id);
-                foreach(PlayerInput player in manager.getPlayers())
+                foreach(PlayerInput player in FindObjectsOfType<PlayerInput>())
                 {
                     player.GetComponent<PhotonView>().RPC("AddToKillFeed", PhotonTargets.All, "P" + id, manager.getShipById(id),"P" + GetId(),type.ToString());
                 }

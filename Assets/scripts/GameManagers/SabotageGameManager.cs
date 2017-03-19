@@ -13,40 +13,57 @@ public class SabotageGameManager : AbstractGameManager
     Vector3[] barrels_start_pos;
     Vector3 barrel_start_pos;
 
-    public int playerWinPoints = 3;
+    public int playerWinPoints = 5;
     public int krakenWinPoints = 5;
 
+
     /* Later refactor into abstract common things */
-    [HideInInspector] public cameraFollow[] cams;
-    [HideInInspector] public PlayerSelectSettings ps;
-    [HideInInspector] public bool isTeam;
-    [HideInInspector] public bool includeKraken;
-    [HideInInspector] public List<PlayerInput> players = new List<PlayerInput>();
-    [HideInInspector] public KrakenInput kraken;
-    [HideInInspector] public GameObject countDown;
-    [HideInInspector] public GlobalCanvas globalCanvas;
-    [HideInInspector] public Animator fadeInAnimator;
+    [HideInInspector]
+    public cameraFollow[] cams;
+    [HideInInspector]
+    public PlayerSelectSettings ps;
+    [HideInInspector]
+    public bool isTeam;
+    [HideInInspector]
+    public bool includeKraken;
+    [HideInInspector]
+    public List<PlayerInput> players = new List<PlayerInput>();
+    [HideInInspector]
+    public KrakenInput kraken;
+    [HideInInspector]
+    public GameObject countDown;
+    [HideInInspector]
+    public GlobalCanvas globalCanvas;
+    [HideInInspector]
+    public Animator fadeInAnimator;
+    [HideInInspector]
     public List<int> shipPoints = new List<int>();
 
+    Dictionary<string, int> gamePoints;
+
     bool gameOver = false;
-    bool done = false;
+    bool done = true;
     MonoBehaviour winnerScript;
     GameObject winner;
     int krakenPoints;
+
+    int numOfStatsSynced = 1;
+    int winnerId = -1;
     float gameTime;
 
     List<string> teamNames = new List<string> { "Red Team", "Blue Team", "Green Team", "Yellow Team" };
     Dictionary<string, string> teamToColor = new Dictionary<string, string> { { "Red Team", "red" }, { "Blue Team", "blue" }, { "Green Team", "green" }, { "Yellow Team", "yellow" } };
-
-
-
     string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
+    public Action onInitialize;
+
 
     void Start()
     {
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
+
+        gamePoints = new Dictionary<string, int>();
         //Disable unused islands
-        for(int z = shipPoints.Count; z < mapObjects.islands.Length; z++)
+        for (int z = shipPoints.Count; z < mapObjects.islands.Length; z++)
         {
             mapObjects.islands[z].gameObject.SetActive(false);
         }
@@ -93,12 +110,34 @@ public class SabotageGameManager : AbstractGameManager
 
     }
 
+    [PunRPC]
+    public void AddPlayer(int id)
+    {
+        //        Debug.Log(gamePoints.Keys.Count.ToString());
+        if (GetComponent<PhotonView>().isMine)
+        {
+            gamePoints.Add(id.ToString(), 0);
 
+            if (id >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id >= 1))
+            {
+                this.GetComponent<PhotonView>().RPC("SetDone", PhotonTargets.All);
+            }
+        }
+
+    }
+
+    [PunRPC]
+    public void SetDone()
+    {
+        globalCanvas.waitingForPlayers.SetActive(false);
+        done = false;
+
+    }
 
     void gameStart()
     {
-
-        foreach (PlayerInput player in players)
+        PlayerInput[] playerInputs = FindObjectsOfType<PlayerInput>();
+        foreach (PlayerInput player in playerInputs)
         {
             player.gameStarted = true;
             player.setStatus(ShipStatus.Alive);
@@ -107,6 +146,9 @@ public class SabotageGameManager : AbstractGameManager
         {
             kraken.gameStarted = true;
         }
+
+        gameTime += Time.deltaTime;
+
     }
 
     void destroyCountDown()
