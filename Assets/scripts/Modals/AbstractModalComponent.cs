@@ -40,7 +40,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     public void Control() {
         NavigateModal (buttons);  
 
-        if (this.GetActions ().Green.WasReleased) { 
+        if (this.GetActions ().Green.WasReleased) {
             this.DoAction ();   
         } else if (this.GetActions ().Red.WasReleased) { 
             this.popAction ();

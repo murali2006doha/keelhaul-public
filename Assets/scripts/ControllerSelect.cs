@@ -15,13 +15,12 @@ public class ControllerSelect : MonoBehaviour {
 
 	void Start () {
         Application.targetFrameRate = -1;
-		GameObject.DontDestroyOnLoad (this.gameObject);
+
 
 	}
 		
 	void Awake() {
 
-		GameObject.DontDestroyOnLoad (this.gameObject);
 
 	}
 
