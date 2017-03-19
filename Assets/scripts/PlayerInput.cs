@@ -92,7 +92,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         //Have to refactor this later
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
-        this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, shipNum, manager.getNumberOfTeams(), playerId);
+        this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, this.GetId(), manager.getNumberOfTeams(), this.GetId());
 
         motor.Initialize(
             cc,
@@ -137,8 +137,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             motor,
             PathVariables.GetAssociatedCannonballForShip(type));
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
-
-
         gameStats = new FreeForAllStatistics();
         kraken = GameObject.FindObjectOfType<KrakenInput>();
         startingPoint = this.transform.position;
@@ -158,7 +156,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         originalRotation = ship_model.transform.localRotation; // save the initial rotation
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
-        this.GetComponent<PhotonView>().RPC("InstantiateWorldSpaceCanvas", PhotonTargets.OthersBuffered, this.shipNum);
+        this.GetComponent<PhotonView>().RPC("InstantiateWorldSpaceCanvas", PhotonTargets.OthersBuffered, this.GetId());
 
     }
 
@@ -166,7 +164,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public void InstantiateWorldSpaceCanvas(int shipNum) {
       worldCanvas = Instantiate(worldCanvas);
       this.worldCanvas.transform.SetParent(this.transform, false);
-      this.worldCanvas.Initiialize(this.shipNum);
+      this.worldCanvas.Initiialize(shipNum);
     }
 
 
@@ -294,8 +292,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (Actions != null)
         {
-            updateHealth();
-
             if (locked && startSinking)
             {
                 transform.Translate(transform.up * -2 * stats.sinkSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
@@ -530,6 +526,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 vibrate(.5f, .5f);
             }
         }
+
+        this.updateHealth();
     }
 
 
