@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 114634779960153016}
   - component: {fileID: 114986819729048736}
   - component: {fileID: 114118730019144946}
+  - component: {fileID: 65342400493404088}
   m_Layer: 9
   m_Name: Blackbeard Ship
   m_TagString: Untagged
@@ -11372,6 +11373,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1552817664611292}
   m_Mesh: {fileID: 4300000, guid: 947b660ecb20ad84693a4d27d9ea164e, type: 3}
+--- !u!65 &65342400493404088
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124574}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.585334, y: -12.360377, z: 17.95359}
+  m_Center: {x: -0.069030225, y: 6.180191, z: 2.4144487}
 --- !u!82 &82064325958511732
 AudioSource:
   m_ObjectHideFlags: 1
@@ -11820,8 +11833,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 8
+  instantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114118730019144946
 MonoBehaviour:
@@ -11846,8 +11859,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114986819729048736}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 7
+  instantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114240729712812926
 MonoBehaviour:
@@ -11929,8 +11942,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114942993433985648}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 6
+  instantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114544223826437596
 MonoBehaviour:
@@ -12025,8 +12038,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114001535506412288}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 5
+  instantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114880632613870280
 MonoBehaviour:
