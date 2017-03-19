@@ -13,7 +13,6 @@ public class StatsModal : MonoBehaviour {
     public void InitializeStats() {
         DeathMatchGameManager[] x = FindObjectsOfType<DeathMatchGameManager> ();
         foreach (DeathMatchGameManager manager in FindObjectsOfType<DeathMatchGameManager> ()) {
-            //if (manager.gameObject.GetComponent<PhotonView>().ownerId == PhotonNetwork.masterClient.ID) {
             if (manager.gameObject.GetComponent<PhotonView>().isMine) {
                 gm = manager;
             }

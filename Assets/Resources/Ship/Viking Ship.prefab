@@ -710,6 +710,7 @@ GameObject:
   - component: {fileID: 114852308405463902}
   - component: {fileID: 114192596627240678}
   - component: {fileID: 114687119095539344}
+  - component: {fileID: 65256525577981546}
   m_Layer: 9
   m_Name: Viking Ship
   m_TagString: Untagged
@@ -2174,6 +2175,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.926668, y: 12.328674, z: 2.2104645}
   m_Center: {x: 0.025508292, y: 2.3038101, z: 0.73982036}
+--- !u!65 &65256525577981546
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676817926590220}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.585334, y: -12.360377, z: 17.95359}
+  m_Center: {x: -0.069030225, y: 6.180191, z: 2.4144487}
 --- !u!82 &82972645133148890
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2466,8 +2479,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 12
+  instantiationId: 12
   isRuntimeInstantiated: 0
 --- !u!114 &114024918608436392
 MonoBehaviour:
@@ -2817,8 +2830,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114742814549290554}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 13
+  instantiationId: 13
   isRuntimeInstantiated: 0
 --- !u!114 &114687119095539344
 MonoBehaviour:
@@ -2843,8 +2856,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114192596627240678}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 14
+  instantiationId: 14
   isRuntimeInstantiated: 0
 --- !u!114 &114742814549290554
 MonoBehaviour:
@@ -2976,6 +2989,7 @@ MonoBehaviour:
   arcCannonForce: 10
   numOfCannonBalls: 1
   angleOfCannonShots: 30
+  cannonballPath: 
 --- !u!120 &120039731021375306
 LineRenderer:
   m_ObjectHideFlags: 1

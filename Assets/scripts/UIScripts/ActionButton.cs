@@ -10,11 +10,19 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class ActionButton : MonoBehaviour {
 
+	UnityAction actionToExecute;
+
     [SerializeField] Button button;
     public void SetAction(UnityAction action)
     {
         this.ButtonComponent.onClick.AddListener(action);
+		this.actionToExecute = action;
     }
+
+
+	public void doAction() {
+		this.actionToExecute ();
+	}
 
     public Button ButtonComponent
     {

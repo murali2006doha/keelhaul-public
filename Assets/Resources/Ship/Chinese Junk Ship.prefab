@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 114961205758043600}
   - component: {fileID: 114352039611953602}
   - component: {fileID: 114083740754118774}
+  - component: {fileID: 65934597305330256}
   m_Layer: 9
   m_Name: Chinese Junk Ship
   m_TagString: Untagged
@@ -8550,6 +8551,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.030725468, y: 0.008843144, z: 0.018687151}
   m_Center: {x: 0.0023295684, y: 0.00015569094, z: 0.0060900236}
+--- !u!65 &65934597305330256
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190322}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.9902322, y: -8.1179695, z: 9.165535}
+  m_Center: {x: -0.79531914, y: 4.0446434, z: 0.39463964}
 --- !u!82 &82358346116232938
 AudioSource:
   m_ObjectHideFlags: 1
@@ -8927,8 +8940,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114961205758043600}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 11
+  instantiationId: 11
   isRuntimeInstantiated: 0
 --- !u!114 &114147462181035602
 MonoBehaviour:
@@ -8965,8 +8978,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 10
+  instantiationId: 10
   isRuntimeInstantiated: 0
 --- !u!114 &114247642520699438
 MonoBehaviour:
@@ -9003,8 +9016,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999716085284838}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 9
+  instantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &114342432854071966
 MonoBehaviour:

@@ -292,6 +292,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (Actions != null)
         {
+            updateHealth();
             if (locked && startSinking)
             {
                 transform.Translate(transform.up * -2 * stats.sinkSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
@@ -527,7 +528,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             }
         }
 
-        this.updateHealth();
     }
 
 

@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 114461923634993986}
   - component: {fileID: 114385707832624558}
   - component: {fileID: 114653720656313088}
+  - component: {fileID: 65225627749950366}
   m_Layer: 9
   m_Name: Atlantean Ship
   m_TagString: Untagged
@@ -10148,6 +10149,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010802908112}
   m_Mesh: {fileID: 4300000, guid: dc0ca0e8189b9d24d8318550b69516e7, type: 3}
+--- !u!65 &65225627749950366
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121440}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.9629197, y: -11.614715, z: 14.2577095}
+  m_Center: {x: -0.12182624, y: 5.070915, z: -0.2534236}
 --- !u!65 &65972747919478380
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -10576,8 +10589,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114804807475055430}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 4
+  instantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114385707832624558
 MonoBehaviour:
@@ -10602,8 +10615,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114461923634993986}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 3
+  instantiationId: 3
   isRuntimeInstantiated: 0
 --- !u!114 &114454242921959622
 MonoBehaviour:
@@ -10628,8 +10641,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &114461923634993986
 MonoBehaviour:
