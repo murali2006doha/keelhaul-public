@@ -16,6 +16,10 @@ public class NetworkManager : MonoBehaviour
   private MatchMakingController instantiatedController;
   private Dictionary<int, bool> selectedMatchOptions;
   private AbstractGameManager instantiatedManager;
+
+	[SerializeField]
+	private Camera camera;
+
   void Start() {
         PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
         PhotonNetwork.offlineMode = offlineMode;
@@ -27,6 +31,10 @@ public class NetworkManager : MonoBehaviour
         else {
             PhotonNetwork.ConnectUsingSettings("0.2");
         }
+
+		if (FindObjectOfType<GameModeSelectSettings> ()) {
+			PhotonNetwork.offlineMode = false;
+		}
     }
 
    void OnJoinedLobby() {
@@ -39,6 +47,7 @@ public class NetworkManager : MonoBehaviour
         else {
             instantiatedController = Instantiate(matchMaker);
             instantiatedController.Initiailze(this.FindOrCreateRoom);
+			instantiatedController.GetComponent<Canvas> ().worldCamera = this.camera;
         }
      
    
@@ -101,6 +110,7 @@ public class NetworkManager : MonoBehaviour
       GameObject instantiated = Instantiate(NetworkedCharacterSelect);
       this.GetComponent<PhotonView>().RPC("ResetLowestRequiredPlayers",PhotonTargets.MasterClient);
       AbstractCharacterSelectController csc = instantiated.GetComponent<AbstractCharacterSelectController> ();
+			csc.gameObject.GetComponent<Canvas> ().worldCamera = this.camera;
       csc.OnSelectCharacterAction(
         () => {
           csc.setPlayerSelectSettings ();         
@@ -112,7 +122,7 @@ public class NetworkManager : MonoBehaviour
           StartSpawnProcess(csc.getPlayerSelectSettings().players[0].selectedCharacter, mapType);
           print(csc.getPlayerSelectSettings().players[0].selectedCharacter);
           Destroy(instantiated);
-
+					Destroy(this.camera);
       });
     }
   }

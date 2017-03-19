@@ -4,7 +4,7 @@ using System.Collections;
 public class CharacterSelection {
 
     public ShipEnum selectedCharacter;
-    public int team;
+    public int team; //make this part of the constructor so team id can be passed along with player
 
     public CharacterSelection(string selectedCharacter, PlayerActions actions)
     {
