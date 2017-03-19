@@ -100,8 +100,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             transform,
             () => {
                 uiManager.setBoostBar(0);
+                print("yay");   
+                uiManager.animManager.onBoost();
             },
             () => {
+                uiManager.animManager.onBoostRecharged();
             },
             Actions.Device == null
         );
@@ -486,7 +489,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             TurnRed();
             photonView.RPC("PlayHitSound", PhotonTargets.All, null);
             photonView.RPC("ToggleDamageStates", PhotonTargets.All, health);
-            
+            uiManager.animManager.onHit();
             if (!isKraken)
             {
                 photonView.RPC("AddDamageStats", PhotonPlayer.Find(id), id, type.ToString(), actualDamage, true);
@@ -588,6 +591,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         hookshotComponent.UnHook();
         dying = true;
+        uiManager.animManager.onDeath();
         SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
         centralCannon.gameObject.SetActive(false);
         bombController.activateAllBombs();
@@ -603,6 +607,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (GetComponent<PhotonView>().isMine)
         {
             uiManager.AddToKillFeed(killer,killerShip,victim,victimShip);
+            if(killer == ("P" + GetId()))
+            {
+                uiManager.animManager.onKill();
+            }
         }
     }
 

@@ -547,6 +547,7 @@ GameObject:
   - component: {fileID: 114000012600355090}
   - component: {fileID: 114000010593119232}
   - component: {fileID: 114000011437026334}
+  - component: {fileID: 114049010798346334}
   m_Layer: 5
   m_Name: Canvas1
   m_TagString: UIManagers
@@ -1283,6 +1284,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000010127360366}
+  - component: {fileID: 95996698840069210}
   m_Layer: 0
   m_Name: ShipUI
   m_TagString: Untagged
@@ -1906,6 +1908,23 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9ef009d2fd9b32f4eb5674b0fc895cc3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95996698840069210
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013816824398}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff486d797b6eb474eb25ef19f3f9fade, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2552,6 +2571,7 @@ MonoBehaviour:
   statsModal: {fileID: 114018267902462898}
   killText: {fileID: 1433749356898792}
   fadePanel: {fileID: 1000010884563002}
+  animManager: {fileID: 114049010798346334}
   killFeed: {fileID: 114058891263565914}
 --- !u!114 &114000011545541284
 MonoBehaviour:
@@ -4258,6 +4278,29 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114049010798346334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011349602102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcba8e868d9e24643b2f1300267a9b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95996698840069210}
+  boost: {fileID: 7400000, guid: 4610c34dbeeb3944fb7446df1abd45ac, type: 2}
+  boostRecharged: {fileID: 7400000, guid: 4610c34dbeeb3944fb7446df1abd45ac, type: 2}
+  healthLoss: {fileID: 7400000, guid: 1a8b4ca3bd0824e499db30f5fe6e105f, type: 2}
+  respawn: {fileID: 7400000, guid: 1a8b4ca3bd0824e499db30f5fe6e105f, type: 2}
+  alternateFireRecharged: {fileID: 7400000, guid: 1a8b4ca3bd0824e499db30f5fe6e105f,
+    type: 2}
+  alternateFire: {fileID: 7400000, guid: 1a8b4ca3bd0824e499db30f5fe6e105f, type: 2}
+  death: {fileID: 7400000, guid: 1a8b4ca3bd0824e499db30f5fe6e105f, type: 2}
+  bomb: {fileID: 7400000, guid: 1a8b4ca3bd0824e499db30f5fe6e105f, type: 2}
+  bombExplosion: {fileID: 7400000, guid: 1a8b4ca3bd0824e499db30f5fe6e105f, type: 2}
+  kill: {fileID: 7400000, guid: 1a8b4ca3bd0824e499db30f5fe6e105f, type: 2}
 --- !u!114 &114058891263565914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5647,7 +5690,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 94, y: -62.75}
+  m_AnchoredPosition: {x: 94, y: -62.74951}
   m_SizeDelta: {x: 90.5, y: 24.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000010728575602
@@ -6060,7 +6103,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 67.5, y: -36.25}
+  m_AnchoredPosition: {x: 67.5, y: -36.25006}
   m_SizeDelta: {x: 90.5, y: 24.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011986804356
@@ -6432,7 +6475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 54, y: -62}
+  m_AnchoredPosition: {x: 54, y: -61.99951}
   m_SizeDelta: {x: 90.5, y: 24.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012997527834
@@ -6699,7 +6742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 76.5, y: -27}
+  m_AnchoredPosition: {x: 76.5, y: -27.000061}
   m_SizeDelta: {x: 90.5, y: 24.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000013670796502
@@ -7188,7 +7231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 177.5, y: -49.25}
+  m_AnchoredPosition: {x: 177.5, y: -49.25049}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224484321179805434

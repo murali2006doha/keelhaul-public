@@ -53,6 +53,8 @@ public class UIManager : MonoBehaviour
     string temp;
     public GameObject fadePanel;
 
+    public UIAnimationManager animManager;
+
     bool highlight = true;
 
     public TMPro.TextMeshProUGUI killFeed;

@@ -108,7 +108,7 @@ public class ShipMotorComponent : MonoBehaviour
 
     void UpdateWake()
     {
-        wake.transform.rotation = shipTransform.rotation;
+        //wake.transform.rotation = shipTransform.rotation;
     }
 
     internal void UpdateInput(Vector3 input)
@@ -172,6 +172,8 @@ public class ShipMotorComponent : MonoBehaviour
     void ResetBoost()
     {
         boosted = false;
+        onBoostFinish();
+       
     }
 
 
