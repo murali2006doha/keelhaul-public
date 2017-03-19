@@ -99,8 +99,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             stats,
             transform,
             () => {
-                uiManager.setBoostBar(0);
-                print("yay");   
+                uiManager.setBoostBar(0);  
                 uiManager.animManager.onBoost();
             },
             () => {
