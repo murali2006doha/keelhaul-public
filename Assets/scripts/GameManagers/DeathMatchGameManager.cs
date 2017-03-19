@@ -387,7 +387,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
     public override string getShipById(int id)
     {
-        foreach(PlayerInput player in players)
+        foreach(PlayerInput player in FindObjectsOfType<PlayerInput>())
         {
             if (player.GetId() == id)
             {
@@ -525,7 +525,7 @@ public class DeathMatchGameManager : AbstractGameManager
         PlayerInput winner = null;
         GameObject worst = null;
         int points = 999;
-        foreach (PlayerInput ship in players)
+        foreach (PlayerInput ship in FindObjectsOfType<PlayerInput>())
         {
             ship.reset();
             ship.gameStats.titles = new List<Title>();
