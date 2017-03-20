@@ -105,6 +105,7 @@ public class SabotageGameManager : AbstractGameManager
             }
 
         }
+        onInitialize();
         LogAnalyticsGame.StartGame (players, this.countDown.GetComponent<CountDown>());
 
 
@@ -113,6 +114,7 @@ public class SabotageGameManager : AbstractGameManager
     [PunRPC]
     public void AddPlayer(int id)
     {
+        print("hyes");
         //        Debug.Log(gamePoints.Keys.Count.ToString());
         if (GetComponent<PhotonView>().isMine)
         {
@@ -282,39 +284,10 @@ public class SabotageGameManager : AbstractGameManager
         return gameOver;
     }
 
-    override public void acknowledgeKill(StatsInterface attacker, StatsInterface victim)
-    {
-        if(attacker is KrakenInput)
-        {
-            krakenPoints++;
-            kraken.uiManager.updatePoint(krakenPoints);
-            kraken.incrementPoint();
-            kraken.uiManager.setScoreBar(krakenPoints / krakenWinPoints);
-            ((KrakenInput)attacker).gameStats.numOfKills++;
-            if (krakenPoints == (krakenWinPoints - 1))
-            {
-
-                var textScripts = GameObject.FindObjectsOfType<ProgressScript>();
-                foreach (ProgressScript script in textScripts)
-                {
-                    var newText = lastPoint.Replace("Replace", "<color=purple>Kraken</color>");
-                    script.activatePopup(newText, "Kraken", "Kraken");
-                }
-
-            }
-            if (krakenPoints == krakenWinPoints && winner == null)
-            {
-                activateVictoryText();
-                Invoke("triggerVictory", 1.2f);
-                winner = kraken.gameObject;
-            }
-        } else if(attacker is PlayerInput)
-        {
-            ((PlayerInput)attacker).gameStats.numOfKills++;
-        }
+  
        
 
-    }
+    
     public void decrementPoint(KrakenInput kraken)
     {
         kraken.uiManager.decrementPoint();
@@ -738,10 +711,277 @@ public class SabotageGameManager : AbstractGameManager
 
     internal override int getNumberOfTeams()
     {
-        return shipPoints.Count;
+        return gamePoints.Count;
     }
     public override List<PlayerInput> getPlayers()
     {
         return players;
+    }
+
+    [PunRPC]
+    public void IncrementPoint(int id)
+    {
+
+        if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode)
+        {
+
+            players[0].uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
+
+        }
+        var players2 = getPlayers();
+        foreach (PlayerInput player in players2)
+        {
+            if (player.GetId() == id)
+            {
+                player.AddKillStats(id);
+                if (PhotonNetwork.offlineMode)
+                {
+                    player.uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
+                }
+                break;
+            }
+        }
+
+        if (gamePoints.ContainsKey(id.ToString()))
+        {
+
+            gamePoints[id.ToString()]++;
+            if (gamePoints[id.ToString()] >= playerWinPoints && PhotonNetwork.isMasterClient)
+            {
+                this.GetComponent<PhotonView>().RPC("TriggerNetworkedVictory", PhotonTargets.All, id);
+            }
+            else if (gamePoints[id.ToString()] == playerWinPoints - 1)
+            {
+                this.GetComponent<PhotonView>().RPC("ActivateLastPointPrompt", PhotonTargets.All, id);
+
+            }
+        }
+
+
+    }
+
+    [PunRPC]
+    private void ActivateLastPointPrompt(int id)
+    {
+        //TODO: Refactor into score keeper/kill feed controller
+        if (PhotonNetwork.offlineMode)
+        {
+            foreach (PlayerInput player in players)
+            {
+                if (player.GetId() == id)
+                {
+                    var newText = lastPoint.Replace("The Replace", "You").Replace("Needs", "Need");
+                    player.uiManager.GetComponentInChildren<ProgressScript>().activatePopup(newText, "You", "Ship");
+                }
+                else
+                {
+                    var newText = lastPoint.Replace("The Replace", "Player " + id.ToString());
+                    player.uiManager.GetComponentInChildren<ProgressScript>().activatePopup(newText, "They", "Ship");
+                }
+
+            }
+
+        }
+        else
+        {
+            var textScript = GameObject.FindObjectOfType<ProgressScript>();
+            if (PhotonNetwork.player.ID == id)
+            {
+                var newText = lastPoint.Replace("The Replace", "You").Replace("Needs", "Need");
+                textScript.activatePopup(newText, "You", "Ship");
+            }
+            else
+            {
+                var newText = lastPoint.Replace("The Replace", "Player " + id.ToString());
+                textScript.activatePopup(newText, "They", "Ship");
+            }
+        }
+    }
+
+
+    [PunRPC]
+    public void TriggerNetworkedVictory(int id)
+    {
+
+        //Calculate Stats
+
+        winnerId = id;
+        print("winnerID" + id);
+        SyncStats();
+
+        players[0].gameStarted = false;
+
+    }
+
+    private void SyncStats()
+    {
+        if (PhotonNetwork.offlineMode)
+        {
+            activateVictoryText();
+            Invoke("TriggerStatsAnimation", 1.4f);
+            return;
+        }
+
+
+        foreach (PlayerInput player in players)
+        {
+            var photonView = player.GetComponent<PhotonView>();
+
+            if (photonView.ownerId == PhotonNetwork.player.ID)
+            {
+                this.GetComponent<PhotonView>().RPC("SyncStat", PhotonTargets.Others, player.GetId(), ArrayHelper.ObjectToByteArray(player.gameStats));
+            }
+        }
+    }
+
+    [PunRPC]
+    public void SyncStat(int id, byte[] statsBinary)
+    {
+
+        foreach (PlayerInput player in players)
+        {
+            if (player.GetComponent<PhotonView>().ownerId == id)
+            {
+                FreeForAllStatistics stats = (FreeForAllStatistics)ArrayHelper.ByteArrayToObject(statsBinary);
+                player.gameStats = stats;
+                numOfStatsSynced++;
+                break;
+            }
+        }
+        if (numOfStatsSynced == players.Count)
+        {
+            activateVictoryText();
+            Invoke("TriggerStatsAnimation", 1.4f);
+
+        }
+    }
+
+    public void TriggerStatsAnimation()
+    {
+        triggerScreenAnimation();
+        triggerStatScreen();
+    }
+
+    private void triggerStatScreen()
+    {
+        screenSplitter.SetActive(false);
+        MapObjects map = GameObject.FindObjectOfType<MapObjects>();
+        map.gameOverCamera.gameObject.SetActive(true);
+        GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
+        gameOverUI.gameObject.SetActive(true);
+        List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
+        List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
+        List<GameObject> losers = new List<GameObject>();
+
+        PlayerInput winner = null;
+        GameObject worst = null;
+        int points = 999;
+        foreach (PlayerInput ship in players)
+        {
+            ship.reset();
+            ship.gameStats.titles = new List<Title>();
+            ship.setStatus(ShipStatus.Waiting);
+            if (ship.followCamera)
+            {
+                ship.followCamera.enabled = false;
+            }
+            if (ship.GetId() == winnerId)
+            {
+                gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Player " + winnerId.ToString());
+                gameOverUI.winners[0].name.text = !PhotonNetwork.offlineMode && winnerId == PhotonNetwork.player.ID ? "You" : "Player " + winnerId.ToString();
+                winner = ship;
+            }
+            else
+            {
+                losers.Add(ship.gameObject);
+                var point = gamePoints[ship.GetId().ToString()];
+                if (point <= points)
+                {
+                    worst = ship.gameObject;
+                    points = point;
+                }
+            }
+
+            shipStats.Add(ship.gameStats);
+        }
+        if (losers.Count == 3)
+        {
+            losers.Remove(worst);
+        }
+
+        winner.gameObject.transform.position = new Vector3(map.winnerLoc.transform.position.x, winner.gameObject.transform.position.y, map.winnerLoc.transform.position.z);
+        winner.gameObject.transform.localScale *= 2f;
+        winner.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+
+        //Losers
+        losers[0].transform.position = new Vector3(map.loser1loc.transform.position.x, losers[0].transform.position.y, map.loser1loc.transform.position.z);
+        losers[0].transform.position = map.loser1loc.transform.position;
+        losers[0].transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+
+        if (losers.Count > 1)
+        {
+            losers[1].transform.position = new Vector3(map.loser2loc.transform.position.x, losers[1].transform.position.y, map.loser2loc.transform.position.z);
+            losers[1].transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+        }
+
+        GameObject titlesPrefab = Resources.Load(PathVariables.titlesPath, typeof(GameObject)) as GameObject;
+        Titles titles = titlesPrefab.GetComponent<Titles>();
+        titles.calculateTitles(shipStats, krakenStats);
+
+        int num = 0;
+        foreach (Title title in winner.gameStats.titles)
+        {
+            if (num >= gameOverUI.winners[0].titles.Length)
+            {
+                break;
+            }
+            gameOverUI.winners[0].titles[num].text = title.name;
+            gameOverUI.winners[0].titleStats[num].text = title.statsString;
+            num++;
+        }
+
+        for (int x = 0; x < 2; x++)
+        {
+            num = 0;
+            PlayerInput loserInput = losers[x].GetComponent<PlayerInput>();
+            FreeForAllStatistics loserStat = null;
+            if (loserInput != null)
+            {
+                loserStat = loserInput.gameStats;
+                gameOverUI.losers[x].name.text = !PhotonNetwork.offlineMode && loserInput.GetId() == PhotonNetwork.player.ID ? "You" : "Player " + loserInput.GetId();
+            }
+
+            foreach (Title title in loserStat.titles)
+            {
+                if (num >= gameOverUI.winners[0].titles.Length)
+                {
+                    break;
+                }
+                gameOverUI.losers[x].titles[num].text = title.name;
+                gameOverUI.losers[x].titleStats[num].text = title.statsString;
+                num++;
+            }
+
+        }
+        Invoke("enableStats", 4f);
+    }
+
+    private void triggerScreenAnimation()
+    {
+        Texture2D texture = new Texture2D(Screen.width, Screen.height / 2, TextureFormat.RGB24, true);
+        texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height / 2), 0, 0);
+        texture.Apply();
+        Texture2D texture2 = new Texture2D(Screen.width, Screen.height / 2, TextureFormat.RGB24, true);
+        texture2.ReadPixels(new Rect(0, Screen.height / 2, Screen.width, Screen.height / 2), 0, 0);
+        texture2.Apply();
+        globalCanvas.panel1.texture = texture2;
+        globalCanvas.panel2.texture = texture;
+        globalCanvas.panel1.gameObject.SetActive(true);
+        globalCanvas.panel2.gameObject.SetActive(true);
+        Time.timeScale = 1f;
+        gameOver = true;
+
+        LogAnalyticsGame.EndGame(players, gameTime);
+
     }
 }
