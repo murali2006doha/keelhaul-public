@@ -106,6 +106,14 @@ public class SabotageGameManager : AbstractGameManager
 
         }
         onInitialize();
+        foreach (PlayerInput player in FindObjectsOfType<PlayerInput>())
+        {
+            if(player.GetId()== PhotonNetwork.player.ID || PhotonNetwork.offlineMode)
+            {
+                player.hookshotComponent.enabled = true;
+            }
+            gamePoints[player.GetId().ToString()] = 0;
+        }
         LogAnalyticsGame.StartGame (players, this.countDown.GetComponent<CountDown>());
 
 
@@ -114,7 +122,6 @@ public class SabotageGameManager : AbstractGameManager
     [PunRPC]
     public void AddPlayer(int id)
     {
-        print("hyes");
         //        Debug.Log(gamePoints.Keys.Count.ToString());
         if (GetComponent<PhotonView>().isMine)
         {
