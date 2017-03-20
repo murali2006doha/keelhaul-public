@@ -111,6 +111,8 @@ public class DeathMatchGameManager : AbstractGameManager
     void gameStart()
     {
         PlayerInput [] playerInputs = FindObjectsOfType<PlayerInput>();
+        players.Clear();
+        players.AddRange(playerInputs);
         foreach (PlayerInput player in playerInputs)
         {
             player.gameStarted = true;
@@ -353,7 +355,7 @@ public class DeathMatchGameManager : AbstractGameManager
             players[0].uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
             
         }
-        var players2 = GameObject.FindObjectsOfType<PlayerInput>();
+        var players2 = getPlayers();
         foreach (PlayerInput player in players2)
         {
             if(player.GetId() == id)
@@ -387,7 +389,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
     public override string getShipById(int id)
     {
-        foreach(PlayerInput player in FindObjectsOfType<PlayerInput>())
+        foreach(PlayerInput player in getPlayers())
         {
             if (player.GetId() == id)
             {
@@ -470,7 +472,6 @@ public class DeathMatchGameManager : AbstractGameManager
             return;
         }
 
-        var players = GameObject.FindObjectsOfType<PlayerInput>();
 
         foreach (PlayerInput player in players)
         {
@@ -486,7 +487,7 @@ public class DeathMatchGameManager : AbstractGameManager
     [PunRPC]
     public void SyncStat(int id, byte[] statsBinary)
     {
-        var players = GameObject.FindObjectsOfType<PlayerInput>();
+
         foreach (PlayerInput player in players)
         {
             if (player.GetComponent<PhotonView>().ownerId == id)
@@ -497,7 +498,7 @@ public class DeathMatchGameManager : AbstractGameManager
                 break;
             }
         }
-        if (numOfStatsSynced == players.Length)
+        if (numOfStatsSynced == players.Count)
         {
             activateVictoryText();
             Invoke("TriggerStatsAnimation", 1.4f);
@@ -521,11 +522,11 @@ public class DeathMatchGameManager : AbstractGameManager
         List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
         List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
         List<GameObject> losers = new List<GameObject>();
-        var players = GameObject.FindObjectsOfType<PlayerInput>();
+
         PlayerInput winner = null;
         GameObject worst = null;
         int points = 999;
-        foreach (PlayerInput ship in FindObjectsOfType<PlayerInput>())
+        foreach (PlayerInput ship in players)
         {
             ship.reset();
             ship.gameStats.titles = new List<Title>();
@@ -589,7 +590,7 @@ public class DeathMatchGameManager : AbstractGameManager
             num++;
         }
 
-        for (int x = 0; x < losers.Count; x++)
+        for (int x = 0; x < 2; x++)
         {
             num = 0;
             PlayerInput loserInput = losers[x].GetComponent<PlayerInput>();
