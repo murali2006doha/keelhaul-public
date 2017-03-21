@@ -34,7 +34,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 		
 		if (input != null && input.gameStarted) {
 
-			if (other.transform == scoreDestination.transform && hookshotComponent.isHooked() && other.gameObject.tag.Equals("ScoringZone")) {
+			if ( scoreDestination!=null && other.transform == scoreDestination.transform && hookshotComponent.isHooked() && other.gameObject.tag.Equals("ScoringZone")) {
 
 				handleScoringZone ();
 
