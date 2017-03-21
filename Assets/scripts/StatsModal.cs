@@ -6,13 +6,13 @@ using UnityEngine;
 public class StatsModal : MonoBehaviour {
 
 
-    DeathMatchGameManager gm;
+    AbstractGameManager gm;
     public GameObject gridLayoutContainer;
 
     //need player name, points, isteam or not, team name if isteam
     public void InitializeStats() {
-        DeathMatchGameManager[] x = FindObjectsOfType<DeathMatchGameManager> ();
-        foreach (DeathMatchGameManager manager in FindObjectsOfType<DeathMatchGameManager> ()) {
+        AbstractGameManager[] x = FindObjectsOfType<AbstractGameManager> ();
+        foreach (AbstractGameManager manager in FindObjectsOfType<AbstractGameManager> ()) {
             if (manager.gameObject.GetComponent<PhotonView>().isMine) {
                 gm = manager;
             }

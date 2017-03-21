@@ -1061,4 +1061,15 @@ public class SabotageGameManager : AbstractGameManager
         LogAnalyticsGame.EndGame(players, gameTime);
 
     }
+
+    public override Dictionary<string, int> getGamepoints()
+    {
+
+        return gamePoints;
+    }
+
+    public override int getPlayerPointsToWIn()
+    {
+        return playerWinPoints;
+    }
 }

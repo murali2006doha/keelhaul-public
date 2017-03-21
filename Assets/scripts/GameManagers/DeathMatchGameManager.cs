@@ -776,12 +776,12 @@ public class DeathMatchGameManager : AbstractGameManager
     }
 
 
-    public Dictionary<string, int> getGamepoints() {
+    public override Dictionary<string, int> getGamepoints() {
 
         return gamePoints;
     }
 
-    public int getPlayerPointsToWIn () {
+    public override int getPlayerPointsToWIn () {
         return playerWinPoints;
     }
 
