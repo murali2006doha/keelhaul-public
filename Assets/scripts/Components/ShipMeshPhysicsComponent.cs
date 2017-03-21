@@ -88,7 +88,6 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 		hookshotComponent.setBarrelPosition (newPos);
         SabotageGameManager sabManager = (SabotageGameManager) manager;
         sabManager.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All,input.GetId());
-        input.GetComponent<PhotonView>().RPC("AddBarrelScoreToKillFeed", PhotonTargets.All, "P" + input.GetId(), manager.getShipById(input.GetId()));
         uiManager.targetBarrel ();
 		LightPillar pillar = scoreDestination.transform.parent.GetComponentInChildren<LightPillar> ();
 		if (pillar != null) {
@@ -150,7 +149,7 @@ void handleBombExplosion (Collider other) {
 
 	void handleKrakenArm (Collider other) {
 		KrakenInput kraken = other.gameObject.transform.root.GetComponent<KrakenInput> ();
-	//	input.hit (stats.kraken_damage);
+	    input.hit (stats.kraken_damage,kraken.id,true);
 		other.gameObject.transform.root.GetComponent<KrakenInput> ().vibrate (.5f, .5f);
 	}
 }

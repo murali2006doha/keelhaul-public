@@ -115,6 +115,7 @@ public class SabotageGameManager : AbstractGameManager
 
             mapObjects.islands[z].gameObject.SetActive(false);
         }
+       
         barrel = FindObjectOfType<Barrel>();
 
 
@@ -168,6 +169,8 @@ public class SabotageGameManager : AbstractGameManager
         if (kraken)
         {
             kraken.gameStarted = true;
+            kraken.id = players.Count + 1;
+            gamePoints[kraken.id.ToString()] = 0;
         }
 
         gameTime += Time.deltaTime;
@@ -765,6 +768,13 @@ public class SabotageGameManager : AbstractGameManager
                 break;
             }
         }
+        int winPoints = playerWinPoints;
+
+        if (kraken.id == id)
+        {
+            kraken.uiManager.updatePoint(int.Parse((kraken.uiManager.points.text)) + 1);
+            winPoints = krakenWinPoints;
+        }
 
         
 
@@ -772,11 +782,11 @@ public class SabotageGameManager : AbstractGameManager
         {
 
             gamePoints[id.ToString()]++;
-            if (gamePoints[id.ToString()] >= playerWinPoints && PhotonNetwork.isMasterClient)
+            if (gamePoints[id.ToString()] >= winPoints && PhotonNetwork.isMasterClient)
             {
                 this.GetComponent<PhotonView>().RPC("TriggerNetworkedVictory", PhotonTargets.All, id);
             }
-            else if (gamePoints[id.ToString()] == playerWinPoints - 1)
+            else if (gamePoints[id.ToString()] == winPoints - 1)
             {
                 this.GetComponent<PhotonView>().RPC("ActivateLastPointPrompt", PhotonTargets.All, id);
 
@@ -794,6 +804,10 @@ public class SabotageGameManager : AbstractGameManager
             {
                 return player.type.ToString();
             }
+        }
+        if(kraken.id == id)
+        {
+            return ShipEnum.Kraken.ToString();
         }
         return "";
     }
@@ -911,7 +925,7 @@ public class SabotageGameManager : AbstractGameManager
         List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
         List<GameObject> losers = new List<GameObject>();
 
-        PlayerInput winner = null;
+        GameObject winner = null;
         GameObject worst = null;
         int points = 999;
         foreach (PlayerInput ship in players)
@@ -927,7 +941,7 @@ public class SabotageGameManager : AbstractGameManager
             {
                 gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Player " + winnerId.ToString());
                 gameOverUI.winners[0].name.text = !PhotonNetwork.offlineMode && winnerId == PhotonNetwork.player.ID ? "You" : "Player " + winnerId.ToString();
-                winner = ship;
+                winner = ship.gameObject;
             }
             else
             {
@@ -942,20 +956,31 @@ public class SabotageGameManager : AbstractGameManager
 
             shipStats.Add(ship.gameStats);
         }
-        if (includeKraken)
+        if(winnerId == kraken.id)
         {
             kraken.gameStarted = false;
-            losers.Add(kraken.gameObject);
-            krakenStats.Add(kraken.gameStats);
+            gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Player " + winnerId.ToString());
+            gameOverUI.winners[0].name.text = !PhotonNetwork.offlineMode && winnerId == PhotonNetwork.player.ID ? "You" : "Player " + winnerId.ToString();
+            winner = kraken.gameObject;
         }
+        else
+        {
+            if (includeKraken)
+            {
+                kraken.gameStarted = false;
+                losers.Add(kraken.gameObject);
+                krakenStats.Add(kraken.gameStats);
+            }
+        }
+       
         if (losers.Count == 3)
         {
             losers.Remove(worst);
         }
 
-        winner.gameObject.transform.position = new Vector3(map.winnerLoc.transform.position.x, winner.gameObject.transform.position.y, map.winnerLoc.transform.position.z);
-        winner.gameObject.transform.localScale *= 2f;
-        winner.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+        winner.transform.position = new Vector3(map.winnerLoc.transform.position.x, winner.transform.position.y, map.winnerLoc.transform.position.z);
+        winner.transform.localScale *= 2f;
+        winner.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
 
         //Losers
         losers[0].transform.position = new Vector3(map.loser1loc.transform.position.x, losers[0].transform.position.y, map.loser1loc.transform.position.z);
@@ -973,7 +998,8 @@ public class SabotageGameManager : AbstractGameManager
         titles.calculateTitles(shipStats, krakenStats);
 
         int num = 0;
-        foreach (Title title in winner.gameStats.titles)
+        FreeForAllStatistics gameStats = winner.GetComponent<PlayerInput>()!=null? winner.GetComponent<PlayerInput>().gameStats: winner.GetComponent<KrakenInput>().gameStats;
+        foreach (Title title in gameStats.titles)
         {
             if (num >= gameOverUI.winners[0].titles.Length)
             {

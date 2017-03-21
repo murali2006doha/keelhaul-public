@@ -301,10 +301,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (Actions != null)
         {
             updateHealth();
-            if (locked && startSinking)
-            {
-                transform.Translate(transform.up * -2 * stats.sinkSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
-            }
             if (hasWon)
             {
                 if (Actions.Green)
@@ -351,13 +347,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     { //not being used yet?
         if (!invincible)
         {
-            print("hyes");
-            manager.acknowledgeKill(kraken, this);
-            locked = true;
-            startSinking = true;
-            setStatus(ShipStatus.Dead);
-
-            Invoke("takeSinkDamage", stats.sinkTime);
+            print("wwat");
+            
+            motor.StartSinking();
+            Invoke("takeSinkDamage", 1f);
         }
     }
 
@@ -378,14 +371,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void takeSinkDamage()
     {
-        if (!invincible)
-        {
+           
             gameStats.numOfTimesSubmergedByKraken += 1;
             hookshotComponent.UnHook();
-       //     hit(20);
-            startSinking = false;
-            locked = false;
-        }
+            hit(health, kraken.id, true);
     }
 
 
@@ -513,6 +502,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             else
             {
                 gameStats.addTakenDamage("kraken", actualDamage);
+
+
             }
                 if (health <= 0)
             {
@@ -524,11 +515,13 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 {
                     manager1.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
                 }
-                die(id);
-                foreach(PlayerInput player in FindObjectsOfType<PlayerInput>())
+                if (isKraken)
                 {
-                    player.GetComponent<PhotonView>().RPC("AddToKillFeed", PhotonTargets.All, "P" + id, manager.getShipById(id),"P" + GetId(),type.ToString());
+                    SabotageGameManager sabManager = (SabotageGameManager)manager;
+                    sabManager.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All, id);
                 }
+                die(id);
+                SendToKillFeed(id);
             }
             else
             {
@@ -538,8 +531,26 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     }
 
+    private void SendToKillFeed(int id)
+    {
+        foreach (PlayerInput player in FindObjectsOfType<PlayerInput>())
+        {
+            player.GetComponent<PhotonView>().RPC("AddToKillFeed", PhotonTargets.All, "P" + id, manager.getShipById(id), "P" + GetId(), type.ToString());
+        }
+        if (kraken)
+        {
+            kraken.uiManager.AddToKillFeed("P" + id, manager.getShipById(id), "P" + GetId(), type.ToString());
+        }
+    }
 
-
+    public void SendBarrelScoreToKillFeed()
+    {
+        GetComponent<PhotonView>().RPC("AddBarrelScoreToKillFeed", PhotonTargets.All, "P" + GetId(), type.ToString());
+        if (kraken)
+        {
+            kraken.uiManager.AddBarrelScoreToKillFeed("P" + GetId(), type.ToString());
+        }
+    }
 
     public void TurnRed()
     {

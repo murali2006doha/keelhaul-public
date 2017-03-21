@@ -101,7 +101,7 @@ public class CannonBall : Photon.MonoBehaviour {
 					KrakenInput controller = collider.GetComponentInParent<KrakenInput> ();
 					Instantiate (krakenHit, transform.position, transform.rotation);
 					if (controller != null) {
-						controller.hit (damage * reflectMult,player);
+						controller.hit (damage * reflectMult,player.GetId());
 					}
 
 				} else {

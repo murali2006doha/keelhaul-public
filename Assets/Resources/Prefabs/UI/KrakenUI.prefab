@@ -2323,9 +2323,8 @@ MonoBehaviour:
   altFireBar: {fileID: 0}
   scoreBar: {fileID: 0}
   scorePosition: {fileID: 1000012422937824}
-  scoreDestinationPosition: {fileID: 0}
-  scoreAnimation: {fileID: 1348333835980586, guid: 4b9d57cdf7a62b74795d1092245d7484,
-    type: 2}
+  scoreDestinationPosition: {fileID: 1000014080934652}
+  scoreAnimation: {fileID: 122746, guid: 1b98c97f0cb3a8f4499764770af6f51f, type: 2}
   compassArrow: {fileID: 224000010444319858}
   wobbleSpeed: 3.5
   boostBar: {fileID: 114111246005289928}

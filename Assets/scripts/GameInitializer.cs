@@ -537,7 +537,7 @@ public class GameInitializer : MonoBehaviour {
             }
             else if (shipSelections.Count == 1)
             {
-                camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
+                camera1.GetComponentInParent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
             }
             else
             {
