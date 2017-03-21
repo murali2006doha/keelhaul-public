@@ -120,8 +120,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipMeshComponent.Initialize(
             this, 
             stats, 
-            uiManager, 
-            scoreDestination, 
+            uiManager,
             hookshotComponent, 
             manager, 
             bombController,
@@ -160,6 +159,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     }
 
+    internal void SetUpScoreDestination(GameObject scoreDestination)
+    {
+        if (hookshotComponent)
+        {
+            hookshotComponent.destination = scoreDestination;
+            shipMeshComponent.scoreDestination = scoreDestination;
+        }
+    }
+
     [PunRPC]
     public void InstantiateWorldSpaceCanvas(int shipNum) {
       worldCanvas = Instantiate(worldCanvas);
@@ -181,7 +189,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             var aimPhysics = aimComponent.GetComponent<AimPhysicsComponent>();
             if (aimPhysics)
             {
-                hookshotComponent.Initialize(uiManager, gameStats, aimPhysics.isAimTouchingBarrel,scoreDestination);
+                hookshotComponent.Initialize(uiManager, gameStats, aimPhysics.isAimTouchingBarrel);
             }
 
         }
@@ -605,6 +613,19 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         {
             uiManager.AddToKillFeed(killer,killerShip,victim,victimShip);
             if(killer == ("P" + GetId()))
+            {
+                uiManager.animManager.onKill();
+            }
+        }
+    }
+
+    [PunRPC]
+    public void AddBarrelScoreToKillFeed(string player, string ship)
+    {
+        if (GetComponent<PhotonView>().isMine)
+        {
+            uiManager.AddBarrelScoreToKillFeed(player,ship);
+            if (player == ("P" + GetId()))
             {
                 uiManager.animManager.onKill();
             }

@@ -108,12 +108,11 @@ public class HookshotComponent : MonoBehaviour
 
     }
 
-    internal void Initialize(UIManager uiManager, FreeForAllStatistics gameStats, Func<bool> aimCheckFunction, GameObject destination)
+    internal void Initialize(UIManager uiManager, FreeForAllStatistics gameStats, Func<bool> aimCheckFunction)
     {
         stats = gameStats;
         isAimOnBarrel = aimCheckFunction;
         this.uiManager = uiManager;
-        this.destination = destination;
 
     }
 

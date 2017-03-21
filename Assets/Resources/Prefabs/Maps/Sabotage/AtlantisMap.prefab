@@ -4675,7 +4675,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1384270566702174}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.41, y: 0, z: -1.16}
+  m_LocalPosition: {x: 5.41, y: 0, z: -3.82}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4660186003112518}
@@ -7964,7 +7964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoringZones:
   - {fileID: 1065394714563510}
-  - {fileID: 1065394714563510}
+  - {fileID: 1156650479480170}
   - {fileID: 1893805484896310}
   - {fileID: 1515636259444334}
   shipStartingLocations:
@@ -8206,7 +8206,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0.060062014, z: 0.06}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 5.41, y: 0.24024773, z: -0.9200001}
+  m_ConnectedAnchor: {x: 5.41, y: 0.24024773, z: -3.58}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:

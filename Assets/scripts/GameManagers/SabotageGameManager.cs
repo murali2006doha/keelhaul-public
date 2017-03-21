@@ -46,6 +46,7 @@ public class SabotageGameManager : AbstractGameManager
     MonoBehaviour winnerScript;
     GameObject winner;
     int krakenPoints;
+    Barrel barrel;
 
     int numOfStatsSynced = 1;
     int winnerId = -1;
@@ -63,10 +64,7 @@ public class SabotageGameManager : AbstractGameManager
 
         gamePoints = new Dictionary<string, int>();
         //Disable unused islands
-        for (int z = shipPoints.Count; z < mapObjects.islands.Length; z++)
-        {
-            mapObjects.islands[z].gameObject.SetActive(false);
-        }
+
 
         this.RunStartUpActions();
         barrels = GameObject.FindGameObjectsWithTag("barrel");
@@ -79,10 +77,7 @@ public class SabotageGameManager : AbstractGameManager
             barrels_start_pos[x] = barrel.transform.position;
             x++;
         }
-        if (includeKraken)
-        {
-            kraken = GameObject.FindObjectOfType<KrakenInput>();
-        }
+        
         if(includeKraken && shipPoints.Count == 1)
         {
             //Temp fix
@@ -114,6 +109,15 @@ public class SabotageGameManager : AbstractGameManager
             }
             gamePoints[player.GetId().ToString()] = 0;
         }
+
+        for (int z = gamePoints.Count; z < mapObjects.islands.Length; z++)
+        {
+
+            mapObjects.islands[z].gameObject.SetActive(false);
+        }
+        barrel = FindObjectOfType<Barrel>();
+
+
         LogAnalyticsGame.StartGame (players, this.countDown.GetComponent<CountDown>());
 
 
@@ -145,12 +149,22 @@ public class SabotageGameManager : AbstractGameManager
 
     void gameStart()
     {
+        MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
+        if (includeKraken)
+        {
+            kraken = GameObject.FindObjectOfType<KrakenInput>();
+        }
         PlayerInput[] playerInputs = FindObjectsOfType<PlayerInput>();
         foreach (PlayerInput player in playerInputs)
         {
             player.gameStarted = true;
             player.setStatus(ShipStatus.Alive);
+            player.SetUpScoreDestination(mapObjects.scoringZones[(player.teamGame ? (player.teamNo + 1) : player.GetId()) % gamePoints.Count]);
+            mapObjects.islands[(player.teamGame ? (player.teamNo + 1) : player.GetId()) % gamePoints.Count].enemyShips.Add(player);
+            
         }
+        players.Clear();
+        players.AddRange(playerInputs);
         if (kraken)
         {
             kraken.gameStarted = true;
@@ -740,7 +754,10 @@ public class SabotageGameManager : AbstractGameManager
         {
             if (player.GetId() == id)
             {
-                player.AddKillStats(id);
+                player.GetComponent<HookshotComponent>().UnHook();
+                player.GetComponent<HookshotComponent>().enabled = false;
+                StartCoroutine(teleportBarrel(player, barrel.gameObject));
+                player.GetComponent<HookshotComponent>().enabled = true;
                 if (PhotonNetwork.offlineMode)
                 {
                     player.uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
@@ -748,6 +765,8 @@ public class SabotageGameManager : AbstractGameManager
                 break;
             }
         }
+
+        
 
         if (gamePoints.ContainsKey(id.ToString()))
         {
@@ -765,6 +784,18 @@ public class SabotageGameManager : AbstractGameManager
         }
 
 
+    }
+
+    public override string getShipById(int id)
+    {
+        foreach (PlayerInput player in getPlayers())
+        {
+            if (player.GetId() == id)
+            {
+                return player.type.ToString();
+            }
+        }
+        return "";
     }
 
     [PunRPC]
@@ -911,6 +942,12 @@ public class SabotageGameManager : AbstractGameManager
 
             shipStats.Add(ship.gameStats);
         }
+        if (includeKraken)
+        {
+            kraken.gameStarted = false;
+            losers.Add(kraken.gameObject);
+            krakenStats.Add(kraken.gameStats);
+        }
         if (losers.Count == 3)
         {
             losers.Remove(worst);
@@ -946,7 +983,7 @@ public class SabotageGameManager : AbstractGameManager
             gameOverUI.winners[0].titleStats[num].text = title.statsString;
             num++;
         }
-
+        int mins = Math.Min(losers.Count, 2);
         for (int x = 0; x < 2; x++)
         {
             num = 0;
@@ -956,6 +993,13 @@ public class SabotageGameManager : AbstractGameManager
             {
                 loserStat = loserInput.gameStats;
                 gameOverUI.losers[x].name.text = !PhotonNetwork.offlineMode && loserInput.GetId() == PhotonNetwork.player.ID ? "You" : "Player " + loserInput.GetId();
+            }
+            else
+            {
+                KrakenInput krakn = losers[x].GetComponent<KrakenInput>();
+                loserStat = krakn.gameStats;
+                gameOverUI.losers[x].name.text = "Kraken";
+                
             }
 
             foreach (Title title in loserStat.titles)

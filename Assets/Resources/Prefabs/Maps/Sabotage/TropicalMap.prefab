@@ -6391,7 +6391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoringZones:
   - {fileID: 1006822137769854}
-  - {fileID: 1006822137769854}
+  - {fileID: 1493755746387322}
   - {fileID: 1364963435508800}
   - {fileID: 1315255129050872}
   shipStartingLocations:

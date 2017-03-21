@@ -2854,7 +2854,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1676651324147864}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.41, y: 0, z: -1.16}
+  m_LocalPosition: {x: 5.72, y: 0, z: -3.74}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4072133674543062}
@@ -7810,7 +7810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoringZones:
   - {fileID: 1347721038830454}
-  - {fileID: 1347721038830454}
+  - {fileID: 1706490478417694}
   - {fileID: 1674798726918208}
   - {fileID: 1687672898300510}
   shipStartingLocations:
