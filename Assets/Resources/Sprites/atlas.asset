@@ -72,6 +72,20 @@ MonoBehaviour:
     unicode: 0
     pivot: {x: -254.00185, y: 248.5}
     sprite: {fileID: 21300006, guid: 1f4a377f6c204c5479f26dcc454ccba8, type: 3}
+  - id: 4
+    x: 1524.0111
+    y: 0
+    width: 508.0037
+    height: 500
+    xOffset: 0
+    yOffset: 420
+    xAdvance: 508.0037
+    scale: 1
+    name: Kraken
+    hashCode: -1308648296
+    unicode: 0
+    pivot: {x: -254.00185, y: 248.5}
+    sprite: {fileID: 21300006, guid: 1f4a377f6c204c5479f26dcc454ccba8, type: 3}
   fallbackSpriteAssets: []
 --- !u!21 &21930795157316696
 Material:

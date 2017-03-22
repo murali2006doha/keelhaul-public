@@ -21,7 +21,7 @@ public class GameInitializer : MonoBehaviour {
     public bool isFirstControllerKraken = false;
 
     List<PlayerInput> players = new List<PlayerInput>();
-    DeathMatchGameManager deathMatchManager;
+
 
     public MapEnum map;
     public GameTypeEnum gameType;
@@ -34,6 +34,8 @@ public class GameInitializer : MonoBehaviour {
     public bool isMaster;
     public int playerId;
     public Action onGameManagerCreated;
+
+    AbstractGameManager manager;
 
     void Start()
     {
@@ -152,8 +154,18 @@ public class GameInitializer : MonoBehaviour {
     {
         if (gameType == GameTypeEnum.Sabotage)
         {
-            GameObject manager = Instantiate(Resources.Load(PathVariables.sabotageManager, typeof(GameObject)), this.transform.parent) as GameObject;
-            SabotageGameManager sabManager = manager.GetComponent<SabotageGameManager>();
+
+            SabotageGameManager sabManager= null;
+            if ((!PhotonNetwork.offlineMode && PhotonNetwork.isMasterClient) || (PhotonNetwork.offlineMode))
+            {
+                GameObject manager = PhotonNetwork.Instantiate(PathVariables.sabotageManager, transform.position,Quaternion.identity,0);
+                sabManager = manager.GetComponent<SabotageGameManager>();
+            }
+            else
+            {
+                sabManager = FindObjectOfType<SabotageGameManager>();
+            }
+           
             sabManager.cams = cams;
             sabManager.ps = ps;
             sabManager.isTeam = isTeam;
@@ -178,10 +190,16 @@ public class GameInitializer : MonoBehaviour {
                 }
             }
 
+            sabManager.onInitialize = onInitialize;
+            manager = sabManager;
+            onGameManagerCreated();
+
+            
+
         } else if (gameType == GameTypeEnum.DeathMatch)
         {
 
-    
+            DeathMatchGameManager deathMatchManager = null;
 
             if ((!PhotonNetwork.offlineMode && PhotonNetwork.isMasterClient) || (PhotonNetwork.offlineMode))
             {
@@ -218,6 +236,7 @@ public class GameInitializer : MonoBehaviour {
                 }
             }
             deathMatchManager.onInitialize = onInitialize;
+            manager = deathMatchManager;
             if (onGameManagerCreated != null) {
                 onGameManagerCreated();
             }
@@ -314,11 +333,11 @@ public class GameInitializer : MonoBehaviour {
                     if (PhotonNetwork.offlineMode)
                     {
 
-                        deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
                     }
                     else
                     {
-                        deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                     }
 
                 }
@@ -343,11 +362,11 @@ public class GameInitializer : MonoBehaviour {
                     shipIndex++;
                     if (PhotonNetwork.offlineMode)
                     {
-                        deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
                     }
                     else
                     {
-                        deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                     }
                 }
                 else
@@ -368,11 +387,11 @@ public class GameInitializer : MonoBehaviour {
                 num = createShipWithName(num, shipSelections[z]);
                 if (PhotonNetwork.offlineMode)
                 {
-                    deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                    manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
                 }
                 else
                 {
-                    deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
+                    manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                 }
             }
 
@@ -393,11 +412,11 @@ public class GameInitializer : MonoBehaviour {
                 num = createShipWithName(GetRightShipSelection(num), shipSelections[z]);
                 if (PhotonNetwork.offlineMode)
                 {
-                    deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                    manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
                 }
                 else
                 {
-                    deathMatchManager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
+                    manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, playerId);
                 }
             }
 
@@ -511,14 +530,14 @@ public class GameInitializer : MonoBehaviour {
             var camera1 = newCamera.GetComponentInChildren<Camera>();
             setUpCameraOnCanvas(instantiatedUI, camera1);
 
-            camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
+            camera1.GetComponentInParent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
             if (numOfKrakens + shipSelections.Count >= 4)
             {
                 camera1.GetComponentInParent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
             }
             else if (shipSelections.Count == 1)
             {
-                camera1.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
+                camera1.GetComponentInParent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
             }
             else
             {

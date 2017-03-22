@@ -49,9 +49,7 @@ public class ShipInstantiator : MonoBehaviour {
             }
         }
         //TODO: Ship instantiator is too tied to sabotage game mode. Refactor out.
-        Debug.Log("num of bases :" + numOfBases.ToString());
-        ship.scoreDestination = mapObjects.scoringZones[(ship.teamGame ? (ship.teamNo + 1) : num) % numOfBases];
-        mapObjects.islands[(ship.teamGame ? (ship.teamNo + 1) : num) % numOfBases].enemyShips.Add(ship);
+
 
         if (ship.teamGame)
         {

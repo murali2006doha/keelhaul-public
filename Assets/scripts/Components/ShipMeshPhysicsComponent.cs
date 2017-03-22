@@ -7,19 +7,19 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 	ShipStats stats;
 	UIManager uiManager;
 	PlayerInput input;
-	GameObject scoreDestination;
+	
 	AbstractGameManager manager;
 	HookshotComponent hookshotComponent;
 	BombControllerComponent bombController;
     Action<float,int, bool> takeDamageAction { get; set; }
     [Header("Scene Variables")]
 	public GameObject rammingSprite;
+    public GameObject scoreDestination;
 
-	internal void Initialize(
-        PlayerInput input, ShipStats stats, UIManager uiManager, GameObject scoreDestination, 
+    internal void Initialize(
+        PlayerInput input, ShipStats stats, UIManager uiManager, 
 		HookshotComponent hookshotComponent, AbstractGameManager manager, BombControllerComponent bombController, Action<float,int,bool> takeDamage) {
 		this.input = input;
-		this.scoreDestination = scoreDestination;
 		this.hookshotComponent = hookshotComponent;
 		this.manager = manager;;
 		this.uiManager = uiManager;
@@ -34,7 +34,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 		
 		if (input != null && input.gameStarted) {
 
-			if (other.transform == scoreDestination.transform && hookshotComponent.isHooked() && other.gameObject.tag.Equals("ScoringZone")) {
+			if ( scoreDestination!=null && other.transform == scoreDestination.transform && hookshotComponent.isHooked() && other.gameObject.tag.Equals("ScoringZone")) {
 
 				handleScoringZone ();
 
@@ -86,9 +86,9 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 	void handleScoringZone () {
 		Vector3 newPos = Vector3.Lerp (hookshotComponent.getBarrelPosition(), scoreDestination.transform.position, Time.time);
 		hookshotComponent.setBarrelPosition (newPos);
-		manager.acknowledgeBarrelScore (input, hookshotComponent.barrel);
-		//manager.incrementPoint (this, hook_component.barrel);
-		uiManager.targetBarrel ();
+        SabotageGameManager sabManager = (SabotageGameManager) manager;
+        sabManager.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All,input.GetId());
+        uiManager.targetBarrel ();
 		LightPillar pillar = scoreDestination.transform.parent.GetComponentInChildren<LightPillar> ();
 		if (pillar != null) {
 			pillar.activatePillar ();
@@ -149,7 +149,7 @@ void handleBombExplosion (Collider other) {
 
 	void handleKrakenArm (Collider other) {
 		KrakenInput kraken = other.gameObject.transform.root.GetComponent<KrakenInput> ();
-	//	input.hit (stats.kraken_damage);
+	    input.hit (stats.kraken_damage,kraken.id,true);
 		other.gameObject.transform.root.GetComponent<KrakenInput> ().vibrate (.5f, .5f);
 	}
 }

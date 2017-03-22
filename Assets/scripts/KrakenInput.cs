@@ -65,9 +65,10 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     bool blockMovement = false;
     float submergeTimer;
 
+    public int id;
+
     public FreeForAllStatistics gameStats;
-
-
+    
 
     void Start()
     {
@@ -80,7 +81,8 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     {
 
         health = stats.stages[currentStage].max_health;
-        startingPoint = transform.position;
+        startingPoint = FindObjectOfType<Barrel>().transform.position;
+        this.transform.position = startingPoint;
         currentStage = 0;
         cc = GetComponent<CharacterController>();
         krakenArmPosition = transform.Find("KrakenArm");
@@ -106,6 +108,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
         gameStats = new FreeForAllStatistics();
         submergeTimer = stats.stages[currentStage].submergeTime;
+        
 
     }
 
@@ -558,7 +561,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     }
 
 
-    public void hit(float dmg = 0, StatsInterface attacker = null)
+    public void hit(float dmg = 0, int id = 0)
     {
 
         if (dmg == 0)
@@ -570,12 +573,18 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
         if (!animator.isCurrentAnimName("death"))
         {
-
-            if (attacker != null)
+            
+            var players = manager.getPlayers();
+            foreach (PlayerInput player in players)
             {
-                ((PlayerInput)attacker).gameStats.addGivenDamage("kraken", dmg);
-                gameStats.addTakenDamage(((PlayerInput)attacker).type.ToString(), dmg);
-               
+                if (player.GetId() == id)
+                {
+                    gameStats.addTakenDamage(player.type.ToString(), dmg);
+                    if (PhotonNetwork.offlineMode)
+                    {
+                        player.gameStats.addGivenDamage(ShipEnum.Kraken.ToString(), dmg);
+                    }
+                }
             }
 
             health -= dmg;
@@ -583,7 +592,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (health <= 0)
             {
-                manager.acknowledgeKill(attacker, this);
+                SendToKillFeed(id);
                 vibrate(1f, 1f);
                 die();
             }
@@ -594,6 +603,15 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 				
         }
 
+    }
+
+    private void SendToKillFeed(int id)
+    {
+        foreach (PlayerInput player in FindObjectsOfType<PlayerInput>())
+        {
+            player.GetComponent<PhotonView>().RPC("AddToKillFeed", PhotonTargets.All, "P" + id, manager.getShipById(id), "P" + this.id, ShipEnum.Kraken.ToString());
+        }
+        uiManager.AddToKillFeed("P" + id, manager.getShipById(id), "P" + this.id, ShipEnum.Kraken.ToString());
     }
 
 
