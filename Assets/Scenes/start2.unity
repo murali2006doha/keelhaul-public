@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -607,7 +607,7 @@ MonoBehaviour:
   withKeyboard: 1
   start: {fileID: 926428004}
   numPlayers: 4
-  characters: 00000000010000000200000003000000
+  characters: 0000000001000000020000000300000004000000
   loadingScreen: {fileID: 831558787}
 --- !u!222 &281116577
 CanvasRenderer:
@@ -3629,7 +3629,10 @@ MonoBehaviour:
   players: []
   isTeam: 0
   gameType: 0
+  map: 0
   includeKraken: 0
+  isOnline: 0
+  mode: 
 --- !u!4 &1868484410
 Transform:
   m_ObjectHideFlags: 0

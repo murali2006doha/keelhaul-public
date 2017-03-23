@@ -277,10 +277,19 @@ public class GameInitializer : MonoBehaviour {
                 if (player.selectedCharacter == ShipEnum.Kraken)
                 {
                     createKraken(map, player.Actions);
+                    if (PhotonNetwork.offlineMode)
+                    {
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, ps.players.Count);
+                    }
                 }
                 else
                 {
-                    num = createPlayerShip(num, player);
+
+                    num = createShipWithName(num, player);
+                    if (PhotonNetwork.offlineMode)
+                    {
+                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
+                    }
                 }
             }
 

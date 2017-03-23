@@ -35,8 +35,9 @@ public class LobbyManager : MonoBehaviour {
 
 	IEnumerator LoadNewScene() {
 		//To do: move this logic out of playerSignIn, make it more generic
-		AsyncOperation async = SceneManager.LoadSceneAsync(GlobalVariables.getMapToLoad());
-		while (!async.isDone) {
+		AsyncOperation async = SceneManager.LoadSceneAsync("Game");
+
+        while (!async.isDone) {
 			yield return null;
 		}
 
