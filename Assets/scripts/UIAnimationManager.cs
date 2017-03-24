@@ -18,12 +18,14 @@ public class UIAnimationManager : MonoBehaviour {
 
     public void onBoost()
     {
-        anim.Play(boost.name);
+        Debug.Log("boosted");
+        anim.SetTrigger("BoostUse");
     }
 
     public void onBoostRecharged()
     {
-        anim.Play(boostRecharged.name);
+        Debug.Log("ready");
+        anim.SetTrigger("BoostReady");
     }
 
     public void onHit()
@@ -33,12 +35,12 @@ public class UIAnimationManager : MonoBehaviour {
 
     public void onAlternateFire()
     {
-        anim.Play(respawn.name,2);
+        anim.SetBool("AlternateFireUsable", false);
     }
 
     public void onAlternateFireRecharged()
     {
-        anim.Play(respawn.name, 2);
+        anim.SetBool("AlternateFireUsable", true);
     }
 
     public void onDeath()
