@@ -70,4 +70,5 @@ MonoBehaviour:
   - InstantiateWorldSpaceCanvas
   - AddToKillFeed
   - UpdateWorldSpaceHealthBar
+  - AddBarrelScoreToKillFeed
   DisableAutoOpenWizard: 1
