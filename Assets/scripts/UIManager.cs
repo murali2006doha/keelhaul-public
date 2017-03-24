@@ -383,4 +383,10 @@ public class UIManager : MonoBehaviour
 			x = true;
 		}
 	}
+
+    internal void AddBarrelScoreToKillFeed(string player, string ship)
+    {
+        killFeed.text += "<sprite=\"atlas\" name=\"" + ship + "\"> <size=60%>" + player + "</size> <color=\"yellow\"> Scored </color>\n";
+        Invoke("RemoveKillFeed", GlobalVariables.killFeedDuration);
+    }
 }

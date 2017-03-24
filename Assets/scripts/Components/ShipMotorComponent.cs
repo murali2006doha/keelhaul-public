@@ -24,8 +24,11 @@ public class ShipMotorComponent : MonoBehaviour
     protected Quaternion originalRotation;
     protected Quaternion originalRotationValue;
     protected bool keyboardControls;
+    bool sinking = false;
 
-    internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish, Action onBoostRecharge, bool keyboardControls)
+
+
+      internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish, Action onBoostRecharge, bool keyboardControls)
     {
         this.cc = characterController;
         this.stats = stats;
@@ -45,7 +48,11 @@ public class ShipMotorComponent : MonoBehaviour
 
     protected void UpdateShipPosition()
     {
-
+        if (sinking)
+        {
+            cc.Move(transform.up * -2 * stats.sinkSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
+            return;
+        }
         //Must be in Boost?
         if ((directionVector.magnitude == 0 || keyboardControls && directionVector.z <= 0) && velocity != 0f  || (velocity > stats.maxVelocity))
         {
@@ -205,5 +212,17 @@ public class ShipMotorComponent : MonoBehaviour
     
     public bool isBoosting() {
       return boosting;
+    }
+
+    internal void StartSinking()
+    {
+        sinking = true;
+        Invoke("StopSinking",2f);
+
+    }
+
+    public void StopSinking()
+    {
+        sinking = false;
     }
 }

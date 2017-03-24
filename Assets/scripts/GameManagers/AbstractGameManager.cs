@@ -28,9 +28,22 @@ public abstract class AbstractGameManager : MonoBehaviour {
 
     }
 
+
     public abstract void exitToCharacterSelect();
     
     public abstract void respawnPlayer(PlayerInput player, Vector3 startingPoint, Quaternion startingRotation);
+
+    virtual public Dictionary<string, int> getGamepoints()
+    {
+
+        return null;
+    }
+
+    virtual public int getPlayerPointsToWIn()
+    {
+        return 0;
+    }
+
     virtual public void respawnKraken(KrakenInput player, Vector3 startingPoint)
     {
 
