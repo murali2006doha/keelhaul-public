@@ -103,6 +103,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 uiManager.animManager.onBoost();
             },
             () => {
+              
+            }, 
+            () => {
                 uiManager.animManager.onBoostRecharged();
             },
             Actions.Device == null
