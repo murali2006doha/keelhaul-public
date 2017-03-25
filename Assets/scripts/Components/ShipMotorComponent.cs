@@ -9,7 +9,7 @@ public class ShipMotorComponent : MonoBehaviour
     protected CharacterController cc;
     protected ShipStats stats;
     protected Transform shipTransform;
-    protected Action onBoost, onBoostFinish;
+    protected Action onBoost, onBoostRecharge, onBoostFinish;
 
     [Header("Scene Variables")]
     [SerializeField] public GameObject wake;
@@ -24,16 +24,18 @@ public class ShipMotorComponent : MonoBehaviour
     protected Quaternion originalRotation;
     protected Quaternion originalRotationValue;
     protected bool keyboardControls;
-
     bool sinking = false;
 
-    internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish, bool keyboardControls)
+
+
+      internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish, Action onBoostRecharge, bool keyboardControls)
     {
         this.cc = characterController;
         this.stats = stats;
         this.shipTransform = shipTransform;
         this.onBoost = onBoost;
         this.onBoostFinish = onBoostFinish;
+        this.onBoostRecharge = onBoostRecharge;
         this.keyboardControls = keyboardControls;
     }
 
@@ -177,7 +179,11 @@ public class ShipMotorComponent : MonoBehaviour
 
     void ResetBoost()
     {
-        boosted = false;
+        if (boosted) {
+          boosted = false;
+          this.onBoostRecharge();
+        }
+        
     }
 
 
