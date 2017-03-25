@@ -303,7 +303,6 @@ public class GameInitializer : MonoBehaviour {
         int numDevices = 0;
         num = GetRightShipIndex(num);
         int shipIndex = GetRightShipSelection(num);
-        this.GetComponent<InControlManager>().enabled = true;
 
         if (InputManager.Devices != null && InputManager.Devices.Count > 0)
         {
