@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 9979d089cec834191bf6f1e02fcfcb16
+timeCreated: 1490462030
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Calcite Pro
+  fontNames:
+  - Calcite Pro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 03dacf5bba40a42bcb2543b0df6cfeec, type: 3}
+  - {fileID: 12800000, guid: eff9c40d9c14d4e0495c1f8416936bdc, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
