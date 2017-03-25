@@ -10,19 +10,20 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class ActionButton : MonoBehaviour {
 
-	UnityAction actionToExecute;
+    UnityAction actionToExecute;
+    bool mouseHovering = false;
 
     [SerializeField] Button button;
     public void SetAction(UnityAction action)
     {
         this.ButtonComponent.onClick.AddListener(action);
-		this.actionToExecute = action;
+        this.actionToExecute = action;
     }
 
 
-	public void doAction() {
-		this.actionToExecute ();
-	}
+    public void doAction() {
+        this.actionToExecute ();
+    }
 
     public Button ButtonComponent
     {
@@ -35,5 +36,20 @@ public class ActionButton : MonoBehaviour {
 
             return this.button;
         }
+    }
+
+
+    public void setHoveringTrue() {
+        mouseHovering = true;
+    }
+
+
+    public void setHoveringFalse() {
+        mouseHovering = false;
+    }
+
+
+    public bool isMouseHovering() {
+        return mouseHovering;
     }
 }
