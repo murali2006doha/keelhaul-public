@@ -162,11 +162,12 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
     public void setPlayerSelectSettings() {
 
         GameObject.FindObjectOfType<PlayerSelectSettings> ().setPlayerCharacters (players);
-
+        GameObject.FindObjectOfType<PlayerSelectSettings>().gameType = getGameType();
     }
 
+    internal abstract GameTypeEnum getGameType();
 
-	public GameTypeEnum getMode() {
+    public GameTypeEnum getMode() {
         return mode;
     }
 

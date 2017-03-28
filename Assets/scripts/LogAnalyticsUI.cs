@@ -88,6 +88,7 @@ public class LogAnalyticsUI : MonoBehaviour {
             } else {
                 players.Add (player.getSelectedCharacter() + i.ToString (), "controller");
             }
+            i++;
         }
 
         Analytics.CustomEvent("Main Menu Game Started with Characters", new Dictionary<string, object> {

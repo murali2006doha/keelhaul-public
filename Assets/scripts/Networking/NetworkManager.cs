@@ -109,8 +109,18 @@ public class NetworkManager : MonoBehaviour
       MapEnum mapType = (MapEnum)PhotonNetwork.room.customProperties["map"];
       GameObject instantiated = Instantiate(NetworkedCharacterSelect);
       this.GetComponent<PhotonView>().RPC("ResetLowestRequiredPlayers",PhotonTargets.MasterClient);
-      AbstractCharacterSelectController csc = instantiated.GetComponent<AbstractCharacterSelectController> ();
-			csc.gameObject.GetComponent<Canvas> ().worldCamera = this.camera;
+
+      AbstractCharacterSelectController csc = null;
+      if(initializer.gameType == GameTypeEnum.DeathMatch)
+            {
+               csc  = instantiated.GetComponent<DeathMatchCharacterSelectController>();
+            }
+            else
+            {
+                csc = instantiated.GetComponent<PlunderCharacterSelectController>();
+            }
+      csc.enabled = true;
+      csc.gameObject.GetComponent<Canvas> ().worldCamera = this.camera;
       csc.OnSelectCharacterAction(
         () => {
           csc.setPlayerSelectSettings ();         

@@ -86,6 +86,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 	void handleScoringZone () {
 		Vector3 newPos = Vector3.Lerp (hookshotComponent.getBarrelPosition(), scoreDestination.transform.position, Time.time);
 		hookshotComponent.setBarrelPosition (newPos);
+        hookshotComponent.UnHook();
         SabotageGameManager sabManager = (SabotageGameManager) manager;
         sabManager.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All,input.GetId());
         uiManager.targetBarrel ();

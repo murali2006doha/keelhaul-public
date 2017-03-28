@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using InControl;
+using System;
 
 public class DeathMatchCharacterSelectController : AbstractCharacterSelectController {
 
@@ -45,6 +46,8 @@ public class DeathMatchCharacterSelectController : AbstractCharacterSelectContro
 		return true;	
 	}
 
-
-
+    internal override GameTypeEnum getGameType()
+    {
+        return GameTypeEnum.DeathMatch;
+    }
 }

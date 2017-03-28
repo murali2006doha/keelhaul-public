@@ -141,7 +141,7 @@ MonoBehaviour:
   matchMaker: {fileID: 114889695674164552, guid: 9e5da8f924e0205468a45fb18988779d,
     type: 2}
   initializer: {fileID: 949}
-  offlineMode: 1
+  offlineMode: 0
   camera: {fileID: 1541752945}
 --- !u!114 &949
 MonoBehaviour:
@@ -160,7 +160,7 @@ MonoBehaviour:
     team: 0
   - selectedCharacter: 3
     team: 0
-  includeKraken: 1
+  includeKraken: 0
   isTeam: 0
   isFirstControllerKraken: 0
   map: 0

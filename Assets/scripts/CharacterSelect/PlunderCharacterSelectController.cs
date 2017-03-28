@@ -34,12 +34,13 @@ public class PlunderCharacterSelectController : AbstractCharacterSelectControlle
 		if (!characterStatuses [getCharacterKeys() [index]]) {
 
 			//character is locked
-			characterStatuses [getCharacterKeys() [index]] = true;
+			
 			playersInPlay--;
 
 			//lock character for all players
-			if (characterStatuses.ContainsKey (ShipEnum.Kraken.ToString ())) {
-				isolateKraken (index);
+			if (getCharacterKeys()[index] == ShipEnum.Kraken.ToString()) {
+                characterStatuses[getCharacterKeys()[index]] = true;
+                isolateKraken (index);
 			}
 
 			return true;
@@ -104,7 +105,10 @@ public class PlunderCharacterSelectController : AbstractCharacterSelectControlle
 		}
 	}
 
-
+    internal override GameTypeEnum getGameType()
+    {
+        return GameTypeEnum.Sabotage;
+    }
 
 
 }

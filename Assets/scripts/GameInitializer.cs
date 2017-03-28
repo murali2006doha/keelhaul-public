@@ -304,6 +304,7 @@ public class GameInitializer : MonoBehaviour {
         num = GetRightShipIndex(num);
         int shipIndex = GetRightShipSelection(num);
 
+
         if (InputManager.Devices != null && InputManager.Devices.Count > 0)
         {
 

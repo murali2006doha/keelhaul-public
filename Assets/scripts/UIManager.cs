@@ -67,16 +67,22 @@ public class UIManager : MonoBehaviour
     void Start()
     {
 		statsModal.gameObject.SetActive (false);
-        barrelObj = GameObject.FindObjectOfType<Barrel>();
+        
+        boostBarPanel = boostBar.transform.GetChild(0).GetComponentInChildren<Image>();
+        tutorialManager.enabled = false;
+        resizeFont();
+    }
+
+    public void InitializeBarrel()
+    {
+        print("Rat");
+        barrelObj = FindObjectOfType<Barrel>();
         barrelPos = barrelObj.transform.position;
         if (compassArrow != null)
         {
             arrowImage = compassArrow.GetComponent<Image>();
             targetBarrel();
         }
-        boostBarPanel = boostBar.transform.GetChild(0).GetComponentInChildren<Image>();
-        tutorialManager.enabled = false;
-        resizeFont();
     }
 
     private void resizeFont()

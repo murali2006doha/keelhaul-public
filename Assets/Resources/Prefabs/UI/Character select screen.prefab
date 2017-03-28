@@ -40,6 +40,8 @@ GameObject:
   - component: {fileID: 114117825242425202}
   - component: {fileID: 114795606707892780}
   - component: {fileID: 114575166429551640}
+  - component: {fileID: 114593593945304170}
+  - component: {fileID: 95733780928294496}
   m_Layer: 5
   m_Name: Character select screen
   m_TagString: Untagged
@@ -189,6 +191,23 @@ Transform:
   m_Father: {fileID: 224440156402880254}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95733780928294496
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1094443328089532}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114007286093248458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,7 +318,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1094443328089532}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 148a86f0f229c48a5a0e90bb23ae9b25, type: 3}
   m_Name: 
@@ -310,6 +329,24 @@ MonoBehaviour:
   start: {fileID: 224659506959335378}
   numPlayers: 1
   characters: 00000000010000000200000003000000
+  loadingScreen: {fileID: 1611943618378102}
+--- !u!114 &114593593945304170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1094443328089532}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191d425cc5939423cb4eaeae9142e126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScene: 0
+  Offline: 0
+  withKeyboard: 1
+  start: {fileID: 224659506959335378}
+  numPlayers: 1
+  characters: 0000000001000000020000000300000004000000
   loadingScreen: {fileID: 1611943618378102}
 --- !u!114 &114739045620052696
 MonoBehaviour:
@@ -395,7 +432,10 @@ MonoBehaviour:
   players: []
   isTeam: 0
   gameType: 2
+  map: 0
   includeKraken: 0
+  isOnline: 0
+  mode: 
 --- !u!114 &114971876526143572
 MonoBehaviour:
   m_ObjectHideFlags: 1

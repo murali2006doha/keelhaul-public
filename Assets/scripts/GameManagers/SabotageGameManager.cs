@@ -67,6 +67,11 @@ public class SabotageGameManager : AbstractGameManager
 
 
         this.RunStartUpActions();
+        if (PhotonNetwork.isMasterClient)
+        {
+            GameObject obj = PhotonNetwork.Instantiate("Prefabs/Environment Objects/barrel",mapObjects.krakenStartPoint.transform.position,Quaternion.identity,0);
+
+        }
         barrels = GameObject.FindGameObjectsWithTag("barrel");
         barrels_start_pos = new Vector3[barrels.Length];
 
@@ -78,7 +83,7 @@ public class SabotageGameManager : AbstractGameManager
             x++;
         }
         
-        if(includeKraken && shipPoints.Count == 1)
+        if (includeKraken && shipPoints.Count == 1)
         {
             //Temp fix
             var uis = GameObject.FindObjectsOfType<UIManager>();
@@ -91,6 +96,8 @@ public class SabotageGameManager : AbstractGameManager
                     ui.gameObject.transform.FindChild("P1panel/doubloonText").gameObject.SetActive(true);
                     ui.gameObject.transform.FindChild("P1panel/enemyIslandSlider").gameObject.SetActive(false);
                 }
+
+               
                
             }
             foreach (GameObject barrel in barrels)
@@ -108,13 +115,10 @@ public class SabotageGameManager : AbstractGameManager
                 player.hookshotComponent.enabled = true;
             }
             gamePoints[player.GetId().ToString()] = 0;
+           
         }
 
-        for (int z = gamePoints.Count; z < mapObjects.islands.Length; z++)
-        {
-
-            mapObjects.islands[z].gameObject.SetActive(false);
-        }
+       
        
         barrel = FindObjectOfType<Barrel>();
 
@@ -155,15 +159,25 @@ public class SabotageGameManager : AbstractGameManager
         {
             kraken = GameObject.FindObjectOfType<KrakenInput>();
         }
+        for (int z = gamePoints.Count; z < mapObjects.islands.Length; z++)
+        {
+
+            mapObjects.islands[z].gameObject.SetActive(false);
+        }
         PlayerInput[] playerInputs = FindObjectsOfType<PlayerInput>();
         foreach (PlayerInput player in playerInputs)
         {
             player.gameStarted = true;
             player.setStatus(ShipStatus.Alive);
             player.SetUpScoreDestination(mapObjects.scoringZones[(player.teamGame ? (player.teamNo + 1) : player.GetId()) % gamePoints.Count]);
+            if(PhotonNetwork.offlineMode || player.GetComponent<PhotonView>().isMine)
+            {
+                player.uiManager.InitializeBarrel();
+            }
             mapObjects.islands[(player.teamGame ? (player.teamNo + 1) : player.GetId()) % gamePoints.Count].enemyShips.Add(player);
             
         }
+        
         players.Clear();
         players.AddRange(playerInputs);
         if (kraken)
@@ -273,19 +287,13 @@ public class SabotageGameManager : AbstractGameManager
 
     IEnumerator teleportBarrel(PlayerInput player, GameObject barrel)
     {
-
+        barrel.GetComponent<BoxCollider>().enabled = false;
         yield return new WaitForSeconds(1);
-
-        Vector3 anchor = new Vector3(0, 0.06f, 0.06f);
-        if (barrel.GetComponent<CharacterJoint>() != null)
-        {
-            anchor = barrel.GetComponent<CharacterJoint>().anchor;
-            Destroy(barrel.GetComponent<CharacterJoint>());
-        }
 
         Barrel b = barrel.GetComponent<Barrel>();
         b.explodeBarrel();
 
+       
 
         int x = 0;
         foreach (GameObject barrelObj in barrels)
@@ -298,9 +306,8 @@ public class SabotageGameManager : AbstractGameManager
             }
             x++;
         }
-        barrel.AddComponent<CharacterJoint>();
-        barrel.GetComponent<CharacterJoint>().anchor = anchor;
         barrel.GetComponent<Barrel>().activatePillar();
+        barrel.GetComponent<BoxCollider>().enabled = true;
     }
 
     public override bool isGameOver()
@@ -745,7 +752,7 @@ public class SabotageGameManager : AbstractGameManager
     [PunRPC]
     public void IncrementPoint(int id)
     {
-
+        print("wat");
         if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode)
         {
 
@@ -759,18 +766,18 @@ public class SabotageGameManager : AbstractGameManager
             {
                 player.GetComponent<HookshotComponent>().UnHook();
                 player.GetComponent<HookshotComponent>().enabled = false;
-                StartCoroutine(teleportBarrel(player, barrel.gameObject));
+                StartCoroutine(teleportBarrel(player, barrels[0]));
                 player.GetComponent<HookshotComponent>().enabled = true;
                 if (PhotonNetwork.offlineMode)
                 {
-                    player.uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
+                    player.uiManager.updatePoint(int.Parse((player.uiManager.points.text)) + 1);
                 }
                 break;
             }
         }
         int winPoints = playerWinPoints;
 
-        if (kraken.id == id)
+        if (kraken!=null && kraken.id == id)
         {
             kraken.uiManager.updatePoint(int.Parse((kraken.uiManager.points.text)) + 1);
             winPoints = krakenWinPoints;
