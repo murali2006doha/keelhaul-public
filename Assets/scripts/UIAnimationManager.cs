@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UIAnimationManager : MonoBehaviour {
 
@@ -15,22 +16,52 @@ public class UIAnimationManager : MonoBehaviour {
     public AnimationClip bomb;
     public AnimationClip bombExplosion;
     public AnimationClip kill;
+    private UnityAction<string,string> setPortraitAction;
+    private ShipEnum shipType;
+    private bool dying;
+    public void Initialize(UnityAction<string,string> setPortraitAction, ShipEnum type) {
+        this.setPortraitAction = setPortraitAction;
+        this.shipType = type;
+    }
 
     public void onBoost()
     {
-        Debug.Log("boosted");
+
         anim.SetTrigger("BoostUse");
     }
 
     public void onBoostRecharged()
     {
-        Debug.Log("ready");
         anim.SetTrigger("BoostReady");
     }
 
     public void onHit()
     {
         anim.Play(healthLoss.name, 1);
+        if (!dying) {
+            this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType) + "Hit", "");
+        }
+        
+    }
+
+    public void OnHitCompleteMecanim()
+    {
+        if (!dying) {
+            this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType), "");
+        }
+        
+    }
+
+
+    public void OnScore()
+    {
+        this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType) + "Point", "");
+        Invoke("OnScoreCompleteMecanim", 1f);
+    }
+
+    public void OnScoreCompleteMecanim()
+    {
+        this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType), "");
     }
 
     public void onAlternateFire()
@@ -45,9 +76,16 @@ public class UIAnimationManager : MonoBehaviour {
 
     public void onDeath()
     {
-        anim.Play(death.name, 3);
+        dying = true;
+        this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType) + "Hurt", "");
+        anim.SetBool("dying", true);
     }
 
+    public void OnRespawn() {
+        dying = false;
+        this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType), "");
+        anim.SetBool("dying", false);
+    }
     public void onBomb()
     {
         anim.Play(bomb.name, 4);
