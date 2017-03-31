@@ -656,6 +656,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         isPushed = false;
         followCamera.zoomIn = false;
         uiManager.hideDeathAnimation();
+        uiManager.animManager.OnRespawn();
         bombController.resetBombs();
         centralCannon.ResetShotRight();
         altCannonComponent.ResetShotAlt();

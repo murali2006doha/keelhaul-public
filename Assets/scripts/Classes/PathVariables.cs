@@ -65,6 +65,11 @@ public static class PathVariables {
 	internal static string atlanteanPortraitPath = "character_portraits_assets/atlantisPortrait";
 	internal static string vikingPortraitPath = "character_portraits_assets/blackbeardPortrait";
 
+    //ship portrait background paths
+    internal static string blackbeardPortraitBackgroundPath = "character_portraits_assets/blackbeardPortraitBackground";
+    internal static string chinesePortratBackgroundPath = "character_portraits_assets/gungPortraitBackground";
+    internal static string atlanteanPortraitBackgroundPath = "character_portraits_assets/atlantisPortraitBackground";
+    internal static string vikingPortraitBackgroundPath = "character_portraits_assets/blackbeardPortraitBackground";
 
     public static string GetAssociatedCannonballForShip(ShipEnum shipType)
     {
@@ -159,4 +164,27 @@ public static class PathVariables {
 
 		return string.Empty;
 	}
+
+    public static string GetAssociatedPortraitBackgroundPath(ShipEnum shipType)
+    {
+        if (shipType == ShipEnum.AtlanteanShip)
+        {
+            return atlanteanPortraitBackgroundPath;
+        }
+        else if (shipType == ShipEnum.BlackbeardShip)
+        {
+            return blackbeardPortraitBackgroundPath;
+        }
+        else if (shipType == ShipEnum.ChineseJunkShip)
+        {
+            return chinesePortratBackgroundPath;
+        }
+        else if (shipType == ShipEnum.VikingShip)
+        {
+            return vikingPortraitBackgroundPath;
+        }
+
+        return string.Empty;
+    }
+
 }
