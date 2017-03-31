@@ -204,9 +204,6 @@ MonoBehaviour:
   largeBombZone: {fileID: 1870398752925138}
   smallBombZone: {fileID: 1000013558059448}
   bombModel: {fileID: 1000012134959048}
-  shipHit: {fileID: 145490, guid: 3afb73346b65f404781f482680f34a11, type: 2}
-  krakenHit: {fileID: 102508, guid: cb8c36175b2fc6846ac5d9df652aabf5, type: 2}
-  explosion: {fileID: 1000013203840908, guid: 6e329ada554b04d85994d23746e02e90, type: 2}
   explosion_duration: 1.5
   damage: 2
   waitTimeToExplode: 0.5
@@ -250,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundClip: {fileID: 8300000, guid: eb77da1fa19fc4e6d8f0de94abc0bb9a, type: 3}
+  volume: 0.04
 --- !u!135 &135000011842558592
 SphereCollider:
   m_ObjectHideFlags: 1

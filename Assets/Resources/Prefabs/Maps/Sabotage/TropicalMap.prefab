@@ -2810,7 +2810,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1774527507484190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.8, y: 0, z: -7.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4979686071629672}
@@ -3236,7 +3236,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1591527330142130}
   m_LocalRotation: {x: 0.007762593, y: 0.8064372, z: -0.0056911646, w: -0.5912415}
-  m_LocalPosition: {x: 27.31, y: 0.1, z: -0.28}
+  m_LocalPosition: {x: 31.1, y: 0.1, z: -1.6}
   m_LocalScale: {x: 2.7, y: 2.7, z: 2.7}
   m_Children: []
   m_Father: {fileID: 4979686071629672}
@@ -3790,7 +3790,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1724666116164430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.41, y: 0, z: -1.16}
+  m_LocalPosition: {x: 17.7, y: 0, z: 7.8}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 4354545749682558}
@@ -6597,7 +6597,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0.060062014, z: 0.06}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 5.41, y: 0.24024773, z: -0.9200001}
+  m_ConnectedAnchor: {x: -19, y: 0.24024773, z: -0.9200001}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -29905,7 +29905,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 307616323
+  randomSeed: -868220201
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -53098,7 +53098,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 470311872
+  randomSeed: 1684028594
   InitialModule:
     serializedVersion: 3
     enabled: 1

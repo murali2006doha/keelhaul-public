@@ -2,7 +2,7 @@
 using System.Collections;
 
 public enum MapEnum {
-	AtlantisMap, ChineseMap, VikingMap, BlackbeardMap, FrigidWasteland, TropicalMap
+	AtlantisMap, ChineseMap, VikingMap, BlackbeardMap, FrigidWasteland, TropicalMap, LevelUp
 }
 
 

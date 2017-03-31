@@ -558,6 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundClip: {fileID: 8300000, guid: fcbd51235020940b98adcf54e3ffd29f, type: 3}
+  volume: 0.15
 --- !u!114 &114470498473580208
 MonoBehaviour:
   m_ObjectHideFlags: 1
