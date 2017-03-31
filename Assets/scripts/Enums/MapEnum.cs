@@ -9,9 +9,7 @@ public enum MapEnum {
 public class MapTypeHelper
 {
     public static MapEnum GetRandomMap()
-    {
-        Array values = Enum.GetValues(typeof(MapEnum));
-        Random random = new Random();
-        return (MapEnum)values.GetValue(random.Next(values.Length));
-    }
+	{
+		return MapEnum.TropicalMap;
+	}
 }
