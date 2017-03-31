@@ -70,4 +70,4 @@ MonoBehaviour:
   deAccelerationSpeed: 2
   invinciblityTime: 5
   inkSlowDownFactor: 0.2
-  kraken_damage: 1
+  kraken_damage: 0.25

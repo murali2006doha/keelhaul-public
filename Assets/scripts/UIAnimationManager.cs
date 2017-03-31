@@ -55,8 +55,11 @@ public class UIAnimationManager : MonoBehaviour {
 
     public void OnScore()
     {
-        this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType) + "Point", "");
-        Invoke("OnScoreCompleteMecanim", 1f);
+        Debug.Log(shipType);
+        if (shipType != null) {
+            this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType) + "Point", "");
+            Invoke("OnScoreCompleteMecanim", 1f);
+        }
     }
 
     public void OnScoreCompleteMecanim()

@@ -113,7 +113,7 @@ public class UIManager : MonoBehaviour
     {
         points.text = (point).ToString();
         spawnScoreAnim();
-        if (shipType != null) {
+        if (isShip) {
             this.animManager.OnScore();
         }
     }
