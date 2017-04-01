@@ -40,7 +40,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     public void Control() {
         NavigateModal (buttons);  
 
-        if (this.GetActions ().Green.WasReleased) {
+		if (this.GetActions ().Green.WasReleased) {
             this.DoAction ();   
         } else if (this.GetActions ().Red.WasReleased) { 
             this.popAction ();
@@ -81,22 +81,13 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
 		passedInButtons [index].Select ();
 
-		if (actions.Down.WasReleased || actions.R_Down.RawValue > 0.5f) {
+		if (actions.Down.WasReleased) {
 			index = GetPositionIndex (passedInButtons, index, "down");
 		}
 
-		if (actions.Up.WasReleased || actions.R_Up.RawValue > 0.5f) {
+		if (actions.Up.WasReleased) {
 			index = GetPositionIndex (passedInButtons, index, "up");
 		}
-
-		if (actions.Right.WasReleased || actions.R_Right.RawValue > 0.5f) {
-			index = GetPositionIndex (passedInButtons, index, "right");
-		}
-
-		if (actions.Left.WasReleased || actions.R_Left.RawValue > 0.5f) {
-			index = GetPositionIndex (passedInButtons, index, "left");
-		}
-
 	}
 
         
@@ -117,22 +108,6 @@ public abstract class AbstractModalComponent : MonoBehaviour {
             }
         }
 
-        if (direction == "right") {
-            if (item == 0) {
-                item = items.Length - 1;
-            } else {
-                item -= 1;
-            }
-        }
-
-        if (direction == "left") {
-            if (item == items.Length - 1) {
-                item = 0;
-            } else {
-                item += 1;
-            }
-        }
-
         return item;
     }
 
@@ -146,6 +121,8 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         //this.gameObject.SetActive (false);
         modalAnimator.Play ("ModalExit");
         yield return new WaitForSeconds(1.0f); 
+		Destroy(this.gameObject);  
+
     }
 
 

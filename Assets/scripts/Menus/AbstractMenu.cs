@@ -19,16 +19,17 @@ public abstract class AbstractMenu : MonoBehaviour
 {
 
     protected PlayerActions actions;
-    protected List<ActionButton> actionButtons = new List<ActionButton>();
+	protected List<GameObject> actionSelectables = new List<GameObject>();
     protected Action onReturnAction;
     protected bool canReturn = true;
+	protected bool interactable = true;
     protected int index = 0;
 
     /// <summary>
     /// Initialize the specified actions and goBackAction.
     /// <"actions">Actions
     /// <"goBackAction"> The action for the previous menu when back is pressed
-    public void initialize (PlayerActions actions, Action goBackAction) {
+    public void Initialize (PlayerActions actions, Action goBackAction) {
         this.gameObject.SetActive (true);
         this.actions = actions;
         this.onReturnAction = goBackAction;
@@ -38,20 +39,20 @@ public abstract class AbstractMenu : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
-        if (actions.Green.WasPressed) { 
+
+		Navigate ();
+
+		if (actions.Green.WasReleased) { 
             this.DoAction ();  
         }
-        if (actions.Red.WasPressed && canReturn) {
-            goBack ();
+		if (actions.Red.WasReleased && canReturn) {
+            GoBack ();
         } 
-
-
-        NavigateModal (actionButtons.ToArray ());
-        NavigateModalWithMouse ();
     }
 
 
-    public abstract void setButtonsToActions();
+	public abstract void Navigate ();
+    public abstract void SetActions();
 
         
     public void Exit() {
@@ -60,81 +61,61 @@ public abstract class AbstractMenu : MonoBehaviour
 
     //do action might contain closeAction or openAction depending on what type of button is pressed
     public void DoAction() {
-        this.actionButtons [index].doAction ();
+		if (interactable) {
+			this.actionSelectables [index].GetComponent<ActionSelectable>().doAction ();
+		}
     }
 
-    public void goBack() {
+    public void GoBack() {
         onReturnAction ();      
         this.gameObject.SetActive (false);
     }
 
 
     public void ToggleButtons() {
-        foreach (ActionButton b in actionButtons) {
-            b.ButtonComponent.interactable = !b.ButtonComponent.interactable;
+		interactable = !interactable;
+		foreach (GameObject b in actionSelectables) {
+			b.GetComponent<ActionButton>().ButtonComponent.interactable = !b.GetComponent<ActionButton>().ButtonComponent.interactable;
         }
     }
 
 
     public void NavigateModalWithMouse() {
 
-        for (int i = 0; i < actionButtons.Count; i++) {
-            if (actionButtons[i].isMouseHovering ()) {
+        for (int i = 0; i < actionSelectables.Count; i++) {
+			if (actionSelectables[i].GetComponent<ActionSelectable>().isMouseHovering ()) {
                 index = i;
             }
         }
     }
 
 
-    public void NavigateModal (ActionButton[] passedInButtons) { //navigating main menu  
-        passedInButtons [index].gameObject.GetComponent<Button>().Select ();
+	public void NavigateModal (GameObject[] passedInButtons) { //navigating main menu  
+		if (passedInButtons.Length > 0) {
+			passedInButtons [index].gameObject.GetComponent<Selectable> ().Select ();		
+		}
 
         if (actions.Down.WasReleased) {
-            index = GetPositionIndex (passedInButtons, index, "down");
+			index = GetPositionIndex (passedInButtons.Length, index, "down");
         }
 
         if (actions.Up.WasReleased) {
-            index = GetPositionIndex (passedInButtons, index, "up");
+			index = GetPositionIndex (passedInButtons.Length, index, "up");
         }
-
-//      if (actions.Right.WasReleased) {
-//          index = GetPositionIndex (passedInButtons, index, "right");
-//      }
-//
-//      if (actions.Left.WasReleased) {
-//          index = GetPositionIndex (passedInButtons, index, "left");
-//      }
-
     }
 
 
-    private int GetPositionIndex (ActionButton[] items, int item, string direction) {
+	private int GetPositionIndex (int length, int item, string direction) {
         if (direction == "up") {
             if (item == 0) {
-                item = items.Length - 1;
+				item = length - 1;
             } else {
                 item -= 1;
             }
         }
 
         if (direction == "down") {
-            if (item == items.Length - 1) {
-                item = 0;
-            } else {
-                item += 1;
-            }
-        }
-
-        if (direction == "right") {
-            if (item == 0) {
-                item = items.Length - 1;
-            } else {
-                item -= 1;
-            }
-        }
-
-        if (direction == "left") {
-            if (item == items.Length - 1) {
+			if (item == length - 1) {
                 item = 0;
             } else {
                 item += 1;

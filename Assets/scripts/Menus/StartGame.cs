@@ -10,7 +10,6 @@ public class StartGame : MonoBehaviour {
 
     public Transform initialText;
     public bool withKeyboard;
-    public MainMenu mainMenu;
 
     ControllerSelect cc;
     PlayerActions actions;
@@ -20,7 +19,7 @@ public class StartGame : MonoBehaviour {
     void Start () {
         cc = GameObject.FindObjectOfType<ControllerSelect> ();
         cc.withKeyboard = withKeyboard;
-        mainMenu.gameObject.SetActive (false);
+		FindObjectOfType<MenuModel>().mainMenu.gameObject.SetActive (false);
     }
 
     // Update is called once per frame
@@ -28,19 +27,19 @@ public class StartGame : MonoBehaviour {
 
         if (this.gameObject.activeSelf) {
             cc.listening = true;
-            signIn ();
+            SignIn ();
         }
 
         if (actions != null && actions.Green.WasReleased) {
             initialText.gameObject.SetActive (false);
-            mainMenu.initialize (actions, () => {
+			FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
                 initialText.gameObject.SetActive (true);
             });
         }
     }   
 
 
-    public void signIn() {
+    public void SignIn() {
         if (cc.players.Count == 1) {
             this.actions = (PlayerActions)cc.players [0];
         }

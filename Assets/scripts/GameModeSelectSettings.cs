@@ -4,17 +4,29 @@ using System.Collections;
 public class GameModeSelectSettings : MonoBehaviour {
 	
 	protected GameTypeEnum gameType;
-	public bool isOnline;
+	protected bool online;
 
-	void Start () {
+
+	public void SetGameModeSettings(GameTypeEnum gameType, bool isOnline) {
+		this.gameType = gameType;
+		this.online = isOnline;
 	}
+
 
 	public GameTypeEnum getGameType() {
 		return gameType;
 	}
 
-	public void setGameType(GameTypeEnum gameType) {
-		this.gameType = gameType;
+
+	public bool isOnline() {
+		return this.online;
+	}
+
+
+	void Awake () {
+		if (this != null) {
+			DontDestroyOnLoad (this.transform.gameObject);
+		}
 	}
 }
 

@@ -29,6 +29,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 	protected GameTypeEnum  mode;
 
     public void OnSelectCharacterAction(Action action)  {
+		Debug.Log ("setting action");
         this.onSelectCharacter = action;
     }
 
@@ -80,11 +81,11 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
             cc.listening = false;
         }
         if (this.gameObject != null) {
-            if (playersInPlay == 0) {
+			if (playersInPlay == 0) {
                 start.gameObject.SetActive (true);
                 //change to next when there is map selection
                 if (!started && players.Exists (p => p.Actions.Green.IsPressed)) {
-
+					print ("playersin play");
 					LogAnalyticsUI.MainMenuGameStartedWithCharacters (mode, GlobalVariables.getMapToLoad().ToString(), players);
 
                     started = true;
