@@ -25,7 +25,6 @@ public class NetworkManager : MonoBehaviour
     void Start() {
 
         if (FindObjectOfType<GameModeSelectSettings> ()) {
-            //this.gameObject.GetComponent<GameInitializer> ().gameType = FindObjectOfType<GameModeSelectSettings> ().getGameType ();
             offlineMode = !FindObjectOfType<GameModeSelectSettings> ().isOnline();
         }
 
@@ -46,12 +45,10 @@ public class NetworkManager : MonoBehaviour
         
         if (offlineMode) {
             
-            print ("OFF");
             RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 }; 
             PhotonNetwork.JoinOrCreateRoom("localRoom", ro, TypedLobby.Default);
         } else {
             
-            print ("ON");
             instantiatedController = Instantiate(matchMaker);
             instantiatedController.Initiailze(this.FindOrCreateRoom);
             instantiatedController.GetComponent<Canvas> ().worldCamera = this.camera;
@@ -99,8 +96,6 @@ public class NetworkManager : MonoBehaviour
 
     void OnJoinedRoom() {
         if (PhotonNetwork.offlineMode) {
-
-            Debug.Log ("reaching offline");
 
             GameObject instantiated = Instantiate (OfflineCharacterSelect);
             AbstractCharacterSelectController csc = null;
@@ -154,8 +149,7 @@ public class NetworkManager : MonoBehaviour
               
             csc.OnSelectCharacterAction(
                 () => {
-                    print("reaching onSelectCharacter ACtion");
-                    csc.setPlayerSelectSettings ();         
+					csc.setPlayerSelectSettings ();         
 
                     StartSpawnProcessOnline(csc.getPlayerSelectSettings().players[0].selectedCharacter, mapType);
                     Destroy(instantiated);
@@ -165,8 +159,7 @@ public class NetworkManager : MonoBehaviour
     }
 
     void StartSpawnProcessOnline(ShipEnum type, MapEnum map) {
-        Debug.Log ("reaching startSpawnProcessOnline");
-        initializer.shipSelections[0].selectedCharacter = type;
+		initializer.shipSelections[0].selectedCharacter = type;
         initializer.isMaster = true;
         initializer.map = map;
         initializer.playerId = PhotonNetwork.player.ID;

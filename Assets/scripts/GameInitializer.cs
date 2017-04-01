@@ -94,10 +94,7 @@ public class GameInitializer : MonoBehaviour {
     private void setGameTypeAndSettings() {
 
         if (ps) {
-            print ("PS");
-
             if (gs) {
-                print ("GS");
                 gameType = gs.getGameType ();
             } else {
                 gameType = ps.gameType;
