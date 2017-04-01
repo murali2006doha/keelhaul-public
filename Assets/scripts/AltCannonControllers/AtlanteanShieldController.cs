@@ -58,7 +58,7 @@ public class AtlanteanShieldController : MonoBehaviour {
                 parent = player.gameObject;
                 ship = player;
                 //ship.centralCannon.AmpUpCannonball();
-                ship.activateInvincibility();
+                //ship.activateInvincibility();
                 break;
             }
         }
