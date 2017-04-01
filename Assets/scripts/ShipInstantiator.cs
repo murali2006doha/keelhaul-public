@@ -91,12 +91,6 @@ public class ShipInstantiator : MonoBehaviour {
         LayerHelper.setLayerRecursively(ship.uiManager.worldSpace, LayerMask.NameToLayer("p" + (num + numKraken) + "_ui"));
 
 
-        GameObject splash = (GameObject)Instantiate(splashParticle, Vector3.zero, Quaternion.identity);
-        if (ship.hookshotComponent)
-        {
-            ship.hookshotComponent.splashParticle = splash;
-        }
-
         ship.cullingMask = "p" + (num + numKraken) + "_ui";
         Destroy(this.gameObject);
     }
