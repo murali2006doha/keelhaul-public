@@ -13314,9 +13314,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoringZones:
   - {fileID: 1521456618046516}
-  - {fileID: 1929511931325366}
-  - {fileID: 1128936743420948}
-  - {fileID: 1491157680428350}
+  - {fileID: 1521456618046516}
+  - {fileID: 1521456618046516}
+  - {fileID: 1521456618046516}
   shipStartingLocations:
   - {fileID: 1601300897771416}
   - {fileID: 1438655031866092}
@@ -71128,7 +71128,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1949754828
+  randomSeed: 163215608
   InitialModule:
     serializedVersion: 3
     enabled: 1
