@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114795606707892780}
   - component: {fileID: 114575166429551640}
   m_Layer: 5
-  m_Name: Character select screen
+  m_Name: OnlineCharacterSelectCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,7 +395,10 @@ MonoBehaviour:
   players: []
   isTeam: 0
   gameType: 2
+  map: 0
   includeKraken: 0
+  isOnline: 0
+  mode: 
 --- !u!114 &114971876526143572
 MonoBehaviour:
   m_ObjectHideFlags: 1

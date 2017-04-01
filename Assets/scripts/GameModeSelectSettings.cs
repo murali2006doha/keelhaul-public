@@ -2,19 +2,31 @@
 using System.Collections;
 
 public class GameModeSelectSettings : MonoBehaviour {
-	
-	protected GameTypeEnum gameType;
-	public bool isOnline;
+    
+    protected GameTypeEnum gameType;
+    protected bool online;
 
-	void Start () {
-	}
 
-	public GameTypeEnum getGameType() {
-		return gameType;
-	}
+    public void SetGameModeSettings(GameTypeEnum gameType, bool isOnline) {
+        this.gameType = gameType;
+        this.online = isOnline;
+    }
 
-	public void setGameType(GameTypeEnum gameType) {
-		this.gameType = gameType;
-	}
+
+    public GameTypeEnum getGameType() {
+        return gameType;
+    }
+
+
+    public bool isOnline() {
+        return this.online;
+    }
+
+
+    void Awake () {
+        if (this != null) {
+            DontDestroyOnLoad (this.transform.gameObject);
+        }
+    }
 }
 

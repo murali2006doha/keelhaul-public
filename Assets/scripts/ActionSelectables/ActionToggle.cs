@@ -8,13 +8,21 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Toggle))]
 [ExecuteInEditMode]
-public class ActionToggle : MonoBehaviour
+public class ActionToggle : ActionSelectable
 {
+
+    UnityAction<bool> actionToExecute;
+
     [SerializeField]
     Toggle toggle;
     public void SetAction(UnityAction<bool> action)
     {
         this.ToggleComponent.onValueChanged.AddListener(action);
+        this.actionToExecute = action;
+    }
+
+    public override void doAction() {
+        this.actionToExecute (true);
     }
 
     public Toggle ToggleComponent

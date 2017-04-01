@@ -138,6 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NetworkedCharacterSelect: {fileID: 1094443328089532, guid: 645a1f2311c084ae882b673e34b8e787,
     type: 2}
+  OfflineCharacterSelect: {fileID: 1484721607591290, guid: 75e08dec454984d058f32e0a8a6bdcd6,
+    type: 2}
   matchMaker: {fileID: 114889695674164552, guid: 9e5da8f924e0205468a45fb18988779d,
     type: 2}
   initializer: {fileID: 949}

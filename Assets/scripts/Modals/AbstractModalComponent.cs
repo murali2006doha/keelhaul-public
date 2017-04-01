@@ -77,30 +77,21 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     }
 
 
-	public void NavigateModal (Button[] passedInButtons) { //navigating main menu  
+    public void NavigateModal (Button[] passedInButtons) { //navigating main menu  
 
-		passedInButtons [index].Select ();
+        passedInButtons [index].Select ();
 
-		if (actions.Down.WasReleased || actions.R_Down.RawValue > 0.5f) {
-			index = GetPositionIndex (passedInButtons, index, "down");
-		}
+        if (actions.Down.WasReleased) {
+            index = GetPositionIndex (passedInButtons, index, "down");
+        }
 
-		if (actions.Up.WasReleased || actions.R_Up.RawValue > 0.5f) {
-			index = GetPositionIndex (passedInButtons, index, "up");
-		}
-
-		if (actions.Right.WasReleased || actions.R_Right.RawValue > 0.5f) {
-			index = GetPositionIndex (passedInButtons, index, "right");
-		}
-
-		if (actions.Left.WasReleased || actions.R_Left.RawValue > 0.5f) {
-			index = GetPositionIndex (passedInButtons, index, "left");
-		}
-
-	}
+        if (actions.Up.WasReleased) {
+            index = GetPositionIndex (passedInButtons, index, "up");
+        }
+    }
 
         
-	private int GetPositionIndex (Button[] items, int item, string direction) {
+    private int GetPositionIndex (Button[] items, int item, string direction) {
         if (direction == "up") {
             if (item == 0) {
                 item = items.Length - 1;
@@ -110,22 +101,6 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         }
 
         if (direction == "down") {
-            if (item == items.Length - 1) {
-                item = 0;
-            } else {
-                item += 1;
-            }
-        }
-
-        if (direction == "right") {
-            if (item == 0) {
-                item = items.Length - 1;
-            } else {
-                item -= 1;
-            }
-        }
-
-        if (direction == "left") {
             if (item == items.Length - 1) {
                 item = 0;
             } else {
@@ -146,6 +121,8 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         //this.gameObject.SetActive (false);
         modalAnimator.Play ("ModalExit");
         yield return new WaitForSeconds(1.0f); 
+        Destroy(this.gameObject);  
+
     }
 
 

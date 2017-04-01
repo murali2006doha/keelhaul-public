@@ -58,7 +58,6 @@ public class ModalStack : MonoBehaviour {
         if (workingModals.ToArray().Length > 0) {
             workingModals.Pop ();
             selectedModal.enabled = false;
-            Destroy(selectedModal.gameObject);  //comment this out for animations
         }
 
         //go back to game

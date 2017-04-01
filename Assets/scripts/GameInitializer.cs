@@ -28,8 +28,8 @@ public class GameInitializer : MonoBehaviour {
     GlobalCanvas globalCanvas;
     GameObject screenSplitter;
 
-	PlayerSelectSettings ps;
-	GameModeSelectSettings gs;
+    PlayerSelectSettings ps;
+    GameModeSelectSettings gs;
     Dictionary<int,int> teamNums = new Dictionary<int,int>();
     public bool isMaster;
     public int playerId;
@@ -41,8 +41,8 @@ public class GameInitializer : MonoBehaviour {
     {
         Cursor.visible = false;
         InstantiateMap();
-		ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
-		gs = GameObject.FindObjectOfType<GameModeSelectSettings>();
+        ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
+        gs = GameObject.FindObjectOfType<GameModeSelectSettings>();
         setGameTypeAndSettings();
 
        
@@ -93,13 +93,12 @@ public class GameInitializer : MonoBehaviour {
 
     private void setGameTypeAndSettings() {
 
-		if (ps) {
-
-			if (gs) {
-				gameType = gs.getGameType ();
-			} else {
-				gameType = ps.gameType;
-			}
+        if (ps) {
+            if (gs) {
+                gameType = gs.getGameType ();
+            } else {
+                gameType = ps.gameType;
+            }
 
             isTeam = ps.isTeam;
             includeKraken = ps.includeKraken;
