@@ -9,21 +9,21 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public abstract class ActionSelectable : MonoBehaviour {
 
-	protected bool mouseHovering = false;
+    protected bool mouseHovering = false;
 
-	public abstract void doAction () ;
+    public abstract void doAction () ;
 
-	public void setHoveringTrue() {
-		mouseHovering = true;
-	}
-
-
-	public void setHoveringFalse() {
-		mouseHovering = false;
-	}
+    public void setHoveringTrue() {
+        mouseHovering = true;
+    }
 
 
-	public bool isMouseHovering() {
-		return mouseHovering;
-	}
+    public void setHoveringFalse() {
+        mouseHovering = false;
+    }
+
+
+    public bool isMouseHovering() {
+        return mouseHovering;
+    }
 }

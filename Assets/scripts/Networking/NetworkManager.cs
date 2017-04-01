@@ -8,28 +8,28 @@ using ExitGames.Client.Photon;
 
 public class NetworkManager : MonoBehaviour
 {
-  	public GameObject NetworkedCharacterSelect;
-	public GameObject OfflineCharacterSelect;
-  	public MatchMakingController matchMaker;
-  	public GameInitializer initializer;
-  	public bool offlineMode = false;
+    public GameObject NetworkedCharacterSelect;
+    public GameObject OfflineCharacterSelect;
+    public MatchMakingController matchMaker;
+    public GameInitializer initializer;
+    public bool offlineMode = false;
 
-  	private MatchMakingController instantiatedController;
-  	private Dictionary<int, bool> selectedMatchOptions;
-  	private AbstractGameManager instantiatedManager;
-	private GameModeSelectSettings gs;
+    private MatchMakingController instantiatedController;
+    private Dictionary<int, bool> selectedMatchOptions;
+    private AbstractGameManager instantiatedManager;
+    private GameModeSelectSettings gs;
 
-	[SerializeField]
-	private Camera camera;
+    [SerializeField]
+    private Camera camera;
 
-  	void Start() {
+    void Start() {
 
-		if (FindObjectOfType<GameModeSelectSettings> ()) {
-			//this.gameObject.GetComponent<GameInitializer> ().gameType = FindObjectOfType<GameModeSelectSettings> ().getGameType ();
-			offlineMode = !FindObjectOfType<GameModeSelectSettings> ().isOnline();
-		}
+        if (FindObjectOfType<GameModeSelectSettings> ()) {
+            //this.gameObject.GetComponent<GameInitializer> ().gameType = FindObjectOfType<GameModeSelectSettings> ().getGameType ();
+            offlineMode = !FindObjectOfType<GameModeSelectSettings> ().isOnline();
+        }
 
-		PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
+        PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
         PhotonNetwork.offlineMode = offlineMode;
 
         if (offlineMode)
@@ -39,26 +39,26 @@ public class NetworkManager : MonoBehaviour
         else {
             PhotonNetwork.ConnectUsingSettings("0.2");
         }
-			
+            
     }
 
-   	void OnJoinedLobby() {
+    void OnJoinedLobby() {
         
-		if (offlineMode) {
-			
-			print ("OFF");
-         	RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 }; 
-         	PhotonNetwork.JoinOrCreateRoom("localRoom", ro, TypedLobby.Default);
+        if (offlineMode) {
+            
+            print ("OFF");
+            RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 }; 
+            PhotonNetwork.JoinOrCreateRoom("localRoom", ro, TypedLobby.Default);
         } else {
-			
-			print ("ON");
+            
+            print ("ON");
             instantiatedController = Instantiate(matchMaker);
             instantiatedController.Initiailze(this.FindOrCreateRoom);
-			instantiatedController.GetComponent<Canvas> ().worldCamera = this.camera;
+            instantiatedController.GetComponent<Canvas> ().worldCamera = this.camera;
         }
      
    
-  	}
+    }
 
     void FindOrCreateRoom(Dictionary<int, bool> matchOptions) {
         string roomName = "";
@@ -97,97 +97,97 @@ public class NetworkManager : MonoBehaviour
     }
     
 
-  	void OnJoinedRoom() {
-		if (PhotonNetwork.offlineMode) {
+    void OnJoinedRoom() {
+        if (PhotonNetwork.offlineMode) {
 
-			Debug.Log ("reaching offline");
+            Debug.Log ("reaching offline");
 
-			GameObject instantiated = Instantiate (OfflineCharacterSelect);
-			AbstractCharacterSelectController csc = null;
+            GameObject instantiated = Instantiate (OfflineCharacterSelect);
+            AbstractCharacterSelectController csc = null;
 
-			if (FindObjectOfType<GameModeSelectSettings> () != null) {
-				if (FindObjectOfType<GameModeSelectSettings> ().getGameType () == GameTypeEnum.DeathMatch) {
-					csc = instantiated.GetComponentInChildren<DeathMatchCharacterSelectController> ();
+            if (FindObjectOfType<GameModeSelectSettings> () != null) {
+                if (FindObjectOfType<GameModeSelectSettings> ().getGameType () == GameTypeEnum.DeathMatch) {
+                    csc = instantiated.GetComponentInChildren<DeathMatchCharacterSelectController> ();
 
-				} else if (FindObjectOfType<GameModeSelectSettings> ().getGameType () == GameTypeEnum.Sabotage) {
-					csc = instantiated.GetComponentInChildren<PlunderCharacterSelectController> ();
-				}
-			} else {
-				if (this.gameObject.GetComponent<GameInitializer> ().gameType == GameTypeEnum.DeathMatch) {
-					csc = instantiated.GetComponentInChildren<DeathMatchCharacterSelectController> ();
-				} else if (this.gameObject.GetComponent<GameInitializer> ().gameType == GameTypeEnum.Sabotage) {
-					csc = instantiated.GetComponentInChildren<PlunderCharacterSelectController> ();
-				}
-			}
+                } else if (FindObjectOfType<GameModeSelectSettings> ().getGameType () == GameTypeEnum.Sabotage) {
+                    csc = instantiated.GetComponentInChildren<PlunderCharacterSelectController> ();
+                }
+            } else {
+                if (this.gameObject.GetComponent<GameInitializer> ().gameType == GameTypeEnum.DeathMatch) {
+                    csc = instantiated.GetComponentInChildren<DeathMatchCharacterSelectController> ();
+                } else if (this.gameObject.GetComponent<GameInitializer> ().gameType == GameTypeEnum.Sabotage) {
+                    csc = instantiated.GetComponentInChildren<PlunderCharacterSelectController> ();
+                }
+            }
 
-			csc.enabled = true;
-			csc.gameObject.GetComponent<Canvas> ().worldCamera = this.camera;
-		
-			if (csc != null) {
-				csc.OnSelectCharacterAction (
-					() => {
-						csc.setPlayerSelectSettings ();
+            csc.enabled = true;
+            csc.gameObject.GetComponent<Canvas> ().worldCamera = this.camera;
+        
+            if (csc != null) {
+                csc.OnSelectCharacterAction (
+                    () => {
+                        csc.setPlayerSelectSettings ();
 
-						if (!csc.loadingScene) {
-							csc.loadingScreen.SetActive (true);  
-							csc.loadingScene = true;
-						};
+                        if (!csc.loadingScene) {
+                            csc.loadingScreen.SetActive (true);  
+                            csc.loadingScene = true;
+                        };
 
-						StartSpawnProcessOffline ();
-						Destroy (instantiated);
-						Destroy (this.camera);
-					});
-			}
-				
-		} else {
+                        StartSpawnProcessOffline ();
+                        Destroy (instantiated);
+                        Destroy (this.camera);
+                    });
+            }
+                
+        } else {
 
-		    Dictionary<int, bool> roomOptions = (Dictionary<int, bool>)PhotonNetwork.room.customProperties["matchOptions"];
-		    this.RefitRoomOptions(this.selectedMatchOptions, roomOptions);
-		    ExitGames.Client.Photon.Hashtable h = new ExitGames.Client.Photon.Hashtable();
-		    h.Add("matchOptions", roomOptions);
-		    PhotonNetwork.room.SetCustomProperties(h);
-		    MapEnum mapType = (MapEnum)PhotonNetwork.room.customProperties["map"];
-		    GameObject instantiated = Instantiate(NetworkedCharacterSelect);
-		    this.GetComponent<PhotonView>().RPC("ResetLowestRequiredPlayers",PhotonTargets.MasterClient);
-		    AbstractCharacterSelectController csc = instantiated.GetComponent<AbstractCharacterSelectController> ();
-			csc.gameObject.GetComponent<Canvas> ().worldCamera = this.camera;
-		      
-			csc.OnSelectCharacterAction(
-		      	() => {
-					print("reaching onSelectCharacter ACtion");
-			        csc.setPlayerSelectSettings ();         
+            Dictionary<int, bool> roomOptions = (Dictionary<int, bool>)PhotonNetwork.room.customProperties["matchOptions"];
+            this.RefitRoomOptions(this.selectedMatchOptions, roomOptions);
+            ExitGames.Client.Photon.Hashtable h = new ExitGames.Client.Photon.Hashtable();
+            h.Add("matchOptions", roomOptions);
+            PhotonNetwork.room.SetCustomProperties(h);
+            MapEnum mapType = (MapEnum)PhotonNetwork.room.customProperties["map"];
+            GameObject instantiated = Instantiate(NetworkedCharacterSelect);
+            this.GetComponent<PhotonView>().RPC("ResetLowestRequiredPlayers",PhotonTargets.MasterClient);
+            AbstractCharacterSelectController csc = instantiated.GetComponent<AbstractCharacterSelectController> ();
+            csc.gameObject.GetComponent<Canvas> ().worldCamera = this.camera;
+              
+            csc.OnSelectCharacterAction(
+                () => {
+                    print("reaching onSelectCharacter ACtion");
+                    csc.setPlayerSelectSettings ();         
 
-			        StartSpawnProcessOnline(csc.getPlayerSelectSettings().players[0].selectedCharacter, mapType);
-			        Destroy(instantiated);
-					Destroy(this.camera);
-		    });
-    	}
-  	}
+                    StartSpawnProcessOnline(csc.getPlayerSelectSettings().players[0].selectedCharacter, mapType);
+                    Destroy(instantiated);
+                    Destroy(this.camera);
+            });
+        }
+    }
 
     void StartSpawnProcessOnline(ShipEnum type, MapEnum map) {
-		Debug.Log ("reaching startSpawnProcessOnline");
-	    initializer.shipSelections[0].selectedCharacter = type;
-	    initializer.isMaster = true;
-	    initializer.map = map;
-	    initializer.playerId = PhotonNetwork.player.ID;
-	    initializer.onGameManagerCreated = onGameManagerCreated;
-	    initializer.enabled = true;
-  	}
+        Debug.Log ("reaching startSpawnProcessOnline");
+        initializer.shipSelections[0].selectedCharacter = type;
+        initializer.isMaster = true;
+        initializer.map = map;
+        initializer.playerId = PhotonNetwork.player.ID;
+        initializer.onGameManagerCreated = onGameManagerCreated;
+        initializer.enabled = true;
+    }
 
-	void StartSpawnProcessOffline ()
-	{
-		initializer.isMaster = true;
-		initializer.playerId = 1;
-		initializer.enabled = true;
-		initializer.gameObject.SetActive (true);
-		initializer.onGameManagerCreated = this.onGameManagerCreated;
-	}
+    void StartSpawnProcessOffline ()
+    {
+        initializer.isMaster = true;
+        initializer.playerId = 1;
+        initializer.enabled = true;
+        initializer.gameObject.SetActive (true);
+        initializer.onGameManagerCreated = this.onGameManagerCreated;
+    }
 
     void onGameManagerCreated() {
-    	instantiatedManager = FindObjectOfType<AbstractGameManager>();
-    	instantiatedManager.enabled = true;
-    	instantiatedManager.minPlayersRequiredToStartGame = this.GetLowestRequiredPlayersToStartGame();
-  	}
+        instantiatedManager = FindObjectOfType<AbstractGameManager>();
+        instantiatedManager.enabled = true;
+        instantiatedManager.minPlayersRequiredToStartGame = this.GetLowestRequiredPlayersToStartGame();
+    }
 
 
     [PunRPC]
@@ -198,7 +198,7 @@ public class NetworkManager : MonoBehaviour
     }
 
 
-  	int GetLowestRequiredPlayersToStartGame() {
+    int GetLowestRequiredPlayersToStartGame() {
         int lowestRequiredPlayers = 0;
         if (PhotonNetwork.offlineMode)
         {
@@ -214,10 +214,10 @@ public class NetworkManager : MonoBehaviour
             }
         }
         return lowestRequiredPlayers + 2;
-  	}
+    }
 
 
-  	void RefitRoomOptions(Dictionary<int, bool> playerOptions, Dictionary<int, bool> roomOptions) {
+    void RefitRoomOptions(Dictionary<int, bool> playerOptions, Dictionary<int, bool> roomOptions) {
         for (int i = 0; i < 3; i++)
         {
             if (playerOptions.ContainsKey(i))

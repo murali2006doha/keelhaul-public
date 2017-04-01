@@ -14,16 +14,16 @@ public class ActionButton : ActionSelectable
     UnityAction actionToExecute;
 
     [SerializeField] 
-	Button button;
+    Button button;
     public void SetAction(UnityAction action)
     {
         this.ButtonComponent.onClick.AddListener(action);
         this.actionToExecute = action;
     }
 
-	public override void doAction() {
-		this.actionToExecute ();
-	}
+    public override void doAction() {
+        this.actionToExecute ();
+    }
 
     public Button ButtonComponent
     {

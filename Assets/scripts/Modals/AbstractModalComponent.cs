@@ -40,7 +40,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     public void Control() {
         NavigateModal (buttons);  
 
-		if (this.GetActions ().Green.WasReleased) {
+        if (this.GetActions ().Green.WasReleased) {
             this.DoAction ();   
         } else if (this.GetActions ().Red.WasReleased) { 
             this.popAction ();
@@ -77,21 +77,21 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     }
 
 
-	public void NavigateModal (Button[] passedInButtons) { //navigating main menu  
+    public void NavigateModal (Button[] passedInButtons) { //navigating main menu  
 
-		passedInButtons [index].Select ();
+        passedInButtons [index].Select ();
 
-		if (actions.Down.WasReleased) {
-			index = GetPositionIndex (passedInButtons, index, "down");
-		}
+        if (actions.Down.WasReleased) {
+            index = GetPositionIndex (passedInButtons, index, "down");
+        }
 
-		if (actions.Up.WasReleased) {
-			index = GetPositionIndex (passedInButtons, index, "up");
-		}
-	}
+        if (actions.Up.WasReleased) {
+            index = GetPositionIndex (passedInButtons, index, "up");
+        }
+    }
 
         
-	private int GetPositionIndex (Button[] items, int item, string direction) {
+    private int GetPositionIndex (Button[] items, int item, string direction) {
         if (direction == "up") {
             if (item == 0) {
                 item = items.Length - 1;
@@ -121,7 +121,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         //this.gameObject.SetActive (false);
         modalAnimator.Play ("ModalExit");
         yield return new WaitForSeconds(1.0f); 
-		Destroy(this.gameObject);  
+        Destroy(this.gameObject);  
 
     }
 

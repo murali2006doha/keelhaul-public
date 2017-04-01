@@ -26,10 +26,10 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
     protected int playersInPlay;
     protected bool started = false;
     protected Action onSelectCharacter;
-	protected GameTypeEnum  mode;
+    protected GameTypeEnum  mode;
 
     public void OnSelectCharacterAction(Action action)  {
-		Debug.Log ("setting action");
+        Debug.Log ("setting action");
         this.onSelectCharacter = action;
     }
 
@@ -81,12 +81,12 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
             cc.listening = false;
         }
         if (this.gameObject != null) {
-			if (playersInPlay == 0) {
+            if (playersInPlay == 0) {
                 start.gameObject.SetActive (true);
                 //change to next when there is map selection
                 if (!started && players.Exists (p => p.Actions.Green.IsPressed)) {
-					print ("playersin play");
-					LogAnalyticsUI.MainMenuGameStartedWithCharacters (mode, GlobalVariables.getMapToLoad().ToString(), players);
+                    print ("playersin play");
+                    LogAnalyticsUI.MainMenuGameStartedWithCharacters (mode, GlobalVariables.getMapToLoad().ToString(), players);
 
                     started = true;
                     this.onSelectCharacter ();
@@ -104,8 +104,8 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
         int playerCount = cc.players.Count;
         if (playerCount > 0 && playerCount <= numPlayers) {
-        	players [playerCount - 1].Actions = (PlayerActions)cc.players [playerCount - 1];
-		    if (players [playerCount - 1].Actions.Green.WasReleased) {
+            players [playerCount - 1].Actions = (PlayerActions)cc.players [playerCount - 1];
+            if (players [playerCount - 1].Actions.Green.WasReleased) {
                 players [playerCount - 1].isSignedIn = true;
                 players [playerCount - 1].gameObject.GetComponent<CharacterSelectPanel> ().enabled = true;
             }
@@ -167,7 +167,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
     }
 
 
-	public GameTypeEnum getMode() {
+    public GameTypeEnum getMode() {
         return mode;
     }
 

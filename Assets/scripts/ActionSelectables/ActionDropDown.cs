@@ -11,19 +11,19 @@ using UnityEngine.UI;
 public class ActionDropDown : ActionSelectable 
 {
 
-	UnityAction<int> actionToExecute;
+    UnityAction<int> actionToExecute;
 
     [SerializeField]
     Dropdown dropdown;
     public void SetAction(UnityAction<int> action)
     {
         this.DropDownComponent.onValueChanged.AddListener(action);
-		this.actionToExecute = action;
-	}
+        this.actionToExecute = action;
+    }
 
-	public override void doAction() {
-		this.actionToExecute (2);
-	}
+    public override void doAction() {
+        this.actionToExecute (2);
+    }
 
     public Dropdown DropDownComponent
     {

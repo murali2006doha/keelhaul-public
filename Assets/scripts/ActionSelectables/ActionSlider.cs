@@ -11,30 +11,30 @@ using UnityEngine.UI;
 public class ActionSlider : ActionSelectable
 {
 
-	UnityAction<float> actionToExecute;
+    UnityAction<float> actionToExecute;
 
-	[SerializeField]
-	Slider slider;
-	public void SetAction(UnityAction<float> action)
-	{
-		this.SliderComponent.onValueChanged.AddListener(action);
-		this.actionToExecute = action;
-	}
+    [SerializeField]
+    Slider slider;
+    public void SetAction(UnityAction<float> action)
+    {
+        this.SliderComponent.onValueChanged.AddListener(action);
+        this.actionToExecute = action;
+    }
 
-	public override void doAction() {
-		this.actionToExecute (this.SliderComponent.value);
-	}
+    public override void doAction() {
+        this.actionToExecute (this.SliderComponent.value);
+    }
 
-	public Slider SliderComponent
-	{
-		get
-		{
-			if (this.slider == null)
-			{
-				this.slider = this.GetComponent<Slider>();
-			}
+    public Slider SliderComponent
+    {
+        get
+        {
+            if (this.slider == null)
+            {
+                this.slider = this.GetComponent<Slider>();
+            }
 
-			return this.slider;
-		}
-	}
+            return this.slider;
+        }
+    }
 }

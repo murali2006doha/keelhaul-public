@@ -19,10 +19,10 @@ public abstract class AbstractMenu : MonoBehaviour
 {
 
     protected PlayerActions actions;
-	protected List<GameObject> actionSelectables = new List<GameObject>();
+    protected List<GameObject> actionSelectables = new List<GameObject>();
     protected Action onReturnAction;
     protected bool canReturn = true;
-	protected bool interactable = true;
+    protected bool interactable = true;
     protected int index = 0;
 
     /// <summary>
@@ -40,18 +40,18 @@ public abstract class AbstractMenu : MonoBehaviour
     // Update is called once per frame
     void Update () {
 
-		Navigate ();
+        Navigate ();
 
-		if (actions.Green.WasReleased) { 
+        if (actions.Green.WasReleased) { 
             this.DoAction ();  
         }
-		if (actions.Red.WasReleased && canReturn) {
+        if (actions.Red.WasReleased && canReturn) {
             GoBack ();
         } 
     }
 
 
-	public abstract void Navigate ();
+    public abstract void Navigate ();
     public abstract void SetActions();
 
         
@@ -61,9 +61,9 @@ public abstract class AbstractMenu : MonoBehaviour
 
     //do action might contain closeAction or openAction depending on what type of button is pressed
     public void DoAction() {
-		if (interactable) {
-			this.actionSelectables [index].GetComponent<ActionSelectable>().doAction ();
-		}
+        if (interactable) {
+            this.actionSelectables [index].GetComponent<ActionSelectable>().doAction ();
+        }
     }
 
     public void GoBack() {
@@ -73,9 +73,9 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
     public void ToggleButtons() {
-		interactable = !interactable;
-		foreach (GameObject b in actionSelectables) {
-			b.GetComponent<ActionButton>().ButtonComponent.interactable = !b.GetComponent<ActionButton>().ButtonComponent.interactable;
+        interactable = !interactable;
+        foreach (GameObject b in actionSelectables) {
+            b.GetComponent<ActionButton>().ButtonComponent.interactable = !b.GetComponent<ActionButton>().ButtonComponent.interactable;
         }
     }
 
@@ -83,39 +83,39 @@ public abstract class AbstractMenu : MonoBehaviour
     public void NavigateModalWithMouse() {
 
         for (int i = 0; i < actionSelectables.Count; i++) {
-			if (actionSelectables[i].GetComponent<ActionSelectable>().isMouseHovering ()) {
+            if (actionSelectables[i].GetComponent<ActionSelectable>().isMouseHovering ()) {
                 index = i;
             }
         }
     }
 
 
-	public void NavigateModal (GameObject[] passedInButtons) { //navigating main menu  
-		if (passedInButtons.Length > 0) {
-			passedInButtons [index].gameObject.GetComponent<Selectable> ().Select ();		
-		}
+    public void NavigateModal (GameObject[] passedInButtons) { //navigating main menu  
+        if (passedInButtons.Length > 0) {
+            passedInButtons [index].gameObject.GetComponent<Selectable> ().Select ();       
+        }
 
         if (actions.Down.WasReleased) {
-			index = GetPositionIndex (passedInButtons.Length, index, "down");
+            index = GetPositionIndex (passedInButtons.Length, index, "down");
         }
 
         if (actions.Up.WasReleased) {
-			index = GetPositionIndex (passedInButtons.Length, index, "up");
+            index = GetPositionIndex (passedInButtons.Length, index, "up");
         }
     }
 
 
-	private int GetPositionIndex (int length, int item, string direction) {
+    private int GetPositionIndex (int length, int item, string direction) {
         if (direction == "up") {
             if (item == 0) {
-				item = length - 1;
+                item = length - 1;
             } else {
                 item -= 1;
             }
         }
 
         if (direction == "down") {
-			if (item == length - 1) {
+            if (item == length - 1) {
                 item = 0;
             } else {
                 item += 1;

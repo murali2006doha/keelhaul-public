@@ -5,43 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class GameModeMenu : AbstractMenu {
 
-	public ActionButton deathmatch;
-	public ActionButton sabotage;
-	public bool isOnline;
-	//public SabotageGameTypeMenu sabotageGameTypeMenu; 
+    public ActionButton deathmatch;
+    public ActionButton sabotage;
+    public bool isOnline;
+    //public SabotageGameTypeMenu sabotageGameTypeMenu; 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
-		SetActions ();
+        SetActions ();
 
-		if (isOnline) {
-			actionSelectables.Add (deathmatch.gameObject);
-		} else {
-			actionSelectables.Add (sabotage.gameObject);
-		}
-	}
+        if (isOnline) {
+            actionSelectables.Add (deathmatch.gameObject);
+        } else {
+            actionSelectables.Add (sabotage.gameObject);
+        }
+    }
 
-	public override void SetActions (){
+    public override void SetActions (){
 
-		deathmatch.SetAction (() => {
-			ToggleButtons();
-			FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, isOnline);
-			SceneManager.LoadScene("Game");
-		});
+        deathmatch.SetAction (() => {
+            ToggleButtons();
+            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, isOnline);
+            SceneManager.LoadScene("Game");
+        });
 
-		sabotage.SetAction (() => {
-			ToggleButtons();
-			FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, isOnline);
-			SceneManager.LoadScene("Game");
-		});
-	}
+        sabotage.SetAction (() => {
+            ToggleButtons();
+            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, isOnline);
+            SceneManager.LoadScene("Game");
+        });
+    }
 
 
-	public override void Navigate() {
-		NavigateModal (actionSelectables.ToArray ());
-		NavigateModalWithMouse ();
-	}
+    public override void Navigate() {
+        NavigateModal (actionSelectables.ToArray ());
+        NavigateModalWithMouse ();
+    }
 
 
 }

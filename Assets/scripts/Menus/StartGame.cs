@@ -19,7 +19,7 @@ public class StartGame : MonoBehaviour {
     void Start () {
         cc = GameObject.FindObjectOfType<ControllerSelect> ();
         cc.withKeyboard = withKeyboard;
-		FindObjectOfType<MenuModel>().mainMenu.gameObject.SetActive (false);
+        FindObjectOfType<MenuModel>().mainMenu.gameObject.SetActive (false);
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class StartGame : MonoBehaviour {
 
         if (actions != null && actions.Green.WasReleased) {
             initialText.gameObject.SetActive (false);
-			FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
+            FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
                 initialText.gameObject.SetActive (true);
             });
         }

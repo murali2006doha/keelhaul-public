@@ -11,19 +11,19 @@ using UnityEngine.UI;
 public class ActionToggle : ActionSelectable
 {
 
-	UnityAction<bool> actionToExecute;
+    UnityAction<bool> actionToExecute;
 
     [SerializeField]
     Toggle toggle;
     public void SetAction(UnityAction<bool> action)
     {
         this.ToggleComponent.onValueChanged.AddListener(action);
-		this.actionToExecute = action;
-	}
+        this.actionToExecute = action;
+    }
 
-	public override void doAction() {
-		this.actionToExecute (true);
-	}
+    public override void doAction() {
+        this.actionToExecute (true);
+    }
 
     public Toggle ToggleComponent
     {
