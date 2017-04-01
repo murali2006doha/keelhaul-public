@@ -1585,7 +1585,7 @@ MonoBehaviour:
     numOfBoosts: 0
     numOfKrakenSmash: 0
   uiManager: {fileID: 0}
-  splashParticle: {fileID: 0}
+  splashParticle: {fileID: 1089258557348226}
 --- !u!120 &12023762
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -4535,7 +4535,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1094985868
+  randomSeed: -976063459
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13259,7 +13259,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1089258557348226}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b096e9a51a44335429ceaebafe9075e5, type: 3}
   m_Name: 
