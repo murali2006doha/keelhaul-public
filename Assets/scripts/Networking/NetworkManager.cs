@@ -130,6 +130,7 @@ public class NetworkManager : MonoBehaviour
 
                         StartSpawnProcessOffline ();
                         Destroy (instantiated);
+                        FindObjectOfType<PlayerSelectSettings>().transform.parent = null;
                         Destroy (this.camera);
                     });
             }
@@ -152,7 +153,7 @@ public class NetworkManager : MonoBehaviour
 					csc.setPlayerSelectSettings ();         
 
                     StartSpawnProcessOnline(csc.getPlayerSelectSettings().players[0].selectedCharacter, mapType);
-                    Destroy(instantiated);
+                    FindObjectOfType<PlayerSelectSettings>().transform.parent = null;
                     Destroy(this.camera);
             });
         }
