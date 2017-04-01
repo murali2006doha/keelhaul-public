@@ -2339,6 +2339,8 @@ MonoBehaviour:
   killText: {fileID: 1660298601089424}
   fadePanel: {fileID: 1459231244831992}
   animManager: {fileID: 114052270766670612}
+  characterPortrait: {fileID: 0}
+  characterPortraitBackground: {fileID: 0}
   killFeed: {fileID: 114729158681630640}
 --- !u!114 &114000013979184056
 MonoBehaviour:
@@ -4409,7 +4411,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682455837154796}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000010212}
   m_LocalScale: {x: 1.8174577, y: 0.8233436, z: 1}
   m_Children: []
   m_Father: {fileID: 224000013816475750}
@@ -4417,7 +4419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 80.24986, y: -959.43}
+  m_AnchoredPosition: {x: 79.9, y: -918.31}
   m_SizeDelta: {x: 63, y: 15.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224614181896855306
