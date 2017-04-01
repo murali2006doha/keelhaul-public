@@ -15,11 +15,10 @@ public class ActionSlider : ActionSelectable
 
     [SerializeField]
     Slider slider;
-    public void SetAction(UnityAction<float> action)
-    {
+    public void SetAction(UnityAction<float> action) {
         this.SliderComponent.onValueChanged.AddListener(action);
         this.actionToExecute = action;
-    }
+	}
 
     public override void doAction() {
         this.actionToExecute (this.SliderComponent.value);

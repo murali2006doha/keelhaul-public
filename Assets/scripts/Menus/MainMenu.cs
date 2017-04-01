@@ -38,9 +38,9 @@ public class MainMenu : AbstractMenu {
 
         online.SetAction (() => {
             this.enabled = false;
-            ToggleButtons();
+            ToggleSelectables();
             FindObjectOfType<MenuModel>().onlineModeMenu.Initialize(this.actions, () => {
-                ToggleButtons(); 
+                ToggleSelectables(); 
                 this.enabled = true;
             });
             FindObjectOfType<MenuModel>().onlineModeMenu.isOnline = true;
@@ -49,9 +49,9 @@ public class MainMenu : AbstractMenu {
 
         offline.SetAction (() =>  {
             this.enabled = false;
-            ToggleButtons();
+            ToggleSelectables();
             FindObjectOfType<MenuModel>().offlineModeMenu.Initialize(this.actions, () => {
-                ToggleButtons(); 
+                ToggleSelectables(); 
                 this.enabled = true;
             });
             FindObjectOfType<MenuModel>().offlineModeMenu.isOnline = false;
@@ -59,18 +59,18 @@ public class MainMenu : AbstractMenu {
 
 
         settings.SetAction (() => {
-            ToggleButtons(); 
+            ToggleSelectables(); 
             this.gameObject.SetActive (false);
             FindObjectOfType<MenuModel> ().settingsMenu.Initialize (actions, () => {
-                ToggleButtons(); 
+                ToggleSelectables(); 
                 this.gameObject.SetActive (true);
             });
         });
 
 
         Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
-        modalActions.Add (ModalActionEnum.onOpenAction, () => {ToggleButtons();});
-        modalActions.Add (ModalActionEnum.onCloseAction, () => {ToggleButtons();});
+        modalActions.Add (ModalActionEnum.onOpenAction, () => {ToggleSelectables();});
+        modalActions.Add (ModalActionEnum.onCloseAction, () => {ToggleSelectables();});
 
         exit.SetAction (() =>  {
             canReturn = false;

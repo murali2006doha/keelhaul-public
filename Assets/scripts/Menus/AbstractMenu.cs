@@ -72,12 +72,26 @@ public abstract class AbstractMenu : MonoBehaviour
     }
 
 
-    public void ToggleButtons() {
-        interactable = !interactable;
-        foreach (GameObject b in actionSelectables) {
-            b.GetComponent<ActionButton>().ButtonComponent.interactable = !b.GetComponent<ActionButton>().ButtonComponent.interactable;
-        }
-    }
+    public void ToggleSelectables() {
+
+		foreach (GameObject b in actionSelectables) {
+			if (b.GetComponent<ActionButton> ()) {
+				b.GetComponent<ActionButton> ().ButtonComponent.interactable = !b.GetComponent<ActionButton> ().ButtonComponent.interactable;
+			
+			} else if (b.GetComponent<ActionSlider> ()) {
+				b.GetComponent<ActionSlider> ().SliderComponent.interactable = !b.GetComponent<ActionSlider> ().SliderComponent.interactable;
+
+			} else if (b.GetComponent<ActionToggle> ()) {
+				b.GetComponent<ActionToggle> ().ToggleComponent.interactable = !b.GetComponent<ActionToggle> ().ToggleComponent.interactable;
+
+			} else if (b.GetComponent<ActionDropDown> ()) {
+				b.GetComponent<ActionDropDown> ().DropDownComponent.interactable = !b.GetComponent<ActionDropDown> ().DropDownComponent.interactable;
+
+			}
+		}
+		interactable = !interactable;
+
+	}
 
 
     public void NavigateModalWithMouse() {
@@ -102,7 +116,24 @@ public abstract class AbstractMenu : MonoBehaviour
         if (actions.Up.WasReleased) {
             index = GetPositionIndex (passedInButtons.Length, index, "up");
         }
+			
+
+		if (passedInButtons [index].gameObject.GetComponent<ActionSlider> ()) {
+			NavigateSlider ();
+		}
+
     }
+
+
+	void NavigateSlider () {
+		
+		if (actions.Left.WasReleased) {
+			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
+		}
+		if (actions.Right.WasReleased) {
+			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
+		}
+	}
 
 
     private int GetPositionIndex (int length, int item, string direction) {
