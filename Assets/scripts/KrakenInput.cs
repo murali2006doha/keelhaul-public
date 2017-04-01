@@ -45,7 +45,6 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     public GameObject spray;
     public spitBallCannon spitter;
     public GameObject theWall;
-
     //properties | variables like speed and health that change over time inside this script only
 
     GameObject previousShip;
@@ -79,7 +78,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     void initializeVariables()
     {
-
+        this.startingPoint = this.transform.position;
         health = stats.stages[currentStage].max_health;
         currentStage = 0;
         cc = GetComponent<CharacterController>();
@@ -528,7 +527,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         submerged = false;
         smash = false;
         attacking = false;
-        submergeSprite.enabled = false;
+        submergeSprite.gameObject.SetActive(false);
         submergeTimer = stats.stages[currentStage].submergeTime;
         //   enableSpray();
 
@@ -665,7 +664,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (!hittingShip.GetComponent<PlayerInput>().invincible)
             {
-
+         
                 hittingShip.GetComponent<PlayerInput>().SetLockedStatus(true);
             }
 
