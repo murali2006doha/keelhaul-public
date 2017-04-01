@@ -505,7 +505,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
         if (previousShip != null)
         {
-            previousShip.GetComponent<PlayerInput>().locked = false;
+            previousShip.GetComponent<PlayerInput>().SetLockedStatus(false);
         }
         followCamera.zoomIn = true;
         animator.triggerDeathAnimation();
@@ -665,7 +665,8 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (!hittingShip.GetComponent<PlayerInput>().invincible)
             {
-                hittingShip.GetComponent<PlayerInput>().locked = true;
+
+                hittingShip.GetComponent<PlayerInput>().SetLockedStatus(true);
             }
 
 
@@ -687,7 +688,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     }
 
-
+ 
     public void resetEmerge()
     {
         hasHitShip = false;

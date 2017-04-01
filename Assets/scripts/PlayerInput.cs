@@ -185,6 +185,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         this.worldCanvas.UpdateHealthSlider(sliderVal);
     }
 
+    public void SetLockedStatus(bool locked) {
+        motor.locked = locked;
+    }
     private void InitializeHookshot()
     {
         if (hookshotComponent)
@@ -661,6 +664,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         centralCannon.ResetShotRight();
         altCannonComponent.ResetShotAlt();
         stopPushForce();
+        this.SetLockedStatus(false);
         //shipMesh.enabled = false;
         manager.respawnPlayer(this, startingPoint, startingRotation);
         //anim.triggerRespawnAnimation ();
@@ -673,6 +677,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         centralCannon.gameObject.SetActive(true);
         dying = false;
+        this.SetLockedStatus(false);
         setStatus(ShipStatus.Alive);
         activateInvincibility();
         Invoke("deactivateInvincibility", stats.invinciblityTime);
