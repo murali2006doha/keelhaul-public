@@ -284,7 +284,7 @@ public class SabotageGameManager : AbstractGameManager
         }
 
         Barrel b = barrel.GetComponent<Barrel>();
-        b.explodeBarrel();
+        //b.explodeBarrel();
 
 
         int x = 0;
