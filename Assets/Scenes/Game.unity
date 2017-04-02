@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NetworkedCharacterSelect: {fileID: 1094443328089532, guid: 645a1f2311c084ae882b673e34b8e787,
     type: 2}
-  OfflineCharacterSelect: {fileID: 1484721607591290, guid: 75e08dec454984d058f32e0a8a6bdcd6,
+  OfflineCharacterSelect: {fileID: 1484721607591290, guid: 72f4139673b8843f9bb0cb9bf6f0a0fb,
     type: 2}
   matchMaker: {fileID: 114889695674164552, guid: 9e5da8f924e0205468a45fb18988779d,
     type: 2}
@@ -287,9 +287,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1541752946}
   - component: {fileID: 1541752945}
-  - component: {fileID: 1541752944}
-  - component: {fileID: 1541752943}
-  - component: {fileID: 1541752942}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -297,27 +294,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1541752942
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1541752941}
-  m_Enabled: 1
---- !u!92 &1541752943
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1541752941}
-  m_Enabled: 1
---- !u!124 &1541752944
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1541752941}
-  m_Enabled: 1
 --- !u!20 &1541752945
 Camera:
   m_ObjectHideFlags: 0
