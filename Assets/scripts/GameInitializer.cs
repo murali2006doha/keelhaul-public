@@ -437,6 +437,9 @@ public class GameInitializer : MonoBehaviour {
         krakenObj.transform.position = map.krakenStartPoint.transform.position;
 
         KrakenInput kraken = krakenObj.GetComponent<KrakenInput>();
+        if (action.Device == null) {
+            action = PlayerActions.CreateWithKeyboardBindings();
+        }
         kraken.Actions = action;
     }
 
@@ -658,6 +661,9 @@ public class GameInitializer : MonoBehaviour {
             PlayerInput input = newShip.GetComponent<PlayerInput>();
 
             input.playerId = playerId;
+            if (player.Actions.Device == null) {
+                player.Actions = PlayerActions.CreateWithKeyboardBindings_2();
+            }
             input.Actions = player.Actions;
             input.shipNum = num+1;
             int altSkinCount = 1;
