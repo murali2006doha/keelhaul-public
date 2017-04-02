@@ -100,6 +100,9 @@ public class GameInitializer : MonoBehaviour {
                 gameType = ps.gameType;
             }
 
+            if (gameType == GameTypeEnum.Sabotage) {
+                this.isTeam = true;
+            }
             includeKraken = ps.includeKraken;
             shipSelections.Clear();
             foreach(CharacterSelection selection in ps.players)

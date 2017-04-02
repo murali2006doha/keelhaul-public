@@ -477,6 +477,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (onHitRegister != null) {
             onHitRegister ();
         }
+
+        if (teamGame && !isKraken) {
+            return;
+        }
+
         if (!invincible && health > 0 && this.status == ShipStatus.Alive)
         {
             float actualDamage = (passedDamage > 0) ? passedDamage : damage;
