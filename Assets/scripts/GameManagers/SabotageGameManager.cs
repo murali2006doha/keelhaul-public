@@ -717,14 +717,8 @@ public class SabotageGameManager : AbstractGameManager
 
     override public void exitToCharacterSelect()
     {
-        if (!ps)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        else {
-            Destroy(ps.gameObject);
-            SceneManager.LoadScene("start2");
-        }
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("start");
     }
     public void restartCurrentGame()
     {
@@ -861,6 +855,7 @@ public class SabotageGameManager : AbstractGameManager
         print("winnerID" + id);
         SyncStats();
 
+        players[0].hasWon = true;
         players[0].gameStarted = false;
 
     }
