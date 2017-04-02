@@ -43,8 +43,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
         for(int i = 0; i < numPlayers; i++) {
             initializePanel ();
-        }   
-            
+        }               
         foreach (ShipEnum character in characters) {
             characterStatuses.Add (character.ToString(), false);
         }
@@ -84,7 +83,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
                 start.gameObject.SetActive (true);
                 //change to next when there is map selection
                 if (!started && players.Exists (p => p.Actions.Green.IsPressed)) {
-                    LogAnalyticsUI.MainMenuGameStartedWithCharacters (mode, GlobalVariables.getMapToLoad().ToString(), players);
+                    //LogAnalyticsUI.MainMenuGameStartedWithCharacters (mode, GlobalVariables.getMapToLoad().ToString(), players);
 
                     started = true;
                     this.onSelectCharacter ();

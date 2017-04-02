@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -350,8 +350,8 @@ MonoBehaviour:
   Offline: 0
   withKeyboard: 1
   start: {fileID: 224758791099989710}
-  numPlayers: 3
-  characters: 00000000010000000200000004000000
+  numPlayers: 4
+  characters: 000000000100000002000000
   loadingScreen: {fileID: 1078185161040646}
 --- !u!114 &114398690333435080
 MonoBehaviour:
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 300, y: 0}
+  m_Spacing: {x: 350, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 6
 --- !u!114 &114703386618528220
@@ -686,7 +686,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 405, y: 403}
   m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224438159059185752
@@ -772,14 +772,14 @@ RectTransform:
   m_GameObject: {fileID: 1944427113664940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.30107388, y: 0.30107394, z: 0.30107394}
+  m_LocalScale: {x: 0.3664514, y: 0.36645144, z: 0.36645144}
   m_Children: []
   m_Father: {fileID: 224173587213979014}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -34, y: -110}
+  m_AnchoredPosition: {x: -54, y: -110}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224948038890231918

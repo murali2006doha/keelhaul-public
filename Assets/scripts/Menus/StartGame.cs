@@ -13,7 +13,7 @@ public class StartGame : MonoBehaviour {
 
     ControllerSelect cc;
     PlayerActions actions;
-
+	bool notStarted = true;
 
     // Use this for initialization
     void Start () {
@@ -30,11 +30,12 @@ public class StartGame : MonoBehaviour {
             SignIn ();
         }
 
-        if (actions != null && actions.Green.WasReleased) {
+        if (notStarted && actions != null && actions.Green.WasReleased) {
             initialText.gameObject.SetActive (false);
             FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
                 initialText.gameObject.SetActive (true);
             });
+			notStarted = false;
         }
     }   
 

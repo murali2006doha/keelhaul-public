@@ -22,7 +22,8 @@ public class ActionToggle : ActionSelectable
     }
 
     public override void doAction() {
-        this.actionToExecute (true);
+		this.ToggleComponent.isOn = !this.ToggleComponent.isOn;
+		this.actionToExecute (this.ToggleComponent.isOn);
     }
 
     public Toggle ToggleComponent

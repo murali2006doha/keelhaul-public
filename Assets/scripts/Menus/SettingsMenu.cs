@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
-
 public class SettingsMenu : AbstractMenu {
 
 
     public ActionToggle shadowsToggle;
-    public ActionToggle waterToggle;
+	public ActionToggle waterRefractToggle;
+	public ActionToggle waterReflectToggle;
     public ActionSlider soundSlider;
     public ActionSlider musicSlider;
 
@@ -15,11 +15,12 @@ public class SettingsMenu : AbstractMenu {
     void Start () {
 
         actionSelectables.Add (shadowsToggle.gameObject);
-        actionSelectables.Add (waterToggle.gameObject);
+		actionSelectables.Add (waterRefractToggle.gameObject);
+		actionSelectables.Add (waterReflectToggle.gameObject);
         actionSelectables.Add (soundSlider.gameObject);
         actionSelectables.Add (musicSlider.gameObject);
 
-        //setButtonsToActions ();
+		SetActions ();
     }
 
 
@@ -30,12 +31,35 @@ public class SettingsMenu : AbstractMenu {
 
 
     public override void SetActions () {
-        soundSlider.SetAction (this.setSoundVolume);
+		shadowsToggle.SetAction (this.setShadowsToggle);
+		waterRefractToggle.SetAction (this.setWaterRefractionToggle);
+		waterReflectToggle.SetAction (this.setWaterReflectionToggle);
+		soundSlider.SetAction (this.setSoundVolume);
+		musicSlider.SetAction (this.setMusicVolume);
     }
 
     void setSoundVolume(float multiplier) {
-        //GlobalVariables.soundMultiplier = multiplier;
+		GlobalSettings.soundMultiplier = multiplier;
     }
-            
+
+	void setMusicVolume(float multiplier) {
+		GlobalSettings.musicMultiplier = multiplier;
+	}
+
+	void setShadowsToggle(bool isOn) {
+		if (isOn) {
+			QualitySettings.shadows = ShadowQuality.All;
+		} else {
+			QualitySettings.shadows = ShadowQuality.Disable;
+		}
+	}
+
+	void setWaterRefractionToggle(bool isOn) {
+		GlobalSettings.waterRefraction = isOn;
+	}
+
+	void setWaterReflectionToggle(bool isOn) {
+		GlobalSettings.waterReflection = isOn;
+	}
 }
 

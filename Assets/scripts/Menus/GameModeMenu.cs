@@ -8,7 +8,6 @@ public class GameModeMenu : AbstractMenu {
     public ActionButton deathmatch;
     public ActionButton sabotage;
     public bool isOnline;
-    //public SabotageGameTypeMenu sabotageGameTypeMenu; 
 
     // Use this for initialization
     void Start () {
@@ -18,20 +17,21 @@ public class GameModeMenu : AbstractMenu {
         if (isOnline) {
             actionSelectables.Add (deathmatch.gameObject);
         } else {
-            actionSelectables.Add (sabotage.gameObject);
+			actionSelectables.Add (sabotage.gameObject);
+			actionSelectables.Add (deathmatch.gameObject);
         }
     }
 
     public override void SetActions (){
 
         deathmatch.SetAction (() => {
-            ToggleButtons();
+            ToggleSelectables();
             FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, isOnline);
             SceneManager.LoadScene("Game");
         });
 
         sabotage.SetAction (() => {
-            ToggleButtons();
+            ToggleSelectables();
             FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, isOnline);
             SceneManager.LoadScene("Game");
         });

@@ -35,7 +35,13 @@ public class CharacterSelectPanel : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		csc = FindObjectOfType<AbstractCharacterSelectController> ();
+		AbstractCharacterSelectController[] availableCSCs = FindObjectsOfType<AbstractCharacterSelectController> ();
+		foreach (AbstractCharacterSelectController aCsc in availableCSCs) {
+			if (aCsc.enabled) {
+				csc = aCsc;
+			}
+		}
+
 		selected = false;
 		selectedCharacter = "";
 		backPanel.sprite = Resources.Load<Sprite>(CharacterSelectModel.ShipToImage [ShipEnum.Kraken]);

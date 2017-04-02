@@ -103,7 +103,6 @@ public class NetworkManager : MonoBehaviour
             if (FindObjectOfType<GameModeSelectSettings> () != null) {
                 if (FindObjectOfType<GameModeSelectSettings> ().getGameType () == GameTypeEnum.DeathMatch) {
                     csc = instantiated.GetComponentInChildren<DeathMatchCharacterSelectController> ();
-
                 } else if (FindObjectOfType<GameModeSelectSettings> ().getGameType () == GameTypeEnum.Sabotage) {
                     csc = instantiated.GetComponentInChildren<PlunderCharacterSelectController> ();
                 }
@@ -113,6 +112,8 @@ public class NetworkManager : MonoBehaviour
                 } else if (this.gameObject.GetComponent<GameInitializer> ().gameType == GameTypeEnum.Sabotage) {
                     csc = instantiated.GetComponentInChildren<PlunderCharacterSelectController> ();
                 }
+
+				csc.numPlayers = this.gameObject.GetComponent<GameInitializer> ().shipSelections.Count;
             }
 
             csc.enabled = true;
