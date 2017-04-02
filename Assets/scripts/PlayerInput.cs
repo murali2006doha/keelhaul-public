@@ -211,9 +211,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightRotateChanged += aimComponent.AimAt;
         shipInput.onRightTriggerDown += centralCannon.handleShoot;
         shipInput.onRightBumperDown += altCannonComponent.handleShoot;
-        shipInput.onStartButtonPress += this.instantiatePauseMenu; //ENTER on keyboard
-        shipInput.onSelectButtonHoldDown += this.showStatsScreen;
-        shipInput.onSelectButtonRelease += this.uiManager.SetOffStatsScreen;
+        //shipInput.onStartButtonPress += this.instantiatePauseMenu; //ENTER on keyboard
+        //shipInput.onSelectButtonHoldDown += this.showStatsScreen;
+        //shipInput.onSelectButtonRelease += this.uiManager.SetOffStatsScreen;
             
         if (hookshotComponent)
         {
@@ -232,8 +232,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightTriggerDown = null;
         shipInput.onRightBumperDown = null;
         shipInput.onLeftTriggerDown = null;
-        shipInput.onSelectButtonHoldDown = null;
-        shipInput.onSelectButtonRelease = null;
+        //shipInput.onSelectButtonHoldDown = null;
+        //shipInput.onSelectButtonRelease = null;
     }
 
 

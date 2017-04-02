@@ -39,11 +39,11 @@ public class SettingsMenu : AbstractMenu {
     }
 
     void setSoundVolume(float multiplier) {
-		//GlobalSettings.soundMultiplier = multiplier;
+		GlobalSettings.soundMultiplier = multiplier;
     }
 
 	void setMusicVolume(float multiplier) {
-		//GlobalSettings.musicMultiplier = multiplier;
+		GlobalSettings.musicMultiplier = multiplier;
 	}
 
 	void setShadowsToggle(bool isOn) {
@@ -55,11 +55,11 @@ public class SettingsMenu : AbstractMenu {
 	}
 
 	void setWaterRefractionToggle(bool isOn) {
-		//GlobalSettings.waterRefraction = isOn;
+		GlobalSettings.waterRefraction = isOn;
 	}
 
 	void setWaterReflectionToggle(bool isOn) {
-		//GlobalSettings.waterReflection = isOn;
+		GlobalSettings.waterReflection = isOn;
 	}
 }
 
