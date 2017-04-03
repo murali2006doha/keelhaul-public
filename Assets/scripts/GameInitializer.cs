@@ -679,7 +679,7 @@ public class GameInitializer : MonoBehaviour {
             }
             if (altSkinCount > 1)
             {
-                input.GetComponent<PhotonView>().RPC("ChangeSkin", PhotonTargets.AllBuffered, altSkinCount);
+                //input.GetComponent<PhotonView>().RPC("ChangeSkin", PhotonTargets.AllBuffered, altSkinCount);
             }
             
             if (isTeam)
