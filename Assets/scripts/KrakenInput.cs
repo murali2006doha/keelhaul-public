@@ -131,7 +131,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             }
         }
-        uiManager.setBoostBar(submergeTimer / stats.stages[currentStage].submergeTime,false);
+        uiManager.setBoostBar(submergeTimer / stats.stages[currentStage].submergeTime);
 
     }   
 
