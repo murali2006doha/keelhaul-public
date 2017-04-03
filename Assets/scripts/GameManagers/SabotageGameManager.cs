@@ -757,7 +757,7 @@ public class SabotageGameManager : AbstractGameManager
                 player.GetComponent<HookshotComponent>().enabled = true;
                 if (PhotonNetwork.offlineMode)
                 {
-                    player.uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
+                    player.uiManager.updatePoint(gamePoints[id.ToString()] + 1);
                 }
                 break;
             }

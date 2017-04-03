@@ -363,7 +363,7 @@ public class DeathMatchGameManager : AbstractGameManager
                 player.AddKillStats(id);
                 if (PhotonNetwork.offlineMode)
                 {
-                    player.uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
+                    player.uiManager.updatePoint(gamePoints[id.ToString()]+1);
                 }
                 break;
             }
