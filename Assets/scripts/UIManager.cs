@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using DentedPixel;
 
 public class UIManager : MonoBehaviour
 {
@@ -354,7 +355,7 @@ public class UIManager : MonoBehaviour
 
     public void showDeathAnimation(int player, string ship)
     {
-        fadePanel.SetActive(true);
+		LeanTween.alphaCanvas(fadePanel.GetComponent<CanvasGroup> (), 1f, 1f);
         killText.SetActive(true);
         var tex = killText.GetComponent<Text>().text;
         temp = tex;
@@ -364,7 +365,7 @@ public class UIManager : MonoBehaviour
 
     public void hideDeathAnimation()
     {
-        fadePanel.SetActive(false);
+		LeanTween.alphaCanvas(fadePanel.GetComponent<CanvasGroup> (), 0f, 1f);
         killText.SetActive(false);
         killText.GetComponent<Text>().text = temp;
     }
