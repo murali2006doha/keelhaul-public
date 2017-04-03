@@ -739,55 +739,96 @@ public class SabotageGameManager : AbstractGameManager
     [PunRPC]
     public void IncrementPoint(int id)
     {
-
-        if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode)
-        {
-
-            players[0].uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
-
-        }
-        var players2 = getPlayers();
-        foreach (PlayerInput player in players2)
-        {
-            if (player.GetId() == id)
-            {
-                player.GetComponent<HookshotComponent>().UnHook();
-                player.GetComponent<HookshotComponent>().enabled = false;
-                StartCoroutine(teleportBarrel(player, barrel.gameObject));
-                player.GetComponent<HookshotComponent>().enabled = true;
-                if (PhotonNetwork.offlineMode)
-                {
-                    player.uiManager.updatePoint(gamePoints[id.ToString()] + 1);
-                }
-                break;
-            }
-        }
+        int score = gamePoints[id.ToString()] + 1;
         int winPoints = playerWinPoints;
-
+        var players2 = getPlayers();
+        int teamNo = 0;
+        gamePoints[id.ToString()]++;
         if (kraken.id == id)
         {
             kraken.uiManager.updatePoint(int.Parse((kraken.uiManager.points.text)) + 1);
             winPoints = krakenWinPoints;
         }
+        else
+        {
+            if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode)
+            {
+
+                players[0].uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
+
+            }
+            
+            
+            foreach (PlayerInput player in players2)
+            {
+                if (player.GetId() == id)
+                {
+                    if (isTeam)
+                    {
+                        teamNo = player.teamNo;
+                    }
+                    player.GetComponent<HookshotComponent>().UnHook();
+                    player.GetComponent<HookshotComponent>().enabled = false;
+                    StartCoroutine(teleportBarrel(player, barrel.gameObject));
+                    player.GetComponent<HookshotComponent>().enabled = true;
+                    if (PhotonNetwork.offlineMode)
+                    {
+
+                        score = getTeamScore(teamNo);
+
+                        player.uiManager.updatePoint(score);
+                    }
+                    break;
+                }
+            }
+
+            foreach (PlayerInput player in players2)
+            {
+                if (player.GetId() != id && player.teamNo == teamNo)
+                {
+                    if (PhotonNetwork.offlineMode)
+                    {
+                        player.uiManager.updatePoint(score);
+                    }
+                }
+            }
+        }
+
+       
+       
+
+        
 
         
 
         if (gamePoints.ContainsKey(id.ToString()))
         {
 
-            gamePoints[id.ToString()]++;
-            if (gamePoints[id.ToString()] >= winPoints && PhotonNetwork.isMasterClient)
+            if (score >= winPoints && PhotonNetwork.isMasterClient)
             {
                 this.GetComponent<PhotonView>().RPC("TriggerNetworkedVictory", PhotonTargets.All, id);
             }
-            else if (gamePoints[id.ToString()] == winPoints - 1)
+            else if (score == winPoints - 1)
             {
-                this.GetComponent<PhotonView>().RPC("ActivateLastPointPrompt", PhotonTargets.All, id);
+                this.GetComponent<PhotonView>().RPC("ActivateLastPointPrompt", PhotonTargets.All, (isTeam && kraken.id!=id)?teamNo:id);
 
             }
         }
 
 
+    }
+
+    private int getTeamScore(int teamNo)
+    {
+        int score = 0;
+        foreach (PlayerInput player in getPlayers())
+        {
+            if (player.teamNo  == teamNo)
+            {
+                score += gamePoints[player.GetId().ToString()];
+            }
+        }
+        return score;
     }
 
     public override string getShipById(int id)
@@ -814,17 +855,30 @@ public class SabotageGameManager : AbstractGameManager
         {
             foreach (PlayerInput player in players)
             {
-                if (player.GetId() == id)
+                if ((!isTeam && player.GetId() == id) || (isTeam && player.teamNo == id))
                 {
                     var newText = lastPoint.Replace("The Replace", "You").Replace("Needs", "Need");
                     player.uiManager.GetComponentInChildren<ProgressScript>().activatePopup(newText, "You", "Ship");
                 }
                 else
                 {
-                    var newText = lastPoint.Replace("The Replace", "Player " + id.ToString());
+                    var newText = lastPoint.Replace("The Replace", (isTeam?teamNames[id]: "Player " + id.ToString()));
                     player.uiManager.GetComponentInChildren<ProgressScript>().activatePopup(newText, "They", "Ship");
                 }
 
+            }
+            if (kraken)
+            {
+                if (kraken.id == id)
+                {
+                    var newText = lastPoint.Replace("The Replace", "You").Replace("Needs", "Need");
+                    kraken.uiManager.GetComponentInChildren<ProgressScript>().activatePopup(newText, "You", "Kraken");
+                }
+                else
+                {
+                    var newText = lastPoint.Replace("The Replace", "The ships");
+                    kraken.uiManager.GetComponentInChildren<ProgressScript>().activatePopup(newText, "They", "Kraken");
+                }
             }
 
         }

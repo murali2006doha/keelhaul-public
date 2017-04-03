@@ -556,7 +556,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void SendBarrelScoreToKillFeed()
     {
-        GetComponent<PhotonView>().RPC("AddBarrelScoreToKillFeed", PhotonTargets.All, "P" + GetId(), type.ToString());
+
+        foreach (PlayerInput player in FindObjectsOfType<PlayerInput>())
+        {
+            player.GetComponent<PhotonView>().RPC("AddBarrelScoreToKillFeed", PhotonTargets.All, "P" + GetId(), type.ToString());
+        }
+        
         if (kraken)
         {
             kraken.uiManager.AddBarrelScoreToKillFeed("P" + GetId(), type.ToString());
