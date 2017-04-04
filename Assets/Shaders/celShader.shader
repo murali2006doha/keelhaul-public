@@ -14,7 +14,6 @@ Shader "celShading/cel" {
         _bump ("bump", 2D) = "bump" {}
         _width ("width", Range(0, 1)) = 0
         _node_9426 ("node_9426", Color) = (0.5,0.5,0.5,1)
-		_node_9427 ("node_9427", Color) = (0.5,0.5,0.5,1)
     }
     SubShader {
         Tags {
@@ -37,26 +36,22 @@ Shader "celShading/cel" {
             #pragma target 3.0
             uniform float _width;
             uniform float4 _node_9426;
-			uniform float4 _node_9427;
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
             };
             struct VertexOutput {
                 float4 pos : SV_POSITION;
-				float4 vertex : POSITION2	;
                 UNITY_FOG_COORDS(0)
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
-				o.vertex = v.vertex;
                 o.pos = mul(UNITY_MATRIX_MVP, float4(v.vertex.xyz + v.normal*_width,1) );
                 UNITY_TRANSFER_FOG(o,o.pos);
                 return o;
             }
             float4 frag(VertexOutput i) : COLOR {
-				float4 tempColor = lerp(_node_9426, _node_9427, i.vertex);
-                return fixed4(tempColor.rgb,0);
+                return fixed4(_node_9426.rgb,0);
             }
             ENDCG
         }
