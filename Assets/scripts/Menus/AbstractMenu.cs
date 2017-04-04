@@ -42,7 +42,7 @@ public abstract class AbstractMenu : MonoBehaviour
 
         Navigate ();
 
-        if (actions.Green.WasPressed) { 
+		if (actions.Green.WasReleased) { 
             this.DoAction ();  
         }
         if (actions.Red.WasReleased && canReturn) {

@@ -16,9 +16,9 @@ public class GameModeMenu : AbstractMenu {
 
         if (isOnline) {
             actionSelectables.Add (deathmatch.gameObject);
-        } else {
-			actionSelectables.Add (sabotage.gameObject);
+		} else {
 			actionSelectables.Add (deathmatch.gameObject);
+			actionSelectables.Add (sabotage.gameObject);
         }
     }
 
