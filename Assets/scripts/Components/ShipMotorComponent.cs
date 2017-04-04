@@ -24,7 +24,7 @@ public class ShipMotorComponent : MonoBehaviour
     protected Quaternion originalRotation;
     protected Quaternion originalRotationValue;
     protected bool keyboardControls;
-    bool sinking = false;
+    public bool sinking = false;
     public bool locked;
 
 

@@ -22,7 +22,7 @@ public class AtlanteanShieldController : MonoBehaviour {
 		rot = Quaternion.Euler(0, 0, -180);
 		//isReflecting = true;
 		PlayerInput.onHitRegister += AddToHealth;
-		parent.GetComponent<PlayerInput> ().invincible = true;
+        parent.GetComponent<PlayerInput>().activateInvincibility(false);
 	}
 	
 	// Update is called once per frame

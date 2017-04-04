@@ -40,12 +40,12 @@ public class GameInitializer : MonoBehaviour {
     void Start()
     {
         Cursor.visible = false;
-        InstantiateMap();
+        
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         gs = GameObject.FindObjectOfType<GameModeSelectSettings>();
         setGameTypeAndSettings();
+        InstantiateMap();
 
-       
         if (shipSelections.Count == 0)
         {
             shipSelections.Add(new CharacterSelection(ShipEnum.AtlanteanShip.ToString(), null));
@@ -87,6 +87,7 @@ public class GameInitializer : MonoBehaviour {
     }
 
     private void InstantiateMap() {
+       
         GameObject mapToInstantiate = Resources.Load(PathVariables.GetMapForMode(gameType, map)) as GameObject;
         Instantiate(mapToInstantiate);
     }

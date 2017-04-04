@@ -260,18 +260,27 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         return hookshotComponent;
     }
 
-    public void activateInvincibility()
+    public void activateInvincibility(bool showParticles = true)
     {
         if (!GetComponent<PhotonView>().isMine)
         {
             return;
         }
         invincible = true;
+        if (!motor.sinking)
+        {
+            SetLockedStatus(false);
+        }
         if (invinciblity)
         {
             invinciblity.SetBool("invincibility", true);
+
         }
+        if (showParticles)
+        {
         invincibilityParticle.SetActive(true);
+
+        }
     }
 
     public void deactivateInvincibility()
@@ -353,7 +362,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     { //not being used yet?
         if (!invincible)
         {
-            print("wwat");
             
             motor.StartSinking();
             Invoke("takeSinkDamage", 1f);

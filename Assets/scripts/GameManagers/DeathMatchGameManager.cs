@@ -744,6 +744,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
     override public void exitToCharacterSelect()
     {
+        base.exitToCharacterSelect();
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("start");
     }

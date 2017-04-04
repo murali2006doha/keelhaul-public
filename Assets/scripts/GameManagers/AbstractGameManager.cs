@@ -29,8 +29,10 @@ public abstract class AbstractGameManager : MonoBehaviour {
     }
 
 
-    public abstract void exitToCharacterSelect();
-    
+    public virtual void exitToCharacterSelect() {
+        Time.timeScale = 1;
+    }
+     
     public abstract void respawnPlayer(PlayerInput player, Vector3 startingPoint, Quaternion startingRotation);
 
     virtual public Dictionary<string, int> getGamepoints()

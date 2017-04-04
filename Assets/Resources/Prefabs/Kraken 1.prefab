@@ -8065,7 +8065,7 @@ MonoBehaviour:
     turnSpeed: 160
     emergingTurnSpeed: 320
     emergingMoveSpeed: 15
-    emergingMaxVelocity: 3.5
+    emergingMaxVelocity: 1.5
     submergedTurnSpeed: 320
     submergedMoveSpeed: 10
     submergedMaxVelocity: 2.7
@@ -8122,8 +8122,8 @@ MonoBehaviour:
     deaccelaration: 4
     turnSpeed: 160
     emergingTurnSpeed: 0
-    emergingMoveSpeed: 0
-    emergingMaxVelocity: 0
+    emergingMoveSpeed: 15
+    emergingMaxVelocity: 1.5
     submergedTurnSpeed: 320
     submergedMoveSpeed: 10
     submergedMaxVelocity: 2.7

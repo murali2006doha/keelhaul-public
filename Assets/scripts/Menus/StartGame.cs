@@ -30,7 +30,7 @@ public class StartGame : MonoBehaviour {
             SignIn ();
         }
 
-        if (notStarted && actions != null && actions.Green.WasReleased) {
+        if (notStarted && actions != null && actions.Green.WasPressed) {
             initialText.gameObject.SetActive (false);
             FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
                 initialText.gameObject.SetActive (true);

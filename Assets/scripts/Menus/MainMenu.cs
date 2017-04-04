@@ -10,7 +10,7 @@ using System;
 public class MainMenu : AbstractMenu {
 
     public ActionButton online;
-    public ActionButton offline;
+    public ActionButton offline;    
     public ActionButton settings;
     public ActionButton exit;
 

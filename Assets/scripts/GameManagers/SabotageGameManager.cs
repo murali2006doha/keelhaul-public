@@ -717,6 +717,7 @@ public class SabotageGameManager : AbstractGameManager
 
     override public void exitToCharacterSelect()
     {
+        base.exitToCharacterSelect();
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("start");
     }
