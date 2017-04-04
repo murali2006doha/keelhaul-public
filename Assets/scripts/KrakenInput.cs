@@ -554,7 +554,10 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         }
 
         followCamera.startShake();
-
+        if(health <= 0)
+        {
+            return;
+        }
         if (!animator.isCurrentAnimName("death"))
         {
             

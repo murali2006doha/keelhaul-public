@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class AtlanteanAltCannonComponent : AbstractAltCannonComponent {
 
-	public override void alternateFire () {
+    public GameObject instantiated;
 
-		GameObject instantiated = (GameObject) PhotonNetwork.Instantiate(PathVariables.alternateAtlantisShot, cannonBallPos.position, this.transform.rotation, 0);
+    public override void alternateFire () {
+
+		instantiated = (GameObject) PhotonNetwork.Instantiate(PathVariables.alternateAtlantisShot, cannonBallPos.position, this.transform.rotation, 0);
         instantiated.GetComponent<PhotonView>().RPC("SetUpParent", PhotonTargets.All,this.shipTransform.GetComponent<PlayerInput>().GetId());
 		input.gameStats.numOfAlternateShots++;
 
@@ -21,5 +23,16 @@ public class AtlanteanAltCannonComponent : AbstractAltCannonComponent {
 
 		return this.input;
 	}
+
+    public override void ResetShotAlt()
+    {
+        base.ResetShotAlt();
+        if (instantiated)
+        {
+            instantiated.GetComponent<AtlanteanShieldController>().CancelInvoke();
+            instantiated.GetComponent<AtlanteanShieldController>().KillSelf();
+        }
+
+    }
 
 }

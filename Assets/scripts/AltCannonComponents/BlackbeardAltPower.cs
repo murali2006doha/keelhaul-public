@@ -62,4 +62,15 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
     {
         this.chargedUpEffect.SetActive(false);
     }
+
+    public override void ResetShotAlt()
+    {
+        base.ResetShotAlt();
+        //CancelInvoke();
+        if (chargedUpEffect.activeSelf)
+        {
+            CancelInvoke("ResetStats");
+            ResetStats();
+        }
+    }
 }

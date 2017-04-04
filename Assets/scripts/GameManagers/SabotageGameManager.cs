@@ -768,10 +768,12 @@ public class SabotageGameManager : AbstractGameManager
                     {
                         teamNo = player.teamNo;
                     }
+                    barrel.GetComponent<BoxCollider>().enabled = false;
                     player.GetComponent<HookshotComponent>().UnHook();
                     player.GetComponent<HookshotComponent>().enabled = false;
                     StartCoroutine(teleportBarrel(player, barrel.gameObject));
                     player.GetComponent<HookshotComponent>().enabled = true;
+                    barrel.GetComponent<BoxCollider>().enabled = true;
                     if (PhotonNetwork.offlineMode)
                     {
 
@@ -989,7 +991,7 @@ public class SabotageGameManager : AbstractGameManager
             }
             if (ship.GetId() == winnerId)
             {
-                gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Player " + winnerId.ToString());
+                gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", (isTeam?"The Ships":"Player " + winnerId.ToString()));
                 gameOverUI.winners[0].name.text = !PhotonNetwork.offlineMode && winnerId == PhotonNetwork.player.ID ? "You" : "Player " + winnerId.ToString();
                 winner = ship.gameObject;
             }
@@ -1006,10 +1008,14 @@ public class SabotageGameManager : AbstractGameManager
 
             shipStats.Add(ship.gameStats);
         }
+        if (kraken)
+        {
+            kraken.reset();
+        }
         if(winnerId == kraken.id)
         {
             kraken.gameStarted = false;
-            gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Player " + winnerId.ToString());
+            gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Kraken");
             gameOverUI.winners[0].name.text = !PhotonNetwork.offlineMode && winnerId == PhotonNetwork.player.ID ? "You" : "Player " + winnerId.ToString();
             winner = kraken.gameObject;
         }

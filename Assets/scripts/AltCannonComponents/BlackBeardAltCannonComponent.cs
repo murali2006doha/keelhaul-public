@@ -92,6 +92,8 @@ public class BlackBeardAltCannonComponent : AbstractAltCannonComponent {
 		rightCannons = new List<Transform>(tempCannonListR);
 
 	}
-		
+
+
+
 }
 

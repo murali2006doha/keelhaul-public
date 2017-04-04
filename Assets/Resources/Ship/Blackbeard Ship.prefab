@@ -10207,7 +10207,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4443820705709602}
-  - component: {fileID: 114240729712812926}
   - component: {fileID: 114942993433985648}
   - component: {fileID: 114544223826437596}
   - component: {fileID: 114524757143518342}
@@ -12927,6 +12926,7 @@ MonoBehaviour:
   boosted: 0
   boosting: 0
   speedModifier: 1
+  sinking: 0
   locked: 0
 --- !u!114 &114074521364270248
 MonoBehaviour:
@@ -12965,8 +12965,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 7
+  instantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114118730019144946
 MonoBehaviour:
@@ -12991,42 +12991,9 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114986819729048736}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 8
+  instantiationId: 8
   isRuntimeInstantiated: 0
---- !u!114 &114240729712812926
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1226620902254298}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4678edd0f544edc94a9c771643ef67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cannonBallPrefab: {fileID: 0, guid: 053834a644e214eadb21217d43d317c4, type: 2}
-  rightCannons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  leftCannons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 452790}
-  - {fileID: 0}
-  cannonForce: 400
-  arcCannonForce: 10
-  velocity: {x: 0, y: 0, z: 0}
-  dampening: 1
-  passedTime: 0
-  altTimer: 0
-  speed: 1
-  minDelay: 0.1
-  maxDelay: 0.4
-  tempCannonListL: []
-  tempCannonListR: []
 --- !u!114 &114294636734613596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13076,8 +13043,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114942993433985648}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 6
+  instantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114544223826437596
 MonoBehaviour:
@@ -13172,8 +13139,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114001535506412288}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 5
+  instantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114825266526887472
 MonoBehaviour:
@@ -13265,6 +13232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 2
+  toDestory: {fileID: 0}
 --- !u!137 &137106331612023490
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

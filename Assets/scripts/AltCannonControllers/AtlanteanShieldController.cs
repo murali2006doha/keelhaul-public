@@ -31,7 +31,7 @@ public class AtlanteanShieldController : MonoBehaviour {
 		transform.position = parent.transform.position + offset;
 	}
 
-	void KillSelf() {
+	public void KillSelf() {
         //ship.centralCannon.DeAmpCannonball();
 		PlayerInput.onHitRegister -= AddToHealth;
 		ship.deactivateInvincibility ();
