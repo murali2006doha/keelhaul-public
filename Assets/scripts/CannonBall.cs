@@ -34,7 +34,7 @@ public class CannonBall : Photon.MonoBehaviour {
 				var shield = collider.transform.root.gameObject.GetComponent<AtlanteanShieldController> ();
 				var parent = shield.parent;
                 Debug.Log("hitting shield");
-                Instantiate(shieldHit, transform.position, transform.rotation);
+                
                 if (parent.transform == owner) {
 					return;
 				} else if (shield.isReflecting) {
@@ -53,6 +53,9 @@ public class CannonBall : Photon.MonoBehaviour {
                     
                     parent.GetComponent<PlayerInput> ().gameStats.numOfReflectedShots++;
 				} else {
+
+                    
+                    
                     if (!kraken) 
                     {
 						ShipMeshPhysicsComponent mesh = shield.parent.GetComponent<PlayerInput> ().shipMeshComponent;
@@ -67,8 +70,14 @@ public class CannonBall : Photon.MonoBehaviour {
                     } else {
                         kraken.gameStats.numOfShotHits++;
                     }
+                    if (shield.protecting)
+                    {
+                        Instantiate(shieldHit, transform.position, transform.rotation);
+                    }
+                    else {
+                        Instantiate(normalHit, transform.position, transform.rotation);
+                    }
 					
-					Instantiate (normalHit, transform.position, transform.rotation);
                     destroySelf();
 				}
 			} else {
