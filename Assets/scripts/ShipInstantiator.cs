@@ -81,14 +81,12 @@ public class ShipInstantiator : MonoBehaviour {
         ship.uiManager = ui.GetComponent<UIManager>();
         Debug.Log(type.ToString());
 
-        if (ship.teamGame)
-        {
-            CanvasScaler scaler = ship.uiManager.gameObject.GetComponent<CanvasScaler>();
-            if (scaler != null)
-            {
-                scaler.matchWidthOrHeight = 0.32f;
-            }
+        CanvasScaler scaler = ship.uiManager.gameObject.GetComponent<CanvasScaler>();
+
+        if (scaler != null) {
+            scaler.matchWidthOrHeight = 0.32f;
         }
+        
 
         ship.uiManager.Initialize(num + numKraken, true, type);
         ship.uiManager.altFireBar.gameObject.transform.GetChild(1).gameObject.GetComponentInChildren<Image>().sprite = info.altFireSprite;

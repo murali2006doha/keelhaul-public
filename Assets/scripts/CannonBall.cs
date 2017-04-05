@@ -5,10 +5,11 @@ public class CannonBall : Photon.MonoBehaviour {
 	protected Transform owner;
 	private float timeAlive;
 	public GameObject shipHit;
-	public float lifeTime = 2.5f;
+	public float lifeTime = 4f;
 	public GameObject krakenHit;
 	public GameObject normalHit;
-	public GameObject splash;
+    public GameObject shieldHit;
+    public GameObject splash;
     public KrakenInput kraken;
 	public float gravity = -1.5f;
 	public float force;
@@ -32,7 +33,9 @@ public class CannonBall : Photon.MonoBehaviour {
 			if (collider.transform.root.gameObject.name.Contains ("Force")) {
 				var shield = collider.transform.root.gameObject.GetComponent<AtlanteanShieldController> ();
 				var parent = shield.parent;
-				if (parent.transform == owner) {
+                Debug.Log("hitting shield");
+                Instantiate(shieldHit, transform.position, transform.rotation);
+                if (parent.transform == owner) {
 					return;
 				} else if (shield.isReflecting) {
 					CancelInvoke ();
@@ -47,7 +50,8 @@ public class CannonBall : Photon.MonoBehaviour {
 					this.GetComponent<Rigidbody> ().velocity = new Vector3 ();
 					this.GetComponent<Rigidbody> ().AddForce (this.transform.forward * reflectForce * reflectMult);
 					Invoke ("destroySelf", lifeTime);
-					parent.GetComponent<PlayerInput> ().gameStats.numOfReflectedShots++;
+                    
+                    parent.GetComponent<PlayerInput> ().gameStats.numOfReflectedShots++;
 				} else {
                     if (!kraken) 
                     {
