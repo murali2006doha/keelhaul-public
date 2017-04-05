@@ -208,10 +208,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  lifeTime: 4
+  lifeTime: 8.5
   powerShieldDuration: 0
   isReflecting: 0
   offset: {x: 0, y: 0, z: 0}
+  effectDisableDelayTime: 0
   absorbPercent: 50
 --- !u!114 &11459538
 MonoBehaviour:
@@ -8453,7 +8454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundClip: {fileID: 8300000, guid: 18fe25612e3764fdd85bdb9e2a4a30b3, type: 3}
-  volume: 0
+  volume: 0.2
 --- !u!114 &114873303432334470
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -454,6 +454,7 @@ MonoBehaviour:
   lifeTime: 4
   krakenHit: {fileID: 102508, guid: cb8c36175b2fc6846ac5d9df652aabf5, type: 2}
   normalHit: {fileID: 145378, guid: f61565664dac5bd49b5b596ac403dee4, type: 2}
+  shieldHit: {fileID: 1701858947685462, guid: 2d11297b6fb6a4725865ea9349f2f68e, type: 2}
   splash: {fileID: 148634, guid: 45d7af1078698594bbbc6ddaf3929f99, type: 2}
   kraken: {fileID: 0}
   gravity: -1.5
