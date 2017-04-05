@@ -248,11 +248,6 @@ public class SabotageGameManager : AbstractGameManager
             cams[0].camera.rect = new Rect(0, 0, 0, 0);
             cams[1].camera.rect = new Rect(0, 0, 0, 0);
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            SceneManager.LoadScene(1);
-        }
     }
 
 
