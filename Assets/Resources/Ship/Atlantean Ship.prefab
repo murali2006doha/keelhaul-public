@@ -967,6 +967,10 @@ MonoBehaviour:
     altFireSprite: {fileID: 21300000, guid: 2befe7ffc818f4b61b3299efc5ad62b5, type: 3}
     altFireOutline: {fileID: 21300000, guid: 46bcd2a1579b040db9473c8442e5317a, type: 3}
     portrait: {fileID: 0}
+    portraitBg: {fileID: 0}
+    doomGuyPoint: {fileID: 0}
+    doomGuyHit: {fileID: 0}
+    doomGuyHurt: {fileID: 0}
   - type: 1
     stats: {fileID: 11485794, guid: 4d22fd2dcc48e1542844f127edf4aa68, type: 2}
     ship: {fileID: 156694, guid: 9366921efce92c74e93616f3e4c60461, type: 2}
@@ -975,6 +979,10 @@ MonoBehaviour:
     altFireSprite: {fileID: 21300000, guid: a25982c208bf741d3acd5da4c6fd9faf, type: 3}
     altFireOutline: {fileID: 21300000, guid: a8eec5971154d4be2abda9f941921f03, type: 3}
     portrait: {fileID: 21300000, guid: 078e21ddeae8d48bfae528378381fe1e, type: 3}
+    portraitBg: {fileID: 21300000, guid: 10dc36f369c9d9d44876fc5febc3deb2, type: 3}
+    doomGuyPoint: {fileID: 21300000, guid: 03c6f4f8967adbf45bfd65bcd40bb9ee, type: 3}
+    doomGuyHit: {fileID: 21300000, guid: 7a9a616f7a7a54947a7ca49cbad43743, type: 3}
+    doomGuyHurt: {fileID: 21300000, guid: 2faab95b63c4d9e4e93320d6617fca81, type: 3}
   - type: 2
     stats: {fileID: 11477640, guid: 0acd9cbb3b3528a4286efbedea05916f, type: 2}
     ship: {fileID: 175570, guid: 97a0aefb4ef70db4a8c085c3ed066b24, type: 2}
@@ -983,6 +991,10 @@ MonoBehaviour:
     altFireSprite: {fileID: 21300000, guid: f30894cf5613f4235bff5ce73311df24, type: 3}
     altFireOutline: {fileID: 21300000, guid: f5077b9df311a4879aba2ac1b74f1aa5, type: 3}
     portrait: {fileID: 0}
+    portraitBg: {fileID: 0}
+    doomGuyPoint: {fileID: 0}
+    doomGuyHit: {fileID: 0}
+    doomGuyHurt: {fileID: 0}
   splashParticle: {fileID: 1727167094027000}
 --- !u!120 &12011606
 LineRenderer:
@@ -10837,8 +10849,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114804807475055430}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 6
-  instantiationId: 6
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114385707832624558
 MonoBehaviour:
@@ -10863,8 +10875,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114461923634993986}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 7
-  instantiationId: 7
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114454242921959622
 MonoBehaviour:
@@ -10889,8 +10901,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 5
-  instantiationId: 5
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114461923634993986
 MonoBehaviour:

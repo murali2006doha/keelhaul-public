@@ -1180,6 +1180,10 @@ MonoBehaviour:
     altFireSprite: {fileID: 21300000, guid: 2befe7ffc818f4b61b3299efc5ad62b5, type: 3}
     altFireOutline: {fileID: 21300000, guid: 46bcd2a1579b040db9473c8442e5317a, type: 3}
     portrait: {fileID: 21300000, guid: 02165ae1a51474d889763c1a9b4e8eda, type: 3}
+    portraitBg: {fileID: 21300000, guid: f7490fc0900e3084fb01c8694b780b90, type: 3}
+    doomGuyPoint: {fileID: 21300000, guid: 5d2b85b580741444d8ea09ce352bc63b, type: 3}
+    doomGuyHit: {fileID: 21300000, guid: 7cf133effe7bd6b41965190dc5fb7268, type: 3}
+    doomGuyHurt: {fileID: 21300000, guid: 760ebd46765b7f0428627eb56b393264, type: 3}
   - type: 1
     stats: {fileID: 11485794, guid: 4d22fd2dcc48e1542844f127edf4aa68, type: 2}
     ship: {fileID: 156694, guid: 9366921efce92c74e93616f3e4c60461, type: 2}
@@ -1188,6 +1192,10 @@ MonoBehaviour:
     altFireSprite: {fileID: 21300000, guid: 00140137b4a594d15bc51329c79159d6, type: 3}
     altFireOutline: {fileID: 21300000, guid: e5bbbd0d3c9a3574e83bb84189e76225, type: 3}
     portrait: {fileID: 0}
+    portraitBg: {fileID: 0}
+    doomGuyPoint: {fileID: 0}
+    doomGuyHit: {fileID: 0}
+    doomGuyHurt: {fileID: 0}
   - type: 2
     stats: {fileID: 11477640, guid: 0acd9cbb3b3528a4286efbedea05916f, type: 2}
     ship: {fileID: 175570, guid: 97a0aefb4ef70db4a8c085c3ed066b24, type: 2}
@@ -1196,6 +1204,10 @@ MonoBehaviour:
     altFireSprite: {fileID: 21300000, guid: c85aab098c513e247a08a64eb5e948ef, type: 3}
     altFireOutline: {fileID: 21300000, guid: fec59a478c0af7f438503c9574a009b0, type: 3}
     portrait: {fileID: 0}
+    portraitBg: {fileID: 0}
+    doomGuyPoint: {fileID: 0}
+    doomGuyHit: {fileID: 0}
+    doomGuyHurt: {fileID: 0}
   splashParticle: {fileID: 1412898726211924}
 --- !u!120 &12004370
 LineRenderer:
@@ -9174,6 +9186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 2
+  toDestory: {fileID: 0}
 --- !u!114 &114083740754118774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9322,6 +9335,7 @@ MonoBehaviour:
   boosted: 0
   boosting: 0
   speedModifier: 1
+  sinking: 0
   locked: 0
 --- !u!114 &114423051648566808
 MonoBehaviour:
