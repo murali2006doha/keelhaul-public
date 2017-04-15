@@ -91,19 +91,21 @@ public class DeathMatchGameManager : AbstractGameManager
     [PunRPC]
     public void AddPlayer(int id) {
         //        Debug.Log(gamePoints.Keys.Count.ToString());
-        if (GetComponent<PhotonView>().isMine) {
+        if (GetComponent<PhotonView>().isMine)
+        {
             gamePoints.Add(id.ToString(), 0);
-           
-            if (id  >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id>=1))
+            if (id >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id >= 1))
             {
                 this.GetComponent<PhotonView>().RPC("SetDone", PhotonTargets.All);
             }
         }
+        
+        
 
     }
 
     [PunRPC]
-    public void SetDone() { 
+    public void SetDone() {
         globalCanvas.waitingForPlayers.SetActive(false);
         done = false;
         
