@@ -116,7 +116,6 @@ public abstract class AbstractMenu : MonoBehaviour
         if (actions.Up.WasReleased) {
             index = GetPositionIndex (passedInButtons.Length, index, "up");
         }
-			
 
 		if (passedInButtons [index].gameObject.GetComponent<ActionSlider> ()) {
 			NavigateSlider ();
@@ -126,11 +125,13 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
 	void NavigateSlider () {
-		
+		print (actionSelectables [index]);
 		if (actions.Left.WasReleased) {
+			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= 0.1f;
 			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
 		}
 		if (actions.Right.WasReleased) {
+			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += 0.1f;
 			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
 		}
 	}
@@ -156,5 +157,47 @@ public abstract class AbstractMenu : MonoBehaviour
         return item;
     }
 
+
+
+	bool anyInputRightWasReleased() {
+		foreach (InputDevice device in InputManager.Devices) {
+			if (device.DPadRight.WasReleased || device.LeftStickRight.WasReleased) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+
+	bool anyInputLeftWasReleased() {
+		foreach (InputDevice device in InputManager.Devices) {
+			if (device.DPadLeft.WasReleased || device.LeftStickLeft.WasReleased) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool anyInputUpWasReleased() {
+		foreach (InputDevice device in InputManager.Devices) {
+			if (device.DPadUp.WasReleased || device.LeftStickUp.WasReleased) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool anyInputDownWasReleased() {
+		foreach (InputDevice device in InputManager.Devices) {
+			if (device.DPadDown.WasReleased || device.LeftStickDown.WasReleased) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }
 
