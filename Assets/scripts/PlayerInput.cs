@@ -202,7 +202,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
 
-    void InitializeShipInput()
+    public void InitializeShipInput()
     {
         shipInput.actions = Actions;
         shipInput.onRotateChanged += motor.UpdateInput;
@@ -223,7 +223,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     }
 
 
-    void clearShipInput()
+    public void clearShipInput()
     {
         shipInput.onRotateChanged = null;
         shipInput.onRedButtonPress = null;

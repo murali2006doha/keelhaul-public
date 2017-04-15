@@ -19,6 +19,7 @@ public class Modals : MonoBehaviour
         { ModalsEnum.notificationModal, "Prefabs/Modals/NotificationModal"},
         { ModalsEnum.settingsModal, "Prefabs/Modals/SettingsModal"},
 		{ ModalsEnum.statsModal, "Prefabs/UI/StatsModal"},
+        { ModalsEnum.disconnectModal, "Prefabs/Modals/DisconnectModal"}
     };
 
 

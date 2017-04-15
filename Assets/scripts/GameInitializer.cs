@@ -202,11 +202,12 @@ public class GameInitializer : MonoBehaviour {
         {
 
             DeathMatchGameManager deathMatchManager = null;
-
+            
             if ((!PhotonNetwork.offlineMode && PhotonNetwork.isMasterClient) || (PhotonNetwork.offlineMode))
             {
                 GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
                 deathMatchManager = manager.GetComponent<DeathMatchGameManager>();
+                
             }
             else {
                 deathMatchManager = GameObject.FindObjectOfType<DeathMatchGameManager>();
@@ -273,25 +274,23 @@ public class GameInitializer : MonoBehaviour {
         }
         else // Easy case, create kraken or ships with selection
         {
+
             foreach (CharacterSelection player in ps.players)
             {
               
                 if (player.selectedCharacter == ShipEnum.Kraken)
                 {
                     createKraken(map, player.Actions);
-                    if (PhotonNetwork.offlineMode)
-                    {
-                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, ps.players.Count);
-                    }
+                    manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, ps.players.Count);
+                    
                 }
                 else
                 {
 
                     num = createShipWithName(num, player);
-                    if (PhotonNetwork.offlineMode)
-                    {
-                        manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, num);
-                    }
+
+                    manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, PhotonNetwork.offlineMode?num: playerId);
+                    
                 }
             }
 
@@ -305,7 +304,7 @@ public class GameInitializer : MonoBehaviour {
         int numDevices = 0;
         num = GetRightShipIndex(num);
         int shipIndex = GetRightShipSelection(num);
-
+       
         if (InputManager.Devices != null && InputManager.Devices.Count > 0)
         {
 

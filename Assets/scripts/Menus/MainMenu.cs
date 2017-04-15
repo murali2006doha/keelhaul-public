@@ -20,9 +20,9 @@ public class MainMenu : AbstractMenu {
     void Start () {
 
         SetActions ();
-        //actionSelectables.Add (online.gameObject);
-        actionSelectables.Add (offline.gameObject);
-        //actionSelectables.Add (settings.gameObject);
+        actionSelectables.Add (online.gameObject);
+        //actionSelectables.Add (offline.gameObject);
+        actionSelectables.Add (settings.gameObject);
         actionSelectables.Add (exit.gameObject);
     
     }
