@@ -63,17 +63,18 @@ public class UIManager : MonoBehaviour
     ShipEnum shipType;
     public TMPro.TextMeshProUGUI killFeed;
 
-    public void Initialize(int playerNum, bool isShip, ShipEnum shipType)
+    public void Initialize(int playerNum, bool isShip, ShipEnum shipType, Sprite backgroundPortrait, Sprite normalFace, Sprite hitFace, Sprite hurtFace, Sprite pointFace)
     {
         this.shipType = shipType;
         this.isShip = isShip;
         this.playerNum = playerNum;
-        this.animManager.Initialize(this.SetPortraitPath, shipType);
-        this.InitializePortraitIcons();
+        this.characterPortraitBackground.sprite = backgroundPortrait;
+        this.characterPortrait.sprite = normalFace;
+        this.animManager.Initialize(this.SetPortraitPath, shipType, normalFace, hitFace, hurtFace, pointFace);
     }
 
-    private void SetPortraitPath(string portraitPath, string backgroundPath) {
-        this.characterPortrait.sprite = Resources.Load<Sprite>(portraitPath);
+    private void SetPortraitPath(Sprite face) {
+        this.characterPortrait.sprite = face;
       
     }
     void Start()
@@ -91,11 +92,6 @@ public class UIManager : MonoBehaviour
         resizeFont();
     }
 
-
-    public void InitializePortraitIcons() {
-        this.characterPortrait.sprite = Resources.Load<Sprite>(PathVariables.GetAssociatedPortraitPath(this.shipType));
-        this.characterPortraitBackground.sprite = Resources.Load<Sprite>(PathVariables.GetAssociatedPortraitBackgroundPath(this.shipType));
-    }
     private void resizeFont()
     {
         var texts = GetComponentsInChildren<Text>();

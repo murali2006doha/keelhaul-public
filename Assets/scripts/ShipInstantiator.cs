@@ -17,11 +17,15 @@ public class ShipInstantiator : MonoBehaviour {
 		public Sprite altFireSprite;
 		public Sprite altFireOutline;
         public Sprite portrait;
-
+        public Sprite portraitBg;
+        public Sprite doomGuyPoint;
+        public Sprite doomGuyHit;
+        public Sprite doomGuyHurt;
     }
 
 	public ShipInformation[] ships;
-	public GameObject splashParticle;
+
+    public GameObject splashParticle;
 
 
 	public void setupShipNames(PlayerInput ship, ShipEnum type, int num, int numOfBases, int id){
@@ -85,7 +89,7 @@ public class ShipInstantiator : MonoBehaviour {
         }
         
 
-        ship.uiManager.Initialize(num + numKraken, true, type);
+        ship.uiManager.Initialize(num + numKraken, true, type, info.portraitBg, info.portrait, info.doomGuyHit, info.doomGuyHurt, info.doomGuyPoint);
         ship.uiManager.altFireBar.gameObject.transform.GetChild(1).gameObject.GetComponentInChildren<Image>().sprite = info.altFireSprite;
         ship.uiManager.altFireBar.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Image>().sprite = info.altFireOutline;
      
