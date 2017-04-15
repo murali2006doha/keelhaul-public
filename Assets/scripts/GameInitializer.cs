@@ -39,8 +39,8 @@ public class GameInitializer : MonoBehaviour {
 
     void Start()
     {
+
         Cursor.visible = false;
-        
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         gs = GameObject.FindObjectOfType<GameModeSelectSettings>();
         setGameTypeAndSettings();
@@ -275,7 +275,7 @@ public class GameInitializer : MonoBehaviour {
         {
             foreach (CharacterSelection player in ps.players)
             {
-
+              
                 if (player.selectedCharacter == ShipEnum.Kraken)
                 {
                     createKraken(map, player.Actions);
@@ -442,6 +442,7 @@ public class GameInitializer : MonoBehaviour {
 
         KrakenInput kraken = krakenObj.GetComponent<KrakenInput>();
         if (action.Device == null) {
+
             action = PlayerActions.CreateWithKeyboardBindings();
         }
         kraken.Actions = action;
@@ -666,6 +667,7 @@ public class GameInitializer : MonoBehaviour {
 
             input.playerId = playerId;
             if (player.Actions.Device == null) {
+                Cursor.visible = true;
                 player.Actions = PlayerActions.CreateWithKeyboardBindings_2();
             }
             input.Actions = player.Actions;

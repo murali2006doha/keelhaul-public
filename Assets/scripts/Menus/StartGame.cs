@@ -17,6 +17,7 @@ public class StartGame : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Cursor.visible = true;
         cc = GameObject.FindObjectOfType<ControllerSelect> ();
         cc.withKeyboard = withKeyboard;
         FindObjectOfType<MenuModel>().mainMenu.gameObject.SetActive (false);
@@ -24,7 +25,7 @@ public class StartGame : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
+       
         if (this.gameObject.activeSelf) {
             cc.listening = true;
             SignIn ();
