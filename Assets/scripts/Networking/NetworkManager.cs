@@ -58,7 +58,6 @@ public class NetworkManager : MonoBehaviour
         
         if (!instantiatedManager.isGameOver())
         {
-            print("Hyse");
             
             if (PhotonNetwork.room.playerCount == 1)
             {
@@ -117,7 +116,6 @@ public class NetworkManager : MonoBehaviour
         string roomName = "";
        
         this.selectedMatchOptions = matchOptions;
-        print("test:" + PhotonNetwork.countOfRooms);
         while (!hasFoundRoom && (Time.realtimeSinceStartup - timeoutTime) < randomTimeOutSeconds) { 
             foreach (RoomInfo info in PhotonNetwork.GetRoomList()) {
                
@@ -219,7 +217,6 @@ public class NetworkManager : MonoBehaviour
                     if (PhotonNetwork.isMasterClient)
                     {
                         PhotonNetwork.room.open = true;
-                        print("room is open");
                     }
                    
                     FindObjectOfType<PlayerSelectSettings>().transform.parent = null;
