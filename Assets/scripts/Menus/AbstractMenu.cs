@@ -18,7 +18,8 @@ using System;
 public abstract class AbstractMenu : MonoBehaviour
 {
 
-    protected PlayerActions actions;
+	protected const float volumeChange = 0.1f;
+	protected PlayerActions actions;
     protected List<GameObject> actionSelectables = new List<GameObject>();
     protected Action onReturnAction;
     protected bool canReturn = true;
@@ -125,13 +126,12 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
 	void NavigateSlider () {
-		print (actionSelectables [index]);
 		if (actions.Left.WasReleased) {
-			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= 0.1f;
+			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange * Time.deltaTime;
 			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
 		}
 		if (actions.Right.WasReleased) {
-			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += 0.1f;
+			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange * Time.deltaTime;
 			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
 		}
 	}
@@ -158,46 +158,5 @@ public abstract class AbstractMenu : MonoBehaviour
     }
 
 
-
-	bool anyInputRightWasReleased() {
-		foreach (InputDevice device in InputManager.Devices) {
-			if (device.DPadRight.WasReleased || device.LeftStickRight.WasReleased) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-
-	bool anyInputLeftWasReleased() {
-		foreach (InputDevice device in InputManager.Devices) {
-			if (device.DPadLeft.WasReleased || device.LeftStickLeft.WasReleased) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	bool anyInputUpWasReleased() {
-		foreach (InputDevice device in InputManager.Devices) {
-			if (device.DPadUp.WasReleased || device.LeftStickUp.WasReleased) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	bool anyInputDownWasReleased() {
-		foreach (InputDevice device in InputManager.Devices) {
-			if (device.DPadDown.WasReleased || device.LeftStickDown.WasReleased) {
-				return true;
-			}
-		}
-
-		return false;
-	}
 }
 
