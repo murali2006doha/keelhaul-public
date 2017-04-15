@@ -22,6 +22,7 @@ public class DeathMatchCharacterSelectController : AbstractCharacterSelectContro
 			initializePanel ();
 		}	
 			
+		print ("characters: " + characters.Count);
 		foreach (ShipEnum character in characters) {
 			characterStatuses.Add (character.ToString(), false);
 		}

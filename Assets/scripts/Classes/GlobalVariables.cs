@@ -7,6 +7,11 @@ public static class GlobalVariables {
     public static float gameSpeed = 1.25f;
     public static float uiSliderSpeed = 2.5f;
     public static bool firstTimeBoot = false;
+	public static float windFactor = 4f;
+	public static float minCcVelocity = 0.2f;
+	public static float killFeedDuration = 6f;
+
+
     public static Dictionary<string,string> shipToPrefabLocation = new Dictionary<string, string> () {
       {ShipEnum.BlackbeardShip.ToString(),"Ship/Blackbeard Ship"},
       {ShipEnum.AtlanteanShip.ToString(),"Ship/Atlantean Ship"},
@@ -43,9 +48,5 @@ public static class GlobalVariables {
       return mapToScene[mapToLoad];
     }
     
-    public static float windFactor = 4f;
-    public static float minCcVelocity = 0.2f;
-
-    public static float killFeedDuration = 6f;
 }
 

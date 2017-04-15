@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 949}
   - component: {fileID: 942}
   - component: {fileID: 952}
+  - component: {fileID: 185}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -29,6 +30,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &185
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 184}
+  m_Enabled: 1
 --- !u!4 &456
 Transform:
   m_ObjectHideFlags: 0
@@ -138,6 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NetworkedCharacterSelect: {fileID: 1094443328089532, guid: 645a1f2311c084ae882b673e34b8e787,
     type: 2}
+  OfflineCharacterSelect: {fileID: 1484721607591290, guid: 72f4139673b8843f9bb0cb9bf6f0a0fb,
+    type: 2}
   matchMaker: {fileID: 114889695674164552, guid: 9e5da8f924e0205468a45fb18988779d,
     type: 2}
   initializer: {fileID: 949}
@@ -156,14 +166,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipSelections:
-  - selectedCharacter: 2
+  - selectedCharacter: 0
     team: 0
-  - selectedCharacter: 3
+  - selectedCharacter: 1
     team: 0
   includeKraken: 0
   isTeam: 0
   isFirstControllerKraken: 0
-  map: 0
+  map: 6
   gameType: 0
   isMaster: 1
   playerId: 0
@@ -285,9 +295,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1541752946}
   - component: {fileID: 1541752945}
-  - component: {fileID: 1541752944}
-  - component: {fileID: 1541752943}
-  - component: {fileID: 1541752942}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -295,27 +302,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1541752942
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1541752941}
-  m_Enabled: 1
---- !u!92 &1541752943
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1541752941}
-  m_Enabled: 1
---- !u!124 &1541752944
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1541752941}
-  m_Enabled: 1
 --- !u!20 &1541752945
 Camera:
   m_ObjectHideFlags: 0
@@ -363,3 +349,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -236.95801, y: 0, z: 0}
+--- !u!1 &2025389183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2025389185}
+  - component: {fileID: 2025389184}
+  m_Layer: 0
+  m_Name: GameCheats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2025389184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2025389183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ca7e89594399f43a774489f614cea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2025389185
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2025389183}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.519217, y: -168.43773, z: 208.38939}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

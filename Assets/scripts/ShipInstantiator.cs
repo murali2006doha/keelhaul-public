@@ -77,12 +77,21 @@ public class ShipInstantiator : MonoBehaviour {
             ui = uis[num - 1];
         }
 
-        ship.uiManager = ui.GetComponent<UIManager>();
 
+        ship.uiManager = ui.GetComponent<UIManager>();
+        Debug.Log(type.ToString());
+
+        CanvasScaler scaler = ship.uiManager.gameObject.GetComponent<CanvasScaler>();
+
+        if (scaler != null) {
+            scaler.matchWidthOrHeight = 0.32f;
+        }
+        
+
+        ship.uiManager.Initialize(num + numKraken, true, type);
         ship.uiManager.altFireBar.gameObject.transform.GetChild(1).gameObject.GetComponentInChildren<Image>().sprite = info.altFireSprite;
         ship.uiManager.altFireBar.gameObject.transform.GetChild(0).gameObject.GetComponentInChildren<Image>().sprite = info.altFireOutline;
-        ship.uiManager.transform.GetChild(0).Find("Portrait").GetComponent<Image>().sprite = info.portrait;
-
+     
         ship.followCamera = ui.GetComponentInParent<cameraFollow>();
         ship.followCamera.target = ship.gameObject;
         ship.followCamera.ready = true;
@@ -90,12 +99,6 @@ public class ShipInstantiator : MonoBehaviour {
 
         LayerHelper.setLayerRecursively(ship.uiManager.worldSpace, LayerMask.NameToLayer("p" + (num + numKraken) + "_ui"));
 
-
-        GameObject splash = (GameObject)Instantiate(splashParticle, Vector3.zero, Quaternion.identity);
-        if (ship.hookshotComponent)
-        {
-            ship.hookshotComponent.splashParticle = splash;
-        }
 
         ship.cullingMask = "p" + (num + numKraken) + "_ui";
         Destroy(this.gameObject);

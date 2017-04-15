@@ -28,8 +28,8 @@ public class GameInitializer : MonoBehaviour {
     GlobalCanvas globalCanvas;
     GameObject screenSplitter;
 
-	PlayerSelectSettings ps;
-	GameModeSelectSettings gs;
+    PlayerSelectSettings ps;
+    GameModeSelectSettings gs;
     Dictionary<int,int> teamNums = new Dictionary<int,int>();
     public bool isMaster;
     public int playerId;
@@ -40,12 +40,12 @@ public class GameInitializer : MonoBehaviour {
     void Start()
     {
         Cursor.visible = false;
-        InstantiateMap();
-		ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
-		gs = GameObject.FindObjectOfType<GameModeSelectSettings>();
+        
+        ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
+        gs = GameObject.FindObjectOfType<GameModeSelectSettings>();
         setGameTypeAndSettings();
+        InstantiateMap();
 
-       
         if (shipSelections.Count == 0)
         {
             shipSelections.Add(new CharacterSelection(ShipEnum.AtlanteanShip.ToString(), null));
@@ -87,21 +87,23 @@ public class GameInitializer : MonoBehaviour {
     }
 
     private void InstantiateMap() {
+       
         GameObject mapToInstantiate = Resources.Load(PathVariables.GetMapForMode(gameType, map)) as GameObject;
         Instantiate(mapToInstantiate);
     }
 
     private void setGameTypeAndSettings() {
 
-		if (ps) {
+        if (ps) {
+            if (gs) {
+                gameType = gs.getGameType ();
+            } else {
+                gameType = ps.gameType;
+            }
 
-			if (gs) {
-				gameType = gs.getGameType ();
-			} else {
-				gameType = ps.gameType;
-			}
-
-            isTeam = ps.isTeam;
+            if (gameType == GameTypeEnum.Sabotage) {
+                this.isTeam = true;
+            }
             includeKraken = ps.includeKraken;
             shipSelections.Clear();
             foreach(CharacterSelection selection in ps.players)
@@ -440,6 +442,9 @@ public class GameInitializer : MonoBehaviour {
         krakenObj.transform.position = map.krakenStartPoint.transform.position;
 
         KrakenInput kraken = krakenObj.GetComponent<KrakenInput>();
+        if (action.Device == null) {
+            action = PlayerActions.CreateWithKeyboardBindings();
+        }
         kraken.Actions = action;
     }
 
@@ -661,6 +666,9 @@ public class GameInitializer : MonoBehaviour {
             PlayerInput input = newShip.GetComponent<PlayerInput>();
 
             input.playerId = playerId;
+            if (player.Actions.Device == null) {
+                player.Actions = PlayerActions.CreateWithKeyboardBindings_2();
+            }
             input.Actions = player.Actions;
             input.shipNum = num+1;
             int altSkinCount = 1;
@@ -673,7 +681,7 @@ public class GameInitializer : MonoBehaviour {
             }
             if (altSkinCount > 1)
             {
-                input.GetComponent<PhotonView>().RPC("ChangeSkin", PhotonTargets.AllBuffered, altSkinCount);
+                //input.GetComponent<PhotonView>().RPC("ChangeSkin", PhotonTargets.AllBuffered, altSkinCount);
             }
             
             if (isTeam)

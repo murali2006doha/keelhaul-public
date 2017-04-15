@@ -12,6 +12,9 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
 	public float altFiringDelayMultiplier;
 	public float altSpeedMultiplier;
 
+    [SerializeField]
+    private float effectDisableDelay = 2f;
+
     float origDamage;
     float origFiringDelay;
     float origSpeed;
@@ -60,6 +63,21 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
     [PunRPC]
     public void DisableChargedUpEffect()
     {
+        Invoke("DisableEffect", this.effectDisableDelay);   
+    }
+
+
+    private void DisableEffect() {
         this.chargedUpEffect.SetActive(false);
+    }
+    public override void ResetShotAlt()
+    {
+        base.ResetShotAlt();
+        //CancelInvoke();
+        if (chargedUpEffect.activeSelf)
+        {
+            CancelInvoke("ResetStats");
+            ResetStats();
+        }
     }
 }

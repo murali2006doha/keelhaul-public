@@ -9,7 +9,7 @@ public class ShipMotorComponent : MonoBehaviour
     protected CharacterController cc;
     protected ShipStats stats;
     protected Transform shipTransform;
-    protected Action onBoost, onBoostFinish;
+    protected Action onBoost, onBoostRecharge, onBoostFinish;
 
     [Header("Scene Variables")]
     [SerializeField] public GameObject wake;
@@ -24,16 +24,18 @@ public class ShipMotorComponent : MonoBehaviour
     protected Quaternion originalRotation;
     protected Quaternion originalRotationValue;
     protected bool keyboardControls;
+    public bool sinking = false;
+    public bool locked;
 
-    bool sinking = false;
 
-    internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish, bool keyboardControls)
+      internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish, Action onBoostRecharge, bool keyboardControls)
     {
         this.cc = characterController;
         this.stats = stats;
         this.shipTransform = shipTransform;
         this.onBoost = onBoost;
         this.onBoostFinish = onBoostFinish;
+        this.onBoostRecharge = onBoostRecharge;
         this.keyboardControls = keyboardControls;
     }
 
@@ -51,13 +53,20 @@ public class ShipMotorComponent : MonoBehaviour
             cc.Move(transform.up * -2 * stats.sinkSpeed * (Time.deltaTime * GlobalVariables.gameSpeed));
             return;
         }
+
+        shipTransform.position = new Vector3(shipTransform.position.x, 0f, shipTransform.position.z); //Clamp Y
+
+        if (locked)
+        {
+            return;
+        }
         //Must be in Boost?
         if ((directionVector.magnitude == 0 || keyboardControls && directionVector.z <= 0) && velocity != 0f  || (velocity > stats.maxVelocity))
         {
             velocity = Mathf.Max(0f, (velocity - (stats.deAccelerationSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))));
         }
 
-        shipTransform.position = new Vector3(shipTransform.position.x, 0f, shipTransform.position.z); //Clamp Y
+     
 
 
         if (directionVector.magnitude > 0f && velocity <= stats.maxVelocity)
@@ -177,7 +186,11 @@ public class ShipMotorComponent : MonoBehaviour
 
     void ResetBoost()
     {
-        boosted = false;
+        if (boosted) {
+          boosted = false;
+          this.onBoostRecharge();
+        }
+        
     }
 
 

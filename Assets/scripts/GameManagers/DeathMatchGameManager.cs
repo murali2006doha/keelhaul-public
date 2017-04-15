@@ -198,11 +198,6 @@ public class DeathMatchGameManager : AbstractGameManager
             cams[0].camera.rect = new Rect(0, 0, 0, 0);
             cams[1].camera.rect = new Rect(0, 0, 0, 0);
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            SceneManager.LoadScene(1);
-        }
     }
 
 
@@ -363,7 +358,7 @@ public class DeathMatchGameManager : AbstractGameManager
                 player.AddKillStats(id);
                 if (PhotonNetwork.offlineMode)
                 {
-                    player.uiManager.updatePoint(int.Parse((player.uiManager.points.text)) + 1);
+                    player.uiManager.updatePoint(gamePoints[id.ToString()]+1);
                 }
                 break;
             }
@@ -460,6 +455,7 @@ public class DeathMatchGameManager : AbstractGameManager
         SyncStats();
 
         players[0].gameStarted = false;
+        players[0].hasWon = true;
 
     }
 
@@ -743,15 +739,9 @@ public class DeathMatchGameManager : AbstractGameManager
 
     override public void exitToCharacterSelect()
     {
-        if (!ps)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        else
-        {
-            Destroy(ps.gameObject);
-            SceneManager.LoadScene("start2");
-        }
+        base.exitToCharacterSelect();
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("start");
     }
     public void restartCurrentGame()
     {

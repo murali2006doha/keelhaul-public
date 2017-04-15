@@ -29,8 +29,10 @@ public abstract class AbstractGameManager : MonoBehaviour {
     }
 
 
-    public abstract void exitToCharacterSelect();
-    
+    public virtual void exitToCharacterSelect() {
+        Time.timeScale = 1;
+    }
+     
     public abstract void respawnPlayer(PlayerInput player, Vector3 startingPoint, Quaternion startingRotation);
 
     virtual public Dictionary<string, int> getGamepoints()
@@ -74,11 +76,6 @@ public abstract class AbstractGameManager : MonoBehaviour {
             cams[2].camera.rect = new Rect(0, 0, 1, 1);
             cams[0].camera.rect = new Rect(0, 0, 0, 0);
             cams[1].camera.rect = new Rect(0, 0, 0, 0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            SceneManager.LoadScene(1);
         }
     }
 

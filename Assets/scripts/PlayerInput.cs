@@ -103,6 +103,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 uiManager.animManager.onBoost();
             },
             () => {
+              
+            }, 
+            () => {
                 uiManager.animManager.onBoostRecharged();
             },
             Actions.Device == null
@@ -182,6 +185,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         this.worldCanvas.UpdateHealthSlider(sliderVal);
     }
 
+    public void SetLockedStatus(bool locked) {
+        motor.locked = locked;
+    }
     private void InitializeHookshot()
     {
         if (hookshotComponent)
@@ -205,9 +211,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightRotateChanged += aimComponent.AimAt;
         shipInput.onRightTriggerDown += centralCannon.handleShoot;
         shipInput.onRightBumperDown += altCannonComponent.handleShoot;
-        shipInput.onStartButtonPress += this.instantiatePauseMenu; //ENTER on keyboard
-        shipInput.onSelectButtonHoldDown += this.showStatsScreen;
-        shipInput.onSelectButtonRelease += this.uiManager.SetOffStatsScreen;
+        //shipInput.onStartButtonPress += this.instantiatePauseMenu; //ENTER on keyboard
+        //shipInput.onSelectButtonHoldDown += this.showStatsScreen;
+        //shipInput.onSelectButtonRelease += this.uiManager.SetOffStatsScreen;
             
         if (hookshotComponent)
         {
@@ -226,8 +232,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightTriggerDown = null;
         shipInput.onRightBumperDown = null;
         shipInput.onLeftTriggerDown = null;
-        shipInput.onSelectButtonHoldDown = null;
-        shipInput.onSelectButtonRelease = null;
+        //shipInput.onSelectButtonHoldDown = null;
+        //shipInput.onSelectButtonRelease = null;
     }
 
 
@@ -254,18 +260,27 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         return hookshotComponent;
     }
 
-    public void activateInvincibility()
+    public void activateInvincibility(bool showParticles = true)
     {
         if (!GetComponent<PhotonView>().isMine)
         {
             return;
         }
         invincible = true;
+        if (!motor.sinking)
+        {
+            SetLockedStatus(false);
+        }
         if (invinciblity)
         {
             invinciblity.SetBool("invincibility", true);
+
         }
+        if (showParticles)
+        {
         invincibilityParticle.SetActive(true);
+
+        }
     }
 
     public void deactivateInvincibility()
@@ -347,7 +362,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     { //not being used yet?
         if (!invincible)
         {
-            print("wwat");
             
             motor.StartSinking();
             Invoke("takeSinkDamage", 1f);
@@ -471,6 +485,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (onHitRegister != null) {
             onHitRegister ();
         }
+
+        if (teamGame && !isKraken) {
+            return;
+        }
+
         if (!invincible && health > 0 && this.status == ShipStatus.Alive)
         {
             float actualDamage = (passedDamage > 0) ? passedDamage : damage;
@@ -545,7 +564,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void SendBarrelScoreToKillFeed()
     {
-        GetComponent<PhotonView>().RPC("AddBarrelScoreToKillFeed", PhotonTargets.All, "P" + GetId(), type.ToString());
+
+        foreach (PlayerInput player in FindObjectsOfType<PlayerInput>())
+        {
+            player.GetComponent<PhotonView>().RPC("AddBarrelScoreToKillFeed", PhotonTargets.All, "P" + GetId(), type.ToString());
+        }
+        
         if (kraken)
         {
             kraken.uiManager.AddBarrelScoreToKillFeed("P" + GetId(), type.ToString());
@@ -653,10 +677,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         isPushed = false;
         followCamera.zoomIn = false;
         uiManager.hideDeathAnimation();
+        uiManager.animManager.OnRespawn();
         bombController.resetBombs();
         centralCannon.ResetShotRight();
         altCannonComponent.ResetShotAlt();
         stopPushForce();
+        this.SetLockedStatus(false);
         //shipMesh.enabled = false;
         manager.respawnPlayer(this, startingPoint, startingRotation);
         //anim.triggerRespawnAnimation ();
@@ -669,6 +695,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         centralCannon.gameObject.SetActive(true);
         dying = false;
+        this.SetLockedStatus(false);
         setStatus(ShipStatus.Alive);
         activateInvincibility();
         Invoke("deactivateInvincibility", stats.invinciblityTime);

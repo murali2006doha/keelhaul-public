@@ -26,7 +26,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
     protected int playersInPlay;
     protected bool started = false;
     protected Action onSelectCharacter;
-	protected GameTypeEnum  mode;
+    protected GameTypeEnum  mode;
 
     public void OnSelectCharacterAction(Action action)  {
         this.onSelectCharacter = action;
@@ -43,8 +43,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
         for(int i = 0; i < numPlayers; i++) {
             initializePanel ();
-        }   
-            
+        }               
         foreach (ShipEnum character in characters) {
             characterStatuses.Add (character.ToString(), false);
         }
@@ -84,8 +83,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
                 start.gameObject.SetActive (true);
                 //change to next when there is map selection
                 if (!started && players.Exists (p => p.Actions.Green.IsPressed)) {
-
-					LogAnalyticsUI.MainMenuGameStartedWithCharacters (mode, GlobalVariables.getMapToLoad().ToString(), players);
+                    //LogAnalyticsUI.MainMenuGameStartedWithCharacters (mode, GlobalVariables.getMapToLoad().ToString(), players);
 
                     started = true;
                     this.onSelectCharacter ();
@@ -103,8 +101,8 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
         int playerCount = cc.players.Count;
         if (playerCount > 0 && playerCount <= numPlayers) {
-        	players [playerCount - 1].Actions = (PlayerActions)cc.players [playerCount - 1];
-		    if (players [playerCount - 1].Actions.Green.WasReleased) {
+            players [playerCount - 1].Actions = (PlayerActions)cc.players [playerCount - 1];
+            if (players [playerCount - 1].Actions.Green.WasReleased) {
                 players [playerCount - 1].isSignedIn = true;
                 players [playerCount - 1].gameObject.GetComponent<CharacterSelectPanel> ().enabled = true;
             }

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using DentedPixel;
 
 public class UIManager : MonoBehaviour
 {
@@ -55,14 +56,25 @@ public class UIManager : MonoBehaviour
 
     public UIAnimationManager animManager;
 
-    bool highlight = true;
+    [SerializeField] Image characterPortrait;
+    [SerializeField] Image characterPortraitBackground;
 
+    bool highlight = true;
+    ShipEnum shipType;
     public TMPro.TextMeshProUGUI killFeed;
 
-    public void Initialize(int playerNum, bool isShip)
+    public void Initialize(int playerNum, bool isShip, ShipEnum shipType)
     {
+        this.shipType = shipType;
         this.isShip = isShip;
         this.playerNum = playerNum;
+        this.animManager.Initialize(this.SetPortraitPath, shipType);
+        this.InitializePortraitIcons();
+    }
+
+    private void SetPortraitPath(string portraitPath, string backgroundPath) {
+        this.characterPortrait.sprite = Resources.Load<Sprite>(portraitPath);
+      
     }
     void Start()
     {
@@ -85,6 +97,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+
+    public void InitializePortraitIcons() {
+        this.characterPortrait.sprite = Resources.Load<Sprite>(PathVariables.GetAssociatedPortraitPath(this.shipType));
+        this.characterPortraitBackground.sprite = Resources.Load<Sprite>(PathVariables.GetAssociatedPortraitBackgroundPath(this.shipType));
+    }
     private void resizeFont()
     {
         var texts = GetComponentsInChildren<Text>();
@@ -103,6 +120,9 @@ public class UIManager : MonoBehaviour
     {
         points.text = (point).ToString();
         spawnScoreAnim();
+        if (isShip) {
+            this.animManager.OnScore();
+        }
     }
 
     private void spawnScoreAnim()
@@ -341,7 +361,7 @@ public class UIManager : MonoBehaviour
 
     public void showDeathAnimation(int player, string ship)
     {
-        fadePanel.SetActive(true);
+		LeanTween.alphaCanvas(fadePanel.GetComponent<CanvasGroup> (), 1f, 1f);
         killText.SetActive(true);
         var tex = killText.GetComponent<Text>().text;
         temp = tex;
@@ -351,7 +371,7 @@ public class UIManager : MonoBehaviour
 
     public void hideDeathAnimation()
     {
-        fadePanel.SetActive(false);
+		LeanTween.alphaCanvas(fadePanel.GetComponent<CanvasGroup> (), 0f, 1f);
         killText.SetActive(false);
         killText.GetComponent<Text>().text = temp;
     }

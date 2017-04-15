@@ -4,25 +4,29 @@ using System.Collections;
 public class AtlanteanShieldController : MonoBehaviour {
 
 	public GameObject parent;
-    	public float lifeTime;
-	public float powerShieldDuration;
+    public float lifeTime;
+    public bool protecting;
+    public float powerShieldDuration;
 	public bool isReflecting = false;
 	PlayerInput ship;
 	public Vector3 offset;
 	float originalSpeed;
 	Quaternion rot;
     	GameObject originalCannonballPrefab;
-	// Use this for initialization
+    // Use this for initialization
+
+    [SerializeField] private float effectDisableDelayTime = 10f;
 	public int absorbPercent;
 
 
 	void Start () {
 		///Invoke("DisablePowerShield", powerShieldDuration);
 		Invoke("KillSelf", lifeTime);
+        this.protecting = true;
 		rot = Quaternion.Euler(0, 0, -180);
 		//isReflecting = true;
 		PlayerInput.onHitRegister += AddToHealth;
-		parent.GetComponent<PlayerInput> ().invincible = true;
+        parent.GetComponent<PlayerInput>().activateInvincibility(false);
 	}
 	
 	// Update is called once per frame
@@ -31,15 +35,19 @@ public class AtlanteanShieldController : MonoBehaviour {
 		transform.position = parent.transform.position + offset;
 	}
 
-	void KillSelf() {
+	public void KillSelf() {
         //ship.centralCannon.DeAmpCannonball();
 		PlayerInput.onHitRegister -= AddToHealth;
+        this.protecting = false;
+        Invoke("DestroyEffect", effectDisableDelayTime);
 		ship.deactivateInvincibility ();
-        	PhotonNetwork.Destroy(GetComponent<PhotonView>());
-
   	}
 
-	void AddToHealth() {
+    private void DestroyEffect() {
+        PhotonNetwork.Destroy(GetComponent<PhotonView>());
+    }
+
+    void AddToHealth() {
 		parent.GetComponent<PlayerInput> ().AddToHealth ((absorbPercent / 100f));
 	}
 
@@ -58,7 +66,7 @@ public class AtlanteanShieldController : MonoBehaviour {
                 parent = player.gameObject;
                 ship = player;
                 //ship.centralCannon.AmpUpCannonball();
-                ship.activateInvincibility();
+                //ship.activateInvincibility();
                 break;
             }
         }

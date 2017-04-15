@@ -89,6 +89,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
         hookshotComponent.UnHook();
         SabotageGameManager sabManager = (SabotageGameManager) manager;
         sabManager.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All,input.GetId());
+        input.SendBarrelScoreToKillFeed();
         uiManager.targetBarrel ();
 		LightPillar pillar = scoreDestination.transform.parent.GetComponentInChildren<LightPillar> ();
 		if (pillar != null) {
