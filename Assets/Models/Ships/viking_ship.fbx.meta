@@ -1,0 +1,126 @@
+fileFormatVersion: 2
+guid: f8e12cfeb1dc7e548848b49ee5ee8cec
+timeCreated: 1492270187
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: iceberg2
+    100002: iceberg_bone
+    100004: joint10
+    100006: joint12
+    100008: joint12 1
+    100010: joint8
+    100012: mast
+    100014: mast 1
+    100016: sail
+    100018: sail 1
+    100020: stern
+    100022: transform1
+    100024: transform2
+    100026: transform3
+    100028: viking_hull
+    100030: viking_hull1
+    100032: //RootNode
+    100034: viking_ship
+    100036: viking_ship_ballista
+    100038: viking_ship_cannon21
+    400000: iceberg2
+    400002: iceberg_bone
+    400004: joint10
+    400006: joint12
+    400008: joint12 1
+    400010: joint8
+    400012: mast
+    400014: mast 1
+    400016: sail
+    400018: sail 1
+    400020: stern
+    400022: transform1
+    400024: transform2
+    400026: transform3
+    400028: viking_hull
+    400030: viking_hull1
+    400032: //RootNode
+    400034: viking_ship
+    400036: viking_ship_ballista
+    400038: viking_ship_cannon21
+    2300000: iceberg2
+    2300002: viking_ship
+    2300004: viking_ship_cannon21
+    3300000: iceberg2
+    3300002: viking_ship
+    3300004: viking_ship_cannon21
+    4300000: iceberg2
+    4300002: viking_ship_cannon21
+    4300004: viking_ship
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

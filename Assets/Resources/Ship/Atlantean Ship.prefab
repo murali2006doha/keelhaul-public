@@ -839,7 +839,7 @@ MonoBehaviour:
     type: 2}
   stunEffect: {fileID: 1000012539332232}
   uiManager: {fileID: 0}
-  shipMesh: {fileID: 0}
+  shipMesh: {fileID: 65972747919478380}
   krakenSpot: {fileID: 124444}
   dmgState1: {fileID: 115994}
   dmgState2: {fileID: 127444}
@@ -10813,6 +10813,7 @@ MonoBehaviour:
   altCannonForce: 400
   alternateFirePrefab: {fileID: 107544, guid: dab6356b4739f4c809c57a9559642199, type: 2}
   cannonBallPos: {fileID: 406304}
+  instantiated: {fileID: 0}
 --- !u!114 &114385442295997848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10836,8 +10837,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114804807475055430}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 6
+  instantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &114385707832624558
 MonoBehaviour:
@@ -10862,8 +10863,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114461923634993986}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 7
+  instantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114454242921959622
 MonoBehaviour:
@@ -10888,8 +10889,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 5
+  instantiationId: 5
   isRuntimeInstantiated: 0
 --- !u!114 &114461923634993986
 MonoBehaviour:
@@ -10974,6 +10975,7 @@ MonoBehaviour:
   boosted: 0
   boosting: 0
   speedModifier: 1
+  sinking: 0
   locked: 0
 --- !u!114 &114779376148292010
 MonoBehaviour:
@@ -10999,6 +11001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 2
+  toDestory: {fileID: 0}
 --- !u!114 &114804807475055430
 MonoBehaviour:
   m_ObjectHideFlags: 1

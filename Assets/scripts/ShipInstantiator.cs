@@ -30,10 +30,7 @@ public class ShipInstantiator : MonoBehaviour {
 		ShipInformation info = getShip (type);
 		ship.shipName = info.name;
 		ship.stats = info.stats;
-		if (ship.shipMesh == null) {
-			InstantiateShipMesh (info ,ship);
-		}
-
+		
 
         //Refactor later
 
