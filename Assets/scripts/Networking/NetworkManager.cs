@@ -19,8 +19,14 @@ public class NetworkManager : MonoBehaviour
     private AbstractGameManager instantiatedManager;
     private GameModeSelectSettings gs;
 
+    public bool connected = false;
+
     [SerializeField]
     private Camera camera;
+    private Dictionary<int, bool> matchOptions;
+    private float timeoutTime;
+    private int randomTimeOutSeconds;
+    private bool hasFoundRoom;
 
     void Start() {
 
@@ -33,46 +39,61 @@ public class NetworkManager : MonoBehaviour
 
         if (offlineMode)
         {
-            this.OnJoinedLobby();
+            RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 };
+            PhotonNetwork.JoinOrCreateRoom("localRoom", ro, TypedLobby.Default);
         }
         else {
             PhotonNetwork.ConnectUsingSettings("0.2");
         }
+
+
             
     }
 
     void OnJoinedLobby() {
-        
-        if (offlineMode) {
-            
-            RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 }; 
-            PhotonNetwork.JoinOrCreateRoom("localRoom", ro, TypedLobby.Default);
-        } else {
-            
+
+        if (!offlineMode) {
             instantiatedController = Instantiate(matchMaker);
-            instantiatedController.Initiailze(this.FindOrCreateRoom);
-            instantiatedController.GetComponent<Canvas> ().worldCamera = this.camera;
+            instantiatedController.GetComponent<Canvas>().worldCamera = this.camera;
+            this.timeoutTime = Time.realtimeSinceStartup;
+            this.randomTimeOutSeconds = UnityEngine.Random.Range(1, 10 + PhotonNetwork.countOfPlayersInRooms / 2);
+            this.hasFoundRoom = false;
+            instantiatedController.Initiailze(this.GetMatchOptions);
+            
+            
         }
      
    
     }
 
-    void FindOrCreateRoom(Dictionary<int, bool> matchOptions) {
+    void GetMatchOptions(Dictionary<int, bool> matchOptions)
+    {
+        this.matchOptions = matchOptions;
+        Destroy(instantiatedController.gameObject);
+        StartCoroutine("FindOrCreateRoom");
+    }
+
+    IEnumerator FindOrCreateRoom() {
+        
         string roomName = "";
-        bool hasFoundRoom = false;
+       
         this.selectedMatchOptions = matchOptions;
-        foreach (RoomInfo info in PhotonNetwork.GetRoomList()) {
-            Dictionary<int, bool> roomOptions = (Dictionary<int, bool>)info.customProperties["matchOptions"];
-            for (int i = 0; i < 3; i++) {
+        
+        while (!hasFoundRoom && (Time.realtimeSinceStartup - timeoutTime) < randomTimeOutSeconds) { 
+            foreach (RoomInfo info in PhotonNetwork.GetRoomList()) {
+                Dictionary<int, bool> roomOptions = (Dictionary<int, bool>)info.customProperties["matchOptions"];
+                for (int i = 0; i < 3; i++) {
 
-                if (matchOptions.ContainsKey(i) && roomOptions.ContainsKey(i) && !hasFoundRoom) {
+                    if (matchOptions.ContainsKey(i) && roomOptions.ContainsKey(i) && !hasFoundRoom) {
 
-                    if (matchOptions[i] && roomOptions[i]) {
-                        hasFoundRoom = true;
-                        roomName = info.name;
+                        if (matchOptions[i] && roomOptions[i]) {
+                            hasFoundRoom = true;
+                            roomName = info.name;
+                        }
                     }
                 }
             }
+            yield return null;
         }
 
         if (hasFoundRoom)
@@ -80,7 +101,7 @@ public class NetworkManager : MonoBehaviour
             PhotonNetwork.JoinRoom(roomName);
         }
         else {
-            RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 };
+            RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4};
             ExitGames.Client.Photon.Hashtable h = new ExitGames.Client.Photon.Hashtable();
             h.Add("matchOptions", matchOptions);
             h.Add("map", MapTypeHelper.GetRandomMap());
@@ -88,9 +109,10 @@ public class NetworkManager : MonoBehaviour
             ro.customRoomPropertiesForLobby = options;
             ro.customRoomProperties = h;
             PhotonNetwork.CreateRoom(null, ro, TypedLobby.Default);
+            ro.IsOpen = false;
         }
-        Destroy(instantiatedController.gameObject);
-
+       
+        yield return true;
     }
     
 
@@ -151,11 +173,17 @@ public class NetworkManager : MonoBehaviour
               
             csc.OnSelectCharacterAction(
                 () => {
-					csc.setPlayerSelectSettings ();         
 
+					csc.setPlayerSelectSettings ();
                     StartSpawnProcessOnline(csc.getPlayerSelectSettings().players[0].selectedCharacter, mapType);
+                    if (PhotonNetwork.isMasterClient)
+                    {
+                        PhotonNetwork.room.open = true;
+                    }
+                   
                     FindObjectOfType<PlayerSelectSettings>().transform.parent = null;
                     Destroy(this.camera);
+                    Destroy(csc.gameObject);
             });
         }
     }
