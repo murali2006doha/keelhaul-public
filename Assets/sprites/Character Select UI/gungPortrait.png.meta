@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 5b8152ed9ddab9f46af04894b0534627
-timeCreated: 1490463744
+guid: fcbcfbc9f0ae5fa41aa7a08a5a62c564
+timeCreated: 1482366618
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -66,11 +66,19 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: 
+  spritePackingTag: CanvasUI
   userData: 
   assetBundleName: 
   assetBundleVariant: 
