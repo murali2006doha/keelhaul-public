@@ -11,13 +11,14 @@ public class SettingsMenu : AbstractMenu {
     public ActionSlider soundSlider;
     public ActionSlider musicSlider;
 
+
     // Use this for initialization
     void Start () {
 
         actionSelectables.Add (shadowsToggle.gameObject);
 		actionSelectables.Add (waterRefractToggle.gameObject);
 		actionSelectables.Add (waterReflectToggle.gameObject);
-        actionSelectables.Add (soundSlider.gameObject);
+       	actionSelectables.Add (soundSlider.gameObject);
         actionSelectables.Add (musicSlider.gameObject);
 
 		SetActions ();
@@ -34,8 +35,8 @@ public class SettingsMenu : AbstractMenu {
 		shadowsToggle.SetAction (this.setShadowsToggle);
 		waterRefractToggle.SetAction (this.setWaterRefractionToggle);
 		waterReflectToggle.SetAction (this.setWaterReflectionToggle);
-		soundSlider.SetAction (this.setSoundVolume);
-		musicSlider.SetAction (this.setMusicVolume);
+		soundSlider.SetAction (this.setSoundVolume, this.actions);
+		musicSlider.SetAction (this.setMusicVolume, this.actions);
     }
 
     void setSoundVolume(float multiplier) {

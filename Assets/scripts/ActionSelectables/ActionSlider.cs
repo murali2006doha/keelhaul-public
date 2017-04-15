@@ -12,17 +12,20 @@ public class ActionSlider : ActionSelectable
 {
 
     UnityAction<float> actionToExecute;
+	PlayerActions input;
 
     [SerializeField]
     Slider slider;
-    public void SetAction(UnityAction<float> action) {
+	public void SetAction(UnityAction<float> action, PlayerActions input) {
         this.SliderComponent.onValueChanged.AddListener(action);
         this.actionToExecute = action;
+		this.input = input;
 	}
 
-    public override void doAction() {
-        this.actionToExecute (this.SliderComponent.value);
-    }
+	public override void doAction() {
+		this.actionToExecute (this.SliderComponent.value);
+
+	}
 
     public Slider SliderComponent
     {
@@ -36,4 +39,5 @@ public class ActionSlider : ActionSelectable
             return this.slider;
         }
     }
+
 }
