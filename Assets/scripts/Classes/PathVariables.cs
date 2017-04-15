@@ -140,7 +140,7 @@ public static class PathVariables {
             return blackbeardAltTexturePath + altSkinNum;
         }
 
-        return string.Empty;
+        return  string.Empty;
     }
 
 	public static string GetAssociatedPortraitPath(ShipEnum shipType)

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7cf133effe7bd6b41965190dc5fb7268
-timeCreated: 1490464944
+guid: 7a9a616f7a7a54947a7ca49cbad43743
+timeCreated: 1490464943
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -70,7 +70,7 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-  spritePackingTag: 
+  spritePackingTag: CanvasUI
   userData: 
   assetBundleName: 
   assetBundleVariant: 

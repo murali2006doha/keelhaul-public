@@ -16,13 +16,24 @@ public class UIAnimationManager : MonoBehaviour {
     public AnimationClip bomb;
     public AnimationClip bombExplosion;
     public AnimationClip kill;
-    private UnityAction<string,string> setPortraitAction;
-    private ShipEnum shipType;
+    private UnityAction<Sprite> setPortraitAction;
+    private ShipEnum shipType;      
     private bool dying;
-    public void Initialize(UnityAction<string,string> setPortraitAction, ShipEnum type) {
+
+    private Sprite normalFace;
+    private Sprite hitFace;
+    private Sprite hurtFace;
+    private Sprite pointFace;
+
+    public void Initialize(UnityAction<Sprite> setPortraitAction, ShipEnum type, Sprite normalFace, Sprite hitFace, Sprite hurtFace, Sprite pointFace) {
         this.setPortraitAction = setPortraitAction;
         this.shipType = type;
+        this.normalFace = normalFace;
+        this.hitFace = hitFace;
+        this.hurtFace = hurtFace;
+        this.pointFace = pointFace;
     }
+
 
     public void onBoost()
     {
@@ -39,7 +50,7 @@ public class UIAnimationManager : MonoBehaviour {
     {
         anim.Play(healthLoss.name, 1);
         if (!dying) {
-            this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType) + "Hit", "");
+            this.setPortraitAction(this.hitFace);
         }
         
     }
@@ -47,7 +58,7 @@ public class UIAnimationManager : MonoBehaviour {
     public void OnHitCompleteMecanim()
     {
         if (!dying) {
-            this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType), "");
+            this.setPortraitAction(this.normalFace);
         }
         
     }
@@ -57,14 +68,14 @@ public class UIAnimationManager : MonoBehaviour {
     {
         Debug.Log(shipType);
         if (shipType != null) {
-            this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType) + "Point", "");
+            this.setPortraitAction(this.pointFace);
             Invoke("OnScoreCompleteMecanim", 1f);
         }
     }
 
     public void OnScoreCompleteMecanim()
     {
-        this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType), "");
+        this.setPortraitAction(this.normalFace);
     }
 
     public void onAlternateFire()
@@ -80,13 +91,13 @@ public class UIAnimationManager : MonoBehaviour {
     public void onDeath()
     {
         dying = true;
-        this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType) + "Hurt", "");
+        this.setPortraitAction(this.hurtFace);
         anim.SetBool("dying", true);
     }
 
     public void OnRespawn() {
         dying = false;
-        this.setPortraitAction(PathVariables.GetAssociatedPortraitPath(shipType), "");
+        this.setPortraitAction(this.normalFace);
         anim.SetBool("dying", false);
     }
     public void onBomb()
