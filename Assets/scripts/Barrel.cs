@@ -5,6 +5,7 @@ using System;
 public class Barrel : MonoBehaviour
 {
     public GameObject owner;
+    public GameObject currentPuller= null;
     public LightPillar pillar;
     public GameObject explosion;
     PlayerInput currentPlayer;

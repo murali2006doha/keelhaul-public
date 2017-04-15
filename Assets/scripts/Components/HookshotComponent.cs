@@ -24,7 +24,7 @@ public class HookshotComponent : MonoBehaviour
     public float stuckTime = 0.5f;
 
     [Header("Other/AutoSet Variables")]
-    public GameObject barrel = null;
+    public Barrel barrel = null;
     public GameObject destination = null;
     public bool hookshotActive = false;
     public bool aiHook = false;
@@ -35,7 +35,6 @@ public class HookshotComponent : MonoBehaviour
     public GameObject splashParticle;
 
     Transform ship;
-    Rigidbody rb;
     LineRenderer tether;
 
     Vector3 missedLocation;
@@ -52,8 +51,8 @@ public class HookshotComponent : MonoBehaviour
     {
         this.ship = this.gameObject.transform;
         tether = GetComponent<LineRenderer>();
-        barrel = GameObject.FindObjectOfType<Barrel>().gameObject;
-        rb = barrel.GetComponent<Rigidbody>();
+        barrel = GameObject.FindObjectOfType<Barrel>();
+
 
     }
 
@@ -70,6 +69,10 @@ public class HookshotComponent : MonoBehaviour
 
     IEnumerator handleHit()
     {
+        if (barrel.currentPuller && barrel.currentPuller != this.gameObject)
+        {
+            UnHook();
+        }
         while (hookshotActive)
         {
             tether.SetPosition(0, hook.transform.position);
@@ -84,12 +87,12 @@ public class HookshotComponent : MonoBehaviour
                 //If the distancecounter is greater than the distance to the barrel, that means the hookshot must have reached the barrel. So time to hook the barrel
                 newpos = hook.transform.position + Vector3.Normalize(heading) * distance;
                 SoundManager.playSound(SoundClipEnum.Hookshothit, SoundCategoryEnum.Generic, transform.position);
-                if (barrel.GetComponent<Barrel>().owner && barrel.GetComponent<Barrel>().owner.GetComponent<PlayerInput>())
+                if (barrel.owner && barrel.owner.GetComponent<PlayerInput>())
                 {
                     stats.numOfBarrelSteals += 1;
-                    barrel.GetComponent<Barrel>().owner.GetComponent<PlayerInput>().gameStats.numOfBarrelsLost += 1;
+                    barrel.owner.GetComponent<PlayerInput>().gameStats.numOfBarrelsLost += 1;
                     //If another player is already tethered to the barrel, unhook that player
-                    barrel.GetComponent<Barrel>().owner.transform.GetComponent<HookshotComponent>().UnHook();
+                    barrel.owner.transform.GetComponent<HookshotComponent>().UnHook();
                 }
                 hookshotActive = false;
                 hooking = true;
@@ -104,15 +107,11 @@ public class HookshotComponent : MonoBehaviour
             tether.SetPosition(1, newpos);
             yield return null;
         }
-        AnimatePullIn();
         StartCoroutine("PullInBarrel");
 
     }
 
-    private void AnimatePullIn()
-    {
-        
-    }
+
 
     internal void Initialize(UIManager uiManager, FreeForAllStatistics gameStats, Func<bool> aimCheckFunction)
     {
@@ -214,6 +213,8 @@ public class HookshotComponent : MonoBehaviour
     {
         tether.enabled = true;
         tether.SetPosition(0, hook.transform.position);
+        barrel.currentPuller = this.gameObject;
+        barrel.GetComponent<Rigidbody>().isKinematic = true;
         StartCoroutine("handleHit");
     }
 
@@ -229,7 +230,7 @@ public class HookshotComponent : MonoBehaviour
     {
         while (hooking)
         {
-            if (barrel != null && rb != null)
+            if (barrel != null)
             {
                 tether.SetPosition(0, hook.transform.position);
                 tether.SetPosition(1, barrel.transform.position);
@@ -240,12 +241,6 @@ public class HookshotComponent : MonoBehaviour
 
                 if (Vector3.Distance(barrelPosition, targetPosition) > .1f)
                 {
-                    var barrelJoint = barrel.GetComponent<CharacterJoint>();
-                    if (barrelJoint != null)
-                    {
-                        barrel_anchor = barrelJoint.anchor;
-                        Destroy(barrelJoint);
-                    }
 
                     var relativePoint = transform.InverseTransformPoint(barrel.transform.position);
                     //checks which side the barrel is on
@@ -254,11 +249,8 @@ public class HookshotComponent : MonoBehaviour
                 }
                 else
                 {
-                    //rb.isKinematic = false;
-                    barrel.GetComponent<Barrel>().owner = this.gameObject;
-                    //barrel.AddComponent<CharacterJoint>();
-                    // barrel.GetComponent<CharacterJoint>().anchor = barrel_anchor;
-                    // barrel.GetComponent<CharacterJoint>().connectedBody = barrel_dest.GetComponent<Rigidbody>();
+                    barrel.owner = this.gameObject;
+                    barrel.currentPuller = null;
                     barrel.transform.parent = barrel_dest.transform;
                     hooking = false;
                     hooked = true;
@@ -309,7 +301,7 @@ public class HookshotComponent : MonoBehaviour
         {
             return false;
         }
-        return (barrel.GetComponent<Barrel>().owner == this.gameObject || hooked);
+        return (barrel.owner == this.gameObject || hooked);
 
     }
 
@@ -318,6 +310,11 @@ public class HookshotComponent : MonoBehaviour
     //Basically reset hookshot variables to before the barrel was hooked
     public void UnHook()
     {
+        if(barrel.currentPuller == this.gameObject || !barrel.currentPuller)
+        {
+            barrel.currentPuller = null;
+            barrel.GetComponent<Rigidbody>().isKinematic = false;
+        }
         uiManager.targetBarrel();
         if (barrel != null)
         {
@@ -331,12 +328,11 @@ public class HookshotComponent : MonoBehaviour
                 }
 
             }
-            if(barrel.GetComponent<Barrel>().owner == this.gameObject)
+            if(barrel.owner == this.gameObject)
             {
-                barrel.GetComponent<Barrel>().owner = null;
+                barrel.owner = null;
                 barrel.transform.parent = null;
             }
-            rb.isKinematic = false;
             tether.enabled = false;
             hookshotActive = false;
             stuck = false;

@@ -67,7 +67,7 @@ public class SabotageGameManager : AbstractGameManager
 
 
         this.RunStartUpActions();
-        if (PhotonNetwork.isMasterClient)
+        if (PhotonNetwork.isMasterClient && GameObject.FindGameObjectWithTag("barrel") == null)
         {
             GameObject obj = PhotonNetwork.Instantiate("Prefabs/Environment Objects/barrel",mapObjects.krakenStartPoint.transform.position,Quaternion.identity,0);
 

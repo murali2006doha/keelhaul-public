@@ -1109,7 +1109,6 @@ GameObject:
   - component: {fileID: 95343729745333198}
   - component: {fileID: 54676692094617054}
   - component: {fileID: 65991116987840810}
-  - component: {fileID: 144262730445912268}
   - component: {fileID: 114459704506677322}
   m_Layer: 20
   m_Name: barrel
@@ -11603,7 +11602,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 4
@@ -13378,6 +13377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  currentPuller: {fileID: 0}
   pillar: {fileID: 114639502033036714}
   explosion: {fileID: 182170, guid: 9a8ea4b8a802d6a4eba1c86572deaba8, type: 2}
 --- !u!114 &114460758513708458
@@ -13868,48 +13868,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0015237527, y: 0.013467672, z: 0.00095486455}
     m_Extent: {x: 0.014409416, y: 0.034557533, z: 0.026224846}
   m_DirtyAABB: 0
---- !u!144 &144262730445912268
-CharacterJoint:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1238490275268944}
-  m_ConnectedBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.060062014, z: 0.06}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 5.41, y: 0.24024963, z: -0.91999817}
-  serializedVersion: 2
-  m_SwingAxis: {x: 0, y: 1, z: 0}
-  m_TwistLimitSpring:
-    spring: 0
-    damper: 0
-  m_LowTwistLimit:
-    limit: -20
-    bounciness: 0
-    contactDistance: 0
-  m_HighTwistLimit:
-    limit: 70
-    bounciness: 0
-    contactDistance: 0
-  m_SwingLimitSpring:
-    spring: 0
-    damper: 0
-  m_Swing1Limit:
-    limit: 40
-    bounciness: 0
-    contactDistance: 0
-  m_Swing2Limit:
-    limit: 40
-    bounciness: 0
-    contactDistance: 0
-  m_EnableProjection: 0
-  m_ProjectionDistance: 0.1
-  m_ProjectionAngle: 180
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
 --- !u!154 &154247874878635564
 TerrainCollider:
   m_ObjectHideFlags: 1
