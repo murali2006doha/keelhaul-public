@@ -15,7 +15,6 @@ public class MainMenu : AbstractMenu {
     public ActionButton exit;
 
 
-
     // Use this for initialization
     void Start () {
 

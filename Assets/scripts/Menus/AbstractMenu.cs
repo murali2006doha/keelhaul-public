@@ -130,11 +130,11 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
 	void NavigateSlider () {
-		if (anyInputLeftWasReleased()) {//(actions.Left.WasReleased) {
+		if (anyInputLeftWasReleased()) {
 			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange * Time.deltaTime;
 			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
 		}
-		if (anyInputRightWasReleased()) {//(actions.Right.WasReleased) {
+		if (anyInputRightWasReleased()) {
 			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange * Time.deltaTime;
 			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
 		}

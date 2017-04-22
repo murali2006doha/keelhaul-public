@@ -24,6 +24,8 @@ public class SettingsModalComponent : AbstractModalComponent {
 	public override void InitializeModal (PlayerActions actions) {
 		this.actions = actions;
 
+		this.soundSlider.SliderComponent.value = GlobalSettings.soundMultiplier;
+		this.musicSlider.SliderComponent.value = GlobalSettings.musicMultiplier;
 		SetUpButtonToActionDictionary ();
 
 	}

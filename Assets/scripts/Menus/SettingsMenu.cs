@@ -16,6 +16,9 @@ public class SettingsMenu : AbstractMenu {
     // Use this for initialization
     void Start () {
 
+		this.soundSlider.SliderComponent.value = GlobalSettings.soundMultiplier;
+		this.musicSlider.SliderComponent.value = GlobalSettings.musicMultiplier;
+
         actionSelectables.Add (shadowsToggle.gameObject);
 		actionSelectables.Add (waterRefractToggle.gameObject);
 		actionSelectables.Add (waterReflectToggle.gameObject);
