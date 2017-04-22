@@ -82,10 +82,10 @@ public class PlayerActions : PlayerActionSet
 
         actions.Fire.AddDefaultBinding(Mouse.LeftButton);
         actions.Fire_Hook.AddDefaultBinding(Mouse.RightButton);
-        actions.Green.AddDefaultBinding(Key.R);     //action
-        actions.Green.AddDefaultBinding(Key.Return);     //action
+        actions.Green.AddDefaultBinding(Key.R);     
+        actions.Green.AddDefaultBinding(Key.Return);
         actions.Alt_Fire.AddDefaultBinding(Key.LeftControl);
-        actions.Red.AddDefaultBinding(Key.Space);   //bomb
+        actions.Red.AddDefaultBinding(Key.Space);  
         actions.Boost.AddDefaultBinding(Key.Shift);
         actions.Green.AddDefaultBinding(Key.Alt);
         actions.R_Up.AddDefaultBinding(Mouse.PositiveY);

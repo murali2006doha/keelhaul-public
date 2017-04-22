@@ -115,20 +115,28 @@ public abstract class AbstractModalComponent : MonoBehaviour {
             index = GetPositionIndex (passedInButtons.Length, index, "up");
         }
 
+
         if (passedInButtons [index].gameObject.GetComponent<ActionSlider> ()) {
             NavigateSlider ();
-        }
+        } else {
+            if (actions.Left.WasReleased) {
+                index = GetPositionIndex (passedInButtons.Length, index, "left");
+            }
 
+            if (actions.Right.WasReleased) {
+                index = GetPositionIndex (passedInButtons.Length, index, "right");
+            }
+        }
     }
 
 
     void NavigateSlider () {
         if (actions.Left.WasReleased) {
-			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;// * Time.fixedTime;
-			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
+            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;// * Time.fixedTime;
+            this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
         if (actions.Right.WasReleased) {
-			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;// * Time.fixedTime;
+            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;// * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
     }
@@ -144,6 +152,22 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         }
 
         if (direction == "down") {
+            if (item == length - 1) {
+                item = 0;
+            } else {
+                item += 1;
+            }
+        }
+
+        if (direction == "right") {
+            if (item == 0) {
+                item = length - 1;
+            } else {
+                item -= 1;
+            }
+        }
+
+        if (direction == "left") {
             if (item == length - 1) {
                 item = 0;
             } else {
