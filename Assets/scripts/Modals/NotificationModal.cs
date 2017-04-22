@@ -10,23 +10,23 @@ public class NotificationModal : AbstractModalComponent {
 
     public Text text;
     public Image image;
-	public ActionButton ok; //these will eventually have the ActionButton.cs script attached 
-	public ActionButton cancel; 
+    public ActionButton ok; //these will eventually have the ActionButton.cs script attached 
+    public ActionButton cancel; 
 
     Action onYesButtonPress;
     Action onNoButtonPress;
 
 
-	void Update() {
-		if (isActive) {
-			Control (); 
-		}
-	}
+    void Update() {
+        if (isActive) {
+            Control (); 
+        }
+    }
 
     public override void InitializeModal(PlayerActions actions) {
         this.actions = actions;
         this.isActive = true;
-        this.popAction += GoBack;	
+        this.popAction += GoBack;   
     }
 
 
@@ -41,22 +41,22 @@ public class NotificationModal : AbstractModalComponent {
         this.onNoButtonPress = noAction;
         this.onYesButtonPress = yesAction;
 
-		SetUpButtonToActionDictionary ();
-			
+        SetUpButtonToActionDictionary ();
+            
     }
 
-	void SetUpButtonToActionDictionary () {
+    void SetUpButtonToActionDictionary () {
 
-		actionSelectables.Add (ok.gameObject);
-		actionSelectables.Add (cancel.gameObject);
+        actionSelectables.Add (ok.gameObject);
+        actionSelectables.Add (cancel.gameObject);
 
-		ok.SetAction (() =>  {
-			this.onYesButtonPress ();
-			this.popAction ();
-		});
-		cancel.SetAction (() =>  {
-			this.onNoButtonPress ();
-			this.popAction ();
-		});
-	}
+        ok.SetAction (() =>  {
+            this.onYesButtonPress ();
+            this.popAction ();
+        });
+        cancel.SetAction (() =>  {
+            this.onNoButtonPress ();
+            this.popAction ();
+        });
+    }
 }

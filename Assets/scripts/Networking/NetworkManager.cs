@@ -173,7 +173,7 @@ public class NetworkManager : MonoBehaviour
                     csc = instantiated.GetComponentInChildren<PlunderCharacterSelectController> ();
                 }
 
-				csc.numPlayers = this.gameObject.GetComponent<GameInitializer> ().shipSelections.Count;
+                csc.numPlayers = this.gameObject.GetComponent<GameInitializer> ().shipSelections.Count;
             }
 
             csc.enabled = true;
@@ -212,7 +212,7 @@ public class NetworkManager : MonoBehaviour
             csc.OnSelectCharacterAction(
                 () => {
 
-					csc.setPlayerSelectSettings ();
+                    csc.setPlayerSelectSettings ();
                     StartSpawnProcessOnline(csc.getPlayerSelectSettings().players[0].selectedCharacter, mapType);
                     if (PhotonNetwork.isMasterClient)
                     {
@@ -227,7 +227,7 @@ public class NetworkManager : MonoBehaviour
     }
 
     void StartSpawnProcessOnline(ShipEnum type, MapEnum map) {
-		initializer.shipSelections[0].selectedCharacter = type;
+        initializer.shipSelections[0].selectedCharacter = type;
         initializer.isMaster = true;
         initializer.map = map;
         initializer.playerId = PhotonNetwork.player.ID;

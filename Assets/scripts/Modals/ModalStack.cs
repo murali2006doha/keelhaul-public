@@ -77,7 +77,7 @@ public class ModalStack : MonoBehaviour {
         getActiveModal().gameObject.SetActive (true);
 
         for(int i = 1; i < workingModals.ToArray().Length; i++) {
-			print (workingModals.ToArray () [i]);
+            print (workingModals.ToArray () [i]);
             workingModals.ToArray () [i].isActive = false;
         }
 
@@ -92,7 +92,7 @@ public class ModalStack : MonoBehaviour {
 
     static void ClearStack() {
         workingModals = new Stack<AbstractModalComponent> ();
-		DestroyObject (selectedModal.transform.gameObject);
+        DestroyObject (selectedModal.transform.gameObject);
         selectedModal = null;
     }
 }

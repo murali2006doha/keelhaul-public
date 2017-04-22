@@ -24,7 +24,7 @@ public class ShipMovementSound : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = GetComponentInParent<PlayerInput> ();
-		audioSource = GetComponent<CustomAudioSource> ().audioComponent;
+        audioSource = GetComponent<CustomAudioSource> ().audioComponent;
         audioSource.clip = movementSound;
         audioSource.Play ();
         audioSource.volume = 0f;
@@ -35,10 +35,10 @@ public class ShipMovementSound : MonoBehaviour {
 
         maxVelocity = player.stats.maxVelocity;
         speed = player.motor.getVelocity ();
-		volume = (speed / maxVelocity) / 3.0f;
+        volume = (speed / maxVelocity) / 3.0f;
 
         if (player.motor.isBoosting ()) {
-	    	audioSource.volume = Mathf.Min(volume / 3.0f, maxVolume);
+            audioSource.volume = Mathf.Min(volume / 3.0f, maxVolume);
         } else {
             audioSource.volume = Mathf.Min(volume, maxVolume);
         }
@@ -55,15 +55,15 @@ public class ShipMovementSound : MonoBehaviour {
         boosted = true;
         audioSource.Pause ();
 
-		UnityEngine.Object prefab = Resources.Load(PathVariables.soundPrefab); 
-		boostObject = (GameObject)GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        UnityEngine.Object prefab = Resources.Load(PathVariables.soundPrefab); 
+        boostObject = (GameObject)GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
         boostObject.transform.SetParent (this.transform);
 
-		boostObject.GetComponent<CustomAudioSource>().audioComponent.clip = boostSound;
-		boostObject.GetComponent<CustomAudioSource> ().audioComponent.volume = boostVolume;
-		boostObject.GetComponent<CustomAudioSource> ().audioComponent.Play ();
+        boostObject.GetComponent<CustomAudioSource>().audioComponent.clip = boostSound;
+        boostObject.GetComponent<CustomAudioSource> ().audioComponent.volume = boostVolume;
+        boostObject.GetComponent<CustomAudioSource> ().audioComponent.Play ();
         
-		Invoke ("ResumeMovementSound", boostSound.length);
+        Invoke ("ResumeMovementSound", boostSound.length);
         Invoke ("resetBoosted", player.stats.boostResetTime);
     }
 

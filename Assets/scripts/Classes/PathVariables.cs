@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class PathVariables {
     
-	internal static string soundPrefab = "Prefabs/SoundPrefab";
+    internal static string soundPrefab = "Prefabs/SoundPrefab";
     internal static string titlesPath = "Prefabs/Titles";
     internal static string krakenPath = "Prefabs/Kraken 1";
 
@@ -15,8 +15,8 @@ public static class PathVariables {
     //UIs
     internal static string krakenUIPath = "Prefabs/UI/KrakenUI";
     internal static string shipUIPath = "Prefabs/UI/shipUI";
-	internal static string ffaCanvasPath = "Prefabs/UI/Global Canvas FFA";
-	internal static string playerStatsPath = "Prefabs/UI/PlayerStatsPanel";
+    internal static string ffaCanvasPath = "Prefabs/UI/Global Canvas FFA";
+    internal static string playerStatsPath = "Prefabs/UI/PlayerStatsPanel";
 
     //Managers
     internal static string sabotageManager = "Prefabs/GameManagers/SabotageGameManager";
@@ -60,11 +60,11 @@ public static class PathVariables {
     internal static string atlanteanAltTexturePath = "Ship/Alternate_Textures/atlantis_diffuse_and_AO";
     internal static string spike = "Prefabs/Alt Cannon shots/iceberg";
 
-	//ship portrait paths
-	internal static string blackbeardPortraitPath = "character_portraits_assets/blackbeardPortrait";
-	internal static string chinesePortratPath = "character_portraits_assets/gungPortrait";
-	internal static string atlanteanPortraitPath = "character_portraits_assets/atlantisPortrait";
-	internal static string vikingPortraitPath = "character_portraits_assets/blackbeardPortrait";
+    //ship portrait paths
+    internal static string blackbeardPortraitPath = "character_portraits_assets/blackbeardPortrait";
+    internal static string chinesePortratPath = "character_portraits_assets/gungPortrait";
+    internal static string atlanteanPortraitPath = "character_portraits_assets/atlantisPortrait";
+    internal static string vikingPortraitPath = "character_portraits_assets/blackbeardPortrait";
 
     //ship portrait background paths
     internal static string blackbeardPortraitBackgroundPath = "character_portraits_assets/blackbeardPortraitBackground";
@@ -144,27 +144,27 @@ public static class PathVariables {
         return  string.Empty;
     }
 
-	public static string GetAssociatedPortraitPath(ShipEnum shipType)
-	{
-		if (shipType == ShipEnum.AtlanteanShip)
-		{
-			return atlanteanPortraitPath;
-		}
-		else if (shipType == ShipEnum.BlackbeardShip)
-		{
-			return blackbeardPortraitPath;
-		}
-		else if (shipType == ShipEnum.ChineseJunkShip)
-		{
-			return chinesePortratPath;
-		}
-		else if (shipType == ShipEnum.VikingShip)
-		{
-			return vikingPortraitPath;
-		}
+    public static string GetAssociatedPortraitPath(ShipEnum shipType)
+    {
+        if (shipType == ShipEnum.AtlanteanShip)
+        {
+            return atlanteanPortraitPath;
+        }
+        else if (shipType == ShipEnum.BlackbeardShip)
+        {
+            return blackbeardPortraitPath;
+        }
+        else if (shipType == ShipEnum.ChineseJunkShip)
+        {
+            return chinesePortratPath;
+        }
+        else if (shipType == ShipEnum.VikingShip)
+        {
+            return vikingPortraitPath;
+        }
 
-		return string.Empty;
-	}
+        return string.Empty;
+    }
 
     public static string GetAssociatedPortraitBackgroundPath(ShipEnum shipType)
     {

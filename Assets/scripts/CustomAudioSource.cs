@@ -5,43 +5,43 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class CustomAudioSource : MonoBehaviour {
 
-	float ogvol;
+    float ogvol;
 
-	[SerializeField]
-	bool isSound;
+    [SerializeField]
+    bool isSound;
 
-	[SerializeField]
-	AudioSource audioSource;
-
-
-	void Start() {
-		ogvol = this.audioComponent.volume;
-		GlobalSettings.OnSoundChange += setSoundVolume;
-		GlobalSettings.OnMusicChange += setMusicVolume;
-	}
-		
-	void setSoundVolume () {
-		if (isSound) {
-			this.audioComponent.volume = ogvol * GlobalSettings.soundMultiplier;
-		}
-	}
+    [SerializeField]
+    AudioSource audioSource;
 
 
-	void setMusicVolume () {
-		if (!isSound) {
-			this.audioComponent.volume = ogvol * GlobalSettings.musicMultiplier;
-		}
-	}
+    void Start() {
+        ogvol = this.audioComponent.volume;
+        GlobalSettings.OnSoundChange += setSoundVolume;
+        GlobalSettings.OnMusicChange += setMusicVolume;
+    }
+        
+    void setSoundVolume () {
+        if (isSound) {
+            this.audioComponent.volume = ogvol * GlobalSettings.soundMultiplier;
+        }
+    }
 
 
-	public AudioSource audioComponent {
-		get {
-			if (this.audioSource == null) {
-				this.audioSource = this.GetComponent<AudioSource>();
-			}
+    void setMusicVolume () {
+        if (!isSound) {
+            this.audioComponent.volume = ogvol * GlobalSettings.musicMultiplier;
+        }
+    }
 
-			return this.audioSource;
-		}
-	}
+
+    public AudioSource audioComponent {
+        get {
+            if (this.audioSource == null) {
+                this.audioSource = this.GetComponent<AudioSource>();
+            }
+
+            return this.audioSource;
+        }
+    }
 
 }
