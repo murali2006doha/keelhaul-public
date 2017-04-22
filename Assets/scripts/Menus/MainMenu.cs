@@ -15,22 +15,15 @@ public class MainMenu : AbstractMenu {
     public ActionButton exit;
 
 
-
     // Use this for initialization
     void Start () {
 
         SetActions ();
         actionSelectables.Add (online.gameObject);
-        //actionSelectables.Add (offline.gameObject);
+        //actionSelectables.Add (offline.gameObject);   //commented out because this is not currently in use
         actionSelectables.Add (settings.gameObject);
         actionSelectables.Add (exit.gameObject);
     
-    }
-
-
-    public override void Navigate() {
-        NavigateModal (actionSelectables.ToArray ());
-        NavigateModalWithMouse ();
     }
 
 
@@ -75,7 +68,7 @@ public class MainMenu : AbstractMenu {
         exit.SetAction (() =>  {
             canReturn = false;
             ModalStack.initialize (this.actions, ModalsEnum.notificationModal, modalActions);
-            FindObjectOfType<NotificationModal> ().Initialize ("Exit to Desktop?", Color.yellow, "Yes", "No", () =>  {
+            FindObjectOfType<NotificationModal> ().Spawn ("Exit to Desktop?", Color.yellow, "Yes", "No", () =>  {
                 Exit ();
             }, () =>  {
                 exit.ButtonComponent.Select ();

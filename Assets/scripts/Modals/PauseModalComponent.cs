@@ -14,10 +14,10 @@ using System;
  **/
 public class PauseModalComponent : AbstractModalComponent { //after networking, => offline pause and online pause modal
 
-    public Button exitToMenuButton;   //these will eventually have the ActionButton.cs script attached 
-    public Button exitToDesktopButton; 
-    public Button settingsButton;
-    public Button resumeButton; 
+    public ActionButton exitToMenuButton;   //these will eventually have the ActionButton.cs script attached 
+    public ActionButton exitToDesktopButton; 
+    public ActionButton settingsButton;
+    public ActionButton resumeButton; 
     public AudioSource pauseMusic;
 
     CountDown countdown;
@@ -31,66 +31,69 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         }
     }
 
+
     //The player who paused game has access. 
     public override void InitializeModal(PlayerActions actions) {
-
         this.SetUpButtonToActionDictionary (actions);
 
         this.gm = FindObjectOfType<AbstractGameManager> ();
         this.actions = actions;
-        this.buttons = new List<Button> (buttonToAction.Keys).ToArray ();
-        this.index = buttons.Length - 1;
         this.PauseGame ();
         this.popAction += ResumeGame; //because this will be no modal before this so game will resume
+    
     }
 
     void SetUpButtonToActionDictionary (PlayerActions actions) {
 
-
         Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
-        modalActions.Add (ModalActionEnum.onOpenAction, () => {ToggleButtons();});
-        modalActions.Add (ModalActionEnum.onCloseAction, () => {ToggleButtons();});
-    
+        modalActions.Add (ModalActionEnum.onOpenAction, () => {ToggleSelectables();});
+        modalActions.Add (ModalActionEnum.onCloseAction, () => {ToggleSelectables();});
 
-        buttonToAction.Add (exitToMenuButton, () =>  {
+        actionSelectables.Add (exitToMenuButton.gameObject);
+        actionSelectables.Add (exitToDesktopButton.gameObject);
+        actionSelectables.Add (settingsButton.gameObject);
+        actionSelectables.Add (resumeButton.gameObject);
+
+        exitToMenuButton.SetAction (() =>  {
             this.pushAction ();
 
             ModalStack.initialize (this.actions, ModalsEnum.notificationModal, modalActions);
-            FindObjectOfType<NotificationModal>().Initialize ("Are you sure?", Color.yellow, "Yes", "No", 
+            FindObjectOfType<NotificationModal>().Spawn ("Are you sure?", Color.yellow, "Yes", "No", 
                 () =>  {
-                ExitToMainMenu ();
+                    ExitToMainMenu ();
                     isActive = true;
-            }, 
+                }, 
                 () =>  {
-                    exitToMenuButton.Select ();
+                    exitToMenuButton.ButtonComponent.Select ();
                     isActive = true;
                 }
-        );});
+            );});
 
-        buttonToAction.Add (exitToDesktopButton, () =>  {
+        exitToDesktopButton.SetAction (() =>  {
             this.pushAction ();
 
             ModalStack.initialize (this.actions, ModalsEnum.notificationModal, modalActions);
-            FindObjectOfType<NotificationModal>().Initialize ("Are you sure?", Color.yellow, "Yes", "No",
+            FindObjectOfType<NotificationModal>().Spawn ("Are you sure?", Color.yellow, "Yes", "No",
                 () =>  {
-                ExitToDesktop ();
-                isActive = true;
-                    }, 
+                    ExitToDesktop ();
+                    isActive = true;
+                }, 
                 () =>  {
-                exitToDesktopButton.Select ();
-                isActive = true;
+                    exitToDesktopButton.ButtonComponent.Select ();
+                    isActive = true;
 
-        });});
+                });});
 
-        buttonToAction.Add (settingsButton, () =>  {
+        settingsButton.SetAction (() => {
             this.pushAction ();
-
             ModalStack.initialize (this.actions, ModalsEnum.settingsModal, modalActions);
         });
 
-        buttonToAction.Add (resumeButton, () =>  {
-            popAction();
+        resumeButton.SetAction (() => {
+            popAction ();
         });
+
+
     }
 
 
@@ -108,7 +111,6 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
 
 
     public void ResumeGame() {
-
         Time.timeScale = 1;
         ResumeAudio ();
         TogglePlayerActions ();
@@ -116,7 +118,6 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
 
 
     private void ExitToMainMenu() {
-
         Time.timeScale = 1;
         gm.exitToCharacterSelect ();
         DestroyObject (this.transform.gameObject);
@@ -131,7 +132,7 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     private void PauseAudio() {
 
         foreach (AudioSource audio in audios) {
-            audio.Pause();
+			audio.mute = true;
         }
 
         pauseMusic.Play();
@@ -140,7 +141,8 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
 
     private void ResumeAudio() {
         foreach (AudioSource audio in audios) {
-            audio.Play();
+			if(null != audio) 
+				audio.mute = false;
         }
         pauseMusic.Stop();
     }

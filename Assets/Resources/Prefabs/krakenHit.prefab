@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 440076}
   - component: {fileID: 8263602}
   - component: {fileID: 114415870331614988}
+  - component: {fileID: 114409554178905132}
   m_Layer: 0
   m_Name: krakenHit
   m_TagString: Untagged
@@ -180,7 +181,7 @@ ParticleSystem:
   m_GameObject: {fileID: 156112}
   serializedVersion: 5
   lengthInSec: 0.5
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -2781,7 +2782,7 @@ ParticleSystem:
   m_GameObject: {fileID: 152116}
   serializedVersion: 5
   lengthInSec: 0.5
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -5485,6 +5486,19 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 102508}
   m_IsPrefabParent: 1
+--- !u!114 &114409554178905132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSound: 1
+  audioSource: {fileID: 8263602}
 --- !u!114 &114415870331614988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5497,3 +5511,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 1
+  toDestory: {fileID: 0}

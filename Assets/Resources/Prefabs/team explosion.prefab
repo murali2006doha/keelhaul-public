@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 485492}
   - component: {fileID: 13598686}
   - component: {fileID: 8238018}
+  - component: {fileID: 114022914072840334}
   m_Layer: 0
   m_Name: team explosion
   m_TagString: Untagged
@@ -256,7 +257,7 @@ ParticleSystem:
   m_GameObject: {fileID: 143568}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -2833,7 +2834,7 @@ ParticleSystem:
   m_GameObject: {fileID: 113810}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -5537,3 +5538,16 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 140102}
   m_IsPrefabParent: 1
+--- !u!114 &114022914072840334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSound: 1
+  audioSource: {fileID: 8238018}

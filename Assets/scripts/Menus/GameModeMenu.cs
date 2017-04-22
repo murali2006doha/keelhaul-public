@@ -38,10 +38,6 @@ public class GameModeMenu : AbstractMenu {
     }
 
 
-    public override void Navigate() {
-        NavigateModal (actionSelectables.ToArray ());
-        NavigateModalWithMouse ();
-    }
 
 
 }

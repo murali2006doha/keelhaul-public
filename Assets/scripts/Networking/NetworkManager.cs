@@ -74,7 +74,7 @@ public class NetworkManager : MonoBehaviour
                 modalActions.Add(ModalActionEnum.onOpenAction, () => { currentPlayer.clearShipInput(); });
                 modalActions.Add(ModalActionEnum.onCloseAction, () => { PhotonNetwork.LeaveRoom(); SceneManager.LoadScene(0, LoadSceneMode.Single); });
                 ModalStack.initialize(currentPlayer.Actions, ModalsEnum.disconnectModal, modalActions);
-                FindObjectOfType<NotificationModal>().Initialize("No players left. Disconnecting.", Color.yellow, "Ok", "Ok2",
+                FindObjectOfType<NotificationModal>().Spawn("No players left. Disconnecting.", Color.yellow, "Ok", "Ok2",
                 () => {
                     PhotonNetwork.LeaveRoom(); SceneManager.LoadScene(0, LoadSceneMode.Single);
                 },
@@ -173,7 +173,7 @@ public class NetworkManager : MonoBehaviour
                     csc = instantiated.GetComponentInChildren<PlunderCharacterSelectController> ();
                 }
 
-				csc.numPlayers = this.gameObject.GetComponent<GameInitializer> ().shipSelections.Count;
+                csc.numPlayers = this.gameObject.GetComponent<GameInitializer> ().shipSelections.Count;
             }
 
             csc.enabled = true;
@@ -212,7 +212,7 @@ public class NetworkManager : MonoBehaviour
             csc.OnSelectCharacterAction(
                 () => {
 
-					csc.setPlayerSelectSettings ();
+                    csc.setPlayerSelectSettings ();
                     StartSpawnProcessOnline(csc.getPlayerSelectSettings().players[0].selectedCharacter, mapType);
                     if (PhotonNetwork.isMasterClient)
                     {
@@ -227,7 +227,7 @@ public class NetworkManager : MonoBehaviour
     }
 
     void StartSpawnProcessOnline(ShipEnum type, MapEnum map) {
-		initializer.shipSelections[0].selectedCharacter = type;
+        initializer.shipSelections[0].selectedCharacter = type;
         initializer.isMaster = true;
         initializer.map = map;
         initializer.playerId = PhotonNetwork.player.ID;

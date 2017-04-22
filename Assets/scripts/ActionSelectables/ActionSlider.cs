@@ -24,8 +24,8 @@ public class ActionSlider : ActionSelectable
 
 	public override void doAction() {
 		this.actionToExecute (this.SliderComponent.value);
-
 	}
+
 
     public Slider SliderComponent
     {

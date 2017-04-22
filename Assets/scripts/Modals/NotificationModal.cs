@@ -10,26 +10,28 @@ public class NotificationModal : AbstractModalComponent {
 
     public Text text;
     public Image image;
-    public Button ok; //these will eventually have the ActionButton.cs script attached 
-    public Button cancel; 
+    public ActionButton ok; //these will eventually have the ActionButton.cs script attached 
+    public ActionButton cancel; 
 
     Action onYesButtonPress;
     Action onNoButtonPress;
 
+
     void Update() {
         if (isActive) {
-            Control ();  
+            Control (); 
         }
     }
 
     public override void InitializeModal(PlayerActions actions) {
         this.actions = actions;
         this.isActive = true;
-        this.popAction += GoBack;
+        this.popAction += GoBack;   
     }
 
 
-    public void Initialize(string messageText, Color color, string okText, String cancelText, Action yesAction, Action noAction) {
+    public void Spawn(string messageText, Color color, string okText, String cancelText, Action yesAction, Action noAction) {
+
 
         image.color = color;
         ok.GetComponentInChildren<Text>().text = okText;
@@ -39,18 +41,22 @@ public class NotificationModal : AbstractModalComponent {
         this.onNoButtonPress = noAction;
         this.onYesButtonPress = yesAction;
 
-        buttonToAction.Add (ok, () =>  {
-            this.onYesButtonPress();
+        SetUpButtonToActionDictionary ();
+            
+    }
+
+    void SetUpButtonToActionDictionary () {
+
+        actionSelectables.Add (ok.gameObject);
+        actionSelectables.Add (cancel.gameObject);
+
+        ok.SetAction (() =>  {
+            this.onYesButtonPress ();
             this.popAction ();
         });
-
-        buttonToAction.Add (cancel, () =>  {
-            this.onNoButtonPress();
+        cancel.SetAction (() =>  {
+            this.onNoButtonPress ();
             this.popAction ();
         });
-
-        this.buttons = new List<Button> (buttonToAction.Keys).ToArray ();
-        this.index = buttons.Length - 1;
-
     }
 }
