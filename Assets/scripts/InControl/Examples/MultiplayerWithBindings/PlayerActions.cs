@@ -49,7 +49,7 @@ public class PlayerActions : PlayerActionSet
         Alt_Fire = CreatePlayerAction("Alt_Fire");
         Fire_Hook = CreatePlayerAction("Fire_Hook");
         Start = CreatePlayerAction("Start");
-		Select = CreatePlayerAction ("Select");
+        Select = CreatePlayerAction ("Select");
     }
 
 
@@ -82,8 +82,8 @@ public class PlayerActions : PlayerActionSet
 
         actions.Fire.AddDefaultBinding(Mouse.LeftButton);
         actions.Fire_Hook.AddDefaultBinding(Mouse.RightButton);
-		actions.Green.AddDefaultBinding(Key.R);     //action
-		actions.Green.AddDefaultBinding(Key.Return);     //action
+        actions.Green.AddDefaultBinding(Key.R);     //action
+        actions.Green.AddDefaultBinding(Key.Return);     //action
         actions.Alt_Fire.AddDefaultBinding(Key.LeftControl);
         actions.Red.AddDefaultBinding(Key.Space);   //bomb
         actions.Boost.AddDefaultBinding(Key.Shift);
@@ -93,7 +93,7 @@ public class PlayerActions : PlayerActionSet
         actions.R_Left.AddDefaultBinding(Mouse.NegativeX);
         actions.R_Right.AddDefaultBinding(Mouse.PositiveX);
 
-		actions.Start.AddDefaultBinding(Key.Escape);
+        actions.Start.AddDefaultBinding(Key.Escape);
         actions.Select.AddDefaultBinding (Key.Tab);
 
         return actions;

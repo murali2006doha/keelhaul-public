@@ -18,7 +18,7 @@ using System;
 public abstract class AbstractMenu : MonoBehaviour
 {
 
-    protected const float volumeChange = 0.1f;
+    protected const float volumeChange = 0.005f;
     protected PlayerActions actions;
     protected List<GameObject> actionSelectables = new List<GameObject>();
     protected Action onReturnAction;
@@ -40,13 +40,13 @@ public abstract class AbstractMenu : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
-        
+        print (Time.fixedTime);
         Navigate ();
 
-        if (anyInputEnterWasReleased()) {   //actions.Green.WasReleased) { 
+        if (AnyInputEnterWasReleased()) {   //actions.Green.WasReleased) { 
             this.DoAction ();  
         }
-        if (anyInputBackWasReleased()) {    //actions.Red.WasReleased && canReturn) {
+        if (AnyInputBackWasReleased()) {    //actions.Red.WasReleased && canReturn) {
             GoBack ();
         } 
     }
@@ -114,11 +114,11 @@ public abstract class AbstractMenu : MonoBehaviour
             passedInButtons [index].gameObject.GetComponent<Selectable> ().Select ();       
         }
 
-        if (anyInputDownWasReleased()) {//if (actions.Down.WasReleased) {
+        if (AnyInputDownWasReleased()) {//if (actions.Down.WasReleased) {
             index = GetPositionIndex (passedInButtons.Length, index, "down");
         }
 
-        if (anyInputUpWasReleased()) {//actions.Up.WasReleased) {
+        if (AnyInputUpWasReleased()) {//actions.Up.WasReleased) {
             index = GetPositionIndex (passedInButtons.Length, index, "up");
         }
 
@@ -130,12 +130,12 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
     void NavigateSlider () {
-        if (anyInputLeftWasReleased()) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange * Time.deltaTime;
+        if (AnyInputLeftWasReleased()) {
+            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
-        if (anyInputRightWasReleased()) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange * Time.deltaTime;
+        if (AnyInputRightWasReleased()) {
+            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
     }
@@ -162,7 +162,7 @@ public abstract class AbstractMenu : MonoBehaviour
     }
 
 
-    bool anyInputRightWasReleased() {
+    bool AnyInputRightWasReleased() {
         if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D)) {
             return true;
         }
@@ -177,7 +177,7 @@ public abstract class AbstractMenu : MonoBehaviour
     }
 
 
-    bool anyInputLeftWasReleased() {
+    bool AnyInputLeftWasReleased() {
         if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A)) {
             return true;
         }
@@ -191,7 +191,7 @@ public abstract class AbstractMenu : MonoBehaviour
         return false;
     }
 
-    bool anyInputUpWasReleased() {
+    bool AnyInputUpWasReleased() {
         if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W)) {
             return true;
         }
@@ -205,7 +205,7 @@ public abstract class AbstractMenu : MonoBehaviour
         return false;
     }
 
-    bool anyInputDownWasReleased() {
+    bool AnyInputDownWasReleased() {
         if (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S)) {
             return true;
         }
@@ -219,7 +219,7 @@ public abstract class AbstractMenu : MonoBehaviour
         return false;
     }
 
-    bool anyInputEnterWasReleased() {
+    bool AnyInputEnterWasReleased() {
         if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R) || Input.GetKeyDown (KeyCode.Space)) {
             return true;
         }
@@ -233,7 +233,7 @@ public abstract class AbstractMenu : MonoBehaviour
         return false;
     }
 
-    bool anyInputBackWasReleased() {
+    bool AnyInputBackWasReleased() {
         if (Input.GetKeyDown (KeyCode.Escape)) {
             return true;
         }

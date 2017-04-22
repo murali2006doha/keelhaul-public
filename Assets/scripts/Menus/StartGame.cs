@@ -31,7 +31,7 @@ public class StartGame : MonoBehaviour {
             SignIn ();
         }
 
-        if (notStarted && anyInputEnterWasReleased()) { //actions != null && actions.Green.WasReleased) {
+        if (notStarted && AnyInputEnterWasReleased()) { 
             initialText.gameObject.SetActive (false);
             FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
                 initialText.gameObject.SetActive (true);
@@ -48,7 +48,7 @@ public class StartGame : MonoBehaviour {
     }
 
 
-    bool anyInputEnterWasReleased() {
+    bool AnyInputEnterWasReleased() {
         if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R)) {
             return true;
         }

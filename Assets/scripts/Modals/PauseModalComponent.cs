@@ -132,7 +132,7 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     private void PauseAudio() {
 
         foreach (AudioSource audio in audios) {
-            audio.Pause();
+			audio.mute = true;
         }
 
         pauseMusic.Play();
@@ -141,7 +141,8 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
 
     private void ResumeAudio() {
         foreach (AudioSource audio in audios) {
-            audio.Play();
+			if(null != audio) 
+				audio.mute = false;
         }
         pauseMusic.Stop();
     }

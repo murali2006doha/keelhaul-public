@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class CustomAudioSource : MonoBehaviour {
 
-    float ogvol;
+	float ogVol;
 
     [SerializeField]
     bool isSound;
@@ -15,24 +15,38 @@ public class CustomAudioSource : MonoBehaviour {
 
 
     void Start() {
-        ogvol = this.audioComponent.volume;
+
+		if (isSound) {
+			this.audioComponent.volume = GlobalSettings.soundMultiplier;
+		} else {
+			this.audioComponent.volume = GlobalSettings.musicMultiplier;
+		}
+
+        ogVol = this.audioComponent.volume;
+
         GlobalSettings.OnSoundChange += setSoundVolume;
-        GlobalSettings.OnMusicChange += setMusicVolume;
+		GlobalSettings.OnMusicChange += setMusicVolume;
     }
-        
+
+
     void setSoundVolume () {
         if (isSound) {
-            this.audioComponent.volume = ogvol * GlobalSettings.soundMultiplier;
+            this.audioComponent.volume = ogVol * GlobalSettings.soundMultiplier;
         }
     }
 
 
     void setMusicVolume () {
         if (!isSound) {
-            this.audioComponent.volume = ogvol * GlobalSettings.musicMultiplier;
+            this.audioComponent.volume = ogVol * GlobalSettings.musicMultiplier;
         }
     }
 
+
+	void OnDestroy() {
+		GlobalSettings.OnSoundChange -= setSoundVolume;
+		GlobalSettings.OnMusicChange -= setMusicVolume;
+	}
 
     public AudioSource audioComponent {
         get {

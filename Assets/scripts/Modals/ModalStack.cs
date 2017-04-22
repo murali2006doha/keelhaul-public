@@ -77,7 +77,6 @@ public class ModalStack : MonoBehaviour {
         getActiveModal().gameObject.SetActive (true);
 
         for(int i = 1; i < workingModals.ToArray().Length; i++) {
-            print (workingModals.ToArray () [i]);
             workingModals.ToArray () [i].isActive = false;
         }
 

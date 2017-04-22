@@ -124,11 +124,11 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     void NavigateSlider () {
         if (actions.Left.WasReleased) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange * Time.deltaTime;
-            this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
+			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;// * Time.fixedTime;
+			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
         if (actions.Right.WasReleased) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange * Time.deltaTime;
+			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;// * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
     }
