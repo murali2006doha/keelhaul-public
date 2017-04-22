@@ -5,8 +5,8 @@ using System;
 
 public static class GlobalSettings {
 
-    public static float soundMultiplier = PlayerPrefs.GetFloat ("Music multiplier", 1f);
-    public static float musicMultiplier = PlayerPrefs.GetFloat ("Sound multiplier", 1f);
+    public static float soundMultiplier = PlayerPrefs.GetFloat ("Sound multiplier", 1f);
+    public static float musicMultiplier = PlayerPrefs.GetFloat ("Music multiplier", 1f);
     public static bool waterRefraction = true;
     public static bool waterReflection = true;
 
