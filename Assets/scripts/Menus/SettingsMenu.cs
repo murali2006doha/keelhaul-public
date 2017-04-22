@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
+
 public class SettingsMenu : AbstractMenu {
 
 
@@ -25,11 +26,6 @@ public class SettingsMenu : AbstractMenu {
     }
 
 
-    public override void Navigate() {
-        NavigateModal (actionSelectables.ToArray ());
-        NavigateModalWithMouse ();
-    }
-
 
     public override void SetActions () {
 		shadowsToggle.SetAction (this.setShadowsToggle);
@@ -40,11 +36,11 @@ public class SettingsMenu : AbstractMenu {
     }
 
     void setSoundVolume(float multiplier) {
-		GlobalSettings.soundMultiplier = multiplier;
+		GlobalSettings.setSoundMultiplier (multiplier);
     }
 
 	void setMusicVolume(float multiplier) {
-		GlobalSettings.musicMultiplier = multiplier;
+		GlobalSettings.setMusicMuliplier (multiplier);
 	}
 
 	void setShadowsToggle(bool isOn) {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class PathVariables {
     
+	internal static string soundPrefab = "Prefabs/SoundPrefab";
     internal static string titlesPath = "Prefabs/Titles";
     internal static string krakenPath = "Prefabs/Kraken 1";
 

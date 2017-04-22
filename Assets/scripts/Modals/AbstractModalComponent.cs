@@ -9,11 +9,12 @@ using System;
 public abstract class AbstractModalComponent : MonoBehaviour {
 
 
-    protected PlayerActions actions;
+	protected const float volumeChange = 0.1f;
+	protected PlayerActions actions;
     protected AbstractGameManager gm;
-    protected Dictionary<Button, Action> buttonToAction = new Dictionary<Button, Action>();
-    protected int index;
-    protected Button[] buttons;
+	protected List<GameObject> actionSelectables = new List<GameObject>();
+	protected int index = 0;
+	protected bool interactable = true;
 
     public Animator modalAnimator;
     public Action pushAction;           //pushed to stack
@@ -33,107 +34,142 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     /// such as YES and NO on the notification modal or RESUME on the pause menu
     /// </summary>
     /// <param name="actions">Actions.</param>
-
+	//this is CALLED from MODALSTACK only
     public abstract void InitializeModal(PlayerActions actions);
 
 
     public void Control() {
-        NavigateModal (buttons);  
+        Navigate ();  
 
-        if (this.GetActions ().Green.WasReleased) {
-            this.DoAction ();   
-        } else if (this.GetActions ().Red.WasReleased) { 
-            this.popAction ();
+		if (actions.Green.WasReleased) {
+			this.DoAction (); 
+		} else if (actions.Red.WasReleased || actions.Start.WasReleased) { 
+			this.popAction ();
+			this.GoBack (); //use this once all the modals have an animation
         }
 
     }
 
+
+	public void Navigate() {
+		NavigateModal (actionSelectables.ToArray ());
+		NavigateModalWithMouse ();
+	}
 
     public PlayerActions GetActions() {
         return actions;
     }
 
 
-    public Button GetButtons() {
-        return new List<Button> (buttonToAction.Keys).ToArray () [index];
-    }
-
-    //do action might contain closeAction or openAction depending on what type of button is pressed
-    public void DoAction() {
-        this.buttonToAction [new List<Button> (buttonToAction.Keys).ToArray ()[index]]();
-    }
-
-    //for mouse
-    public void DoAction(int i) {
-        this.buttonToAction [new List<Button> (buttonToAction.Keys).ToArray ()[i]]();
-    }
+	//do action might contain closeAction or openAction depending on what type of button is pressed
+	public void DoAction() {
+		if (interactable) {
+			this.actionSelectables [index].GetComponent<ActionSelectable>().doAction ();
+		}
+	}
 
 
 
-    public void ToggleButtons() {
-        foreach (Button b in buttons) {
-            b.interactable = !b.interactable;
-        }
-    }
+	public void ToggleSelectables() {
+
+		foreach (GameObject b in actionSelectables) {
+			if (b.GetComponent<ActionButton> ()) {
+				b.GetComponent<ActionButton> ().ButtonComponent.interactable = !b.GetComponent<ActionButton> ().ButtonComponent.interactable;
+
+			} else if (b.GetComponent<ActionSlider> ()) {
+				b.GetComponent<ActionSlider> ().SliderComponent.interactable = !b.GetComponent<ActionSlider> ().SliderComponent.interactable;
+
+			} else if (b.GetComponent<ActionToggle> ()) {
+				b.GetComponent<ActionToggle> ().ToggleComponent.interactable = !b.GetComponent<ActionToggle> ().ToggleComponent.interactable;
+
+			} else if (b.GetComponent<ActionDropDown> ()) {
+				b.GetComponent<ActionDropDown> ().DropDownComponent.interactable = !b.GetComponent<ActionDropDown> ().DropDownComponent.interactable;
+
+			}
+		}
+		interactable = !interactable;
+
+	}
 
 
-    public void NavigateModal (Button[] passedInButtons) { //navigating main menu  
+	public void NavigateModalWithMouse() {
 
-        passedInButtons [index].Select ();
+		for (int i = 0; i < actionSelectables.Count; i++) {
+			if (actionSelectables[i].GetComponent<ActionSelectable>().isMouseHovering ()) {
+				index = i;
+			}
+		}
+	}
 
-        if (actions.Down.WasReleased) {
-            index = GetPositionIndex (passedInButtons, index, "down");
-        }
 
-        if (actions.Up.WasReleased) {
-            index = GetPositionIndex (passedInButtons, index, "up");
-        }
-    }
+	public void NavigateModal (GameObject[] passedInButtons) { //navigating main menu  
+		if (passedInButtons.Length > 0) {
+			passedInButtons [index].gameObject.GetComponent<Selectable> ().Select ();       
+		}
 
-        
-    private int GetPositionIndex (Button[] items, int item, string direction) {
-        if (direction == "up") {
-            if (item == 0) {
-                item = items.Length - 1;
-            } else {
-                item -= 1;
-            }
-        }
+		if (actions.Down.WasReleased) {
+			index = GetPositionIndex (passedInButtons.Length, index, "down");
+		}
 
-        if (direction == "down") {
-            if (item == items.Length - 1) {
-                item = 0;
-            } else {
-                item += 1;
-            }
-        }
+		if (actions.Up.WasReleased) {
+			index = GetPositionIndex (passedInButtons.Length, index, "up");
+		}
 
-        return item;
-    }
+		if (passedInButtons [index].gameObject.GetComponent<ActionSlider> ()) {
+			NavigateSlider ();
+		}
+
+	}
+
+
+	void NavigateSlider () {
+		if (actions.Left.WasReleased) {
+			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange * Time.deltaTime;
+			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
+		}
+		if (actions.Right.WasReleased) {
+			this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange * Time.deltaTime;
+			this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
+		}
+	}
+
+
+	private int GetPositionIndex (int length, int item, string direction) {
+		if (direction == "up") {
+			if (item == 0) {
+				item = length - 1;
+			} else {
+				item -= 1;
+			}
+		}
+
+		if (direction == "down") {
+			if (item == length - 1) {
+				item = 0;
+			} else {
+				item += 1;
+			}
+		}
+
+		return item;
+	}
+
 
 
 
     public void GoBack() {
-        StartCoroutine (Exit ());
+		DestroyObject(this.gameObject);  
+
+		//StartCoroutine (Exit ());
     }
 
     private IEnumerator Exit() {
-        //this.gameObject.SetActive (false);
         modalAnimator.Play ("ModalExit");
         yield return new WaitForSeconds(1.0f); 
         Destroy(this.gameObject);  
 
     }
 
-
-    public void SetUpMouseControls() {
-
-        int i = 0;
-        foreach (Button b in buttons) {
-            buttons[i].onClick.AddListener(delegate {DoAction(i);});//adds a listener for when you click the button
-            i++;
-        }
-    }
 
 }
 

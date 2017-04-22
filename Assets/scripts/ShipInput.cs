@@ -44,7 +44,7 @@ public class ShipInput : AbstractInputManager {
 		{
 			onRightBumperDown();
 		}
-		if (actions.Start.WasPressed && onStartButtonPress != null)
+		if (actions.Start.WasReleased && onStartButtonPress != null)
 		{
 			onStartButtonPress ();
 		}

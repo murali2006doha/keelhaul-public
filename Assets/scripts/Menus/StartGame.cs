@@ -31,7 +31,7 @@ public class StartGame : MonoBehaviour {
             SignIn ();
         }
 
-		if (notStarted && actions != null && actions.Green.WasReleased) {
+		if (notStarted && anyInputEnterWasReleased()) { //actions != null && actions.Green.WasReleased) {
             initialText.gameObject.SetActive (false);
             FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
                 initialText.gameObject.SetActive (true);
@@ -46,4 +46,19 @@ public class StartGame : MonoBehaviour {
             this.actions = (PlayerActions)cc.players [0];
         }
     }
+
+
+	bool anyInputEnterWasReleased() {
+		if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R)) {
+			return true;
+		}
+
+		foreach (InputDevice device in InputManager.Devices) {
+			if (device.Action1.WasReleased) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

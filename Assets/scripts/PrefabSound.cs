@@ -12,7 +12,7 @@ public class PrefabSound : MonoBehaviour {
 
 	public IEnumerator PlaySound() {
 		this.GetComponent<AudioSource> ().Play ();
-		yield return new WaitForSeconds(this.GetComponent<AudioSource> ().clip.length);
+		yield return new WaitForSeconds (this.GetComponent<AudioSource> ().clip.length);
 		Destroy (this.transform.gameObject);
 	}
 

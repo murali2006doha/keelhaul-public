@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 95138739118731144}
   - component: {fileID: 114604020136159642}
   - component: {fileID: 82653962270161600}
+  - component: {fileID: 114767061749182738}
   m_Layer: 5
   m_Name: krakenScore
   m_TagString: Untagged
@@ -139,6 +140,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537291bb9465148479ce65d14db1e958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationTime: 0
+--- !u!114 &114767061749182738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348333835980586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSound: 0
+  audioSource: {fileID: 82653962270161600}
 --- !u!114 &114857342148545468
 MonoBehaviour:
   m_ObjectHideFlags: 1
