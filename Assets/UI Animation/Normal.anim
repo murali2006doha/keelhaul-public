@@ -40,7 +40,7 @@ AnimationClip:
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
-    - time: 0.13333334
+    - time: 0
       value: {fileID: 21300016, guid: 616d293b1c5154896ad39da485b57457, type: 3}
     attribute: m_Sprite
     path: Image/Stroke
