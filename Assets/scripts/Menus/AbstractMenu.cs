@@ -40,7 +40,6 @@ public abstract class AbstractMenu : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
-        print (Time.fixedTime);
         Navigate ();
 
         if (AnyInputEnterWasReleased()) {   //actions.Green.WasReleased) { 

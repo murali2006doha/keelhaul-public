@@ -24,8 +24,12 @@ public class SettingsModalComponent : AbstractModalComponent {
     public override void InitializeModal (PlayerActions actions) {
         this.actions = actions;
 
+        this.shadowsToggle.ToggleComponent.isOn = GlobalSettings.shadows;
+        this.waterReflectToggle.ToggleComponent.isOn = GlobalSettings.waterReflection;
+        this.waterRefractToggle.ToggleComponent.isOn = GlobalSettings.waterRefraction;
         this.soundSlider.SliderComponent.value = GlobalSettings.soundMultiplier;
         this.musicSlider.SliderComponent.value = GlobalSettings.musicMultiplier;
+
         SetUpButtonToActionDictionary ();
 
     }
@@ -54,19 +58,15 @@ public class SettingsModalComponent : AbstractModalComponent {
     }
 
     void setShadowsToggle(bool isOn) {
-        if (isOn) {
-            QualitySettings.shadows = ShadowQuality.All;
-        } else {
-            QualitySettings.shadows = ShadowQuality.Disable;
-        }
+        GlobalSettings.setShadows (isOn);
     }
 
     void setWaterRefractionToggle(bool isOn) {
-        GlobalSettings.waterRefraction = isOn;
+        GlobalSettings.setRefraction (isOn);
     }
 
     void setWaterReflectionToggle(bool isOn) {
-        GlobalSettings.waterReflection = isOn;
+        GlobalSettings.setReflection (isOn);
     }
 
 }
