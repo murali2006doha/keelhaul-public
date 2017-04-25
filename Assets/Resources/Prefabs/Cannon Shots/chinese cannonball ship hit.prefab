@@ -89,6 +89,8 @@ GameObject:
   - component: {fileID: 4269759732104978}
   - component: {fileID: 82519998027365036}
   - component: {fileID: 82095339975522074}
+  - component: {fileID: 114774987427204272}
+  - component: {fileID: 114237611221781518}
   m_Layer: 8
   m_Name: chinese cannonball ship hit
   m_TagString: Untagged
@@ -449,6 +451,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114237611221781518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1380153577497554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSound: 1
+  audioSource: {fileID: 82095339975522074}
+--- !u!114 &114774987427204272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1380153577497554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSound: 1
+  audioSource: {fileID: 82519998027365036}
 --- !u!198 &198017389005561822
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -457,7 +485,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1886341220786758}
   serializedVersion: 5
   lengthInSec: 1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -2998,7 +3026,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1270639170348994}
   serializedVersion: 5
   lengthInSec: 0.5
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -5527,7 +5555,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1179215906021732}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -8098,7 +8126,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1500867186957272}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -10657,7 +10685,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1479041569807066}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -13156,7 +13184,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1174248536169138}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -15703,7 +15731,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1980071368242276}
   serializedVersion: 5
   lengthInSec: 0.1
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -18220,7 +18248,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1284848888331648}
   serializedVersion: 5
   lengthInSec: 1.13
-  speed: 1
+  simulationSpeed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1

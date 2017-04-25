@@ -60,7 +60,7 @@ public class ModalStack : MonoBehaviour {
             selectedModal.enabled = false;
         }
 
-        //go back to game
+        //if only pause
         if (workingModals.ToArray().Length == 0) {
             ClearStack ();
         } else {
@@ -91,6 +91,7 @@ public class ModalStack : MonoBehaviour {
 
     static void ClearStack() {
         workingModals = new Stack<AbstractModalComponent> ();
+        DestroyObject (selectedModal.transform.gameObject);
         selectedModal = null;
     }
 }

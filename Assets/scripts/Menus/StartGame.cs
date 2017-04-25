@@ -13,7 +13,7 @@ public class StartGame : MonoBehaviour {
 
     ControllerSelect cc;
     PlayerActions actions;
-	bool notStarted = true;
+    bool notStarted = true;
 
     // Use this for initialization
     void Start () {
@@ -31,12 +31,12 @@ public class StartGame : MonoBehaviour {
             SignIn ();
         }
 
-		if (notStarted && actions != null && actions.Green.WasReleased) {
+        if (notStarted && AnyInputEnterWasReleased()) { 
             initialText.gameObject.SetActive (false);
             FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
                 initialText.gameObject.SetActive (true);
             });
-			notStarted = false;
+            notStarted = false;
         }
     }   
 
@@ -45,5 +45,20 @@ public class StartGame : MonoBehaviour {
         if (cc.players.Count == 1) {
             this.actions = (PlayerActions)cc.players [0];
         }
+    }
+
+
+    bool AnyInputEnterWasReleased() {
+        if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R)) {
+            return true;
+        }
+
+        foreach (InputDevice device in InputManager.Devices) {
+            if (device.Action1.WasReleased) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

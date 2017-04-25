@@ -25,6 +25,8 @@ ModelImporter:
     100034: viking_ship
     100036: viking_ship_ballista
     100038: viking_ship_cannon21
+    100040: viking_iceberg1
+    100042: viking_ship_arrow
     400000: iceberg2
     400002: iceberg_bone
     400004: joint10
@@ -45,15 +47,23 @@ ModelImporter:
     400034: viking_ship
     400036: viking_ship_ballista
     400038: viking_ship_cannon21
+    400040: viking_iceberg1
+    400042: viking_ship_arrow
     2300000: iceberg2
     2300002: viking_ship
     2300004: viking_ship_cannon21
+    2300006: viking_iceberg1
+    2300008: viking_ship_arrow
     3300000: iceberg2
     3300002: viking_ship
     3300004: viking_ship_cannon21
+    3300006: viking_iceberg1
+    3300008: viking_ship_arrow
     4300000: iceberg2
     4300002: viking_ship_cannon21
     4300004: viking_ship
+    4300006: viking_ship_arrow
+    4300008: viking_iceberg1
     7400000: Take 001
     9500000: //RootNode
   materials:
