@@ -41,6 +41,16 @@ namespace UnityStandardAssets.Water
         // camera will just work!
         public void OnWillRenderObject()
         {
+            reflect = GlobalSettings.waterReflection;
+
+            if(GlobalSettings.waterRefraction) {
+                waterMode = Water.WaterMode.Refractive;
+                customRefract = false;
+            } else {
+                waterMode = Water.WaterMode.Simple;
+                customRefract = true;
+            }
+
             ShadowQuality preRender = QualitySettings.shadows;
 
 

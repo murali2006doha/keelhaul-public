@@ -16,6 +16,9 @@ public class SettingsMenu : AbstractMenu {
     // Use this for initialization
     void Start () {
 
+        this.shadowsToggle.ToggleComponent.isOn = GlobalSettings.shadows;
+        this.waterReflectToggle.ToggleComponent.isOn = GlobalSettings.waterReflection;
+        this.waterRefractToggle.ToggleComponent.isOn = GlobalSettings.waterRefraction;
         this.soundSlider.SliderComponent.value = GlobalSettings.soundMultiplier;
         this.musicSlider.SliderComponent.value = GlobalSettings.musicMultiplier;
 
@@ -47,19 +50,15 @@ public class SettingsMenu : AbstractMenu {
     }
 
     void setShadowsToggle(bool isOn) {
-        if (isOn) {
-            QualitySettings.shadows = ShadowQuality.All;
-        } else {
-            QualitySettings.shadows = ShadowQuality.Disable;
-        }
+        GlobalSettings.setShadows (isOn);
     }
 
     void setWaterRefractionToggle(bool isOn) {
-        GlobalSettings.waterRefraction = isOn;
+        GlobalSettings.setRefraction (isOn);
     }
 
     void setWaterReflectionToggle(bool isOn) {
-        GlobalSettings.waterReflection = isOn;
+        GlobalSettings.setReflection (isOn);
     }
 }
 
