@@ -47,7 +47,7 @@ namespace UnityStandardAssets.Water
                 waterMode = Water.WaterMode.Refractive;
                 customRefract = false;
             } else {
-                waterMode = Water.WaterMode.Simple;
+                waterMode = Water.WaterMode.Reflective;
                 customRefract = true;
             }
 
