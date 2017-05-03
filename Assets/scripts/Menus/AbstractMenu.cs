@@ -33,8 +33,8 @@ public abstract class AbstractMenu : MonoBehaviour
         SetActionSelectables();
     }
 
-	protected abstract void SetActions();
-	protected abstract void SetActionSelectables();
+    protected abstract void SetActions();
+    protected abstract void SetActionSelectables();
 
 
 

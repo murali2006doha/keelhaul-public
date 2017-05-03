@@ -30,13 +30,13 @@ public class SettingsModalComponent : AbstractModalComponent {
 
     }
 
-	protected override bool CanControl () {
-		if (isActive) {
-			return true;
-		} 
+    protected override bool CanControl () {
+        if (isActive) {
+            return true;
+        } 
 
-		return false;
-	}
+        return false;
+    }
 
 
     void SetUpButtonToActionDictionary ()

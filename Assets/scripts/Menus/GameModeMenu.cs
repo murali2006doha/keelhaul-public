@@ -10,7 +10,7 @@ public class GameModeMenu : AbstractMenu {
     public bool isOnline;
 
 
-	protected override void SetActions (){
+    protected override void SetActions (){
 
         deathmatch.SetAction (() => {
             ToggleSelectables();
@@ -26,16 +26,16 @@ public class GameModeMenu : AbstractMenu {
     }
 
 
-	protected override void SetActionSelectables ()
-	{
-		if (isOnline) {
-			actionSelectables.Add (deathmatch.gameObject);
-		}
-		else {
-			actionSelectables.Add (deathmatch.gameObject);
-			actionSelectables.Add (sabotage.gameObject);
-		}
-	}
+    protected override void SetActionSelectables ()
+    {
+        if (isOnline) {
+            actionSelectables.Add (deathmatch.gameObject);
+        }
+        else {
+            actionSelectables.Add (deathmatch.gameObject);
+            actionSelectables.Add (sabotage.gameObject);
+        }
+    }
 
 
 

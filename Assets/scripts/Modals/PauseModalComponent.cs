@@ -39,14 +39,14 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     
     }
 
-	protected override bool CanControl () 
-	{
-		if (isPaused && isActive) {
-			return true;
-		} 
+    protected override bool CanControl () 
+    {
+        if (isPaused && isActive) {
+            return true;
+        } 
 
-		return false;
-	}
+        return false;
+    }
 
 
     void SetUpButtonToActionDictionary (PlayerActions actions) {
@@ -138,7 +138,7 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     private void PauseAudio() {
 
         foreach (AudioSource audio in audios) {
-			audio.mute = true;
+            audio.mute = true;
         }
 
         pauseMusic.Play();
@@ -147,8 +147,8 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
 
     private void ResumeAudio() {
         foreach (AudioSource audio in audios) {
-			if(null != audio) 
-				audio.mute = false;
+            if(null != audio) 
+                audio.mute = false;
         }
         pauseMusic.Stop();
     }

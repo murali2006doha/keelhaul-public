@@ -25,13 +25,13 @@ public class NotificationModal : AbstractModalComponent {
     }
 
 
-	protected override bool CanControl () {
-		if (isActive) {
-			return true;
-		} 
+    protected override bool CanControl () {
+        if (isActive) {
+            return true;
+        } 
 
-		return false;
-	}
+        return false;
+    }
 
 
     public void Spawn(string messageText, Color color, string okText, String cancelText, Action yesAction, Action noAction) {

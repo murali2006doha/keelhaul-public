@@ -16,7 +16,7 @@ public class MainMenu : AbstractMenu {
 
    
 
-	protected override void SetActions () {
+    protected override void SetActions () {
 
         online.SetAction (() => {
             this.enabled = false;
@@ -68,12 +68,12 @@ public class MainMenu : AbstractMenu {
 
 
 
-	protected override void SetActionSelectables()
-	{
-		actionSelectables.Add (online.gameObject);
-		actionSelectables.Add (offline.gameObject);
-		//commented out because this is not currently in use
-		actionSelectables.Add (settings.gameObject);
-		actionSelectables.Add (exit.gameObject);
-	}
+    protected override void SetActionSelectables()
+    {
+        actionSelectables.Add (online.gameObject);
+        actionSelectables.Add (offline.gameObject);
+        //commented out because this is not currently in use
+        actionSelectables.Add (settings.gameObject);
+        actionSelectables.Add (exit.gameObject);
+    }
 }

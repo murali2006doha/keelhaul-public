@@ -13,7 +13,7 @@ public class SettingsMenu : AbstractMenu {
     public ActionSlider musicSlider;
 
 
-	protected override void SetActions () {
+    protected override void SetActions () {
         shadowsToggle.SetAction (this.setShadowsToggle);
         waterRefractToggle.SetAction (this.setWaterRefractionToggle);
         waterReflectToggle.SetAction (this.setWaterReflectionToggle);
@@ -21,19 +21,19 @@ public class SettingsMenu : AbstractMenu {
         musicSlider.SetAction (this.setMusicVolume, this.actions);
     }
 
-	protected override void SetActionSelectables ()
-	{
-		this.shadowsToggle.ToggleComponent.isOn = GlobalSettings.shadows;
-		this.waterReflectToggle.ToggleComponent.isOn = GlobalSettings.waterReflection;
-		this.waterRefractToggle.ToggleComponent.isOn = GlobalSettings.waterRefraction;
-		this.soundSlider.SliderComponent.value = GlobalSettings.soundMultiplier;
-		this.musicSlider.SliderComponent.value = GlobalSettings.musicMultiplier;
-		actionSelectables.Add (shadowsToggle.gameObject);
-		actionSelectables.Add (waterRefractToggle.gameObject);
-		actionSelectables.Add (waterReflectToggle.gameObject);
-		actionSelectables.Add (soundSlider.gameObject);
-		actionSelectables.Add (musicSlider.gameObject);
-	}
+    protected override void SetActionSelectables ()
+    {
+        this.shadowsToggle.ToggleComponent.isOn = GlobalSettings.shadows;
+        this.waterReflectToggle.ToggleComponent.isOn = GlobalSettings.waterReflection;
+        this.waterRefractToggle.ToggleComponent.isOn = GlobalSettings.waterRefraction;
+        this.soundSlider.SliderComponent.value = GlobalSettings.soundMultiplier;
+        this.musicSlider.SliderComponent.value = GlobalSettings.musicMultiplier;
+        actionSelectables.Add (shadowsToggle.gameObject);
+        actionSelectables.Add (waterRefractToggle.gameObject);
+        actionSelectables.Add (waterReflectToggle.gameObject);
+        actionSelectables.Add (soundSlider.gameObject);
+        actionSelectables.Add (musicSlider.gameObject);
+    }
 
 
 
