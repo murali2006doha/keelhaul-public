@@ -14,20 +14,9 @@ public class MainMenu : AbstractMenu {
     public ActionButton settings;
     public ActionButton exit;
 
+   
 
-    // Use this for initialization
-    void Start () {
-
-        SetActions ();
-        actionSelectables.Add (online.gameObject);
-        actionSelectables.Add (offline.gameObject);   //commented out because this is not currently in use
-        actionSelectables.Add (settings.gameObject);
-        actionSelectables.Add (exit.gameObject);
-    
-    }
-
-
-    public override void SetActions () {
+	protected override void SetActions () {
 
         online.SetAction (() => {
             this.enabled = false;
@@ -67,7 +56,7 @@ public class MainMenu : AbstractMenu {
 
         exit.SetAction (() =>  {
             canReturn = false;
-            ModalStack.initialize (this.actions, ModalsEnum.notificationModal, modalActions);
+            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationModal, modalActions);
             FindObjectOfType<NotificationModal> ().Spawn ("Exit to Desktop?", Color.yellow, "Yes", "No", () =>  {
                 Exit ();
             }, () =>  {
@@ -76,4 +65,15 @@ public class MainMenu : AbstractMenu {
             });
         });
     }
+
+
+
+	protected override void SetActionSelectables()
+	{
+		actionSelectables.Add (online.gameObject);
+		actionSelectables.Add (offline.gameObject);
+		//commented out because this is not currently in use
+		actionSelectables.Add (settings.gameObject);
+		actionSelectables.Add (exit.gameObject);
+	}
 }

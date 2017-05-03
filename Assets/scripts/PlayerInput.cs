@@ -244,7 +244,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             modalActions.Add (ModalActionEnum.onOpenAction, () => {clearShipInput();});
             modalActions.Add (ModalActionEnum.onCloseAction, () => {InitializeShipInput();});
 
-            ModalStack.initialize (this.Actions, ModalsEnum.pauseModal, modalActions);
+            ModalStack.InitializeModal (this.Actions, ModalsEnum.pauseModal, modalActions);
         } 
     }
 

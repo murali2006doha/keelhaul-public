@@ -13,15 +13,11 @@ public class SettingsModalComponent : AbstractModalComponent {
     public ActionToggle waterReflectToggle;
     public ActionSlider soundSlider;
     public ActionSlider musicSlider;
+   
 
-    void Update() {
-        if (isActive) {
-            Control (); 
-        }
-    }
 
     // Use this for initialization
-    public override void InitializeModal (PlayerActions actions) {
+    public override void SetupModal (PlayerActions actions) {
         this.actions = actions;
 
         this.shadowsToggle.ToggleComponent.isOn = GlobalSettings.shadows;
@@ -33,6 +29,15 @@ public class SettingsModalComponent : AbstractModalComponent {
         SetUpButtonToActionDictionary ();
 
     }
+
+	protected override bool CanControl () {
+		if (isActive) {
+			return true;
+		} 
+
+		return false;
+	}
+
 
     void SetUpButtonToActionDictionary ()
     {

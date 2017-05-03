@@ -26,6 +26,18 @@ public abstract class AbstractMenu : MonoBehaviour
     protected bool interactable = true;
     protected int index = 0;
 
+
+
+    void Start() {
+        SetActions();
+        SetActionSelectables();
+    }
+
+	protected abstract void SetActions();
+	protected abstract void SetActionSelectables();
+
+
+
     /// <summary>
     /// Initialize the specified actions and goBackAction.
     /// <"actions">Actions
@@ -36,6 +48,7 @@ public abstract class AbstractMenu : MonoBehaviour
         this.onReturnAction = goBackAction;
         this.canReturn = true;
     }
+
 
 
     // Update is called once per frame
@@ -55,8 +68,6 @@ public abstract class AbstractMenu : MonoBehaviour
         NavigateModal (actionSelectables.ToArray ());
         NavigateModalWithMouse ();
     }
-
-    public abstract void SetActions();
 
         
     public void Exit() {

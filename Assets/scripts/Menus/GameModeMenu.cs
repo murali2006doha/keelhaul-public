@@ -9,20 +9,8 @@ public class GameModeMenu : AbstractMenu {
     public ActionButton sabotage;
     public bool isOnline;
 
-    // Use this for initialization
-    void Start () {
 
-        SetActions ();
-
-        if (isOnline) {
-            actionSelectables.Add (deathmatch.gameObject);
-		} else {
-			actionSelectables.Add (deathmatch.gameObject);
-			actionSelectables.Add (sabotage.gameObject);
-        }
-    }
-
-    public override void SetActions (){
+	protected override void SetActions (){
 
         deathmatch.SetAction (() => {
             ToggleSelectables();
@@ -36,6 +24,20 @@ public class GameModeMenu : AbstractMenu {
             SceneManager.LoadScene("Game");
         });
     }
+
+
+	protected override void SetActionSelectables ()
+	{
+		if (isOnline) {
+			actionSelectables.Add (deathmatch.gameObject);
+		}
+		else {
+			actionSelectables.Add (deathmatch.gameObject);
+			actionSelectables.Add (sabotage.gameObject);
+		}
+	}
+
+
 
 
 
