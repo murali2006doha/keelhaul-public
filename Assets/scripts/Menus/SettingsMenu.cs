@@ -28,6 +28,7 @@ public class SettingsMenu : AbstractMenu {
         this.waterRefractToggle.ToggleComponent.isOn = GlobalSettings.waterRefraction;
         this.soundSlider.SliderComponent.value = GlobalSettings.soundMultiplier;
         this.musicSlider.SliderComponent.value = GlobalSettings.musicMultiplier;
+
         actionSelectables.Add (shadowsToggle.gameObject);
         actionSelectables.Add (waterRefractToggle.gameObject);
         actionSelectables.Add (waterReflectToggle.gameObject);

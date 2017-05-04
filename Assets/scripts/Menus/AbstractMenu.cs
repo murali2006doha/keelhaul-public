@@ -18,7 +18,7 @@ using System;
 public abstract class AbstractMenu : MonoBehaviour
 {
 
-    protected const float volumeChange = 0.005f;
+    protected const float volumeChange = 0.1f;
     protected PlayerActions actions;
     protected List<GameObject> actionSelectables = new List<GameObject>();
     protected Action onReturnAction;
@@ -141,11 +141,11 @@ public abstract class AbstractMenu : MonoBehaviour
 
     void NavigateSlider () {
         if (AnyInputLeftWasReleased()) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange * Time.fixedTime;
+            //this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;// * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
         if (AnyInputRightWasReleased()) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange * Time.fixedTime;
+            //this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;// * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
     }

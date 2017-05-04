@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class CustomAudioSource : MonoBehaviour {
 
-	float ogVol;
+    [SerializeField]
+    [Range(0.0f, 1.0f)]
+    float intendedVolume = 1f;
 
     [SerializeField]
     bool isSound;
@@ -16,37 +19,35 @@ public class CustomAudioSource : MonoBehaviour {
 
     void Start() {
 
-		if (isSound) {
-			this.audioComponent.volume = GlobalSettings.soundMultiplier;
-		} else {
-			this.audioComponent.volume = GlobalSettings.musicMultiplier;
-		}
-
-        ogVol = this.audioComponent.volume;
-
+        if (isSound) {
+            this.audioComponent.volume = GlobalSettings.soundMultiplier;
+        } else {
+            this.audioComponent.volume = GlobalSettings.musicMultiplier;
+        }
+            
         GlobalSettings.OnSoundChange += setSoundVolume;
-		GlobalSettings.OnMusicChange += setMusicVolume;
+        GlobalSettings.OnMusicChange += setMusicVolume;
     }
 
 
     void setSoundVolume () {
         if (isSound) {
-            this.audioComponent.volume = ogVol * GlobalSettings.soundMultiplier;
+            this.audioComponent.volume = intendedVolume * GlobalSettings.soundMultiplier;
         }
     }
 
 
     void setMusicVolume () {
         if (!isSound) {
-            this.audioComponent.volume = ogVol * GlobalSettings.musicMultiplier;
+            this.audioComponent.volume = intendedVolume * GlobalSettings.musicMultiplier;
         }
     }
 
 
-	void OnDestroy() {
-		GlobalSettings.OnSoundChange -= setSoundVolume;
-		GlobalSettings.OnMusicChange -= setMusicVolume;
-	}
+    void OnDestroy() {
+        GlobalSettings.OnSoundChange -= setSoundVolume;
+        GlobalSettings.OnMusicChange -= setMusicVolume;
+    }
 
     public AudioSource audioComponent {
         get {

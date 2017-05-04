@@ -71,8 +71,7 @@ public class MainMenu : AbstractMenu {
     protected override void SetActionSelectables()
     {
         actionSelectables.Add (online.gameObject);
-        actionSelectables.Add (offline.gameObject);
-        //commented out because this is not currently in use
+        //actionSelectables.Add (offline.gameObject);        //commented out because this is not currently in use
         actionSelectables.Add (settings.gameObject);
         actionSelectables.Add (exit.gameObject);
     }
