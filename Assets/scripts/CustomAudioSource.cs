@@ -20,9 +20,9 @@ public class CustomAudioSource : MonoBehaviour {
     void Start() {
 
         if (isSound) {
-            this.audioComponent.volume = GlobalSettings.soundMultiplier;
+		this.audioComponent.volume = intendedVolume * GlobalSettings.soundMultiplier;
         } else {
-            this.audioComponent.volume = GlobalSettings.musicMultiplier;
+		this.audioComponent.volume = intendedVolume * GlobalSettings.musicMultiplier;
         }
             
         GlobalSettings.OnSoundChange += setSoundVolume;
