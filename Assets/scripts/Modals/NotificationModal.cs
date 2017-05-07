@@ -16,17 +16,21 @@ public class NotificationModal : AbstractModalComponent {
     Action onYesButtonPress;
     Action onNoButtonPress;
 
+   
 
-    void Update() {
-        if (isActive) {
-            Control (); 
-        }
-    }
-
-    public override void InitializeModal(PlayerActions actions) {
+    public override void SetupModal(PlayerActions actions) {
         this.actions = actions;
         this.isActive = true;
         this.popAction += GoBack;   
+    }
+
+
+    protected override bool CanControl () {
+        if (isActive) {
+            return true;
+        } 
+
+        return false;
     }
 
 

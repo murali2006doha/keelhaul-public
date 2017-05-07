@@ -7,7 +7,7 @@ using InControl;
 using System;
 
 /*
- * ALWAYS INITIALIZE MODALS WITH THIS
+ * ALWAYS INITIALIZE MODALS WITH THIS!
  * this will be attached to the main modal, whether its the pause screen or whatever. 
  * buttons and methods get initialized in modal component, but they get executed here
  */
@@ -24,14 +24,14 @@ public class ModalStack : MonoBehaviour {
     /// ModalActionEnum.onOpenAction is called when the modal is first initialized
     /// </summary>
 
-    public static void initialize(PlayerActions actions, ModalsEnum modalType, Dictionary<ModalActionEnum, Action> ModalActions) {
+    public static void InitializeModal(PlayerActions actions, ModalsEnum modalType, Dictionary<ModalActionEnum, Action> ModalActions) {
 
 
         UnityEngine.Object modalPrefab = Resources.Load(Modals.typeToModalPrefab [modalType]);
         GameObject modalObject = (GameObject) GameObject.Instantiate (modalPrefab, Vector3.zero, Quaternion.identity);
         AbstractModalComponent modalComponent = (AbstractModalComponent) modalObject.GetComponent<AbstractModalComponent> ();
 
-        modalComponent.InitializeModal (actions);
+        modalComponent.SetupModal (actions);
         modalComponent.pushAction += Push;
         modalComponent.popAction += Pop;
         modalComponent.popAction += ModalActions [ModalActionEnum.onCloseAction];

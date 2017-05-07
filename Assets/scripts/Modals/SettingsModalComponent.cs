@@ -13,16 +13,34 @@ public class SettingsModalComponent : AbstractModalComponent {
     public ActionToggle waterReflectToggle;
     public ActionSlider soundSlider;
     public ActionSlider musicSlider;
+   
 
-    void Update() {
-        if (isActive) {
-            Control (); 
-        }
-    }
 
     // Use this for initialization
-    public override void InitializeModal (PlayerActions actions) {
+    public override void SetupModal (PlayerActions actions) {
         this.actions = actions;
+
+        SetUpButtonToActionDictionary ();
+
+    }
+
+    protected override bool CanControl () {
+        if (isActive) {
+            return true;
+        } 
+
+        return false;
+    }
+
+
+    void SetUpButtonToActionDictionary ()
+    {
+
+        shadowsToggle.SetAction (this.setShadowsToggle);
+        waterRefractToggle.SetAction (this.setWaterRefractionToggle);
+        waterReflectToggle.SetAction (this.setWaterReflectionToggle);
+        soundSlider.SetAction (this.setSoundVolume, this.actions);
+        musicSlider.SetAction (this.setMusicVolume, this.actions);
 
         this.shadowsToggle.ToggleComponent.isOn = GlobalSettings.shadows;
         this.waterReflectToggle.ToggleComponent.isOn = GlobalSettings.waterReflection;
@@ -30,23 +48,11 @@ public class SettingsModalComponent : AbstractModalComponent {
         this.soundSlider.SliderComponent.value = GlobalSettings.soundMultiplier;
         this.musicSlider.SliderComponent.value = GlobalSettings.musicMultiplier;
 
-        SetUpButtonToActionDictionary ();
-
-    }
-
-    void SetUpButtonToActionDictionary ()
-    {
         actionSelectables.Add (shadowsToggle.gameObject);
         actionSelectables.Add (waterRefractToggle.gameObject);
         actionSelectables.Add (waterReflectToggle.gameObject);
         actionSelectables.Add (soundSlider.gameObject);
         actionSelectables.Add (musicSlider.gameObject);
-
-        shadowsToggle.SetAction (this.setShadowsToggle);
-        waterRefractToggle.SetAction (this.setWaterRefractionToggle);
-        waterReflectToggle.SetAction (this.setWaterReflectionToggle);
-        soundSlider.SetAction (this.setSoundVolume, this.actions);
-        musicSlider.SetAction (this.setMusicVolume, this.actions);
     }
 
     void setSoundVolume(float multiplier) {

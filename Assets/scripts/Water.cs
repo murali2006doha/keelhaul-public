@@ -41,15 +41,9 @@ namespace UnityStandardAssets.Water
         // camera will just work!
         public void OnWillRenderObject()
         {
-            reflect = GlobalSettings.waterReflection;
 
-            if(GlobalSettings.waterRefraction) {
-                waterMode = Water.WaterMode.Refractive;
-                customRefract = false;
-            } else {
-                waterMode = Water.WaterMode.Reflective;
-                customRefract = true;
-            }
+            HandleWaterSettings ();
+
 
             ShadowQuality preRender = QualitySettings.shadows;
 
@@ -194,6 +188,18 @@ namespace UnityStandardAssets.Water
             s_InsideWater = false;
         }
 
+		void HandleWaterSettings ()
+		{
+			reflect = GlobalSettings.waterReflection;
+			if (GlobalSettings.waterRefraction) {
+				waterMode = Water.WaterMode.Refractive;
+				customRefract = false;
+			}
+			else {
+				waterMode = Water.WaterMode.Reflective;
+				customRefract = true;
+			}
+		}
 
         // Cleanup all the objects we possibly have created
         void OnDisable()

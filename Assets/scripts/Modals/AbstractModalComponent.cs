@@ -35,15 +35,24 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     /// </summary>
     /// <param name="actions">Actions.</param>
     //this is CALLED from MODALSTACK only
-    public abstract void InitializeModal(PlayerActions actions);
+    public abstract void SetupModal(PlayerActions actions);
+
+    /// Determines whether this instance can control.
+    protected abstract bool CanControl();
+
+    void Update() {
+        if (CanControl()) {
+            Control (); 
+        }
+    }
 
 
     public void Control() {
         Navigate ();  
 
-        if (actions.Green.WasReleased) {
+        if (AnyInputEnterWasReleased()) {
             this.DoAction (); 
-        } else if (actions.Red.WasReleased || actions.Start.WasReleased) { 
+        } else if (AnyInputBackWasReleased()) { 
             this.popAction ();
             this.GoBack (); //use this once all the modals have an animation
         }
@@ -55,6 +64,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         NavigateModal (actionSelectables.ToArray ());
         NavigateModalWithMouse ();
     }
+
 
     public PlayerActions GetActions() {
         return actions;
@@ -107,11 +117,11 @@ public abstract class AbstractModalComponent : MonoBehaviour {
             passedInButtons [index].gameObject.GetComponent<Selectable> ().Select ();       
         }
 
-        if (actions.Down.WasReleased) {
+        if (AnyInputDownWasReleased()) {
             index = GetPositionIndex (passedInButtons.Length, index, "down");
         }
 
-        if (actions.Up.WasReleased) {
+        if (AnyInputUpWasReleased()) {
             index = GetPositionIndex (passedInButtons.Length, index, "up");
         }
 
@@ -119,11 +129,11 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         if (passedInButtons [index].gameObject.GetComponent<ActionSlider> ()) {
             NavigateSlider ();
         } else {
-            if (actions.Left.WasReleased) {
+            if (AnyInputLeftWasReleased()) {
                 index = GetPositionIndex (passedInButtons.Length, index, "left");
             }
 
-            if (actions.Right.WasReleased) {
+            if (AnyInputRightWasReleased()) {
                 index = GetPositionIndex (passedInButtons.Length, index, "right");
             }
         }
@@ -131,12 +141,12 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
 
     void NavigateSlider () {
-        if (actions.Left.WasReleased) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;// * Time.fixedTime;
+        if (AnyInputLeftWasReleased()) {
+            //this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;// * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
-        if (actions.Right.WasReleased) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;// * Time.fixedTime;
+        if (AnyInputRightWasReleased()) {
+            //this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;// * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
     }
@@ -179,13 +189,12 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     }
 
 
-
-
     public void GoBack() {
         DestroyObject(this.gameObject);  
 
         //StartCoroutine (Exit ());
     }
+
 
     private IEnumerator Exit() {
         modalAnimator.Play ("ModalExit");
@@ -194,6 +203,101 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     }
 
+
+    bool AnyInputRightWasReleased ()
+    {
+        if (null == actions.Device) {
+            if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D)) {
+                return true;
+            } 
+        } else {
+            if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D) || actions.Right.WasReleased) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    bool AnyInputLeftWasReleased() {
+
+        if (null == actions.Device) {
+            if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A)) {
+                return true;
+            }
+        } else {
+            if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A) || actions.Left.WasReleased) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    bool AnyInputUpWasReleased() {
+
+        if (null == actions.Device) {
+            if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W)) {
+                return true;
+            }
+        } else {
+            if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W) || actions.Up.WasReleased) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    bool AnyInputDownWasReleased() {
+
+        if (null == actions.Device) {
+            if (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S)) {
+                return true;
+            }
+        } else {
+            if (actions.Down.WasReleased || Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    bool AnyInputEnterWasReleased() {
+
+        if (null == actions.Device) {
+            if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R) || Input.GetKeyDown (KeyCode.Space)) {
+                return true;
+            }
+        } else {
+            if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R) || Input.GetKeyDown (KeyCode.Space) || actions.Green.WasReleased) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    bool AnyInputBackWasReleased() {
+
+        if (null == actions.Device) {
+            if (Input.GetKeyUp (KeyCode.Escape)) {
+                return true;
+            }
+        } else {
+            if (Input.GetKeyUp (KeyCode.Escape) || actions.Red.WasReleased || actions.Start.WasReleased) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }
 

@@ -18,13 +18,25 @@ using System;
 public abstract class AbstractMenu : MonoBehaviour
 {
 
-    protected const float volumeChange = 0.005f;
+    protected const float volumeChange = 0.1f;
     protected PlayerActions actions;
     protected List<GameObject> actionSelectables = new List<GameObject>();
     protected Action onReturnAction;
     protected bool canReturn = true;
     protected bool interactable = true;
     protected int index = 0;
+
+
+
+    void Start() {
+        SetActions();
+        SetActionSelectables();
+    }
+
+    protected abstract void SetActions();
+    protected abstract void SetActionSelectables();
+
+
 
     /// <summary>
     /// Initialize the specified actions and goBackAction.
@@ -36,6 +48,7 @@ public abstract class AbstractMenu : MonoBehaviour
         this.onReturnAction = goBackAction;
         this.canReturn = true;
     }
+
 
 
     // Update is called once per frame
@@ -55,8 +68,6 @@ public abstract class AbstractMenu : MonoBehaviour
         NavigateModal (actionSelectables.ToArray ());
         NavigateModalWithMouse ();
     }
-
-    public abstract void SetActions();
 
         
     public void Exit() {
@@ -130,11 +141,11 @@ public abstract class AbstractMenu : MonoBehaviour
 
     void NavigateSlider () {
         if (AnyInputLeftWasReleased()) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange * Time.fixedTime;
+            //this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;// * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
         if (AnyInputRightWasReleased()) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange * Time.fixedTime;
+            //this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;// * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
     }

@@ -24,16 +24,12 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     AudioSource[] audios;
     PlayerInput[] otherActions;
     bool isPaused = false;
-
-    void Update() {
-        if (isPaused && isActive) {
-            Control (); 
-        }
-    }
+   
+ 
 
 
     //The player who paused game has access. 
-    public override void InitializeModal(PlayerActions actions) {
+    public override void SetupModal(PlayerActions actions) {
         this.SetUpButtonToActionDictionary (actions);
 
         this.gm = FindObjectOfType<AbstractGameManager> ();
@@ -42,6 +38,16 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         this.popAction += ResumeGame; //because this will be no modal before this so game will resume
     
     }
+
+    protected override bool CanControl () 
+    {
+        if (isPaused && isActive) {
+            return true;
+        } 
+
+        return false;
+    }
+
 
     void SetUpButtonToActionDictionary (PlayerActions actions) {
 
@@ -57,7 +63,7 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         exitToMenuButton.SetAction (() =>  {
             this.pushAction ();
 
-            ModalStack.initialize (this.actions, ModalsEnum.notificationModal, modalActions);
+            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationModal, modalActions);
             FindObjectOfType<NotificationModal>().Spawn ("Are you sure?", Color.yellow, "Yes", "No", 
                 () =>  {
                     ExitToMainMenu ();
@@ -72,7 +78,7 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         exitToDesktopButton.SetAction (() =>  {
             this.pushAction ();
 
-            ModalStack.initialize (this.actions, ModalsEnum.notificationModal, modalActions);
+            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationModal, modalActions);
             FindObjectOfType<NotificationModal>().Spawn ("Are you sure?", Color.yellow, "Yes", "No",
                 () =>  {
                     ExitToDesktop ();
@@ -86,7 +92,7 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
 
         settingsButton.SetAction (() => {
             this.pushAction ();
-            ModalStack.initialize (this.actions, ModalsEnum.settingsModal, modalActions);
+            ModalStack.InitializeModal (this.actions, ModalsEnum.settingsModal, modalActions);
         });
 
         resumeButton.SetAction (() => {
@@ -132,7 +138,7 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     private void PauseAudio() {
 
         foreach (AudioSource audio in audios) {
-			audio.mute = true;
+            audio.mute = true;
         }
 
         pauseMusic.Play();
@@ -141,8 +147,8 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
 
     private void ResumeAudio() {
         foreach (AudioSource audio in audios) {
-			if(null != audio) 
-				audio.mute = false;
+            if(null != audio) 
+                audio.mute = false;
         }
         pauseMusic.Stop();
     }
