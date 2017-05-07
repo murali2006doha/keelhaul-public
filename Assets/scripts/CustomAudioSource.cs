@@ -8,7 +8,7 @@ public class CustomAudioSource : MonoBehaviour {
 
     [SerializeField]
     [Range(0.0f, 1.0f)]
-    float intendedVolume = 1f;
+    public float intendedVolume = 1f;
 
     [SerializeField]
     bool isSound;
@@ -20,9 +20,9 @@ public class CustomAudioSource : MonoBehaviour {
     void Start() {
 
         if (isSound) {
-		this.audioComponent.volume = intendedVolume * GlobalSettings.soundMultiplier;
+        this.audioComponent.volume = intendedVolume * GlobalSettings.soundMultiplier;
         } else {
-		this.audioComponent.volume = intendedVolume * GlobalSettings.musicMultiplier;
+        this.audioComponent.volume = intendedVolume * GlobalSettings.musicMultiplier;
         }
             
         GlobalSettings.OnSoundChange += setSoundVolume;
