@@ -41799,8 +41799,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intendedVolume: 0.371
-  isSound: 1
+  intendedVolume: 0.2
+  isSound: 0
   audioSource: {fileID: 82315604891546396}
 --- !u!114 &114622988409662172
 MonoBehaviour:
