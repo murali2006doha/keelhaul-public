@@ -1,14 +1,13 @@
 fileFormatVersion: 2
-guid: 1f4a377f6c204c5479f26dcc454ccba8
-timeCreated: 1494183317
+guid: 224825b8e3bf257429dc4b1abb3909b8
+timeCreated: 1492882543
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: atlas_0
-    21300002: atlas_1
-    21300004: atlas_2
-    21300006: atlas_3
-    21300008: atlas_4
+    21300000: ability-spritesheet_0
+    21300002: ability-spritesheet_1
+    21300004: ability-spritesheet_2
+    21300006: ability-spritesheet_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -45,7 +44,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 558
+  spritePixelsToUnits: 40
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -71,84 +70,63 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Android
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: atlas_0
+      name: ability-spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ability-spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ability-spritesheet_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 553.8
-        height: 542
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: atlas_1
+      name: ability-spritesheet_3
       rect:
         serializedVersion: 2
-        x: 553
+        x: 128
         y: 0
-        width: 553.8
-        height: 542
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: atlas_2
-      rect:
-        serializedVersion: 2
-        x: 1106
-        y: 0
-        width: 553.8
-        height: 542
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: atlas_3
-      rect:
-        serializedVersion: 2
-        x: 1659
-        y: 0
-        width: 553.8
-        height: 542
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: atlas_4
-      rect:
-        serializedVersion: 2
-        x: 2212
-        y: 0
-        width: 553.8
-        height: 542
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     outline: []
-  spritePackingTag: characterselect
+  spritePackingTag: altFire
   userData: 
   assetBundleName: 
   assetBundleVariant: 

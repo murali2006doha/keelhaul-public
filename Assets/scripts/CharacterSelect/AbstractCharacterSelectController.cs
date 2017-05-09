@@ -28,6 +28,8 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
     protected Action onSelectCharacter;
     protected GameTypeEnum  mode;
 
+    [SerializeField] CharacterSelectDescriptionView descriptionView;
+
     public void OnSelectCharacterAction(Action action)  {
         this.onSelectCharacter = action;
     }
@@ -59,7 +61,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
         csPanel.gameObject.transform.SetParent(GameObject.Find ("Container").transform);
         csPanel.gameObject.transform.localScale = localscale;
-
+        csPanel.gameObject.GetComponent<CharacterSelectPanel>().updateCharacterDescription = this.descriptionView.OnCharacterSelectChange;
 
         players.Add (csPanel.gameObject.GetComponent<CharacterSelectPanel>());
 

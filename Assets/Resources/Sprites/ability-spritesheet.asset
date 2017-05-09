@@ -9,85 +9,71 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 2019389346, guid: b5bd0d848a86e48409fe56688d66ecb5, type: 3}
-  m_Name: atlas
+  m_Name: ability-spritesheet
   m_EditorClassIdentifier: 
-  hashCode: 119314955
-  material: {fileID: 21693658575490308}
+  hashCode: -362602455
+  material: {fileID: 21422167204965728}
   materialHashCode: 0
-  spriteSheet: {fileID: 2800000, guid: 1f4a377f6c204c5479f26dcc454ccba8, type: 3}
+  spriteSheet: {fileID: 2800000, guid: 224825b8e3bf257429dc4b1abb3909b8, type: 3}
   spriteInfoList:
   - id: 0
     x: 0
-    y: 0
-    width: 409.59998
-    height: 400.8725
-    xOffset: -204.79999
-    yOffset: 200.43625
-    xAdvance: 409.59998
-    scale: 1
-    name: AtlanteanShip
-    hashCode: -1141222294
-    unicode: 0
-    pivot: {x: -204.79999, y: 200.43625}
-    sprite: {fileID: 21300000, guid: 1f4a377f6c204c5479f26dcc454ccba8, type: 3}
-  - id: 1
-    x: 409.0083
-    y: 0
-    width: 409.59998
-    height: 400.8725
-    xOffset: -204.79999
-    yOffset: 200.43625
-    xAdvance: 409.59998
+    y: 128
+    width: 128
+    height: 128
+    xOffset: -64
+    yOffset: 64
+    xAdvance: 128
     scale: 1
     name: BlackbeardShip
     hashCode: 1065335029
     unicode: 0
-    pivot: {x: -204.79999, y: 200.43625}
-    sprite: {fileID: 21300002, guid: 1f4a377f6c204c5479f26dcc454ccba8, type: 3}
-  - id: 2
-    x: 818.0166
-    y: 0
-    width: 409.59998
-    height: 400.8725
-    xOffset: -204.79999
-    yOffset: 200.43625
-    xAdvance: 409.59998
+    pivot: {x: -64, y: 64}
+    sprite: {fileID: 21300000, guid: 224825b8e3bf257429dc4b1abb3909b8, type: 3}
+  - id: 1
+    x: 128
+    y: 128
+    width: 128
+    height: 128
+    xOffset: -64
+    yOffset: 64
+    xAdvance: 128
     scale: 1
     name: ChineseJunkShip
     hashCode: 1590349607
     unicode: 0
-    pivot: {x: -204.79999, y: 200.43625}
-    sprite: {fileID: 21300004, guid: 1f4a377f6c204c5479f26dcc454ccba8, type: 3}
+    pivot: {x: -64, y: 64}
+    sprite: {fileID: 21300002, guid: 224825b8e3bf257429dc4b1abb3909b8, type: 3}
+  - id: 2
+    x: 0
+    y: 0
+    width: 128
+    height: 128
+    xOffset: -64
+    yOffset: 64
+    xAdvance: 128
+    scale: 1
+    name: AtlanteanShip
+    hashCode: -1141222294
+    unicode: 0
+    pivot: {x: -64, y: 64}
+    sprite: {fileID: 21300004, guid: 224825b8e3bf257429dc4b1abb3909b8, type: 3}
   - id: 3
-    x: 1227.0249
+    x: 128
     y: 0
-    width: 409.59998
-    height: 400.8725
-    xOffset: -204.79999
-    yOffset: 200.43625
-    xAdvance: 409.59998
+    width: 128
+    height: 128
+    xOffset: -64
+    yOffset: 64
+    xAdvance: 128
     scale: 1
-    name: Kraken
-    hashCode: -1308648296
+    name: AtlanteanShip
+    hashCode: -1141222294
     unicode: 0
-    pivot: {x: -204.79999, y: 200.43625}
-    sprite: {fileID: 21300006, guid: 1f4a377f6c204c5479f26dcc454ccba8, type: 3}
-  - id: 4
-    x: 1636.0332
-    y: 0
-    width: 409.59998
-    height: 400.8725
-    xOffset: -204.79999
-    yOffset: 200.43625
-    xAdvance: 409.59998
-    scale: 1
-    name: null
-    hashCode: 4003035
-    unicode: 0
-    pivot: {x: -204.79999, y: 200.43625}
-    sprite: {fileID: 21300008, guid: 1f4a377f6c204c5479f26dcc454ccba8, type: 3}
+    pivot: {x: -64, y: 64}
+    sprite: {fileID: 21300006, guid: 224825b8e3bf257429dc4b1abb3909b8, type: 3}
   fallbackSpriteAssets: []
---- !u!21 &21693658575490308
+--- !u!21 &21422167204965728
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -105,7 +91,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 1f4a377f6c204c5479f26dcc454ccba8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 224825b8e3bf257429dc4b1abb3909b8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
