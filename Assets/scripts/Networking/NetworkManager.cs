@@ -1,4 +1,4 @@
-﻿
+﻿ 
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +29,9 @@ public class NetworkManager : MonoBehaviour
     private int randomTimeOutSeconds;
     private bool hasFoundRoom;
 
-   
+    [SerializeField]
+    private AbstractCharacterSelectController csc;
+    private NetworkedCharacterSelectView networkedCsView;
 
     void Start() {
 
@@ -147,7 +149,7 @@ public class NetworkManager : MonoBehaviour
             ro.customRoomPropertiesForLobby = options;
             ro.customRoomProperties = h;
             PhotonNetwork.CreateRoom(null, ro, TypedLobby.Default);
-            ro.IsOpen = false;
+            //ro.IsOpen = false;
         }
        
         yield return true;
@@ -204,16 +206,20 @@ public class NetworkManager : MonoBehaviour
             h.Add("matchOptions", roomOptions);
             PhotonNetwork.room.SetCustomProperties(h);
             MapEnum mapType = (MapEnum)PhotonNetwork.room.customProperties["map"];
-            GameObject instantiated = Instantiate(NetworkedCharacterSelect);
             this.GetComponent<PhotonView>().RPC("ResetLowestRequiredPlayers",PhotonTargets.MasterClient);
-            AbstractCharacterSelectController csc = instantiated.GetComponent<AbstractCharacterSelectController> ();
+
+            csc.gameObject.SetActive(true);
+            var networkedCharacterSelectView = csc.GetComponent<NetworkedCharacterSelectView>();
+            networkedCharacterSelectView.GetComponent<PhotonView>().RPC("AddNetworkedPlayer", PhotonTargets.OthersBuffered, PhotonNetwork.player.ID.ToString());
             csc.gameObject.GetComponent<Canvas> ().worldCamera = this.camera;
               
             csc.OnSelectCharacterAction(
                 () => {
 
                     csc.setPlayerSelectSettings ();
-                    StartSpawnProcessOnline(csc.getPlayerSelectSettings().players[0].selectedCharacter, mapType);
+                    var selectedCharacter = csc.getPlayerSelectSettings().players[0].selectedCharacter;
+                    StartSpawnProcessOnline(selectedCharacter, mapType);
+                    networkedCharacterSelectView.GetComponent<PhotonView>().RPC("SetCharacterForNetworkedPlayer", PhotonTargets.AllBufferedViaServer, selectedCharacter.ToString(), PhotonNetwork.player.ID.ToString());
                     if (PhotonNetwork.isMasterClient)
                     {
                         PhotonNetwork.room.open = true;

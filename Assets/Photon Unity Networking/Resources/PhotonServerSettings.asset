@@ -71,4 +71,7 @@ MonoBehaviour:
   - AddToKillFeed
   - UpdateWorldSpaceHealthBar
   - AddBarrelScoreToKillFeed
+  - AddCharacterView
+  - AddNetworkedPlayer
+  - SetCharacterForNetworkedPlayer
   DisableAutoOpenWizard: 1

@@ -72,6 +72,9 @@ public static class PathVariables {
     internal static string atlanteanPortraitBackgroundPath = "character_portraits_assets/atlantisPortraitBackground";
     internal static string vikingPortraitBackgroundPath = "character_portraits_assets/blackbeardPortraitBackground";
 
+
+    //Networked cs view
+    internal static string selectedCharacterView = "networked_character_select/characterView";
     public static string GetAssociatedCannonballForShip(ShipEnum shipType)
     {
         if (shipType == ShipEnum.AtlanteanShip)

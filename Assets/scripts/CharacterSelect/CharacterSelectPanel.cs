@@ -30,7 +30,7 @@ public class CharacterSelectPanel : MonoBehaviour {
 	private int index;
 	private int selectedCharacterIndex;
 	private AbstractCharacterSelectController csc;
-
+    public Action<ShipEnum> updateCharacterDescription;
 
 	// Use this for initialization
 	void Start () {
@@ -67,8 +67,12 @@ public class CharacterSelectPanel : MonoBehaviour {
 		}
 		if (Actions != null && this.gameObject.activeSelf) {
 			renderImage (index);
-			characterSelect ();	
-		} 
+            
+			characterSelect();
+            if (updateCharacterDescription != null) {
+                updateCharacterDescription(characters[index]);
+            }
+        } 
 
 	}
 
