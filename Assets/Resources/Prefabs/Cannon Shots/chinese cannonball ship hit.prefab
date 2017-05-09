@@ -299,10 +299,11 @@ AudioSource:
   m_GameObject: {fileID: 1380153577497554}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243282841606701670, guid: c3c58f264d05f481aaba751fc0936b22,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 39729bc56c35b7b478cf58d1eb11b21d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.256
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -310,8 +311,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 2.94
+  MaxDistance: 7.5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -340,7 +341,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -379,10 +380,11 @@ AudioSource:
   m_GameObject: {fileID: 1380153577497554}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243282841606701670, guid: c3c58f264d05f481aaba751fc0936b22,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 8e0f9a5f7180f4a468fbeb34cc7ba6a1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.179
+  m_Volume: 0.422
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -390,7 +392,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 495.0495
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -420,7 +422,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -462,6 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intendedVolume: 1
   isSound: 1
   audioSource: {fileID: 82095339975522074}
 --- !u!114 &114774987427204272
@@ -475,6 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intendedVolume: 1
   isSound: 1
   audioSource: {fileID: 82519998027365036}
 --- !u!198 &198017389005561822
@@ -485,7 +489,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1886341220786758}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -3026,7 +3030,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1270639170348994}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -5555,7 +5559,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1179215906021732}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -8126,7 +8130,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1500867186957272}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -10685,7 +10689,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1479041569807066}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -13184,7 +13188,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1174248536169138}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -15731,7 +15735,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1980071368242276}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -18248,7 +18252,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1284848888331648}
   serializedVersion: 5
   lengthInSec: 1.13
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1

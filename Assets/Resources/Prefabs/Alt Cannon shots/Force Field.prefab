@@ -209,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   lifeTime: 8.5
+  protecting: 0
   powerShieldDuration: 0
   isReflecting: 0
   offset: {x: 0, y: 0, z: 0}
@@ -8453,8 +8454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b43fbea14054212885e6b25c506555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClip: {fileID: 8300000, guid: 18fe25612e3764fdd85bdb9e2a4a30b3, type: 3}
-  volume: 0.2
+  soundClip: {fileID: 8300000, guid: 9c044761117ea406dba86d23f0f0783b, type: 3}
+  volume: 0.422
 --- !u!114 &114873303432334470
 MonoBehaviour:
   m_ObjectHideFlags: 1

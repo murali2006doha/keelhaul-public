@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 114663463957176998}
   - component: {fileID: 114383623728338990}
   - component: {fileID: 114297779893203266}
+  - component: {fileID: 114875051080228418}
   m_Layer: 8
   m_Name: Burst blackbeard cannonball
   m_TagString: Untagged
@@ -811,8 +812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b43fbea14054212885e6b25c506555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundClip: {fileID: 8300000, guid: a0fef8223189649e683caaab0d2939ed, type: 3}
-  volume: 0.15
+  soundClip: {fileID: 8300000, guid: 2be7f97ede73fd24a94ab183b8fddd20, type: 3}
+  volume: 1
 --- !u!114 &114383623728338990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -864,6 +865,19 @@ MonoBehaviour:
   damage: 0.5
   pushMagnitude: 0
   reflected: 0
+--- !u!114 &114875051080228418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1373356595147730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b43fbea14054212885e6b25c506555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundClip: {fileID: 8300000, guid: a0fef8223189649e683caaab0d2939ed, type: 3}
+  volume: 1
 --- !u!114 &114883206664587234
 MonoBehaviour:
   m_ObjectHideFlags: 1
