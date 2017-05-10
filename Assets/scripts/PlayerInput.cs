@@ -241,8 +241,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (FindObjectOfType<PauseModalComponent> () == null && FindObjectOfType<CountDown>() == null) {
 
             Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
-            modalActions.Add (ModalActionEnum.onOpenAction, () => {clearShipInput();});
-            modalActions.Add (ModalActionEnum.onCloseAction, () => {InitializeShipInput();});
+
+			if (PhotonNetwork.offlineMode) {
+				modalActions.Add(ModalActionEnum.onOpenAction, () => { clearShipInput(); });
+				modalActions.Add(ModalActionEnum.onCloseAction, () => { InitializeShipInput(); });
+			}
+			else {
+				modalActions.Add(ModalActionEnum.onOpenAction, () => { });
+				modalActions.Add(ModalActionEnum.onCloseAction, () => { });
+			}
 
             ModalStack.InitializeModal (this.Actions, ModalsEnum.pauseModal, modalActions);
         } 

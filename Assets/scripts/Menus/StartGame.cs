@@ -8,7 +8,6 @@ using System;
 
 public class StartGame : MonoBehaviour {
 
-    public Transform initialText;
     public bool withKeyboard;
 
     ControllerSelect cc;
@@ -31,14 +30,19 @@ public class StartGame : MonoBehaviour {
             SignIn ();
         }
 
-        if (notStarted && AnyInputEnterWasReleased()) { 
-            initialText.gameObject.SetActive (false);
+		openMenu();
+    }
+
+
+	void openMenu()
+	{
+		//if (notStarted && AnyInputEnterWasReleased()) { 
             FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
-                initialText.gameObject.SetActive (true);
+				//openMenu();
             });
-            notStarted = false;
-        }
-    }   
+            //notStarted = false;
+        //}
+	}
 
 
     public void SignIn() {

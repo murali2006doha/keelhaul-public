@@ -55,10 +55,10 @@ public abstract class AbstractMenu : MonoBehaviour
     void Update () {
         Navigate ();
 
-        if (AnyInputEnterWasReleased()) {   //actions.Green.WasReleased) { 
+        if (AnyInputEnterWasReleased()) {  
             this.DoAction ();  
         }
-        if (AnyInputBackWasReleased()) {    //actions.Red.WasReleased && canReturn) {
+        if (AnyInputBackWasReleased() && canReturn) {    
             GoBack ();
         } 
     }
@@ -88,8 +88,8 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
     public void ToggleSelectables() {
-
         foreach (GameObject b in actionSelectables) {
+			print(b);
             if (b.GetComponent<ActionButton> ()) {
                 b.GetComponent<ActionButton> ().ButtonComponent.interactable = !b.GetComponent<ActionButton> ().ButtonComponent.interactable;
             
@@ -124,11 +124,11 @@ public abstract class AbstractMenu : MonoBehaviour
             passedInButtons [index].gameObject.GetComponent<Selectable> ().Select ();       
         }
 
-        if (AnyInputDownWasReleased()) {//if (actions.Down.WasReleased) {
+        if (AnyInputDownWasReleased()) {
             index = GetPositionIndex (passedInButtons.Length, index, "down");
         }
 
-        if (AnyInputUpWasReleased()) {//actions.Up.WasReleased) {
+        if (AnyInputUpWasReleased()) {
             index = GetPositionIndex (passedInButtons.Length, index, "up");
         }
 
@@ -141,11 +141,9 @@ public abstract class AbstractMenu : MonoBehaviour
 
     void NavigateSlider () {
         if (AnyInputLeftWasReleased()) {
-            //this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;// * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
         if (AnyInputRightWasReleased()) {
-            //this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;// * Time.fixedTime;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
     }
@@ -202,7 +200,7 @@ public abstract class AbstractMenu : MonoBehaviour
     }
 
     bool AnyInputUpWasReleased() {
-        if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W)) {
+		if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W)) {
             return true;
         }
 

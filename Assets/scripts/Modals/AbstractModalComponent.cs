@@ -206,7 +206,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     bool AnyInputRightWasReleased ()
     {
-        if (null == actions.Device) {
+		if (null == actions || null == actions.Device) {
             if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D)) {
                 return true;
             } 
@@ -222,7 +222,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     bool AnyInputLeftWasReleased() {
 
-        if (null == actions.Device) {
+		if (null == actions || null == actions.Device) {
             if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A)) {
                 return true;
             }
@@ -238,7 +238,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     bool AnyInputUpWasReleased() {
 
-        if (null == actions.Device) {
+		if (null == actions || null == actions.Device) {
             if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W)) {
                 return true;
             }
@@ -254,7 +254,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     bool AnyInputDownWasReleased() {
 
-        if (null == actions.Device) {
+		if (null == actions || null == actions.Device) {
             if (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S)) {
                 return true;
             }
@@ -270,7 +270,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     bool AnyInputEnterWasReleased() {
 
-        if (null == actions.Device) {
+		if (null == actions || null == actions.Device) {
             if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R) || Input.GetKeyDown (KeyCode.Space)) {
                 return true;
             }
@@ -286,7 +286,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     bool AnyInputBackWasReleased() {
 
-        if (null == actions.Device) {
+		if (null == actions || null == actions.Device) {
             if (Input.GetKeyUp (KeyCode.Escape)) {
                 return true;
             }
