@@ -18,9 +18,9 @@ public class ShipMovementSound : MonoBehaviour {
     bool boosted = false;
 
     [SerializeField]
-    float maxVolume = .14f;
+    float maxVolume = .65f;
     [SerializeField]
-    float boostVolume = .14f;
+    float boostVolume = 1f;
     // Use this for initialization
     void Start () {
         player = GetComponentInParent<PlayerInput> ();
@@ -35,10 +35,10 @@ public class ShipMovementSound : MonoBehaviour {
 
         maxVelocity = player.stats.maxVelocity;
         speed = player.motor.getVelocity ();
-        volume = (speed / maxVelocity) / 3.0f;
+        volume = (speed / maxVelocity);
 
         if (player.motor.isBoosting ()) {
-			audioSource.setVolume(Mathf.Min(volume / 3.0f, maxVolume));
+            audioSource.setVolume((Mathf.Min(volume, maxVolume)) / 3.0f);
         } else {
 			audioSource.setVolume(Mathf.Min(volume, maxVolume));
         }
@@ -60,7 +60,7 @@ public class ShipMovementSound : MonoBehaviour {
         boostObject.transform.SetParent (this.transform);
 
         boostObject.GetComponent<CustomAudioSource>().audioComponent.clip = boostSound;
-        boostObject.GetComponent<CustomAudioSource> ().audioComponent.volume = boostVolume;
+        boostObject.GetComponent<CustomAudioSource>().setVolume(boostVolume);
         boostObject.GetComponent<CustomAudioSource> ().audioComponent.Play ();
         
         Invoke ("ResumeMovementSound", boostSound.length);

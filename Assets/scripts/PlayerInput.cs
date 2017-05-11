@@ -99,6 +99,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             stats,
             transform,
             () => {
+                vibrate(0.5f, 2f);
                 uiManager.setBoostBar(0);  
                 uiManager.animManager.onBoost();
             },
@@ -241,7 +242,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (FindObjectOfType<PauseModalComponent> () == null && FindObjectOfType<CountDown>() == null) {
 
             Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
-
 			if (PhotonNetwork.offlineMode) {
 				modalActions.Add(ModalActionEnum.onOpenAction, () => { clearShipInput(); });
 				modalActions.Add(ModalActionEnum.onCloseAction, () => { InitializeShipInput(); });
@@ -369,7 +369,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     { //not being used yet?
         if (!invincible)
         {
-            
+            vibrate(1f, 3f);
             motor.StartSinking();
             Invoke("takeSinkDamage", 1f);
         }

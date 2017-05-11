@@ -9176,8 +9176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostSound: {fileID: 8300000, guid: 0fcb39057f3e44fd1b932e9e07a360ef, type: 3}
   movementSound: {fileID: 8300000, guid: 8ba1d415158f147d9b54d87ba4ac6fe9, type: 3}
-  maxVolume: 0.33
-  boostVolume: 0.14
+  maxVolume: 0.65
+  boostVolume: 1
 --- !u!114 &114558745066597804
 MonoBehaviour:
   m_ObjectHideFlags: 1

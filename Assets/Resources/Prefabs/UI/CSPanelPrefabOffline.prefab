@@ -218,32 +218,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD:Assets/Resources/Prefabs/UI/CSPanelPrefab_old.prefab
-  m_GameObject: {fileID: 1278743059704094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50e4b5dc9942e4c3789befd1d1630541, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backPanel: {fileID: 114811329625533498}
-  forePanel: {fileID: 114408482389899870}
-  characterPanelAnimator: {fileID: 95737641335286216}
-  swoopSpeed: 0
-  isSignedIn: 0
-  selectedCharacter: 
-  selected: 0
-  upLitArrow: {fileID: 224802144060840902}
-  downLitArrow: {fileID: 224249505729309510}
-  deselect: {fileID: 224206247649379308}
---- !u!114 &114196766702693428
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1676006318868184}
-=======
   m_GameObject: {fileID: 1195057315958176}
->>>>>>> f6bd57fe7f646d22e7f4824879267ff3788350a7:Assets/Resources/Prefabs/UI/CSPanelPrefabOffline.prefab
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
