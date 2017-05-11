@@ -141,12 +141,12 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
 
     void NavigateSlider () {
-        if (AnyInputLeftWasReleased()) {
+        if (AnyInputLeftIsPressed()) {
 
 			this.actionSelectables[index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
-        if (AnyInputRightWasReleased()) {
+        if (AnyInputRightIsPressed()) {
 
 			this.actionSelectables[index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
@@ -235,6 +235,39 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         }
 
         return false;
+    }
+
+
+    bool AnyInputRightIsPressed() {
+        if (null == actions || null == actions.Device) {
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) {
+                return true;
+            }
+        }
+        else {
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || actions.Right.IsPressed) {
+            return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    bool AnyInputLeftIsPressed() {
+
+    	if (null == actions || null == actions.Device) {
+    		if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
+    			return true;
+    		}
+    	}
+    	else {
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || actions.Left.IsPressed) {
+    			return true;
+    		}
+    	}
+
+    	return false;
     }
 
 
