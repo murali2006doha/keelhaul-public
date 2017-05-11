@@ -151,7 +151,7 @@ MonoBehaviour:
   matchMaker: {fileID: 114889695674164552, guid: 9e5da8f924e0205468a45fb18988779d,
     type: 2}
   initializer: {fileID: 949}
-  offlineMode: 0
+  offlineMode: 1
   connected: 0
   camera: {fileID: 1541752945}
   csc: {fileID: 615289591}
