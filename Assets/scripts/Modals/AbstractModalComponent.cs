@@ -142,11 +142,13 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     void NavigateSlider () {
         if (AnyInputLeftWasReleased()) {
-            //this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;// * Time.fixedTime;
+
+			this.actionSelectables[index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
         if (AnyInputRightWasReleased()) {
-            //this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;// * Time.fixedTime;
+
+			this.actionSelectables[index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;
             this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
         }
     }
