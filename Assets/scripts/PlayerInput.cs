@@ -160,7 +160,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
         this.GetComponent<PhotonView>().RPC("InstantiateWorldSpaceCanvas", PhotonTargets.OthersBuffered, this.GetId());
-
     }
 
     internal void SetUpScoreDestination(GameObject scoreDestination)
@@ -460,7 +459,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (Actions.Device != null)
         {
-            Actions.Device.Vibrate(intensity);
+            shipInput.actions.Device.Vibrate(intensity);
             Invoke("stopVibrate", time);
         }
     }
@@ -470,7 +469,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (Actions.Device != null)
         {
-            Actions.Device.Vibrate(1);
+            shipInput.actions.Device.Vibrate(1);
             Invoke("stopVibrate", .5f);
         }
     }
@@ -478,7 +477,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void stopVibrate()
     {
-        Actions.Device.StopVibration();
+        shipInput.actions.Device.StopVibration();
     }
 
     [PunRPC]
