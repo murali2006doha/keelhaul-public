@@ -3296,20 +3296,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 118802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d3ef1a5bbfb4e0a910fbbe5830b1f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6738c243473c040469f2b420d9b9e1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterMode: 1
+  waterMode: 2
   disablePixelLights: 1
-  textureSize: 900
+  textureSize: 256
   clipPlaneOffset: 0.07
   reflectLayers:
     serializedVersion: 2
-    m_Bits: 3755507679
+    m_Bits: 4294967295
   refractLayers:
     serializedVersion: 2
-    m_Bits: 3755491295
-  customRefract: 1
+    m_Bits: 4294967295
+  customRefract: 0
   reflect: 1
 --- !u!137 &13722652
 SkinnedMeshRenderer:
@@ -3433,7 +3433,7 @@ ParticleSystem:
   m_GameObject: {fileID: 199128}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -6022,7 +6022,7 @@ ParticleSystem:
   m_GameObject: {fileID: 105748}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -15375,7 +15375,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1000013201652592}
   serializedVersion: 5
   lengthInSec: 5
-  speed: 1
+  simulationSpeed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1

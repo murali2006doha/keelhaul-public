@@ -44,6 +44,17 @@ public class CustomAudioSource : MonoBehaviour {
     }
 
 
+	public void setVolume(float volume) {
+		
+		intendedVolume = volume;
+		if (isSound) {
+			setSoundVolume();
+		} else {
+			setMusicVolume();
+		}
+	}
+
+
     void OnDestroy() {
         GlobalSettings.OnSoundChange -= setSoundVolume;
         GlobalSettings.OnMusicChange -= setMusicVolume;
