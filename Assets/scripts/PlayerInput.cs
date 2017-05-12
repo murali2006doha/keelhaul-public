@@ -368,7 +368,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     { //not being used yet?
         if (!invincible)
         {
-            vibrate(1f, 3f);
             motor.StartSinking();
             Invoke("takeSinkDamage", 1f);
         }
@@ -530,7 +529,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
             }
-                if (health <= 0)
+            if (health <= 0)
             {
                 setStatus(ShipStatus.Dead);
                 vibrate(1f, 1f);
@@ -679,6 +678,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (!GetComponent<PhotonView>().isMine) {
             return;
         }
+        vibrate(1f, 2f);
         velocity = 0f;
         isPushed = false;
         followCamera.zoomIn = false;

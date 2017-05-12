@@ -82,7 +82,7 @@ public class ShipCannonComponent : MonoBehaviour
         if (canShootRight && shoot_direction.magnitude > 0)
         {
             Fire();
-            input.vibrate(.15f, .25f);
+            input.vibrate(.3f, .3f);
             canShootRight = false;
             Invoke("ResetShotRight", stats.shootDelay);
         }

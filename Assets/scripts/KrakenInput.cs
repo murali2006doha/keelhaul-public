@@ -367,6 +367,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (submergeTimer <= 0 || (Actions.Blue.WasPressed) && stats.canPerformAction(Actions.Blue.Name, currentStage)) {
                 SoundManager.playSound(SoundClipEnum.KrakenBubble, SoundCategoryEnum.Generic, transform.position);
+                vibrate(0.3f, stats.stages[currentStage].emergeTime);
                 isSubmerging = true;
                 attacking = false;
                 submergeSprite.gameObject.SetActive(false);
@@ -515,6 +516,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     public void setupRespawn()
     {
+        vibrate(1f, 2f);
         blockMovement = false;
         canSubmerge = true;
         //shipMesh.enabled = false;
@@ -671,7 +673,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
                 hittingShip.GetComponent<PlayerInput>().SetLockedStatus(true);
             }
 
-
+            vibrate(1f, .25f);
             animator.emergeKrakenAttack(hasHitShip ? hittingShip : null);
             previousShip = hittingShip;
             hittingPlayer = false;
