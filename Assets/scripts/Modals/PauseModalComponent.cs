@@ -108,16 +108,21 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         audios = FindObjectsOfType <AudioSource> ();
         otherActions = FindObjectsOfType <PlayerInput> ();
 
-        Time.timeScale = 0;
-        PauseAudio ();
+		if (PhotonNetwork.offlineMode) {
+			Time.timeScale = 0;
+		}
 
+		PauseAudio();
         TogglePlayerActions ();
         isPaused = true;
     }
 
 
     public void ResumeGame() {
-        Time.timeScale = 1;
+        
+		if (PhotonNetwork.offlineMode) {
+			Time.timeScale = 1;
+		}
         ResumeAudio ();
         TogglePlayerActions ();
     }

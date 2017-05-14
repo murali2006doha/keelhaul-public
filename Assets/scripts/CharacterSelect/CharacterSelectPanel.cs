@@ -99,7 +99,8 @@ public class CharacterSelectPanel : MonoBehaviour {
 
 			if (Actions.Green.WasReleased) { //if the player selects the character
 				if(csc.lockCharacter(index)) {
-					selected = true;
+                    vibrate(.25f, .25f);
+                    selected = true;
 					selectedCharacterIndex = index;
 					selectedCharacter = characters [selectedCharacterIndex].ToString();
 					turnOffArrows();
@@ -166,5 +167,32 @@ public class CharacterSelectPanel : MonoBehaviour {
 	public String getSelectedCharacter() {
 		return selectedCharacter;
 	}
+
+
+
+    public void vibrate(float intensity, float time)
+    {
+        if (Actions.Device != null)
+        {
+            Actions.Device.Vibrate(intensity);
+            Invoke("stopVibrate", time);
+        }
+    }
+
+
+    public void joinVibrate()
+    {
+        if (Actions.Device != null)
+        {
+            Actions.Device.Vibrate(1);
+            Invoke("stopVibrate", .5f);
+        }
+    }
+
+
+    void stopVibrate()
+    {
+        Actions.Device.StopVibration();
+    }
 
 }

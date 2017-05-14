@@ -170,7 +170,7 @@ MonoBehaviour:
   shipSelections:
   - selectedCharacter: 0
     team: 0
-  - selectedCharacter: 1
+  - selectedCharacter: 0
     team: 0
   includeKraken: 1
   isTeam: 0
@@ -341,6 +341,11 @@ Prefab:
         type: 2}
       propertyPath: instantiationId
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114795606707892780, guid: 645a1f2311c084ae882b673e34b8e787,
+        type: 2}
+      propertyPath: withKeyboard
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 645a1f2311c084ae882b673e34b8e787, type: 2}
@@ -546,7 +551,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2025389183}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54b43fbea14054212885e6b25c506555, type: 3}
   m_Name: 
@@ -559,7 +564,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2025389183}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79e48c22c53d2074cb1432f95d138117, type: 3}
   m_Name: 
@@ -570,7 +575,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2025389183}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}

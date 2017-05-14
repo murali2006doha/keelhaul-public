@@ -99,6 +99,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             stats,
             transform,
             () => {
+                vibrate(0.5f, 2f);
                 uiManager.setBoostBar(0);  
                 uiManager.animManager.onBoost();
             },
@@ -159,7 +160,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
         this.GetComponent<PhotonView>().RPC("InstantiateWorldSpaceCanvas", PhotonTargets.OthersBuffered, this.GetId());
-
     }
 
     internal void SetUpScoreDestination(GameObject scoreDestination)
@@ -241,8 +241,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (FindObjectOfType<PauseModalComponent> () == null && FindObjectOfType<CountDown>() == null) {
 
             Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
-            modalActions.Add (ModalActionEnum.onOpenAction, () => {clearShipInput();});
-            modalActions.Add (ModalActionEnum.onCloseAction, () => {InitializeShipInput();});
+			if (PhotonNetwork.offlineMode) {
+				modalActions.Add(ModalActionEnum.onOpenAction, () => { clearShipInput(); });
+				modalActions.Add(ModalActionEnum.onCloseAction, () => { InitializeShipInput(); });
+			}
+			else {
+				modalActions.Add(ModalActionEnum.onOpenAction, () => { });
+				modalActions.Add(ModalActionEnum.onCloseAction, () => { });
+			}
 
             ModalStack.InitializeModal (this.Actions, ModalsEnum.pauseModal, modalActions);
         } 
@@ -362,7 +368,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     { //not being used yet?
         if (!invincible)
         {
-            
             motor.StartSinking();
             Invoke("takeSinkDamage", 1f);
         }
@@ -453,7 +458,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (Actions.Device != null)
         {
-            Actions.Device.Vibrate(intensity);
+            shipInput.actions.Device.Vibrate(intensity);
             Invoke("stopVibrate", time);
         }
     }
@@ -463,7 +468,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (Actions.Device != null)
         {
-            Actions.Device.Vibrate(1);
+            shipInput.actions.Device.Vibrate(1);
             Invoke("stopVibrate", .5f);
         }
     }
@@ -471,7 +476,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void stopVibrate()
     {
-        Actions.Device.StopVibration();
+        shipInput.actions.Device.StopVibration();
     }
 
     [PunRPC]
@@ -524,7 +529,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
             }
-                if (health <= 0)
+            if (health <= 0)
             {
                 setStatus(ShipStatus.Dead);
                 vibrate(1f, 1f);
@@ -673,6 +678,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (!GetComponent<PhotonView>().isMine) {
             return;
         }
+        vibrate(1f, 2f);
         velocity = 0f;
         isPushed = false;
         followCamera.zoomIn = false;
