@@ -321,6 +321,7 @@ MonoBehaviour:
   numPlayers: 3
   characters: 00000000010000000200000004000000
   loadingScreen: {fileID: 1078185161040646}
+  descriptionView: {fileID: 0}
 --- !u!114 &114321047857043186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,8 +368,9 @@ MonoBehaviour:
   withKeyboard: 1
   start: {fileID: 224758791099989710}
   numPlayers: 4
-  characters: 000000000100000002000000
+  characters: 00000000010000000200000003000000
   loadingScreen: {fileID: 1078185161040646}
+  descriptionView: {fileID: 0}
 --- !u!114 &114398690333435080
 MonoBehaviour:
   m_ObjectHideFlags: 1
