@@ -73,6 +73,16 @@ public static class PathVariables {
     internal static string vikingPortraitBackgroundPath = "character_portraits_assets/blackbeardPortraitBackground";
 
 
+    //keyboard and controller button sprites
+    internal static string BBack = "Sprites/B";
+    internal static string ESCBack = "Sprites/ESC";
+    internal static string ANext = "Sprites/A";
+    internal static string EnterNext = "Sprites/ENTER";
+    //internal static string AorEnterNext = "Sprites/ENTER";
+    //internal static string BorESCBack = "Sprites/ENTER";
+
+
+
     //Networked cs view
     internal static string selectedCharacterView = "networked_character_select/characterView";
     public static string GetAssociatedCannonballForShip(ShipEnum shipType)

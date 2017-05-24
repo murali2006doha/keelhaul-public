@@ -13,12 +13,14 @@ public class GameModeMenu : AbstractMenu {
     protected override void SetActions (){
 
         deathmatch.SetAction (() => {
+            print("not available for beta");
             ToggleSelectables();
             FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, isOnline);
             SceneManager.LoadScene("Game");
         });
 
         sabotage.SetAction (() => {
+            print("not available for beta");
             ToggleSelectables();
             FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, isOnline);
             SceneManager.LoadScene("Game");

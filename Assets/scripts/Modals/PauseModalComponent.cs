@@ -31,13 +31,13 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     //The player who paused game has access. 
     public override void SetupModal(PlayerActions actions) {
         this.SetUpButtonToActionDictionary (actions);
-
         this.gm = FindObjectOfType<AbstractGameManager> ();
         this.actions = actions;
         this.PauseGame ();
         this.popAction += ResumeGame; //because this will be no modal before this so game will resume
     
     }
+
 
     protected override bool CanControl () 
     {

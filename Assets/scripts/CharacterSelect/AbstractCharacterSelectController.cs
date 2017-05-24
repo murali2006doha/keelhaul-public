@@ -59,7 +59,7 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
         
         GameObject csPanel = Instantiate(Resources.Load(CharacterSelectModel.CSPanelPrefab + suffix, typeof(GameObject)), GameObject.Find ("Container").transform.position, GameObject.Find ("Container").transform.rotation) as GameObject;
         Vector3 localscale = csPanel.gameObject.transform.localScale;
-        csPanel.gameObject.GetComponent<CharacterSelectPanel> ().initializePanel (this, characters, Actions);
+        csPanel.gameObject.GetComponent<CharacterSelectPanel> ().InitializePanel (this, characters, Actions);
 
         csPanel.gameObject.transform.SetParent(GameObject.Find ("Container").transform);
         csPanel.gameObject.transform.localScale = localscale;

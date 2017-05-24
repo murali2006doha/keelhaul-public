@@ -37,11 +37,7 @@ public class ShipMovementSound : MonoBehaviour {
         speed = player.motor.getVelocity ();
         volume = (speed / maxVelocity);
 
-        if (player.motor.isBoosting ()) {
-            audioSource.setVolume((Mathf.Min(volume, maxVolume)) / 3.0f);
-        } else {
-			audioSource.setVolume(Mathf.Min(volume, maxVolume));
-        }
+        audioSource.setVolume(Mathf.Min(volume, maxVolume));
 
         if (player.motor.isBoosting () && !boosted) {
             PlayBoostSound ();
@@ -52,8 +48,8 @@ public class ShipMovementSound : MonoBehaviour {
 
     void PlayBoostSound ()
     {
+
         boosted = true;
-		audioSource.audioComponent.Pause ();
 
         UnityEngine.Object prefab = Resources.Load(PathVariables.soundPrefab); 
         boostObject = (GameObject)GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
@@ -63,14 +59,13 @@ public class ShipMovementSound : MonoBehaviour {
         boostObject.GetComponent<CustomAudioSource>().setVolume(boostVolume);
         boostObject.GetComponent<CustomAudioSource> ().audioComponent.Play ();
         
-        Invoke ("ResumeMovementSound", boostSound.length);
+        Invoke ("DestroyBoost", boostSound.length);
         Invoke ("resetBoosted", player.stats.boostResetTime);
     }
 
 
-    void ResumeMovementSound() {
+    void DestroyBoost() {
 
-		audioSource.audioComponent.Play ();
         Destroy (boostObject);
 
     }
