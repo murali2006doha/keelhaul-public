@@ -13,6 +13,7 @@ public class SettingsModalComponent : AbstractModalComponent {
     public ActionToggle waterReflectToggle;
     public ActionSlider soundSlider;
     public ActionSlider musicSlider;
+    public Transform BackButtonText;
    
 
 
@@ -21,7 +22,6 @@ public class SettingsModalComponent : AbstractModalComponent {
         this.actions = actions;
 
         SetUpButtonToActionDictionary ();
-
     }
 
     protected override bool CanControl () {

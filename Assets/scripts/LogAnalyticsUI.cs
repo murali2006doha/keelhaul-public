@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Collections.Generic;
@@ -84,9 +84,9 @@ public class LogAnalyticsUI : MonoBehaviour {
         int i = 1;
         foreach(CharacterSelectPanel player in shipSelections) {
             if (player.Actions.Device == null) {
-                players.Add (player.getSelectedCharacter() + i.ToString (), "keyboard");
+                players.Add (player.GetSelectedCharacter() + i.ToString (), "keyboard");
             } else {
-                players.Add (player.getSelectedCharacter() + i.ToString (), "controller");
+                players.Add (player.GetSelectedCharacter() + i.ToString (), "controller");
             }
         }
 

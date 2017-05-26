@@ -25,8 +25,10 @@ public abstract class AbstractMenu : MonoBehaviour
     protected bool canReturn = true;
     protected bool interactable = true;
     protected int index = 0;
-
-
+    protected bool canMoveUp = true;
+    protected bool canMoveDown = true;
+    protected bool canMoveLeft = true;
+    protected bool canMoveRight = true;
 
     void Start() {
         SetActions();
@@ -54,11 +56,10 @@ public abstract class AbstractMenu : MonoBehaviour
     // Update is called once per frame
     void Update () {
         Navigate ();
-
         if (AnyInputEnterWasReleased()) {  
             this.DoAction ();  
         }
-        if (AnyInputBackWasReleased() && canReturn) {    
+        if (AnyInputBackWasReleased() && canReturn) {
             GoBack ();
         } 
     }
@@ -89,7 +90,6 @@ public abstract class AbstractMenu : MonoBehaviour
 
     public void ToggleSelectables() {
         foreach (GameObject b in actionSelectables) {
-			print(b);
             if (b.GetComponent<ActionButton> ()) {
                 b.GetComponent<ActionButton> ().ButtonComponent.interactable = !b.GetComponent<ActionButton> ().ButtonComponent.interactable;
             
@@ -125,81 +125,58 @@ public abstract class AbstractMenu : MonoBehaviour
         }
 
         if (AnyInputDownWasReleased()) {
-            index = GetPositionIndex (passedInButtons.Length, index, "down");
+            index = ListIterator.GetPositionIndex (passedInButtons.Length, index, "down");
         }
 
         if (AnyInputUpWasReleased()) {
-            index = GetPositionIndex (passedInButtons.Length, index, "up");
+            index = ListIterator.GetPositionIndex (passedInButtons.Length, index, "up");
         }
 
         if (passedInButtons [index].gameObject.GetComponent<ActionSlider> ()) {
-            NavigateSlider ();
+            NavigateVolumeSlider ();
         }
 
     }
 
 
-    void NavigateSlider () {
-        if (AnyInputLeftWasReleased()) {
-            this.actionSelectables[index].GetComponent<ActionSlider> ().SliderComponent.value -= volumeChange;
-            this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();        
-        }
-        if (AnyInputRightWasReleased()) {
-            this.actionSelectables [index].GetComponent<ActionSlider> ().SliderComponent.value += volumeChange;
-            this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
-        }
-    }
-
-
-    private int GetPositionIndex (int length, int item, string direction) {
-        if (direction == "up") {
-            if (item == 0) {
-                item = length - 1;
-            } else {
-                item -= 1;
-            }
-        }
-
-        if (direction == "down") {
-            if (item == length - 1) {
-                item = 0;
-            } else {
-                item += 1;
-            }
-        }
-
-        return item;
-    }
-
-
-    bool AnyInputRightWasReleased() {
-        if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D)) {
-            return true;
-        }
-
-        foreach (InputDevice device in InputManager.Devices) {
-            if (device.DPadRight.WasReleased || device.LeftStickRight.WasReleased) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-
-    bool AnyInputLeftWasReleased() {
+    void NavigateVolumeSlider () {
+        
         if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A)) {
-            return true;
+            this.actionSelectables[index].GetComponent<ActionSlider> ().doAction ();  
         }
 
         foreach (InputDevice device in InputManager.Devices) {
-            if (device.DPadLeft.WasReleased || device.LeftStickLeft.WasReleased) {
-                return true;
+            if (canMoveLeft && device.DPadLeft.IsPressed) {
+                this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value -= volumeChange;
+                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+                canMoveLeft = false;
+                StartCoroutine(ResetLeftDelay(0.1f));
+            }
+            else if (canMoveLeft && device.LeftStickLeft.RawValue > 0.9f) {
+                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+                canMoveLeft = false;
+                StartCoroutine(ResetLeftDelay(0.1f));
             }
         }
 
-        return false;
+        if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D)) {
+            this.actionSelectables[index].GetComponent<ActionSlider> ().doAction ();
+        }
+
+        foreach (InputDevice device in InputManager.Devices) {
+            if (canMoveRight && device.DPadRight.IsPressed) {
+                this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value += volumeChange;
+                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+                canMoveRight = false;
+                StartCoroutine(ResetRightDelay(0.1f));
+            } else if (canMoveRight && device.LeftStickRight.RawValue > 0.9f) {
+                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+                canMoveRight = false;
+                StartCoroutine(ResetRightDelay(0.1f));
+            }
+        }
     }
+
 
     bool AnyInputUpWasReleased() {
 		if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W)) {
@@ -207,7 +184,9 @@ public abstract class AbstractMenu : MonoBehaviour
         }
 
         foreach (InputDevice device in InputManager.Devices) {
-            if (device.DPadUp.WasReleased || device.LeftStickUp.WasReleased) {
+            if (canMoveUp && (device.LeftStickUp.RawValue > 0.9f || device.DPadUp.WasPressed)) {
+                canMoveUp = false;
+                StartCoroutine(ResetUpDelay(0.1f));
                 return true;
             }
         }
@@ -221,7 +200,9 @@ public abstract class AbstractMenu : MonoBehaviour
         }
 
         foreach (InputDevice device in InputManager.Devices) {
-            if (device.DPadDown.WasReleased || device.LeftStickDown.WasReleased) {
+            if (canMoveDown && (device.LeftStickDown.RawValue > 0.9f || device.DPadDown.WasPressed)) {
+                canMoveDown = false;
+                StartCoroutine(ResetDownDelay(0.1f));
                 return true;
             }
         }
@@ -257,5 +238,25 @@ public abstract class AbstractMenu : MonoBehaviour
         return false;
     }
 
+
+    IEnumerator ResetUpDelay(float waitTime) {
+	    yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
+	    canMoveUp = true;
+    }
+
+    IEnumerator ResetDownDelay(float waitTime) {
+	    yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
+	    canMoveDown = true;
+    }
+
+    IEnumerator ResetRightDelay(float waitTime) {
+        yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
+        canMoveRight = true;
+    }
+
+    IEnumerator ResetLeftDelay(float waitTime) {
+	    yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
+        canMoveLeft = true;
+    }
 }
 

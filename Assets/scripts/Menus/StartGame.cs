@@ -38,7 +38,8 @@ public class StartGame : MonoBehaviour {
 	{
 		//if (notStarted && AnyInputEnterWasReleased()) { 
             FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
-				//openMenu();
+                FindObjectOfType<MainMenu>().ResetMenu();
+				openMenu();
             });
             //notStarted = false;
         //}

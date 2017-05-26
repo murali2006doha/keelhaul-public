@@ -10,47 +10,77 @@ using System;
 public class MainMenu : AbstractMenu
 {
 
-	public ActionButton online;
-	public ActionButton offline;
+    public ActionButton online;
+    public Transform onlineSubmenu;
+    public ActionButton deathMatchOnline;
+    public ActionButton sabotageOnline;
+    public Transform offlineSubmenu;
+    public ActionButton offline;
+    public ActionButton deathMatchOffline;
+    public ActionButton sabotageOffline;
 	public ActionButton settings;
 	public ActionButton exit;
+    public Transform offlineNotAvailableText;
+    public Transform sabotageNotAvailableText;
 
 
 
 	protected override void SetActions() {
 
 		online.SetAction(() => {
-			this.enabled = false;
-			ToggleSelectables();
-			FindObjectOfType<MenuModel>().onlineModeMenu.Initialize(this.actions, () => {
-				ToggleSelectables();
-				this.enabled = true;
-			});
-			FindObjectOfType<MenuModel>().onlineModeMenu.isOnline = true;
+            CloseOfflineSubmenu();
+            onlineSubmenu.gameObject.SetActive(true);
+            actionSelectables.Insert(actionSelectables.IndexOf(online.gameObject) + 1, deathMatchOnline.gameObject);
+            actionSelectables.Insert(actionSelectables.IndexOf(online.gameObject) + 2, sabotageOnline.gameObject);
+            index = index + 1;
 		});
 
+        deathMatchOnline.SetAction (() => {
+            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, true);
+            SceneManager.LoadScene("Game");
+        });
+
+        sabotageOnline.SetAction (() => {
+            sabotageNotAvailableText.gameObject.SetActive(true);
+            Invoke("DestroySabotageNotAvailableText", 1f);
+            //FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, true);
+            //SceneManager.LoadScene("Game");
+        });
 
 		offline.SetAction(() => {
-			this.enabled = false;
-			ToggleSelectables();
-			FindObjectOfType<MenuModel>().offlineModeMenu.Initialize(this.actions, () => {
-				ToggleSelectables();
-				this.enabled = true;
-			});
-			FindObjectOfType<MenuModel>().offlineModeMenu.isOnline = false;
+            CloseOnlineSubmenu();
+            offlineNotAvailableText.gameObject.SetActive(true);
+            Invoke("DestroyOfflineNotAvailableText", 1f);
+            //offlineSubmenu.gameObject.SetActive(true);            
+            //actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 1, deathMatchOffline.gameObject);
+            //actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 2, sabotageOffline.gameObject);
 		});
+
+        deathMatchOffline.SetAction (() => {
+            print("not available for beta");
+
+            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, false);
+            SceneManager.LoadScene("Game");
+        });
+
+        sabotageOffline.SetAction(() => {
+
+            print("not available for beta");
+
+            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, false);
+            SceneManager.LoadScene("Game");
+        });
 
 
 		settings.SetAction(() => {
-
+            CloseOnlineSubmenu();
+            CloseOfflineSubmenu();
 			this.enabled = false;
 			ToggleSelectables();
-			//this.gameObject.SetActive(false);
 			FindObjectOfType<MenuModel>().settingsMenu.Initialize(actions, () => {
-
+                index = actionSelectables.IndexOf(settings.gameObject);
 				this.enabled = true;
 				ToggleSelectables();
-				//this.gameObject.SetActive(true);
 			});
 		});
 
@@ -59,18 +89,19 @@ public class MainMenu : AbstractMenu
 		modalActions.Add(ModalActionEnum.onOpenAction, () => {
 			this.enabled = false;
 			ToggleSelectables();
-			//this.gameObject.SetActive(false);
 			canReturn = false;
 		});
 		modalActions.Add(ModalActionEnum.onCloseAction, () => {
 			this.enabled = true;
 			ToggleSelectables();
-			//this.gameObject.SetActive(true);
 			canReturn = true;
+            index = actionSelectables.IndexOf(exit.gameObject);
+
 		});
 
 		exit.SetAction(() => {
-
+            CloseOnlineSubmenu();
+	        CloseOfflineSubmenu();
 			ModalStack.InitializeModal(this.actions, ModalsEnum.notificationModal, modalActions);
 			FindObjectOfType<NotificationModal>().Spawn("Exit to Desktop?", Color.yellow, "Yes", "No", () => {
 				Exit();
@@ -81,17 +112,47 @@ public class MainMenu : AbstractMenu
 	}
 
 
-	void resetMenu() {
-
-		this.Initialize(actions, () => {
-		});
-	}
-
-
 	protected override void SetActionSelectables() {
 		actionSelectables.Add(online.gameObject);
 		actionSelectables.Add(offline.gameObject);        //commented out because this is not currently in use
 		actionSelectables.Add(settings.gameObject);
 		actionSelectables.Add(exit.gameObject);
 	}
+
+
+    void CloseOnlineSubmenu() {
+    	if (onlineSubmenu.gameObject.GetActive()) {
+    		onlineSubmenu.gameObject.SetActive(false);
+            actionSelectables.RemoveAt(actionSelectables.IndexOf(deathMatchOnline.gameObject));
+            actionSelectables.RemoveAt(actionSelectables.IndexOf(sabotageOnline.gameObject));
+
+    	}
+    }
+
+    void CloseOfflineSubmenu() {
+        if (offlineSubmenu.gameObject.GetActive()) {
+            offlineSubmenu.gameObject.SetActive(false);
+            actionSelectables.RemoveAt(actionSelectables.IndexOf(deathMatchOffline.gameObject));
+            actionSelectables.RemoveAt(actionSelectables.IndexOf(sabotageOffline.gameObject));
+        }
+    }
+
+
+    public void ResetMenu() {
+        DestroySabotageNotAvailableText();
+        DestroyOfflineNotAvailableText();
+        CloseOnlineSubmenu();
+        CloseOfflineSubmenu();
+        index = 0;
+    }
+
+
+    void DestroySabotageNotAvailableText() {
+        sabotageNotAvailableText.gameObject.SetActive(false);
+    }
+
+    void DestroyOfflineNotAvailableText() {
+        offlineNotAvailableText.gameObject.SetActive(false);
+    }
+
 }

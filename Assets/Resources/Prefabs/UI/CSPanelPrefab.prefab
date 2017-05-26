@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 222377109298989512}
   - component: {fileID: 114518858002179738}
   m_Layer: 5
-  m_Name: deselect
+  m_Name: unselectText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 222377513234078876}
   - component: {fileID: 114765738875471344}
   m_Layer: 5
-  m_Name: B
+  m_Name: unselectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 224451987067186558}
   - component: {fileID: 222471656190042572}
   m_Layer: 5
-  m_Name: deselect
+  m_Name: unselect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -368,7 +368,8 @@ MonoBehaviour:
   selected: 0
   upLitArrow: {fileID: 224407004058420434}
   downLitArrow: {fileID: 224136772337117784}
-  deselect: {fileID: 224451987067186558}
+  unselect: {fileID: 224451987067186558}
+  unselectButton: {fileID: 224397315741739572}
 --- !u!114 &114671601614970708
 MonoBehaviour:
   m_ObjectHideFlags: 1

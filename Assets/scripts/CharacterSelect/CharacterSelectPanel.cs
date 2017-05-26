@@ -21,7 +21,8 @@ public class CharacterSelectPanel : MonoBehaviour {
 	public bool selected;
 	public Transform upLitArrow;
 	public Transform downLitArrow;
-	public Transform deselect;
+    public Transform unselect;
+    public Transform unselectButton;
 
 	private Sprite readyImage;
 	private Sprite lockImage;
@@ -50,7 +51,7 @@ public class CharacterSelectPanel : MonoBehaviour {
 	}
 
 
-	public void initializePanel(AbstractCharacterSelectController csc, List<ShipEnum> characters, PlayerActions actions) {
+	public void InitializePanel(AbstractCharacterSelectController csc, List<ShipEnum> characters, PlayerActions actions) {
 
 		this.characters = characters;
 		this.Actions = actions;
@@ -66,9 +67,11 @@ public class CharacterSelectPanel : MonoBehaviour {
 			characterPanelAnimator.SetFloat("swoopSpeed", swoopSpeed);
 		}
 		if (Actions != null && this.gameObject.activeSelf) {
-			renderImage (index);
-            
-			characterSelect();
+			
+            RenderImage (index);
+            ShowKeyboardOrControllerBack();
+			CharacterSelect();
+
             if (updateCharacterDescription != null) {
                 updateCharacterDescription(characters[index]);
             }
@@ -82,10 +85,10 @@ public class CharacterSelectPanel : MonoBehaviour {
 	/*
 	 * navigate the characters selection options and set the character when chosen
 	 */
-	public void characterSelect () {
+    void CharacterSelect () {
 
 		if (!selected && isSignedIn) {
-			lightArrows ();
+			LightArrows ();
 
 			if (Actions.Down.WasReleased) {
 				index = csc.getIndexPosition (characters.Count, index, "down");
@@ -99,15 +102,15 @@ public class CharacterSelectPanel : MonoBehaviour {
 
 			if (Actions.Green.WasReleased) { //if the player selects the character
 				if(csc.lockCharacter(index)) {
-                    vibrate(.25f, .25f);
+                    Vibrate(.25f, .25f);
                     selected = true;
 					selectedCharacterIndex = index;
 					selectedCharacter = characters [selectedCharacterIndex].ToString();
-					turnOffArrows();
+					TurnOffArrows();
 				}
 			} 
 
-		} else if (selected && Actions.Red.WasReleased) {
+        } else if (selected && AnyInputBackWasReleased()) {
 			if(csc.unlockCharacter(selectedCharacterIndex)) {
 				selected = false;
 				selectedCharacter = "";
@@ -116,14 +119,26 @@ public class CharacterSelectPanel : MonoBehaviour {
 	}
 
 
+    bool AnyInputBackWasReleased() {
+
+    	if (null == Actions.Device) {
+    		if (Actions.Start.WasReleased || Actions.Red.WasReleased) {
+    			return true;
+    		}
+    	}
+        else if (Actions.Red.WasReleased) {
+    		return true;
+    	}
+
+    	return false;
+    }
 
 
-	public void renderImage(int index) {
+    void RenderImage(int index) {
 		if (selected) {
-
 			forePanel.sprite = Resources.Load<Sprite>(CharacterSelectModel.ShipToReadyImage [characters[index]]);
 			forePanel.GetComponent<Image> ().enabled = true;
-			deselect.gameObject.SetActive (true);
+			unselect.gameObject.SetActive (true);
 
 		} else {
 			if (csc.getCharacterStatuses() [characters [index].ToString()]) {
@@ -131,16 +146,26 @@ public class CharacterSelectPanel : MonoBehaviour {
 				forePanel.GetComponent<Image> ().enabled = true;
 			} else {
 				forePanel.GetComponent<Image> ().enabled = false;
-				backPanel.sprite = Resources.Load<Sprite>(CharacterSelectModel.ShipToImage [characters[index]]);
+                backPanel.sprite = Resources.Load<Sprite>(CharacterSelectModel.ShipToImage [characters[index]]);
 			}
-			deselect.gameObject.SetActive (false);
+			unselect.gameObject.SetActive (false);
 
 		}
 	}
 
 
 
-	public void lightArrows() {
+    void ShowKeyboardOrControllerBack() {
+        if (null != Actions.Device) {
+            unselectButton.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(CharacterSelectModel.controllerUnselect);
+        } else {
+            unselectButton.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(CharacterSelectModel.keyboardUnselect);
+        }
+    }
+
+
+
+    void LightArrows() {
 
 		if (Actions.Down.IsPressed) {
 			downLitArrow.gameObject.SetActive (true);
@@ -157,20 +182,20 @@ public class CharacterSelectPanel : MonoBehaviour {
 	}
 
 
-	void turnOffArrows() {
+    void TurnOffArrows() {
 		upLitArrow.gameObject.SetActive (false);
 		downLitArrow.gameObject.SetActive (false);
 
 	}
 
 
-	public String getSelectedCharacter() {
+	public String GetSelectedCharacter() {
 		return selectedCharacter;
 	}
 
 
 
-    public void vibrate(float intensity, float time)
+    void Vibrate(float intensity, float time)
     {
         if (Actions.Device != null)
         {
@@ -180,17 +205,7 @@ public class CharacterSelectPanel : MonoBehaviour {
     }
 
 
-    public void joinVibrate()
-    {
-        if (Actions.Device != null)
-        {
-            Actions.Device.Vibrate(1);
-            Invoke("stopVibrate", .5f);
-        }
-    }
-
-
-    void stopVibrate()
+    void StopVibrate()
     {
         Actions.Device.StopVibration();
     }

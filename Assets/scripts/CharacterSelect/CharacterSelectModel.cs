@@ -5,10 +5,10 @@ using UnityEngine;
 public class CharacterSelectModel : MonoBehaviour {
 
 	//Others
-	internal static string pressA = "sprites/character_portraits_assets/press_A";
-	internal static string pressB = "sprites/Character Select UI/B";
-	internal static string deselect = "sprites/Character Select UI/deselect";
-	internal static string CSPanelPrefab = "Prefabs/UI/CSPanelPrefab";
+    internal static string CSPanelPrefab = "Prefabs/UI/CSPanelPrefab";
+    internal static string controllerUnselect = "Sprites/B";
+    internal static string keyboardUnselect = "Sprites/ESC";
+    internal static string keyboardNext = "Sprites/ENTER";
 
 	public static Dictionary<ShipEnum, string> ShipToImage = new Dictionary<ShipEnum, string>(){
 		{ ShipEnum.AtlanteanShip, "character_portraits_assets/angria"},
