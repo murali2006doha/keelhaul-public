@@ -36,6 +36,7 @@ public class SpikeCannonBall : CannonBall
         if (GetComponent<PhotonView>().isMine)
         {
             var spike = PhotonNetwork.Instantiate(PathVariables.spike, transform.position, Quaternion.identity, 0);
+            print("test" + spike);
             spike.GetComponent<PhotonView>().RPC("SetSpikeParent", PhotonTargets.All, this.owner.GetComponent<PlayerInput>().GetId());
         }
         
