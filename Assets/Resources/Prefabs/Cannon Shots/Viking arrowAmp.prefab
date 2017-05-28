@@ -55,7 +55,6 @@ GameObject:
   - component: {fileID: 4205623714888326}
   - component: {fileID: 54260289491088492}
   - component: {fileID: 65924183653737252}
-  - component: {fileID: 114969738012197796}
   - component: {fileID: 114835061626552112}
   - component: {fileID: 114763222484121348}
   - component: {fileID: 114455175296358008}
@@ -1188,8 +1187,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 8
-  instantiationId: 8
+  viewIdField: 0
+  instantiationId: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114923935689405054
 MonoBehaviour:
@@ -1209,31 +1208,6 @@ MonoBehaviour:
     value: {x: 0, y: 0, z: 3731.23}
     space: 1
   ignoreTimescale: 0
---- !u!114 &114969738012197796
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1100698573859666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13c237569b6b044c98583b0b21577a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shipHit: {fileID: 1713327145219862, guid: ed8bc7e49c04e474e98a347b412d7ce5, type: 2}
-  lifeTime: 4
-  krakenHit: {fileID: 102508, guid: cb8c36175b2fc6846ac5d9df652aabf5, type: 2}
-  normalHit: {fileID: 145378, guid: f61565664dac5bd49b5b596ac403dee4, type: 2}
-  shieldHit: {fileID: 1701858947685462, guid: 2d11297b6fb6a4725865ea9349f2f68e, type: 2}
-  splash: {fileID: 1882772391095456, guid: 56d7a42a4d0e54460b1a83e5d0595560, type: 2}
-  kraken: {fileID: 0}
-  gravity: -10
-  force: 0
-  reflectForce: 200
-  reflectMult: 1
-  damage: 1
-  pushMagnitude: 0
-  reflected: 0
 --- !u!122 &122860928329343016
 Halo:
   m_ObjectHideFlags: 1
