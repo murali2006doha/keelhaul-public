@@ -567,6 +567,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         }
     }
 
+
+
     public void SendBarrelScoreToKillFeed()
     {
 
@@ -656,6 +658,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             {
                 uiManager.animManager.onKill();
             }
+        }
+    }
+
+    [PunRPC]
+    public void DQToKillFeed(int player)
+    {
+        if (GetComponent<PhotonView>().isMine)
+        {
+            uiManager.DQToKillFeed(player);
         }
     }
 

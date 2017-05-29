@@ -377,6 +377,12 @@ public class UIManager : MonoBehaviour
         Invoke("RemoveKillFeed", GlobalVariables.killFeedDuration);
     }
 
+    public void DQToKillFeed(int player)
+    {
+        killFeed.text += "<sprite=\"atlas\" name=\"null\"> <size=60%> Player " + player + "</size> <color=\"red\"> disconnected </color>\n";
+        Invoke("RemoveKillFeed", GlobalVariables.killFeedDuration);
+    }
+
     public void RemoveKillFeed()
     {
         killFeed.text = killFeed.text.Substring(killFeed.text.IndexOf("\n")+1);

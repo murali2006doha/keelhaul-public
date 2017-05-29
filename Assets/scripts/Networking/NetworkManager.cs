@@ -64,8 +64,8 @@ public class NetworkManager : MonoBehaviour
             if (PhotonNetwork.room.playerCount == 1)
             {
                 PlayerInput currentPlayer = null;
-                List<PlayerInput> players = instantiatedManager.getPlayers();
-                foreach(PlayerInput player in players)
+                var players = FindObjectsOfType<PlayerInput>();
+                foreach (PlayerInput player in players)
                 {
                     if (player.GetId() == PhotonNetwork.player.ID)
                     {
@@ -85,6 +85,17 @@ public class NetworkManager : MonoBehaviour
                 });
        
         }
+            else
+            {
+                if (PhotonNetwork.isMasterClient)
+                {
+                    var players = FindObjectsOfType<PlayerInput>();
+                    foreach(PlayerInput player in players)
+                    {
+                        player.GetComponent<PhotonView>().RPC("DQToKillFeed",PhotonTargets.AllBuffered,otherPlayer.ID);
+                    }
+                }
+            }
         }
         
     }
