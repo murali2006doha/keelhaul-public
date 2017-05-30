@@ -12,6 +12,7 @@ public class AimComponent : MonoBehaviour {
     float mouseClamp = 0.005f;
 
     public GameObject aim;
+    public GameObject line;
     private Transform shipTransform;
     private bool keyboardControls;
     private Camera cam;
@@ -25,6 +26,9 @@ public class AimComponent : MonoBehaviour {
         else if (moveVector.magnitude >= minDistance)
         {
             aim.transform.position = Vector3.MoveTowards(aim.transform.position, (shipTransform.position) + (moveVector * maxDistance), moveSpeed);
+            var pos = aim.transform.position;
+            pos.y = 0;
+            line.transform.LookAt(pos);
         }
         
     }
@@ -37,7 +41,9 @@ public class AimComponent : MonoBehaviour {
         var ray = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane+34f+ (mousePos.y - Screen.height / 2) / (Screen.height / 2)*6));
 
         aim.transform.position = new Vector3(ray.x,0.1f,ray.z);
-
+        var pos = aim.transform.position;
+        pos.y = 0;
+        line.transform.LookAt(pos);
         //Aim clamp
         if ((aim.transform.position - this.shipTransform.position).magnitude > maxDistance)
         {
