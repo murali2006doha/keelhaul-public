@@ -7,8 +7,8 @@ public class IceSpike : MonoBehaviour {
     public float damage = 0.1f;
 	// Use this for initialization
 	void Start () {
-        LeanTween.scale(this.gameObject,new Vector3(30,40,30),0.5f);
-        LeanTween.moveY(gameObject, 0f, 0.5f);
+        LeanTween.scale(this.gameObject,new Vector3(30,40,30),0.5f); //MagIC numbers
+        LeanTween.moveY(gameObject, 0.3f, 0.5f); //MaGiC
 	}
 
     [PunRPC]

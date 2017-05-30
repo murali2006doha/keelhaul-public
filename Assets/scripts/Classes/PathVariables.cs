@@ -58,7 +58,7 @@ public static class PathVariables {
     internal static string blackbeardAltTexturePath = "Ship/Alternate_Textures/blackbeard_texture";
     internal static string chineseAltTexturePath = "Ship/Alternate_Textures/junk_with_emit_and_gloss";
     internal static string atlanteanAltTexturePath = "Ship/Alternate_Textures/atlantis_diffuse_and_AO";
-    internal static string spike = "Prefabs/Alt Cannon shots/iceberg";
+    internal static string spike = "Prefabs/Alt Cannon shots/viking_iceberg";
 
     //ship portrait paths
     internal static string blackbeardPortraitPath = "character_portraits_assets/blackbeardPortrait";
