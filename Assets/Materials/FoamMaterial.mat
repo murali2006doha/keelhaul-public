@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: TropicalLands
-  m_Shader: {fileID: 4800000, guid: 81886ed47cd012044b060c8e2edddbf4, type: 3}
-  m_ShaderKeywords: _NORMALMAP
-  m_LightmapFlags: 0
+  m_Name: FoamTest
+  m_Shader: {fileID: 4800000, guid: ece3e69fcaf06431f9b92d4f0136d381, type: 3}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -18,7 +18,7 @@ Material:
     - first:
         name: _BumpMap
       second:
-        m_Texture: {fileID: 2800000, guid: 071324ed17e8c0b4e8e180b6daa44a1f, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -40,12 +40,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _Diffuse
-      second:
-        m_Texture: {fileID: 2800000, guid: 5b937e91cdcc9454d850a178bb2fce36, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
@@ -54,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 2412f0d1f37d446f0becc52f655c276c, type: 3}
+        m_Texture: {fileID: 2800000, guid: a0f2881ebf4394f579f05399401887fe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -76,49 +70,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _Ramp
+        name: _node_501
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: eabba395643bb4e388d633c8d9a4f1e8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _SpecGlossMap
+        name: _node_5394
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a0f2881ebf4394f579f05399401887fe, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 13.78, y: 11.99}
     - first:
-        name: _Texture
-      second:
-        m_Texture: {fileID: 2800000, guid: 5b937e91cdcc9454d850a178bb2fce36, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ToonShade
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _bump
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _node_2447
-      second:
-        m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _node_3821
-      second:
-        m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _node_8304
+        name: _node_7736
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -126,7 +90,7 @@ Material:
     m_Floats:
     - first:
         name: _BumpScale
-      second: 0.31
+      second: 1
     - first:
         name: _Cutoff
       second: 0.5
@@ -137,23 +101,14 @@ Material:
         name: _DstBlend
       second: 0
     - first:
-        name: _Fresnel
-      second: 21.6
-    - first:
-        name: _Gloss
-      second: 1
-    - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 1
+      second: 0.5
     - first:
         name: _GlossyReflections
       second: 1
-    - first:
-        name: _Intensity
-      second: 0.336
     - first:
         name: _Metallic
       second: 0
@@ -164,14 +119,11 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
-        name: _Outline
-      second: 0.002
+        name: _Opacity
+      second: 0.818
     - first:
         name: _Parallax
       second: 0.02
-    - first:
-        name: _ShadowDarkness
-      second: 0.474
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -182,51 +134,36 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
-        name: _Tones
-      second: 3
-    - first:
         name: _UVSec
       second: 0
     - first:
         name: _ZWrite
       second: 1
     - first:
-        name: _frensnel
-      second: 10
+        name: _node_3016
+      second: 0
     - first:
-        name: _width
+        name: _node_3310
+      second: 0
+    - first:
+        name: _node_3981
+      second: 0.725
+    - first:
+        name: _node_4209
+      second: 0
+    - first:
+        name: _node_6184
+      second: 0
+    - first:
+        name: _opacity
       second: 0
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.5661765, g: 0.5661765, b: 0.5661765, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
-        name: _OutlineColor
-      second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _Rimlightcolour
-      second: {r: 0.5271805, g: 0.6764706, b: 0, a: 1}
-    - first:
-        name: _Rimlightpower
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _SpecColor
-      second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - first:
-        name: _node_5276
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - first:
-        name: _node_611
-      second: {r: 0.5902033, g: 0.6397059, b: 0.12700044, a: 1}
-    - first:
-        name: _node_7491
-      second: {r: 0.1544118, g: 0.14078723, b: 0.14078723, a: 1}
-    - first:
-        name: _node_8459
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - first:
-        name: _node_9426
-      second: {r: 0.42352945, g: 0.6627451, b: 0.13333334, a: 1}
+        name: _TintColor
+      second: {r: 0.67684907, g: 0.84511244, b: 0.8602941, a: 1}
