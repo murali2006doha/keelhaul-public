@@ -57,16 +57,11 @@ public class MainMenu : AbstractMenu
 		});
 
         deathMatchOffline.SetAction (() => {
-            print("not available for beta");
-
             FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, false);
             SceneManager.LoadScene("Game");
         });
 
         sabotageOffline.SetAction(() => {
-
-            print("not available for beta");
-
             FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, false);
             SceneManager.LoadScene("Game");
         });

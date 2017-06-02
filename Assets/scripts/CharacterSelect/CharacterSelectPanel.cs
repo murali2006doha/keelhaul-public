@@ -200,7 +200,7 @@ public class CharacterSelectPanel : MonoBehaviour {
         if (Actions.Device != null)
         {
             Actions.Device.Vibrate(intensity);
-            Invoke("stopVibrate", time);
+            Invoke("StopVibrate", time);
         }
     }
 
