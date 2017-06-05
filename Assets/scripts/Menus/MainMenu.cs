@@ -75,7 +75,7 @@ public class MainMenu : AbstractMenu
 			FindObjectOfType<MenuModel>().settingsMenu.Initialize(actions, () => {
                 index = actionSelectables.IndexOf(settings.gameObject);
 				this.enabled = true;
-				ToggleSelectables();
+                ToggleSelectables();
 			});
 		});
 
