@@ -90,7 +90,7 @@ public class MatchMakingController : MonoBehaviour {
         foreach (InputDevice device in InputManager.Devices) {
             if (canMoveUp && device.LeftStickUp.IsPressed && device.LeftStickUp.RawValue > 0.9f) {
                 canMoveUp = false;
-                StartCoroutine(ResetUpDelay(analogStickDelay));
+                Invoke("ResetUpDelay", analogStickDelay);
                 return true;
             } else if (device.DPadUp.WasPressed) {
                 return true;
@@ -108,7 +108,7 @@ public class MatchMakingController : MonoBehaviour {
         foreach (InputDevice device in InputManager.Devices) {
             if (canMoveDown && device.LeftStickDown.IsPressed && device.LeftStickDown.RawValue > 0.9f) {
                 canMoveDown = false;
-                StartCoroutine(ResetDownDelay(analogStickDelay));
+                Invoke("ResetDownDelay", analogStickDelay);
                 return true;
             }
             else if (device.DPadDown.WasPressed) {
@@ -147,14 +147,12 @@ public class MatchMakingController : MonoBehaviour {
         return false;
     }
     
-    IEnumerator ResetUpDelay(float waitTime) {
-        yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
-        canMoveUp = true;
+    void ResetUpDelay() {
+    	canMoveUp = true;
     }
 
-    IEnumerator ResetDownDelay(float waitTime) {
-        yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
-        canMoveDown = true;
+    void ResetDownDelay() {
+    	canMoveDown = true;
     }
 
 

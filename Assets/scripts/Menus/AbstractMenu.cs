@@ -151,12 +151,12 @@ public abstract class AbstractMenu : MonoBehaviour
                 this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value -= volumeChange;
                 this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
                 canMoveLeft = false;
-                StartCoroutine(ResetLeftDelay(analogStickDelay));
+                Invoke("ResetLeftDelay", analogStickDelay);
             }
             else if (canMoveLeft && device.LeftStickLeft.RawValue > 0.9f) {
                 this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
                 canMoveLeft = false;
-                StartCoroutine(ResetLeftDelay(analogStickDelay));
+                Invoke("ResetLeftDelay", analogStickDelay);
             }
         }
 
@@ -169,11 +169,11 @@ public abstract class AbstractMenu : MonoBehaviour
                 this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value += volumeChange;
                 this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
                 canMoveRight = false;
-                StartCoroutine(ResetRightDelay(analogStickDelay));
+                Invoke("ResetRightDelay", analogStickDelay);
             } else if (canMoveRight && device.LeftStickRight.RawValue > 0.9f) {
                 this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
                 canMoveRight = false;
-                StartCoroutine(ResetRightDelay(analogStickDelay));
+                Invoke("ResetRightDelay", analogStickDelay);
             }
         }
     }
@@ -187,7 +187,7 @@ public abstract class AbstractMenu : MonoBehaviour
         foreach (InputDevice device in InputManager.Devices) {
             if (canMoveUp && device.LeftStickUp.IsPressed && device.LeftStickUp.RawValue > 0.9f) {
                 canMoveUp = false;
-                StartCoroutine(ResetUpDelay(analogStickDelay));
+                Invoke("ResetUpDelay", analogStickDelay);
                 return true;
             } else if (device.DPadUp.WasPressed) {
                 return true;
@@ -205,7 +205,7 @@ public abstract class AbstractMenu : MonoBehaviour
         foreach (InputDevice device in InputManager.Devices) {
             if (canMoveDown && device.LeftStickDown.IsPressed && device.LeftStickDown.RawValue > 0.9f) {
                 canMoveDown = false;
-                StartCoroutine(ResetDownDelay(analogStickDelay));
+                Invoke("ResetDownDelay", analogStickDelay);
                 return true;
             }
             else if (device.DPadDown.WasPressed) {
@@ -245,23 +245,19 @@ public abstract class AbstractMenu : MonoBehaviour
     }
 
 
-    IEnumerator ResetUpDelay(float waitTime) {
-	    yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
+    void ResetUpDelay() {
 	    canMoveUp = true;
     }
 
-    IEnumerator ResetDownDelay(float waitTime) {
-	    yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
+    void ResetDownDelay() {
 	    canMoveDown = true;
     }
 
-    IEnumerator ResetRightDelay(float waitTime) {
-        yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
+    void ResetRightDelay() {
         canMoveRight = true;
     }
 
-    IEnumerator ResetLeftDelay(float waitTime) {
-	    yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
+    void ResetLeftDelay() {
         canMoveLeft = true;
     }
 }
