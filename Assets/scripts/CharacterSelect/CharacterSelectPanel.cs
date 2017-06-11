@@ -91,12 +91,12 @@ public class CharacterSelectPanel : MonoBehaviour {
 			LightArrows ();
 
 			if (Actions.Down.WasReleased) {
-				index = csc.getIndexPosition (characters.Count, index, "down");
+				index = ListIterator.GetPositionIndex (characters.Count, index, "down");
 				characterPanelAnimator.SetTrigger("shakeDown");
 			} 
 
 			if (Actions.Up.WasReleased) {
-				index = csc.getIndexPosition (characters.Count, index, "up");
+				index = ListIterator.GetPositionIndex (characters.Count, index, "up");
 				characterPanelAnimator.SetTrigger("shakeUp");
 			}
 
@@ -200,7 +200,7 @@ public class CharacterSelectPanel : MonoBehaviour {
         if (Actions.Device != null)
         {
             Actions.Device.Vibrate(intensity);
-            Invoke("stopVibrate", time);
+            Invoke("StopVibrate", time);
         }
     }
 

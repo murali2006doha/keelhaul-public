@@ -159,12 +159,12 @@ public abstract class AbstractModalComponent : MonoBehaviour {
             else if (canMoveLeft && actions.Device.LeftStickLeft.RawValue > 0.9f) {
                 this.actionSelectables [index].GetComponent<ActionSlider>().doAction();
                 canMoveLeft = false;
-                StartCoroutine(ResetLeftDelay(0.2f));         
+                Invoke("ResetLeftDelay", 0.2f);
             } else if (canMoveLeft && actions.Device.DPadLeft.IsPressed) {
                 this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value -= volumeChange;
                 this.actionSelectables [index].GetComponent<ActionSlider>().doAction();
                 canMoveLeft = false;
-                StartCoroutine(ResetLeftDelay(0.2f));         
+                Invoke("ResetLeftDelay", 0.2f);
             }
         }
 
@@ -180,12 +180,12 @@ public abstract class AbstractModalComponent : MonoBehaviour {
             else if (canMoveRight && actions.Device.LeftStickRight.RawValue > 0.9f) {
                 this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
                 canMoveRight = false;
-                StartCoroutine(ResetRightDelay(0.2f));
+                Invoke("ResetRightDelay", 0.2f);
             } else if (canMoveRight && actions.Device.DPadRight.IsPressed) {
                 this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value += volumeChange;
                 this.actionSelectables [index].GetComponent<ActionSlider>().doAction();
                 canMoveRight = false;
-                StartCoroutine(ResetRightDelay(0.2f));
+                Invoke("ResetRightDelay", 0.2f);
             }
         }
     }
@@ -215,7 +215,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         } else if (canMoveUp && (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W) || 
                                  actions.Device.LeftStickUp.RawValue > 0.9f || actions.Device.DPadUp.IsPressed)) {
             canMoveUp = false;
-            StartCoroutine(ResetUpDelay(0.1f));
+            Invoke("ResetUpDelay", 0.1f);
             return true;
         }
 
@@ -232,7 +232,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         } else if (canMoveDown && (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S) ||
                                    actions.Device.LeftStickDown.RawValue > 0.9f || actions.Device.DPadDown.IsPressed)) {
             canMoveDown = false;
-            StartCoroutine(ResetDownDelay(0.1f));
+            Invoke("ResetDownDelay", 0.1f);
             return true;
         }
 
@@ -249,7 +249,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         else if (canMoveRight && (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || 
                                   actions.Device.LeftStickRight.RawValue > 0.9f || actions.Device.DPadRight.IsPressed)) {
             canMoveRight = false;
-            StartCoroutine(ResetRightDelay(0.1f));
+            Invoke("ResetRightDelay", 0.1f);
             return true;
         }
 
@@ -267,7 +267,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     	else if (canMoveLeft && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || 
                                  actions.Device.LeftStickLeft.RawValue > 0.9f || actions.Device.DPadLeft.IsPressed)) {
             canMoveLeft= false;
-            StartCoroutine(ResetLeftDelay(0.1f));
+            Invoke("ResetLeftDelay", 0.1f);
 			return true;
     	}
 
@@ -303,24 +303,20 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     }
 
 
-    IEnumerator ResetUpDelay(float waitTime) {
-        yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
-        canMoveUp = true;
-     }
-
-    IEnumerator ResetDownDelay(float waitTime) {
-    	yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
-        canMoveDown = true;
+    void ResetUpDelay() {
+    	canMoveUp = true;
     }
 
-    IEnumerator ResetRightDelay(float waitTime) {
-    	yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
-        canMoveRight = true;
+    void ResetDownDelay() {
+    	canMoveDown = true;
     }
 
-    IEnumerator ResetLeftDelay(float waitTime) {
-    	yield return StartCoroutine(CoroutineUtils.WaitForRealTime(waitTime));
-        canMoveLeft = true;
+    void ResetRightDelay() {
+    	canMoveRight = true;
+    }
+
+    void ResetLeftDelay() {
+    	canMoveLeft = true;
     }
 
 

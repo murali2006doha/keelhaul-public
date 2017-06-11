@@ -57,16 +57,11 @@ public class MainMenu : AbstractMenu
 		});
 
         deathMatchOffline.SetAction (() => {
-            print("not available for beta");
-
             FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, false);
             SceneManager.LoadScene("Game");
         });
 
         sabotageOffline.SetAction(() => {
-
-            print("not available for beta");
-
             FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, false);
             SceneManager.LoadScene("Game");
         });
@@ -80,7 +75,7 @@ public class MainMenu : AbstractMenu
 			FindObjectOfType<MenuModel>().settingsMenu.Initialize(actions, () => {
                 index = actionSelectables.IndexOf(settings.gameObject);
 				this.enabled = true;
-				ToggleSelectables();
+                ToggleSelectables();
 			});
 		});
 

@@ -105,12 +105,9 @@ public class NetworkManager : MonoBehaviour
         if (!offlineMode) {
             instantiatedController = Instantiate(matchMaker);
             instantiatedController.GetComponent<Canvas>().worldCamera = this.camera;
-          
-            instantiatedController.Initiailze(this.GetMatchOptions);
-            
+            instantiatedController.Initiailze(this.GetMatchOptions);            
             
         }
-     
    
     }
 

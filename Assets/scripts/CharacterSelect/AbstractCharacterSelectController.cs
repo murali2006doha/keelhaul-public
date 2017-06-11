@@ -120,33 +120,6 @@ public abstract class AbstractCharacterSelectController : MonoBehaviour {
 
     public abstract bool unlockCharacter (int index);
 
-
-
-    /*
-     * cycles through a list 
-     */ 
-    public int getIndexPosition (int listSize, int i, string direction) {
-
-        if (direction == "up") {
-            if (i == 0) {
-                i = listSize - 1;
-            } else {
-                i -= 1;
-            }
-        }
-        if (direction == "down") {
-            if (i == listSize - 1) {
-                i = 0;
-            } else {
-                i += 1;
-            }
-        }
-
-        return i;
-    }
-
-
-
     public List<string> getCharacterKeys() {
         List<string> keys = new List<string> (characterStatuses.Keys);
         return keys;
