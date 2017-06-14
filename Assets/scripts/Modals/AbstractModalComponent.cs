@@ -190,22 +190,6 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         }
     }
 
-
-    public void GoBack() {
-        DestroyObject(this.gameObject);  
-
-        //StartCoroutine (Exit ());
-    }
-
-
-    private IEnumerator Exit() {
-        modalAnimator.Play ("ModalExit");
-        yield return new WaitForSeconds(1.0f); 
-        Destroy(this.gameObject);  
-
-    }
-
-
     bool AnyInputUpWasReleased() {
 
 		if (null == actions || null == actions.Device) {
@@ -301,6 +285,21 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
         return false;
     }
+
+    public void GoBack() {
+    	DestroyObject(this.gameObject);
+
+    	//StartCoroutine (Exit ());
+    }
+
+
+    private IEnumerator Exit() {
+    	modalAnimator.Play("ModalExit");
+    	yield return new WaitForSeconds(1.0f);
+            Destroy(this.gameObject);
+        }
+
+
 
 
     void ResetUpDelay() {

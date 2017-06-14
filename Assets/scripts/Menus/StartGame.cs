@@ -8,62 +8,74 @@ using System;
 
 public class StartGame : MonoBehaviour {
 
-    public bool withKeyboard;
+    public bool withKeyboard; 
 
     ControllerSelect cc;
     PlayerActions actions;
     bool notStarted = true;
+    public Transform startScreen;
 
     // Use this for initialization
     void Start () {
         Cursor.visible = true;
         cc = GameObject.FindObjectOfType<ControllerSelect> ();
         cc.withKeyboard = withKeyboard;
+        cc.listening = true;
         FindObjectOfType<MenuModel>().mainMenu.gameObject.SetActive (false);
     }
 
     // Update is called once per frame
     void Update () {
-       
         if (this.gameObject.activeSelf) {
             cc.listening = true;
-            SignIn ();
+            SignIn();
         }
 
-		openMenu();
+        if (notStarted) {
+            OpenMenu();
+        }
+        else if (!notStarted) {
+            LoadMenu();
+        }       
     }
 
 
-	void openMenu()
-	{
-		//if (notStarted && AnyInputEnterWasReleased()) { 
-            FindObjectOfType<MenuModel>().mainMenu.Initialize (actions, () => {
-                FindObjectOfType<MainMenu>().ResetMenu();
-				openMenu();
-            });
-            //notStarted = false;
-        //}
-	}
 
 
-    public void SignIn() {
-        if (cc.players.Count == 1) {
-            this.actions = (PlayerActions)cc.players [0];
+    void OpenMenu() {
+        if (AnyInputEnterWasReleased() && this.actions != null) {
+            startScreen.gameObject.SetActive(false);
+            LoadMenu();
+            notStarted = false;
         }
     }
 
+
+    void LoadMenu() {
+        FindObjectOfType<MenuModel>().mainMenu.Initialize(actions, () => {
+            FindObjectOfType<MainMenu>().ResetMenu();
+			LoadMenu();
+        });
+    }
+
+    void SignIn() {
+
+    	if (cc.players.Count >= 1) {
+    		this.actions = (PlayerActions)cc.players[0];
+            cc.listening = false;
+    	}
+    }
 
     bool AnyInputEnterWasReleased() {
-        if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R)) {
-            return true;
-        }
+    	if (Input.GetKeyUp(KeyCode.Return)) {
+    		return true;
+    	}
+    	foreach (InputDevice device in InputManager.Devices) {
+    		if (device.Action1.WasReleased) {
+    			return true;
+    		}
+    	}
 
-        foreach (InputDevice device in InputManager.Devices) {
-            if (device.Action1.WasReleased) {
-                return true;
-            }
-        }
-
-        return false;
+    	return false;
     }
 }
