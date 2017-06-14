@@ -53,7 +53,6 @@ public abstract class AbstractMenu : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
-        print(this.actions.Device);
         Navigate ();
         if (AnyInputEnterWasReleased()) {  
             this.DoAction ();  
@@ -271,14 +270,6 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
     bool AnyInputEnterWasReleased() {
-
-        //if (null == actions.Device) {
-        //	if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.R) || Input.GetKeyUp(KeyCode.Space)) {
-        //		return true;
-        //	}
-        //   } else if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.R) || Input.GetKeyUp(KeyCode.Space) || actions.Device.Action1.WasReleased) {
-        //	return true;
-        //}
 
         if (null != actions.Device) {
             if (actions.Device.Action1.WasReleased) {
