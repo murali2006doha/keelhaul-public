@@ -162,6 +162,16 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         this.GetComponent<PhotonView>().RPC("InstantiateWorldSpaceCanvas", PhotonTargets.OthersBuffered, this.GetId());
     }
 
+    internal void InitializeForSabotage()
+    {
+        hookshotComponent.enabled = true;
+    }
+
+    internal void InitializeForDeathMatch()
+    {
+        aimComponent.aim.GetComponent<MeshRenderer>().enabled = false;
+    }
+
     internal void SetUpScoreDestination(GameObject scoreDestination)
     {
         if (hookshotComponent)
