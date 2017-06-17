@@ -119,6 +119,7 @@ public class DeathMatchGameManager : AbstractGameManager
         {
             player.gameStarted = true;
             player.setStatus(ShipStatus.Alive);
+            gamePoints[player.GetId().ToString()] = 0;
         }
         if (kraken)
         {
@@ -439,7 +440,10 @@ public class DeathMatchGameManager : AbstractGameManager
         Time.timeScale = 0.3f;
         foreach (PlayerInput p in players)
         {
-            p.uiManager.activateFinishAndColorTint();
+            if(PhotonNetwork.offlineMode || p.GetId() == PhotonNetwork.player.ID)
+            {
+                p.uiManager.activateFinishAndColorTint();
+            }
         }
         if (kraken)
         {
@@ -549,6 +553,7 @@ public class DeathMatchGameManager : AbstractGameManager
                     points = point;
                 }
             }
+            ship.DisableUIForStats();
 
             shipStats.Add(ship.gameStats);
         }
@@ -587,8 +592,8 @@ public class DeathMatchGameManager : AbstractGameManager
             gameOverUI.winners[0].titleStats[num].text = title.statsString;
             num++;
         }
-
-        for (int x = 0; x < 2; x++)
+        //TODO: Refactor for different number of players
+        for (int x = 0; x < Math.Min(losers.Count,gameOverUI.losers.Length); x++)
         {
             num = 0;
             PlayerInput loserInput = losers[x].GetComponent<PlayerInput>();
@@ -611,6 +616,8 @@ public class DeathMatchGameManager : AbstractGameManager
             }
 
         }
+
+        gameOverUI.DisableExtraLosers(losers.Count);
         Invoke("enableStats", 4f);
     }
 
@@ -628,7 +635,6 @@ public class DeathMatchGameManager : AbstractGameManager
         globalCanvas.panel2.gameObject.SetActive(true);
         Time.timeScale = 1f;
         gameOver = true;
-
         LogAnalyticsGame.EndGame (players, gameTime);
 
     }
@@ -739,9 +745,9 @@ public class DeathMatchGameManager : AbstractGameManager
 
 
 
-    override public void exitToCharacterSelect()
+    override public void ExitToCharacterSelect()
     {
-        base.exitToCharacterSelect();
+        Time.timeScale = 1;
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("start");
     }

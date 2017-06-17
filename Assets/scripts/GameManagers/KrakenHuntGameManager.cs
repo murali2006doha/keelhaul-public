@@ -402,8 +402,9 @@ public class KrakenHuntGameManager : AbstractGameManager
 
 
 
-    override public void exitToCharacterSelect()
+    override public void ExitToCharacterSelect()
     {
+        Time.timeScale = 1;
         if (!ps)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

@@ -58,8 +58,7 @@ public class LogAnalyticsGame : MonoBehaviour {
 
         int i = 1;
         foreach(PlayerInput player in shipSelections) {
-            print (player);
-            scores.Add(player.shipName.ToString() + i.ToString(), player.uiManager.points.text.ToString());
+            scores.Add(player.shipName.ToString() + i.ToString(), gameManager.getGamepoints()[player.GetId()+""].ToString());
             stats.Add(player.shipName.ToString() + i.ToString(), player.gameStats.numOfShotHits.ToString());
             i++;
         }
