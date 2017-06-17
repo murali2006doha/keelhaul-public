@@ -79,6 +79,10 @@ public class DeathMatchGameManager : AbstractGameManager
         onInitialize();
         foreach(PlayerInput player in FindObjectsOfType<PlayerInput>())
         {
+            if (player.GetId() == PhotonNetwork.player.ID || PhotonNetwork.offlineMode)
+            {
+                player.InitializeForDeathMatch();
+            }
             gamePoints[player.GetId().ToString()] = 0;
         }
         LogAnalyticsGame.StartGame (players, this.countDown.GetComponent<CountDown>());

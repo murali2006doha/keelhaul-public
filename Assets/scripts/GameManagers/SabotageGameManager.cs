@@ -105,7 +105,7 @@ public class SabotageGameManager : AbstractGameManager
         {
             if(player.GetId()== PhotonNetwork.player.ID || PhotonNetwork.offlineMode)
             {
-                player.hookshotComponent.enabled = true;
+                player.InitializeForSabotage();
             }
             gamePoints[player.GetId().ToString()] = 0;
         }
