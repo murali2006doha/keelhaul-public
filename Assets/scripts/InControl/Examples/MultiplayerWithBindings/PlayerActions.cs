@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using InControl;
 using UnityEngine;
 
@@ -83,7 +83,7 @@ public class PlayerActions : PlayerActionSet
 
 		actions.Fire.AddDefaultBinding(Mouse.LeftButton);
 		actions.Fire_Hook.AddDefaultBinding(Mouse.RightButton);
-		actions.Green.AddDefaultBinding(Key.R);
+		//actions.Green.AddDefaultBinding(Key.R);
 		actions.Green.AddDefaultBinding(Key.Return);
 		actions.Alt_Fire.AddDefaultBinding(Key.LeftControl);
 		actions.Red.AddDefaultBinding(Key.Space);
@@ -98,7 +98,9 @@ public class PlayerActions : PlayerActionSet
 		actions.Start.AddDefaultBinding(Key.Escape);
 		actions.Select.AddDefaultBinding(Key.Tab);
 
-		return actions;
+        setListeningOptionsForKeyboard(actions);
+		
+        return actions;
 	}
 
 	public static PlayerActions CreateWithKeyboardBindings() {
@@ -156,54 +158,26 @@ public class PlayerActions : PlayerActionSet
 		actions.Start.AddDefaultBinding(InputControlType.Options);
 		actions.Select.AddDefaultBinding(InputControlType.Select);
 
-		setListeningOptionsForController(actions);
-
 		return actions;
 	}
 
 
-	static void setListeningOptionsForController(PlayerActions actions) {
+
+	static void setListeningOptionsForKeyboard(PlayerActions actions) {
 
 		LoadBindings(actions);
-		actions.ListenOptions.IncludeControllers = true;
-		actions.ListenOptions.IncludeNonStandardControls = true;
+
 		actions.ListenOptions.IncludeUnknownControllers = true;
 		actions.ListenOptions.MaxAllowedBindings = 4;
-		actions.ListenOptions.MaxAllowedBindingsPerType = 1;
-		actions.ListenOptions.UnsetDuplicateBindingsOnSet = true;
-		actions.ListenOptions.IncludeMouseButtons = false;
-
-		actions.ListenOptions.OnBindingFound = (action, binding) => {
-			if (binding == new KeyBindingSource(Key.Escape)) {
-				action.StopListeningForBinding();
-				return false;
-			}
-			return true;
-		};
-
-		actions.ListenOptions.OnBindingAdded += (action, binding) => {
-			Debug.Log("Binding added... " + binding.DeviceName + ": " + binding.Name);
-		};
-
-		actions.ListenOptions.OnBindingRejected += (action, binding, reason) => {
-			Debug.Log("Binding rejected... " + reason);
-		};
-	}
-
-
-	void setListeningOptionsForKeyboard(PlayerActions actions) {
-
-		LoadBindings(actions);
-        actions.ListenOptions.IncludeUnknownControllers = true;
-		actions.ListenOptions.MaxAllowedBindings = 4;
-		actions.ListenOptions.MaxAllowedBindingsPerType = 1;
-		actions.ListenOptions.UnsetDuplicateBindingsOnSet = true;
+		actions.ListenOptions.MaxAllowedBindingsPerType = 4;
+		actions.ListenOptions.AllowDuplicateBindingsPerSet = true;
+		actions.ListenOptions.UnsetDuplicateBindingsOnSet = false;
 		actions.ListenOptions.IncludeMouseButtons = true;
 
 		actions.ListenOptions.OnBindingFound = (action, binding) => {
 			if (binding == new KeyBindingSource(Key.Escape)) {
 				action.StopListeningForBinding();
-				return false;
+		return false;
 			}
 			return true;
 		};
@@ -219,11 +193,11 @@ public class PlayerActions : PlayerActionSet
 
 
 
-    public static void Listen(PlayerAction action) {
-		foreach (BindingSource binding in action.Bindings) {
-            action.ListenForBindingReplacing(binding);
-		}
-    }
+    	public static void Listen(PlayerAction action) {
+            foreach (BindingSource binding in action.Bindings) {
+                action.ListenForBindingReplacing(binding);
+            }
+    	}
 
 
     public static string GetName(PlayerAction action) {
