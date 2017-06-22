@@ -130,7 +130,7 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
 
     private void ExitToMainMenu() {
         Time.timeScale = 1;
-        gm.exitToCharacterSelect ();
+        gm.ExitToCharacterSelect ();
         DestroyObject (this.transform.gameObject);
     }
 

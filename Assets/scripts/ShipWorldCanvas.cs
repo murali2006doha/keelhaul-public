@@ -24,4 +24,9 @@ public class ShipWorldCanvas : MonoBehaviour {
         float step = GlobalVariables.uiSliderSpeed * Time.deltaTime;
         healthBar.value = Mathf.MoveTowards(healthBar.value, health, step);
     }
+
+    public void DisableHealthSlider()
+    {
+        healthBar.gameObject.SetActive(false);
+    }
 }

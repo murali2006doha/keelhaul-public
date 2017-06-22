@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class GameOverStatsUI : MonoBehaviour {
 
@@ -19,6 +20,8 @@ public class GameOverStatsUI : MonoBehaviour {
     public float fadeSpeed = 0.5f;
     public bool startFading = false;
 
+
+
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -34,4 +37,11 @@ public class GameOverStatsUI : MonoBehaviour {
         }
     }
 
+    internal void DisableExtraLosers(int count)
+    {
+        for(int x = count; x < losers.Length; x++)
+        {
+            losers[x].name.gameObject.transform.parent.gameObject.SetActive(false);
+        }
+    }
 }

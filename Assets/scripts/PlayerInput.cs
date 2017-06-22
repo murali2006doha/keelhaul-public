@@ -76,7 +76,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public bool invincible = false;
     public bool startSinking = false;
     public bool aiFire;
-    public FreeForAllStatistics gameStats;
+    public FreeForAllStatistics gameStats = new FreeForAllStatistics();
     bool isPushed = false;
     public CharacterController cc;
     public bool touchingWind = false;
@@ -140,7 +140,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             motor,
             PathVariables.GetAssociatedCannonballForShip(type));
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
-        gameStats = new FreeForAllStatistics();
         kraken = GameObject.FindObjectOfType<KrakenInput>();
         startingPoint = this.transform.position;
         startingRotation = this.transform.rotation;
@@ -266,8 +265,13 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
     void showStatsScreen() {
-        uiManager.InitializeStatsScreen (manager, this);
+        uiManager.InitializeStatsScreen(manager, this);
 
+    }
+
+    public void DisableUIForStats()
+    {
+        worldCanvas.gameObject.SetActive(false);
     }
 
 
@@ -332,11 +336,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (Actions != null)
         {
             updateHealth();
-            if (hasWon)
+            if (manager.isGameOver())
             {
                 if (Actions.Green)
                 {
-                    manager.exitToCharacterSelect();
+                    manager.ExitToCharacterSelect();
                 }
             }
 
