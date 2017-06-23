@@ -63,8 +63,10 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         exitToMenuButton.SetAction (() =>  {
             this.pushAction ();
 
-            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationModal, modalActions);
-            FindObjectOfType<NotificationModal>().Spawn ("Are you sure?", Color.yellow, "Yes", "No", 
+            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationDoubleModal, modalActions);
+            FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm,
+									                    NotificationImages.yes, 
+                                                        NotificationImages.no, 
                 () =>  {
                     ExitToMainMenu ();
                     isActive = true;
@@ -78,8 +80,10 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         exitToDesktopButton.SetAction (() =>  {
             this.pushAction ();
 
-            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationModal, modalActions);
-            FindObjectOfType<NotificationModal>().Spawn ("Are you sure?", Color.yellow, "Yes", "No",
+            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationDoubleModal, modalActions);
+            FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm,
+									                    NotificationImages.yes, 
+                                                        NotificationImages.no,
                 () =>  {
                     ExitToDesktop ();
                     isActive = true;

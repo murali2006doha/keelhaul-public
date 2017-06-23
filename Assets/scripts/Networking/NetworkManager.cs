@@ -75,15 +75,12 @@ public class NetworkManager : MonoBehaviour
                 Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action>();
                 modalActions.Add(ModalActionEnum.onOpenAction, () => { currentPlayer.clearShipInput(); });
                 modalActions.Add(ModalActionEnum.onCloseAction, () => { PhotonNetwork.LeaveRoom(); SceneManager.LoadScene(0, LoadSceneMode.Single); });
-                ModalStack.InitializeModal(currentPlayer.Actions, ModalsEnum.disconnectModal, modalActions);
-                FindObjectOfType<NotificationModal>().Spawn("No players left. Disconnecting.", Color.yellow, "Ok", "Ok2",
-                () => {
-                    PhotonNetwork.LeaveRoom(); SceneManager.LoadScene(0, LoadSceneMode.Single);
-                },
+                ModalStack.InitializeModal(currentPlayer.Actions, ModalsEnum.notificationSingleModal, modalActions);
+                FindObjectOfType<NotificationSingleModal>().Spawn("No players left. Disconnecting.", "Ok",
                 () => {
                     PhotonNetwork.LeaveRoom(); SceneManager.LoadScene(0, LoadSceneMode.Single);
                 });
-       
+      
         }
             else
             {

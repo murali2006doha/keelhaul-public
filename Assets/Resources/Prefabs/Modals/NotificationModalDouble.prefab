@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 114474141488051806}
   - component: {fileID: 114496546239477588}
   m_Layer: 5
-  m_Name: NotificationModal
+  m_Name: NotificationModalDouble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,12 +359,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1805192368543894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a47c5283805c94281b7be75b97fccc8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d5db3f25065d41ee8e11afcc51c2962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   modalAnimator: {fileID: 95288486746323298}
   isActive: 1
-  text: {fileID: 114190854835942472}
   image: {fileID: 114575185268594460}
   ok: {fileID: 114457183863179602}
   cancel: {fileID: 114148733627996532}
