@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.4964127, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -124539,7 +124539,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1520007690}
-  m_LocalRotation: {x: -0.39721102, y: 0.58621806, z: 0.5849986, w: 0.39540932}
+  m_LocalRotation: {x: -0.39721096, y: 0.586218, z: 0.58499855, w: 0.39540926}
   m_LocalPosition: {x: 0.00692703, y: -0.00042878627, z: 0.009737915}
   m_LocalScale: {x: 0.9870498, y: 0.9870496, z: 0.987049}
   m_Children:
@@ -133462,7 +133462,7 @@ MonoBehaviour:
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
-  m_inputSource: 3
+  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
