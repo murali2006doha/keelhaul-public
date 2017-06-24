@@ -8,9 +8,7 @@ using System;
 
 
 /**TODO: 
- * music and sound ON/OFF with sliders
  * RESTART match
- * exit to matchmaking lobby
  **/
 public class PauseModalComponent : AbstractModalComponent { //after networking, => offline pause and online pause modal
 
@@ -33,6 +31,11 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         this.SetUpButtonToActionDictionary (actions);
         this.gm = FindObjectOfType<AbstractGameManager> ();
         this.actions = actions;
+
+        if (PhotonNetwork.offlineMode) {
+            otherActions = FindObjectsOfType<PlayerInput>();
+        }
+
         this.PauseGame ();
         this.popAction += ResumeGame; //because this will be no modal before this so game will resume
     
@@ -110,14 +113,13 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     public void PauseGame() {
 
         audios = FindObjectsOfType <AudioSource> ();
-        otherActions = FindObjectsOfType <PlayerInput> ();
 
 		if (PhotonNetwork.offlineMode) {
 			Time.timeScale = 0;
-		}
+            TogglePlayerActions ();
+        }
 
 		PauseAudio();
-        TogglePlayerActions ();
         isPaused = true;
     }
 
@@ -126,9 +128,9 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         
 		if (PhotonNetwork.offlineMode) {
 			Time.timeScale = 1;
+            TogglePlayerActions();
 		}
         ResumeAudio ();
-        TogglePlayerActions ();
     }
 
 
