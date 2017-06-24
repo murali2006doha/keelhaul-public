@@ -67,8 +67,8 @@ MonoBehaviour:
     yOffset: 64
     xAdvance: 128
     scale: 1
-    name: AtlanteanShip
-    hashCode: -1141222294
+    name: VikingShip
+    hashCode: -910242314
     unicode: 0
     pivot: {x: -64, y: 64}
     sprite: {fileID: 21300006, guid: 224825b8e3bf257429dc4b1abb3909b8, type: 3}

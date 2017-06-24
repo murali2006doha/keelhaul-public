@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1f4a377f6c204c5479f26dcc454ccba8
-timeCreated: 1494183317
+timeCreated: 1498260607
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,6 +9,7 @@ TextureImporter:
     21300004: atlas_2
     21300006: atlas_3
     21300008: atlas_4
+    21300010: atlas_5
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -88,10 +89,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 553.8
+        width: 553.8333
         height: 542
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -101,10 +102,10 @@ TextureImporter:
         serializedVersion: 2
         x: 553
         y: 0
-        width: 553.8
+        width: 553.8333
         height: 542
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -114,10 +115,10 @@ TextureImporter:
         serializedVersion: 2
         x: 1106
         y: 0
-        width: 553.8
+        width: 553.8333
         height: 542
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -127,10 +128,10 @@ TextureImporter:
         serializedVersion: 2
         x: 1659
         y: 0
-        width: 553.8
+        width: 553.8333
         height: 542
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -140,10 +141,23 @@ TextureImporter:
         serializedVersion: 2
         x: 2212
         y: 0
-        width: 553.8
+        width: 553.8333
         height: 542
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: atlas_5
+      rect:
+        serializedVersion: 2
+        x: 2765
+        y: 0
+        width: 553.8333
+        height: 542
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
