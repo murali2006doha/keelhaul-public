@@ -97,8 +97,10 @@ public class MainMenu : AbstractMenu
 		exit.SetAction(() => {
             CloseOnlineSubmenu();
 	        CloseOfflineSubmenu();
-			ModalStack.InitializeModal(this.actions, ModalsEnum.notificationModal, modalActions);
-			FindObjectOfType<NotificationModal>().Spawn("Exit to Desktop?", Color.yellow, "Yes", "No", () => {
+			ModalStack.InitializeModal(this.actions, ModalsEnum.notificationDoubleModal, modalActions);
+            FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm, 
+                                                        NotificationImages.yes, 
+                                                        NotificationImages.no, () => {
 				Exit();
 			}, () => {
 				exit.ButtonComponent.Select();

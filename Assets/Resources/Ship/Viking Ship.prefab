@@ -3399,13 +3399,13 @@ MonoBehaviour:
     ship: {fileID: 175570, guid: 97a0aefb4ef70db4a8c085c3ed066b24, type: 2}
     name: Blackbeard Ship
     altFirePrefab: {fileID: 0}
-    altFireSprite: {fileID: 21300000, guid: c85aab098c513e247a08a64eb5e948ef, type: 3}
-    altFireOutline: {fileID: 21300000, guid: fec59a478c0af7f438503c9574a009b0, type: 3}
-    portrait: {fileID: 21300000, guid: 60e137cbb10084578bd2ab401747570a, type: 3}
-    portraitBg: {fileID: 0}
-    doomGuyPoint: {fileID: 0}
-    doomGuyHit: {fileID: 0}
-    doomGuyHurt: {fileID: 0}
+    altFireSprite: {fileID: 21300000, guid: 76f6808aa89fa7e45b3a48a4d70671e4, type: 3}
+    altFireOutline: {fileID: 21300000, guid: 85c59b7d81c6e8e4e805f25d6cb12d7f, type: 3}
+    portrait: {fileID: 21300000, guid: e6a4cd083c2849a439c425f71a6897a8, type: 3}
+    portraitBg: {fileID: 21300000, guid: d7d761db0aae09a4fbeb70ee771e1b0d, type: 3}
+    doomGuyPoint: {fileID: 21300000, guid: 77be9dd2473e9f4439239f5f84a82ac0, type: 3}
+    doomGuyHit: {fileID: 21300000, guid: 55b9f8ce7fca12a4895c13e06b53ddf5, type: 3}
+    doomGuyHurt: {fileID: 21300000, guid: ee0b8512490606e47a1e8a50a912bb6d, type: 3}
   splashParticle: {fileID: 1222559213442934}
 --- !u!114 &114379883750595142
 MonoBehaviour:
@@ -3574,7 +3574,6 @@ MonoBehaviour:
   - playerMesh
   projector: {fileID: 1876543597922384}
   line: {fileID: 1361700932227418}
-  zscale: 0.1
 --- !u!114 &114626334435513320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3679,8 +3678,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 10
+  instantiationId: 10
   isRuntimeInstantiated: 0
 --- !u!114 &114687119095539344
 MonoBehaviour:
@@ -3705,8 +3704,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114192596627240678}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 9
+  instantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &114754548444789722
 MonoBehaviour:
@@ -3824,8 +3823,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114221169922914554}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 8
+  instantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &114962331943695858
 MonoBehaviour:
@@ -37701,7 +37700,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1653146161
+  randomSeed: -2052450807
   InitialModule:
     serializedVersion: 3
     enabled: 1

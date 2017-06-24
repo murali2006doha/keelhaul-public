@@ -192,17 +192,19 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
 
     public void GoBack() {
+        //Exit();
         DestroyObject(this.gameObject);  
-
-        //StartCoroutine (Exit ());
     }
 
 
-    private IEnumerator Exit() {
+    public void Exit() {
         modalAnimator.Play ("ModalExit");
-        yield return new WaitForSeconds(1.0f); 
-        Destroy(this.gameObject);  
+        Invoke("Destroy", 1f);
+    }
 
+
+    void Destroy() {
+        Destroy(this.gameObject);
     }
 
 

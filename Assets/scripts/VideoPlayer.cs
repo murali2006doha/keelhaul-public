@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+
+using UnityEngine.SceneManagement;
+
 public class VideoPlayer : MonoBehaviour {
 
 	public RawImage [] movieList;
@@ -35,6 +38,7 @@ public class VideoPlayer : MonoBehaviour {
 				playMovie ();
 			} else {
 				showIsOver = true;
+                SceneManager.LoadScene("Start");
 			}
 		}
 	}

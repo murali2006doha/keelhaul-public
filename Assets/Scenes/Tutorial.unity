@@ -510,7 +510,6 @@ MonoBehaviour:
   movieList:
   - {fileID: 798154225}
   - {fileID: 1153171682}
-  - {fileID: 2147192150}
   sourceAudio: []
   showIsOver: 0
 --- !u!1 &835282059
@@ -950,7 +949,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 15200000, guid: 2aea338c217221745ae58dd46d04b5d7, type: 3}
+  m_Texture: {fileID: 15200000, guid: 78fa91906100640ee9424e60901b9c65, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
