@@ -6,41 +6,20 @@ using UnityEngine.UI;
 using InControl;
 using System;
 
-public class NotificationModal : AbstractModalComponent {
+public class NotificationDoubleModal : AbstractNotificationModal {
 
-    public Text text;
-    public Image image;
     public ActionButton ok; //these will eventually have the ActionButton.cs script attached 
     public ActionButton cancel; 
 
     Action onYesButtonPress;
     Action onNoButtonPress;
 
-   
 
-    public override void SetupModal(PlayerActions actions) {
-        this.actions = actions;
-        this.isActive = true;
-        this.popAction += GoBack;   
-    }
+    public void Spawn(String messageText, String okText, String cancelText, Action yesAction, Action noAction) {
 
-
-    protected override bool CanControl () {
-        if (isActive) {
-            return true;
-        } 
-
-        return false;
-    }
-
-
-    public void Spawn(string messageText, Color color, string okText, String cancelText, Action yesAction, Action noAction) {
-
-
-        image.color = color;
-        ok.GetComponentInChildren<Text>().text = okText;
-        cancel.GetComponentInChildren<Text>().text = cancelText;
-        text.text = messageText;
+        image.sprite = Resources.Load<Sprite>(messageText);
+        ok.GetComponent<Image>().sprite = Resources.Load<Sprite>(okText);
+        cancel.GetComponent<Image>().sprite = Resources.Load<Sprite>(cancelText);
         modalAnimator.Play ("ModalEnter");
         this.onNoButtonPress = noAction;
         this.onYesButtonPress = yesAction;

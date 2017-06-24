@@ -16,10 +16,10 @@ public class Modals : MonoBehaviour
 
     public static Dictionary<ModalsEnum, string> typeToModalPrefab = new Dictionary<ModalsEnum, string>(){
         { ModalsEnum.pauseModal, "Prefabs/Modals/PauseModal"},
-        { ModalsEnum.notificationModal, "Prefabs/Modals/NotificationModal"},
+        { ModalsEnum.notificationDoubleModal, "Prefabs/Modals/NotificationModalDouble"},
+        { ModalsEnum.notificationSingleModal, "Prefabs/Modals/NotificationModalSingle"},
         { ModalsEnum.settingsModal, "Prefabs/Modals/SettingsModalNew"},
-        { ModalsEnum.statsModal, "Prefabs/UI/StatsModal"},
-        { ModalsEnum.disconnectModal, "Prefabs/Modals/DisconnectModal"}
+        { ModalsEnum.statsModal, "Prefabs/UI/StatsModal"}
     };
 
 
