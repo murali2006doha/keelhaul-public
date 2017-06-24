@@ -66,9 +66,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public GameObject wake;
     public AbstractInputManager shipInput;
     public ShipAnimator anim;
-    Animator invinciblity;
+    public Animator invinciblity;
     public GameObject invincibilyPrefab;
-    GameObject invincibilityParticle;
+    public GameObject invincibilityParticle;
     public bool gameStarted = false;
     public bool hasWon = false;
     public bool locked = false;
@@ -146,9 +146,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         anim = GetComponentInChildren<ShipAnimator>();
         anim.category = CategoryHelper.convertType(type);
         followCamera.cullingMask = cullingMask;
-        invincibilityParticle = Instantiate(invincibilyPrefab, this.transform.position, invincibilyPrefab.transform.rotation);
-        invincibilityParticle.SetActive(false);
-        invincibilityParticle.transform.parent = transform;
         invinciblity = anim.GetComponentInChildren<Animator>();
         cc = GetComponent<CharacterController>();
         print("ship:" + shipName);
@@ -282,40 +279,41 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void activateInvincibility(bool showParticles = true)
     {
-        if (!GetComponent<PhotonView>().isMine)
+        if (GetComponent<PhotonView>().isMine)
         {
-            return;
-        }
-        invincible = true;
-        if (!motor.sinking)
-        {
-            SetLockedStatus(false);
-        }
-        if (invinciblity)
-        {
-            invinciblity.SetBool("invincibility", true);
+            invincible = true;
+            if (!motor.sinking)
+            {
+                SetLockedStatus(false);
+            }
+            if (showParticles)
+            {
+                GetComponent<PhotonView>().RPC("ToggleInvincibilityParticle", PhotonTargets.AllBuffered, true);
 
+            }
         }
-        if (showParticles)
-        {
-        invincibilityParticle.SetActive(true);
-
-        }
+        
     }
 
     public void deactivateInvincibility()
     {
         invincible = false;
-        if (invinciblity)
-        {
-            invinciblity.SetBool("invincibility", false);
-        }
+        GetComponent<PhotonView>().RPC("ToggleInvincibilityParticle", PhotonTargets.AllBuffered,false);
+    }
+
+    [PunRPC]
+    public void ToggleInvincibilityParticle(bool active)
+    {
+
+        invinciblity.SetBool("invincibility", active);
+        
         if (invincibilityParticle != null)
         {
-            invincibilityParticle.SetActive(false);
+            invincibilityParticle.SetActive(active);
 
         }
     }
+ 
 
     public void reset()
     {
