@@ -58,10 +58,10 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         modalActions.Add (ModalActionEnum.onOpenAction, () => {ToggleSelectables();});
         modalActions.Add (ModalActionEnum.onCloseAction, () => {ToggleSelectables();});
 
-        actionSelectables.Add (exitToMenuButton.gameObject);
+		actionSelectables.Add (resumeButton.gameObject);
+		actionSelectables.Add (settingsButton.gameObject);
+		actionSelectables.Add (exitToMenuButton.gameObject);
         actionSelectables.Add (exitToDesktopButton.gameObject);
-        actionSelectables.Add (settingsButton.gameObject);
-        actionSelectables.Add (resumeButton.gameObject);
 
         exitToMenuButton.SetAction (() =>  {
             this.pushAction ();
