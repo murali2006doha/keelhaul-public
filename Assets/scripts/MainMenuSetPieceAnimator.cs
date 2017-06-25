@@ -25,12 +25,20 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     [SerializeField]
     GameObject mainMenu;
 
+  private bool skipped = false;
     public void Start() {
         System.Random rand = new System.Random();
         foreach (SeagullAnimator gull in seagulls) {
             gull.Initialize(rand);
         }
     }
+
+  public void Update() {
+
+    if (Input.GetKey(KeyCode.A)) {
+      this.SkipAnimation();
+    }
+  }
 
     public void SubmergeKraken()
     {
@@ -53,5 +61,19 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
             seagull.RandomTakeOff();
         }
     }
+
+  public void SkipAnimation() {
+    if (skipped) {
+      return;
+    }
+    foreach (SeagullAnimator seagull in seagulls) {
+      seagull.gameObject.SetActive (false);
+    }
+    this.skipped = true;
+    this.krakenAnimator.SetBool("underShip", false);
+    this.krakenAnimator.SetBool("submerge", false);
+    this.mainMenuAnimator.SetTrigger ("skip");
+  
+  }
 
 }
