@@ -75,4 +75,5 @@ MonoBehaviour:
   - AddNetworkedPlayer
   - SetCharacterForNetworkedPlayer
   - DQToKillFeed
+  - ToggleInvincibilityParticle
   DisableAutoOpenWizard: 1

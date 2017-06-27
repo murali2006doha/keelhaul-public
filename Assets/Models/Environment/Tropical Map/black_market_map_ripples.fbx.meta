@@ -1,0 +1,156 @@
+fileFormatVersion: 2
+guid: 92f3e49cf2de31643aebf5930177c285
+timeCreated: 1498260176
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: boat_island
+    100004: Camera
+    100006: east_bank
+    100008: fisherman_island1
+    100010: fort_island
+    100012: gunpowder_island
+    100014: Lamp
+    100016: large_market_island1
+    100018: large_market_island2
+    100020: north_bank
+    100022: shipwreck_island
+    100024: small_market_island
+    100026: snacking_kraken_island
+    100028: south_bank
+    100030: tree_island
+    100032: tree_island1
+    100034: west_bank
+    400000: //RootNode
+    400002: boat_island
+    400004: Camera
+    400006: east_bank
+    400008: fisherman_island1
+    400010: fort_island
+    400012: gunpowder_island
+    400014: Lamp
+    400016: large_market_island1
+    400018: large_market_island2
+    400020: north_bank
+    400022: shipwreck_island
+    400024: small_market_island
+    400026: snacking_kraken_island
+    400028: south_bank
+    400030: tree_island
+    400032: tree_island1
+    400034: west_bank
+    2300000: boat_island
+    2300002: east_bank
+    2300004: fisherman_island1
+    2300006: fort_island
+    2300008: gunpowder_island
+    2300010: large_market_island1
+    2300012: large_market_island2
+    2300014: north_bank
+    2300016: shipwreck_island
+    2300018: small_market_island
+    2300020: snacking_kraken_island
+    2300022: south_bank
+    2300024: tree_island
+    2300026: tree_island1
+    2300028: west_bank
+    3300000: boat_island
+    3300002: east_bank
+    3300004: fisherman_island1
+    3300006: fort_island
+    3300008: gunpowder_island
+    3300010: large_market_island1
+    3300012: large_market_island2
+    3300014: north_bank
+    3300016: shipwreck_island
+    3300018: small_market_island
+    3300020: snacking_kraken_island
+    3300022: south_bank
+    3300024: tree_island
+    3300026: tree_island1
+    3300028: west_bank
+    4300000: tree_island
+    4300002: boat_island
+    4300004: snacking_kraken_island
+    4300006: shipwreck_island
+    4300008: tree_island1
+    4300010: fisherman_island1
+    4300012: east_bank
+    4300014: small_market_island
+    4300016: south_bank
+    4300018: large_market_island1
+    4300020: gunpowder_island
+    4300022: fort_island
+    4300024: large_market_island2
+    4300026: west_bank
+    4300028: north_bank
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

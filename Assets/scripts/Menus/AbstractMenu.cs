@@ -270,7 +270,6 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
     bool AnyInputEnterWasReleased() {
-
         if (null != actions.Device) {
             if (actions.Device.Action1.WasReleased) {
                 return true;

@@ -184,7 +184,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         {
             if (Actions.Green)
             {
-                manager.exitToCharacterSelect();
+                manager.ExitToCharacterSelect();
 
             }
         }

@@ -8,9 +8,7 @@ using System;
 
 
 /**TODO: 
- * music and sound ON/OFF with sliders
  * RESTART match
- * exit to matchmaking lobby
  **/
 public class PauseModalComponent : AbstractModalComponent { //after networking, => offline pause and online pause modal
 
@@ -33,6 +31,11 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         this.SetUpButtonToActionDictionary (actions);
         this.gm = FindObjectOfType<AbstractGameManager> ();
         this.actions = actions;
+
+        if (PhotonNetwork.offlineMode) {
+            otherActions = FindObjectsOfType<PlayerInput>();
+        }
+
         this.PauseGame ();
         this.popAction += ResumeGame; //because this will be no modal before this so game will resume
     
@@ -55,16 +58,18 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         modalActions.Add (ModalActionEnum.onOpenAction, () => {ToggleSelectables();});
         modalActions.Add (ModalActionEnum.onCloseAction, () => {ToggleSelectables();});
 
-        actionSelectables.Add (exitToMenuButton.gameObject);
+		actionSelectables.Add (resumeButton.gameObject);
+		actionSelectables.Add (settingsButton.gameObject);
+		actionSelectables.Add (exitToMenuButton.gameObject);
         actionSelectables.Add (exitToDesktopButton.gameObject);
-        actionSelectables.Add (settingsButton.gameObject);
-        actionSelectables.Add (resumeButton.gameObject);
 
         exitToMenuButton.SetAction (() =>  {
             this.pushAction ();
 
-            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationModal, modalActions);
-            FindObjectOfType<NotificationModal>().Spawn ("Are you sure?", Color.yellow, "Yes", "No", 
+            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationDoubleModal, modalActions);
+            FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm,
+									                    NotificationImages.yes, 
+                                                        NotificationImages.no, 
                 () =>  {
                     ExitToMainMenu ();
                     isActive = true;
@@ -78,8 +83,10 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         exitToDesktopButton.SetAction (() =>  {
             this.pushAction ();
 
-            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationModal, modalActions);
-            FindObjectOfType<NotificationModal>().Spawn ("Are you sure?", Color.yellow, "Yes", "No",
+            ModalStack.InitializeModal (this.actions, ModalsEnum.notificationDoubleModal, modalActions);
+            FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm,
+									                    NotificationImages.yes, 
+                                                        NotificationImages.no,
                 () =>  {
                     ExitToDesktop ();
                     isActive = true;
@@ -106,14 +113,13 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
     public void PauseGame() {
 
         audios = FindObjectsOfType <AudioSource> ();
-        otherActions = FindObjectsOfType <PlayerInput> ();
 
 		if (PhotonNetwork.offlineMode) {
 			Time.timeScale = 0;
-		}
+            TogglePlayerActions ();
+        }
 
 		PauseAudio();
-        TogglePlayerActions ();
         isPaused = true;
     }
 
@@ -122,15 +128,15 @@ public class PauseModalComponent : AbstractModalComponent { //after networking, 
         
 		if (PhotonNetwork.offlineMode) {
 			Time.timeScale = 1;
+            TogglePlayerActions();
 		}
         ResumeAudio ();
-        TogglePlayerActions ();
     }
 
 
     private void ExitToMainMenu() {
         Time.timeScale = 1;
-        gm.exitToCharacterSelect ();
+        gm.ExitToCharacterSelect ();
         DestroyObject (this.transform.gameObject);
     }
 

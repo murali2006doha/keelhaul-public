@@ -105,7 +105,7 @@ public class SabotageGameManager : AbstractGameManager
         {
             if(player.GetId()== PhotonNetwork.player.ID || PhotonNetwork.offlineMode)
             {
-                player.hookshotComponent.enabled = true;
+                player.InitializeForSabotage();
             }
             gamePoints[player.GetId().ToString()] = 0;
         }
@@ -710,9 +710,9 @@ public class SabotageGameManager : AbstractGameManager
 
 
 
-    override public void exitToCharacterSelect()
+    override public void ExitToCharacterSelect()
     {
-        base.exitToCharacterSelect();
+        Time.timeScale = 1;
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("start");
     }

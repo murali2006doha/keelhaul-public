@@ -66,9 +66,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public GameObject wake;
     public AbstractInputManager shipInput;
     public ShipAnimator anim;
-    Animator invinciblity;
+    public Animator invinciblity;
     public GameObject invincibilyPrefab;
-    GameObject invincibilityParticle;
+    public GameObject invincibilityParticle;
     public bool gameStarted = false;
     public bool hasWon = false;
     public bool locked = false;
@@ -76,7 +76,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public bool invincible = false;
     public bool startSinking = false;
     public bool aiFire;
-    public FreeForAllStatistics gameStats;
+    public FreeForAllStatistics gameStats = new FreeForAllStatistics();
     bool isPushed = false;
     public CharacterController cc;
     public bool touchingWind = false;
@@ -140,16 +140,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             motor,
             PathVariables.GetAssociatedCannonballForShip(type));
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
-        gameStats = new FreeForAllStatistics();
         kraken = GameObject.FindObjectOfType<KrakenInput>();
         startingPoint = this.transform.position;
         startingRotation = this.transform.rotation;
         anim = GetComponentInChildren<ShipAnimator>();
         anim.category = CategoryHelper.convertType(type);
         followCamera.cullingMask = cullingMask;
-        invincibilityParticle = Instantiate(invincibilyPrefab, this.transform.position, invincibilyPrefab.transform.rotation);
-        invincibilityParticle.SetActive(false);
-        invincibilityParticle.transform.parent = transform;
         invinciblity = anim.GetComponentInChildren<Animator>();
         cc = GetComponent<CharacterController>();
         print("ship:" + shipName);
@@ -160,6 +156,16 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         InitializeShipInput();
         setStatus(ShipStatus.Waiting);
         this.GetComponent<PhotonView>().RPC("InstantiateWorldSpaceCanvas", PhotonTargets.OthersBuffered, this.GetId());
+    }
+
+    internal void InitializeForSabotage()
+    {
+        hookshotComponent.enabled = true;
+    }
+
+    internal void InitializeForDeathMatch()
+    {
+        aimComponent.aim.GetComponent<MeshRenderer>().enabled = false;
     }
 
     internal void SetUpScoreDestination(GameObject scoreDestination)
@@ -241,14 +247,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (FindObjectOfType<PauseModalComponent> () == null && FindObjectOfType<CountDown>() == null) {
 
             Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
-			if (PhotonNetwork.offlineMode) {
-				modalActions.Add(ModalActionEnum.onOpenAction, () => { clearShipInput(); });
-				modalActions.Add(ModalActionEnum.onCloseAction, () => { InitializeShipInput(); });
-			}
-			else {
-				modalActions.Add(ModalActionEnum.onOpenAction, () => { });
-				modalActions.Add(ModalActionEnum.onCloseAction, () => { });
-			}
+			modalActions.Add(ModalActionEnum.onOpenAction, () => { clearShipInput(); });
+			modalActions.Add(ModalActionEnum.onCloseAction, () => { InitializeShipInput(); });
 
             ModalStack.InitializeModal (this.Actions, ModalsEnum.pauseModal, modalActions);
         } 
@@ -256,8 +256,13 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
     void showStatsScreen() {
-        uiManager.InitializeStatsScreen (manager, this);
+        uiManager.InitializeStatsScreen(manager, this);
 
+    }
+
+    public void DisableUIForStats()
+    {
+        worldCanvas.gameObject.SetActive(false);
     }
 
 
@@ -268,40 +273,41 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void activateInvincibility(bool showParticles = true)
     {
-        if (!GetComponent<PhotonView>().isMine)
+        if (GetComponent<PhotonView>().isMine)
         {
-            return;
-        }
-        invincible = true;
-        if (!motor.sinking)
-        {
-            SetLockedStatus(false);
-        }
-        if (invinciblity)
-        {
-            invinciblity.SetBool("invincibility", true);
+            invincible = true;
+            if (!motor.sinking)
+            {
+                SetLockedStatus(false);
+            }
+            if (showParticles)
+            {
+                GetComponent<PhotonView>().RPC("ToggleInvincibilityParticle", PhotonTargets.AllBuffered, true);
 
+            }
         }
-        if (showParticles)
-        {
-        invincibilityParticle.SetActive(true);
-
-        }
+        
     }
 
     public void deactivateInvincibility()
     {
         invincible = false;
-        if (invinciblity)
-        {
-            invinciblity.SetBool("invincibility", false);
-        }
+        GetComponent<PhotonView>().RPC("ToggleInvincibilityParticle", PhotonTargets.AllBuffered,false);
+    }
+
+    [PunRPC]
+    public void ToggleInvincibilityParticle(bool active)
+    {
+
+        invinciblity.SetBool("invincibility", active);
+        
         if (invincibilityParticle != null)
         {
-            invincibilityParticle.SetActive(false);
+            invincibilityParticle.SetActive(active);
 
         }
     }
+ 
 
     public void reset()
     {
@@ -322,11 +328,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (Actions != null)
         {
             updateHealth();
-            if (hasWon)
+            if (manager.isGameOver())
             {
                 if (Actions.Green)
                 {
-                    manager.exitToCharacterSelect();
+                    manager.ExitToCharacterSelect();
                 }
             }
 

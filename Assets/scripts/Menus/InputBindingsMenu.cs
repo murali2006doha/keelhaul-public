@@ -131,8 +131,11 @@ public class InputBindingsMenu : AbstractMenu {
 
             reset.SetAction(() => {
 
-                ModalStack.InitializeModal(this.actions, ModalsEnum.notificationModal, modalActions);
-                FindObjectOfType<NotificationModal>().Spawn("Reset Keyboard Controls?", Color.yellow, "Yes", "No", () => {
+                ModalStack.InitializeModal(this.actions, ModalsEnum.notificationDoubleModal, modalActions);
+                FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm,           
+                                                            NotificationImages.yes, 
+                                                        NotificationImages.no,
+                                                            () => {
                     PlayerActions.Reset(this.actions);
                 }, () => {
                     reset.ButtonComponent.Select();

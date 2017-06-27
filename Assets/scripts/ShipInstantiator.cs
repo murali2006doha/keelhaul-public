@@ -48,6 +48,14 @@ public class ShipInstantiator : MonoBehaviour {
             {
                 child.layer = newLayer;
             }
+
+            if (LayerMask.LayerToName(child.layer).Contains("cannon"))
+            {
+                if (child.GetComponent<LineProjector>() != null)
+                {
+                    child.GetComponent<LineProjector>().line.layer = newLayer;
+                }
+            }
         }
         //TODO: Ship instantiator is too tied to sabotage game mode. Refactor out.
 
