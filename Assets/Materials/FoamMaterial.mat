@@ -140,6 +140,9 @@ Material:
         name: _ZWrite
       second: 1
     - first:
+        name: _node_2720
+      second: 0.5
+    - first:
         name: _node_3016
       second: 0
     - first:
@@ -166,4 +169,4 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _TintColor
-      second: {r: 0.67684907, g: 0.84511244, b: 0.8602941, a: 1}
+      second: {r: 0.67684907, g: 0.84511244, b: 0.8602941, a: 0.653}
