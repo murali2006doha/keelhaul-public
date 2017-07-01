@@ -1,8 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InControl;
 
 public class MainMenuSetPieceAnimator : MonoBehaviour {
+
+    ControllerSelect cc;
+    PlayerActions actions;
+    bool notStarted = true;
+
+    [SerializeField]
+    bool withKeyboard;
 
     [SerializeField]
     Animator mainMenuAnimator;
@@ -25,20 +33,28 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     [SerializeField]
     GameObject mainMenu;
 
-  private bool skipped = false;
+    private bool skipped = false;
+
     public void Start() {
+        cc = GameObject.FindObjectOfType<ControllerSelect>();
+        cc.withKeyboard = withKeyboard;
+        cc.listening = true;
+
         System.Random rand = new System.Random();
         foreach (SeagullAnimator gull in seagulls) {
             gull.Initialize(rand);
         }
     }
 
-  public void Update() {
-
-    if (Input.GetKey(KeyCode.A)) {
-      this.SkipAnimation();
+    public void Update() {
+        SignIn();
+        if (notStarted) {
+            OpenMenu();
+        }
+        else if (!notStarted) {
+			LoadMenu();
+        }   
     }
-  }
 
     public void SubmergeKraken()
     {
@@ -75,5 +91,43 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     this.mainMenuAnimator.SetTrigger ("skip");
   
   }
+
+    void OpenMenu() {
+        if (AnyInputEnterWasReleased() && this.actions != null) {
+            this.SkipAnimation();
+            notStarted = false;
+        }
+    }
+
+
+    void LoadMenu() {
+        if (mainMenu.gameObject.GetActive()) {
+            FindObjectOfType<MenuModel>().mainMenu.Initialize(this.actions, () => {
+                FindObjectOfType<MainMenu>().ResetMenu();
+                LoadMenu();
+            });
+        }
+    }
+
+    void SignIn() {
+
+        if (cc.players.Count >= 1) {
+            this.actions = (PlayerActions)cc.players[0];
+            cc.listening = false;
+        }
+    }
+
+    bool AnyInputEnterWasReleased() {
+        if (Input.GetKeyUp(KeyCode.Return)) {
+            return true;
+        }
+        foreach (InputDevice device in InputManager.Devices) {
+            if (device.Action1.WasReleased) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }

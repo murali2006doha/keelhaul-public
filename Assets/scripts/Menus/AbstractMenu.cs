@@ -1,7 +1,4 @@
-﻿using UnityEngine.EventSystems;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using InControl;
@@ -66,8 +63,10 @@ public abstract class AbstractMenu : MonoBehaviour
     }
 
 
-    public void Navigate() {
-        NavigateModal (actionSelectables.ToArray ());
+    public virtual void Navigate() {
+        if (actionSelectables.Count > 0) {
+            NavigateModal(actionSelectables.ToArray());
+        }
         NavigateModalWithMouse ();
     }
 
@@ -133,117 +132,166 @@ public abstract class AbstractMenu : MonoBehaviour
             index = ListIterator.GetPositionIndex (passedInButtons.Length, index, "up");
         }
 
-        if (passedInButtons [index].gameObject.GetComponent<ActionSlider> ()) {
-            NavigateVolumeSlider ();
+        if (passedInButtons[index].gameObject.GetComponent<ActionSlider>()) {
+            NavigateVolumeSlider();
+        } else {
+            if (AnyInputRightWasReleased()) {
+                index = ListIterator.GetPositionIndex (passedInButtons.Length, index, "down");
+            }
+
+            if (AnyInputLeftWasReleased()) {
+                index = ListIterator.GetPositionIndex (passedInButtons.Length, index, "up");
+            }
         }
 
     }
 
+    void NavigateVolumeSlider() {
 
-    void NavigateVolumeSlider () {
-        
-        if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A)) {
-            this.actionSelectables[index].GetComponent<ActionSlider> ().doAction ();  
-        }
+    	if (null == actions || null == actions.Device) {
+    		if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
+    			this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+    		}
+    	} else {
+    		if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
+    			this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+    		} else if (canMoveLeft && actions.Device.LeftStickLeft.RawValue > 0.9f) {
+    			this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+    			canMoveLeft = false;
+    			Invoke("ResetLeftDelay", analogStickDelay);
+    		} else if (canMoveLeft && actions.Device.DPadLeft.IsPressed) {
+    			this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value -= volumeChange;
+    			this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+    			canMoveLeft = false;
+    			Invoke("ResetLeftDelay", analogStickDelay);
+    		}
+    	}
 
-        foreach (InputDevice device in InputManager.Devices) {
-            if (canMoveLeft && device.DPadLeft.IsPressed) {
-                this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value -= volumeChange;
-                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
-                canMoveLeft = false;
-                Invoke("ResetLeftDelay", analogStickDelay);
-            }
-            else if (canMoveLeft && device.LeftStickLeft.RawValue > 0.9f) {
-                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
-                canMoveLeft = false;
-                Invoke("ResetLeftDelay", analogStickDelay);
-            }
-        }
 
-        if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D)) {
-            this.actionSelectables[index].GetComponent<ActionSlider> ().doAction ();
-        }
-
-        foreach (InputDevice device in InputManager.Devices) {
-            if (canMoveRight && device.DPadRight.IsPressed) {
-                this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value += volumeChange;
-                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
-                canMoveRight = false;
-                Invoke("ResetRightDelay", analogStickDelay);
-            } else if (canMoveRight && device.LeftStickRight.RawValue > 0.9f) {
-                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
-                canMoveRight = false;
-                Invoke("ResetRightDelay", analogStickDelay);
-            }
-        }
+    	if (null == actions || null == actions.Device) {
+    		if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) {
+    			this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+    		}
+    	} else {
+    		if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) {
+    			this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+    		} else if (canMoveRight && actions.Device.LeftStickRight.RawValue > 0.9f) {
+    			this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+    			canMoveRight = false;
+    			Invoke("ResetRightDelay", analogStickDelay);
+    		} else if (canMoveRight && actions.Device.DPadRight.IsPressed) {
+    			this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value += volumeChange;
+    			this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
+    			canMoveRight = false;
+    			Invoke("ResetRightDelay", analogStickDelay);
+    		}
+    	}
     }
 
 
     bool AnyInputUpWasReleased() {
-		if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W)) {
-            return true;
-        }
 
-        foreach (InputDevice device in InputManager.Devices) {
-            if (canMoveUp && device.LeftStickUp.IsPressed && device.LeftStickUp.RawValue > 0.9f) {
-                canMoveUp = false;
-                Invoke("ResetUpDelay", analogStickDelay);
-                return true;
-            } else if (device.DPadUp.WasPressed) {
-                return true;
-            }
-        }
+    	if (null == actions || null == actions.Device) {
+    		if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) {
+    			return true;
+    		}
+    	} else {
+    		if (canMoveUp && actions.Device.LeftStickUp.IsPressed && actions.Device.LeftStickUp.RawValue > 0.9f) {
+    			canMoveUp = false;
+    			Invoke("ResetUpDelay", analogStickDelay);
+    			return true;
+    		} else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W) || actions.Device.DPadUp.WasPressed) {
+    			return true;
+    		}
+    	}
 
-        return false;
+    	return false;
     }
+
 
     bool AnyInputDownWasReleased() {
-        if (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S)) {
-            return true;
-        }
 
-        foreach (InputDevice device in InputManager.Devices) {
-            if (canMoveDown && device.LeftStickDown.IsPressed && device.LeftStickDown.RawValue > 0.9f) {
-                canMoveDown = false;
-                Invoke("ResetDownDelay", analogStickDelay);
-                return true;
-            }
-            else if (device.DPadDown.WasPressed) {
-                return true;
-            }
-        }
+    	if (null == actions || null == actions.Device) {
+    		if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) {
+    			return true;
+    		}
+    	} else {
+    		if (canMoveDown && actions.Device.LeftStickDown.IsPressed && actions.Device.LeftStickDown.RawValue > 0.9f) {
+    			canMoveDown = false;
+    			Invoke("ResetDownDelay", analogStickDelay);
+    			return true;
+    		} else if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S) || actions.Device.DPadDown.WasPressed) {
+    			return true;
+    		}
 
-        return false;
+    	}
+
+    	return false;
     }
+
+
+    bool AnyInputRightWasReleased() {
+    	if (null == actions || null == actions.Device) {
+    		if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)) {
+    			return true;
+    		}
+    	} else {
+    		if (canMoveRight && actions.Device.LeftStickRight.IsPressed && actions.Device.LeftStickRight.RawValue > 0.9f) {
+    			canMoveRight = false;
+    			Invoke("ResetRightDelay", analogStickDelay);
+    			return true;
+    		} else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D) || actions.Device.DPadRight.WasPressed) {
+    			return true;
+    		}
+    	}
+
+    	return false;
+    }
+
+
+    bool AnyInputLeftWasReleased() {
+
+    	if (null == actions || null == actions.Device) {
+    		if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A)) {
+    			return true;
+    		}
+    	} else {
+    		if (canMoveLeft && actions.Device.LeftStickLeft.IsPressed && actions.Device.LeftStickLeft.RawValue > 0.9f) {
+    			canMoveLeft = false;
+    			Invoke("ResetLeftDelay", analogStickDelay);
+    			return true;
+    		} else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A) || actions.Device.DPadLeft.WasPressed) {
+    			return true;
+    		}
+    	}
+
+    	return false;
+    }
+
 
     bool AnyInputEnterWasReleased() {
-        if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R) || Input.GetKeyDown (KeyCode.Space)) {
-            return true;
-        }
-
-        foreach (InputDevice device in InputManager.Devices) {
-            if (device.Action1.WasReleased) {
+        if (null != actions.Device) {
+            if (actions.Device.Action1.WasReleased) {
                 return true;
             }
         }
 
-        return false;
+    	return false;
     }
 
-    bool AnyInputBackWasReleased() {
-        if (Input.GetKeyDown (KeyCode.Escape)) {
-            return true;
-        }
 
-        foreach (InputDevice device in InputManager.Devices) {
-            if (device.Action2.WasReleased) {
-                return true;
-            }
-        }
+    public bool AnyInputBackWasReleased() {
 
-        return false;
+    	if (null == actions || null == actions.Device) {
+    		if (Input.GetKeyUp(KeyCode.Escape)) {
+    			return true;
+    		}
+    	} else if (Input.GetKeyUp(KeyCode.Escape) || actions.Red.WasReleased || actions.Start.WasReleased) {
+    		return true;
+    	}
+
+    	return false;
     }
-
 
     void ResetUpDelay() {
 	    canMoveUp = true;

@@ -190,7 +190,6 @@ public abstract class AbstractModalComponent : MonoBehaviour {
         }
     }
 
-
     public void GoBack() {
         //Exit();
         DestroyObject(this.gameObject);  
@@ -303,6 +302,8 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
         return false;
     }
+
+
 
 
     void ResetUpDelay() {
