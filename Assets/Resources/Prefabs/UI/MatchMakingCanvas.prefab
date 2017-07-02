@@ -2148,7 +2148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 114181595154162712}
-  analogStickDelay: 0.15
+  analogStickDelay: 0.2
 --- !u!114 &114894271067554132
 MonoBehaviour:
   m_ObjectHideFlags: 1
