@@ -10,6 +10,7 @@ public class MatchMakingView : MonoBehaviour {
 
     [SerializeField] private ActionButton findMatch;
     [SerializeField] private List<ActionToggle> matchOptions;
+    [SerializeField] Transform SelectMode;
     private int minPlayers;
     // Use this for initialization
     Dictionary<int, bool> matchOptionsDict;
@@ -44,11 +45,17 @@ public class MatchMakingView : MonoBehaviour {
         this.findMatch.SetAction(() => {
             List<bool> bools = new List<bool>(matchOptionsDict.Values);
             if (bools.TrueForAll(b => b == false)) {
-                print("Please select atleast one Game Mode");
+                SelectMode.gameObject.SetActive(true);
+                Invoke("TurnOffText", 1f);
             } else {
                 findMatchClickAction(this.matchOptionsDict);
             }
         });
+    }
+
+
+    void TurnOffText() {
+        SelectMode.gameObject.SetActive(false);
     }
 
 
