@@ -1594,6 +1594,12 @@ ModelImporter:
     103172: TropicalMaster_MeshPart3
     103174: TropicalMaster_MeshPart4
     103176: TropicalMaster_MeshPart5
+    103178: TropicalMaster_smooth
+    103180: TropicalMaster_smooth_MeshPart0
+    103182: TropicalMaster_smooth_MeshPart1
+    103184: TropicalMaster_smooth_MeshPart2
+    103186: TropicalMaster_smooth_MeshPart3
+    103188: TropicalMaster_smooth_MeshPart4
     400000: Grass_010
     400002: Grass_011
     400004: Grass_012
@@ -3183,6 +3189,12 @@ ModelImporter:
     403172: TropicalMaster_MeshPart3
     403174: TropicalMaster_MeshPart4
     403176: TropicalMaster_MeshPart5
+    403178: TropicalMaster_smooth
+    403180: TropicalMaster_smooth_MeshPart0
+    403182: TropicalMaster_smooth_MeshPart1
+    403184: TropicalMaster_smooth_MeshPart2
+    403186: TropicalMaster_smooth_MeshPart3
+    403188: TropicalMaster_smooth_MeshPart4
     2300000: Grass_010
     2300002: Grass_011
     2300004: Grass_012
@@ -4769,6 +4781,11 @@ ModelImporter:
     2303166: TropicalMaster_MeshPart3
     2303168: TropicalMaster_MeshPart4
     2303170: TropicalMaster_MeshPart5
+    2303172: TropicalMaster_smooth_MeshPart0
+    2303174: TropicalMaster_smooth_MeshPart1
+    2303176: TropicalMaster_smooth_MeshPart2
+    2303178: TropicalMaster_smooth_MeshPart3
+    2303180: TropicalMaster_smooth_MeshPart4
     3300000: Grass_010
     3300002: Grass_011
     3300004: Grass_012
@@ -6355,6 +6372,11 @@ ModelImporter:
     3303166: TropicalMaster_MeshPart3
     3303168: TropicalMaster_MeshPart4
     3303170: TropicalMaster_MeshPart5
+    3303172: TropicalMaster_smooth_MeshPart0
+    3303174: TropicalMaster_smooth_MeshPart1
+    3303176: TropicalMaster_smooth_MeshPart2
+    3303178: TropicalMaster_smooth_MeshPart3
+    3303180: TropicalMaster_smooth_MeshPart4
     4300000: Grass_010
     4300002: Grass_011
     4300004: Grass_012
@@ -7941,6 +7963,11 @@ ModelImporter:
     4303166: TropicalMaster_MeshPart3
     4303168: TropicalMaster_MeshPart4
     4303170: TropicalMaster_MeshPart5
+    4303172: TropicalMaster_smooth_MeshPart0
+    4303174: TropicalMaster_smooth_MeshPart1
+    4303176: TropicalMaster_smooth_MeshPart2
+    4303178: TropicalMaster_smooth_MeshPart3
+    4303180: TropicalMaster_smooth_MeshPart4
   materials:
     importMaterials: 1
     materialName: 0

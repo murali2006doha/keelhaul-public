@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: FoamTest
+  m_Name: FoamMaterial
   m_Shader: {fileID: 4800000, guid: ece3e69fcaf06431f9b92d4f0136d381, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
