@@ -42,7 +42,7 @@ Material:
     - first:
         name: _Diffuse
       second:
-        m_Texture: {fileID: 2800000, guid: 5b937e91cdcc9454d850a178bb2fce36, type: 3}
+        m_Texture: {fileID: 2800000, guid: b7519d60427833842b805b12ffa3c20a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
