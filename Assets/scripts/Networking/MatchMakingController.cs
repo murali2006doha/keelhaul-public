@@ -16,7 +16,7 @@ public class MatchMakingController : MonoBehaviour {
     Action<Dictionary<int, bool>> onMatchButtonClick;
     List<GameObject> actionSelectables = new List<GameObject>();
     int index = 0;
-    public float analogStickDelay = 0.1f;
+    public float analogStickDelay = 0.15f;
 
     public void Initiailze(Action<Dictionary<int, bool>> matchOptions)
     {
