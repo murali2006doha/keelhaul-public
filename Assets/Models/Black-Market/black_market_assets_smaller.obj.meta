@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: fc251b1f0874d414487d2a750ad51073
-timeCreated: 1499134140
+guid: 1ae1cc6efb2bc46429d226091d10f00d
+timeCreated: 1500150646
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -233,58 +233,58 @@ ModelImporter:
     3300098: west_bank_MeshPart7
     3300100: west_bank_MeshPart8
     3300102: west_bank_MeshPart9
-    4300000: fort_island_MeshPart0
-    4300002: fort_island_MeshPart1
-    4300004: gunpowder_island_MeshPart0
-    4300006: gunpowder_island_MeshPart1
-    4300008: fisherman_island1
-    4300010: watchtower_island
-    4300012: tree_island
-    4300014: small_market_island_MeshPart0
-    4300016: small_market_island_MeshPart1
-    4300018: south_bank_MeshPart0
-    4300020: south_bank_MeshPart1
-    4300022: south_bank_MeshPart2
-    4300024: south_bank_MeshPart3
-    4300026: south_bank_MeshPart4
-    4300028: south_bank_MeshPart5
-    4300030: south_bank_MeshPart6
-    4300032: south_bank_MeshPart7
-    4300034: south_bank_MeshPart8
-    4300036: south_bank_MeshPart9
-    4300038: west_bank_MeshPart0
-    4300040: west_bank_MeshPart1
-    4300042: west_bank_MeshPart2
-    4300044: west_bank_MeshPart3
-    4300046: west_bank_MeshPart4
-    4300048: west_bank_MeshPart5
-    4300050: west_bank_MeshPart6
-    4300052: west_bank_MeshPart7
-    4300054: west_bank_MeshPart8
-    4300056: west_bank_MeshPart9
-    4300058: east_bank_MeshPart0
-    4300060: east_bank_MeshPart1
-    4300062: east_bank_MeshPart2
-    4300064: east_bank_MeshPart3
-    4300066: east_bank_MeshPart4
-    4300068: east_bank_MeshPart5
-    4300070: east_bank_MeshPart6
-    4300072: large_market_island1
-    4300074: boat_island
-    4300076: shipwreck_island
-    4300078: large_market_island2_MeshPart0
-    4300080: large_market_island2_MeshPart1
-    4300082: snacking_kraken_island_MeshPart0
-    4300084: snacking_kraken_island_MeshPart1
-    4300086: snacking_kraken_island_MeshPart2
-    4300088: north_bank1_MeshPart0
-    4300090: north_bank1_MeshPart1
-    4300092: north_bank1_MeshPart2
-    4300094: north_bank1_MeshPart3
-    4300096: north_bank1_MeshPart4
-    4300098: north_bank1_MeshPart5
-    4300100: north_bank1_MeshPart6
-    4300102: north_bank1_MeshPart7
+    4300000: boat_island
+    4300002: east_bank_MeshPart0
+    4300004: east_bank_MeshPart1
+    4300006: east_bank_MeshPart2
+    4300008: east_bank_MeshPart3
+    4300010: east_bank_MeshPart4
+    4300012: east_bank_MeshPart5
+    4300014: east_bank_MeshPart6
+    4300016: fisherman_island1
+    4300018: fort_island_MeshPart0
+    4300020: fort_island_MeshPart1
+    4300022: gunpowder_island_MeshPart0
+    4300024: gunpowder_island_MeshPart1
+    4300026: large_market_island1
+    4300028: large_market_island2_MeshPart0
+    4300030: large_market_island2_MeshPart1
+    4300032: north_bank1_MeshPart0
+    4300034: north_bank1_MeshPart1
+    4300036: north_bank1_MeshPart2
+    4300038: north_bank1_MeshPart3
+    4300040: north_bank1_MeshPart4
+    4300042: north_bank1_MeshPart5
+    4300044: north_bank1_MeshPart6
+    4300046: north_bank1_MeshPart7
+    4300048: shipwreck_island
+    4300050: small_market_island_MeshPart0
+    4300052: small_market_island_MeshPart1
+    4300054: snacking_kraken_island_MeshPart0
+    4300056: snacking_kraken_island_MeshPart1
+    4300058: snacking_kraken_island_MeshPart2
+    4300060: south_bank_MeshPart0
+    4300062: south_bank_MeshPart1
+    4300064: south_bank_MeshPart2
+    4300066: south_bank_MeshPart3
+    4300068: south_bank_MeshPart4
+    4300070: south_bank_MeshPart5
+    4300072: south_bank_MeshPart6
+    4300074: south_bank_MeshPart7
+    4300076: south_bank_MeshPart8
+    4300078: south_bank_MeshPart9
+    4300080: tree_island
+    4300082: watchtower_island
+    4300084: west_bank_MeshPart0
+    4300086: west_bank_MeshPart1
+    4300088: west_bank_MeshPart2
+    4300090: west_bank_MeshPart3
+    4300092: west_bank_MeshPart4
+    4300094: west_bank_MeshPart5
+    4300096: west_bank_MeshPart6
+    4300098: west_bank_MeshPart7
+    4300100: west_bank_MeshPart8
+    4300102: west_bank_MeshPart9
   materials:
     importMaterials: 1
     materialName: 0
@@ -309,7 +309,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.01
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
