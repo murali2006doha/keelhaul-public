@@ -48,8 +48,9 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 
     public void Update() {
         SignIn();
-        if (notStarted) {
-            OpenMenu();
+        if (notStarted && AnyInputEnterWasReleased() && this.actions != null) {
+            this.SkipAnimation();
+            notStarted = false;
         }
         else if (!notStarted) {
 			LoadMenu();
@@ -129,5 +130,7 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 
         return false;
     }
+
+
 
 }

@@ -11,4 +11,5 @@ public class MenuModel : MonoBehaviour
 	public GameModeMenu offlineModeMenu;
 	public InputBindingsMenu inputBindingsMenu;
     public ControllerLayoutMenu controllerLayoutMenu;
+    public PauseMenu pauseMenu;
 }

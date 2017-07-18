@@ -49,10 +49,11 @@ public class InputBindingsMenu : AbstractMenu {
             setBinding.gameObject.SetActive(false);
 
             if (actionSelectables.Count > 0) {
-                NavigateModal(actionSelectables.ToArray());
+                index = navUtils.GetComponent<NavigationUtils>().NavigateModal(this.actions, actionSelectables.ToArray(), index);
+                //NavigateModal(actionSelectables.ToArray());
             }
-
-            NavigateModalWithMouse();
+            index = navUtils.GetComponent<NavigationUtils>().NavigateModalWithMouse(actionSelectables, index);
+            //NavigateModalWithMouse();
        
         } else {
 

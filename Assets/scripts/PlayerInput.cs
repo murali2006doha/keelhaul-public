@@ -244,14 +244,13 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
     void instantiatePauseMenu() {
-        if (FindObjectOfType<PauseModalComponent> () == null && FindObjectOfType<CountDown>() == null) {
-
-            Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
-			modalActions.Add(ModalActionEnum.onOpenAction, () => { clearShipInput(); });
-			modalActions.Add(ModalActionEnum.onCloseAction, () => { InitializeShipInput(); });
-
-            ModalStack.InitializeModal (this.Actions, ModalsEnum.pauseModal, modalActions);
-        } 
+        if (FindObjectOfType<CountDown>() == null && !FindObjectOfType<MenuModel>().pauseMenu.gameObject.GetActive()) {
+            clearShipInput();
+            FindObjectOfType<MenuModel>().pauseMenu.Initialize(this.Actions, () => {
+                InitializeShipInput();
+                FindObjectOfType<PauseMenu>().ResumeGame();
+            });
+        }
     }
 
 
