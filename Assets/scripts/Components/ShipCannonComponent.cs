@@ -78,7 +78,6 @@ public class ShipCannonComponent : MonoBehaviour
         this.velocity = shipTransform.forward * motor.getVelocity() * GlobalVariables.gameSpeed;
         this.speed = motor.getVelocity() * GlobalVariables.gameSpeed;
         Vector3 shoot_direction = aim.transform.position - shipTransform.position;
-        this.transform.rotation = Quaternion.LookRotation(shoot_direction.normalized);
         if (canShootRight && shoot_direction.magnitude > 0)
         {
             Fire();
