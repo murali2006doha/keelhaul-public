@@ -91,6 +91,30 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1807596 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1261441963873576, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
+--- !u!114 &1807598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1807596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 1807599}
+--- !u!82 &1807599 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82911553894456056, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
 --- !u!1 &5689908
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +193,7 @@ ParticleSystem:
   m_GameObject: {fileID: 5689908}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -2983,7 +3007,7 @@ ParticleSystem:
   m_GameObject: {fileID: 26439974}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -5672,7 +5696,7 @@ ParticleSystem:
   m_GameObject: {fileID: 59426873}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -8553,7 +8577,7 @@ ParticleSystem:
   m_GameObject: {fileID: 65770063}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -11190,7 +11214,7 @@ ParticleSystem:
   m_GameObject: {fileID: 79923868}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -13873,7 +13897,7 @@ ParticleSystem:
   m_GameObject: {fileID: 82339038}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -16650,7 +16674,7 @@ ParticleSystem:
   m_GameObject: {fileID: 108986495}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -19859,7 +19883,7 @@ ParticleSystem:
   m_GameObject: {fileID: 140909984}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -22772,7 +22796,7 @@ ParticleSystem:
   m_GameObject: {fileID: 182192829}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -25369,6 +25393,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &198658079 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1628903706963154, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
+--- !u!114 &198658081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 198658079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 198658082}
+--- !u!82 &198658082 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82213695873302834, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
 --- !u!1 &202345715 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100036, guid: c3a03cb832898884a92e91577fcc9076, type: 3}
@@ -25767,7 +25815,7 @@ ParticleSystem:
   m_GameObject: {fileID: 261486847}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -28459,7 +28507,7 @@ ParticleSystem:
   m_GameObject: {fileID: 268475849}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -31542,7 +31590,7 @@ ParticleSystem:
   m_GameObject: {fileID: 351466444}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -34318,7 +34366,7 @@ ParticleSystem:
   m_GameObject: {fileID: 375611121}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -36970,7 +37018,7 @@ ParticleSystem:
   m_GameObject: {fileID: 415914095}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -40156,7 +40204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intendedVolume: 0.8
+  intendedVolume: 0.105
   isSound: 1
   audioSource: {fileID: 490274122}
 --- !u!82 &490274122
@@ -40170,7 +40218,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0dddc8ba99af343b08be30cb2bfcd29c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.052
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -40395,7 +40443,7 @@ ParticleSystem:
   m_GameObject: {fileID: 501359243}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -42964,7 +43012,7 @@ ParticleSystem:
   m_GameObject: {fileID: 507210676}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -45631,7 +45679,7 @@ ParticleSystem:
   m_GameObject: {fileID: 513341408}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -48286,6 +48334,30 @@ Transform:
   m_Father: {fileID: 2047172886}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 22.614088, y: -6.972215, z: 9.974664}
+--- !u!1 &568577244 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1516810700684406, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
+--- !u!114 &568577246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 568577244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 568577247}
+--- !u!82 &568577247 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82680152950069898, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
 --- !u!1 &572322442
 GameObject:
   m_ObjectHideFlags: 0
@@ -48670,7 +48742,7 @@ ParticleSystem:
   m_GameObject: {fileID: 631766232}
   serializedVersion: 5
   lengthInSec: 1.13
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -51526,7 +51598,7 @@ ParticleSystem:
   m_GameObject: {fileID: 657515221}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -54109,7 +54181,7 @@ ParticleSystem:
   m_GameObject: {fileID: 698389414}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -56830,7 +56902,7 @@ ParticleSystem:
   m_GameObject: {fileID: 700430923}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -59444,7 +59516,7 @@ ParticleSystem:
   m_GameObject: {fileID: 720587005}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -62205,7 +62277,7 @@ ParticleSystem:
   m_GameObject: {fileID: 745199569}
   serializedVersion: 5
   lengthInSec: 3
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -64926,7 +64998,7 @@ ParticleSystem:
   m_GameObject: {fileID: 746382900}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -67567,7 +67639,7 @@ ParticleSystem:
   m_GameObject: {fileID: 757291622}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -70367,7 +70439,7 @@ ParticleSystem:
   m_GameObject: {fileID: 786851709}
   serializedVersion: 5
   lengthInSec: 3
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -73088,7 +73160,7 @@ ParticleSystem:
   m_GameObject: {fileID: 802137141}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -75737,7 +75809,7 @@ ParticleSystem:
   m_GameObject: {fileID: 803736212}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -78348,7 +78420,7 @@ ParticleSystem:
   m_GameObject: {fileID: 803878633}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -81427,7 +81499,7 @@ ParticleSystem:
   m_GameObject: {fileID: 889227049}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -84471,6 +84543,30 @@ Transform:
   m_Father: {fileID: 220354986}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1001673179 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1552922995212684, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
+--- !u!114 &1001673181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1001673179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 1001673182}
+--- !u!82 &1001673182 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82007418495143240, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
 --- !u!1 &1001694591
 GameObject:
   m_ObjectHideFlags: 0
@@ -84786,6 +84882,30 @@ Transform:
   m_Father: {fileID: 1794912402}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 9.756889, y: 25.571981, z: 2.1078093}
+--- !u!1 &1020421936 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1680725952206740, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
+--- !u!114 &1020421938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1020421936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 1020421939}
+--- !u!82 &1020421939 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82057109092206908, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
 --- !u!1 &1022035131
 GameObject:
   m_ObjectHideFlags: 0
@@ -84857,6 +84977,8 @@ GameObject:
   - component: {fileID: 1030994584}
   - component: {fileID: 1030994583}
   - component: {fileID: 1030994582}
+  - component: {fileID: 1030994586}
+  - component: {fileID: 1030994585}
   m_Layer: 0
   m_Name: Keel-Haul-Logo
   m_TagString: Untagged
@@ -84883,7 +85005,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1030994580}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 61826d0bbb7375843922a0ff844395f5, type: 3}
@@ -84963,7 +85085,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1030994580}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 84e79281be34c8744aed91c269cffd76, type: 3}
@@ -85072,6 +85194,34 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &1030994585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030994580}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 1030994582}
+--- !u!114 &1030994586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1030994580}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 1030994583}
 --- !u!1001 &1032180888
 Prefab:
   m_ObjectHideFlags: 0
@@ -85376,7 +85526,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1080377398}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -88091,7 +88241,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1094615428}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -90678,7 +90828,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1098471376}
   serializedVersion: 5
   lengthInSec: 3
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -93476,7 +93626,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1117333637}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -96176,7 +96326,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1143562995}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -99025,7 +99175,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1171387133}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -102055,6 +102205,30 @@ Transform:
   m_Father: {fileID: 139967547}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1223113374 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1649131083686864, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
+--- !u!114 &1223113376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1223113374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 1223113377}
+--- !u!82 &1223113377 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82031510292639798, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
 --- !u!1 &1232159008
 GameObject:
   m_ObjectHideFlags: 0
@@ -102238,7 +102412,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1252096922}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -105004,7 +105178,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1333769881}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -107655,7 +107829,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1348560454}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -110280,7 +110454,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1352739241}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -113187,7 +113361,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1405719496}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -116010,7 +116184,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1478523212}
   serializedVersion: 5
   lengthInSec: 2
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -118912,7 +119086,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1520007690}
-  m_LocalRotation: {x: -0.39721096, y: 0.586218, z: 0.58499855, w: 0.39540926}
+  m_LocalRotation: {x: -0.39721102, y: 0.58621806, z: 0.5849986, w: 0.39540932}
   m_LocalPosition: {x: 0.00692703, y: -0.00042878627, z: 0.009737915}
   m_LocalScale: {x: 0.9870498, y: 0.9870496, z: 0.987049}
   m_Children:
@@ -119127,7 +119301,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1546407961}
   serializedVersion: 5
   lengthInSec: 1.5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -121848,7 +122022,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1550784923}
   serializedVersion: 5
   lengthInSec: 2
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -124676,7 +124850,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1588709405}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -127541,6 +127715,49 @@ Transform:
   m_Father: {fileID: 1497020711}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 15.669968, y: -24.683403, z: 22.941828}
+--- !u!1 &1640283975 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1906982369850798, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
+--- !u!114 &1640283977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1640283975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 1640283980}
+--- !u!114 &1640283978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1640283975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 1640283979}
+--- !u!82 &1640283979 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82657048376550820, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
+--- !u!82 &1640283980 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82175256813963402, guid: e1a90e22691094804a09d04aa9ce63da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1544937350}
 --- !u!1 &1640357706
 GameObject:
   m_ObjectHideFlags: 0
@@ -128301,7 +128518,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1761602621}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -131618,7 +131835,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1797820146}
   serializedVersion: 5
   lengthInSec: 10
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -134767,7 +134984,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1885798613}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -137341,7 +137558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intendedVolume: 0.8
+  intendedVolume: 0.033
   isSound: 1
   audioSource: {fileID: 1894509070}
 --- !u!82 &1894509070
@@ -137355,7 +137572,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8ba1d415158f147d9b54d87ba4ac6fe9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.026
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -137651,7 +137868,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1934122329}
   serializedVersion: 5
   lengthInSec: 0.1
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -140488,7 +140705,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1989326817}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -143237,7 +143454,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2006002970}
   serializedVersion: 5
   lengthInSec: 1
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 1
@@ -146007,7 +146224,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2099859953}
   serializedVersion: 5
   lengthInSec: 0.5
-  simulationSpeed: 1
+  speed: 1
   looping: 0
   prewarm: 0
   playOnAwake: 0
@@ -148972,7 +149189,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2141382424}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 1
+  speed: 1
   looping: 1
   prewarm: 1
   playOnAwake: 1

@@ -179,6 +179,10 @@ GameObject:
   - component: {fileID: 82306164129943410}
   - component: {fileID: 82351293682903502}
   - component: {fileID: 82394418278898934}
+  - component: {fileID: 114023069220870912}
+  - component: {fileID: 114968388987856688}
+  - component: {fileID: 114676955945190612}
+  - component: {fileID: 114424565175105638}
   m_Layer: 0
   m_Name: Blackbeard-rage-fade-in
   m_TagString: Untagged
@@ -920,7 +924,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1001,7 +1005,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1082,7 +1086,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1163,7 +1167,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1176,6 +1180,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114023069220870912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359164438292608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 82243111958709406}
 --- !u!114 &114375720360876216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1189,6 +1207,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restrainRotation: 1
   restrainPosition: 0
+--- !u!114 &114424565175105638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359164438292608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 82394418278898934}
+--- !u!114 &114676955945190612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359164438292608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 82351293682903502}
+--- !u!114 &114968388987856688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359164438292608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 82306164129943410}
 --- !u!198 &198000711678046960
 ParticleSystem:
   m_ObjectHideFlags: 1

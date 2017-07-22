@@ -93,6 +93,9 @@ GameObject:
   - component: {fileID: 82033357455248926}
   - component: {fileID: 82177770273532584}
   - component: {fileID: 82643307495980428}
+  - component: {fileID: 114161651369103218}
+  - component: {fileID: 114236527365877780}
+  - component: {fileID: 114474482113456716}
   m_Layer: 0
   m_Name: Firework Explosion
   m_TagString: Untagged
@@ -524,6 +527,48 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114161651369103218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513387121173630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 82033357455248926}
+--- !u!114 &114236527365877780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513387121173630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 82177770273532584}
+--- !u!114 &114474482113456716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513387121173630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intendedVolume: 1
+  isSound: 1
+  audioSource: {fileID: 82643307495980428}
 --- !u!198 &198271990797048760
 ParticleSystem:
   m_ObjectHideFlags: 1
