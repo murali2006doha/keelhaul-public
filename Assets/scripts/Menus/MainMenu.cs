@@ -49,11 +49,10 @@ public class MainMenu : AbstractMenu
 
 		offline.SetAction(() => {
             CloseOnlineSubmenu();
-            offlineNotAvailableText.gameObject.SetActive(true);
-            Invoke("DestroyOfflineNotAvailableText", 1f);
-            //offlineSubmenu.gameObject.SetActive(true);            
-            //actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 1, deathMatchOffline.gameObject);
-            //actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 2, sabotageOffline.gameObject);
+            offlineSubmenu.gameObject.SetActive(true);            
+            actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 1, deathMatchOffline.gameObject);
+            actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 2, sabotageOffline.gameObject);
+			index = index + 1;
 		});
 
         deathMatchOffline.SetAction (() => {
@@ -137,7 +136,7 @@ public class MainMenu : AbstractMenu
 
     public void ResetMenu() {
         DestroySabotageNotAvailableText();
-        DestroyOfflineNotAvailableText();
+        //DestroyOfflineNotAvailableText();
         CloseOnlineSubmenu();
         CloseOfflineSubmenu();
         index = 0;
