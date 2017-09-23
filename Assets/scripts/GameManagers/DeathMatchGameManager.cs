@@ -354,7 +354,6 @@ public class DeathMatchGameManager : AbstractGameManager
     [PunRPC]
     public void IncrementPoint(int id) {
 
-        Debug.Log("killer id " + id.ToString() + "player id : " + PhotonNetwork.player.ID);
         if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode) {
 
             var playerToIncrement = players.Find(playerToFilter => playerToFilter.GetId() == id) ;

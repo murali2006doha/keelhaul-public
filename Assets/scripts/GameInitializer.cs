@@ -91,7 +91,6 @@ public class GameInitializer : MonoBehaviour {
     }
 
     public void SimplyInstantiateManager(GameTypeEnum mode) {
-        Debug.Log("reaching here");
         GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
     }
 
