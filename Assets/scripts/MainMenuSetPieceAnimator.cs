@@ -48,8 +48,9 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 
     public void Update() {
         SignIn();
-        if (notStarted) {
-            OpenMenu();
+        if (notStarted && AnyInputEnterWasReleased() && this.actions != null) {
+            this.SkipAnimation();
+            notStarted = false;
         }
         else if (!notStarted) {
 			LoadMenu();
@@ -86,7 +87,8 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
       seagull.gameObject.SetActive (false);
     }
     this.skipped = true;
-    this.krakenAnimator.SetBool("underShip", false);
+	krakenMesh.enabled = true;
+	this.krakenAnimator.SetBool("underShip", false);
     this.krakenAnimator.SetBool("submerge", false);
     this.mainMenuAnimator.SetTrigger ("skip");
   
@@ -129,5 +131,7 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 
         return false;
     }
+
+
 
 }
