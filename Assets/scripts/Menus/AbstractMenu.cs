@@ -27,6 +27,8 @@ public abstract class AbstractMenu : MonoBehaviour
     void Start() {
         SetActions();
         SetActionSelectables();
+		navUtils = new GameObject("navigation", typeof(NavigationUtils));
+
     }
 
     protected abstract void SetActions();
@@ -42,7 +44,6 @@ public abstract class AbstractMenu : MonoBehaviour
         this.gameObject.SetActive (true);
         this.actions = actions;
         this.onReturnAction = goBackAction;
-        navUtils = new GameObject("navigation", typeof(NavigationUtils));
     }
 
 

@@ -87,7 +87,8 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
       seagull.gameObject.SetActive (false);
     }
     this.skipped = true;
-    this.krakenAnimator.SetBool("underShip", false);
+	krakenMesh.enabled = true;
+	this.krakenAnimator.SetBool("underShip", false);
     this.krakenAnimator.SetBool("submerge", false);
     this.mainMenuAnimator.SetTrigger ("skip");
   
