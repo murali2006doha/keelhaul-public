@@ -40,6 +40,11 @@ public class GameInitializer : MonoBehaviour {
     void Start()
     {
 
+
+            
+    }
+
+    public void Activate() {
         Cursor.visible = false;
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         gs = GameObject.FindObjectOfType<GameModeSelectSettings>();
@@ -81,9 +86,13 @@ public class GameInitializer : MonoBehaviour {
         if (isMaster)
         {
             createGameManager(() => createPlayersAndMapControllers(map));
-        }   
+        }
 
-            
+    }
+
+    public void SimplyInstantiateManager(GameTypeEnum mode) {
+        Debug.Log("reaching here");
+        GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
     }
 
     private void InstantiateMap() {
@@ -201,18 +210,14 @@ public class GameInitializer : MonoBehaviour {
         } else if (gameType == GameTypeEnum.DeathMatch)
         {
 
-            DeathMatchGameManager deathMatchManager = null;
+            DeathMatchGameManager deathMatchManager = GameObject.FindObjectOfType<DeathMatchGameManager>();
             
-            if ((!PhotonNetwork.offlineMode && PhotonNetwork.isMasterClient) || (PhotonNetwork.offlineMode))
+            if (PhotonNetwork.offlineMode)
             {
                 GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
                 deathMatchManager = manager.GetComponent<DeathMatchGameManager>();
                 
             }
-            else {
-                deathMatchManager = GameObject.FindObjectOfType<DeathMatchGameManager>();
-            }
-
             
             
             deathMatchManager.cams = cams;

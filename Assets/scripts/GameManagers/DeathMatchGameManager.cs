@@ -45,6 +45,7 @@ public class DeathMatchGameManager : AbstractGameManager
     GameObject winner;
     int krakenPoints;
 
+    int totalNumberOfReadyOnlinePlayers;
     int numOfStatsSynced = 1;
     int winnerId = -1;
     float gameTime;
@@ -98,7 +99,8 @@ public class DeathMatchGameManager : AbstractGameManager
         if (GetComponent<PhotonView>().isMine)
         {
             gamePoints.Add(id.ToString(), 0);
-            if (id >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id >= 1))
+            this.totalNumberOfReadyOnlinePlayers++;
+            if (this.totalNumberOfReadyOnlinePlayers >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id >= 1))
             {
                 this.GetComponent<PhotonView>().RPC("SetDone", PhotonTargets.All);
             }
@@ -351,10 +353,12 @@ public class DeathMatchGameManager : AbstractGameManager
 
     [PunRPC]
     public void IncrementPoint(int id) {
-        
+
+        Debug.Log("killer id " + id.ToString() + "player id : " + PhotonNetwork.player.ID);
         if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode) {
 
-            players[0].uiManager.updatePoint(int.Parse((players[0].uiManager.points.text)) + 1);
+            var playerToIncrement = players.Find(playerToFilter => playerToFilter.GetId() == id) ;
+            playerToIncrement.uiManager.updatePoint(int.Parse((playerToIncrement.uiManager.points.text)) + 1);
             
         }
         var players2 = getPlayers();
