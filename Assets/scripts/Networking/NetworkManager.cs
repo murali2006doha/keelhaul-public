@@ -185,7 +185,9 @@ public class NetworkManager : MonoBehaviour
 
             csc.enabled = true;
             csc.gameObject.GetComponent<Canvas> ().worldCamera = this.camera;
-        
+
+
+            
             if (csc != null) {
                 csc.OnSelectCharacterAction (
                     () => {
@@ -217,7 +219,10 @@ public class NetworkManager : MonoBehaviour
             var networkedCharacterSelectView = csc.GetComponent<NetworkedCharacterSelectView>();
             networkedCharacterSelectView.GetComponent<PhotonView>().RPC("AddNetworkedPlayer", PhotonTargets.OthersBuffered, PhotonNetwork.player.ID.ToString());
             csc.gameObject.GetComponent<Canvas> ().worldCamera = this.camera;
-              
+            if (PhotonNetwork.isMasterClient) {
+                initializer.SimplyInstantiateManager(GameTypeEnum.DeathMatch);
+            }
+            
             csc.OnSelectCharacterAction(
                 () => {
 
@@ -225,11 +230,6 @@ public class NetworkManager : MonoBehaviour
                     var selectedCharacter = csc.getPlayerSelectSettings().players[0].selectedCharacter;
                     StartSpawnProcessOnline(selectedCharacter, mapType);
                     networkedCharacterSelectView.GetComponent<PhotonView>().RPC("SetCharacterForNetworkedPlayer", PhotonTargets.AllBufferedViaServer, selectedCharacter.ToString(), PhotonNetwork.player.ID.ToString());
-                    if (PhotonNetwork.isMasterClient)
-                    {
-                        PhotonNetwork.room.open = true;
-                    }
-                   
                     FindObjectOfType<PlayerSelectSettings>().transform.parent = null;
                     Destroy(this.camera);
                     csc.gameObject.SetActive(false);
@@ -243,7 +243,7 @@ public class NetworkManager : MonoBehaviour
         initializer.map = map;
         initializer.playerId = PhotonNetwork.player.ID;
         initializer.onGameManagerCreated = onGameManagerCreated;
-        initializer.enabled = true;
+        initializer.Activate();
     }
 
     void StartSpawnProcessOffline ()
