@@ -13,6 +13,7 @@ public class AimComponent : MonoBehaviour {
 
     public GameObject aim;
     public GameObject line;
+    public GameObject cannon;
     private Transform shipTransform;
     private bool keyboardControls;
     private Camera cam;
@@ -29,6 +30,9 @@ public class AimComponent : MonoBehaviour {
             var pos = aim.transform.position;
             pos.y = 0;
             line.transform.LookAt(pos);
+
+            Vector3 shoot_direction = aim.transform.position - shipTransform.position;
+            cannon.transform.rotation = Quaternion.LookRotation(shoot_direction.normalized);
         }
         
     }
@@ -50,7 +54,8 @@ public class AimComponent : MonoBehaviour {
             var newVec = Vector3.ClampMagnitude((aim.transform.position - this.shipTransform.position), maxDistance);
             aim.transform.position = (shipTransform.position) + newVec;
         }
-    
+        Vector3 shoot_direction = aim.transform.position - shipTransform.position;
+        cannon.transform.rotation = Quaternion.LookRotation(shoot_direction.normalized);
     }
 
 

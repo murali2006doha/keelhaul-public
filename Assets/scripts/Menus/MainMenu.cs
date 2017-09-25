@@ -141,6 +141,7 @@ public class MainMenu : AbstractMenu
         CloseOnlineSubmenu();
         CloseOfflineSubmenu();
         index = 0;
+        navUtils = new GameObject("navigation", typeof(NavigationUtils));
     }
 
 

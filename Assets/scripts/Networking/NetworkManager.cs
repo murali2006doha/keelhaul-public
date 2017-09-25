@@ -76,7 +76,7 @@ public class NetworkManager : MonoBehaviour
                 modalActions.Add(ModalActionEnum.onOpenAction, () => { currentPlayer.clearShipInput(); });
                 modalActions.Add(ModalActionEnum.onCloseAction, () => { PhotonNetwork.LeaveRoom(); SceneManager.LoadScene(0, LoadSceneMode.Single); });
                 ModalStack.InitializeModal(currentPlayer.Actions, ModalsEnum.notificationSingleModal, modalActions);
-                FindObjectOfType<NotificationSingleModal>().Spawn("Notification Images/players-disconnect", "Notification Images/quit-confirm-yes",
+                FindObjectOfType<NotificationSingleModal>().Spawn("Notification Images/players-disconnect", "Notification Images/okay-button",
                 () => {
                     PhotonNetwork.LeaveRoom(); SceneManager.LoadScene(0, LoadSceneMode.Single);
                 });

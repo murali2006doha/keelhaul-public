@@ -19,6 +19,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     protected bool canMoveUp = true;
     protected bool canMoveLeft  = true;
     protected bool canMoveRight = true;
+    protected GameObject navUtils;
 
 
     public Animator modalAnimator;
@@ -44,6 +45,10 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     /// Determines whether this instance can control.
     protected abstract bool CanControl();
+
+    void Start() {
+        navUtils = new GameObject("navigation", typeof(NavigationUtils));
+    }
 
     void Update() {
         
@@ -192,6 +197,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     public void GoBack() {
         //Exit();
+        Destroy(navUtils);
         DestroyObject(this.gameObject);  
     }
 

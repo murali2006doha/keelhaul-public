@@ -46,7 +46,7 @@ QualitySettings:
     blendWeights: 4
     textureQuality: 0
     anisotropicTextures: 0
-    antiAliasing: 2
+    antiAliasing: 0
     softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 0
@@ -62,3 +62,4 @@ QualitySettings:
     Android: 0
     Standalone: 1
     Web: 1
+    iPhone: 0
