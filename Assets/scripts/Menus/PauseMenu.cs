@@ -57,9 +57,9 @@ public class PauseMenu : AbstractMenu
 
         exitToMenuButton.SetAction(() => {
             ModalStack.InitializeModal(this.actions, ModalsEnum.notificationDoubleModal, modalActions);
-			FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm, 
-															NotificationImages.yes, 
-															NotificationImages.no, () => {
+	    FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm, 
+								NotificationImages.yes, 
+								NotificationImages.no, () => {
                 ExitToMainMenu();
             }, () => {
                 index = actionSelectables.IndexOf(exitToMenuButton.gameObject);
@@ -69,9 +69,9 @@ public class PauseMenu : AbstractMenu
 
         exitToDesktopButton.SetAction(() => {
             ModalStack.InitializeModal(this.actions, ModalsEnum.notificationDoubleModal, modalActions);
-			FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm, 
-																NotificationImages.yes, 
-																NotificationImages.no, () => {
+	    FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm, 
+								NotificationImages.yes, 
+								NotificationImages.no, () => {
                 ExitToDesktop();
             }, () => {
                 index = actionSelectables.IndexOf(exitToDesktopButton.gameObject);
