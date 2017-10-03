@@ -100,14 +100,20 @@ public class DeathMatchGameManager : AbstractGameManager
         {
             gamePoints.Add(id.ToString(), 0);
             this.totalNumberOfReadyOnlinePlayers++;
-            if (this.totalNumberOfReadyOnlinePlayers >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id >= 1))
+            if (this.gamePoints.Keys.Count >= minPlayersRequiredToStartGame || (PhotonNetwork.offlineMode && id >= 1))
             {
                 this.GetComponent<PhotonView>().RPC("SetDone", PhotonTargets.All);
             }
         }
-        
-        
+    }
 
+    [PunRPC]
+    public void RemovePlayer(int id)
+    {
+        if (gamePoints.ContainsKey(id.ToString()))
+        {
+            gamePoints.Remove(id.ToString());
+        }
     }
 
     [PunRPC]
@@ -118,6 +124,7 @@ public class DeathMatchGameManager : AbstractGameManager
     }
     void gameStart()
     {
+        this.gameStarted = true;
         PlayerInput [] playerInputs = FindObjectsOfType<PlayerInput>();
         players.Clear();
         players.AddRange(playerInputs);
@@ -312,7 +319,7 @@ public class DeathMatchGameManager : AbstractGameManager
             {
                 shipPoints[attackingPlayer.teamNo] = shipPoints[attackingPlayer.teamNo] + 1;
                 int points = shipPoints[attackingPlayer.teamNo];
-                foreach (PlayerInput playr in players)
+                foreach (PlayerInput playr in this.getPlayers())
                 {
                     if (playr.teamNo == attackingPlayer.teamNo)
                     {
@@ -356,7 +363,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
         if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode) {
 
-            var playerToIncrement = players.Find(playerToFilter => playerToFilter.GetId() == id) ;
+            var playerToIncrement = this.getPlayers().Find(playerToFilter => playerToFilter.GetId() == id) ;
             playerToIncrement.uiManager.updatePoint(int.Parse((playerToIncrement.uiManager.points.text)) + 1);
             
         }
@@ -411,7 +418,7 @@ public class DeathMatchGameManager : AbstractGameManager
         //TODO: Refactor into score keeper/kill feed controller
         if (PhotonNetwork.offlineMode)
         {
-            foreach (PlayerInput player in players)
+            foreach (PlayerInput player in this.getPlayers())
             {
                 if (player.GetId() == id)
                 {
@@ -445,7 +452,7 @@ public class DeathMatchGameManager : AbstractGameManager
     public void activateVictoryText()
     {
         Time.timeScale = 0.3f;
-        foreach (PlayerInput p in players)
+        foreach (PlayerInput p in this.getPlayers())
         {
             if(PhotonNetwork.offlineMode || p.GetId() == PhotonNetwork.player.ID)
             {
@@ -482,7 +489,7 @@ public class DeathMatchGameManager : AbstractGameManager
         }
 
 
-        foreach (PlayerInput player in players)
+        foreach (PlayerInput player in this.getPlayers())
         {
             var photonView = player.GetComponent<PhotonView>();
           
@@ -497,7 +504,7 @@ public class DeathMatchGameManager : AbstractGameManager
     public void SyncStat(int id, byte[] statsBinary)
     {
 
-        foreach (PlayerInput player in players)
+        foreach (PlayerInput player in this.getPlayers())
         {
             if (player.GetComponent<PhotonView>().ownerId == id)
             { 
@@ -507,7 +514,7 @@ public class DeathMatchGameManager : AbstractGameManager
                 break;
             }
         }
-        if (numOfStatsSynced == players.Count)
+        if (numOfStatsSynced == this.getPlayers().Count)
         {
             activateVictoryText();
             Invoke("TriggerStatsAnimation", 1.4f);
@@ -535,7 +542,7 @@ public class DeathMatchGameManager : AbstractGameManager
         PlayerInput winner = null;
         GameObject worst = null;
         int points = 999;
-        foreach (PlayerInput ship in players)
+        foreach (PlayerInput ship in this.getPlayers())
         {
             ship.reset();
             ship.gameStats.titles = new List<Title>();
@@ -642,7 +649,7 @@ public class DeathMatchGameManager : AbstractGameManager
         globalCanvas.panel2.gameObject.SetActive(true);
         Time.timeScale = 1f;
         gameOver = true;
-        LogAnalyticsGame.EndGame (players, gameTime);
+        LogAnalyticsGame.EndGame (this.getPlayers(), gameTime);
 
     }
 
@@ -664,7 +671,7 @@ public class DeathMatchGameManager : AbstractGameManager
         }
 
         //player.victoryScreen.SetActive (true);
-        foreach (PlayerInput p in players)
+        foreach (PlayerInput p in this.getPlayers())
         {
             p.gameStarted = false;
         }
@@ -689,7 +696,7 @@ public class DeathMatchGameManager : AbstractGameManager
     private void triggerVictoryScreenForTeamGame()
     {
         Dictionary<int, List<PlayerInput>> teamToPlayers = new Dictionary<int, List<PlayerInput>>();
-        foreach (PlayerInput z in players)
+        foreach (PlayerInput z in this.getPlayers())
         {
             z.reset();
             z.setStatus(ShipStatus.Waiting);
@@ -772,7 +779,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
     public override List<PlayerInput> getPlayers()
     {
-        return players;
+        return players.Filter(player => player != null);
     }
 
     public string getTeamName(PlayerInput player)

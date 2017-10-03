@@ -91,7 +91,7 @@ public class GameInitializer : MonoBehaviour {
     }
 
     public void SimplyInstantiateManager(GameTypeEnum mode) {
-        GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
+        GameObject manager = PhotonNetwork.InstantiateSceneObject(PathVariables.deathMatchManager, transform.position, transform.rotation, 0, null);
     }
 
     private void InstantiateMap() {
@@ -213,7 +213,7 @@ public class GameInitializer : MonoBehaviour {
             
             if (PhotonNetwork.offlineMode)
             {
-                GameObject manager = PhotonNetwork.Instantiate(PathVariables.deathMatchManager, transform.position, transform.rotation, 0);
+                GameObject manager = PhotonNetwork.InstantiateSceneObject(PathVariables.deathMatchManager, transform.position, transform.rotation, 0, null);
                 deathMatchManager = manager.GetComponent<DeathMatchGameManager>();
                 
             }
