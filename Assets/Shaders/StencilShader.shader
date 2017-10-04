@@ -1,4 +1,6 @@
-﻿Shader "Custom/NewOcclusionOutline" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/NewOcclusionOutline" {
     Properties {
     	_Color ("Main Color", Color) = (0.5,0.5,0.5,1)
         _MainTex ("Base (RGB)", 2D) = "white" {}
@@ -38,7 +40,7 @@
              v2f vert (appdata_tan v)
              {
                  v2f o;
-                 o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+                 o.pos = UnityObjectToClipPos(v.vertex);
                  o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
                  o.normal = normalize(v.normal);
                  o.viewDir = normalize(ObjSpaceViewDir(v.vertex));       //this could also be WorldSpaceViewDir, which would
