@@ -9,6 +9,7 @@ public abstract class AbstractGameManager : MonoBehaviour {
     [HideInInspector]
     public GameObject screenSplitter;
     public int minPlayersRequiredToStartGame = 2;
+    public bool gameStarted;
     void Start () {
 	
 	}

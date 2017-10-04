@@ -57,7 +57,18 @@ public class NetworkManager : MonoBehaviour
     }
 
     void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer) {
-        
+
+        if (!PhotonNetwork.isMasterClient) {
+            return;
+        }
+
+        if (!instantiatedManager.gameStarted) {
+            instantiatedManager.GetComponent<PhotonView>().RPC("RemovePlayer", PhotonTargets.AllBuffered, otherPlayer.ID);
+            return;
+        }
+
+     
+
         if (!instantiatedManager.isGameOver())
         {
             
