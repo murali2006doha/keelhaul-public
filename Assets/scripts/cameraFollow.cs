@@ -18,7 +18,7 @@ public class cameraFollow : MonoBehaviour {
     bool targetSet = false;
     public bool zoomIn = false;
     public float zoomInValue, zoomInSpeed = 1f;
-    public float normalZoomValue = 3.25f;
+    public float normalZoomValue = -1f;
 	public float duration = 2f;
 	public float magnitude = .5f;
 	float shakeTime;
@@ -55,6 +55,10 @@ public class cameraFollow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(normalZoomValue == -1f)
+        {
+            normalZoomValue = camera.orthographicSize;
+        }
         if (!targetSet) {
             if (target) {
                 targetSet = true;
