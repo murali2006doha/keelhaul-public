@@ -1,4 +1,6 @@
-﻿Shader "Exploration/River" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Exploration/River" {
     Properties {
         _Color ("Main Color", Color) = (1,1,1,1)
         _DepthColor ("Depth Color", Color) = (1,1,1,1)
@@ -30,7 +32,7 @@
                 v2f vert (appdata_full v)
                 {
                     v2f o;
-                    o.pos = mul(UNITY_MATRIX_MVP, v.vertex);   
+                    o.pos = UnityObjectToClipPos(v.vertex);   
                     o.screenPos = ComputeScreenPos(o.pos);
                     return o;
                 }
@@ -71,7 +73,7 @@
                 v2f vert (appdata_full v)
                 {
                     v2f o;
-                    o.pos = mul(UNITY_MATRIX_MVP, v.vertex);   
+                    o.pos = UnityObjectToClipPos(v.vertex);   
                     #if UNITY_UV_STARTS_AT_TOP
                     float scale = -1.0;
                     #else

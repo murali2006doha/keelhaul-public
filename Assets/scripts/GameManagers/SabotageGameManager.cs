@@ -84,12 +84,12 @@ public class SabotageGameManager : AbstractGameManager
             var uis = GameObject.FindObjectsOfType<UIManager>();
             foreach (UIManager ui in uis)
             {
-                if (ui.gameObject.transform.FindChild("P1panel/Compass") != null)
+                if (ui.gameObject.transform.Find("P1panel/Compass") != null)
                 {
                    
-                    ui.gameObject.transform.FindChild("P1panel/doubloonImage").gameObject.SetActive(true);
-                    ui.gameObject.transform.FindChild("P1panel/doubloonText").gameObject.SetActive(true);
-                    ui.gameObject.transform.FindChild("P1panel/enemyIslandSlider").gameObject.SetActive(false);
+                    ui.gameObject.transform.Find("P1panel/doubloonImage").gameObject.SetActive(true);
+                    ui.gameObject.transform.Find("P1panel/doubloonText").gameObject.SetActive(true);
+                    ui.gameObject.transform.Find("P1panel/enemyIslandSlider").gameObject.SetActive(false);
                 }
                
             }

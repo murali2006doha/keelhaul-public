@@ -71,10 +71,10 @@ public class DeathMatchGameManager : AbstractGameManager
         var uis = GameObject.FindObjectsOfType<UIManager>();
         foreach(UIManager ui in uis)
         {
-            ui.gameObject.transform.FindChild("P1panel/Compass").gameObject.SetActive(false);
-            ui.gameObject.transform.FindChild("P1panel/doubloonImage").gameObject.SetActive(true);
-            ui.gameObject.transform.FindChild("P1panel/doubloonText").gameObject.SetActive(true);
-            ui.gameObject.transform.FindChild("P1panel/enemyIslandSlider").gameObject.SetActive(false);
+            ui.gameObject.transform.Find("P1panel/Compass").gameObject.SetActive(false);
+            ui.gameObject.transform.Find("P1panel/doubloonImage").gameObject.SetActive(true);
+            ui.gameObject.transform.Find("P1panel/doubloonText").gameObject.SetActive(true);
+            ui.gameObject.transform.Find("P1panel/enemyIslandSlider").gameObject.SetActive(false);
         }
 
         onInitialize();

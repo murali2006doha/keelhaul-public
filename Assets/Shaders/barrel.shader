@@ -1,4 +1,6 @@
-﻿Shader "Unlit/barrel"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Unlit/barrel"
 {
 	SubShader
 	{
@@ -23,7 +25,7 @@
 	v2f vert(appdata_base v)
 	{
 		v2f o;
-		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos(v.vertex);
 		o.normal = UnityObjectToWorldNormal(v.normal);
 		o.viewDir = normalize(UnityWorldSpaceViewDir(o.pos));
 		return o;

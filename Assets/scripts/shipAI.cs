@@ -88,7 +88,7 @@ public class shipAI : MonoBehaviour {
 			hook_component.aiHook = false;
 			agent.speed = input.stats.maxVelocity * input.stats.barrelSlowDownFactor *  GlobalVariables.gameSpeed;
 			agent.Resume ();
-			agent.SetDestination (input.scoreDestination.transform.FindChild ("winstate").position);
+			agent.SetDestination (input.scoreDestination.transform.Find ("winstate").position);
 			if (!hook_component.isHooked ()) {
 				print ("Ship" + input.shipName + " AI: " + State.SEARCHING);
 				currentState = State.SEARCHING;
