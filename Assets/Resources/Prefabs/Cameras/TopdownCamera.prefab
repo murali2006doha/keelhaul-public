@@ -66,6 +66,7 @@ GameObject:
   - component: {fileID: 114000012616329500}
   - component: {fileID: 114000011676427942}
   - component: {fileID: 114923788352293804}
+  - component: {fileID: 114767919249524838}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -132,7 +133,7 @@ Camera:
     height: 1
   near clip plane: 100
   far clip plane: 1130.01
-  field of view: 1.5
+  field of view: 71.09677
   orthographic: 1
   orthographic size: 2.5
   m_Depth: 1
@@ -144,6 +145,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -166,7 +169,7 @@ Camera:
     height: 0.49
   near clip plane: 100
   far clip plane: 1130.01
-  field of view: 1.5
+  field of view: 71.09677
   orthographic: 1
   orthographic size: 3.25
   m_Depth: 0
@@ -178,6 +181,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -401,6 +406,20 @@ MonoBehaviour:
   shaderFXAAPreset3: {fileID: 4800000, guid: c182fa94a5a0a4c02870641efcd38cd5, type: 3}
   shaderFXAAII: {fileID: 4800000, guid: cd5b323dcc592457790ff18b528f5e67, type: 3}
   shaderFXAAIII: {fileID: 4800000, guid: c547503fff0e8482ea5793727057041c, type: 3}
+--- !u!114 &114767919249524838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1577138620795776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be70623b7033021479caab3bd370de01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  designTimeVerticalFieldOfView: 60
+  designTimeWidth: 1280
+  designTimeHeight: 720
 --- !u!114 &114923788352293804
 MonoBehaviour:
   m_ObjectHideFlags: 1
