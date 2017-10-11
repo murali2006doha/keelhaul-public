@@ -471,7 +471,6 @@ public class DeathMatchGameManager : AbstractGameManager
         //Calculate Stats
         
         winnerId = id;
-        print("winnerID" + id);
         SyncStats();
 
         players[0].gameStarted = false;
@@ -498,6 +497,7 @@ public class DeathMatchGameManager : AbstractGameManager
                 this.GetComponent<PhotonView>().RPC("SyncStat", PhotonTargets.Others, player.GetId(), ArrayHelper.ObjectToByteArray(player.gameStats));
             }
         }
+        Invoke("TimeOutStats", 4f);
     }
 
     [PunRPC]
@@ -522,8 +522,15 @@ public class DeathMatchGameManager : AbstractGameManager
         }
     }
 
+    public void TimeOutStats()
+    {
+        CancelInvoke("TriggerStatsAnimation");
+        TriggerStatsAnimation();
+    }
+
     public void TriggerStatsAnimation()
     {
+        CancelInvoke("TimeOutStats");
         triggerScreenAnimation();
         triggerStatScreen();
     }
@@ -533,7 +540,7 @@ public class DeathMatchGameManager : AbstractGameManager
         screenSplitter.SetActive(false);
         MapObjects map = GameObject.FindObjectOfType<MapObjects>();
         map.gameOverCamera.gameObject.SetActive(true);
-        GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
+       /* GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
         gameOverUI.gameObject.SetActive(true);
         List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
         List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
@@ -632,7 +639,7 @@ public class DeathMatchGameManager : AbstractGameManager
         }
 
         gameOverUI.DisableExtraLosers(losers.Count);
-        Invoke("enableStats", 4f);
+        Invoke("enableStats", 4f);*/
     }
 
     private void triggerScreenAnimation()
