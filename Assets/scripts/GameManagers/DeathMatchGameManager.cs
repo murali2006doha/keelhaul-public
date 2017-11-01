@@ -36,6 +36,8 @@ public class DeathMatchGameManager : AbstractGameManager
     public Animator fadeInAnimator;
     [HideInInspector]
     public List<int> shipPoints = new List<int>();
+    [HideInInspector]
+    public GameObject map = null;
 
     Dictionary<string, int> gamePoints;
 
@@ -54,6 +56,8 @@ public class DeathMatchGameManager : AbstractGameManager
     Dictionary<string, string> teamToColor = new Dictionary<string, string> { { "Red Team", "red" }, { "Blue Team", "blue" }, { "Green Team", "green" }, { "Yellow Team", "yellow" } };
     string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
     public Action onInitialize;
+    public  GameObject gameOverStatPrefab;
+
     void Start()
     {
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
@@ -539,107 +543,34 @@ public class DeathMatchGameManager : AbstractGameManager
     {
         screenSplitter.SetActive(false);
         MapObjects map = GameObject.FindObjectOfType<MapObjects>();
-        map.gameOverCamera.gameObject.SetActive(true);
-       /* GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
-        gameOverUI.gameObject.SetActive(true);
-        List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
-        List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
-        List<GameObject> losers = new List<GameObject>();
-
-        PlayerInput winner = null;
-        GameObject worst = null;
-        int points = 999;
-        foreach (PlayerInput ship in this.getPlayers())
+        GameObject gameOverScreen = null;
+        map.enabled = false;
+        if(map.gameOverStatPrefab != null)
         {
-            ship.reset();
-            ship.gameStats.titles = new List<Title>();
-            ship.setStatus(ShipStatus.Waiting);
-            if (ship.followCamera)
-            {
-                ship.followCamera.enabled = false;
-            }
-            if (ship.GetId() == winnerId)
-            {
-                gameOverUI.winnerText.text = gameOverUI.winnerText.text.Replace("Replace", "Player " + winnerId.ToString());
-                gameOverUI.winners[0].name.text = !PhotonNetwork.offlineMode && winnerId == PhotonNetwork.player.ID ? "You" : "Player " + winnerId.ToString();
-                winner = ship;
-            }
-            else
-            {
-                losers.Add(ship.gameObject);
-                var point = gamePoints[ship.GetId().ToString()];
-                if (point <= points)
-                {
-                    worst = ship.gameObject;
-                    points = point;
-                }
-            }
-            ship.DisableUIForStats();
-
-            shipStats.Add(ship.gameStats);
+            gameOverScreen = Instantiate(map.gameOverStatPrefab as GameObject);
         }
-        if (losers.Count == 3)
+        else
         {
-            losers.Remove(worst);
+            gameOverScreen = Instantiate(this.gameOverStatPrefab as GameObject);
         }
 
-        winner.gameObject.transform.position = new Vector3(map.winnerLoc.transform.position.x, winner.gameObject.transform.position.y, map.winnerLoc.transform.position.z);
-        winner.gameObject.transform.localScale *= 2f;
-        winner.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-
-        //Losers
-        losers[0].transform.position = new Vector3(map.loser1loc.transform.position.x, losers[0].transform.position.y, map.loser1loc.transform.position.z);
-        losers[0].transform.position = map.loser1loc.transform.position;
-        losers[0].transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-
-        if (losers.Count > 1)
+        GameObject winnerModel = null;
+        foreach(PlayerInput players in getPlayers())
         {
-            losers[1].transform.position = new Vector3(map.loser2loc.transform.position.x, losers[1].transform.position.y, map.loser2loc.transform.position.z);
-            losers[1].transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-        }
-
-        GameObject titlesPrefab = Resources.Load(PathVariables.titlesPath, typeof(GameObject)) as GameObject;
-        Titles titles = titlesPrefab.GetComponent<Titles>();
-        titles.calculateTitles(shipStats, krakenStats);
- 
-        int num = 0;
-        foreach (Title title in winner.gameStats.titles)
-        {
-            if (num >= gameOverUI.winners[0].titles.Length)
+            if (players.GetId() == winnerId)
             {
+                winnerModel = Instantiate(Resources.Load(PathVariables.GetAssociatedModelForShip(players.type), typeof(GameObject)) as GameObject);
                 break;
             }
-            gameOverUI.winners[0].titles[num].text = title.name;
-            gameOverUI.winners[0].titleStats[num].text = title.statsString;
-            num++;
         }
-        //TODO: Refactor for different number of players
-        for (int x = 0; x < Math.Min(losers.Count,gameOverUI.losers.Length); x++)
+        if (winnerModel == null)
         {
-            num = 0;
-            PlayerInput loserInput = losers[x].GetComponent<PlayerInput>();
-            FreeForAllStatistics loserStat = null;
-            if (loserInput != null)
-            {
-                loserStat = loserInput.gameStats;
-                gameOverUI.losers[x].name.text = !PhotonNetwork.offlineMode && loserInput.GetId() == PhotonNetwork.player.ID?"You":"Player " + loserInput.GetId();
-            }
-
-            foreach (Title title in loserStat.titles)
-            {
-                if (num >= gameOverUI.winners[0].titles.Length)
-                {
-                    break;
-                }
-                gameOverUI.losers[x].titles[num].text = title.name;
-                gameOverUI.losers[x].titleStats[num].text = title.statsString;
-                num++;
-            }
-
+            return;
         }
 
-        gameOverUI.DisableExtraLosers(losers.Count);
-        Invoke("enableStats", 4f);*/
+        var animationController = gameOverStatPrefab.GetComponent<StatsAnimationController>();
+        animationController.HookupCallback(CalculateAndShowStats);
+       
     }
 
     private void triggerScreenAnimation()
@@ -758,9 +689,42 @@ public class DeathMatchGameManager : AbstractGameManager
     }
 
 
-    public void enableStats()
+    public void CalculateAndShowStats()
     {
+
         GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
+
+        List<FreeForAllStatistics> shipStats = new List<FreeForAllStatistics>();
+        List<FreeForAllStatistics> krakenStats = new List<FreeForAllStatistics>();
+
+        PlayerInput winner = null;
+        List<GameObject> losers = new List<GameObject>();
+        foreach (PlayerInput ship in this.getPlayers())
+        {
+            ship.reset();
+            ship.gameStats.titles = new List<Title>();
+            ship.setStatus(ShipStatus.Inactive);
+            if (ship.followCamera)
+            {
+                ship.followCamera.enabled = false;
+            }
+            if (ship.GetId() == winnerId)
+            {
+                winner = ship;
+            }
+            else
+            {
+                losers.Add(ship.gameObject);
+            }
+            ship.DisableUIForStats();
+            shipStats.Add(ship.gameStats);
+        }
+
+
+        GameObject titlesPrefab = Resources.Load(PathVariables.titlesPath, typeof(GameObject)) as GameObject;
+        Titles titles = titlesPrefab.GetComponent<Titles>();
+        titles.calculateTitles(shipStats, krakenStats);
+
         gameOverUI.startFading = true;
     }
 

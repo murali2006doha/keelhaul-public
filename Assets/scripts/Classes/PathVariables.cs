@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -85,6 +86,11 @@ public static class PathVariables {
 
     //Networked cs view
     internal static string selectedCharacterView = "networked_character_select/characterView";
+    private static string atlanteanStatsModel = "Prefabs/StatsPrefabs/Atlantean Ship Stats Model";
+    private static string blackbeardStatsModel = "Prefabs/StatsPrefabs/Blackbeard Ship Stats Model";
+    private static string chineseStatsModel = "Prefabs/StatsPrefabs/Chinese Junk Ship Stats Model";
+    private static string vikingStatsModel = "Prefabs/StatsPrefabs/Viking Ship Stats Model";
+
     public static string GetAssociatedCannonballForShip(ShipEnum shipType)
     {
         if (shipType == ShipEnum.AtlanteanShip)
@@ -201,4 +207,24 @@ public static class PathVariables {
         return string.Empty;
     }
 
+    internal static string GetAssociatedModelForShip(ShipEnum shipType)
+    {
+        if (shipType == ShipEnum.AtlanteanShip)
+        {
+            return atlanteanStatsModel;
+        }
+        else if (shipType == ShipEnum.BlackbeardShip)
+        {
+            return blackbeardStatsModel;
+        }
+        else if (shipType == ShipEnum.ChineseJunkShip)
+        {
+            return chineseStatsModel;
+        }
+        else if (shipType == ShipEnum.VikingShip)
+        {
+            return vikingStatsModel;
+        }
+        return String.Empty;
+    }
 }

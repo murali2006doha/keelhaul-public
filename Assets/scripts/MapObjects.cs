@@ -15,5 +15,6 @@ public class MapObjects : MonoBehaviour {
 	public IslandManager[] islands;
 
 	public GameObject[] winds;
+    public GameObject gameOverStatPrefab;
 
 }

@@ -36,6 +36,7 @@ public class GameInitializer : MonoBehaviour {
     public Action onGameManagerCreated;
 
     AbstractGameManager manager;
+    private GameObject mapObject;
 
     void Start()
     {
@@ -95,9 +96,9 @@ public class GameInitializer : MonoBehaviour {
     }
 
     private void InstantiateMap() {
-       
-        GameObject mapToInstantiate = Resources.Load(PathVariables.GetMapForMode(gameType, map)) as GameObject;
-        Instantiate(mapToInstantiate);
+
+        mapObject = Resources.Load(PathVariables.GetMapForMode(gameType, map)) as GameObject;
+        Instantiate(mapObject);
     }
 
     private void setGameTypeAndSettings() {
@@ -226,6 +227,7 @@ public class GameInitializer : MonoBehaviour {
             deathMatchManager.globalCanvas = globalCanvas;
             deathMatchManager.screenSplitter = globalCanvas.splitscreenImages;
             deathMatchManager.fadeInAnimator = globalCanvas.fadePanelAnimator;
+            deathMatchManager.map = mapObject;
             if (!isTeam)
             {
                 for (int x = 0; x < players.Count; x++)
