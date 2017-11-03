@@ -16,11 +16,12 @@ public class AimComponent : MonoBehaviour {
     public GameObject cannon;
     private Transform shipTransform;
     private bool keyboardControls;
+    public bool aiControls;
     private Camera cam;
 
     public void AimAt(Vector3 moveVector)
     {
-        if (keyboardControls)
+        if (keyboardControls && !aiControls)
         {
             AimWithMouseAt(new Vector2(moveVector.x, moveVector.y));
         }

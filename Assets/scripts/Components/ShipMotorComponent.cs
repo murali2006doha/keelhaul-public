@@ -24,6 +24,7 @@ public class ShipMotorComponent : MonoBehaviour
     protected Quaternion originalRotation;
     protected Quaternion originalRotationValue;
     protected bool keyboardControls;
+    public bool aiControls;
     public bool sinking = false;
     public bool locked;
 
@@ -61,7 +62,7 @@ public class ShipMotorComponent : MonoBehaviour
             return;
         }
         //Must be in Boost?
-        if ((directionVector.magnitude == 0 || keyboardControls && directionVector.z <= 0) && velocity != 0f  || (velocity > stats.maxVelocity))
+        if ((directionVector.magnitude == 0 || (keyboardControls && !aiControls) && directionVector.z <= 0) && velocity != 0f  || (velocity > stats.maxVelocity))
         {
             velocity = Mathf.Max(0f, (velocity - (stats.deAccelerationSpeed * (Time.deltaTime * GlobalVariables.gameSpeed))));
         }
@@ -71,7 +72,7 @@ public class ShipMotorComponent : MonoBehaviour
 
         if (directionVector.magnitude > 0f && velocity <= stats.maxVelocity)
         {
-            if (keyboardControls)
+            if (keyboardControls && !aiControls)
             {
                 if(directionVector.z > 0)
                 {
@@ -107,7 +108,7 @@ public class ShipMotorComponent : MonoBehaviour
     {
         if (directionVector.magnitude > 0f)
         {
-            if (keyboardControls)
+            if (keyboardControls && !aiControls)
             {
                 if (directionVector.x != 0)
                 {
