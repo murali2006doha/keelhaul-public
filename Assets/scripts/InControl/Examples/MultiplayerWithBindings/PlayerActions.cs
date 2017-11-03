@@ -156,9 +156,10 @@ public class PlayerActions : PlayerActionSet
 
 		actions.Start.AddDefaultBinding(InputControlType.Start);
 		actions.Start.AddDefaultBinding(InputControlType.Options);
-		actions.Select.AddDefaultBinding(InputControlType.Select);
+		actions.Select.AddDefaultBinding(InputControlType.Back);
+        actions.Select.AddDefaultBinding(InputControlType.Share);
 
-		return actions;
+        return actions;
 	}
 
 

@@ -17,7 +17,9 @@ public class ShipAIV2 : MonoBehaviour {
 
     public GameTypeEnum gameType = GameTypeEnum.DeathMatch;
     List<GameObject> bases = new List<GameObject>();
+    List<GameObject> basesToSearch = new List<GameObject>();
     Vector3 targetSearchLocation;
+    bool initialized;
     
 
     void Start () {
@@ -32,18 +34,30 @@ public class ShipAIV2 : MonoBehaviour {
         {
             bases.Add(island);
         }
-
-
+        initialized = true;
 
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
+        if (!initialized)
+        {
+            Start();
+        }
         if (motor)
-            motor.aiControls = !motor.aiControls;
+            motor.aiControls = true;
         if (input)
             if (input.aimComponent)
-                input.aimComponent.aiControls = !input.aimComponent.aiControls;
+                input.aimComponent.aiControls = true;
+    }
+
+    void OnDisable()
+    {
+        if (motor)
+            motor.aiControls = false;
+        if (input)
+            if (input.aimComponent)
+                input.aimComponent.aiControls = false;
     }
 
     void Update() {
@@ -57,7 +71,7 @@ public class ShipAIV2 : MonoBehaviour {
             {
                 PlayerInput closest = GetClosestTarget(targets);
                 Vector3 move = (closest.transform.position);
-                MoveToLocation(move);
+                MoveToLocation(MathHelper.addZ(MathHelper.addX(move,Random.Range(-0.5f, 0.5f)),Random.Range(-0.5f, 0.5f)));
                 CheckAndFireAtTargets(targets);
             }
             else
@@ -76,8 +90,13 @@ public class ShipAIV2 : MonoBehaviour {
         var closest_dist = 99f;
         foreach(PlayerInput ship in targets)
         {
+            if (ship == this.input) {
+                continue;
+
+            }
+
             var distance = Vector3.Distance(ship.transform.position, this.transform.position);
-            if (distance < 4f)
+            if (distance < 6f)
             {
                 if (distance < closest_dist)
                 {
@@ -88,7 +107,7 @@ public class ShipAIV2 : MonoBehaviour {
         }
         if (closest != null)
         {
-            input.aimComponent.AimAt(closest.transform.position);
+            input.aimComponent.AimAt((closest.transform.position - transform.position).normalized);
             cannons.handleShoot();
             
         }
@@ -101,9 +120,15 @@ public class ShipAIV2 : MonoBehaviour {
         NavMeshHit hit = new NavMeshHit();
         if (targetSearchLocation == Vector3.zero || Vector3.Distance(targetSearchLocation, this.transform.position) < 2f)
         {
-            var randInt = Random.Range(0,3);
+            if(basesToSearch.Count == 0)
+            {
+                basesToSearch.AddRange(bases);
+            }
+
+            var randInt = Random.Range(0,basesToSearch.Count);
             
-            NavMesh.SamplePosition(bases[randInt].transform.position, out hit, 4f,NavMesh.AllAreas);
+            NavMesh.SamplePosition(basesToSearch[randInt].transform.position, out hit, 4f,NavMesh.AllAreas);
+            basesToSearch.RemoveAt(randInt);
             if (hit.hit)
             {
                 targetSearchLocation = hit.position;
@@ -139,6 +164,7 @@ public class ShipAIV2 : MonoBehaviour {
 
     List<PlayerInput> FindTargets()
     {
+
         List<PlayerInput> targets = new List<PlayerInput>();
         foreach(PlayerInput ship in manager.getPlayers())
         {
@@ -146,7 +172,7 @@ public class ShipAIV2 : MonoBehaviour {
             {
                 continue;
             }
-            if(Vector3.Distance(ship.transform.position, this.transform.position) < 5f)
+            if(Vector3.Distance(ship.transform.position, this.transform.position) < 8f)
             {
                 targets.Add(ship);
             }

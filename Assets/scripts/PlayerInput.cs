@@ -217,10 +217,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightRotateChanged += aimComponent.AimAt;
         shipInput.onRightTriggerDown += centralCannon.handleShoot;
         shipInput.onRightBumperDown += altCannonComponent.handleShoot;
-        shipInput.onStartButtonPress += this.instantiatePauseMenu; 
+        shipInput.onStartButtonPress += this.instantiatePauseMenu;
         //shipInput.onSelectButtonHoldDown += this.showStatsScreen;
-        //shipInput.onSelectButtonRelease += this.uiManager.SetOffStatsScreen;
-            
+        //shipInput.onSelectButtonRelease += null;
         if (hookshotComponent)
         {
             shipInput.onLeftTriggerDown += hookshotComponent.HookBarrel;
@@ -333,6 +332,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                 {
                     manager.ExitToCharacterSelect();
                 }
+            }
+            if (Actions.Select.WasReleased)
+            {
+               this.GetComponent<ShipAIV2>().enabled = !this.GetComponent<ShipAIV2>().enabled;
+                shipInput.enabled = !shipInput.enabled;
             }
 
             uiManager.updateShipUI(this.transform.position, hookshotComponent.shouldShowTooltip());
