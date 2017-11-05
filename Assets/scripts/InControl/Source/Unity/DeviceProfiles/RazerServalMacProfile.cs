@@ -1,6 +1,3 @@
-using System;
-
-
 namespace InControl
 {
 	// @cond nodoc
@@ -16,7 +13,9 @@ namespace InControl
 			Name = "Razer Serval Controller";
 			Meta = "Razer Serval Controller on Mac";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+
+			IncludePlatforms = new[] {
 				"OS X"
 			};
 

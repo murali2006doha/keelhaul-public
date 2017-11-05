@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-namespace InControl
+﻿namespace InControl
 {
+	using UnityEngine;
+
+
 	public class TouchSwipeControl : TouchControl
 	{
 		[Header( "Position" )]
@@ -15,12 +13,16 @@ namespace InControl
 		[SerializeField]
 		Rect activeArea = new Rect( 25.0f, 25.0f, 50.0f, 50.0f );
 
-		[Range( 0, 1 )] 
+
+		[Header("Options")]
+
+		[Range( 0, 1 )]
 		public float sensitivity = 0.1f;
+        public bool oneSwipePerTouch = false;
 
 
 		[Header( "Analog Target" )]
-		
+
 		public AnalogTarget target = AnalogTarget.None;
 		public SnapAngles snapAngles = SnapAngles.None;
 
@@ -32,11 +34,12 @@ namespace InControl
 		public ButtonTarget leftTarget = ButtonTarget.None;
 		public ButtonTarget rightTarget = ButtonTarget.None;
 		public ButtonTarget tapTarget = ButtonTarget.None;
-		public bool oneSwipePerTouch = false;
 
+        	
 
 		Rect worldActiveArea;
 		Vector3 currentVector;
+        bool currentVectorIsSet;
 		Vector3 beganPosition;
 		Vector3 lastPosition;
 		Touch currentTouch;
@@ -59,19 +62,19 @@ namespace InControl
 				currentTouch = null;
 			}
 		}
-		
-		
+
+
 		public override void ConfigureControl()
 		{
 			worldActiveArea = TouchManager.ConvertToWorld( activeArea, areaUnitType );
 		}
-		
-		
+
+
 		public override void DrawGizmos()
 		{
 			Utility.DrawRectGizmo( worldActiveArea, Color.yellow );
-//			Gizmos.color = Color.red;
-//			Gizmos.DrawLine( Vector3.zero, currentVector * 2.0f );
+			//Gizmos.color = Color.red;
+			//Gizmos.DrawLine( Vector3.zero, currentVector * 2.0f );
 		}
 
 
@@ -83,7 +86,7 @@ namespace InControl
 				dirty = false;
 			}
 		}
-		
+
 
 		public override void SubmitControlState( ulong updateTick, float deltaTime )
 		{
@@ -114,8 +117,8 @@ namespace InControl
 			CommitButton( rightTarget );
 			CommitButton( tapTarget );
 		}
-		
-		
+
+
 		public override void TouchBegan( Touch touch )
 		{
 			if (currentTouch != null)
@@ -129,14 +132,15 @@ namespace InControl
 				lastPosition = beganPosition;
 				currentTouch = touch;
 				currentVector = Vector2.zero;
+                currentVectorIsSet = false;
 
 				fireButtonTarget = true;
 				nextButtonTarget = ButtonTarget.None;
 				lastButtonTarget = ButtonTarget.None;
 			}
 		}
-		
-		
+
+
 		public override void TouchMoved( Touch touch )
 		{
 			if (currentTouch != touch)
@@ -149,7 +153,12 @@ namespace InControl
 			if (delta.magnitude >= sensitivity)
 			{
 				lastPosition = movedPosition;
-				currentVector = delta.normalized;
+
+                if (!(oneSwipePerTouch && currentVectorIsSet))
+                {
+                    currentVector = delta.normalized;
+                    currentVectorIsSet = true;
+                }
 
 				if (fireButtonTarget)
 				{
@@ -161,8 +170,8 @@ namespace InControl
 				}
 			}
 		}
-		
-		
+
+
 		public override void TouchEnded( Touch touch )
 		{
 			if (currentTouch != touch)
@@ -172,6 +181,7 @@ namespace InControl
 
 			currentTouch = null;
 			currentVector = Vector2.zero;
+            currentVectorIsSet = false;
 
 			var touchPosition = TouchManager.ScreenToWorldPoint( touch.position );
 			var delta = beganPosition - touchPosition;
@@ -218,7 +228,7 @@ namespace InControl
 
 
 		public Rect ActiveArea
-		{ 
+		{
 			get
 			{
 				return activeArea;
@@ -236,7 +246,7 @@ namespace InControl
 
 
 		public TouchUnitType AreaUnitType
-		{ 
+		{
 			get
 			{
 				return areaUnitType;

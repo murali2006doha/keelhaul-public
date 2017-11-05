@@ -1,6 +1,3 @@
-using System;
-
-
 namespace InControl
 {
 	// @cond nodoc
@@ -12,7 +9,10 @@ namespace InControl
 			Name = "Logitech F710 Controller";
 			Meta = "Logitech F710 on Windows (XInput Mode)";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+			DeviceStyle = InputDeviceStyle.Xbox360;
+
+			IncludePlatforms = new[] {
 				"Windows"
 			};
 

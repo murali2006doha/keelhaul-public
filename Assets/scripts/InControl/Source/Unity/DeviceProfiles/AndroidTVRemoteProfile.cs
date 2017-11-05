@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace InControl
+﻿namespace InControl
 {
 	// @cond nodoc
 	[AutoDiscover]
@@ -12,7 +9,9 @@ namespace InControl
 			Name = "Android TV Remote";
 			Meta = "Android TV Remote on Android TV";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Remote;
+
+			IncludePlatforms = new[] {
 				"Android"
 			};
 

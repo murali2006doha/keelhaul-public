@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace InControl
+﻿namespace InControl
 {
 	// @cond nodoc
 	[AutoDiscover]
@@ -12,7 +9,10 @@ namespace InControl
 			Name = "PlayStation Mobile";
 			Meta = "PlayStation Mobile on Vita";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+			DeviceStyle = InputDeviceStyle.PlayStationVita;
+
+			IncludePlatforms = new[] {
 				"PSM UNITY FOR PSM",
 				"PSM ON PS VITA",
 				"PS VITA",

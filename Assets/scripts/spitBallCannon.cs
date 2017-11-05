@@ -42,7 +42,7 @@ public class spitBallCannon : MonoBehaviour
 			forceToAdd = (spit.transform.forward * cannonForce * chargeMagnitude) + (spit.transform.up * arcCannonForce);
 			chargeMagnitude = Mathf.Min ((Time.realtimeSinceStartup - spitTime), maxSpitDistance);
 			TrajectoryHelper.UpdateTrajectory (cannonBallPos.position, (forceToAdd * clampLineRenderer), Physics.gravity, trajectoryLine, trajectorySteps);
-			if (input.Actions.Device)
+      if (input.Actions.Device != null)
 				input.Actions.Device.Vibrate (chargeMagnitude / 5);
 			if (spit.transform.localScale.magnitude < maxSpitScale)
 				spit.transform.localScale = spitScale * (spitScale.magnitude + (chargeMagnitude));
