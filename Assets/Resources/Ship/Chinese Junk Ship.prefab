@@ -314,7 +314,6 @@ GameObject:
   - component: {fileID: 11446524}
   - component: {fileID: 11435862}
   - component: {fileID: 14367208}
-  - component: {fileID: 19583868}
   - component: {fileID: 11440490}
   - component: {fileID: 114558745066597804}
   - component: {fileID: 114358724233102334}
@@ -322,6 +321,7 @@ GameObject:
   - component: {fileID: 114352039611953602}
   - component: {fileID: 114083740754118774}
   - component: {fileID: 65934597305330256}
+  - component: {fileID: 114905322627413398}
   m_Layer: 9
   m_Name: Chinese Junk Ship
   m_TagString: Untagged
@@ -586,6 +586,7 @@ Transform:
   - {fileID: 4188953429969916}
   - {fileID: 4312443130004980}
   - {fileID: 4146987870944542}
+  - {fileID: 4226758201079768}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 185.454, z: 0}
@@ -1449,27 +1450,6 @@ CharacterController:
   m_SkinWidth: 0.008
   m_MinMoveDistance: 0.0001
   m_Center: {x: 0, y: 5, z: 0}
---- !u!195 &19583868
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190322}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 2.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 60
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 5
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
 --- !u!198 &19841060
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -8922,6 +8902,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1281828435653680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4226758201079768}
+  - component: {fileID: 195172927042036234}
+  m_Layer: 9
+  m_Name: NavMeshAgent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1298092754637530
 GameObject:
   m_ObjectHideFlags: 1
@@ -11343,6 +11339,19 @@ Transform:
   m_Father: {fileID: 4029497517503996}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
+--- !u!4 &4226758201079768
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1281828435653680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469594}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4241361728118654
 Transform:
   m_ObjectHideFlags: 1
@@ -13118,6 +13127,7 @@ MonoBehaviour:
   aim: {fileID: 190710}
   line: {fileID: 1535474068219016}
   cannon: {fileID: 1729279287666242}
+  aiControls: 0
 --- !u!114 &114151917957021914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14063,6 +14073,7 @@ MonoBehaviour:
   boosted: 0
   boosting: 0
   speedModifier: 1
+  aiControls: 0
   sinking: 0
   locked: 0
 --- !u!114 &114364807497100870
@@ -16909,6 +16920,18 @@ MonoBehaviour:
   m_Text: 'Enter new binding.
 
     Press ESC to Cancel.'
+--- !u!114 &114905322627413398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190322}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a13990b38fa3f40a57e41b2a941cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameType: 2
 --- !u!114 &114921529504580030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17657,6 +17680,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -7.858034e-10, y: 0.010000003, z: 0.000000009080395}
     m_Extent: {x: 0.00026496695, y: 0.0010800539, z: 0.0010800544}
   m_DirtyAABB: 0
+--- !u!195 &195172927042036234
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1281828435653680}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!198 &198000011464009162
 ParticleSystem:
   m_ObjectHideFlags: 1
