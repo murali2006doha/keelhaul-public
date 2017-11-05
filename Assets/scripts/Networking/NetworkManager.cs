@@ -264,6 +264,7 @@ public class NetworkManager : MonoBehaviour
         initializer.enabled = true;
         initializer.gameObject.SetActive (true);
         initializer.onGameManagerCreated = this.onGameManagerCreated;
+		initializer.Activate();
     }
 
     void onGameManagerCreated() {
