@@ -1,6 +1,3 @@
-using System;
-
-
 namespace InControl
 {
 	// @cond nodoc
@@ -15,7 +12,9 @@ namespace InControl
 			Name = "Nexus Player Controller";
 			Meta = "Nexus Player Controller on Windows";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+
+			IncludePlatforms = new[] {
 				"Windows",
 			};
 

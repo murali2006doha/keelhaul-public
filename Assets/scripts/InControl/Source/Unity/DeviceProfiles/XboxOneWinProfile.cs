@@ -1,6 +1,3 @@
-using System;
-
-
 namespace InControl
 {
 	// @cond nodoc
@@ -12,7 +9,10 @@ namespace InControl
 			Name = "XBox One Controller";
 			Meta = "XBox One Controller on Windows";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+			DeviceStyle = InputDeviceStyle.XboxOne;
+
+			IncludePlatforms = new[] {
 				"Windows 7",
 				"Windows 8"
 			};

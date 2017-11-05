@@ -1,11 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using UnityEngine;
-
-
-namespace InControl
+﻿namespace InControl
 {
+	using System;
+	using System.IO;
+
+
 	/// <summary>
 	/// The abstract base class for all binding sources.
 	/// A binding source can be bound to an action and provides an input source. It essentially
@@ -59,6 +57,20 @@ namespace InControl
 
 
 		/// <summary>
+		/// Gets the class of device this binding source currently represents.
+		/// </summary>
+		/// <value>The class of the device.</value>
+		public abstract InputDeviceClass DeviceClass { get; }
+
+
+		/// <summary>
+		/// Gets the style of device this binding source currently represents.
+		/// </summary>
+		/// <value>The style of the device.</value>
+		public abstract InputDeviceStyle DeviceStyle { get; }
+
+
+		/// <summary>
 		/// Determines whether the specified binding sources are equal.
 		/// </summary>
 		/// <param name="a">The first binding source to compare.</param>
@@ -100,12 +112,12 @@ namespace InControl
 		/// <summary>
 		/// Determines whether the specified object is equal to the current BindingSource.
 		/// </summary>
-		/// <param name="other">The object to compare with the current BindingSource.</param>
+		/// <param name="obj">The object to compare with the current BindingSource.</param>
 		/// <returns><c>true</c> if the specified object is equal to the current
 		/// BindingSource; otherwise, <c>false</c>.</returns>
-		public override bool Equals( object other )
+		public override bool Equals( object obj )
 		{
-			return Equals( (BindingSource) other );
+			return Equals( (BindingSource) obj );
 		}
 
 
@@ -120,11 +132,13 @@ namespace InControl
 		}
 
 
+		public abstract BindingSourceType BindingSourceType { get; }
+
+
 		#region Internal
 
-		internal abstract BindingSourceType BindingSourceType { get; }
 		internal abstract void Save( BinaryWriter writer );
-		internal abstract void Load( BinaryReader reader );
+		internal abstract void Load( BinaryReader reader, UInt16 dataFormatVersion );
 		internal PlayerAction BoundTo { get; set; }
 
 

@@ -1,5 +1,3 @@
-using System;
-
 namespace InControl
 {
 	// @cond nodoc
@@ -11,7 +9,9 @@ namespace InControl
 			Name = "Moga Hero Power";
 			Meta = "Moga Hero Power on Android";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+
+			IncludePlatforms = new[] {
 				"Android"
 			};
 

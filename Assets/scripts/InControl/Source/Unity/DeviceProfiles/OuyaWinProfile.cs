@@ -1,6 +1,3 @@
-using System;
-
-
 namespace InControl
 {
 	// @cond nodoc
@@ -12,7 +9,10 @@ namespace InControl
 			Name = "OUYA Controller";
 			Meta = "OUYA Controller on Windows";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+			DeviceStyle = InputDeviceStyle.Ouya;
+
+			IncludePlatforms = new[] {
 				"Windows"
 			};
 
@@ -89,8 +89,8 @@ namespace InControl
 					Source = Button14
 				},
 				new InputControlMapping {
-					Handle = "TouchPad Tap",
-					Target = InputControlType.TouchPadTap,
+					Handle = "TouchPad Button",
+					Target = InputControlType.TouchPadButton,
 					Source = MouseButton0
 				}
 			};

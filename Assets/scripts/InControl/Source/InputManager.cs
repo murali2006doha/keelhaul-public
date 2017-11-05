@@ -1,32 +1,32 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using UnityEngine;
-
-
 namespace InControl
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Collections.ObjectModel;
+	using UnityEngine;
+
+#if NETFX_CORE
+	using System.Reflection;
+#endif
+
+
 	public class InputManager
 	{
 		public static readonly VersionInfo Version = VersionInfo.InControlVersion();
 
 		public static event Action OnSetup;
-		public static event Action<ulong,float> OnUpdate;
+		public static event Action<ulong, float> OnUpdate;
 		public static event Action OnReset;
 
 		public static event Action<InputDevice> OnDeviceAttached;
 		public static event Action<InputDevice> OnDeviceDetached;
 		public static event Action<InputDevice> OnActiveDeviceChanged;
 
-		internal static event Action<ulong,float> OnUpdateDevices;
-		internal static event Action<ulong,float> OnCommitDevices;
+		internal static event Action<ulong, float> OnUpdateDevices;
+		internal static event Action<ulong, float> OnCommitDevices;
 
 		static List<InputDeviceManager> deviceManagers = new List<InputDeviceManager>();
-		static Dictionary<Type,InputDeviceManager> deviceManagerTable = new Dictionary<Type, InputDeviceManager>();
+		static Dictionary<Type, InputDeviceManager> deviceManagerTable = new Dictionary<Type, InputDeviceManager>();
 
 		static InputDevice activeDevice = InputDevice.Null;
 		static List<InputDevice> devices = new List<InputDevice>();
@@ -46,7 +46,7 @@ namespace InControl
 		/// <summary>
 		/// Query whether a command button was pressed on any device during the last frame of input.
 		/// </summary>
-		public static bool MenuWasPressed { get; private set; }
+		public static bool CommandWasPressed { get; private set; }
 
 		/// <summary>
 		/// Gets or sets a value indicating whether the Y axis should be inverted for
@@ -60,13 +60,25 @@ namespace InControl
 		/// </summary>
 		public static bool IsSetup { get; private set; }
 
+
 		internal static string Platform { get; private set; }
 
+		static bool applicationIsFocused;
 		static float initialTime;
 		static float currentTime;
 		static float lastUpdateTime;
 		static ulong currentTick;
 		static VersionInfo? unityVersion;
+
+
+		[Obsolete( "Use InputManager.CommandWasPressed instead." )]
+		public static bool MenuWasPressed
+		{
+			get
+			{
+				return CommandWasPressed;
+			}
+		}
 
 
 		/// <summary>
@@ -89,16 +101,19 @@ namespace InControl
 				return false;
 			}
 
-			#if !NETFX_CORE && !UNITY_WEBPLAYER && !UNITY_EDITOR_OSX && (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
-			Platform = (Utility.GetWindowsVersion() + " " + SystemInfo.deviceModel).ToUpper();
-			#else
+#if !NETFX_CORE && !UNITY_WEBPLAYER && !UNITY_EDITOR_OSX && (UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN)
+			Platform = Utility.GetWindowsVersion().ToUpper();
+#else
 			Platform = (SystemInfo.operatingSystem + " " + SystemInfo.deviceModel).ToUpper();
-			#endif
+#endif
+
+			enabled = true;
 
 			initialTime = 0.0f;
 			currentTime = 0.0f;
 			lastUpdateTime = 0.0f;
 			currentTick = 0;
+			applicationIsFocused = true;
 
 			deviceManagers.Clear();
 			deviceManagerTable.Clear();
@@ -108,35 +123,58 @@ namespace InControl
 
 			playerActionSets.Clear();
 
+			// TODO: Can this move further down along with the OnSetup callback?
 			IsSetup = true;
 
-			#if UNITY_STANDALONE_WIN || UNITY_EDITOR
-			if (EnableXInput)
+			var enableUnityInput = true;
+
+			var nativeInputIsEnabled = EnableNativeInput && NativeInputDeviceManager.Enable();
+			if (nativeInputIsEnabled)
+			{
+				enableUnityInput = false;
+			}
+
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+			if (EnableXInput && enableUnityInput)
 			{
 				XInputDeviceManager.Enable();
 			}
-			#endif
+#endif
 
-			#if UNITY_IOS
+#if UNITY_IOS
 			if (EnableICade)
 			{
 				ICadeDeviceManager.Enable();
 			}
-			#endif
+#endif
 
+#if UNITY_XBOXONE
+			if (XboxOneInputDeviceManager.Enable())
+			{
+				enableUnityInput = false;
+			}
+#endif
+
+#if UNITY_SWITCH
+			if (NintendoSwitchInputDeviceManager.Enable())
+			{
+				enableUnityInput = false;
+			}
+#endif
+
+			// TODO: Can this move further down after the UnityInputDeviceManager is added?
+			// Currently, it allows use of InputManager.HideDevicesWithProfile()
 			if (OnSetup != null)
 			{
 				OnSetup.Invoke();
 				OnSetup = null;
 			}
 
-			var addUnityInputDeviceManager = true;
+#if UNITY_ANDROID && INCONTROL_OUYA && !UNITY_EDITOR
+			enableUnityInput = false;
+#endif
 
-			#if UNITY_ANDROID && INCONTROL_OUYA && !UNITY_EDITOR
-			addUnityInputDeviceManager = false;
-			#endif
-
-			if (addUnityInputDeviceManager)
+			if (enableUnityInput)
 			{
 				AddDeviceManager<UnityInputDeviceManager>();
 			}
@@ -203,19 +241,29 @@ namespace InControl
 				OnSetup = null;
 			}
 
+			if (!enabled)
+			{
+				return;
+			}
+
+			if (SuspendInBackground && !applicationIsFocused)
+			{
+				return;
+			}
+
 			currentTick++;
 			UpdateCurrentTime();
 			var deltaTime = currentTime - lastUpdateTime;
 
 			UpdateDeviceManagers( deltaTime );
 
-			MenuWasPressed = false;
+			CommandWasPressed = false;
 			UpdateDevices( deltaTime );
 			CommitDevices( deltaTime );
 
-			UpdatePlayerActionSets( deltaTime );
-
 			UpdateActiveDevice();
+
+			UpdatePlayerActionSets( deltaTime );
 
 			if (OnUpdate != null)
 			{
@@ -247,12 +295,12 @@ namespace InControl
 
 		static void SetZeroTickOnAllControls()
 		{
-			int deviceCount = devices.Count;
-			for (int i = 0; i < deviceCount; i++)
+			var deviceCount = devices.Count;
+			for (var i = 0; i < deviceCount; i++)
 			{
 				var controls = devices[i].Controls;
-				var controlCount = controls.Length;
-				for (int j = 0; j < controlCount; j++)
+				var controlCount = controls.Count;
+				for (var j = 0; j < controlCount; j++)
 				{
 					var control = controls[j];
 					if (control != null)
@@ -266,23 +314,25 @@ namespace InControl
 
 		/// <summary>
 		/// Clears the state of input on all controls.
-		/// The net result here should be that the state on all controls will return 
-		/// zero/false for the remainder of the current tick, and during the next update 
+		/// The net result here should be that the state on all controls will return
+		/// zero/false for the remainder of the current tick, and during the next update
 		/// tick WasPressed, WasReleased, WasRepeated and HasChanged will return false.
 		/// </summary>
 		public static void ClearInputState()
 		{
-			int deviceCount = devices.Count;
-			for (int i = 0; i < deviceCount; i++)
+			var deviceCount = devices.Count;
+			for (var i = 0; i < deviceCount; i++)
 			{
 				devices[i].ClearInputState();
 			}
 
-			int playerActionSetCount = playerActionSets.Count;
-			for (int i = 0; i < playerActionSetCount; i++)
+			var playerActionSetCount = playerActionSets.Count;
+			for (var i = 0; i < playerActionSetCount; i++)
 			{
 				playerActionSets[i].ClearInputState();
 			}
+
+			activeDevice = InputDevice.Null;
 		}
 
 
@@ -290,8 +340,15 @@ namespace InControl
 		{
 			if (!focusState)
 			{
+				if (SuspendInBackground)
+				{
+					ClearInputState();
+				}
+
 				SetZeroTickOnAllControls();
 			}
+
+			applicationIsFocused = focusState;
 		}
 
 
@@ -318,7 +375,7 @@ namespace InControl
 		/// Only one instance of a given type can be added. An error will be raised if
 		/// you try to add more than one.
 		/// </summary>
-		/// <param name="inputDeviceManager">The device manager to add.</param>
+		/// <param name="deviceManager">The device manager to add.</param>
 		public static void AddDeviceManager( InputDeviceManager deviceManager )
 		{
 			AssertIsSetup();
@@ -355,7 +412,7 @@ namespace InControl
 		public static T GetDeviceManager<T>() where T : InputDeviceManager
 		{
 			InputDeviceManager deviceManager;
-			if (deviceManagerTable.TryGetValue( typeof(T), out deviceManager ))
+			if (deviceManagerTable.TryGetValue( typeof( T ), out deviceManager ))
 			{
 				return deviceManager as T;
 			}
@@ -370,7 +427,7 @@ namespace InControl
 		/// <typeparam name="T">A subclass of InputDeviceManager.</typeparam>
 		public static bool HasDeviceManager<T>() where T : InputDeviceManager
 		{
-			return deviceManagerTable.ContainsKey( typeof(T) );
+			return deviceManagerTable.ContainsKey( typeof( T ) );
 		}
 
 
@@ -388,8 +445,8 @@ namespace InControl
 
 		static void UpdateDeviceManagers( float deltaTime )
 		{
-			int inputDeviceManagerCount = deviceManagers.Count;
-			for (int i = 0; i < inputDeviceManagerCount; i++)
+			var inputDeviceManagerCount = deviceManagers.Count;
+			for (var i = 0; i < inputDeviceManagerCount; i++)
 			{
 				deviceManagers[i].Update( currentTick, deltaTime );
 			}
@@ -398,8 +455,8 @@ namespace InControl
 
 		static void DestroyDeviceManagers()
 		{
-			int deviceManagerCount = deviceManagers.Count;
-			for (int i = 0; i < deviceManagerCount; i++)
+			var deviceManagerCount = deviceManagers.Count;
+			for (var i = 0; i < deviceManagerCount; i++)
 			{
 				deviceManagers[i].Destroy();
 			}
@@ -411,12 +468,11 @@ namespace InControl
 
 		static void DestroyDevices()
 		{
-			int deviceCount = devices.Count;
-			for (int i = 0; i < deviceCount; i++)
+			var deviceCount = devices.Count;
+			for (var i = 0; i < deviceCount; i++)
 			{
 				var device = devices[i];
-				device.StopVibration();
-				device.IsAttached = false;
+				device.OnDetached();
 			}
 			devices.Clear();
 			activeDevice = InputDevice.Null;
@@ -425,8 +481,8 @@ namespace InControl
 
 		static void UpdateDevices( float deltaTime )
 		{
-			int deviceCount = devices.Count;
-			for (int i = 0; i < deviceCount; i++)
+			var deviceCount = devices.Count;
+			for (var i = 0; i < deviceCount; i++)
 			{
 				var device = devices[i];
 				device.Update( currentTick, deltaTime );
@@ -441,15 +497,15 @@ namespace InControl
 
 		static void CommitDevices( float deltaTime )
 		{
-			int deviceCount = devices.Count;
-			for (int i = 0; i < deviceCount; i++)
+			var deviceCount = devices.Count;
+			for (var i = 0; i < deviceCount; i++)
 			{
 				var device = devices[i];
 				device.Commit( currentTick, deltaTime );
 
-				if (device.MenuWasPressed)
+				if (device.CommandWasPressed)
 				{
-					MenuWasPressed = true;
+					CommandWasPressed = true;
 				}
 			}
 
@@ -464,11 +520,11 @@ namespace InControl
 		{
 			var lastActiveDevice = ActiveDevice;
 
-			int deviceCount = devices.Count;
-			for (int i = 0; i < deviceCount; i++)
+			var deviceCount = devices.Count;
+			for (var i = 0; i < deviceCount; i++)
 			{
 				var inputDevice = devices[i];
-				if (inputDevice.LastChangedAfter( ActiveDevice ))
+				if (inputDevice.LastChangedAfter( ActiveDevice ) && !inputDevice.Passive)
 				{
 					ActiveDevice = inputDevice;
 				}
@@ -497,16 +553,18 @@ namespace InControl
 				return;
 			}
 
-			if (devices.Contains( inputDevice ))
+			if (inputDevice.IsAttached)
 			{
-				inputDevice.IsAttached = true;
 				return;
 			}
 
-			devices.Add( inputDevice );
-			devices.Sort( ( d1, d2 ) => d1.SortOrder.CompareTo( d2.SortOrder ) );
+			if (!devices.Contains( inputDevice ))
+			{
+				devices.Add( inputDevice );
+				devices.Sort( ( d1, d2 ) => d1.SortOrder.CompareTo( d2.SortOrder ) );
+			}
 
-			inputDevice.IsAttached = true;
+			inputDevice.OnAttached();
 
 			if (OnDeviceAttached != null)
 			{
@@ -521,31 +579,24 @@ namespace InControl
 		/// <param name="inputDevice">The input device to attach.</param>
 		public static void DetachDevice( InputDevice inputDevice )
 		{
+			if (!IsSetup)
+			{
+				return;
+			}
+
 			if (!inputDevice.IsAttached)
 			{
 				return;
 			}
 
-			if (!IsSetup)
-			{
-				inputDevice.IsAttached = false;
-				return;
-			}
-
-			if (!devices.Contains( inputDevice ))
-			{
-				inputDevice.IsAttached = false;
-				return;
-			}
-
 			devices.Remove( inputDevice );
-
-			inputDevice.IsAttached = false;
 
 			if (ActiveDevice == inputDevice)
 			{
 				ActiveDevice = InputDevice.Null;
 			}
+
+			inputDevice.OnDetached();
 
 			if (OnDeviceDetached != null)
 			{
@@ -561,11 +612,11 @@ namespace InControl
 		/// <param name="type">Type.</param>
 		public static void HideDevicesWithProfile( Type type )
 		{
-			#if NETFX_CORE
+#if NETFX_CORE
 			if (type.GetTypeInfo().IsAssignableFrom( typeof( UnityInputDeviceProfile ).GetTypeInfo() ))
-			#else
-			if (type.IsSubclassOf( typeof(UnityInputDeviceProfile) ))
-			#endif
+#else
+			if (type.IsSubclassOf( typeof( UnityInputDeviceProfile ) ))
+#endif
 			{
 				UnityInputDeviceProfile.Hide( type );
 			}
@@ -574,11 +625,7 @@ namespace InControl
 
 		internal static void AttachPlayerActionSet( PlayerActionSet playerActionSet )
 		{
-			if (playerActionSets.Contains( playerActionSet ))
-			{
-				Logger.LogWarning( "Player action set is already attached." );
-			}
-			else
+			if (!playerActionSets.Contains( playerActionSet ))
 			{
 				playerActionSets.Add( playerActionSet );
 			}
@@ -593,8 +640,8 @@ namespace InControl
 
 		internal static void UpdatePlayerActionSets( float deltaTime )
 		{
-			int playerActionSetCount = playerActionSets.Count;
-			for (int i = 0; i < playerActionSetCount; i++)
+			var playerActionSetCount = playerActionSets.Count;
+			for (var i = 0; i < playerActionSetCount; i++)
 			{
 				playerActionSets[i].Update( currentTick, deltaTime );
 			}
@@ -609,7 +656,7 @@ namespace InControl
 		{
 			get
 			{
-				return KeyCombo.Detect( true ).Count > 0;
+				return KeyCombo.Detect( true ).IncludeCount > 0;
 			}
 		}
 
@@ -634,6 +681,56 @@ namespace InControl
 
 
 		/// <summary>
+		/// Toggle whether input is processed or not. While disabled, all controls will return zero state.
+		/// </summary>
+		public static bool Enabled
+		{
+			get
+			{
+				return enabled;
+			}
+
+			set
+			{
+				if (enabled != value)
+				{
+					if (value)
+					{
+						SetZeroTickOnAllControls();
+						UpdateInternal();
+					}
+					else
+					{
+						ClearInputState();
+						SetZeroTickOnAllControls();
+					}
+
+					enabled = value;
+				}
+			}
+		}
+		static bool enabled;
+
+
+		/// <summary>
+		/// Suspend input updates when the application loses focus.
+		/// When enabled and the app loses focus, input will be cleared and no.
+		/// input updates will be processed. Input updates will resume when the app 
+		/// regains focus.
+		/// </summary>
+		public static bool SuspendInBackground { get; internal set; }
+
+
+		/// <summary>
+		/// Enable Native Input support.
+		/// When enabled on initialization, the input manager will first check
+		/// whether Native Input is supported on this platform and if so, it will add
+		/// a NativeInputDeviceManager.
+		/// </summary>
+		public static bool EnableNativeInput { get; internal set; }
+
+
+		/// <summary>
 		/// Enable XInput support (Windows only).
 		/// When enabled on initialization, the input manager will first check
 		/// whether XInput is supported on this platform and if so, it will add
@@ -651,11 +748,39 @@ namespace InControl
 
 		/// <summary>
 		/// Set the XInput buffer size. (Experimental)
-		/// Usually you want this to be zero (default). Setting it higher will introduce 
-		/// latency, but may smooth out input if querying input on FixedUpdate, which 
+		/// Usually you want this to be zero (default). Setting it higher will introduce
+		/// latency, but may smooth out input if querying input on FixedUpdate, which
 		/// tends to cluster calls at the end of a frame.
 		/// </summary>
 		public static uint XInputBufferSize { get; internal set; }
+
+
+		/// <summary>
+		/// Set Native Input on Windows to use XInput.
+		/// When set to true (default), XInput will be utilized which better supports
+		/// compatible controllers (such as Xbox 360 and Xbox One gamepads) including
+		/// vibration control and proper separated triggers, but limits the number of 
+		/// these controllers to four. Additional XInput-compatible beyond four 
+		/// controllers will be ignored.
+		/// DirectInput will be used for all non-XInput-compatible controllers.
+		/// </summary>
+		public static bool NativeInputEnableXInput { get; internal set; }
+
+
+		/// <summary>
+		/// Set Native Input to prevent system sleep and screensaver.
+		/// Controller input generally does not prevent the system idle timer and
+		/// the screensaver may come on during extended gameplay. When set to
+		/// true, this will be prevented.
+		/// </summary>
+		public static bool NativeInputPreventSleep { get; internal set; }
+
+
+		/// <summary>
+		/// Set the Native Input background thread polling rate.
+		/// When set to zero (default) it will equal the project's fixed update rate.
+		/// </summary>
+		public static uint NativeInputUpdateRate { get; internal set; }
 
 
 		/// <summary>
@@ -690,5 +815,3 @@ namespace InControl
 		}
 	}
 }
-
-
