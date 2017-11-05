@@ -1,6 +1,3 @@
-using System;
-
-
 namespace InControl
 {
 	// @cond nodoc
@@ -12,7 +9,9 @@ namespace InControl
 			Name = "Executioner X Controller";
 			Meta = "Executioner X Controller";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+
+			IncludePlatforms = new[] {
 				"Windows",
 				"OS X"
 			};

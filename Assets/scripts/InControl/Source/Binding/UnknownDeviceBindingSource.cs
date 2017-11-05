@@ -1,10 +1,9 @@
-﻿using System;
-using System.IO;
-using UnityEngine;
-
-
-namespace InControl
+﻿namespace InControl
 {
+	using System;
+	using System.IO;
+	using UnityEngine;
+
 
 	public class UnknownDeviceBindingSource : BindingSource
 	{
@@ -41,12 +40,12 @@ namespace InControl
 
 
 		public override string Name
-		{ 
+		{
 			get
 			{
 				if (BoundTo == null)
 				{
-//					Debug.LogWarning( "Cannot query property 'Name' for unbound BindingSource." );
+					// Debug.LogWarning( "Cannot query property 'Name' for unbound BindingSource." );
 					return "";
 				}
 				else
@@ -81,12 +80,12 @@ namespace InControl
 
 
 		public override string DeviceName
-		{ 
+		{
 			get
 			{
 				if (BoundTo == null)
 				{
-//					Debug.LogWarning( "Cannot query property 'DeviceName' for unbound BindingSource." );
+					// Debug.LogWarning( "Cannot query property 'DeviceName' for unbound BindingSource." );
 					return "";
 				}
 				else
@@ -99,6 +98,24 @@ namespace InControl
 
 					return device.Name;
 				}
+			}
+		}
+
+
+		public override InputDeviceClass DeviceClass
+		{
+			get
+			{
+				return InputDeviceClass.Controller;
+			}
+		}
+
+
+		public override InputDeviceStyle DeviceStyle
+		{
+			get
+			{
+				return InputDeviceStyle.Unknown;
 			}
 		}
 
@@ -143,7 +160,7 @@ namespace InControl
 		}
 
 
-		internal override BindingSourceType BindingSourceType
+		public override BindingSourceType BindingSourceType
 		{
 			get
 			{
@@ -153,7 +170,7 @@ namespace InControl
 
 
 		internal override bool IsValid
-		{ 
+		{
 			get
 			{
 				if (BoundTo == null)
@@ -170,7 +187,7 @@ namespace InControl
 		}
 
 
-		internal override void Load( BinaryReader reader )
+		internal override void Load( BinaryReader reader, UInt16 dataFormatVersion )
 		{
 			// Have to do this because it's a struct property? Weird.
 			var temp = new UnknownDeviceControl();
@@ -181,7 +198,7 @@ namespace InControl
 
 		internal override void Save( BinaryWriter writer )
 		{
-			Control.Save( writer );	
+			Control.Save( writer );
 		}
 	}
 }

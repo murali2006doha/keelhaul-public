@@ -1,5 +1,3 @@
-using System;
-
 namespace InControl
 {
 	// @cond nodoc
@@ -11,7 +9,9 @@ namespace InControl
 			Name = "Level Up Black Hawk Controller";
 			Meta = "Level Up Black Hawk Controller on Windows";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+
+			IncludePlatforms = new[] {
 				"Windows"
 			};
 

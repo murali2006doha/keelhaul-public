@@ -1,8 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-
-namespace InControl
+﻿namespace InControl
 {
 	public class UnknownDeviceBindingSourceListener : BindingSourceListener
 	{
@@ -29,16 +25,12 @@ namespace InControl
 		void TakeSnapshotOnUnknownDevices()
 		{
 			var deviceCount = InputManager.Devices.Count;
-			for (int i = 0; i < deviceCount; i++)
+			for (var i = 0; i < deviceCount; i++)
 			{
 				var device = InputManager.Devices[i];
 				if (device.IsUnknown)
 				{
-					var unknownDevice = device as UnknownUnityInputDevice;
-					if (unknownDevice != null)
-					{
-						unknownDevice.TakeSnapshot();
-					}
+					device.TakeSnapshot();
 				}
 			}
 		}
@@ -93,20 +85,16 @@ namespace InControl
 		{
 			if (device.IsUnknown)
 			{
-				var unknownDevice = device as UnknownUnityInputDevice;
-				if (unknownDevice != null)
+				var button = device.GetFirstPressedButton();
+				if (button)
 				{
-					var button = unknownDevice.GetFirstPressedButton();
-					if (button)
-					{
-						return button;
-					}
+					return button;
+				}
 
-					var analog = unknownDevice.GetFirstPressedAnalog();
-					if (analog)
-					{
-						return analog;
-					}
+				var analog = device.GetFirstPressedAnalog();
+				if (analog)
+				{
+					return analog;
 				}
 			}
 

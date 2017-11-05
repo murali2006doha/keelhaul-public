@@ -1,7 +1,3 @@
-using System;
-using System.IO;
-using UnityEngine;
-
 namespace InControl
 {
 	public enum Mouse : int
@@ -23,5 +19,4 @@ namespace InControl
 		Button8,
 		Button9
 	}
-	
 }

@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace InControl
+﻿namespace InControl
 {
 	// @cond nodoc
 	[AutoDiscover]
@@ -12,7 +9,10 @@ namespace InControl
 			Name = "Amazon Fire Controller";
 			Meta = "Amazon Fire Controller on Amazon Fire TV";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+			DeviceStyle = InputDeviceStyle.AmazonFireTV;
+
+			IncludePlatforms = new[] {
 				"Amazon AFT",
 				"Android"
 			};

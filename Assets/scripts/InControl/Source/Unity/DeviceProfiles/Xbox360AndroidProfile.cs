@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace InControl
+﻿namespace InControl
 {
 	// @cond nodoc
 	[AutoDiscover]
@@ -12,7 +9,10 @@ namespace InControl
 			Name = "XBox 360 Controller";
 			Meta = "XBox 360 Controller on Android";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+			DeviceStyle = InputDeviceStyle.Xbox360;
+
+			IncludePlatforms = new[] {
 				"Android"
 			};
 

@@ -1,6 +1,3 @@
-using System;
-
-
 namespace InControl
 {
 	// @cond nodoc
@@ -12,7 +9,9 @@ namespace InControl
 			Name = "Logitech WingMan Controller";
 			Meta = "Logitech WingMan Controller on Windows";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.FlightStick;
+
+			IncludePlatforms = new[] {
 				"Windows"
 			};
 

@@ -700,22 +700,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1233641890862520
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4998492681360420}
-  - component: {fileID: 195158341172548620}
-  m_Layer: 9
-  m_Name: navmeshagent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1234050913144856
 GameObject:
   m_ObjectHideFlags: 1
@@ -2238,6 +2222,7 @@ GameObject:
   - component: {fileID: 114379883750595142}
   - component: {fileID: 114630464663345872}
   - component: {fileID: 143545515025889952}
+  - component: {fileID: 195078503646714070}
   - component: {fileID: 114837330948729142}
   - component: {fileID: 114799681859917644}
   - component: {fileID: 114771546866688374}
@@ -2245,7 +2230,6 @@ GameObject:
   - component: {fileID: 114192596627240678}
   - component: {fileID: 114687119095539344}
   - component: {fileID: 65256525577981546}
-  - component: {fileID: 114364344777837342}
   m_Layer: 9
   m_Name: Viking Ship
   m_TagString: Untagged
@@ -3699,8 +3683,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361700932227418}
   m_LocalRotation: {x: 0.7071068, y: -0.000000007450579, z: 0.000000014901158, w: 0.7071067}
-  m_LocalPosition: {x: 0.61, y: 0, z: 10.71}
-  m_LocalScale: {x: 10.000016, y: 3.5000117, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 10.71}
+  m_LocalScale: {x: 3, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 4777083751887454}
   m_RootOrder: 1
@@ -4326,7 +4310,6 @@ Transform:
   - {fileID: 4396230972672876}
   - {fileID: 4202561047349126}
   - {fileID: 4331783089056482}
-  - {fileID: 4998492681360420}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 151.81, z: 0}
@@ -4610,19 +4593,6 @@ Transform:
   - {fileID: 4015692333078596}
   m_Father: {fileID: 4234482444241316}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4998492681360420
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1233641890862520}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4676488738246948}
-  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23027032526649130
 MeshRenderer:
@@ -6583,7 +6553,6 @@ MonoBehaviour:
   aim: {fileID: 1662536791073928}
   line: {fileID: 1854451738111694}
   cannon: {fileID: 1953543466941070}
-  aiControls: 0
 --- !u!114 &114192596627240678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7590,18 +7559,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114364344777837342
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1676817926590220}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6a13990b38fa3f40a57e41b2a941cfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameType: 2
 --- !u!114 &114367528242467908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9470,7 +9427,6 @@ MonoBehaviour:
   boosted: 0
   boosting: 0
   speedModifier: 1
-  aiControls: 0
   sinking: 0
   locked: 0
 --- !u!114 &114773139918412048
@@ -10817,7 +10773,7 @@ Projector:
   m_FieldOfView: 63.34
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 0.65
+  m_OrthographicSize: 0.1
   m_Material: {fileID: 2100000, guid: df4bb41fe78fd7741bc47fd8110afb3e, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
@@ -11115,27 +11071,27 @@ CharacterController:
   m_SkinWidth: 0.008
   m_MinMoveDistance: 0.0001
   m_Center: {x: 0, y: 5, z: 0}
---- !u!195 &195158341172548620
+--- !u!195 &195078503646714070
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1233641890862520}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1676817926590220}
+  m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 2.5
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 60
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!198 &198191200963675902
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -66824,7 +66780,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a97445fc966c75349904c12723d3f56a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04ccb2ab5353d4027a11b3e974f1a55f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

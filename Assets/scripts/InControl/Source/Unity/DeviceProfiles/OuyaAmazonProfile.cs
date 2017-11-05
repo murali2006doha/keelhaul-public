@@ -1,6 +1,3 @@
-using System;
-
-
 namespace InControl
 {
 	// @cond nodoc
@@ -12,8 +9,11 @@ namespace InControl
 			Name = "OUYA Controller";
 			Meta = "OUYA Controller on Amazon Fire TV";
 
-			SupportedPlatforms = new[] {
-				"Amazon AFT"			
+			DeviceClass = InputDeviceClass.Controller;
+			DeviceStyle = InputDeviceStyle.Ouya;
+
+			IncludePlatforms = new[] {
+				"Amazon AFT"
 			};
 
 			JoystickNames = new[] {
