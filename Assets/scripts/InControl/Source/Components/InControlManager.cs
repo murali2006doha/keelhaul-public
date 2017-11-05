@@ -1,46 +1,69 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using UnityEngine;
-
-
 namespace InControl
 {
-	public class InControlManager : SingletonMonoBehavior<InControlManager>
+	using System;
+	using System.Collections.Generic;
+	using UnityEngine;
+
+#if NETFX_CORE
+	using System.Reflection;
+#endif
+
+#if UNITY_5_4_OR_NEWER
+	using UnityEngine.SceneManagement;
+#endif
+
+
+	public class InControlManager : SingletonMonoBehavior<InControlManager, MonoBehaviour>
 	{
 		public bool logDebugInfo = false;
 		public bool invertYAxis = false;
 		public bool useFixedUpdate = false;
 		public bool dontDestroyOnLoad = false;
-
-		public bool enableXInput = false;
-		public int xInputUpdateRate = 0;
-		public int xInputBufferSize = 0;
+		public bool suspendInBackground = false;
 
 		public bool enableICade = false;
+
+		public bool enableXInput = false;
+		public bool xInputOverrideUpdateRate = false;
+		public int xInputUpdateRate = 0;
+		public bool xInputOverrideBufferSize = false;
+		public int xInputBufferSize = 0;
+
+		public bool enableNativeInput = false;
+		public bool nativeInputEnableXInput = true;
+		public bool nativeInputPreventSleep = false;
+		public bool nativeInputOverrideUpdateRate = false;
+		public int nativeInputUpdateRate = 0;
 
 		public List<string> customProfiles = new List<string>();
 
 
 		void OnEnable()
 		{
-			if (!SetupSingleton())
+			if (EnforceSingleton() == false)
 			{
 				return;
 			}
 
 			InputManager.InvertYAxis = invertYAxis;
+			InputManager.SuspendInBackground = suspendInBackground;
+			InputManager.EnableICade = enableICade;
+
 			InputManager.EnableXInput = enableXInput;
 			InputManager.XInputUpdateRate = (uint) Mathf.Max( xInputUpdateRate, 0 );
 			InputManager.XInputBufferSize = (uint) Mathf.Max( xInputBufferSize, 0 );
-			InputManager.EnableICade = enableICade;
+
+			InputManager.EnableNativeInput = enableNativeInput;
+			InputManager.NativeInputEnableXInput = nativeInputEnableXInput;
+			InputManager.NativeInputUpdateRate = (uint) Mathf.Max( nativeInputUpdateRate, 0 );
+			InputManager.NativeInputPreventSleep = nativeInputPreventSleep;
 
 			if (InputManager.SetupInternal())
 			{
 				if (logDebugInfo)
 				{
 					Debug.Log( "InControl (version " + InputManager.Version + ")" );
+					Logger.OnLogMessage -= LogMessage;
 					Logger.OnLogMessage += LogMessage;
 				}
 
@@ -53,7 +76,7 @@ namespace InControl
 					}
 					else
 					{
-						var customProfileInstance = Activator.CreateInstance( classType ) as InputDeviceProfile;
+						var customProfileInstance = Activator.CreateInstance( classType ) as UnityInputDeviceProfileBase;
 						if (customProfileInstance != null)
 						{
 							InputManager.AttachDevice( new UnityInputDevice( customProfileInstance ) );
@@ -61,6 +84,11 @@ namespace InControl
 					}
 				}
 			}
+
+#if UNITY_5_4_OR_NEWER
+			SceneManager.sceneLoaded -= OnSceneWasLoaded;
+			SceneManager.sceneLoaded += OnSceneWasLoaded;
+#endif
 
 			if (dontDestroyOnLoad)
 			{
@@ -71,6 +99,10 @@ namespace InControl
 
 		void OnDisable()
 		{
+#if UNITY_5_4_OR_NEWER
+			SceneManager.sceneLoaded -= OnSceneWasLoaded;
+#endif
+
 			if (InControlManager.Instance == this)
 			{
 				InputManager.ResetInternal();
@@ -78,7 +110,7 @@ namespace InControl
 		}
 
 
-		#if UNITY_ANDROID && INCONTROL_OUYA && !UNITY_EDITOR
+#if UNITY_ANDROID && INCONTROL_OUYA && !UNITY_EDITOR
 		void Start()
 		{
 			StartCoroutine( CheckForOuyaEverywhereSupport() );
@@ -98,7 +130,7 @@ namespace InControl
 
 			OuyaEverywhereDeviceManager.Enable();
 		}
-		#endif
+#endif
 
 
 		void Update()
@@ -137,27 +169,33 @@ namespace InControl
 		}
 
 
+#if UNITY_5_4_OR_NEWER
+		void OnSceneWasLoaded( Scene scene, LoadSceneMode loadSceneMode )
+		{
+			InputManager.OnLevelWasLoaded();
+		}
+#else
 		void OnLevelWasLoaded( int level )
 		{
 			InputManager.OnLevelWasLoaded();
 		}
+#endif
 
 
-		void LogMessage( LogMessage logMessage )
+		static void LogMessage( LogMessage logMessage )
 		{
 			switch (logMessage.type)
 			{
-				case LogMessageType.Info:
-					Debug.Log( logMessage.text );
-					break;
-				case LogMessageType.Warning:
-					Debug.LogWarning( logMessage.text );
-					break;
-				case LogMessageType.Error:
-					Debug.LogError( logMessage.text );
-					break;
+			case LogMessageType.Info:
+				Debug.Log( logMessage.text );
+				break;
+			case LogMessageType.Warning:
+				Debug.LogWarning( logMessage.text );
+				break;
+			case LogMessageType.Error:
+				Debug.LogError( logMessage.text );
+				break;
 			}
 		}
 	}
 }
-

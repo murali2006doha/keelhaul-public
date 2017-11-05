@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace InControl
+﻿namespace InControl
 {
 	// @cond nodoc
 	[AutoDiscover]
@@ -9,10 +6,13 @@ namespace InControl
 	{
 		public BuffaloClassicMacProfile()
 		{
-			Name = "Buffalo Class Gamepad";
-			Meta = "Buffalo Class Gamepad on Mac";
+			Name = "iBuffalo Classic Controller";
+			Meta = "iBuffalo Classic Controller on Mac";
+			// Link = "http://www.amazon.com/Buffalo-Classic-USB-Gamepad-PC/dp/B002B9XB0E";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+
+			IncludePlatforms = new[] {
 				"OS X",
 			};
 

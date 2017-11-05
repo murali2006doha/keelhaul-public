@@ -1,17 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using UnityEngine;
-using System.Collections;
-
-
 namespace InControl
 {
-	[ExecuteInEditMode]
-	public class TouchManager : SingletonMonoBehavior<TouchManager>
-	{
-		const int MaxTouches = 16;
+	using System;
+	using System.Collections;
+	using System.Collections.Generic;
+	using System.Collections.ObjectModel;
+	using UnityEngine;
 
+
+	[ExecuteInEditMode]
+	public class TouchManager : SingletonMonoBehavior<TouchManager, InControlManager>
+	{
 		public enum GizmoShowOption
 		{
 			Never,
@@ -38,6 +36,7 @@ namespace InControl
 		public static event Action OnSetup;
 
 		InputDevice device;
+
 		Vector3 viewSize;
 		Vector2 screenSize;
 		Vector2 halfScreenSize;
@@ -45,16 +44,19 @@ namespace InControl
 		float halfPercentToWorld;
 		float pixelToWorld;
 		float halfPixelToWorld;
+
 		TouchControl[] touchControls;
-		Touch[] cachedTouches;
+
+		TouchPool cachedTouches;
 		List<Touch> activeTouches;
 		ReadOnlyCollection<Touch> readOnlyActiveTouches;
+
 		Vector2 lastMousePosition;
 		bool isReady;
 
-		#pragma warning disable 414
+#pragma warning disable 414
 		Touch mouseTouch;
-		#pragma warning restore 414
+#pragma warning restore 414
 
 
 		protected TouchManager()
@@ -64,10 +66,44 @@ namespace InControl
 
 		void OnEnable()
 		{
-			if (!SetupSingleton())
+			var manager = GetComponent<InControlManager>();
+			if (manager == null)
 			{
+				Debug.LogError( "Touch Manager component can only be added to the InControl Manager object." );
+				DestroyImmediate( this );
 				return;
 			}
+
+			if (EnforceSingletonComponent() == false)
+			{
+				Debug.LogWarning( "There is already a Touch Manager component on this game object." );
+				return;
+			}
+
+#if UNITY_EDITOR
+			if (touchCamera == null)
+			{
+				foreach (var component in manager.gameObject.GetComponentsInChildren<Camera>())
+				{
+					DestroyImmediate( component.gameObject );
+				}
+
+				var cameraGameObject = new GameObject( "Touch Camera" );
+				cameraGameObject.transform.parent = manager.gameObject.transform;
+				cameraGameObject.transform.SetAsFirstSibling();
+
+				touchCamera = cameraGameObject.AddComponent<Camera>();
+				touchCamera.transform.position = new Vector3( 0.0f, 0.0f, -10.0f );
+				touchCamera.clearFlags = CameraClearFlags.Nothing;
+				touchCamera.cullingMask = 1 << LayerMask.NameToLayer( "UI" );
+				touchCamera.orthographic = true;
+				touchCamera.orthographicSize = 5.0f;
+				touchCamera.nearClipPlane = 0.3f;
+				touchCamera.farClipPlane = 1000.0f;
+				touchCamera.rect = new Rect( 0.0f, 0.0f, 1.0f, 1.0f );
+				touchCamera.depth = 100;
+			}
+#endif
 
 			touchControls = GetComponentsInChildren<TouchControl>( true );
 
@@ -95,7 +131,7 @@ namespace InControl
 
 		void Setup()
 		{
-			UpdateScreenSize( new Vector2( Screen.width, Screen.height ) );
+			UpdateScreenSize( GetCurrentScreenSize() );
 
 			CreateDevice();
 			CreateTouches();
@@ -120,33 +156,30 @@ namespace InControl
 		}
 
 
-		void Start()
-		{
-			// This little hack is necessary because right after Unity starts up,
-			// cameras don't seem to have a correct projection matrix until after
-			// their first update or around that time. So we basically need to
-			// wait until the end of the first frame before everything is quite ready.
-			StartCoroutine( Ready() );
-		}
-
-
-		IEnumerator Ready()
+		IEnumerator UpdateScreenSizeAtEndOfFrame()
 		{
 			yield return new WaitForEndOfFrame();
-			isReady = true;
-			UpdateScreenSize( new Vector2( Screen.width, Screen.height ) );
+			UpdateScreenSize( GetCurrentScreenSize() );
 			yield return null;
 		}
 
 
 		void Update()
 		{
+			var currentScreenSize = GetCurrentScreenSize();
+
 			if (!isReady)
 			{
+				// This little hack is necessary because right after Unity starts up,
+				// cameras don't seem to have a correct projection matrix until after
+				// their first update or around that time. So we basically need to
+				// wait until the end of the first frame before everything is quite ready.
+				StartCoroutine( UpdateScreenSizeAtEndOfFrame() );
+				UpdateScreenSize( currentScreenSize );
+				isReady = true;
 				return;
 			}
 
-			var currentScreenSize = new Vector2( Screen.width, Screen.height );
 			if (screenSize != currentScreenSize)
 			{
 				UpdateScreenSize( currentScreenSize );
@@ -160,10 +193,21 @@ namespace InControl
 		}
 
 
+#if UNITY_EDITOR
+		void OnGUI()
+		{
+			var currentScreenSize = GetCurrentScreenSize();
+			if (screenSize != currentScreenSize)
+			{
+				UpdateScreenSize( currentScreenSize );
+			}
+		}
+#endif
+
+
 		void CreateDevice()
 		{
-			device = new InputDevice( "TouchDevice" );
-			device.RawSticks = true;
+			device = new TouchInputDevice();
 
 			device.AddControl( InputControlType.LeftStickLeft, "LeftStickLeft" );
 			device.AddControl( InputControlType.LeftStickRight, "LeftStickRight" );
@@ -175,21 +219,21 @@ namespace InControl
 			device.AddControl( InputControlType.RightStickUp, "RightStickUp" );
 			device.AddControl( InputControlType.RightStickDown, "RightStickDown" );
 
-			device.AddControl( InputControlType.LeftTrigger, "LeftTrigger" );
-			device.AddControl( InputControlType.RightTrigger, "RightTrigger" );
-
 			device.AddControl( InputControlType.DPadUp, "DPadUp" );
 			device.AddControl( InputControlType.DPadDown, "DPadDown" );
 			device.AddControl( InputControlType.DPadLeft, "DPadLeft" );
 			device.AddControl( InputControlType.DPadRight, "DPadRight" );
 
-			device.AddControl( InputControlType.Action1, "Action1" );
-			device.AddControl( InputControlType.Action2, "Action2" );
-			device.AddControl( InputControlType.Action3, "Action3" );
-			device.AddControl( InputControlType.Action4, "Action4" );
+			device.AddControl( InputControlType.LeftTrigger, "LeftTrigger" );
+			device.AddControl( InputControlType.RightTrigger, "RightTrigger" );
 
 			device.AddControl( InputControlType.LeftBumper, "LeftBumper" );
 			device.AddControl( InputControlType.RightBumper, "RightBumper" );
+
+			for (var control = InputControlType.Action1; control <= InputControlType.Action4; control++)
+			{
+				device.AddControl( control, control.ToString() );
+			}
 
 			device.AddControl( InputControlType.Menu, "Menu" );
 
@@ -218,7 +262,7 @@ namespace InControl
 		void SubmitControlStates( ulong updateTick, float deltaTime )
 		{
 			var touchControlCount = touchControls.Length;
-			for (int i = 0; i < touchControlCount; i++)
+			for (var i = 0; i < touchControlCount; i++)
 			{
 				var touchControl = touchControls[i];
 				if (touchControl.enabled && touchControl.gameObject.activeInHierarchy)
@@ -232,7 +276,7 @@ namespace InControl
 		void CommitControlStates( ulong updateTick, float deltaTime )
 		{
 			var touchControlCount = touchControls.Length;
-			for (int i = 0; i < touchControlCount; i++)
+			for (var i = 0; i < touchControlCount; i++)
 			{
 				var touchControl = touchControls[i];
 				if (touchControl.enabled && touchControl.gameObject.activeInHierarchy)
@@ -245,6 +289,11 @@ namespace InControl
 
 		void UpdateScreenSize( Vector2 currentScreenSize )
 		{
+			// Somehow the camera's projection matrix doesn't always update correctly on
+			// resolution changes. This seems to cause it to recalculate properly.
+			touchCamera.rect = new Rect( 0, 0, 0.99f, 1 );
+			touchCamera.rect = new Rect( 0, 0, 1, 1 );
+
 			screenSize = currentScreenSize;
 			halfScreenSize = screenSize / 2.0f;
 
@@ -261,7 +310,7 @@ namespace InControl
 			if (touchControls != null)
 			{
 				var touchControlCount = touchControls.Length;
-				for (int i = 0; i < touchControlCount; i++)
+				for (var i = 0; i < touchControlCount; i++)
 				{
 					touchControls[i].ConfigureControl();
 				}
@@ -271,13 +320,12 @@ namespace InControl
 
 		void CreateTouches()
 		{
-			cachedTouches = new Touch[MaxTouches];
-			for (int i = 0; i < MaxTouches; i++)
-			{
-				cachedTouches[i] = new Touch( i );
-			}
-			mouseTouch = cachedTouches[MaxTouches - 1];
-			activeTouches = new List<Touch>( MaxTouches );
+			cachedTouches = new TouchPool();
+
+			mouseTouch = new Touch();
+			mouseTouch.fingerId = Touch.FingerID_Mouse;
+
+			activeTouches = new List<Touch>( 32 );
 			readOnlyActiveTouches = new ReadOnlyCollection<Touch>( activeTouches );
 		}
 
@@ -285,26 +333,28 @@ namespace InControl
 		void UpdateTouches( ulong updateTick, float deltaTime )
 		{
 			activeTouches.Clear();
+			cachedTouches.FreeEndedTouches();
 
-			#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_WEBGL
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_WEBGL || UNITY_WSA
 			if (mouseTouch.SetWithMouseData( updateTick, deltaTime ))
 			{
 				activeTouches.Add( mouseTouch );
 			}
-			#endif
+#endif
 
-			for (int i = 0; i < Input.touchCount; i++)
+			for (var i = 0; i < Input.touchCount; i++)
 			{
 				var unityTouch = Input.GetTouch( i );
-				var cacheTouch = cachedTouches[unityTouch.fingerId];
+				var cacheTouch = cachedTouches.FindOrCreateTouch( unityTouch.fingerId );
 				cacheTouch.SetWithTouchData( unityTouch, updateTick, deltaTime );
 				activeTouches.Add( cacheTouch );
 			}
 
 			// Find any touches that Unity may have "forgotten" to end properly.
-			for (int i = 0; i < MaxTouches; i++)
+			var touchCount = cachedTouches.Touches.Count;
+			for (var i = 0; i < touchCount; i++)
 			{
-				var touch = cachedTouches[i];
+				var touch = cachedTouches.Touches[i];
 				if (touch.phase != TouchPhase.Ended && touch.updateTick != updateTick)
 				{
 					touch.phase = TouchPhase.Ended;
@@ -319,7 +369,7 @@ namespace InControl
 		void SendTouchBegan( Touch touch )
 		{
 			var touchControlCount = touchControls.Length;
-			for (int i = 0; i < touchControlCount; i++)
+			for (var i = 0; i < touchControlCount; i++)
 			{
 				var touchControl = touchControls[i];
 				if (touchControl.enabled && touchControl.gameObject.activeInHierarchy)
@@ -333,7 +383,7 @@ namespace InControl
 		void SendTouchMoved( Touch touch )
 		{
 			var touchControlCount = touchControls.Length;
-			for (int i = 0; i < touchControlCount; i++)
+			for (var i = 0; i < touchControlCount; i++)
 			{
 				var touchControl = touchControls[i];
 				if (touchControl.enabled && touchControl.gameObject.activeInHierarchy)
@@ -347,7 +397,7 @@ namespace InControl
 		void SendTouchEnded( Touch touch )
 		{
 			var touchControlCount = touchControls.Length;
-			for (int i = 0; i < touchControlCount; i++)
+			for (var i = 0; i < touchControlCount; i++)
 			{
 				var touchControl = touchControls[i];
 				if (touchControl.enabled && touchControl.gameObject.activeInHierarchy)
@@ -371,26 +421,26 @@ namespace InControl
 				}
 			}
 
-			for (int i = 0; i < touchCount; i++)
+			for (var i = 0; i < touchCount; i++)
 			{
 				var touch = activeTouches[i];
 				switch (touch.phase)
 				{
-					case TouchPhase.Began:
-						SendTouchBegan( touch );
-						break;
+				case TouchPhase.Began:
+					SendTouchBegan( touch );
+					break;
 
-					case TouchPhase.Moved:
-						SendTouchMoved( touch );
-						break;
+				case TouchPhase.Moved:
+					SendTouchMoved( touch );
+					break;
 
-					case TouchPhase.Ended:
-						SendTouchEnded( touch );
-						break;
+				case TouchPhase.Ended:
+					SendTouchEnded( touch );
+					break;
 
-					case TouchPhase.Canceled:
-						SendTouchEnded( touch );
-						break;
+				case TouchPhase.Canceled:
+					SendTouchEnded( touch );
+					break;
 				}
 			}
 		}
@@ -428,10 +478,8 @@ namespace InControl
 			{
 				return touchCamera.ScreenToWorldPoint( new Vector3( point.x, point.y, -touchCamera.transform.position.z ) );
 			}
-			else
-			{
-				return Vector3.zero;
-			}
+
+			return Vector3.zero;
 		}
 
 
@@ -441,10 +489,8 @@ namespace InControl
 			{
 				return touchCamera.ViewportToWorldPoint( new Vector3( point.x, point.y, -touchCamera.transform.position.z ) );
 			}
-			else
-			{
-				return Vector3.zero;
-			}
+
+			return Vector3.zero;
 		}
 
 
@@ -454,10 +500,19 @@ namespace InControl
 			{
 				return touchCamera.ScreenToViewportPoint( new Vector3( point.x, point.y, -touchCamera.transform.position.z ) );
 			}
-			else
+
+			return Vector3.zero;
+		}
+
+
+		Vector2 GetCurrentScreenSize()
+		{
+			if (TouchCameraIsValid())
 			{
-				return Vector3.zero;
+				return new Vector2( touchCamera.pixelWidth, touchCamera.pixelHeight );
 			}
+
+			return new Vector2( Screen.width, Screen.height );
 		}
 
 
@@ -473,7 +528,7 @@ namespace InControl
 				if (_controlsEnabled != value)
 				{
 					var touchControlCount = touchControls.Length;
-					for (int i = 0; i < touchControlCount; i++)
+					for (var i = 0; i < touchControlCount; i++)
 					{
 						touchControls[i].enabled = value;
 					}
@@ -512,7 +567,7 @@ namespace InControl
 
 		public static Touch GetTouchByFingerId( int fingerId )
 		{
-			return Instance.cachedTouches[fingerId];
+			return Instance.cachedTouches.FindTouch( fingerId );
 		}
 
 
@@ -680,4 +735,3 @@ namespace InControl
 		}
 	}
 }
-
