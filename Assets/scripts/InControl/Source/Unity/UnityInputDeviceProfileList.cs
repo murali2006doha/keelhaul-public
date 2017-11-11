@@ -1,9 +1,8 @@
-using System;
-using UnityEngine;
-
-
 namespace InControl
 {
+	using UnityEngine;
+
+
 	public class UnityInputDeviceProfileList : ScriptableObject
 	{
 		public static string[] Profiles = new string[] 
@@ -16,11 +15,34 @@ namespace InControl
 			"InControl.AndroidTVProfile",
 			"InControl.AndroidTVRemoteProfile",
 			"InControl.AppleMFiProfile",
+			"InControl.AppleTVRemoteProfile",
+			"InControl.AppleTVWirelessControllerProfile",
+			"InControl.BeboncoolDA015CAAndroidProfile",
+			"InControl.BetopBTPAX1TAndroidProfile",
+			"InControl.BetopBTPGenericAndroidProfile",
 			"InControl.BuffaloClassicAmazonProfile",
 			"InControl.BuffaloClassicMacProfile",
 			"InControl.BuffaloClassicWinProfile",
+			"InControl.DroidBoxPS3AndroidProfile",
+			"InControl.DroidBoxXboxAndroidProfile",
+			"InControl.EightBitdoFC30ProAndroidProfile",
+			"InControl.EightBitdoNES30ProAndroidProfile",
+			"InControl.EightBitdoNES30ProMacProfile",
+			"InControl.EightBitdoNES30ProWindowsProfile",
+			"InControl.EightBitdoSFC30AndroidProfile",
+			"InControl.EightBitdoSFC30MacProfile",
+			"InControl.EightBitdoSFC30WindowsProfile",
+			"InControl.EightBitdoSNES30AndroidProfile",
+			"InControl.EightBitdoSNES30MacProfile",
+			"InControl.EightBitdoSNES30WindowsProfile",
 			"InControl.ExecutionerXProfile",
+			"InControl.FixXBG301AndroidProfile",
+			"InControl.FlareAndroidProfile",
+			"InControl.GameCubeMayflashWinProfile",
 			"InControl.GameCubeWinProfile",
+			"InControl.GameSirG3sAndroidProfile",
+			"InControl.GameSirG3wAndroidProfile",
+			"InControl.GameSirG4sAndroidProfile",
 			"InControl.GameStickLinuxProfile",
 			"InControl.GameStickProfile",
 			"InControl.GenericAndroidProfile",
@@ -29,6 +51,7 @@ namespace InControl
 			"InControl.GreenThrottleAtlasAndroidProfile",
 			"InControl.HamaBlackForceWinProfile",
 			"InControl.IpegaPG9023AndroidProfile",
+			"InControl.IpegaPG9025AndroidProfile",
 			"InControl.LevelUpBlackHawkWinProfile",
 			"InControl.LogitechF310LinuxProfile",
 			"InControl.LogitechF310ModeDMacProfile",
@@ -48,6 +71,7 @@ namespace InControl
 			"InControl.LogitechModeXAmazonProfile",
 			"InControl.LogitechWingManWinProfile",
 			"InControl.MadCatzCTRLRAmazonProfile",
+			"InControl.MadCatzCTRLRAndroidProfile",
 			"InControl.MadCatzMicroCTRLRAmazonProfile",
 			"InControl.MaxFireBlaze5Profile",
 			"InControl.MogaHeroPowerAndroidProfile",
@@ -61,7 +85,10 @@ namespace InControl
 			"InControl.NexusPlayerProfile",
 			"InControl.NexusPlayerRemoteProfile",
 			"InControl.NexusPlayerWinProfile",
+			"InControl.NVidiaShield2016AndroidProfile",
+			"InControl.NVidiaShield2017AndroidProfile",
 			"InControl.NVidiaShieldAndroidProfile",
+			"InControl.NVidiaShieldWin10Profile",
 			"InControl.NVidiaShieldWin7Profile",
 			"InControl.NVidiaShieldWinProfile",
 			"InControl.NykoPlayPadProAmazonProfile",
@@ -77,10 +104,12 @@ namespace InControl
 			"InControl.PlayStation3WinProfile",
 			"InControl.PlayStation4AmazonProfile",
 			"InControl.PlayStation4AndroidProfile",
+			"InControl.PlayStation4AndroidXperiaZ5Profile",
 			"InControl.PlayStation4LinuxProfile",
 			"InControl.PlayStation4MacBTProfile",
 			"InControl.PlayStation4MacUSBProfile",
 			"InControl.PlayStation4Profile",
+			"InControl.PlayStation4SteamLinkMacProfile",
 			"InControl.PlayStation4WinProfile",
 			"InControl.PlayStationVitaPSMProfile",
 			"InControl.RazerServalForgeTVProfile",
@@ -95,6 +124,7 @@ namespace InControl
 			"InControl.SteelSeriesFreeMacProfile",
 			"InControl.SteelSeriesFreeWinProfile",
 			"InControl.SteelSeriesStratusXLAndroidProfile",
+			"InControl.SteelSeriesStratusXLWinProfile",
 			"InControl.ValveStreamingWinProfile",
 			"InControl.Xbox360AmazonProfile",
 			"InControl.Xbox360AndroidProfile",
@@ -102,10 +132,18 @@ namespace InControl
 			"InControl.Xbox360MacProfile",
 			"InControl.Xbox360RockCandyAndroidProfile",
 			"InControl.Xbox360WinProfile",
+			"InControl.XboxOneBluetoothAndroidProfile",
 			"InControl.XboxOneMacProfile",
 			"InControl.XboxOneProfile",
+			"InControl.XboxOneWin10AEProfile",
 			"InControl.XboxOneWin10Profile",
 			"InControl.XboxOneWinProfile",
+			"InControl.XiamoiMacProfile",
+			"InControl.XiamoiWinProfile",
+			"InControl.XTR_G2_MacUnityProfile",
+			"InControl.XTR_G2_WindowsUnityProfile",
+			"InControl.XTR55_G2_MacUnityProfile",
+			"InControl.XTR55_G2_WindowsUnityProfile",
 		};
 	}
 }

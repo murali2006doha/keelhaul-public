@@ -1,11 +1,10 @@
-﻿#if UNITY_4_6 || UNITY_5
-using UnityEngine;
-using UnityEngine.EventSystems;
-using InControl;
-
-
+﻿#if UNITY_4_6 || UNITY_4_7 || UNITY_5 || UNITY_5_6_OR_NEWER
 namespace InControl
 {
+	using UnityEngine;
+	using UnityEngine.EventSystems;
+	using UnityEngine.Serialization;
+
 	[AddComponentMenu( "Event/InControl Input Module" )]
 	public class InControlInputModule : StandaloneInputModule
 	{
@@ -23,9 +22,19 @@ namespace InControl
 		public float analogMoveThreshold = 0.5f;
 		public float moveRepeatFirstDuration = 0.8f;
 		public float moveRepeatDelayDuration = 0.1f;
-		public bool allowMobileDevice = true;
+
+		// Deprecated.
+		bool allowMobileDevice;
+
+		[FormerlySerializedAs( "allowMobileDevice" )]
+#if (UNITY_5 || UNITY_5_6_OR_NEWER) && !(UNITY_5_0 || UNITY_5_1)
+		new public bool forceModuleActive;
+#else
+		public bool forceModuleActive;
+#endif
+
 		public bool allowMouseInput = true;
-		public bool focusOnMouseHover = false;
+		public bool focusOnMouseHover;
 
 		InputDevice inputDevice;
 		Vector3 thisMousePosition;
@@ -41,9 +50,7 @@ namespace InControl
 		TwoAxisInputControl direction;
 
 		public PlayerAction SubmitAction { get; set; }
-
 		public PlayerAction CancelAction { get; set; }
-
 		public PlayerTwoAxisAction MoveAction { get; set; }
 
 
@@ -63,11 +70,23 @@ namespace InControl
 
 		public override bool IsModuleSupported()
 		{
-			#if UNITY_WII || UNITY_PS3 || UNITY_PS4 || UNITY_XBOX360 || UNITY_XBOXONE
+#if UNITY_WII || UNITY_PS3 || UNITY_PS4 || UNITY_XBOX360 || UNITY_XBOXONE
 			return true;
-			#endif
+#endif
 
-			return allowMobileDevice || Input.mousePresent;
+			if (forceModuleActive || Input.mousePresent)
+			{
+				return true;
+			}
+
+#if UNITY_5
+			if (Input.touchSupported)
+			{
+				return true;
+			}
+#endif
+
+			return false;
 		}
 
 
@@ -85,13 +104,18 @@ namespace InControl
 			shouldActivate |= CancelWasPressed;
 			shouldActivate |= VectorWasPressed;
 
-			#if !UNITY_IOS || UNITY_EDITOR
+#if !UNITY_IOS || UNITY_EDITOR
 			if (allowMouseInput)
 			{
 				shouldActivate |= MouseHasMoved;
 				shouldActivate |= MouseButtonIsPressed;
 			}
-			#endif
+#endif
+
+			if (Input.touchCount > 0)
+			{
+				shouldActivate = true;
+			}
 
 			return shouldActivate;
 		}
@@ -132,13 +156,55 @@ namespace InControl
 				}
 			}
 
-			#if !UNITY_IOS || UNITY_EDITOR
+#if UNITY_5 && !(UNITY_5_0 || UNITY_5_1)
+			if (ProcessTouchEvents())
+			{
+				return;
+			}
+#endif
+
+#if !UNITY_IOS || UNITY_EDITOR
 			if (allowMouseInput)
 			{
 				ProcessMouseEvent();
 			}
-			#endif
+#endif
 		}
+
+
+#if UNITY_5 && !(UNITY_5_0 || UNITY_5_1)
+		bool ProcessTouchEvents()
+		{
+			var touchCount = Input.touchCount;
+			for (var i = 0; i < touchCount; ++i)
+			{
+				var touch = Input.GetTouch( i );
+
+				if (touch.type == UnityEngine.TouchType.Indirect)
+				{
+					continue;
+				}
+
+				bool released;
+				bool pressed;
+				var pointer = GetTouchPointerEventData( touch, out pressed, out released );
+
+				ProcessTouchPress( pointer, pressed, released );
+
+				if (!released)
+				{
+					ProcessMove( pointer );
+					ProcessDrag( pointer );
+				}
+				else
+				{
+					RemovePointerData( pointer );
+				}
+			}
+
+			return touchCount > 0;
+		}
+#endif
 
 
 		bool SendButtonEventToSelectedObject()
@@ -152,13 +218,13 @@ namespace InControl
 
 			if (SubmitWasPressed)
 			{
-//				ExecuteEvents.Execute( eventSystem.currentSelectedGameObject, new PointerEventData( EventSystem.current ), ExecuteEvents.pointerDownHandler );
+				//				ExecuteEvents.Execute( eventSystem.currentSelectedGameObject, new PointerEventData( EventSystem.current ), ExecuteEvents.pointerDownHandler );
 				ExecuteEvents.Execute( eventSystem.currentSelectedGameObject, eventData, ExecuteEvents.submitHandler );
 			}
 			else
 			if (SubmitWasReleased)
 			{
-//				ExecuteEvents.Execute( eventSystem.currentSelectedGameObject, new PointerEventData( EventSystem.current ), ExecuteEvents.pointerUpHandler );
+				//				ExecuteEvents.Execute( eventSystem.currentSelectedGameObject, new PointerEventData( EventSystem.current ), ExecuteEvents.pointerUpHandler );
 			}
 
 			if (CancelWasPressed)
@@ -221,7 +287,7 @@ namespace InControl
 			lastVectorState = thisVectorState;
 			thisVectorState = Vector2.zero;
 
-			TwoAxisInputControl dir = MoveAction ?? direction;
+			var dir = MoveAction ?? direction;
 
 			if (Utility.AbsoluteIsOverThreshold( dir.X, analogMoveThreshold ))
 			{
@@ -263,7 +329,7 @@ namespace InControl
 		}
 
 
-		InputDevice Device
+		public InputDevice Device
 		{
 			set
 			{
@@ -387,10 +453,10 @@ namespace InControl
 		}
 
 
+		// Copied from StandaloneInputModule where these are marked private instead of protected in Unity 5.0
 		#region Unity 5.0 compatibility.
 
-		// Copied from StandaloneInputModule where these are marked private instead of protected in Unity 5.0
-		#if UNITY_5_0
+#if UNITY_5_0
 
 		bool SendUpdateEventToSelectedObject()
 		{
@@ -512,7 +578,95 @@ namespace InControl
 			return pressed || released || pointerData.IsPointerMoving() || pointerData.IsScrolling();
 		}
 
-		#endif
+#endif
+
+		#endregion
+
+
+		// Copied from StandaloneInputModule where these are marked private instead of protected in Unity 5.3 / 5.4
+		#region Unity 5.3 / 5.4 compatibility.
+
+#if UNITY_5_3 || UNITY_5_4
+		void ProcessTouchPress( PointerEventData pointerEvent, bool pressed, bool released )
+		{
+			var go = pointerEvent.pointerCurrentRaycast.gameObject;
+			if (pressed)
+			{
+				pointerEvent.eligibleForClick = true;
+				pointerEvent.delta = Vector2.zero;
+				pointerEvent.dragging = false;
+				pointerEvent.useDragThreshold = true;
+				pointerEvent.pressPosition = pointerEvent.position;
+				pointerEvent.pointerPressRaycast = pointerEvent.pointerCurrentRaycast;
+				DeselectIfSelectionChanged( go, pointerEvent );
+				if (pointerEvent.pointerEnter != go)
+				{
+					HandlePointerExitAndEnter( pointerEvent, go );
+					pointerEvent.pointerEnter = go;
+				}
+				var go2 = ExecuteEvents.ExecuteHierarchy( go, pointerEvent, ExecuteEvents.pointerDownHandler );
+				if (go2 == null)
+				{
+					go2 = ExecuteEvents.GetEventHandler<IPointerClickHandler>( go );
+				}
+				float unscaledTime = Time.unscaledTime;
+				if (go2 == pointerEvent.lastPress)
+				{
+					float num = unscaledTime - pointerEvent.clickTime;
+					if (num < 0.3f)
+					{
+						pointerEvent.clickCount++;
+					}
+					else
+					{
+						pointerEvent.clickCount = 1;
+					}
+					pointerEvent.clickTime = unscaledTime;
+				}
+				else
+				{
+					pointerEvent.clickCount = 1;
+				}
+				pointerEvent.pointerPress = go2;
+				pointerEvent.rawPointerPress = go;
+				pointerEvent.clickTime = unscaledTime;
+				pointerEvent.pointerDrag = ExecuteEvents.GetEventHandler<IDragHandler>( go );
+				if (pointerEvent.pointerDrag != null)
+				{
+					ExecuteEvents.Execute( pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.initializePotentialDrag );
+				}
+			}
+			if (released)
+			{
+				ExecuteEvents.Execute( pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerUpHandler );
+				var eventHandler = ExecuteEvents.GetEventHandler<IPointerClickHandler>( go );
+				if (pointerEvent.pointerPress == eventHandler && pointerEvent.eligibleForClick)
+				{
+					ExecuteEvents.Execute( pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerClickHandler );
+				}
+				else if (pointerEvent.pointerDrag != null && pointerEvent.dragging)
+				{
+					ExecuteEvents.ExecuteHierarchy( go, pointerEvent, ExecuteEvents.dropHandler );
+				}
+				pointerEvent.eligibleForClick = false;
+				pointerEvent.pointerPress = null;
+				pointerEvent.rawPointerPress = null;
+				if (pointerEvent.pointerDrag != null && pointerEvent.dragging)
+				{
+					ExecuteEvents.Execute( pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.endDragHandler );
+				}
+				pointerEvent.dragging = false;
+				pointerEvent.pointerDrag = null;
+				if (pointerEvent.pointerDrag != null)
+				{
+					ExecuteEvents.Execute( pointerEvent.pointerDrag, pointerEvent, ExecuteEvents.endDragHandler );
+				}
+				pointerEvent.pointerDrag = null;
+				ExecuteEvents.ExecuteHierarchy( pointerEvent.pointerEnter, pointerEvent, ExecuteEvents.pointerExitHandler );
+				pointerEvent.pointerEnter = null;
+			}
+		}
+#endif
 
 		#endregion
 	}

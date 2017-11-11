@@ -1,10 +1,9 @@
-﻿using System;
-using System.IO;
-using UnityEngine;
-
-
-namespace InControl
+﻿namespace InControl
 {
+	using System;
+	using System.IO;
+
+
 	public struct UnknownDeviceControl : IEquatable<UnknownDeviceControl>
 	{
 		public static readonly UnknownDeviceControl None = new UnknownDeviceControl( InputControlType.None, InputRangeType.None );
@@ -12,11 +11,17 @@ namespace InControl
 		public InputControlType Control;
 		public InputRangeType SourceRange;
 
+		// TODO: This meaningless distinction should probably be removed entirely.
+		public bool IsButton;
+		public bool IsAnalog;
+
 
 		public UnknownDeviceControl( InputControlType control, InputRangeType sourceRange )
 		{
 			Control = control;
 			SourceRange = sourceRange;
+			IsButton = Utility.TargetIsButton( control );
+			IsAnalog = !IsButton;
 		}
 
 
@@ -29,6 +34,15 @@ namespace InControl
 
 			var value = device.GetControl( Control ).Value;
 			return InputRange.Remap( value, SourceRange, InputRangeType.ZeroToOne );
+		}
+
+
+		public int Index
+		{
+			get
+			{
+				return (int) (Control - (IsButton ? InputControlType.Button0 : InputControlType.Analog0));
+			}
 		}
 
 
@@ -104,6 +118,12 @@ namespace InControl
 		}
 
 
+		override public string ToString()
+		{
+			return string.Format( "UnknownDeviceControl( {0}, {1} )", Control.ToString(), SourceRange.ToString() );
+		}
+
+
 		internal void Save( BinaryWriter writer )
 		{
 			writer.Write( (Int32) Control );
@@ -115,6 +135,8 @@ namespace InControl
 		{
 			Control = (InputControlType) reader.ReadInt32();
 			SourceRange = (InputRangeType) reader.ReadInt32();
+			IsButton = Utility.TargetIsButton( Control );
+			IsAnalog = !IsButton;
 		}
 	}
 }
