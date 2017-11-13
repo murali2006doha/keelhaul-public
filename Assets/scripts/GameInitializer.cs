@@ -45,6 +45,7 @@ public class GameInitializer : MonoBehaviour {
     }
 
     public void Activate() {
+
         Cursor.visible = false;
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         gs = GameObject.FindObjectOfType<GameModeSelectSettings>();
@@ -95,7 +96,7 @@ public class GameInitializer : MonoBehaviour {
     }
 
     private void InstantiateMap() {
-       
+        print(gameType.ToString() + map.ToString());
         GameObject mapToInstantiate = Resources.Load(PathVariables.GetMapForMode(gameType, map)) as GameObject;
         Instantiate(mapToInstantiate);
     }
