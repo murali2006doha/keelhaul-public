@@ -125,8 +125,8 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
     bool AnyInputEnterWasReleased() {
-        if (actions !=null && null != actions.Device) {
-            if (actions.Device.Action1.WasReleased) {
+        if (actions !=null) {
+            if (actions.Green.WasReleased) {
                 return true;
             }
         }
@@ -137,7 +137,7 @@ public abstract class AbstractMenu : MonoBehaviour
 
     public bool AnyInputBackWasReleased() {
 
-    	if (Input.GetKeyUp(KeyCode.Escape) || (actions !=null && (actions.Red.WasReleased || actions.Start.WasReleased))) {
+    	if (Input.GetKeyUp(KeyCode.Escape) || (actions !=null && (actions.Red.WasReleased))) {
     		return true;
     	}
 
