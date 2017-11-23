@@ -91,8 +91,9 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 	this.krakenAnimator.SetBool("underShip", false);
     this.krakenAnimator.SetBool("submerge", false);
     this.mainMenuAnimator.SetTrigger ("skip");
-  
-  }
+    this.mainMenu.gameObject.SetActive(true);
+
+    }
 
     void OpenMenu() {
         if (AnyInputEnterWasReleased() && this.actions != null) {
@@ -103,8 +104,9 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 
 
     void LoadMenu() {
+      
         if (mainMenu.gameObject.GetActive()) {
-            FindObjectOfType<MenuModel>().mainMenu.Initialize(this.actions, () => {
+            FindObjectOfType<MenuModel>().mainMenu.Initialize(this.actions,true, () => {
                 FindObjectOfType<MainMenu>().ResetMenu();
                 LoadMenu();
             });
