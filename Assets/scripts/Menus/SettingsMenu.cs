@@ -59,8 +59,8 @@ public class SettingsMenu : AbstractMenu
 		actionSelectables.Add(waterReflectToggle.gameObject);
 		actionSelectables.Add(soundSlider.gameObject);
 		actionSelectables.Add(musicSlider.gameObject);
-		actionSelectables.Add(keyboardControls.gameObject);
-        actionSelectables.Add(controllerControls.gameObject);
+		/*actionSelectables.Add(keyboardControls.gameObject);
+        actionSelectables.Add(controllerControls.gameObject);*/
 	}
 
 

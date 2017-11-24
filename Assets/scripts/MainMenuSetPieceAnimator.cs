@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using InControl;
+using System;
 
 public class MainMenuSetPieceAnimator : MonoBehaviour {
 
@@ -36,10 +37,7 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     private bool skipped = false;
 
     public void Start() {
-        cc = GameObject.FindObjectOfType<ControllerSelect>();
-        cc.withKeyboard = withKeyboard;
-        cc.listening = true;
-
+        actions = PlayerActions.CreateAllControllerBinding();
         System.Random rand = new System.Random();
         foreach (SeagullAnimator gull in seagulls) {
             gull.Initialize(rand);
@@ -47,7 +45,6 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     }
 
     public void Update() {
-        SignIn();
         if (notStarted && AnyInputEnterWasReleased() && this.actions != null) {
             this.SkipAnimation();
             notStarted = false;
@@ -91,8 +88,9 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 	this.krakenAnimator.SetBool("underShip", false);
     this.krakenAnimator.SetBool("submerge", false);
     this.mainMenuAnimator.SetTrigger ("skip");
-  
-  }
+    this.mainMenu.gameObject.SetActive(true);
+
+    }
 
     void OpenMenu() {
         if (AnyInputEnterWasReleased() && this.actions != null) {
@@ -103,33 +101,19 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 
 
     void LoadMenu() {
+      
         if (mainMenu.gameObject.GetActive()) {
-            FindObjectOfType<MenuModel>().mainMenu.Initialize(this.actions, () => {
+            FindObjectOfType<MenuModel>().mainMenu.Initialize(this.actions,true, () => {
                 FindObjectOfType<MainMenu>().ResetMenu();
                 LoadMenu();
             });
         }
     }
 
-    void SignIn() {
 
-        if (cc.players.Count >= 1) {
-            this.actions = (PlayerActions)cc.players[0];
-            cc.listening = false;
-        }
-    }
 
     bool AnyInputEnterWasReleased() {
-        if (Input.GetKeyUp(KeyCode.Return)) {
-            return true;
-        }
-        foreach (InputDevice device in InputManager.Devices) {
-            if (device.Action1.WasReleased) {
-                return true;
-            }
-        }
-
-        return false;
+        return actions.Start.WasReleased;
     }
 
 
