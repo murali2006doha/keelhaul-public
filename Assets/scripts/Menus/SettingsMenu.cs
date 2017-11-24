@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
-
+using UnityEngine.EventSystems;
 public class SettingsMenu : AbstractMenu
 {
 
@@ -84,5 +84,10 @@ public class SettingsMenu : AbstractMenu
 	void setWaterReflectionToggle(bool isOn) {
 		GlobalSettings.setReflection(isOn);
 	}
+
+    public void OnClick()
+    {
+        GoBack();
+    }
 }
 

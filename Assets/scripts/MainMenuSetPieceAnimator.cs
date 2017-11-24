@@ -101,7 +101,7 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 
 
     void LoadMenu() {
-      
+        this.mainMenu.gameObject.SetActive(true);
         if (mainMenu.gameObject.GetActive()) {
             FindObjectOfType<MenuModel>().mainMenu.Initialize(this.actions,true, () => {
                 FindObjectOfType<MainMenu>().ResetMenu();
