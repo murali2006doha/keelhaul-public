@@ -14,7 +14,6 @@ namespace TMPro.Examples
             {
                 TextEventHandler.onCharacterSelection.AddListener(OnCharacterSelection);
                 TextEventHandler.onWordSelection.AddListener(OnWordSelection);
-                TextEventHandler.onLineSelection.AddListener(OnLineSelection);
                 TextEventHandler.onLinkSelection.AddListener(OnLinkSelection);
             }
         }
@@ -26,7 +25,6 @@ namespace TMPro.Examples
             {
                 TextEventHandler.onCharacterSelection.RemoveListener(OnCharacterSelection);
                 TextEventHandler.onWordSelection.RemoveListener(OnWordSelection);
-                TextEventHandler.onLineSelection.RemoveListener(OnLineSelection);
                 TextEventHandler.onLinkSelection.RemoveListener(OnLinkSelection);
             }
         }
@@ -40,11 +38,6 @@ namespace TMPro.Examples
         void OnWordSelection(string word, int firstCharacterIndex, int length)
         {
             Debug.Log("Word [" + word + "] with first character index of " + firstCharacterIndex + " and length of " + length + " has been selected.");
-        }
-
-        void OnLineSelection(string lineText, int firstCharacterIndex, int length)
-        {
-            Debug.Log("Line [" + lineText + "] with first character index of " + firstCharacterIndex + " and length of " + length + " has been selected.");
         }
 
         void OnLinkSelection(string linkID, string linkText, int linkIndex)

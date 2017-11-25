@@ -23,6 +23,7 @@ public abstract class AbstractMenu : MonoBehaviour
     protected bool interactable = true;
     protected int index = 0;
     protected GameObject navUtils;
+    protected bool dontDestroy;
 
     void Start() {
         SetActions();
@@ -46,6 +47,14 @@ public abstract class AbstractMenu : MonoBehaviour
         this.onReturnAction = goBackAction;
     }
 
+    public void Initialize(PlayerActions actions, bool dontDestroy,Action goBackAction)
+    {
+        this.gameObject.SetActive(true);
+        this.actions = actions;
+        this.onReturnAction = goBackAction;
+        this.dontDestroy = dontDestroy;
+    }
+
 
 
     // Update is called once per frame
@@ -61,6 +70,11 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
     public virtual void Navigate() {
+        if (navUtils == null)
+        {
+            //TEMP FIX
+            navUtils = new GameObject("navigation", typeof(NavigationUtils));
+        }
         if (actionSelectables.Count > 0) {
             index = navUtils.GetComponent<NavigationUtils>().NavigateModal(this.actions, actionSelectables.ToArray(), index);
         }
@@ -79,10 +93,13 @@ public abstract class AbstractMenu : MonoBehaviour
         }
     }
 
-    public void GoBack() {
-        Destroy(navUtils);
+    public virtual void GoBack() {
+        if (!dontDestroy)
+        {
+            Destroy(navUtils);
+            this.gameObject.SetActive (false);
+        }
         onReturnAction ();      
-        this.gameObject.SetActive (false);
     }
 
 
@@ -108,8 +125,8 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
     bool AnyInputEnterWasReleased() {
-        if (null != actions.Device) {
-            if (actions.Device.Action1.WasReleased) {
+        if (actions !=null) {
+            if (actions.Green.WasReleased) {
                 return true;
             }
         }
@@ -120,7 +137,7 @@ public abstract class AbstractMenu : MonoBehaviour
 
     public bool AnyInputBackWasReleased() {
 
-    	if (Input.GetKeyUp(KeyCode.Escape) || actions.Red.WasReleased || actions.Start.WasReleased) {
+    	if (Input.GetKeyUp(KeyCode.Escape) || (actions !=null && (actions.Red.WasReleased))) {
     		return true;
     	}
 

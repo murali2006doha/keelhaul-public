@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
-
+using UnityEngine.EventSystems;
 public class SettingsMenu : AbstractMenu
 {
 
@@ -59,8 +59,8 @@ public class SettingsMenu : AbstractMenu
 		actionSelectables.Add(waterReflectToggle.gameObject);
 		actionSelectables.Add(soundSlider.gameObject);
 		actionSelectables.Add(musicSlider.gameObject);
-		actionSelectables.Add(keyboardControls.gameObject);
-        actionSelectables.Add(controllerControls.gameObject);
+		/*actionSelectables.Add(keyboardControls.gameObject);
+        actionSelectables.Add(controllerControls.gameObject);*/
 	}
 
 
@@ -84,5 +84,10 @@ public class SettingsMenu : AbstractMenu
 	void setWaterReflectionToggle(bool isOn) {
 		GlobalSettings.setReflection(isOn);
 	}
+
+    public void OnClick()
+    {
+        GoBack();
+    }
 }
 
