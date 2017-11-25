@@ -61,7 +61,6 @@ GameObject:
   - component: {fileID: 11460876}
   - component: {fileID: 11407492}
   - component: {fileID: 14376058}
-  - component: {fileID: 19510700}
   - component: {fileID: 11405076}
   - component: {fileID: 114715260066421346}
   - component: {fileID: 114190790248285026}
@@ -70,6 +69,7 @@ GameObject:
   - component: {fileID: 114653720656313088}
   - component: {fileID: 65225627749950366}
   - component: {fileID: 81018430280671410}
+  - component: {fileID: 114376429275305742}
   m_Layer: 9
   m_Name: Atlantean Ship
   m_TagString: Untagged
@@ -412,6 +412,7 @@ Transform:
   - {fileID: 4196938827165940}
   - {fileID: 4258138508414006}
   - {fileID: 4136503737640674}
+  - {fileID: 4899495637803028}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 151.81, z: 0}
@@ -1189,27 +1190,6 @@ CharacterController:
   m_SkinWidth: 0.008
   m_MinMoveDistance: 0.0001
   m_Center: {x: 0, y: 5, z: 0}
---- !u!195 &19510700
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 121440}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 2.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 60
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 5
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
 --- !u!198 &19831418
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -12037,6 +12017,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1314426021609652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4899495637803028}
+  - component: {fileID: 195198002134504380}
+  m_Layer: 9
+  m_Name: NavMeshAgent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1317851723932098
 GameObject:
   m_ObjectHideFlags: 1
@@ -14203,6 +14199,19 @@ Transform:
   m_Father: {fileID: 4000011619848548}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 8.901, y: 38.064003, z: -1.049}
+--- !u!4 &4899495637803028
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1314426021609652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 422662}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4930257953312788
 Transform:
   m_ObjectHideFlags: 1
@@ -16409,6 +16418,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114376429275305742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121440}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a13990b38fa3f40a57e41b2a941cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameType: 2
 --- !u!114 &114385442295997848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17513,6 +17534,7 @@ MonoBehaviour:
   aim: {fileID: 133342}
   line: {fileID: 1723039298714690}
   cannon: {fileID: 1042162081124452}
+  aiControls: 0
 --- !u!114 &114573844537563560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18305,6 +18327,7 @@ MonoBehaviour:
   boosted: 0
   boosting: 0
   speedModifier: 1
+  aiControls: 0
   sinking: 0
   locked: 0
 --- !u!114 &114717328205228836
@@ -19998,6 +20021,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.011532891, y: -0.0023641502, z: -0.0040945644}
     m_Extent: {x: 0.020106144, y: 0.023976687, z: 0.00687698}
   m_DirtyAABB: 0
+--- !u!195 &195198002134504380
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1314426021609652}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!198 &198000013265105160
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -106,10 +106,7 @@ public class GameInitializer : MonoBehaviour {
         if (ps) {
             if (gs) {
                 gameType = gs.getGameType ();
-            } else {
-                gameType = ps.gameType;
             }
-
             if (gameType == GameTypeEnum.Sabotage) {
                 this.isTeam = true;
             }
