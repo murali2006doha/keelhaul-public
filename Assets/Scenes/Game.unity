@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 949}
   - component: {fileID: 942}
   - component: {fileID: 952}
-  - component: {fileID: 185}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -30,13 +29,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &185
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 184}
-  m_Enabled: 0
 --- !u!4 &456
 Transform:
   m_ObjectHideFlags: 0
@@ -138,7 +130,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.07
+    agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -146,13 +138,13 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.023333333
+    cellSize: 0.16666666
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 496f748e56843c149bc0c3679188adca, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!114 &942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +166,7 @@ MonoBehaviour:
   mapSelect: {fileID: 114075015687046164, guid: d8c3e67280b06423897b0d5f77b573e1,
     type: 2}
   initializer: {fileID: 949}
-  offlineMode: 1
+  offlineMode: 0
   connected: 0
   camera: {fileID: 1541752945}
   csc: {fileID: 615289591}
@@ -199,7 +191,7 @@ MonoBehaviour:
   isTeam: 0
   isFirstControllerKraken: 0
   map: 6
-  gameType: 2
+  gameType: 0
   isMaster: 1
   playerId: 0
 --- !u!114 &952
@@ -470,58 +462,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 313821022}
   m_Script: {fileID: 11500000, guid: 148a86f0f229c48a5a0e90bb23ae9b25, type: 3}
---- !u!1001 &957166595
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4581784799570836, guid: 9dbd7f69977f651498f3ff9ec61f6e7f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4581784799570836, guid: 9dbd7f69977f651498f3ff9ec61f6e7f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4581784799570836, guid: 9dbd7f69977f651498f3ff9ec61f6e7f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4581784799570836, guid: 9dbd7f69977f651498f3ff9ec61f6e7f, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4581784799570836, guid: 9dbd7f69977f651498f3ff9ec61f6e7f, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4581784799570836, guid: 9dbd7f69977f651498f3ff9ec61f6e7f, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4581784799570836, guid: 9dbd7f69977f651498f3ff9ec61f6e7f, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4581784799570836, guid: 9dbd7f69977f651498f3ff9ec61f6e7f, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114170928277035246, guid: 9dbd7f69977f651498f3ff9ec61f6e7f,
-        type: 2}
-      propertyPath: m_AgentTypeID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114170928277035246, guid: 9dbd7f69977f651498f3ff9ec61f6e7f,
-        type: 2}
-      propertyPath: m_VoxelSize
-      value: 0.07666667
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 9dbd7f69977f651498f3ff9ec61f6e7f, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1541752941
 GameObject:
   m_ObjectHideFlags: 0

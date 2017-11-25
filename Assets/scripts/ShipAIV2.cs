@@ -20,6 +20,7 @@ public class ShipAIV2 : MonoBehaviour {
     List<GameObject> basesToSearch = new List<GameObject>();
     Vector3 targetSearchLocation;
     bool initialized;
+
     
 
     void Start () {
@@ -35,6 +36,12 @@ public class ShipAIV2 : MonoBehaviour {
             bases.Add(island);
         }
         initialized = true;
+        if (!agent.isOnNavMesh)
+        {
+            var surface = FindObjectOfType<NavMeshSurface>();
+            surface.enabled = false;
+            surface.enabled = true;
+        }
 
     }
 
