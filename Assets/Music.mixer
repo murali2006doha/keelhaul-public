@@ -14,7 +14,11 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 859572aa9714b40cb9daca55c6702483
+    name: Music
+  - guid: 263c8218ca03b43249b2fae718e175f8
+    name: SFX
   m_AudioMixerGroupViews:
   - guids:
     - cdbbad9d6e08249df81457ddf55d7e44
@@ -65,6 +69,10 @@ AudioMixerSnapshotController:
   m_SnapshotID: 8a733290f42984b788d3f042e5ff2cd7
   m_FloatValues:
     0ee211e1783eb46188a9da23b531fd64: 1.15
+    d5fd4db2bafdd465297d5ee98ed12fe4: 1
+    263c8218ca03b43249b2fae718e175f8: -33
+    d388bd7ac31cb4f08bce09a2b8dec616: 0
+    859572aa9714b40cb9daca55c6702483: 0
     c82a585ca15ba43a9ba46e7ab84e6e27: -27.5
     e551539c7c2484115bab304cccdc9e63: 0
   m_TransitionOverrides: {}
@@ -81,7 +89,6 @@ AudioMixerGroupController:
   m_Pitch: 7fc5e0472213049938cfd525e513cb81
   m_Effects:
   - {fileID: 244773070067544130}
-  - {fileID: 244396827336474122}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -114,33 +121,6 @@ AudioMixerEffectController:
   m_EffectName: Send
   m_MixLevel: e551539c7c2484115bab304cccdc9e63
   m_Parameters: []
-  m_SendTarget: {fileID: 244396827336474122}
-  m_EnableWetMix: 0
-  m_Bypass: 0
---- !u!244 &244396827336474122
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_EffectID: 159c66a18160047bea0b7bd09bd8153a
-  m_EffectName: Duck Volume
-  m_MixLevel: 7a6f15d820f2d424795b9454804c4a80
-  m_Parameters:
-  - m_ParameterName: Threshold
-    m_GUID: c82a585ca15ba43a9ba46e7ab84e6e27
-  - m_ParameterName: Ratio
-    m_GUID: 62147a5909d004c1fae12b87c91e129f
-  - m_ParameterName: Attack Time
-    m_GUID: 973be8a4ada70453ca52dd6da0f0f39c
-  - m_ParameterName: Release Time
-    m_GUID: 0ee211e1783eb46188a9da23b531fd64
-  - m_ParameterName: Make-up Gain
-    m_GUID: dd658fd767b654441907b0067f7fd4db
-  - m_ParameterName: Knee
-    m_GUID: 568afdfca6eef4578b303ff20916b70c
-  - m_ParameterName: Sidechain Mix
-    m_GUID: a24c3faee3e5e47e4900acd81b91f82f
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
