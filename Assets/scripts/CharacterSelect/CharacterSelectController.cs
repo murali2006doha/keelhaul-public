@@ -7,31 +7,31 @@ using System;
 
 public class CharacterSelectController : MonoBehaviour {
 
-    
+
     public List<Text> texts;
+    [SerializeField] private List<CharacterPanel> panels;
     [SerializeField]
     ControllerSelect controllerSelect;
     int numPlayers = 4;
     public List<PlayerActions> players = new List<PlayerActions>();
     Dictionary<PlayerActions, int> playerToPos = new Dictionary<PlayerActions, int>();
-    Dictionary<int,PlayerActions> panelToPlayer = new Dictionary<int,PlayerActions>();
+    Dictionary<CharacterPanel,PlayerActions> panelToPlayer = new Dictionary<CharacterPanel,PlayerActions>();
     String[] panelCharacter = new String[4];
     bool[] panelBot = new bool[4];
     List<String> characters = new List<String>{ "Chiense", "BlackBeard", "Atleatnean", "Viking" };
 
-    void Start()
+    private void Start()
     {
         var inputDevice = InputManager.ActiveDevice;
         //last device to
         controllerSelect.SetOnJoin(SignIn);
         controllerSelect.listening = true;
-       
-        
+
+
 
     }
 
-    // Update is called once per frame
-    void Update () {
+    private void Update () {
 
         foreach(Text text in texts)
         {
@@ -46,9 +46,9 @@ public class CharacterSelectController : MonoBehaviour {
             text.text += " Owner:";
         }
 
-        foreach (int pos in panelToPlayer.Keys)
+        foreach (CharacterPanel panel in panelToPlayer.Keys)
         {
-            texts[pos].text += "P" + players.IndexOf(panelToPlayer[pos]);
+            //texts[pos].text += "P" + players.IndexOf(panelToPlayer[pos]);
         }
 
         foreach (Text text in texts)
@@ -91,16 +91,16 @@ public class CharacterSelectController : MonoBehaviour {
                 playerToPos[player] = Math.Abs(playerToPos[player] + 1) % numPlayers;
             }
 
-            if (panelToPlayer.ContainsKey(playerToPos[player]) && player == panelToPlayer[playerToPos[player]])
+            if (panelToPlayer.ContainsKey(panels[playerToPos[player]]) && player == panelToPlayer[panels[playerToPos[player]]])
             {
                  if (player.Red.WasReleased)
                 {
-                   
-                        panelToPlayer.Remove(playerToPos[player]);
+
+                        panelToPlayer.Remove(panels[playerToPos[player]]);
                         playerToPos.Remove(player);
                         panelCharacter[playerToPos[player]] = "";
                         panelBot[playerToPos[player]] = false;
-                   
+
                 }
 
                 if (player.Blue.WasReleased)
@@ -128,16 +128,15 @@ public class CharacterSelectController : MonoBehaviour {
         else if (player.Green.WasReleased)
         {
             SignIn(player);
-        
+
         }
 
-       
+
     }
 
 
     public void SignIn(PlayerActions player)
     {
-        Debug.Log(player);
         if (!players.Contains(player))
         {
             players.Add(player);
@@ -146,18 +145,19 @@ public class CharacterSelectController : MonoBehaviour {
         {
             var firstAvailablePanelIndex = GetFirstAvailablePanel();
             playerToPos.Add(player, firstAvailablePanelIndex);
-            panelToPlayer.Add(firstAvailablePanelIndex, player);
+            panelToPlayer.Add(panels[firstAvailablePanelIndex], player);
+            panels[firstAvailablePanelIndex].SignIn(true, playerToPos.Count);
             panelCharacter[firstAvailablePanelIndex] = characters[0];
         }
-          
-        
+
+
     }
 
     private int GetFirstAvailablePanel()
     {
         for(int x= 0; x < 4; x++)
         {
-            if (!panelToPlayer.ContainsKey(x))
+            if (!panelToPlayer.ContainsKey(panels[x]))
             {
                 return x;
             }
