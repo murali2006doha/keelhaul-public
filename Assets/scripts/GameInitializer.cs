@@ -39,7 +39,10 @@ public class GameInitializer : MonoBehaviour {
 
     void Start()
     {
-
+        PhotonNetwork.offlineMode = true;
+        RoomOptions ro = new RoomOptions() { isVisible = true, maxPlayers = 4 };
+        PhotonNetwork.JoinOrCreateRoom("localRoom", ro, TypedLobby.Default);
+        this.Activate();
 
             
     }
@@ -48,7 +51,6 @@ public class GameInitializer : MonoBehaviour {
 
         Cursor.visible = false;
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
-        gs = GameObject.FindObjectOfType<GameModeSelectSettings>();
         setGameTypeAndSettings();
         InstantiateMap();
 
@@ -104,12 +106,12 @@ public class GameInitializer : MonoBehaviour {
     private void setGameTypeAndSettings() {
 
         if (ps) {
-            if (gs) {
-                gameType = gs.getGameType ();
-            }
+            gameType = ps.gameType;
+
             if (gameType == GameTypeEnum.Sabotage) {
                 this.isTeam = true;
             }
+
             includeKraken = ps.includeKraken;
             shipSelections.Clear();
             foreach(CharacterSelection selection in ps.players)
@@ -200,7 +202,7 @@ public class GameInitializer : MonoBehaviour {
 
             sabManager.onInitialize = onInitialize;
             manager = sabManager;
-            onGameManagerCreated();
+            manager.enabled = true;
 
             
 
@@ -242,10 +244,7 @@ public class GameInitializer : MonoBehaviour {
             }
             deathMatchManager.onInitialize = onInitialize;
             manager = deathMatchManager;
-            if (onGameManagerCreated != null) {
-                onGameManagerCreated();
-            }
-                
+            manager.enabled = true;
         }
         else if (gameType == GameTypeEnum.KrakenHunt) {
             GameObject manager = Instantiate(Resources.Load(PathVariables.krakenHuntManager, typeof(GameObject)), this.transform.parent) as GameObject;

@@ -22,5 +22,4 @@ public class PlayerSelectSettings : MonoBehaviour {
 			players.Add (new CharacterSelection(player.selectedCharacter,player.Actions));
 		}
 	}
-
 }
