@@ -14106,7 +14106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1723039298714690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1, y: 0, z: 1.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4674649972574746}
@@ -16452,8 +16452,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114804807475055430}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 5
+  instantiationId: 5
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114385707832624558
@@ -16478,8 +16478,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114461923634993986}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 6
+  instantiationId: 6
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114386598120232006
@@ -16823,8 +16823,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 4
+  instantiationId: 4
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114457724573252196
@@ -16845,6 +16845,7 @@ MonoBehaviour:
   musicSlider: {fileID: 114303734498066864}
   keyboardControls: {fileID: 114707421452966034}
   controllerControls: {fileID: 114564727831876710}
+  audioMixer: {fileID: 0}
 --- !u!114 &114461766793674962
 MonoBehaviour:
   m_ObjectHideFlags: 1

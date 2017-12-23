@@ -27,14 +27,17 @@ public class AimComponent : MonoBehaviour {
         }
         else if (moveVector.magnitude >= minDistance)
         {
-            aim.transform.position = Vector3.MoveTowards(aim.transform.position, (shipTransform.position) + (moveVector * maxDistance), moveSpeed);
+            aim.transform.position = Vector3.MoveTowards(aim.transform.position, (cannon.transform.position) + (moveVector * maxDistance), moveSpeed);
             var pos = aim.transform.position;
             pos.y = 0;
             line.transform.LookAt(pos);
 
-            Vector3 shoot_direction = aim.transform.position - shipTransform.position;
+            Vector3 shoot_direction = aim.transform.position - cannon.transform.position;
             cannon.transform.rotation = Quaternion.LookRotation(shoot_direction.normalized);
         }
+
+        //keep aim reticule on the ground
+      aim.transform.position = new Vector3(aim.transform.position.x, 0f, aim.transform.position.z);
         
     }
 
@@ -50,13 +53,14 @@ public class AimComponent : MonoBehaviour {
         pos.y = 0;
         line.transform.LookAt(pos);
         //Aim clamp
-        if ((aim.transform.position - this.shipTransform.position).magnitude > maxDistance)
+        if ((aim.transform.position - this.cannon.transform.position).magnitude > maxDistance)
         {
-            var newVec = Vector3.ClampMagnitude((aim.transform.position - this.shipTransform.position), maxDistance);
-            aim.transform.position = (shipTransform.position) + newVec;
+            var newVec = Vector3.ClampMagnitude((aim.transform.position - this.cannon.transform.position), maxDistance);
+            aim.transform.position = (cannon.transform.position) + newVec;
         }
-        Vector3 shoot_direction = aim.transform.position - shipTransform.position;
+        Vector3 shoot_direction = aim.transform.position - cannon.transform.position;
         cannon.transform.rotation = Quaternion.LookRotation(shoot_direction.normalized);
+
     }
 
 
