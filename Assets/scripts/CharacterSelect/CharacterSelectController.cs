@@ -38,7 +38,7 @@ public class CharacterSelectController : MonoBehaviour {
         this.panels.ForEach(panel => panel.Initialize());
 
         this.mapView.Initialize(GameTypeEnum.DeathMatch, mapEnum => {
-            this.BuildPlayerSettings();
+            this.BuildPlayerSettings(mapEnum);
             SceneManager.LoadScene("Game");
         });
 
@@ -222,7 +222,7 @@ public class CharacterSelectController : MonoBehaviour {
         return 0;
     }
 
-    private void BuildPlayerSettings() {
+    private void BuildPlayerSettings(MapEnum mapEnum) {
 
         var ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         var characterSelections = new List<CharacterSelection>();
@@ -234,5 +234,6 @@ public class CharacterSelectController : MonoBehaviour {
         }
 
         ps.players = characterSelections;
+        ps.map = mapEnum;
     }
 }

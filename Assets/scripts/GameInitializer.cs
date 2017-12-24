@@ -44,13 +44,14 @@ public class GameInitializer : MonoBehaviour {
         PhotonNetwork.JoinOrCreateRoom("localRoom", ro, TypedLobby.Default);
         this.Activate();
 
-            
+
     }
 
     public void Activate() {
 
         Cursor.visible = false;
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
+        this.map = ps.map;
         setGameTypeAndSettings();
         InstantiateMap();
 
@@ -175,7 +176,7 @@ public class GameInitializer : MonoBehaviour {
             {
                 sabManager = FindObjectOfType<SabotageGameManager>();
             }
-           
+
             sabManager.cams = cams;
             sabManager.ps = ps;
             sabManager.isTeam = isTeam;
@@ -204,21 +205,21 @@ public class GameInitializer : MonoBehaviour {
             manager = sabManager;
             manager.enabled = true;
 
-            
+
 
         } else if (gameType == GameTypeEnum.DeathMatch)
         {
 
             DeathMatchGameManager deathMatchManager = GameObject.FindObjectOfType<DeathMatchGameManager>();
-            
+
             if (PhotonNetwork.offlineMode)
             {
                 GameObject manager = PhotonNetwork.InstantiateSceneObject(PathVariables.deathMatchManager, transform.position, transform.rotation, 0, null);
                 deathMatchManager = manager.GetComponent<DeathMatchGameManager>();
-                
+
             }
-            
-            
+
+
             deathMatchManager.cams = cams;
             deathMatchManager.ps = ps;
             deathMatchManager.isTeam = isTeam;
@@ -268,7 +269,7 @@ public class GameInitializer : MonoBehaviour {
     private int createPlayersAndMapControllers(MapObjects map)
     {
         int num = 0;
-        if (ps == null || ps.players.Count == 0) //Default behaviour if didn't come from character select screen. 
+        if (ps == null || ps.players.Count == 0) //Default behaviour if didn't come from character select screen.
         {
             num = createPlayersWithoutCharacterSelection(map, num);
 
@@ -278,12 +279,12 @@ public class GameInitializer : MonoBehaviour {
 
             foreach (CharacterSelection player in ps.players)
             {
-              
+
                 if (player.selectedCharacter == ShipEnum.Kraken)
                 {
                     createKraken(map, player.Actions);
                     manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.All, ps.players.Count);
-                    
+
                 }
                 else
                 {
@@ -291,7 +292,7 @@ public class GameInitializer : MonoBehaviour {
                     num = createShipWithName(num, player);
 
                     manager.GetComponent<PhotonView>().RPC("AddPlayer", PhotonTargets.AllBuffered, PhotonNetwork.offlineMode?num: playerId);
-                    
+
                 }
             }
 
@@ -305,7 +306,7 @@ public class GameInitializer : MonoBehaviour {
         int numDevices = 0;
         num = GetRightShipIndex(num);
         int shipIndex = GetRightShipSelection(num);
-       
+
         if (InputManager.Devices != null && InputManager.Devices.Count > 0)
         {
 
@@ -337,7 +338,7 @@ public class GameInitializer : MonoBehaviour {
                 {
                     Debug.Log(num.ToString() + "  nummm");
                     shipSelections[shipIndex].Actions = action;
-                    
+
                     num = createShipWithName(num, shipSelections[shipIndex]);
                     shipIndex++;
                     if (PhotonNetwork.offlineMode)
@@ -351,17 +352,17 @@ public class GameInitializer : MonoBehaviour {
                     }
 
                 }
-                
+
             }
             // Create joystick bindings for kraken and ships
-            
+
             for (int n = 1; n< devices.Count;n++)
             {
                 PlayerActions action = PlayerActions.CreateWithJoystickBindings();
                 action.Device = devices[n];
                 if (!createdKraken && includeKraken)
                 {
-                   
+
                     createKraken(map, action);
                     createdKraken = true;
                 }
@@ -383,9 +384,9 @@ public class GameInitializer : MonoBehaviour {
                 {
                     break;
                 }
-               
+
             }
-            
+
             // Create keyboard bindings for remaining ships
             if (!createdKraken && includeKraken)
             {
@@ -463,7 +464,7 @@ public class GameInitializer : MonoBehaviour {
         }
     }
 
-    
+
 
     private void intializeCameraWithCharacterSelections(UnityEngine.Object camera)
     {
@@ -684,7 +685,7 @@ public class GameInitializer : MonoBehaviour {
             {
                 //input.GetComponent<PhotonView>().RPC("ChangeSkin", PhotonTargets.AllBuffered, altSkinCount);
             }
-            
+
             if (isTeam)
             {
                 if (!teamNums.ContainsKey(player.team))
