@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using InControl;
+using System;
 
 public class ControllerSelect : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class ControllerSelect : MonoBehaviour {
 	PlayerActions keyboardListener_2;
 	PlayerActions joystickListener;
 	public bool listening = true;
+    Action<PlayerActions> onJoin;
 
 	void Start () {
         Application.targetFrameRate = -1;
@@ -23,6 +25,11 @@ public class ControllerSelect : MonoBehaviour {
 
 
 	}
+    
+    public void SetOnJoin(Action<PlayerActions> onJoin)
+    {
+        this.onJoin = onJoin;
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -73,14 +80,22 @@ public class ControllerSelect : MonoBehaviour {
 		var actions = PlayerActions.CreateWithJoystickBindings ();
 		actions.Device = inputDevice;
 		players.Add (actions);
-		print ("Assigned Player " + (playerCount + 1));
+        if(onJoin != null)
+        {
+            onJoin(actions);
+        }
+		Debug.Log ("Assigned Player " + (playerCount + 1));
 
 	}
 
 	void AssignListener(PlayerActions action){
 		var playerCount = players.Count;
 		players.Add (action);
-		print ("Assigned Player " + (playerCount + 1));
+        if (onJoin != null)
+        {
+            onJoin(action);
+        }
+        print ("Assigned Player " + (playerCount + 1));
 
 	}
 	bool JoinButtonWasPressedOnListener( PlayerActions actions )

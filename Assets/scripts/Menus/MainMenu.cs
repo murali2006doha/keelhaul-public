@@ -23,6 +23,9 @@ public class MainMenu : AbstractMenu
     public Transform offlineNotAvailableText;
     public Transform sabotageNotAvailableText;
 
+    [SerializeField]
+    private CharacterSelectController csController;
+
     bool dontReset= false;
 
 	protected override void SetActions() {
@@ -58,13 +61,14 @@ public class MainMenu : AbstractMenu
 		});
 
         deathMatchOffline.SetAction (() => {
-            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, false);
-            SceneManager.LoadScene("Game");
+            FindObjectOfType<PlayerSelectSettings>().gameType = GameTypeEnum.DeathMatch;
+            this.TransitionToCharacterSelect();
+
         });
 
         sabotageOffline.SetAction(() => {
-            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, false);
-            SceneManager.LoadScene("Game");
+            GameObject.FindObjectOfType<PlayerSelectSettings>().gameType = GameTypeEnum.Sabotage;
+            this.TransitionToCharacterSelect();
         });
 
 
@@ -161,7 +165,10 @@ public class MainMenu : AbstractMenu
         dontReset = false;
     }
 
-
+    private void TransitionToCharacterSelect() {
+        this.csController.gameObject.SetActive(true);
+        this.gameObject.SetActive(false);
+    }
 
     void DestroySabotageNotAvailableText() {
         sabotageNotAvailableText.gameObject.SetActive(false);

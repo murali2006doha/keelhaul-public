@@ -47,6 +47,11 @@ public static class GlobalVariables {
       }
       return mapToScene[mapToLoad];
     }
+
+    public static List<string> CharactersForDeathMatch()
+    {
+        return new List<string> { ShipEnum.ChineseJunkShip.ToString(), ShipEnum.AtlanteanShip.ToString(), ShipEnum.BlackbeardShip.ToString(), ShipEnum.VikingShip.ToString() };
+    } 
     
 }
 
