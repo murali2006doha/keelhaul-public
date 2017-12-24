@@ -35,6 +35,7 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     GameObject mainMenu;
 
     private bool skipped = false;
+    private bool loaded = false;
 
     public void Start() {
         actions = PlayerActions.CreateAllControllerBinding();
@@ -49,7 +50,7 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
             this.SkipAnimation();
             notStarted = false;
         }
-        else if (!notStarted) {
+        else if (!notStarted && !this.loaded) {
 			LoadMenu();
         }   
     }
@@ -101,6 +102,7 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 
 
     void LoadMenu() {
+        this.loaded = true;
         this.mainMenu.gameObject.SetActive(true);
         if (mainMenu.gameObject.GetActive()) {
             FindObjectOfType<MenuModel>().mainMenu.Initialize(this.actions,true, () => {
