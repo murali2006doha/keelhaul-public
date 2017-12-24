@@ -18,6 +18,7 @@ public class MapTypeHelper
         List<MapEnum> maps = new List<MapEnum>();
         maps.Add(MapEnum.BlackMarket);
         maps.Add(MapEnum.LevelUp);
+        maps.Add(MapEnum.VikingMap);
 
         return maps;
     }
@@ -29,6 +30,6 @@ public class MapTypeHelper
 		maps.Add(MapEnum.LevelUp);
     maps.Add(MapEnum.VikingMap);
 
-        return maps;
+    return maps;
 	}
 }
