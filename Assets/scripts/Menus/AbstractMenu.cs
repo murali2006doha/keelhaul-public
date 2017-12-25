@@ -22,14 +22,11 @@ public abstract class AbstractMenu : MonoBehaviour
     protected bool canReturn = true;
     protected bool interactable = true;
     protected int index = 0;
-    protected GameObject navUtils;
     protected bool dontDestroy;
 
     void Start() {
         SetActions();
         SetActionSelectables();
-		navUtils = new GameObject("navigation", typeof(NavigationUtils));
-
     }
 
     protected abstract void SetActions();
@@ -70,15 +67,10 @@ public abstract class AbstractMenu : MonoBehaviour
 
 
     public virtual void Navigate() {
-        if (navUtils == null)
-        {
-            //TEMP FIX
-            navUtils = new GameObject("navigation", typeof(NavigationUtils));
-        }
         if (actionSelectables.Count > 0) {
-            index = navUtils.GetComponent<NavigationUtils>().NavigateModal(this.actions, actionSelectables.ToArray(), index);
+            index = NavigationUtils.NavigateModal(this.actions, actionSelectables.ToArray(), index);
         }
-        index = navUtils.GetComponent<NavigationUtils>().NavigateModalWithMouse(actionSelectables, index);
+        index = NavigationUtils.NavigateModalWithMouse(actionSelectables, index);
     }
 
         
@@ -96,7 +88,6 @@ public abstract class AbstractMenu : MonoBehaviour
     public virtual void GoBack() {
         if (!dontDestroy)
         {
-            Destroy(navUtils);
             this.gameObject.SetActive (false);
         }
         onReturnAction ();      

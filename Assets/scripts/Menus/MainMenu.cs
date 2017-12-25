@@ -157,10 +157,6 @@ public class MainMenu : AbstractMenu
         CloseOfflineSubmenu();
         if(!dontReset)
             index = 0;
-        
-        //online.GetComponent<Selectable>().Select();
-        if(navUtils==null)
-            navUtils = new GameObject("navigation", typeof(NavigationUtils));
         canReturn = false;
         dontReset = false;
     }

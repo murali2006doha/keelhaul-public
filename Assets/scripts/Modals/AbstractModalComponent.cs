@@ -19,7 +19,6 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     protected bool canMoveUp = true;
     protected bool canMoveLeft  = true;
     protected bool canMoveRight = true;
-    protected GameObject navUtils;
 
 
     public Animator modalAnimator;
@@ -47,7 +46,6 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     protected abstract bool CanControl();
 
     void Start() {
-        navUtils = new GameObject("navigation", typeof(NavigationUtils));
     }
 
     void Update() {
@@ -72,16 +70,11 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
 
     public void Navigate() {
-        if (navUtils == null)
-        {
-            //TEMP FIX
-            navUtils = new GameObject("navigation", typeof(NavigationUtils));
-        }
         if (actionSelectables.Count > 0)
         {
-            index = navUtils.GetComponent<NavigationUtils>().NavigateModal(this.actions, actionSelectables.ToArray(), index);
+            index = NavigationUtils.NavigateModal(this.actions, actionSelectables.ToArray(), index);
         }
-        index = navUtils.GetComponent<NavigationUtils>().NavigateModalWithMouse(actionSelectables, index);
+        index = NavigationUtils.NavigateModalWithMouse(actionSelectables, index);
     }
 
 
@@ -132,7 +125,6 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     public void GoBack() {
         //Exit();
-        Destroy(navUtils);
         DestroyObject(this.gameObject);  
     }
 
@@ -155,25 +147,6 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
     bool AnyInputBackWasReleased() {
         return actions.Red.WasReleased;
-    }
-
-
-
-
-    void ResetUpDelay() {
-    	canMoveUp = true;
-    }
-
-    void ResetDownDelay() {
-    	canMoveDown = true;
-    }
-
-    void ResetRightDelay() {
-    	canMoveRight = true;
-    }
-
-    void ResetLeftDelay() {
-    	canMoveLeft = true;
     }
 
 
