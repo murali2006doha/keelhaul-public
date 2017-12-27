@@ -23,12 +23,16 @@ public class MainMenu : AbstractMenu
     public Transform offlineNotAvailableText;
     public Transform sabotageNotAvailableText;
 
+    [SerializeField]
+    private CharacterSelectController csController;
 
+    bool dontReset= false;
 
 	protected override void SetActions() {
 
 		online.SetAction(() => {
             CloseOfflineSubmenu();
+            canReturn = true;
             onlineSubmenu.gameObject.SetActive(true);
             actionSelectables.Insert(actionSelectables.IndexOf(online.gameObject) + 1, deathMatchOnline.gameObject);
             actionSelectables.Insert(actionSelectables.IndexOf(online.gameObject) + 2, sabotageOnline.gameObject);
@@ -49,6 +53,7 @@ public class MainMenu : AbstractMenu
 
 		offline.SetAction(() => {
             CloseOnlineSubmenu();
+            canReturn = true;
             offlineSubmenu.gameObject.SetActive(true);            
             actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 1, deathMatchOffline.gameObject);
             actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 2, sabotageOffline.gameObject);
@@ -56,20 +61,22 @@ public class MainMenu : AbstractMenu
 		});
 
         deathMatchOffline.SetAction (() => {
-            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, false);
-            SceneManager.LoadScene("Game");
+            FindObjectOfType<PlayerSelectSettings>().gameType = GameTypeEnum.DeathMatch;
+            this.TransitionToCharacterSelect();
+
         });
 
         sabotageOffline.SetAction(() => {
-            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, false);
-            SceneManager.LoadScene("Game");
+            GameObject.FindObjectOfType<PlayerSelectSettings>().gameType = GameTypeEnum.Sabotage;
+            this.TransitionToCharacterSelect();
         });
 
 
 		settings.SetAction(() => {
             CloseOnlineSubmenu();
             CloseOfflineSubmenu();
-			this.enabled = false;
+            canReturn = true;
+            this.enabled = false;
 			ToggleSelectables();
 			FindObjectOfType<MenuModel>().settingsMenu.Initialize(this.actions, () => {
                 index = actionSelectables.IndexOf(settings.gameObject);
@@ -108,7 +115,8 @@ public class MainMenu : AbstractMenu
 	}
 
 
-	protected override void SetActionSelectables() {
+
+    protected override void SetActionSelectables() {
 		actionSelectables.Add(online.gameObject);
 		actionSelectables.Add(offline.gameObject);        //commented out because this is not currently in use
 		actionSelectables.Add(settings.gameObject);
@@ -117,31 +125,50 @@ public class MainMenu : AbstractMenu
 
 
     void CloseOnlineSubmenu() {
-    	if (onlineSubmenu.gameObject.GetActive()) {
+        canReturn = false;
+
+        if (onlineSubmenu.gameObject.GetActive()) {
     		onlineSubmenu.gameObject.SetActive(false);
             actionSelectables.RemoveAt(actionSelectables.IndexOf(deathMatchOnline.gameObject));
             actionSelectables.RemoveAt(actionSelectables.IndexOf(sabotageOnline.gameObject));
+            index = 0;
+            dontReset = true;
 
-    	}
+        }
     }
 
     void CloseOfflineSubmenu() {
+        canReturn = false;
         if (offlineSubmenu.gameObject.GetActive()) {
             offlineSubmenu.gameObject.SetActive(false);
             actionSelectables.RemoveAt(actionSelectables.IndexOf(deathMatchOffline.gameObject));
             actionSelectables.RemoveAt(actionSelectables.IndexOf(sabotageOffline.gameObject));
+            index = 1;
+            dontReset = true;
         }
     }
 
 
     public void ResetMenu() {
+       
         DestroySabotageNotAvailableText();
         //DestroyOfflineNotAvailableText();
         CloseOnlineSubmenu();
         CloseOfflineSubmenu();
-        index = 0;
+        if(!dontReset)
+            index = 0;
+        
+        //online.GetComponent<Selectable>().Select();
+        if(navUtils==null)
+            navUtils = new GameObject("navigation", typeof(NavigationUtils));
+        canReturn = false;
+        dontReset = false;
     }
 
+    private void TransitionToCharacterSelect() {
+        this.csController.gameObject.SetActive(true);
+        this.gameObject.SetActive(false);
+    }
 
     void DestroySabotageNotAvailableText() {
         sabotageNotAvailableText.gameObject.SetActive(false);

@@ -21,6 +21,7 @@ public class PauseMenu : AbstractMenu
     	this.gameObject.SetActive(true);
     	this.actions = actions;
     	this.onReturnAction = goBackAction;
+    	navUtils = new GameObject("navigation", typeof(NavigationUtils));
         PauseGame();
     }
 

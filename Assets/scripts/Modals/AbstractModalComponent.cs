@@ -19,6 +19,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     protected bool canMoveUp = true;
     protected bool canMoveLeft  = true;
     protected bool canMoveRight = true;
+    protected GameObject navUtils;
 
 
     public Animator modalAnimator;
@@ -46,6 +47,7 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     protected abstract bool CanControl();
 
     void Start() {
+        navUtils = new GameObject("navigation", typeof(NavigationUtils));
     }
 
     void Update() {
@@ -70,8 +72,16 @@ public abstract class AbstractModalComponent : MonoBehaviour {
 
 
     public void Navigate() {
-        NavigateModal (actionSelectables.ToArray ());
-        NavigateModalWithMouse ();
+        if (navUtils == null)
+        {
+            //TEMP FIX
+            navUtils = new GameObject("navigation", typeof(NavigationUtils));
+        }
+        if (actionSelectables.Count > 0)
+        {
+            index = navUtils.GetComponent<NavigationUtils>().NavigateModal(this.actions, actionSelectables.ToArray(), index);
+        }
+        index = navUtils.GetComponent<NavigationUtils>().NavigateModalWithMouse(actionSelectables, index);
     }
 
 
@@ -120,81 +130,9 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     }
 
 
-    public void NavigateModal (GameObject[] passedInButtons) { //navigating main menu  
-
-        if (passedInButtons.Length > 0) {
-            passedInButtons [index].gameObject.GetComponent<Selectable> ().Select ();       
-        }
-
-        if (AnyInputDownWasReleased()) {
-            index = ListIterator.GetPositionIndex (passedInButtons.Length, index, "down");
-        }
-
-        if (AnyInputUpWasReleased()) {
-            index = ListIterator.GetPositionIndex (passedInButtons.Length, index, "up");
-        }
-
-
-        if (passedInButtons [index].gameObject.GetComponent<ActionSlider> ()) {
-            NavigateVolumeSlider ();
-        } else {
-            if (AnyInputLeftWasReleased()) {
-                index = ListIterator.GetPositionIndex (passedInButtons.Length, index, "left");
-            }
-
-            if (AnyInputRightWasReleased()) {
-                index = ListIterator.GetPositionIndex (passedInButtons.Length, index, "right");
-            }
-        }
-    }
-
-
-    void NavigateVolumeSlider () {
-
-        if (null == actions || null == actions.Device) {
-            if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.A)) {
-                this.actionSelectables [index].GetComponent<ActionSlider> ().doAction ();
-            }
-        } else {
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
-                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
-            }
-            else if (canMoveLeft && actions.Device.LeftStickLeft.RawValue > 0.9f) {
-                this.actionSelectables [index].GetComponent<ActionSlider>().doAction();
-                canMoveLeft = false;
-                Invoke("ResetLeftDelay", 0.2f);
-            } else if (canMoveLeft && actions.Device.DPadLeft.IsPressed) {
-                this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value -= volumeChange;
-                this.actionSelectables [index].GetComponent<ActionSlider>().doAction();
-                canMoveLeft = false;
-                Invoke("ResetLeftDelay", 0.2f);
-            }
-        }
-
-
-        if (null == actions || null == actions.Device) {
-            if (Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyDown (KeyCode.D)) {
-                this.actionSelectables[index].GetComponent<ActionSlider> ().doAction ();
-            } 
-        } else {
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) {
-                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
-            }
-            else if (canMoveRight && actions.Device.LeftStickRight.RawValue > 0.9f) {
-                this.actionSelectables[index].GetComponent<ActionSlider>().doAction();
-                canMoveRight = false;
-                Invoke("ResetRightDelay", 0.2f);
-            } else if (canMoveRight && actions.Device.DPadRight.IsPressed) {
-                this.actionSelectables[index].GetComponent<ActionSlider>().SliderComponent.value += volumeChange;
-                this.actionSelectables [index].GetComponent<ActionSlider>().doAction();
-                canMoveRight = false;
-                Invoke("ResetRightDelay", 0.2f);
-            }
-        }
-    }
-
     public void GoBack() {
         //Exit();
+        Destroy(navUtils);
         DestroyObject(this.gameObject);  
     }
 
@@ -210,100 +148,13 @@ public abstract class AbstractModalComponent : MonoBehaviour {
     }
 
 
-    bool AnyInputUpWasReleased() {
-
-		if (null == actions || null == actions.Device) {
-            if (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W)) {
-                return true;
-            }
-        } else if (canMoveUp && (Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.W) || 
-                                 actions.Device.LeftStickUp.RawValue > 0.9f || actions.Device.DPadUp.IsPressed)) {
-            canMoveUp = false;
-            Invoke("ResetUpDelay", 0.1f);
-            return true;
-        }
-
-        return false;
-    }
-
-
-    bool AnyInputDownWasReleased() {
-
-		if (null == actions || null == actions.Device) {
-            if (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S)) {
-                return true;
-            }
-        } else if (canMoveDown && (Input.GetKeyDown (KeyCode.DownArrow) || Input.GetKeyDown (KeyCode.S) ||
-                                   actions.Device.LeftStickDown.RawValue > 0.9f || actions.Device.DPadDown.IsPressed)) {
-            canMoveDown = false;
-            Invoke("ResetDownDelay", 0.1f);
-            return true;
-        }
-
-        return false;
-    }
-
-
-    bool AnyInputRightWasReleased() {
-        if (null == actions || null == actions.Device) {
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) {
-                return true;
-            }
-        }
-        else if (canMoveRight && (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || 
-                                  actions.Device.LeftStickRight.RawValue > 0.9f || actions.Device.DPadRight.IsPressed)) {
-            canMoveRight = false;
-            Invoke("ResetRightDelay", 0.1f);
-            return true;
-        }
-
-        return false;
-    }
-
-
-    bool AnyInputLeftWasReleased() {
-
-    	if (null == actions || null == actions.Device) {
-    		if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
-    			return true;
-    		}
-    	}
-    	else if (canMoveLeft && (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || 
-                                 actions.Device.LeftStickLeft.RawValue > 0.9f || actions.Device.DPadLeft.IsPressed)) {
-            canMoveLeft= false;
-            Invoke("ResetLeftDelay", 0.1f);
-			return true;
-    	}
-
-    	return false;
-    }
-
-
     bool AnyInputEnterWasReleased() {
-
-		if (null == actions || null == actions.Device) {
-            if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R) || Input.GetKeyDown (KeyCode.Space)) {
-                return true;
-            }
-        } else if (Input.GetKeyDown (KeyCode.Return) || Input.GetKeyDown (KeyCode.R) || Input.GetKeyDown (KeyCode.Space) || actions.Green.WasReleased) {
-            return true;
-        }
-
-        return false;
+        return actions.Start.WasReleased || actions.Green.WasReleased;
     }
 
 
     bool AnyInputBackWasReleased() {
-
-		if (null == actions || null == actions.Device) {
-            if (Input.GetKeyUp (KeyCode.Escape)) {
-                return true;
-            }
-        } else if (Input.GetKeyUp (KeyCode.Escape) || actions.Red.WasReleased || actions.Start.WasReleased) {
-            return true;
-        }
-
-        return false;
+        return actions.Red.WasReleased;
     }
 
 
