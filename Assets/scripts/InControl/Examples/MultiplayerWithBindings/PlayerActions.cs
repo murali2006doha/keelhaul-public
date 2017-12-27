@@ -89,7 +89,8 @@ public class PlayerActions : PlayerActionSet
 		actions.Red.AddDefaultBinding(Key.Space);
 		actions.Boost.AddDefaultBinding(Key.Shift);
 		actions.Bomb.AddDefaultBinding(Key.Space);
-		actions.Green.AddDefaultBinding(Key.Alt);
+    actions.Blue.AddDefaultBinding(Key.E);
+    actions.Yellow.AddDefaultBinding(Key.Q);
 		actions.R_Up.AddDefaultBinding(Mouse.PositiveY);
 		actions.R_Down.AddDefaultBinding(Mouse.NegativeY);
 		actions.R_Left.AddDefaultBinding(Mouse.NegativeX);
@@ -99,7 +100,7 @@ public class PlayerActions : PlayerActionSet
 		actions.Select.AddDefaultBinding(Key.Tab);
 
         setListeningOptionsForKeyboard(actions);
-		
+
         return actions;
 	}
 
@@ -191,7 +192,7 @@ public class PlayerActions : PlayerActionSet
         actions.ListenOptions.AllowDuplicateBindingsPerSet = true;
         actions.ListenOptions.UnsetDuplicateBindingsOnSet = false;
         actions.ListenOptions.IncludeMouseButtons = true;
-        
+
         foreach(PlayerAction action in actions.Actions)
         {
             action.RepeatDelay = 0.2f;
@@ -239,7 +240,7 @@ public class PlayerActions : PlayerActionSet
 		actions.Select.AddDefaultBinding(InputControlType.Back);
         actions.Select.AddDefaultBinding(InputControlType.Share);
 
-     
+
 
         return actions;
 	}
