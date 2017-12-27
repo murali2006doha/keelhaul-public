@@ -229,7 +229,12 @@ public class CharacterSelectController : MonoBehaviour {
 
         foreach (var panel in this.panels) {
             if (panel.CharacterSelected) {
-                characterSelections.Add(new CharacterSelection(panel.GetSelectedCharacter(), this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null, panel.SelectedTeam));
+                characterSelections.Add(
+                    new CharacterSelection(
+                        panel.GetSelectedCharacter(),
+                        this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
+                        panel.SelectedTeam,
+                        !panel.IsPlayer));
             }
         }
 
