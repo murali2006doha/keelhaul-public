@@ -93,50 +93,49 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         //Have to refactor this later
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
         this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, this.GetId(), manager.getNumberOfTeams(), this.GetId());
-
+        bool hasDevice = Actions == null || Actions.Device == null;
         motor.Initialize(
             cc,
             stats,
             transform,
             () => {
                 vibrate(0.5f, 2f);
-                uiManager.setBoostBar(0);  
+                uiManager.setBoostBar(0);
                 uiManager.animManager.onBoost();
             },
             () => {
-              
-            }, 
+
+            },
             () => {
                 uiManager.animManager.onBoostRecharged();
             },
-            Actions.Device == null
-        );
+            hasDevice);
 
-        aimComponent.Initialize(transform, Actions.Device == null,followCamera.camera);
+        aimComponent.Initialize(transform, hasDevice,followCamera.camera);
         bombController.Initialize(
-            stats, 
-            this, 
-            uiManager, 
+            stats,
+            this,
+            uiManager,
             gameStats,
             PathVariables.GetAssociatedBombForShip(type));
         InitializeHookshot();
-        
+
         shipMeshComponent.Initialize(
-            this, 
-            stats, 
+            this,
+            stats,
             uiManager,
-            hookshotComponent, 
-            manager, 
+            hookshotComponent,
+            manager,
             bombController,
             hit
         );
 
         centralCannon.Initialize(
-            this, 
-            this.transform, 
-            this.aimComponent.aim, 
-            stats, 
-            gameStats, 
+            this,
+            this.transform,
+            this.aimComponent.aim,
+            stats,
+            gameStats,
             motor,
             PathVariables.GetAssociatedCannonballForShip(type));
         altCannonComponent.Initialize(this, this.transform, this.aimComponent.aim, stats, uiManager);
@@ -220,7 +219,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onStartButtonPress += this.instantiatePauseMenu;
         //shipInput.onSelectButtonHoldDown += this.showStatsScreen;
         //shipInput.onSelectButtonRelease += null;
-            
+
         if (hookshotComponent)
         {
             shipInput.onLeftTriggerDown += hookshotComponent.HookBarrel;
@@ -285,7 +284,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
             }
         }
-        
+
     }
 
     public void deactivateInvincibility()
@@ -299,14 +298,14 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
 
         invinciblity.SetBool("invincibility", active);
-        
+
         if (invincibilityParticle != null)
         {
             invincibilityParticle.SetActive(active);
 
         }
     }
- 
+
 
     public void reset()
     {
@@ -334,11 +333,6 @@ public class PlayerInput : MonoBehaviour, StatsInterface
                     manager.ExitToCharacterSelect();
                 }
             }
-            if (Actions.Select.WasReleased)
-            {
-               this.GetComponent<ShipAIV2>().enabled = !this.GetComponent<ShipAIV2>().enabled;
-                shipInput.enabled = !shipInput.enabled;
-            }
 
             uiManager.updateShipUI(this.transform.position, hookshotComponent.shouldShowTooltip());
             if (gameStarted)
@@ -347,6 +341,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             }
 
         }
+    }
+
+
+    public void TurnOnAi() {
+        this.GetComponent<ShipAIV2>().enabled = true;
+        shipInput.enabled = !shipInput.enabled;
     }
 
     [PunRPC]
@@ -400,7 +400,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void takeSinkDamage()
     {
-           
+
             gameStats.numOfTimesSubmergedByKraken += 1;
             hookshotComponent.UnHook();
             hit(health, kraken.id, true);
@@ -509,7 +509,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         {
             float actualDamage = (passedDamage > 0) ? passedDamage : damage;
             health -= actualDamage;
-            
+
             gameStats.healthLost += actualDamage;
             followCamera.startShake();
             var photonView = GetComponent<PhotonView>();
@@ -586,7 +586,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         {
             player.GetComponent<PhotonView>().RPC("AddBarrelScoreToKillFeed", PhotonTargets.All, "P" + GetId(), type.ToString());
         }
-        
+
         if (kraken)
         {
             kraken.uiManager.AddBarrelScoreToKillFeed("P" + GetId(), type.ToString());
@@ -635,7 +635,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (PhotonNetwork.player.ID == id)
         {
-                gameStats.numOfKills++;     
+                gameStats.numOfKills++;
         }
     }
 
