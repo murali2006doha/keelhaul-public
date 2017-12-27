@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using System;
-using UnityEngine.EventSystems;
+
 public class SettingsMenu : AbstractMenu
 {
 
@@ -10,10 +11,11 @@ public class SettingsMenu : AbstractMenu
 	public ActionToggle shadowsToggle;
 	public ActionToggle waterRefractToggle;
 	public ActionToggle waterReflectToggle;
-	public ActionSlider soundSlider;
 	public ActionSlider musicSlider;
+	public ActionSlider soundSlider;
 	public ActionButton keyboardControls;
     public ActionButton controllerControls;
+    public AudioMixer audioMixer;
 
 
 	protected override void SetActions() {
@@ -57,20 +59,20 @@ public class SettingsMenu : AbstractMenu
 		actionSelectables.Add(shadowsToggle.gameObject);
 		actionSelectables.Add(waterRefractToggle.gameObject);
 		actionSelectables.Add(waterReflectToggle.gameObject);
-		actionSelectables.Add(soundSlider.gameObject);
 		actionSelectables.Add(musicSlider.gameObject);
+		actionSelectables.Add(soundSlider.gameObject);
 		/*actionSelectables.Add(keyboardControls.gameObject);
         actionSelectables.Add(controllerControls.gameObject);*/
 	}
 
-
-
-	void setSoundVolume(float multiplier) {
-		GlobalSettings.setSoundMultiplier(multiplier);
+	public void setSoundVolume(float vol) {
+		audioMixer.SetFloat("SFX", (100 * vol) - 80);
+		GlobalSettings.setSoundMultiplier(vol);
 	}
 
-	void setMusicVolume(float multiplier) {
-		GlobalSettings.setMusicMuliplier(multiplier);
+	public void setMusicVolume(float vol) {
+		audioMixer.SetFloat("Music", (100 * vol) - 80);
+		GlobalSettings.setMusicMuliplier(vol);
 	}
 
 	void setShadowsToggle(bool isOn) {

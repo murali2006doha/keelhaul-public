@@ -13,7 +13,7 @@ public static class GlobalSettings {
 
 
     public static void setSoundMultiplier(float x) {
-        soundMultiplier = x;
+		soundMultiplier = x;
         PlayerPrefs.SetFloat ("Sound multiplier", x);
         PlayerPrefs.Save ();
     }

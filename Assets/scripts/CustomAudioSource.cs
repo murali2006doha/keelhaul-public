@@ -11,9 +11,6 @@ public class CustomAudioSource : MonoBehaviour {
     public float intendedVolume = 1f;
 
     [SerializeField]
-    bool isSound;
-
-    [SerializeField]
     AudioSource audioSource;
 
 
