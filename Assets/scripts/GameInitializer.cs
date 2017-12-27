@@ -667,14 +667,13 @@ public class GameInitializer : MonoBehaviour {
             PlayerInput input = newShip.GetComponent<PlayerInput>();
 
             input.playerId = playerId;
-            Debug.Log(player.selectedCharacter);
-            Debug.Log(player.Bot);
-            if (!player.Bot && player.Actions.Device == null) {
+
+            if (!player.bot && player.Actions.Device == null) {
                 Cursor.visible = true;
                 player.Actions = PlayerActions.CreateWithKeyboardBindings_2();
             }
 
-            if (player.Bot) {
+            if (player.bot) {
                 input.TurnOnAi();
             }
             input.Actions = player.Actions;
