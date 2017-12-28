@@ -7,17 +7,21 @@ public class CharacterPanel : MonoBehaviour
 {
 
     [SerializeField]
-    private Text characterName;
+    private Image characterImage;
+
     [SerializeField]
     private Text status;
-    [SerializeField]
-    private Text hosts;
 
     [SerializeField]
     private Text teamIndicator;
 
     [SerializeField]
     private Image selected;
+
+    [SerializeField]
+    private List<PanelHostHolder> panelHostHolders;
+
+    private SpriteDictionary characterToPanels;
 
 
     private int characterIndex = 0;
@@ -55,10 +59,11 @@ public class CharacterPanel : MonoBehaviour
     }
 
     private List<string> characterReferences;
-    public void Initialize()
+    public void Initialize(SpriteDictionary panelSprites)
     {
         this.characterReferences = GlobalVariables.CharactersForDeathMatch();
         this.SignOut();
+        this.characterToPanels = panelSprites;
     }
 
     public string GetSelectedCharacter()
@@ -76,8 +81,9 @@ public class CharacterPanel : MonoBehaviour
 
     public void SignOut()
     {
-        this.characterName.text = string.Empty;
-        this.status.text = "A to sign in!";
+        this.panelHostHolders.ForEach(panel => panel.Hide());
+        this.characterImage.gameObject.SetActive(false);
+        this.status.text = string.Empty;
         this.SignedIn = false;
         this.IsPlayer = false;
         this.characterIndex = 0;
@@ -85,13 +91,14 @@ public class CharacterPanel : MonoBehaviour
 
     public void ToggleHost(int playerIndex, bool isAdding)
     {
+
         if (isAdding)
         {
-            this.hosts.text += "P" + playerIndex;
+            this.panelHostHolders[playerIndex].Decorate(playerIndex);
         }
-        else if (this.hosts.text.IndexOf(playerIndex.ToString()) > -1)
+        else
         {
-            this.hosts.text.Remove(this.hosts.text.IndexOf(playerIndex.ToString()) - 1, 2);
+            this.panelHostHolders[playerIndex].Hide();
         }
     }
 
@@ -108,8 +115,6 @@ public class CharacterPanel : MonoBehaviour
         {
             this.SelectedTeam++;
         }
-        
-
     }
 
     public void ChangeCharacter(int direction)
@@ -117,13 +122,16 @@ public class CharacterPanel : MonoBehaviour
         if (!this.characterSelected)
         {
             this.characterIndex = Mathf.Clamp(this.characterIndex + direction, 0, this.characterReferences.Count - 1);
-            this.characterName.text = this.characterReferences[this.characterIndex];
+            this.characterImage.sprite = this.characterToPanels.Get(this.characterReferences[this.characterIndex]);
         }
+
+
     }
 
 
     private void DecorateSignedIn(int playerIndex)
     {
+        this.characterImage.gameObject.SetActive(true);
         this.ToggleHost(playerIndex, true);
         this.status.text = this.IsPlayer ? ("Player " + playerIndex) : "Bot";
         this.ChangeCharacter(0);

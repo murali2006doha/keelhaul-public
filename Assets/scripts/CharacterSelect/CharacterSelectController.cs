@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
@@ -22,11 +23,15 @@ public class CharacterSelectController : MonoBehaviour {
     [SerializeField]
     private PlayerSelectSettings playerSelectSettings;
 
+    [SerializeField]
+    private SpriteDictionary characterPanelSprites;
+
     int numPlayers = 4;
     public List<PlayerActions> players = new List<PlayerActions>();
     Dictionary<PlayerActions, int> playerToPos = new Dictionary<PlayerActions, int>();
     Dictionary<CharacterPanel,PlayerActions> panelToPlayer = new Dictionary<CharacterPanel,PlayerActions>();
     private bool playable;
+    public UnityAction onTranstionToMainMenu;
     private bool onCharacterSelect = true;
     private void Start()
     {
@@ -35,7 +40,7 @@ public class CharacterSelectController : MonoBehaviour {
         controllerSelect.SetOnJoin(AddToPlayers);
         controllerSelect.listening = true;
 
-        this.panels.ForEach(panel => panel.Initialize());
+        this.panels.ForEach(panel => panel.Initialize(this.characterPanelSprites));
 
         this.mapView.Initialize(GameTypeEnum.DeathMatch, mapEnum => {
             this.BuildPlayerSettings(mapEnum);
@@ -112,12 +117,14 @@ public class CharacterSelectController : MonoBehaviour {
                     }
                     else
                     {
-                        panel.SignOut();
                         if (panel.IsPlayer)
                         {
                             panelToPlayer.Remove(panel);
                             playerToPos.Remove(player);
                         }
+
+                        panel.SignOut();
+
 
                     }
                 }
@@ -149,6 +156,8 @@ public class CharacterSelectController : MonoBehaviour {
         {
             SignIn(player);
 
+        } else if (player.Red.WasReleased) {
+            this.TransitionToMainMenu();
         }
     }
 
@@ -199,10 +208,17 @@ public class CharacterSelectController : MonoBehaviour {
         this.playable = this.panels.Filter(panel => panel.CharacterSelected).Count >= 2;
     }
 
+    private void TransitionToMainMenu() {
+        this.gameObject.SetActive(false);
+        onTranstionToMainMenu();
+        this.controllerSelect.ClearPlayers();
+    }
+
     private void TransitionToMapSelect() {
         this.onCharacterSelect = false;
         this.mapView.gameObject.SetActive(true);
     }
+
 
     private void TransitionToCharacterSelect()
     {
@@ -212,14 +228,7 @@ public class CharacterSelectController : MonoBehaviour {
 
     private int GetFirstAvailablePanel()
     {
-        for(int x= 0; x < 4; x++)
-        {
-            if (!panelToPlayer.ContainsKey(panels[x]))
-            {
-                return x;
-            }
-        }
-        return 0;
+       return this.panels.FindIndex(panel => !panel.SignedIn);
     }
 
     private void BuildPlayerSettings(MapEnum mapEnum) {

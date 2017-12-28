@@ -15,17 +15,21 @@ public class ControllerSelect : MonoBehaviour {
 	public bool listening = true;
     Action<PlayerActions> onJoin;
 
+
+  public void ClearPlayers() {
+  	this.players = new ArrayList();
+  }
 	void Start () {
         Application.targetFrameRate = -1;
 
 
 	}
-		
+
 	void Awake() {
 
 
 	}
-    
+
     public void SetOnJoin(Action<PlayerActions> onJoin)
     {
         this.onJoin = onJoin;
@@ -43,11 +47,11 @@ public class ControllerSelect : MonoBehaviour {
 
 			if (withKeyboard) {
 				if (JoinButtonWasPressedOnListener (keyboardListener_1)) {
-				
+
 					AssignListener (keyboardListener_1);
 
 				} else if (JoinButtonWasPressedOnListener (keyboardListener_2)) {
-				
+
 					AssignListener (keyboardListener_2);
 
 				}
