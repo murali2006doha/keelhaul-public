@@ -218,8 +218,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightTriggerDown += centralCannon.handleShoot;
         shipInput.onRightBumperDown += altCannonComponent.handleShoot;
         shipInput.onStartButtonPress += this.instantiatePauseMenu;
-        //shipInput.onSelectButtonHoldDown += this.showStatsScreen;
-        //shipInput.onSelectButtonRelease += null;
+        shipInput.onSelectButtonHoldDown += this.showStatsScreen;
+        shipInput.onSelectButtonRelease += this.hideStatsScreen;
 
         if (hookshotComponent)
         {
@@ -238,8 +238,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightTriggerDown = null;
         shipInput.onRightBumperDown = null;
         shipInput.onLeftTriggerDown = null;
-        //shipInput.onSelectButtonHoldDown = null;
-        //shipInput.onSelectButtonRelease = null;
+        shipInput.onSelectButtonHoldDown = null;
+        shipInput.onSelectButtonRelease = null;
     }
 
 
@@ -260,7 +260,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     void showStatsScreen() {
         uiManager.InitializeStatsScreen(manager, this);
+    }
 
+    void hideStatsScreen() {
+        uiManager.SetOffStatsScreen();
     }
 
     public void DisableUIForStats()
