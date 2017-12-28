@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using InControl;
 using System;
+using UnityEngine.EventSystems;
 
 
 public class GameInitializer : MonoBehaviour {
@@ -54,6 +55,7 @@ public class GameInitializer : MonoBehaviour {
         this.map = ps.map;
         setGameTypeAndSettings();
         InstantiateMap();
+        InstantiateEventSystem();
 
         if (shipSelections.Count == 0)
         {
@@ -92,6 +94,15 @@ public class GameInitializer : MonoBehaviour {
             createGameManager(() => createPlayersAndMapControllers(map));
         }
 
+    }
+
+    void InstantiateEventSystem() {
+		if (!FindObjectOfType<EventSystem>())
+		{
+			GameObject obj = new GameObject("EventSystem");
+            obj.AddComponent<EventSystem>().sendNavigationEvents = false;
+			obj.AddComponent<StandaloneInputModule>().forceModuleActive = true;
+		}
     }
 
     public void SimplyInstantiateManager(GameTypeEnum mode) {

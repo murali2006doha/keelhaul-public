@@ -45,6 +45,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public GameObject ship_model;
     public GameObject spray;
     public ShipWorldCanvas worldCanvas;
+    public GameObject pauseModal;
 
     //Fixed vars
     AbstractGameManager manager;
@@ -243,14 +244,18 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
 
     void instantiatePauseMenu() {
-        if (FindObjectOfType<CountDown>() == null && !FindObjectOfType<MenuModel>().pauseMenu.gameObject.GetActive()) {
-            clearShipInput();
-            FindObjectOfType<MenuModel>().pauseMenu.Initialize(this.Actions, () => {
-                InitializeShipInput();
-                FindObjectOfType<PauseMenu>().ResumeGame();
-            });
+        if (FindObjectOfType<CountDown>() == null && !FindObjectOfType<MenuModel>()) {
+		
+			clearShipInput();
+
+            GameObject pause = Instantiate(pauseModal);
+            pause.GetComponent<MenuModel>().pauseMenu.Initialize(this.Actions, this.manager, () => {
+				InitializeShipInput();
+				pause.GetComponent<MenuModel>().pauseMenu.ResumeGame();
+                Destroy(pause.gameObject);
+			});
         }
-    }
+	}
 
 
     void showStatsScreen() {

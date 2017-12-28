@@ -17,10 +17,11 @@ public class PauseMenu : AbstractMenu
     PlayerInput[] otherActions;
 
 
-    public void Initialize(PlayerActions actions, Action goBackAction) {
+    public void Initialize(PlayerActions actions, AbstractGameManager gm, Action goBackAction) {
     	this.gameObject.SetActive(true);
     	this.actions = actions;
     	this.onReturnAction = goBackAction;
+        this.gm = gm;
         PauseGame();
     }
 
@@ -103,18 +104,18 @@ public class PauseMenu : AbstractMenu
     //put this in onReturnAction when calling from playerInput
     public void ResumeGame() {
 
-    	if (PhotonNetwork.offlineMode) {
-    		Time.timeScale = 1;
-            TogglePlayerActions();
+		if (PhotonNetwork.offlineMode) {
+
+			Time.timeScale = 1;
+			TogglePlayerActions();
     	}
-    	ResumeAudio();
-    }
+		ResumeAudio();
+	}
 
 
     private void ExitToMainMenu() {
-        Time.timeScale = 1;
+        Debug.Log("Exiting to main menu");
         gm.ExitToCharacterSelect();
-        DestroyObject(this.transform.gameObject);
     }
 
 
@@ -147,7 +148,7 @@ public class PauseMenu : AbstractMenu
      **/
     private void TogglePlayerActions() {
         foreach (PlayerInput input in otherActions) {
-            if (input.Actions != actions) {
+            if (input.Actions != null && input.Actions != actions) {
                 input.Actions.Enabled = !input.Actions.Enabled;
             }
         }

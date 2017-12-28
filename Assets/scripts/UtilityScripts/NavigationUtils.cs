@@ -8,14 +8,6 @@ using System;
 
 public static class NavigationUtils {
 
-    const float volumeChange = 0.1f;
-    static bool canMoveDown = true; 
-    static bool canMoveUp = true;
-    static bool canMoveLeft = true;
-    static bool canMoveRight = true;
-    static float analogStickDelay = 0.15f;
-
-
     public static int NavigateModalWithMouse(List<GameObject> actionSelectables, int index) {
 
     	for (int i = 0; i < actionSelectables.Count; i++) {
@@ -34,7 +26,6 @@ public static class NavigationUtils {
         }
         if (passedInButtons.Length > 0) {
     		passedInButtons[index].gameObject.GetComponent<Selectable>().Select();
-            Debug.Log(passedInButtons[index].gameObject.GetComponent<Selectable>());
     	}
     	if (AnyInputDownWasReleased(actions)) {
     		index = ListIterator.GetPositionIndex(passedInButtons.Length, index, "down");
