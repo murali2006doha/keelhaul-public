@@ -1,0 +1,424 @@
+fileFormatVersion: 2
+guid: 222f782c0a80144f09da41fbebd96246
+timeCreated: 1511814235
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: arch_hallway
+    100002: arch_mast
+    100004: arch_viking_ship
+    100006: burning_village_1
+    100008: burning_village_2
+    100010: burning_village_3
+    100012: centerpiece_valhalla_gate
+    100014: east_border_island1
+    100016: east_border_island2
+    100018: east_border_island3
+    100020: north_border_island1
+    100022: north_border_island2
+    100024: north_border_island3
+    100026: north_border_island3_MeshPart0
+    100028: north_border_island3_MeshPart1
+    100030: pillar_bridge
+    100032: pillar_wreck1
+    100034: pillar_wreck2
+    100036: shipwreck_island
+    100038: small_island_house
+    100040: small_island_trees
+    100042: small_shipwreck
+    100044: small_shipwreck1
+    100046: south_border_island1
+    100048: south_border_island2
+    100050: south_border_island3
+    100052: south_border_island4
+    100054: tower_island
+    100056: valhalla_sign_shipwreck
+    100058: //RootNode
+    100060: viking_ship_bridge_island
+    100062: west_border_island1
+    100064: west_border_island2
+    100066: west_border_island3
+    100068: west_border_island4
+    100070: west_border_island5
+    400000: arch_hallway
+    400002: arch_mast
+    400004: arch_viking_ship
+    400006: burning_village_1
+    400008: burning_village_2
+    400010: burning_village_3
+    400012: centerpiece_valhalla_gate
+    400014: east_border_island1
+    400016: east_border_island2
+    400018: east_border_island3
+    400020: north_border_island1
+    400022: north_border_island2
+    400024: north_border_island3
+    400026: north_border_island3_MeshPart0
+    400028: north_border_island3_MeshPart1
+    400030: pillar_bridge
+    400032: pillar_wreck1
+    400034: pillar_wreck2
+    400036: shipwreck_island
+    400038: small_island_house
+    400040: small_island_trees
+    400042: small_shipwreck
+    400044: small_shipwreck1
+    400046: south_border_island1
+    400048: south_border_island2
+    400050: south_border_island3
+    400052: south_border_island4
+    400054: tower_island
+    400056: valhalla_sign_shipwreck
+    400058: //RootNode
+    400060: viking_ship_bridge_island
+    400062: west_border_island1
+    400064: west_border_island2
+    400066: west_border_island3
+    400068: west_border_island4
+    400070: west_border_island5
+    2300000: arch_hallway
+    2300002: arch_mast
+    2300004: arch_viking_ship
+    2300006: burning_village_1
+    2300008: burning_village_2
+    2300010: burning_village_3
+    2300012: centerpiece_valhalla_gate
+    2300014: east_border_island1
+    2300016: east_border_island2
+    2300018: east_border_island3
+    2300020: north_border_island1
+    2300022: north_border_island2
+    2300024: north_border_island3_MeshPart0
+    2300026: north_border_island3_MeshPart1
+    2300028: pillar_bridge
+    2300030: pillar_wreck1
+    2300032: pillar_wreck2
+    2300034: shipwreck_island
+    2300036: small_island_house
+    2300038: small_island_trees
+    2300040: small_shipwreck
+    2300042: small_shipwreck1
+    2300044: south_border_island1
+    2300046: south_border_island2
+    2300048: south_border_island3
+    2300050: south_border_island4
+    2300052: tower_island
+    2300054: valhalla_sign_shipwreck
+    2300056: viking_ship_bridge_island
+    2300058: west_border_island1
+    2300060: west_border_island2
+    2300062: west_border_island3
+    2300064: west_border_island4
+    2300066: west_border_island5
+    3300000: arch_hallway
+    3300002: arch_mast
+    3300004: arch_viking_ship
+    3300006: burning_village_1
+    3300008: burning_village_2
+    3300010: burning_village_3
+    3300012: centerpiece_valhalla_gate
+    3300014: east_border_island1
+    3300016: east_border_island2
+    3300018: east_border_island3
+    3300020: north_border_island1
+    3300022: north_border_island2
+    3300024: north_border_island3_MeshPart0
+    3300026: north_border_island3_MeshPart1
+    3300028: pillar_bridge
+    3300030: pillar_wreck1
+    3300032: pillar_wreck2
+    3300034: shipwreck_island
+    3300036: small_island_house
+    3300038: small_island_trees
+    3300040: small_shipwreck
+    3300042: small_shipwreck1
+    3300044: south_border_island1
+    3300046: south_border_island2
+    3300048: south_border_island3
+    3300050: south_border_island4
+    3300052: tower_island
+    3300054: valhalla_sign_shipwreck
+    3300056: viking_ship_bridge_island
+    3300058: west_border_island1
+    3300060: west_border_island2
+    3300062: west_border_island3
+    3300064: west_border_island4
+    3300066: west_border_island5
+    4300000: arch_hallway
+    4300002: arch_mast
+    4300004: arch_viking_ship
+    4300006: burning_village_1
+    4300008: burning_village_2
+    4300010: burning_village_3
+    4300012: centerpiece_valhalla_gate
+    4300014: east_border_island1
+    4300016: east_border_island2
+    4300018: east_border_island3
+    4300020: north_border_island1
+    4300022: north_border_island2
+    4300024: north_border_island3_MeshPart0
+    4300026: north_border_island3_MeshPart1
+    4300028: pillar_bridge
+    4300030: pillar_wreck1
+    4300032: pillar_wreck2
+    4300034: shipwreck_island
+    4300036: small_island_house
+    4300038: small_island_trees
+    4300040: small_shipwreck
+    4300042: small_shipwreck1
+    4300044: south_border_island1
+    4300046: south_border_island2
+    4300048: south_border_island3
+    4300050: south_border_island4
+    4300052: tower_island
+    4300054: valhalla_sign_shipwreck
+    4300056: viking_ship_bridge_island
+    4300058: west_border_island1
+    4300060: west_border_island2
+    4300062: west_border_island3
+    4300064: west_border_island4
+    4300066: west_border_island5
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: arch_hallwayMat
+    second: {fileID: 2100000, guid: 11b2618792e9b4c3fb458d77c248e58b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: arch_mastMat
+    second: {fileID: 2100000, guid: 0aa4ad2a9aa3d4504817dbcd255f6ce2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: arch_viking_shipMat
+    second: {fileID: 2100000, guid: 7d06918d3d2e74413a50b054046d459c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: burning_village_1Mat
+    second: {fileID: 2100000, guid: 21c2610dd63b54f30a4d18683d2e3795, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: burning_village_2Mat
+    second: {fileID: 2100000, guid: e85fe6393d6a840108214e33c2cea681, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: burning_village_3Mat
+    second: {fileID: 2100000, guid: cb73c44a1349d41fdbbbb952559c8b26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: centerpiece_valhalla_gateMat
+    second: {fileID: 2100000, guid: fdbcb57a907fa41f3896c3ce5436e569, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: east_border_island1Mat
+    second: {fileID: 2100000, guid: 446c34e8d9c5148adb60917100002a7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: east_border_island2Mat
+    second: {fileID: 2100000, guid: 21c85eb1b000f46fb989c8b5e3c3ce57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: east_border_island3Mat
+    second: {fileID: 2100000, guid: cec7951225762407ba18029b142827b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: north_border_island1Mat
+    second: {fileID: 2100000, guid: 88cdd8453f08d485ab80218a48eef173, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: north_border_island2Mat
+    second: {fileID: 2100000, guid: 60bc69330d14e41eea369f34dee85b49, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: north_border_island3Mat
+    second: {fileID: 2100000, guid: fc2458302fd3d4f3083f492219270753, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pillar_bridgeMat
+    second: {fileID: 2100000, guid: 44092ff33f410420e906e4ed273f085e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pillar_wreck1Mat
+    second: {fileID: 2100000, guid: acca33291f0e74e248f7748227265e32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pillar_wreck2Mat
+    second: {fileID: 2100000, guid: d991d2524af1c4067885c049a8052f17, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shipwreck_islandMat
+    second: {fileID: 2100000, guid: eedbf2f7e46aa4f2aa56c97aee812ce9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_island_houseMat
+    second: {fileID: 2100000, guid: ebc213a8a6ea345bd82bdb2ee66aa8fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_island_treesMat
+    second: {fileID: 2100000, guid: e7a17aa8ec36847dcbcd5977af0afbf6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_shipwreck1Mat
+    second: {fileID: 2100000, guid: be5b117f0847146528ce7f569070017d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_shipwreckMat
+    second: {fileID: 2100000, guid: 500067c8b6f0f4077a64a091f40afa9b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: south_border_island1Mat
+    second: {fileID: 2100000, guid: f343fd040335e4501a5900eeed7cb1f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: south_border_island2Mat
+    second: {fileID: 2100000, guid: 0928e72f4c0734c9885eb96d5a838ee4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: south_border_island3Mat
+    second: {fileID: 2100000, guid: 6a610391592cc4a3a9962ac198f36c4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: south_border_island4Mat
+    second: {fileID: 2100000, guid: 1362c0c70a5db43338a9b43a4a7c9cb5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tower_islandMat
+    second: {fileID: 2100000, guid: 83175633af6df421ab52be7c16dec4e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: valhalla_sign_shipwreckMat
+    second: {fileID: 2100000, guid: 60f31a57660034df6bd3aa22d72af207, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: viking_ship_bridge_islandMat
+    second: {fileID: 2100000, guid: e7b130aa6e78b47d289b2596ae23fa50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: west_border_island1Mat
+    second: {fileID: 2100000, guid: 754c262025486451aa692d797fffd581, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: west_border_island2Mat
+    second: {fileID: 2100000, guid: 979be5aa4cbf54a8eb999e089a6a7a50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: west_border_island3Mat
+    second: {fileID: 2100000, guid: 55e5439ed65e6485287790984e3e9629, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: west_border_island4Mat
+    second: {fileID: 2100000, guid: 1c1bb0f45357548a29de6e3b53b57304, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: west_border_island5Mat
+    second: {fileID: 2100000, guid: 3a83030f43da5478a9dcf315101562b3, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
