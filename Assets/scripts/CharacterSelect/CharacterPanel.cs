@@ -81,6 +81,7 @@ public class CharacterPanel : MonoBehaviour
 
     public void SignOut()
     {
+        this.panelHostHolders.ForEach(panel => panel.Hide());
         this.characterImage.gameObject.SetActive(false);
         this.status.text = string.Empty;
         this.SignedIn = false;

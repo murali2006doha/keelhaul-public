@@ -1,5 +1,6 @@
 ﻿using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ public class MainMenu : AbstractMenu
 
 	protected override void SetActions() {
 
+        this.csController.onTranstionToMainMenu = this.TransitionOutOfCharacterSelect;
 		online.SetAction(() => {
             CloseOfflineSubmenu();
             canReturn = true;
@@ -54,7 +56,7 @@ public class MainMenu : AbstractMenu
 		offline.SetAction(() => {
             CloseOnlineSubmenu();
             canReturn = true;
-            offlineSubmenu.gameObject.SetActive(true);            
+            offlineSubmenu.gameObject.SetActive(true);
             actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 1, deathMatchOffline.gameObject);
             actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 2, sabotageOffline.gameObject);
 			index = index + 1;
@@ -104,8 +106,8 @@ public class MainMenu : AbstractMenu
             CloseOnlineSubmenu();
 	        CloseOfflineSubmenu();
 			ModalStack.InitializeModal(this.actions, ModalsEnum.notificationDoubleModal, modalActions);
-            FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm, 
-                                                        NotificationImages.yes, 
+            FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm,
+                                                        NotificationImages.yes,
                                                         NotificationImages.no, () => {
 				Exit();
 			}, () => {
@@ -150,7 +152,7 @@ public class MainMenu : AbstractMenu
 
 
     public void ResetMenu() {
-       
+
         DestroySabotageNotAvailableText();
         //DestroyOfflineNotAvailableText();
         CloseOnlineSubmenu();
@@ -164,6 +166,10 @@ public class MainMenu : AbstractMenu
     private void TransitionToCharacterSelect() {
         this.csController.gameObject.SetActive(true);
         this.gameObject.SetActive(false);
+    }
+
+    private void TransitionOutOfCharacterSelect() {
+        this.gameObject.SetActive(true);
     }
 
     void DestroySabotageNotAvailableText() {

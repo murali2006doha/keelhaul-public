@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
@@ -30,6 +31,7 @@ public class CharacterSelectController : MonoBehaviour {
     Dictionary<PlayerActions, int> playerToPos = new Dictionary<PlayerActions, int>();
     Dictionary<CharacterPanel,PlayerActions> panelToPlayer = new Dictionary<CharacterPanel,PlayerActions>();
     private bool playable;
+    public UnityAction onTranstionToMainMenu;
     private bool onCharacterSelect = true;
     private void Start()
     {
@@ -115,12 +117,14 @@ public class CharacterSelectController : MonoBehaviour {
                     }
                     else
                     {
-                        panel.SignOut();
                         if (panel.IsPlayer)
                         {
                             panelToPlayer.Remove(panel);
                             playerToPos.Remove(player);
                         }
+
+                        panel.SignOut();
+
 
                     }
                 }
@@ -152,6 +156,8 @@ public class CharacterSelectController : MonoBehaviour {
         {
             SignIn(player);
 
+        } else if (player.Red.WasReleased) {
+            this.TransitionToMainMenu();
         }
     }
 
@@ -202,10 +208,17 @@ public class CharacterSelectController : MonoBehaviour {
         this.playable = this.panels.Filter(panel => panel.CharacterSelected).Count >= 2;
     }
 
+    private void TransitionToMainMenu() {
+        this.gameObject.SetActive(false);
+        onTranstionToMainMenu();
+        this.controllerSelect.ClearPlayers();
+    }
+
     private void TransitionToMapSelect() {
         this.onCharacterSelect = false;
         this.mapView.gameObject.SetActive(true);
     }
+
 
     private void TransitionToCharacterSelect()
     {
