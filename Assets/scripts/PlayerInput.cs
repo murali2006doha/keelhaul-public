@@ -45,6 +45,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public GameObject ship_model;
     public GameObject spray;
     public ShipWorldCanvas worldCanvas;
+    public GameObject pauseModal;
 
     //Fixed vars
     AbstractGameManager manager;
@@ -217,8 +218,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightTriggerDown += centralCannon.handleShoot;
         shipInput.onRightBumperDown += altCannonComponent.handleShoot;
         shipInput.onStartButtonPress += this.instantiatePauseMenu;
-        //shipInput.onSelectButtonHoldDown += this.showStatsScreen;
-        //shipInput.onSelectButtonRelease += null;
+        shipInput.onSelectButtonHoldDown += this.showStatsScreen;
+        shipInput.onSelectButtonRelease += this.hideStatsScreen;
 
         if (hookshotComponent)
         {
@@ -237,25 +238,32 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightTriggerDown = null;
         shipInput.onRightBumperDown = null;
         shipInput.onLeftTriggerDown = null;
-        //shipInput.onSelectButtonHoldDown = null;
-        //shipInput.onSelectButtonRelease = null;
+        shipInput.onSelectButtonHoldDown = null;
+        shipInput.onSelectButtonRelease = null;
     }
 
 
     void instantiatePauseMenu() {
-        if (FindObjectOfType<CountDown>() == null && !FindObjectOfType<MenuModel>().pauseMenu.gameObject.GetActive()) {
-            clearShipInput();
-            FindObjectOfType<MenuModel>().pauseMenu.Initialize(this.Actions, () => {
-                InitializeShipInput();
-                FindObjectOfType<PauseMenu>().ResumeGame();
-            });
+        if (FindObjectOfType<CountDown>() == null && !FindObjectOfType<MenuModel>()) {
+		
+			clearShipInput();
+
+            GameObject pause = Instantiate(pauseModal);
+            pause.GetComponent<MenuModel>().pauseMenu.Initialize(this.Actions, this.manager, () => {
+				InitializeShipInput();
+				pause.GetComponent<MenuModel>().pauseMenu.ResumeGame();
+                Destroy(pause.gameObject);
+			});
         }
-    }
+	}
 
 
     void showStatsScreen() {
         uiManager.InitializeStatsScreen(manager, this);
+    }
 
+    void hideStatsScreen() {
+        uiManager.SetOffStatsScreen();
     }
 
     public void DisableUIForStats()

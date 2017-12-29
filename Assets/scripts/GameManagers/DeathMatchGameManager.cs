@@ -763,7 +763,7 @@ public class DeathMatchGameManager : AbstractGameManager
     {
         Time.timeScale = 1;
         PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene("start");
+        SceneManager.LoadScene("Start");
     }
     public void restartCurrentGame()
     {
