@@ -51,7 +51,7 @@ Material:
     - _RefrDistort: 0.3
     - _WaveScale: 0.15
     m_Colors:
-    - WaveSpeed: {r: 0, g: 12, b: -12.25, a: 0}
+    - WaveSpeed: {r: 41.3, g: 153.51, b: -50, a: 53.33}
     - _BumpMap_ST: {r: 1, g: 1, b: 0, a: 0}
     - _Fresnel_ST: {r: 1, g: 1, b: 0, a: 0}
     - _HorizonColor: {r: 0.19463669, g: 0.3206588, b: 0.5294118, a: 0}

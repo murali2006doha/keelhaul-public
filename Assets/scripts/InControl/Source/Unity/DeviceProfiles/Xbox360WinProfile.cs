@@ -1,6 +1,3 @@
-using System;
-
-
 namespace InControl
 {
 	// @cond nodoc
@@ -9,10 +6,13 @@ namespace InControl
 	{
 		public Xbox360WinProfile()
 		{
-			Name = "XBox 360 Controller";
-			Meta = "XBox 360 Controller on Windows";
+			Name = "Xbox 360 Controller";
+			Meta = "Xbox 360 Controller on Windows";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+			DeviceStyle = InputDeviceStyle.Xbox360;
+
+			IncludePlatforms = new[] {
 				"Windows"
 			};
 
@@ -45,6 +45,7 @@ namespace InControl
 				"XBOX 360 For Windows (Controller)",
 				"XEOX Gamepad (Controller)",
 				"XEQX Gamepad SL-6556-BK",
+				"Controller (<BETOP GAME FOR WINDOWS>)"
 			};
 
 			LastResortRegex = "360|xbox|catz";
@@ -136,13 +137,17 @@ namespace InControl
 				new InputControlMapping {
 					Handle = "Left Trigger",
 					Target = InputControlType.LeftTrigger,
-					Source = Analog8
+					Source = Analog( 8 ),
+					SourceRange = InputRange.ZeroToOne,
+					TargetRange = InputRange.ZeroToOne,
 				},
 				new InputControlMapping {
 					Handle = "Right Trigger",
 					Target = InputControlType.RightTrigger,
-					Source = Analog9
-				}
+					Source = Analog( 9 ),
+					SourceRange = InputRange.ZeroToOne,
+					TargetRange = InputRange.ZeroToOne,
+				},
 			};
 		}
 	}

@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace InControl
+﻿namespace InControl
 {
 	// Currently works only with the F710 for some reason.
 	// @cond nodoc
@@ -13,7 +10,10 @@ namespace InControl
 			Name = "Logitech Controller";
 			Meta = "Logitech Controller on Amazon Fire TV (Mode D)";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+			DeviceStyle = InputDeviceStyle.Xbox360;
+
+			IncludePlatforms = new[] {
 				"Amazon AFT"
 			};
 

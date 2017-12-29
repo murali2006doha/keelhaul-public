@@ -36,7 +36,6 @@ public class GameInitializer : MonoBehaviour {
     public Action onGameManagerCreated;
 
     AbstractGameManager manager;
-    private GameObject mapObject;
 
     void Start()
     {
@@ -46,6 +45,7 @@ public class GameInitializer : MonoBehaviour {
     }
 
     public void Activate() {
+
         Cursor.visible = false;
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         gs = GameObject.FindObjectOfType<GameModeSelectSettings>();
@@ -96,9 +96,9 @@ public class GameInitializer : MonoBehaviour {
     }
 
     private void InstantiateMap() {
-
-        mapObject = Resources.Load(PathVariables.GetMapForMode(gameType, map)) as GameObject;
-        Instantiate(mapObject);
+        print(gameType.ToString() + map.ToString());
+        GameObject mapToInstantiate = Resources.Load(PathVariables.GetMapForMode(gameType, map)) as GameObject;
+        Instantiate(mapToInstantiate);
     }
 
     private void setGameTypeAndSettings() {
@@ -106,8 +106,7 @@ public class GameInitializer : MonoBehaviour {
         if (ps) {
             if (gs) {
                 gameType = gs.getGameType ();
-            } 
-
+            }
             if (gameType == GameTypeEnum.Sabotage) {
                 this.isTeam = true;
             }
@@ -227,7 +226,6 @@ public class GameInitializer : MonoBehaviour {
             deathMatchManager.globalCanvas = globalCanvas;
             deathMatchManager.screenSplitter = globalCanvas.splitscreenImages;
             deathMatchManager.fadeInAnimator = globalCanvas.fadePanelAnimator;
-            deathMatchManager.map = mapObject;
             if (!isTeam)
             {
                 for (int x = 0; x < players.Count; x++)

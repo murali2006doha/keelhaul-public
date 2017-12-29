@@ -1,12 +1,11 @@
-﻿#if UNITY_EDITOR && (UNITY_4_6 || UNITY_5 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3 || UNITY_5_4 || UNITY_5_5)
-using System.IO;
-using UnityEditor;
-using UnityEngine;
-
-
+﻿#if UNITY_EDITOR && (UNITY_4_6 || UNITY_4_7 || UNITY_5)
 namespace InControl
 {
-	[CustomEditor( typeof(InControlInputModule) )]
+	using UnityEditor;
+	using UnityEngine;
+
+
+	[CustomEditor( typeof( InControlInputModule ) )]
 	public class InControlInputModuleEditor : Editor
 	{
 		SerializedProperty submitButton;
@@ -14,7 +13,7 @@ namespace InControl
 		SerializedProperty analogMoveThreshold;
 		SerializedProperty moveRepeatFirstDuration;
 		SerializedProperty moveRepeatDelayDuration;
-		SerializedProperty allowMobileDevice;
+		SerializedProperty forceModuleActive;
 		SerializedProperty allowMouseInput;
 		SerializedProperty focusOnMouseHover;
 
@@ -26,7 +25,7 @@ namespace InControl
 			analogMoveThreshold = serializedObject.FindProperty( "analogMoveThreshold" );
 			moveRepeatFirstDuration = serializedObject.FindProperty( "moveRepeatFirstDuration" );
 			moveRepeatDelayDuration = serializedObject.FindProperty( "moveRepeatDelayDuration" );
-			allowMobileDevice = serializedObject.FindProperty( "allowMobileDevice" );
+			forceModuleActive = serializedObject.FindProperty( "forceModuleActive" );
 			allowMouseInput = serializedObject.FindProperty( "allowMouseInput" );
 			focusOnMouseHover = serializedObject.FindProperty( "focusOnMouseHover" );
 		}
@@ -52,10 +51,10 @@ namespace InControl
 			GUILayout.Space( 10.0f );
 			EditorGUILayout.LabelField( "Options", EditorStyles.boldLabel );
 
-			allowMobileDevice.boolValue = EditorGUILayout.Toggle( "Allow Mobile Device", allowMobileDevice.boolValue );
+			forceModuleActive.boolValue = EditorGUILayout.Toggle( "Force Module Active", forceModuleActive.boolValue );
 			allowMouseInput.boolValue = EditorGUILayout.Toggle( "Allow Mouse Input", allowMouseInput.boolValue );
 			focusOnMouseHover.boolValue = EditorGUILayout.Toggle( "Focus Mouse On Hover", focusOnMouseHover.boolValue );
-				
+
 			serializedObject.ApplyModifiedProperties();
 		}
 	}

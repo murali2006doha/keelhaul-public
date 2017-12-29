@@ -63,6 +63,11 @@ public class UIManager : MonoBehaviour
     ShipEnum shipType;
     public TMPro.TextMeshProUGUI killFeed;
 
+    public UIManager()
+    {
+
+    }
+
     public void Initialize(int playerNum, bool isShip, ShipEnum shipType, Sprite backgroundPortrait, Sprite normalFace, Sprite hitFace, Sprite hurtFace, Sprite pointFace)
     {
         this.shipType = shipType;

@@ -1,14 +1,13 @@
 ﻿#if UNITY_EDITOR
-using System.Collections;
-using System.IO;
-using InControl.iOS.Xcode;
-using UnityEditor;
-using UnityEditor.Callbacks;
-using UnityEngine;
-
-
 namespace InControl
 {
+	using System.IO;
+	using iOS.Xcode;
+	using UnityEditor;
+	using UnityEditor.Callbacks;
+	using UnityEngine;
+
+
 	public class ICadePostProcessor
 	{
 		static readonly string[] sourceFiles = new[] {
@@ -22,18 +21,18 @@ namespace InControl
 		[PostProcessBuild]
 		public static void OnPostProcessBuild( BuildTarget buildTarget, string buildPath )
 		{
-			#if UNITY_5
+#if UNITY_5 || UNITY_5_6_OR_NEWER
 			if (buildTarget == BuildTarget.iOS)
-			#else
-			if (buildTarget == BuildTarget.iOS)
-			#endif
+#else
+			if (buildTarget == BuildTarget.iPhone)
+#endif
 			{
 				var projPath = PBXProject.GetPBXProjectPath( buildPath );
 				PBXProject proj = new PBXProject();
 				proj.ReadFromString( File.ReadAllText( projPath ) );
 				var targetGuid = proj.TargetGuidByName( "Unity-iPhone" );
 
-				var instance = ScriptableObject.CreateInstance<ICadePluginPath>(); 
+				var instance = ScriptableObject.CreateInstance<ICadePluginPath>();
 				var pluginPath = Path.GetDirectoryName( AssetDatabase.GetAssetPath( MonoScript.FromScriptableObject( instance ) ) );
 				ScriptableObject.DestroyImmediate( instance );
 

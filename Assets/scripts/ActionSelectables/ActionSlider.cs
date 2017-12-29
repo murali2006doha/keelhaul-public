@@ -20,9 +20,11 @@ public class ActionSlider : ActionSelectable
         this.SliderComponent.onValueChanged.AddListener(action);
         this.actionToExecute = action;
 		this.input = input;
-	}
+    }
 
 	public override void doAction() {
+        var value = input.Left.RawValue > 0?-input.Left.RawValue:input.Right.RawValue;
+        this.SliderComponent.value += value * 0.1f;
 		this.actionToExecute (this.SliderComponent.value);
 	}
 

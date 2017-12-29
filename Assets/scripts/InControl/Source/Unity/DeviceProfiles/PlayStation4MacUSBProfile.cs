@@ -1,6 +1,3 @@
-using System;
-
-
 namespace InControl
 {
 	// @cond nodoc
@@ -12,12 +9,16 @@ namespace InControl
 			Name = "PlayStation 4 Controller";
 			Meta = "PlayStation 4 Controller on Mac";
 
-			SupportedPlatforms = new[] {
+			DeviceClass = InputDeviceClass.Controller;
+			DeviceStyle = InputDeviceStyle.PlayStation4;
+
+			IncludePlatforms = new[] {
 				"OS X"
 			};
 
 			JoystickNames = new[] {
-				"Sony Computer Entertainment Wireless Controller"
+				"Sony Computer Entertainment Wireless Controller",
+				"Sony Interactive Entertainment Wireless Controller"
 			};
 
 			ButtonMappings = new[] {
@@ -78,7 +79,7 @@ namespace InControl
 				},
 				new InputControlMapping {
 					Handle = "TouchPad Button",
-					Target = InputControlType.TouchPadTap,
+					Target = InputControlType.TouchPadButton,
 					Source = Button13
 				}
 			};

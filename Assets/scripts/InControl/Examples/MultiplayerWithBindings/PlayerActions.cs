@@ -124,8 +124,88 @@ public class PlayerActions : PlayerActionSet
 		return actions;
 	}
 
+    public static PlayerActions CreateAllControllerBinding()
+    {
+        var actions = new PlayerActions();
 
-	public static PlayerActions CreateWithJoystickBindings() {
+        actions.Up.AddDefaultBinding(Key.W);
+        actions.Down.AddDefaultBinding(Key.S);
+        actions.Left.AddDefaultBinding(Key.A);
+        actions.Right.AddDefaultBinding(Key.D);
+
+        actions.Up.AddDefaultBinding(Key.UpArrow);
+        actions.Down.AddDefaultBinding(Key.DownArrow);
+        actions.Left.AddDefaultBinding(Key.LeftArrow);
+        actions.Right.AddDefaultBinding(Key.RightArrow);
+
+        actions.Fire.AddDefaultBinding(Mouse.LeftButton);
+        actions.Fire_Hook.AddDefaultBinding(Mouse.RightButton);
+        actions.Green.AddDefaultBinding(Key.Return);
+        actions.Alt_Fire.AddDefaultBinding(Key.LeftControl);
+        actions.Red.AddDefaultBinding(Key.Space);
+        actions.Boost.AddDefaultBinding(Key.Shift);
+        actions.Bomb.AddDefaultBinding(Key.Space);
+        actions.Green.AddDefaultBinding(Key.Alt);
+        actions.R_Up.AddDefaultBinding(Mouse.PositiveY);
+        actions.R_Down.AddDefaultBinding(Mouse.NegativeY);
+        actions.R_Left.AddDefaultBinding(Mouse.NegativeX);
+        actions.R_Right.AddDefaultBinding(Mouse.PositiveX);
+
+        actions.Start.AddDefaultBinding(Key.Escape);
+        actions.Select.AddDefaultBinding(Key.Tab);
+
+
+        actions.Green.AddDefaultBinding(InputControlType.Action1);
+        actions.Red.AddDefaultBinding(InputControlType.Action2);
+        actions.Blue.AddDefaultBinding(InputControlType.Action3);
+        actions.Yellow.AddDefaultBinding(InputControlType.Action4);
+
+        actions.Up.AddDefaultBinding(InputControlType.LeftStickUp);
+        actions.Down.AddDefaultBinding(InputControlType.LeftStickDown);
+        actions.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
+        actions.Right.AddDefaultBinding(InputControlType.LeftStickRight);
+
+        actions.R_Up.AddDefaultBinding(InputControlType.RightStickUp);
+        actions.R_Down.AddDefaultBinding(InputControlType.RightStickDown);
+        actions.R_Left.AddDefaultBinding(InputControlType.RightStickLeft);
+        actions.R_Right.AddDefaultBinding(InputControlType.RightStickRight);
+
+        actions.Up.AddDefaultBinding(InputControlType.DPadUp);
+        actions.Down.AddDefaultBinding(InputControlType.DPadDown);
+        actions.Left.AddDefaultBinding(InputControlType.DPadLeft);
+        actions.Right.AddDefaultBinding(InputControlType.DPadRight);
+
+        actions.Fire.AddDefaultBinding(InputControlType.RightTrigger);
+        actions.Alt_Fire.AddDefaultBinding(InputControlType.RightBumper);
+        actions.Fire_Hook.AddDefaultBinding(InputControlType.LeftTrigger);
+        actions.Boost.AddDefaultBinding(InputControlType.LeftBumper);
+        actions.Bomb.AddDefaultBinding(InputControlType.Action2);
+
+        actions.Start.AddDefaultBinding(InputControlType.Start);
+        actions.Start.AddDefaultBinding(InputControlType.Options);
+        actions.Select.AddDefaultBinding(InputControlType.Select);
+
+        actions.ListenOptions.IncludeUnknownControllers = true;
+        actions.ListenOptions.MaxAllowedBindings = 4;
+        actions.ListenOptions.MaxAllowedBindingsPerType = 4;
+        actions.ListenOptions.AllowDuplicateBindingsPerSet = true;
+        actions.ListenOptions.UnsetDuplicateBindingsOnSet = false;
+        actions.ListenOptions.IncludeMouseButtons = true;
+        
+        foreach(PlayerAction action in actions.Actions)
+        {
+            action.RepeatDelay = 0.2f;
+            action.FirstRepeatDelay = 0.2f;
+            action.Sensitivity = 0.9f;
+        }
+        actions.Green.FirstRepeatDelay = 0.8f;
+        actions.Green.RepeatDelay = 0.8f;
+
+        return actions;
+    }
+
+
+    public static PlayerActions CreateWithJoystickBindings() {
 		var actions = new PlayerActions();
 
 		actions.Green.AddDefaultBinding(InputControlType.Action1);
@@ -156,9 +236,12 @@ public class PlayerActions : PlayerActionSet
 
 		actions.Start.AddDefaultBinding(InputControlType.Start);
 		actions.Start.AddDefaultBinding(InputControlType.Options);
-		actions.Select.AddDefaultBinding(InputControlType.Select);
+		actions.Select.AddDefaultBinding(InputControlType.Back);
+        actions.Select.AddDefaultBinding(InputControlType.Share);
 
-		return actions;
+     
+
+        return actions;
 	}
 
 

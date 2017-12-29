@@ -1,11 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using UnityEngine;
-
-
-namespace InControl
+﻿namespace InControl
 {
+	using System;
+	using System.IO;
+	using UnityEngine;
+
 
 	public class DeviceBindingSource : BindingSource
 	{
@@ -47,12 +45,12 @@ namespace InControl
 
 
 		public override string Name
-		{ 
+		{
 			get
 			{
 				if (BoundTo == null)
 				{
-//					Debug.LogWarning( "Cannot query property 'Name' for unbound BindingSource." );
+					// Debug.LogWarning( "Cannot query property 'Name' for unbound BindingSource." );
 					return "";
 				}
 				else
@@ -70,12 +68,12 @@ namespace InControl
 
 
 		public override string DeviceName
-		{ 
+		{
 			get
 			{
 				if (BoundTo == null)
 				{
-//					Debug.LogWarning( "Cannot query property 'DeviceName' for unbound BindingSource." );
+					// Debug.LogWarning( "Cannot query property 'DeviceName' for unbound BindingSource." );
 					return "";
 				}
 				else
@@ -87,6 +85,24 @@ namespace InControl
 					}
 					return inputDevice.Name;
 				}
+			}
+		}
+
+
+		public override InputDeviceClass DeviceClass
+		{
+			get
+			{
+				return BoundTo == null ? InputDeviceClass.Unknown : BoundTo.Device.DeviceClass;
+			}
+		}
+
+
+		public override InputDeviceStyle DeviceStyle
+		{
+			get
+			{
+				return BoundTo == null ? InputDeviceStyle.Unknown : BoundTo.Device.DeviceStyle;
 			}
 		}
 
@@ -131,7 +147,7 @@ namespace InControl
 		}
 
 
-		internal override BindingSourceType BindingSourceType
+		public override BindingSourceType BindingSourceType
 		{
 			get
 			{
@@ -146,14 +162,14 @@ namespace InControl
 		}
 
 
-		internal override void Load( BinaryReader reader )
+		internal override void Load( BinaryReader reader, UInt16 dataFormatVersion )
 		{
 			Control = (InputControlType) reader.ReadInt32();
 		}
 
 
 		internal override bool IsValid
-		{ 
+		{
 			get
 			{
 				if (BoundTo == null)

@@ -23,7 +23,7 @@ public abstract class ActionSelectable : MonoBehaviour {
     }
 
 
-    public bool isMouseHovering() {
+    public virtual bool isMouseHovering() {
         return mouseHovering;
     }
 }

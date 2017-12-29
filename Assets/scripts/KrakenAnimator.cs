@@ -49,11 +49,13 @@ public class KrakenAnimator : MonoBehaviour {
 
     public void resetUnderShip(){
 		animKraken.SetBool ("underShip", false);
-		kraken.resetEmerge ();
+        if (kraken) //TODO: Fix this
+		    kraken.resetEmerge ();
 
 	}
 	public void setSubmerging(){
-		kraken.resetSubmerging ();
+        if(kraken)  //TODO: Fix this
+            kraken.resetSubmerging ();
 	}
 
 	public void toggleCollider(){
