@@ -466,7 +466,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void vibrate(float intensity, float time)
     {
-        if (Actions.Device != null)
+        if (Actions !=null && Actions.Device != null)
         {
             shipInput.actions.Device.Vibrate(intensity);
             Invoke("stopVibrate", time);
