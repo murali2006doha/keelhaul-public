@@ -19,6 +19,9 @@ public class CharacterPanel : MonoBehaviour
     private Text teamIndicator;
 
     [SerializeField]
+    private GameObject teamHolder;
+
+    [SerializeField]
     private Image selected;
 
     [SerializeField]
@@ -94,6 +97,7 @@ public class CharacterPanel : MonoBehaviour
         this.panelHostHolders.ForEach(panel => panel.Hide());
         this.characterImage.gameObject.SetActive(false);
         this.characterText.gameObject.SetActive(false);
+        this.teamHolder.gameObject.SetActive(false);
         this.status.text = string.Empty;
         this.SignedIn = false;
         this.IsPlayer = false;
@@ -132,12 +136,15 @@ public class CharacterPanel : MonoBehaviour
     {
         if (!this.characterSelected)
         {
-            this.characterIndex = Mathf.Clamp(this.characterIndex + direction, 0, this.characterReferences.Count - 1);
+            if (this.characterIndex + 1 == 4) {
+                this.characterIndex = 0;
+            } else {
+                this.characterIndex++;
+            }
+
             this.characterImage.sprite = this.characterToPanels.Get(this.characterReferences[this.characterIndex]);
             this.characterText.sprite = this.characterTypeImages.Get(this.characterReferences[this.characterIndex]);
         }
-
-
     }
 
 
@@ -145,6 +152,7 @@ public class CharacterPanel : MonoBehaviour
     {
         this.characterText.gameObject.SetActive(true);
         this.characterImage.gameObject.SetActive(true);
+        this.teamHolder.gameObject.SetActive(true);
         this.ToggleHost(playerIndex, true);
         this.status.text = this.IsPlayer ? ("Player " + playerIndex) : "Bot";
         this.ChangeCharacter(0);
