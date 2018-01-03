@@ -85,5 +85,17 @@ public abstract class AbstractGameManager : MonoBehaviour {
     {
         return "";
     }
-    
+
+    internal PlayerInput getPlayerWithId(int id)
+    {
+        var players = getPlayers();
+        foreach(PlayerInput player in players)
+        {
+            if (player.GetId() == id)
+            {
+                return player;
+            }
+        }
+        return players[0];
+    }
 }
