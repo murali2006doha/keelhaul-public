@@ -26,6 +26,10 @@ public class CharacterSelectController : MonoBehaviour {
     [SerializeField]
     private SpriteDictionary characterPanelSprites;
 
+
+    [SerializeField]
+    private GameObject playableStatus;
+
     int numPlayers = 4;
     public List<PlayerActions> players = new List<PlayerActions>();
     Dictionary<PlayerActions, int> playerToPos = new Dictionary<PlayerActions, int>();
@@ -206,6 +210,7 @@ public class CharacterSelectController : MonoBehaviour {
 
     private void UpdatePlayableStatus() {
         this.playable = this.panels.Filter(panel => panel.CharacterSelected).Count >= 2;
+        this.playableStatus.SetActive(this.playable);
     }
 
     private void TransitionToMainMenu() {
