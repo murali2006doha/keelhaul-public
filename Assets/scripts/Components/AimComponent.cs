@@ -59,8 +59,8 @@ public class AimComponent : MonoBehaviour {
             aim.transform.position = (cannon.transform.position) + newVec;
         }
         Vector3 shoot_direction = aim.transform.position - cannon.transform.position;
+        shoot_direction.y = 0;
         cannon.transform.rotation = Quaternion.LookRotation(shoot_direction.normalized);
-
     }
 
 
