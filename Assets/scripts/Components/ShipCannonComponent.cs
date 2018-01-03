@@ -29,7 +29,6 @@ public class ShipCannonComponent : MonoBehaviour
     internal void Initialize(PlayerInput input, Transform shipTransform, GameObject aim, ShipStats stats,
         FreeForAllStatistics gameStats, ShipMotorComponent motor, string path)
     {
-        //this.input = input;
         this.stats = stats;
         this.aim = aim;
         this.shipTransform = shipTransform;

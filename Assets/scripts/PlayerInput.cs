@@ -508,8 +508,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         if (onHitRegister != null) {
             onHitRegister ();
         }
-
-        if (teamGame && !isKraken) {
+        var player = manager.getPlayerWithId(id);
+        if (!isKraken && (player == null || teamNo == player.teamNo))
+        {
             return;
         }
 
@@ -528,24 +529,15 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             if (!isKraken)
             {
                 photonView.RPC("AddDamageStats", PhotonPlayer.Find(id), id, type.ToString(), actualDamage, true);
-                var players = manager.getPlayers();
-                foreach (PlayerInput player in players)
+                gameStats.addTakenDamage(player.type.ToString(), actualDamage);
+                if (PhotonNetwork.offlineMode)
                 {
-                    if (player.GetId() == id)
-                    {
-                        gameStats.addTakenDamage(player.type.ToString(), actualDamage);
-                        if (PhotonNetwork.offlineMode)
-                        {
-                            player.gameStats.addGivenDamage(type.ToString(), actualDamage);
-                        }
-                    }
+                    player.gameStats.addGivenDamage(type.ToString(), actualDamage);
                 }
             }
             else
             {
                 gameStats.addTakenDamage("kraken", actualDamage);
-
-
             }
             if (health <= 0)
             {

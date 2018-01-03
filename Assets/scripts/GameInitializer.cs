@@ -53,6 +53,7 @@ public class GameInitializer : MonoBehaviour {
         Cursor.visible = false;
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         this.map = ps.map;
+
         setGameTypeAndSettings();
         InstantiateMap();
         InstantiateEventSystem();
@@ -120,14 +121,21 @@ public class GameInitializer : MonoBehaviour {
         if (ps) {
             gameType = ps.gameType;
 
-            if (gameType == GameTypeEnum.Sabotage) {
-                this.isTeam = true;
-            }
-
             includeKraken = ps.includeKraken;
             shipSelections.Clear();
+            List<int> teams = new List<int>();
             foreach(CharacterSelection selection in ps.players)
             {
+             
+                if (teams.Contains(selection.team))
+                {
+                    isTeam = true;
+                }
+                else
+                {
+                    teams.Add(selection.team);
+                }
+
                 if (!(selection.selectedCharacter == ShipEnum.Kraken))
                 {
                     shipSelections.Add(selection);
@@ -515,7 +523,7 @@ public class GameInitializer : MonoBehaviour {
             }
 
         }
-        UnityEngine.Object shipUI = Resources.Load(PathVariables.shipUIPath, typeof(GameObject));
+        GameObject shipUI = Resources.Load(PathVariables.shipUIPath, typeof(GameObject)) as GameObject;
 
         int shipCount = 0;
         //Look for ships
