@@ -11,18 +11,12 @@ using System;
 public class MainMenu : AbstractMenu
 {
 
-    public ActionButton online;
-    public Transform onlineSubmenu;
-    public ActionButton deathMatchOnline;
-    public ActionButton sabotageOnline;
     public Transform offlineSubmenu;
     public ActionButton offline;
     public ActionButton deathMatchOffline;
     public ActionButton sabotageOffline;
 	public ActionButton settings;
 	public ActionButton exit;
-    public Transform offlineNotAvailableText;
-    public Transform sabotageNotAvailableText;
 
     [SerializeField]
     private CharacterSelectController csController;
@@ -32,29 +26,8 @@ public class MainMenu : AbstractMenu
 	protected override void SetActions() {
 
         this.csController.onTranstionToMainMenu = this.TransitionOutOfCharacterSelect;
-		online.SetAction(() => {
-            CloseOfflineSubmenu();
-            canReturn = true;
-            onlineSubmenu.gameObject.SetActive(true);
-            actionSelectables.Insert(actionSelectables.IndexOf(online.gameObject) + 1, deathMatchOnline.gameObject);
-            actionSelectables.Insert(actionSelectables.IndexOf(online.gameObject) + 2, sabotageOnline.gameObject);
-            index = index + 1;
-		});
-
-        deathMatchOnline.SetAction (() => {
-            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, true);
-            SceneManager.LoadScene("Game");
-        });
-
-        sabotageOnline.SetAction (() => {
-            sabotageNotAvailableText.gameObject.SetActive(true);
-            Invoke("DestroySabotageNotAvailableText", 1f);
-            //FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, true);
-            //SceneManager.LoadScene("Game");
-        });
 
 		offline.SetAction(() => {
-            CloseOnlineSubmenu();
             canReturn = true;
             offlineSubmenu.gameObject.SetActive(true);
             actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 1, deathMatchOffline.gameObject);
@@ -75,7 +48,6 @@ public class MainMenu : AbstractMenu
 
 
 		settings.SetAction(() => {
-            CloseOnlineSubmenu();
             CloseOfflineSubmenu();
             canReturn = true;
             this.enabled = false;
@@ -103,7 +75,6 @@ public class MainMenu : AbstractMenu
 		});
 
 		exit.SetAction(() => {
-            CloseOnlineSubmenu();
 	        CloseOfflineSubmenu();
 			ModalStack.InitializeModal(this.actions, ModalsEnum.notificationDoubleModal, modalActions);
             FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm,
@@ -119,25 +90,11 @@ public class MainMenu : AbstractMenu
 
 
     protected override void SetActionSelectables() {
-		actionSelectables.Add(online.gameObject);
 		actionSelectables.Add(offline.gameObject);        //commented out because this is not currently in use
 		actionSelectables.Add(settings.gameObject);
 		actionSelectables.Add(exit.gameObject);
 	}
 
-
-    void CloseOnlineSubmenu() {
-        canReturn = false;
-
-        if (onlineSubmenu.gameObject.GetActive()) {
-    		onlineSubmenu.gameObject.SetActive(false);
-            actionSelectables.RemoveAt(actionSelectables.IndexOf(deathMatchOnline.gameObject));
-            actionSelectables.RemoveAt(actionSelectables.IndexOf(sabotageOnline.gameObject));
-            index = 0;
-            dontReset = true;
-
-        }
-    }
 
     void CloseOfflineSubmenu() {
         canReturn = false;
@@ -145,7 +102,7 @@ public class MainMenu : AbstractMenu
             offlineSubmenu.gameObject.SetActive(false);
             actionSelectables.RemoveAt(actionSelectables.IndexOf(deathMatchOffline.gameObject));
             actionSelectables.RemoveAt(actionSelectables.IndexOf(sabotageOffline.gameObject));
-            index = 1;
+            index = 0;
             dontReset = true;
         }
     }
@@ -153,9 +110,6 @@ public class MainMenu : AbstractMenu
 
     public void ResetMenu() {
 
-        DestroySabotageNotAvailableText();
-        //DestroyOfflineNotAvailableText();
-        CloseOnlineSubmenu();
         CloseOfflineSubmenu();
         if(!dontReset)
             index = 0;
@@ -170,14 +124,6 @@ public class MainMenu : AbstractMenu
 
     private void TransitionOutOfCharacterSelect() {
         this.gameObject.SetActive(true);
-    }
-
-    void DestroySabotageNotAvailableText() {
-        sabotageNotAvailableText.gameObject.SetActive(false);
-    }
-
-    void DestroyOfflineNotAvailableText() {
-        offlineNotAvailableText.gameObject.SetActive(false);
     }
 
 }
