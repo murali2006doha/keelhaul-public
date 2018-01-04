@@ -209,8 +209,25 @@ public class CharacterSelectController : MonoBehaviour {
     }
 
     private void UpdatePlayableStatus() {
-        this.playable = this.panels.Filter(panel => panel.CharacterSelected).Count >= 2;
+
+        this.playable = CheckRestraints();
         this.playableStatus.SetActive(this.playable);
+    }
+
+
+    private bool CheckRestraints() {
+
+        HashSet<int> teamsInGame = new HashSet<int>();
+        foreach (CharacterPanel panel in this.panels.Filter(panel => panel.CharacterSelected))
+        {
+            teamsInGame.Add(panel.SelectedTeam);
+        }
+
+        bool minplayers = this.panels.Filter(panel => panel.CharacterSelected).Count >= 2;
+        bool minteams = teamsInGame.Count >= 2;
+        bool containsPlayers = this.panels.Exists(panel => panel.IsPlayer);
+
+        return minplayers & minteams & containsPlayers;
     }
 
     private void TransitionToMainMenu() {
