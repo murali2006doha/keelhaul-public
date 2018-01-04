@@ -42,7 +42,7 @@ public class MainMenu : AbstractMenu
         });
 
         sabotageOffline.SetAction(() => {
-            GameObject.FindObjectOfType<PlayerSelectSettings>().gameType = GameTypeEnum.Sabotage;
+            FindObjectOfType<PlayerSelectSettings>().gameType = GameTypeEnum.Sabotage;
             this.TransitionToCharacterSelect();
         });
 

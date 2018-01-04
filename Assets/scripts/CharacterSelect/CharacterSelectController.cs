@@ -26,7 +26,6 @@ public class CharacterSelectController : MonoBehaviour {
     [SerializeField]
     private SpriteDictionary characterPanelSprites;
 
-
     [SerializeField]
     private GameObject playableStatus;
 
@@ -37,6 +36,8 @@ public class CharacterSelectController : MonoBehaviour {
     private bool playable;
     public UnityAction onTranstionToMainMenu;
     private bool onCharacterSelect = true;
+    private GameTypeEnum gameType;
+
     private void Start()
     {
         var inputDevice = InputManager.ActiveDevice;
@@ -46,7 +47,9 @@ public class CharacterSelectController : MonoBehaviour {
 
         this.panels.ForEach(panel => panel.Initialize(this.characterPanelSprites));
 
-        this.mapView.Initialize(GameTypeEnum.DeathMatch, mapEnum => {
+        this.gameType = FindObjectOfType<PlayerSelectSettings>().gameType;
+
+        this.mapView.Initialize(this.gameType, mapEnum => {
             this.BuildPlayerSettings(mapEnum);
             SceneManager.LoadScene("Game");
         });
@@ -217,17 +220,28 @@ public class CharacterSelectController : MonoBehaviour {
 
     private bool CheckRestraints() {
 
-        HashSet<int> teamsInGame = new HashSet<int>();
-        foreach (CharacterPanel panel in this.panels.Filter(panel => panel.CharacterSelected))
+        bool ready = false;
+
+        if (gameType == GameTypeEnum.DeathMatch)
         {
-            teamsInGame.Add(panel.SelectedTeam);
+            HashSet<int> teamsInGame = new HashSet<int>();
+            foreach (CharacterPanel panel in this.panels.Filter(panel => panel.CharacterSelected))
+            {
+                teamsInGame.Add(panel.SelectedTeam);
+            }
+
+            bool minplayers = this.panels.Filter(panel => panel.CharacterSelected).Count >= 2;
+            bool minteams = teamsInGame.Count >= 2;
+            bool containsPlayers = this.panels.Exists(panel => panel.IsPlayer);
+
+            ready = minplayers & minteams & containsPlayers;
         }
-
-        bool minplayers = this.panels.Filter(panel => panel.CharacterSelected).Count >= 2;
-        bool minteams = teamsInGame.Count >= 2;
-        bool containsPlayers = this.panels.Exists(panel => panel.IsPlayer);
-
-        return minplayers & minteams & containsPlayers;
+        else if (gameType == GameTypeEnum.Sabotage)
+        {
+            //bool containsKraken = this.panels.Exists(panel => panel.isKraken);
+            //ready = containsKraken;
+        }
+        return ready;
     }
 
     private void TransitionToMainMenu() {
