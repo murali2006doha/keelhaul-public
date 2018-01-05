@@ -39,7 +39,7 @@ public class NetworkManager : MonoBehaviour
 
 		if (FindObjectOfType<GameModeSelectSettings>())
 		{
-			offlineMode = !FindObjectOfType<GameModeSelectSettings>().isOnline();
+            offlineMode = true;
 		}
 
 		PhotonNetwork.logLevel = PhotonLogLevel.ErrorsOnly;
