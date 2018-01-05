@@ -22,9 +22,6 @@ public class CharacterPanel : MonoBehaviour
     private GameObject teamHolder;
 
     [SerializeField]
-    private Image selected;
-
-    [SerializeField]
     private List<PanelHostHolder> panelHostHolders;
 
     [SerializeField]
@@ -35,9 +32,11 @@ public class CharacterPanel : MonoBehaviour
 
     private SpriteDictionary characterToPanels;
 
+    private List<string> characterReferences;
 
     private int characterIndex = 0;
     private int selectedTeam = 0;
+
     public int SelectedTeam {
         get
         {
@@ -52,8 +51,8 @@ public class CharacterPanel : MonoBehaviour
     }
     private bool characterSelected;
 
-
     public bool IsPlayer { get; set; }
+    public bool IsKraken { get; set; }
     public bool SignedIn { get; set; }
 
     public bool CharacterSelected
@@ -66,15 +65,31 @@ public class CharacterPanel : MonoBehaviour
         set
         {
             this.characterSelected = value;
-            this.characterText.sprite = this.characterReadyImages.Get(this.GetSelectedCharacter());
-            this.selected.gameObject.SetActive(value);
+
+            if(value) {
+                if (GetSelectedCharacter() == "Kraken") { IsKraken = true; }
+                else { IsKraken = false; }
+
+                this.characterText.sprite = this.characterReadyImages.Get(this.GetSelectedCharacter());
+            } else {
+                this.characterText.sprite = this.characterTypeImages.Get(this.GetSelectedCharacter());
+            };
         }
     }
 
-    private List<string> characterReferences;
-    public void Initialize(SpriteDictionary panelSprites)
+
+    void Update() {
+        if(GameTypeEnum.Sabotage == FindObjectOfType<PlayerSelectSettings>().gameType) {
+            this.teamHolder.gameObject.SetActive(false);
+        }
+    
+    }
+
+
+
+    public void Initialize(SpriteDictionary panelSprites, List<string> characterReferences)
     {
-        this.characterReferences = GlobalVariables.CharactersForDeathMatch();
+        this.characterReferences = characterReferences;
         this.SignOut();
         this.characterToPanels = panelSprites;
     }
@@ -134,17 +149,22 @@ public class CharacterPanel : MonoBehaviour
 
     public void ChangeCharacter(int direction)
     {
+        int numCharacters = characterReferences.Count;
+
         if (!this.characterSelected)
         {
-            if (this.characterIndex + 1 == 4) {
+            if (this.characterIndex + direction == numCharacters) {
                 this.characterIndex = 0;
+            } else if (this.characterIndex + direction == -1) {
+                this.characterIndex = numCharacters - 1;
             } else {
-                this.characterIndex++;
+                this.characterIndex = this.characterIndex + direction;
             }
 
-            this.characterImage.sprite = this.characterToPanels.Get(this.characterReferences[this.characterIndex]);
-            this.characterText.sprite = this.characterTypeImages.Get(this.characterReferences[this.characterIndex]);
+            this.characterImage.sprite = this.characterToPanels.Get(GetSelectedCharacter());
+            this.characterText.sprite = this.characterTypeImages.Get(GetSelectedCharacter());
         }
+
     }
 
 

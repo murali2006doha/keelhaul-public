@@ -24,7 +24,10 @@ public class CharacterSelectController : MonoBehaviour {
     private PlayerSelectSettings playerSelectSettings;
 
     [SerializeField]
-    private SpriteDictionary characterPanelSprites;
+    private SpriteDictionary characterDMPanelSprites;
+
+    [SerializeField]
+    private SpriteDictionary characterSABPanelSprites;
 
     [SerializeField]
     private GameObject playableStatus;
@@ -44,17 +47,35 @@ public class CharacterSelectController : MonoBehaviour {
         //last device to
         controllerSelect.SetOnJoin(AddToPlayers);
         controllerSelect.listening = true;
+    }
 
-        this.panels.ForEach(panel => panel.Initialize(this.characterPanelSprites));
 
+    public void Initialize() {
+        
         this.gameType = FindObjectOfType<PlayerSelectSettings>().gameType;
 
-        this.mapView.Initialize(this.gameType, mapEnum => {
-            this.BuildPlayerSettings(mapEnum);
-            SceneManager.LoadScene("Game");
-        });
+        if (gameType == GameTypeEnum.DeathMatch)
+        {
+            this.panels[this.panels.Count - 1].gameObject.SetActive(true);
+            this.panels.ForEach(panel => panel.Initialize(this.characterDMPanelSprites, GlobalVariables.CharactersForDeathMatch()));
+            this.mapView.Initialize(this.gameType, mapEnum => {
+                this.BuildDMPlayerSettings(mapEnum);
+                SceneManager.LoadScene("Game");
+            });
+        }
+        else if (gameType == GameTypeEnum.Sabotage)
+        {
+            this.panels[this.panels.Count - 1].gameObject.SetActive(false);
+            this.panels.ForEach(panel => panel.Initialize(this.characterSABPanelSprites, GlobalVariables.CharactersForSabotage()));
+            this.mapView.Initialize(this.gameType, mapEnum => {
+                this.BuildSABPlayerSettings(mapEnum);
+                SceneManager.LoadScene("Game");
+            });
+        }
+
 
     }
+
 
     private void Update () {
         foreach (PlayerActions player in players)
@@ -121,6 +142,7 @@ public class CharacterSelectController : MonoBehaviour {
                     if (panel.CharacterSelected)
                     {
                         panel.CharacterSelected = false;
+                        this.UpdatePlayableStatus();
                     }
                     else
                     {
@@ -238,8 +260,10 @@ public class CharacterSelectController : MonoBehaviour {
         }
         else if (gameType == GameTypeEnum.Sabotage)
         {
-            //bool containsKraken = this.panels.Exists(panel => panel.isKraken);
-            //ready = containsKraken;
+            bool containsKraken = this.panels.Filter(panel => panel.IsKraken).Count == 1;
+            bool minplayers = this.panels.Filter(panel => panel.CharacterSelected).Count == 3;
+
+            ready = containsKraken & minplayers;
         }
         return ready;
     }
@@ -267,7 +291,7 @@ public class CharacterSelectController : MonoBehaviour {
        return this.panels.FindIndex(panel => !panel.SignedIn);
     }
 
-    private void BuildPlayerSettings(MapEnum mapEnum) {
+    private void BuildSABPlayerSettings(MapEnum mapEnum) {
 
         var ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         var characterSelections = new List<CharacterSelection>();
@@ -279,6 +303,37 @@ public class CharacterSelectController : MonoBehaviour {
                         panel.GetSelectedCharacter(),
                         this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
                         panel.SelectedTeam,
+                        !panel.IsPlayer));
+            }
+        }
+
+        ps.players = characterSelections;
+        ps.map = mapEnum;
+    }
+
+    private void BuildDMPlayerSettings(MapEnum mapEnum)
+    {
+
+        var ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
+        var characterSelections = new List<CharacterSelection>();
+
+        foreach (var panel in this.panels)
+        {
+            if (panel.CharacterSelected & panel.IsKraken)
+            {
+                characterSelections.Add(
+                    new CharacterSelection(
+                        panel.GetSelectedCharacter(),
+                        this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
+                        0,
+                        !panel.IsPlayer));
+            } else if (panel.CharacterSelected & panel.IsKraken)
+            {
+                characterSelections.Add(
+                    new CharacterSelection(
+                        panel.GetSelectedCharacter(),
+                        this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
+                        1,
                         !panel.IsPlayer));
             }
         }
