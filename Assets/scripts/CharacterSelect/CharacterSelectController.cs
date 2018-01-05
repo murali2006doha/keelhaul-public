@@ -141,6 +141,10 @@ public class CharacterSelectController : MonoBehaviour {
                 {
                     if (panel.CharacterSelected)
                     {
+                        if(panel.IsKraken) {
+                            UnlockKraken(panel);
+                        }
+
                         panel.CharacterSelected = false;
                         this.UpdatePlayableStatus();
                     }
@@ -163,10 +167,16 @@ public class CharacterSelectController : MonoBehaviour {
                     panel.ChangeTeam();
                 }
 
-                if (player.Green.WasReleased)
-                {
+                if (player.Green.WasReleased & !panel.OnLockedKraken())
+                {   
+                    if (panel.IsKraken)
+                    {
+                        LockOutKrakens(panel);
+                    }
+
                     panel.CharacterSelected = true;
                     this.UpdatePlayableStatus();
+
                 }
 
                 if (player.Up.WasReleased)
@@ -189,6 +199,7 @@ public class CharacterSelectController : MonoBehaviour {
             this.TransitionToMainMenu();
         }
     }
+
 
     private void UpdateMapSelect(PlayerActions player) {
         if (player.Red.WasReleased)
@@ -234,7 +245,7 @@ public class CharacterSelectController : MonoBehaviour {
     }
 
     private void UpdatePlayableStatus() {
-
+        
         this.playable = CheckRestraints();
         this.playableStatus.SetActive(this.playable);
     }
@@ -267,6 +278,29 @@ public class CharacterSelectController : MonoBehaviour {
         }
         return ready;
     }
+
+
+    private void LockOutKrakens(CharacterPanel panel)
+    {
+        foreach(CharacterPanel p in panels) {
+            if(p != panel) {
+                p.KrakenLock = true;
+            }
+        }
+    }
+
+
+    private void UnlockKraken(CharacterPanel panel) {
+        foreach (CharacterPanel p in panels)
+        {
+            if (p != panel)
+            {
+                p.KrakenLock = false;
+            }
+        }
+    }
+
+
 
     private void TransitionToMainMenu() {
         this.gameObject.SetActive(false);

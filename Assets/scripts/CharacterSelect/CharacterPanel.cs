@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,6 +37,34 @@ public class CharacterPanel : MonoBehaviour
 
     private int characterIndex = 0;
     private int selectedTeam = 0;
+    private bool characterSelected;
+
+    public bool IsPlayer { get; set; }
+    public bool IsKraken { get; set; }
+    public bool SignedIn { get; set; }
+    public bool KrakenLock { get; set; }
+
+    void Update()
+    {
+        RenderImages();
+
+        if (GameTypeEnum.Sabotage == FindObjectOfType<PlayerSelectSettings>().gameType)
+        {
+            this.teamHolder.gameObject.SetActive(false);
+
+            if (GetSelectedCharacter() == "Kraken") { IsKraken = true; }
+            else { IsKraken = false; }
+        }
+
+    }
+
+
+    public void Initialize(SpriteDictionary panelSprites, List<string> characterReferences)
+    {
+        this.characterReferences = characterReferences;
+        this.SignOut();
+        this.characterToPanels = panelSprites;
+    }
 
     public int SelectedTeam {
         get
@@ -49,11 +78,6 @@ public class CharacterPanel : MonoBehaviour
 
         }
     }
-    private bool characterSelected;
-
-    public bool IsPlayer { get; set; }
-    public bool IsKraken { get; set; }
-    public bool SignedIn { get; set; }
 
     public bool CharacterSelected
     {
@@ -65,34 +89,19 @@ public class CharacterPanel : MonoBehaviour
         set
         {
             this.characterSelected = value;
-
-            if(value) {
-                if (GetSelectedCharacter() == "Kraken") { IsKraken = true; }
-                else { IsKraken = false; }
-
-                this.characterText.sprite = this.characterReadyImages.Get(this.GetSelectedCharacter());
-            } else {
-                this.characterText.sprite = this.characterTypeImages.Get(this.GetSelectedCharacter());
-            };
         }
     }
 
+    public bool OnLockedKraken() {
 
-    void Update() {
-        if(GameTypeEnum.Sabotage == FindObjectOfType<PlayerSelectSettings>().gameType) {
-            this.teamHolder.gameObject.SetActive(false);
+        if(IsKraken & KrakenLock) {
+            return true;
+        } else {
+            return false;
         }
-    
+
     }
 
-
-
-    public void Initialize(SpriteDictionary panelSprites, List<string> characterReferences)
-    {
-        this.characterReferences = characterReferences;
-        this.SignOut();
-        this.characterToPanels = panelSprites;
-    }
 
     public string GetSelectedCharacter()
     {
@@ -116,6 +125,8 @@ public class CharacterPanel : MonoBehaviour
         this.status.text = string.Empty;
         this.SignedIn = false;
         this.IsPlayer = false;
+        this.IsKraken = false;
+        this.KrakenLock = false;
         this.characterIndex = 0;
     }
 
@@ -160,13 +171,30 @@ public class CharacterPanel : MonoBehaviour
             } else {
                 this.characterIndex = this.characterIndex + direction;
             }
-
-            this.characterImage.sprite = this.characterToPanels.Get(GetSelectedCharacter());
-            this.characterText.sprite = this.characterTypeImages.Get(GetSelectedCharacter());
         }
 
     }
 
+    private void RenderImages()
+    {
+        this.characterImage.sprite = this.characterToPanels.Get(GetSelectedCharacter());
+
+        if (characterSelected)
+        {
+            this.characterText.sprite = this.characterReadyImages.Get(this.GetSelectedCharacter());
+        }
+        else if (!characterSelected)
+        {
+            if (OnLockedKraken())
+            {
+                this.characterText.sprite = null;
+            }
+            else
+            {
+                this.characterText.sprite = this.characterTypeImages.Get(this.GetSelectedCharacter());
+            }
+        };
+    }
 
     private void DecorateSignedIn(int playerIndex)
     {
