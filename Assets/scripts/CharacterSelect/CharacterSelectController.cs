@@ -327,7 +327,7 @@ public class CharacterSelectController : MonoBehaviour {
                         this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
                         0,
                         !panel.IsPlayer));
-            } else if (panel.CharacterSelected & panel.IsKraken)
+            } else if (panel.CharacterSelected & !panel.IsKraken)
             {
                 characterSelections.Add(
                     new CharacterSelection(
