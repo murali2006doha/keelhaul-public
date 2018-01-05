@@ -31,6 +31,9 @@ public class CharacterPanel : MonoBehaviour
     [SerializeField]
     private SpriteDictionary characterReadyImages;
 
+    [SerializeField]
+    private SpriteDictionary characterLockImages;
+
     private SpriteDictionary characterToPanels;
 
     private List<string> characterReferences;
@@ -187,7 +190,7 @@ public class CharacterPanel : MonoBehaviour
         {
             if (OnLockedKraken())
             {
-                this.characterText.sprite = null;
+                this.characterText.sprite = this.characterLockImages.Get(this.GetSelectedCharacter());;
             }
             else
             {
