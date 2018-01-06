@@ -774,7 +774,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
     internal override int getNumberOfTeams()
     {
-        return gamePoints.Count;
+        return isTeam?gamePoints.Count:0;
     }
 
     public override List<PlayerInput> getPlayers()
