@@ -56,7 +56,8 @@ public class DeathMatchGameManager : AbstractGameManager
     Dictionary<string, string> teamToColor = new Dictionary<string, string> { { "Red Team", "red" }, { "Blue Team", "blue" }, { "Green Team", "green" }, { "Yellow Team", "yellow" } };
     string lastPoint = "The Replace Needs <color=\"orange\">ONE</color> Point To Win!";
     public Action onInitialize;
-    public  GameObject gameOverStatPrefab;
+    public GameObject gameOverStatPrefab;
+    internal bool inStatScreen = false;
 
     void Start()
     {
@@ -73,7 +74,7 @@ public class DeathMatchGameManager : AbstractGameManager
         }
         //Temp fix
         var uis = GameObject.FindObjectsOfType<UIManager>();
-        foreach(UIManager ui in uis)
+        foreach (UIManager ui in uis)
         {
             ui.gameObject.transform.Find("P1panel/Compass").gameObject.SetActive(false);
             ui.gameObject.transform.Find("P1panel/doubloonImage").gameObject.SetActive(true);
@@ -82,7 +83,7 @@ public class DeathMatchGameManager : AbstractGameManager
         }
 
         onInitialize();
-        foreach(PlayerInput player in FindObjectsOfType<PlayerInput>())
+        foreach (PlayerInput player in FindObjectsOfType<PlayerInput>())
         {
             if (player.GetId() == PhotonNetwork.player.ID || PhotonNetwork.offlineMode)
             {
@@ -90,15 +91,16 @@ public class DeathMatchGameManager : AbstractGameManager
             }
             gamePoints[player.GetId().ToString()] = 0;
         }
-        LogAnalyticsGame.StartGame (players, this.countDown.GetComponent<CountDown>());
-        LogAnalyticsGame.FpsSnapshot ();
-        LogAnalyticsGame.Ping ();
+        LogAnalyticsGame.StartGame(players, this.countDown.GetComponent<CountDown>());
+        LogAnalyticsGame.FpsSnapshot();
+        LogAnalyticsGame.Ping();
     }
 
 
 
     [PunRPC]
-    public void AddPlayer(int id) {
+    public void AddPlayer(int id)
+    {
         //        Debug.Log(gamePoints.Keys.Count.ToString());
         if (GetComponent<PhotonView>().isMine)
         {
@@ -121,15 +123,16 @@ public class DeathMatchGameManager : AbstractGameManager
     }
 
     [PunRPC]
-    public void SetDone() {
+    public void SetDone()
+    {
         globalCanvas.waitingForPlayers.SetActive(false);
         done = false;
-        
+
     }
     void gameStart()
     {
         this.gameStarted = true;
-        PlayerInput [] playerInputs = FindObjectsOfType<PlayerInput>();
+        PlayerInput[] playerInputs = FindObjectsOfType<PlayerInput>();
         players.Clear();
         players.AddRange(playerInputs);
         foreach (PlayerInput player in playerInputs)
@@ -151,7 +154,7 @@ public class DeathMatchGameManager : AbstractGameManager
     {
         Destroy(countDown);
     }
-        
+
 
 
     void Update()
@@ -203,6 +206,15 @@ public class DeathMatchGameManager : AbstractGameManager
             cams[2].camera.rect = new Rect(0, 0, 0, 0);
         }
 
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            //activateVictoryText();
+
+            winner = players[0].gameObject;
+            winnerId = players[0].GetId();
+            this.GetComponent<PhotonView>().RPC("TriggerNetworkedVictory", PhotonTargets.All, players[0].GetId());
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             screenSplitter.SetActive(false);
@@ -221,7 +233,8 @@ public class DeathMatchGameManager : AbstractGameManager
     }
 
 
-    override public void respawnPlayer(PlayerInput player, Vector3 startingPoint, Quaternion startingRotation) {
+    override public void respawnPlayer(PlayerInput player, Vector3 startingPoint, Quaternion startingRotation)
+    {
         player.gameObject.transform.position = startingPoint;
         player.gameObject.transform.rotation = startingRotation;
     }
@@ -327,7 +340,7 @@ public class DeathMatchGameManager : AbstractGameManager
                 {
                     if (playr.teamNo == attackingPlayer.teamNo)
                     {
-                     
+
                         playr.uiManager.updatePoint(points);
 
                     }
@@ -363,23 +376,25 @@ public class DeathMatchGameManager : AbstractGameManager
     }
 
     [PunRPC]
-    public void IncrementPoint(int id) {
+    public void IncrementPoint(int id)
+    {
 
-        if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode) {
+        if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode)
+        {
 
-            var playerToIncrement = this.getPlayers().Find(playerToFilter => playerToFilter.GetId() == id) ;
+            var playerToIncrement = this.getPlayers().Find(playerToFilter => playerToFilter.GetId() == id);
             playerToIncrement.uiManager.updatePoint(int.Parse((playerToIncrement.uiManager.points.text)) + 1);
-            
+
         }
         var players2 = getPlayers();
         foreach (PlayerInput player in players2)
         {
-            if(player.GetId() == id)
+            if (player.GetId() == id)
             {
                 player.AddKillStats(id);
                 if (PhotonNetwork.offlineMode)
                 {
-                    player.uiManager.updatePoint(gamePoints[id.ToString()]+1);
+                    player.uiManager.updatePoint(gamePoints[id.ToString()] + 1);
                 }
                 break;
             }
@@ -387,7 +402,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
         if (gamePoints.ContainsKey(id.ToString()))
         {
-            
+
             gamePoints[id.ToString()]++;
             if (gamePoints[id.ToString()] >= playerWinPoints && PhotonNetwork.isMasterClient)
             {
@@ -399,13 +414,13 @@ public class DeathMatchGameManager : AbstractGameManager
 
             }
         }
-        
-        
+
+
     }
 
     public override string getShipById(int id)
     {
-        foreach(PlayerInput player in getPlayers())
+        foreach (PlayerInput player in getPlayers())
         {
             if (player.GetId() == id)
             {
@@ -446,7 +461,8 @@ public class DeathMatchGameManager : AbstractGameManager
                 var newText = lastPoint.Replace("The Replace", "You").Replace("Needs", "Need");
                 textScript.activatePopup(newText, "You", "Ship");
             }
-            else {
+            else
+            {
                 var newText = lastPoint.Replace("The Replace", "Player " + id.ToString());
                 textScript.activatePopup(newText, "They", "Ship");
             }
@@ -458,7 +474,7 @@ public class DeathMatchGameManager : AbstractGameManager
         Time.timeScale = 0.3f;
         foreach (PlayerInput p in this.getPlayers())
         {
-            if(PhotonNetwork.offlineMode || p.GetId() == PhotonNetwork.player.ID)
+            if (PhotonNetwork.offlineMode || p.GetId() == PhotonNetwork.player.ID)
             {
                 p.uiManager.activateFinishAndColorTint();
             }
@@ -470,10 +486,11 @@ public class DeathMatchGameManager : AbstractGameManager
     }
 
     [PunRPC]
-    public void TriggerNetworkedVictory(int id) {
+    public void TriggerNetworkedVictory(int id)
+    {
 
         //Calculate Stats
-        
+
         winnerId = id;
         SyncStats();
 
@@ -495,7 +512,7 @@ public class DeathMatchGameManager : AbstractGameManager
         foreach (PlayerInput player in this.getPlayers())
         {
             var photonView = player.GetComponent<PhotonView>();
-          
+
             if (photonView.ownerId == PhotonNetwork.player.ID)
             {
                 this.GetComponent<PhotonView>().RPC("SyncStat", PhotonTargets.Others, player.GetId(), ArrayHelper.ObjectToByteArray(player.gameStats));
@@ -511,7 +528,7 @@ public class DeathMatchGameManager : AbstractGameManager
         foreach (PlayerInput player in this.getPlayers())
         {
             if (player.GetComponent<PhotonView>().ownerId == id)
-            { 
+            {
                 FreeForAllStatistics stats = (FreeForAllStatistics)ArrayHelper.ByteArrayToObject(statsBinary);
                 player.gameStats = stats;
                 numOfStatsSynced++;
@@ -522,7 +539,7 @@ public class DeathMatchGameManager : AbstractGameManager
         {
             activateVictoryText();
             Invoke("TriggerStatsAnimation", 1.4f);
-            
+
         }
     }
 
@@ -545,7 +562,9 @@ public class DeathMatchGameManager : AbstractGameManager
         MapObjects map = GameObject.FindObjectOfType<MapObjects>();
         GameObject gameOverScreen = null;
         map.enabled = false;
-        if(map.gameOverStatPrefab != null)
+        map.transform.root.gameObject.SetActive(false);
+
+        if (map.gameOverStatPrefab != null)
         {
             gameOverScreen = Instantiate(map.gameOverStatPrefab as GameObject);
         }
@@ -554,23 +573,43 @@ public class DeathMatchGameManager : AbstractGameManager
             gameOverScreen = Instantiate(this.gameOverStatPrefab as GameObject);
         }
 
+        StatsAnimationController controller = gameOverScreen.GetComponent<StatsAnimationController>();
+
         GameObject winnerModel = null;
-        foreach(PlayerInput players in getPlayers())
+        var playerList = getPlayers();
+        foreach (PlayerInput players in playerList)
         {
             if (players.GetId() == winnerId)
             {
-                winnerModel = Instantiate(Resources.Load(PathVariables.GetAssociatedModelForShip(players.type), typeof(GameObject)) as GameObject);
-                break;
+                winnerModel = Instantiate(Resources.Load(PathVariables.GetAssociatedModelForShip(players.type), typeof(GameObject)) as GameObject, controller.winner.transform);
             }
+            
+            
+            if (playerList.Count == 2)
+            {
+                GameObject model = Instantiate(Resources.Load(PathVariables.GetAssociatedModelForShip(players.type), typeof(GameObject)) as GameObject, controller.fourSlots[players.GetId()].transform);
+            }
+            else if(playerList.Count == 3)
+            {
+                GameObject model = Instantiate(Resources.Load(PathVariables.GetAssociatedModelForShip(players.type), typeof(GameObject)) as GameObject, controller.threeSlots[players.GetId()-1].transform);
+            }
+            else
+            {
+                GameObject model = Instantiate(Resources.Load(PathVariables.GetAssociatedModelForShip(players.type), typeof(GameObject)) as GameObject, controller.fourSlots[players.GetId()-1].transform);
+            }
+            
         }
+        for(int x = 3; x >= playerList.Count; x--)
+        {
+            controller.panels[x].SetActive(false);
+        }
+
         if (winnerModel == null)
         {
             return;
         }
+        CalculateAndShowStats(controller);
 
-        var animationController = gameOverStatPrefab.GetComponent<StatsAnimationController>();
-        animationController.HookupCallback(CalculateAndShowStats);
-       
     }
 
     private void triggerScreenAnimation()
@@ -587,7 +626,7 @@ public class DeathMatchGameManager : AbstractGameManager
         globalCanvas.panel2.gameObject.SetActive(true);
         Time.timeScale = 1f;
         gameOver = true;
-        LogAnalyticsGame.EndGame (this.getPlayers(), gameTime);
+        LogAnalyticsGame.EndGame(this.getPlayers(), gameTime);
 
     }
 
@@ -597,6 +636,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
         if (winner.GetComponent<PlayerInput>())
         {
+            print("Hyes");
             winnerScript = winner.GetComponent<PlayerInput>();
             ((PlayerInput)winnerScript).hasWon = true;
 
@@ -612,6 +652,7 @@ public class DeathMatchGameManager : AbstractGameManager
         foreach (PlayerInput p in this.getPlayers())
         {
             p.gameStarted = false;
+            print("Hyes2");
         }
         if (kraken)
         {
@@ -622,7 +663,7 @@ public class DeathMatchGameManager : AbstractGameManager
         //globalCanvas.finishText.SetActive(true);
         if (!isTeam)
         {
-            
+
         }
         else
         {
@@ -689,7 +730,7 @@ public class DeathMatchGameManager : AbstractGameManager
     }
 
 
-    public void CalculateAndShowStats()
+    public void CalculateAndShowStats(StatsAnimationController controller)
     {
 
         GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
@@ -699,6 +740,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
         PlayerInput winner = null;
         List<GameObject> losers = new List<GameObject>();
+        Dictionary<int, List<PlayerInput>> killsToPlayers = new Dictionary<int, List<PlayerInput>>();
         foreach (PlayerInput ship in this.getPlayers())
         {
             ship.reset();
@@ -708,6 +750,11 @@ public class DeathMatchGameManager : AbstractGameManager
             {
                 ship.followCamera.enabled = false;
             }
+            if (!killsToPlayers.ContainsKey(ship.gameStats.numOfKills))
+            {
+                killsToPlayers.Add(ship.gameStats.numOfKills, new List<PlayerInput>());
+            }
+            killsToPlayers[ship.gameStats.numOfKills].Add(ship);
             if (ship.GetId() == winnerId)
             {
                 winner = ship;
@@ -719,14 +766,63 @@ public class DeathMatchGameManager : AbstractGameManager
             ship.DisableUIForStats();
             shipStats.Add(ship.gameStats);
         }
-
-
         GameObject titlesPrefab = Resources.Load(PathVariables.titlesPath, typeof(GameObject)) as GameObject;
         Titles titles = titlesPrefab.GetComponent<Titles>();
         titles.calculateTitles(shipStats, krakenStats);
+        StatsAnimationController c = FindObjectOfType<StatsAnimationController>();
+        c.text.SetText(winner.type.ToString() + "  ( P " + winnerId + " ) Wins!");
+        var panels = FindObjectOfType<StatsAnimationController>().panels;
 
-        gameOverUI.startFading = true;
-    }
+        List<int> sortedKills = new List<int>(killsToPlayers.Keys);
+        sortedKills.Sort();
+        sortedKills.Reverse();
+        int val = 0;
+        List<ShipEnum> locations = new List<ShipEnum>() { ShipEnum.ChineseJunkShip, ShipEnum.AtlanteanShip, ShipEnum.BlackbeardShip, ShipEnum.VikingShip };
+        foreach(int kill in sortedKills)
+        {
+            foreach(PlayerInput p in killsToPlayers[kill])
+            {
+                var postGamePanel = panels[p.GetId()-1].GetComponentInChildren<PostGamePanel>();   
+                postGamePanel.kills.SetText(kill + "");
+                postGamePanel.deaths.SetText(p.gameStats.numOfDeaths+"");
+                postGamePanel.shots.SetText(p.gameStats.numOfShots+ "");
+                postGamePanel.accuracy.SetText(String.Format("{0:P2}.", (p.gameStats.numOfShotHits / (float)(p.gameStats.numOfShots))));
+                if(p.gameStats.titles.Count > 0)
+                {
+                    postGamePanel.title1.SetText(p.gameStats.titles[0].name);
+                    postGamePanel.title1Stat.SetText(p.gameStats.titles[0].statsString);
+                }
+                if(p.gameStats.titles.Count > 1)
+                {
+                    postGamePanel.title2.SetText(p.gameStats.titles[1].name);
+                    postGamePanel.title2Stat.SetText(p.gameStats.titles[1].statsString);
+                }
+
+                var mainPanel = panels[p.GetId()-1].GetComponent<PostGameAnimationCaller>();
+                mainPanel.playerName.text = "P" + p.GetId();
+                mainPanel.ranking.sprite = controller.rankSprites[val];
+                mainPanel.characterName.sprite = controller.characterNames[locations.IndexOf(p.type)];
+            }
+            val++;
+        }
+
+
+
+       
+
+        //gameOverUI.startFading = true;
+        
+        
+        foreach (PlayerInput ship in this.getPlayers())
+        {
+            
+        }
+
+
+
+
+
+        }
 
 
 
@@ -759,12 +855,14 @@ public class DeathMatchGameManager : AbstractGameManager
     }
 
 
-    public override Dictionary<string, int> getGamepoints() {
+    public override Dictionary<string, int> getGamepoints()
+    {
 
         return gamePoints;
     }
 
-    public override int getPlayerPointsToWIn () {
+    public override int getPlayerPointsToWIn()
+    {
         return playerWinPoints;
     }
 

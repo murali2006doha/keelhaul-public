@@ -633,7 +633,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     [PunRPC]
     public void AddKillStats(int id)
     {
-        if (PhotonNetwork.player.ID == id)
+        if (PhotonNetwork.player.ID == id || PhotonNetwork.offlineMode)
         {
                 gameStats.numOfKills++;     
         }
