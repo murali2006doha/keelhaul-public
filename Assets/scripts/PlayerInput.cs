@@ -509,7 +509,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             onHitRegister ();
         }
         var player = manager.getPlayerWithId(id);
-        if (!isKraken && (player == null || teamNo == player.teamNo))
+        if (!isKraken && (player == null || (manager.getNumberOfTeams()>1 &&  teamNo == player.teamNo)))
         {
             return;
         }

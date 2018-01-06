@@ -99,7 +99,7 @@ public class ShipAIV2 : MonoBehaviour {
         var closest_dist = 99f;
         foreach(PlayerInput ship in targets)
         {
-            if (ship == this.input || (ship.teamNo == input.teamNo) ) {
+            if (ship == this.input || (manager.isTeam && ship.teamNo == input.teamNo) ) {
                 continue;
             }
 
@@ -176,7 +176,7 @@ public class ShipAIV2 : MonoBehaviour {
         List<PlayerInput> targets = new List<PlayerInput>();
         foreach(PlayerInput ship in manager.getPlayers())
         {
-            if (ship == input || (ship.teamGame && ship.teamNo == input.teamNo))
+            if (ship == input || (manager.isTeam && ship.teamNo == input.teamNo))
             {
                 continue;
             }
