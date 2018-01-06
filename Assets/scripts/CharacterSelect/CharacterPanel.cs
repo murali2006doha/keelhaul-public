@@ -49,8 +49,6 @@ public class CharacterPanel : MonoBehaviour
 
     void Update()
     {
-        RenderImages();
-
         if (GameTypeEnum.Sabotage == FindObjectOfType<PlayerSelectSettings>().gameType)
         {
             this.teamHolder.gameObject.SetActive(false);
@@ -58,6 +56,8 @@ public class CharacterPanel : MonoBehaviour
             if (GetSelectedCharacter() == "Kraken") { IsKraken = true; }
             else { IsKraken = false; }
         }
+
+        RenderImages();
 
     }
 

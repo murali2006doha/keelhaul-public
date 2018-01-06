@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: CharacterToPanelSAB
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 3d35b6f210a2b4b7d926f3192c258408, type: 3}
+  - {fileID: 21300000, guid: 9eadf77a6107e440db18457e6a68e34a, type: 3}
   - {fileID: 21300000, guid: 009933c413a324fe5a5a83a41198d9fb, type: 3}
   - {fileID: 21300000, guid: 1acb7ada87e764a3cb1829ee0f40801f, type: 3}
   - {fileID: 21300000, guid: db872a00d1a64455b9052e55699767fa, type: 3}
