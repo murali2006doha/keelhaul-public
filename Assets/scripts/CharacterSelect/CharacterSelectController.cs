@@ -325,7 +325,7 @@ public class CharacterSelectController : MonoBehaviour {
        return this.panels.FindIndex(panel => !panel.SignedIn);
     }
 
-    private void BuildSABPlayerSettings(MapEnum mapEnum) {
+    private void BuildDMPlayerSettings(MapEnum mapEnum) {
 
         var ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         var characterSelections = new List<CharacterSelection>();
@@ -345,7 +345,7 @@ public class CharacterSelectController : MonoBehaviour {
         ps.map = mapEnum;
     }
 
-    private void BuildDMPlayerSettings(MapEnum mapEnum)
+    private void BuildSABPlayerSettings(MapEnum mapEnum)
     {
 
         var ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
