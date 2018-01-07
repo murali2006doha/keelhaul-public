@@ -378,7 +378,7 @@ public class CharacterSelectController : MonoBehaviour {
                     new CharacterSelection(
                         panel.GetSelectedCharacter(),
                         this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
-                        2,
+                        1,
                         !panel.IsPlayer));
             } else if (panel.CharacterSelected & !panel.IsKraken)
             {
@@ -386,7 +386,7 @@ public class CharacterSelectController : MonoBehaviour {
                     new CharacterSelection(
                         panel.GetSelectedCharacter(),
                         this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
-                        panel.SelectedTeam,
+                        0,
                         !panel.IsPlayer));
             }
         }
