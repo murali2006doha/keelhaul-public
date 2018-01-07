@@ -65,18 +65,20 @@ public class GameInitializer : MonoBehaviour {
         }
         numOfKrakens = includeKraken ? 1 : 0;
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
-
-        if (!isTeam)
-        {
-            numOfShips = Math.Min(Math.Min(mapObjects.shipStartingLocations.Length, 4 - numOfKrakens), shipSelections.Count);
-            shipSelections.RemoveRange(numOfShips - 1, shipSelections.Count - numOfShips);
+        if (mapObjects != null) {
+            if (!isTeam)
+            {
+                numOfShips = Math.Min(Math.Min(mapObjects.shipStartingLocations.Length, 4 - numOfKrakens), shipSelections.Count);
+                shipSelections.RemoveRange(numOfShips - 1, shipSelections.Count - numOfShips);
+            }
+            else
+            {
+                int numOfTeams = getNumberOfTeams();
+                removeTeams(numOfTeams - mapObjects.shipStartingLocations.Length);
+                numOfShips = Math.Min(4 - numOfKrakens, shipSelections.Count);
+            }
         }
-        else
-        {
-            int numOfTeams = getNumberOfTeams();
-            removeTeams(numOfTeams - mapObjects.shipStartingLocations.Length);
-            numOfShips = Math.Min(4 - numOfKrakens, shipSelections.Count);
-        }
+        
 
         initializeGlobalCanvas();
         initializePlayerCameras();
@@ -126,7 +128,10 @@ public class GameInitializer : MonoBehaviour {
             List<int> teams = new List<int>();
             foreach(CharacterSelection selection in ps.players)
             {
-             
+                if (ps.gameType == GameTypeEnum.Targets)
+                {
+                    map = PathVariables.GetMapForShip(selection.selectedCharacter);
+                }
                 if (teams.Contains(selection.team))
                 {
                     isTeam = true;
@@ -281,6 +286,37 @@ public class GameInitializer : MonoBehaviour {
             {
                 krakenHuntManager.shipPoints.Add(0);
             }
+        }
+        else if (gameType == GameTypeEnum.Targets)
+        {
+            GameObject managerMain = Instantiate(Resources.Load(PathVariables.targetsManager, typeof(GameObject)), this.transform.parent) as GameObject;
+            TargetsGameManager deathMatchManager = managerMain.GetComponent<TargetsGameManager>();
+            deathMatchManager.cams = cams;
+            deathMatchManager.ps = ps;
+            deathMatchManager.isTeam = isTeam;
+            deathMatchManager.players = players;
+            deathMatchManager.includeKraken = includeKraken;
+            deathMatchManager.countDown = globalCanvas.countDownTimer;
+            deathMatchManager.globalCanvas = globalCanvas;
+            deathMatchManager.screenSplitter = globalCanvas.splitscreenImages;
+            deathMatchManager.fadeInAnimator = globalCanvas.fadePanelAnimator;
+            if (!isTeam)
+            {
+                for (int x = 0; x < players.Count; x++)
+                {
+                    deathMatchManager.shipPoints.Add(0);
+                }
+            }
+            else
+            {
+                for (int x = 0; x < teamNums.Count; x++)
+                {
+                    deathMatchManager.shipPoints.Add(0);
+                }
+            }
+            deathMatchManager.onInitialize = onInitialize;
+            manager = deathMatchManager;
+            manager.enabled = true;
         }
 
     }
@@ -461,7 +497,7 @@ public class GameInitializer : MonoBehaviour {
         krakenObj.transform.position = map.krakenStartPoint.transform.position;
 
         KrakenInput kraken = krakenObj.GetComponent<KrakenInput>();
-        if (action.Device == null) {
+        if (action == null || action.Device == null) {
 
             action = PlayerActions.CreateWithKeyboardBindings();
         }

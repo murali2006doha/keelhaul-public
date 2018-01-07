@@ -159,8 +159,10 @@ MonoBehaviour:
   shipSelections:
   - selectedCharacter: 0
     team: 0
+    bot: 0
   - selectedCharacter: 0
     team: 0
+    bot: 0
   includeKraken: 1
   isTeam: 0
   isFirstControllerKraken: 0
@@ -194,6 +196,58 @@ MonoBehaviour:
   instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!1001 &365345301
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4134147409306106, guid: 0ba3948c3100bff4b9bd71a2abc20da5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -532.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134147409306106, guid: 0ba3948c3100bff4b9bd71a2abc20da5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 451.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134147409306106, guid: 0ba3948c3100bff4b9bd71a2abc20da5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -487.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134147409306106, guid: 0ba3948c3100bff4b9bd71a2abc20da5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134147409306106, guid: 0ba3948c3100bff4b9bd71a2abc20da5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134147409306106, guid: 0ba3948c3100bff4b9bd71a2abc20da5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134147409306106, guid: 0ba3948c3100bff4b9bd71a2abc20da5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134147409306106, guid: 0ba3948c3100bff4b9bd71a2abc20da5, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114289828174958304, guid: 0ba3948c3100bff4b9bd71a2abc20da5,
+        type: 2}
+      propertyPath: viewIdField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114289828174958304, guid: 0ba3948c3100bff4b9bd71a2abc20da5,
+        type: 2}
+      propertyPath: instantiationId
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0ba3948c3100bff4b9bd71a2abc20da5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &560332254
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,9 @@ public class CharacterSelectController : MonoBehaviour {
     private SpriteDictionary characterSABPanelSprites;
 
     [SerializeField]
+    private SpriteDictionary characterTARPanelSprites;
+
+    [SerializeField]
     private GameObject playableStatus;
 
     int numPlayers = 4;
@@ -72,10 +75,21 @@ public class CharacterSelectController : MonoBehaviour {
                 SceneManager.LoadScene("Game");
             });
         }
+        else if (gameType == GameTypeEnum.Targets)
+        {
+            for(int x = 1;x < 4; x++)
+            {
+                this.panels[x].gameObject.SetActive(false);
+            }
+            this.panels.ForEach(panel => panel.Initialize(this.characterTARPanelSprites, GlobalVariables.CharactersForTargets()));
+            this.mapView.Initialize(this.gameType, mapEnum => {
+                this.BuildTARPlayerSettings(mapEnum);
+                SceneManager.LoadScene("Game");
+            });
+        }
 
 
     }
-
 
     private void Update () {
         foreach (PlayerActions player in players)
@@ -276,6 +290,11 @@ public class CharacterSelectController : MonoBehaviour {
 
             ready = containsKraken & minplayers;
         }
+
+        else if (gameType == GameTypeEnum.Targets)
+        {
+            ready = this.panels.Filter(panel => panel.CharacterSelected).Count == 1;
+        }
         return ready;
     }
 
@@ -359,7 +378,7 @@ public class CharacterSelectController : MonoBehaviour {
                     new CharacterSelection(
                         panel.GetSelectedCharacter(),
                         this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
-                        panel.SelectedTeam,
+                        2,
                         !panel.IsPlayer));
             } else if (panel.CharacterSelected & !panel.IsKraken)
             {
@@ -369,6 +388,29 @@ public class CharacterSelectController : MonoBehaviour {
                         this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
                         panel.SelectedTeam,
                         !panel.IsPlayer));
+            }
+        }
+
+        ps.players = characterSelections;
+        ps.map = mapEnum;
+    }
+
+    private void BuildTARPlayerSettings(MapEnum mapEnum)
+    {
+        var ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
+        var characterSelections = new List<CharacterSelection>();
+
+        foreach (var panel in this.panels)
+        {
+           
+            if (panel.CharacterSelected & !panel.IsKraken)
+            {
+                characterSelections.Add(
+                    new CharacterSelection(
+                        panel.GetSelectedCharacter(),
+                        this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
+                        panel.SelectedTeam,
+                        false));
             }
         }
 

@@ -22,6 +22,7 @@ public static class PathVariables {
     internal static string sabotageManager = "Prefabs/GameManagers/SabotageGameManager";
     internal static string krakenHuntManager = "Prefabs/GameManagers/KrakenGameManager";
     internal static string deathMatchManager = "Prefabs/GameManagers/DeathMatchGameManager";
+    internal static string targetsManager = "Prefabs/GameManagers/TargetsGameManager";
 
 
     //cannonball
@@ -85,6 +86,8 @@ public static class PathVariables {
 
     //Networked cs view
     internal static string selectedCharacterView = "networked_character_select/characterView";
+    
+
     public static string GetAssociatedCannonballForShip(ShipEnum shipType)
     {
         if (shipType == ShipEnum.AtlanteanShip)
@@ -132,6 +135,29 @@ public static class PathVariables {
         }
 
         return string.Empty;
+
+    }
+
+    public static MapEnum GetMapForShip(ShipEnum shipType)
+    {
+        if (shipType == ShipEnum.AtlanteanShip)
+        {
+            return MapEnum.AtlantisMap;
+        }
+        else if (shipType == ShipEnum.BlackbeardShip)
+        {
+            return MapEnum.BlackbeardMap;
+        }
+        else if (shipType == ShipEnum.ChineseJunkShip)
+        {
+            return MapEnum.ChineseMap;
+        }
+        else if (shipType == ShipEnum.VikingShip)
+        {
+            return MapEnum.VikingMap;
+        }
+
+        return MapEnum.ChineseMap;
 
     }
 
