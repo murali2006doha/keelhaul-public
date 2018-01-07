@@ -410,8 +410,12 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
 
             gameStats.numOfTimesSubmergedByKraken += 1;
+        if (hookshotComponent.enabled)
+        {
             hookshotComponent.UnHook();
-            hit(health, kraken.id, true);
+
+        }
+        hit(health, kraken.id, true);
     }
 
 
@@ -450,7 +454,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (magnitude > 0 && !isPushed)
         {
-            hookshotComponent.UnHook();
+            if (hookshotComponent.enabled)
+            {
+                hookshotComponent.UnHook();
+
+            }
             velocity = stats.maxVelocity * magnitude;
             followCamera.startShake();
             pushMagnitude = magnitude;
@@ -543,7 +551,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface
             {
                 setStatus(ShipStatus.Dead);
                 vibrate(1f, 1f);
-                hookshotComponent.UnHook();
+                if (hookshotComponent.enabled)
+                {
+                    hookshotComponent.UnHook();
+
+                }
                 checkColliders(false);
                 foreach (DeathMatchGameManager manager1 in GameObject.FindObjectsOfType<DeathMatchGameManager>())
                 {
@@ -646,7 +658,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
 
     public void die(int killerID)
     {
-        hookshotComponent.UnHook();
+        if (hookshotComponent.enabled)
+        {
+            hookshotComponent.UnHook();
+        }
         dying = true;
         uiManager.animManager.onDeath();
         SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);
