@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: CharacterToInfoImage
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 4d88244248ee8420087d0de47c89a429, type: 3}
+  - {fileID: 21300000, guid: c4c654970b38d45f39efd6273490474b, type: 3}
   - {fileID: 21300000, guid: 817d53373e6284c1e97e4541a1efadfc, type: 3}
   - {fileID: 21300000, guid: 37b726eec5fb9467fb9e6006176873fc, type: 3}
   - {fileID: 21300000, guid: 25e48a35f8e2945108924f5de95fbf70, type: 3}
+  - {fileID: 21300000, guid: 52eae37cc27a346379ee585e0773c335, type: 3}

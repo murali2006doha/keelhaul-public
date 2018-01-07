@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,9 +23,6 @@ public class CharacterPanel : MonoBehaviour
     private GameObject teamHolder;
 
     [SerializeField]
-    private Image selected;
-
-    [SerializeField]
     private List<PanelHostHolder> panelHostHolders;
 
     [SerializeField]
@@ -33,11 +31,44 @@ public class CharacterPanel : MonoBehaviour
     [SerializeField]
     private SpriteDictionary characterReadyImages;
 
+    [SerializeField]
+    private SpriteDictionary characterLockImages;
+
     private SpriteDictionary characterToPanels;
 
+    private List<string> characterReferences;
 
     private int characterIndex = 0;
     private int selectedTeam = 0;
+    private bool characterSelected;
+
+    public bool IsPlayer { get; set; }
+    public bool IsKraken { get; set; }
+    public bool SignedIn { get; set; }
+    public bool KrakenLock { get; set; }
+
+    void Update()
+    {
+        if (GameTypeEnum.Sabotage == FindObjectOfType<PlayerSelectSettings>().gameType)
+        {
+            this.teamHolder.gameObject.SetActive(false);
+
+            if (GetSelectedCharacter() == "Kraken") { IsKraken = true; }
+            else { IsKraken = false; }
+        }
+
+        RenderImages();
+
+    }
+
+
+    public void Initialize(SpriteDictionary panelSprites, List<string> characterReferences)
+    {
+        this.characterReferences = characterReferences;
+        this.SignOut();
+        this.characterToPanels = panelSprites;
+    }
+
     public int SelectedTeam {
         get
         {
@@ -50,11 +81,6 @@ public class CharacterPanel : MonoBehaviour
 
         }
     }
-    private bool characterSelected;
-
-
-    public bool IsPlayer { get; set; }
-    public bool SignedIn { get; set; }
 
     public bool CharacterSelected
     {
@@ -66,18 +92,19 @@ public class CharacterPanel : MonoBehaviour
         set
         {
             this.characterSelected = value;
-            this.characterText.sprite = this.characterReadyImages.Get(this.GetSelectedCharacter());
-            this.selected.gameObject.SetActive(value);
         }
     }
 
-    private List<string> characterReferences;
-    public void Initialize(SpriteDictionary panelSprites)
-    {
-        this.characterReferences = GlobalVariables.CharactersForDeathMatch();
-        this.SignOut();
-        this.characterToPanels = panelSprites;
+    public bool OnLockedKraken() {
+
+        if(IsKraken & KrakenLock) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
+
 
     public string GetSelectedCharacter()
     {
@@ -101,6 +128,8 @@ public class CharacterPanel : MonoBehaviour
         this.status.text = string.Empty;
         this.SignedIn = false;
         this.IsPlayer = false;
+        this.IsKraken = false;
+        this.KrakenLock = false;
         this.characterIndex = 0;
     }
 
@@ -134,19 +163,41 @@ public class CharacterPanel : MonoBehaviour
 
     public void ChangeCharacter(int direction)
     {
+        int numCharacters = characterReferences.Count;
+
         if (!this.characterSelected)
         {
-            if (this.characterIndex + 1 == 4) {
+            if (this.characterIndex + direction == numCharacters) {
                 this.characterIndex = 0;
+            } else if (this.characterIndex + direction == -1) {
+                this.characterIndex = numCharacters - 1;
             } else {
-                this.characterIndex++;
+                this.characterIndex = this.characterIndex + direction;
             }
-
-            this.characterImage.sprite = this.characterToPanels.Get(this.characterReferences[this.characterIndex]);
-            this.characterText.sprite = this.characterTypeImages.Get(this.characterReferences[this.characterIndex]);
         }
+
     }
 
+    private void RenderImages()
+    {
+        this.characterImage.sprite = this.characterToPanels.Get(GetSelectedCharacter());
+
+        if (characterSelected)
+        {
+            this.characterText.sprite = this.characterReadyImages.Get(this.GetSelectedCharacter());
+        }
+        else if (!characterSelected)
+        {
+            if (OnLockedKraken())
+            {
+                this.characterText.sprite = this.characterLockImages.Get(this.GetSelectedCharacter());;
+            }
+            else
+            {
+                this.characterText.sprite = this.characterTypeImages.Get(this.GetSelectedCharacter());
+            }
+        };
+    }
 
     private void DecorateSignedIn(int playerIndex)
     {

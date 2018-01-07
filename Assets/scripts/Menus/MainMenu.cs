@@ -119,6 +119,7 @@ public class MainMenu : AbstractMenu
 
     private void TransitionToCharacterSelect() {
         this.csController.gameObject.SetActive(true);
+        this.csController.Initialize();
         this.gameObject.SetActive(false);
     }
 

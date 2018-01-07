@@ -52,6 +52,12 @@ public static class GlobalVariables {
     {
         return new List<string> { ShipEnum.ChineseJunkShip.ToString(), ShipEnum.AtlanteanShip.ToString(), ShipEnum.BlackbeardShip.ToString(), ShipEnum.VikingShip.ToString() };
     } 
+
+    public static List<string> CharactersForSabotage()
+    {
+        return new List<string> {ShipEnum.Kraken.ToString(), ShipEnum.ChineseJunkShip.ToString(), ShipEnum.AtlanteanShip.ToString(), 
+            ShipEnum.BlackbeardShip.ToString(), ShipEnum.VikingShip.ToString() };
+    } 
     
 }
 
