@@ -26,14 +26,20 @@ public class CountDown : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-		timer.text = Mathf.Ceil (3 -(Time.realtimeSinceStartup - time)).ToString();
-		if (Time.realtimeSinceStartup - time > 3 && !done) {
-			timer.text = "GO!";
-			done = true;
-            callBack();
-
+        if (!done)
+        {
+            timer.text = Mathf.Ceil(3 - (Time.realtimeSinceStartup - time)).ToString();
+            if (Time.realtimeSinceStartup - time > 3)
+            {
+                timer.text = "GO!";
+                done = true;
+                if (callBack != null)
+                {
+                    callBack();
+                }
+            }
         }
+		
 
 	}
 }

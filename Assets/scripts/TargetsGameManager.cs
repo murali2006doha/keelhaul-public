@@ -344,7 +344,7 @@ public class TargetsGameManager : AbstractGameManager
 
         for(int x = 0; x < rounds.targetRounds.Count; x++)
         {
-            float currentBest = 0;
+            float currentBest = 100;
             if(PlayerPrefs.HasKey(player.type.ToString() + "-" + x))
             {
                 currentBest = PlayerPrefs.GetFloat(player.type.ToString() + "-" + x);
