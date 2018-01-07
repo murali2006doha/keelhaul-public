@@ -442,7 +442,7 @@ public class GameInitializer : MonoBehaviour {
         krakenObj.transform.position = map.krakenStartPoint.transform.position;
 
         KrakenInput kraken = krakenObj.GetComponent<KrakenInput>();
-        if (action.Device == null) {
+        if (action == null) {
 
             action = PlayerActions.CreateWithKeyboardBindings();
         }
@@ -668,7 +668,7 @@ public class GameInitializer : MonoBehaviour {
 
             input.playerId = playerId;
 
-            if (!player.bot && player.Actions.Device == null) {
+            if (!player.bot && player.Actions == null) {
                 Cursor.visible = true;
                 player.Actions = PlayerActions.CreateWithKeyboardBindings_2();
             }

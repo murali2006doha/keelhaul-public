@@ -67,7 +67,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
     public int id;
 
     public FreeForAllStatistics gameStats;
-    
+
 
     void Start()
     {
@@ -105,7 +105,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
         gameStats = new FreeForAllStatistics();
         submergeTimer = stats.stages[currentStage].submergeTime;
-        
+
 
     }
 
@@ -117,7 +117,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
 
     void UpdateSubmergeBar() {
-        
+
         if (submergeSprite.gameObject.activeSelf)
         {
             submergeTimer -= Time.deltaTime;
@@ -133,7 +133,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         }
         uiManager.setBoostBar(submergeTimer / stats.stages[currentStage].submergeTime);
 
-    }   
+    }
 
 	void updateHealth() {
 		uiManager.setHealthBar(health / stats.stages[currentStage].max_health);
@@ -286,9 +286,9 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         uiManager.updateCompass(this.transform.position);
         if (animator.isCurrentAnimName("idle"))
         {
-            
+
            /* if (Actions.Fire_Hook.WasPressed) {
-                
+
                 if (mouth.isHooked())
                 {
                     mouth.UnHook();
@@ -359,7 +359,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
         if (animator.isCurrentAnimName("submerged"))
         {
-            
+
             if (hittingShip)
             {
                 gameStats.timeSpentUnderShips += Time.deltaTime;
@@ -453,7 +453,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
             moveSpeed = 0;
         }
 
-        
+
 
         if (!boosted) {
             velocity = Mathf.Max(0f, (velocity - (stats.stages[currentStage].deaccelaration * (Time.deltaTime * GlobalVariables.gameSpeed)))); //Deaccelerate
@@ -562,7 +562,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         }
         if (!animator.isCurrentAnimName("death"))
         {
-            
+
             var players = manager.getPlayers();
             foreach (PlayerInput player in players)
             {
@@ -584,12 +584,13 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
                 SendToKillFeed(id);
                 vibrate(1f, 1f);
                 die();
+                ((SabotageGameManager)(manager)).IncrementPoint(id);
             }
             else
             {
                 vibrate(.5f, .5f);
             }
-				
+
         }
 
     }
@@ -669,7 +670,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
             if (!hittingShip.GetComponent<PlayerInput>().invincible)
             {
-         
+
                 hittingShip.GetComponent<PlayerInput>().SetLockedStatus(true);
             }
 
@@ -692,7 +693,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 
     }
 
- 
+
     public void resetEmerge()
     {
         hasHitShip = false;
