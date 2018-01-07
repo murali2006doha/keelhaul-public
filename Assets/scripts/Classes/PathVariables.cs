@@ -109,7 +109,9 @@ public static class PathVariables {
     }
 
     public static string GetMapForMode(GameTypeEnum mode, MapEnum map) {
-        return genericMapPath.Replace("@", mode.ToString()) + map.ToString();   
+        var actualMode = mode == GameTypeEnum.KrakenHunt ? GameTypeEnum.Sabotage : mode;
+    Debug.Log(actualMode);
+        return genericMapPath.Replace("@", actualMode.ToString()) + map.ToString();   
     }
 
     public static string GetAssociatedBombForShip(ShipEnum shipType)

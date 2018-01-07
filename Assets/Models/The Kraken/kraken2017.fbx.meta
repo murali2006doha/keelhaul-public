@@ -1,0 +1,2208 @@
+fileFormatVersion: 2
+guid: ddec03862adce884baa8af302d9c68eb
+timeCreated: 1514669616
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: front_left_arm_constraint
+    100002: front_left_arm_IK_controller
+    100004: front_right_arm_IK_controller
+    100006: front_right_arm_IK_controller5
+    100008: front_right_arm_IK_controller6
+    100010: front_right_arm_IK_controller7
+    100012: ikHandle1
+    100014: ikHandle2
+    100016: ikHandle3
+    100018: ikHandle4
+    100020: ikHandle5
+    100022: ikHandle6
+    100024: ikHandle7
+    100026: ikHandle8
+    100028: joint1
+    100030: joint10
+    100032: joint10 1
+    100034: joint10 2
+    100036: joint10 3
+    100038: joint10 4
+    100040: joint10 5
+    100042: joint11
+    100044: joint11 1
+    100046: joint11 2
+    100048: joint11 3
+    100050: joint11 4
+    100052: joint11 5
+    100054: joint12
+    100056: joint12 1
+    100058: joint12 2
+    100060: joint12 3
+    100062: joint12 4
+    100064: joint12 5
+    100066: joint13
+    100068: joint13 1
+    100070: joint13 2
+    100072: joint13 3
+    100074: joint13 4
+    100076: joint13 5
+    100078: joint14
+    100080: joint15
+    100082: joint16
+    100084: joint17
+    100086: joint18
+    100088: joint19
+    100090: joint2
+    100092: joint2 1
+    100094: joint21
+    100096: joint22
+    100098: joint23
+    100100: joint24
+    100102: joint25
+    100104: joint25 1
+    100106: joint25 2
+    100108: joint25 3
+    100110: joint26
+    100112: joint26 1
+    100114: joint26 2
+    100116: joint26 3
+    100118: joint27
+    100120: joint28
+    100122: joint29
+    100124: joint3
+    100126: joint3 1
+    100128: joint4
+    100130: joint4 1
+    100132: joint5
+    100134: joint5 1
+    100136: joint6
+    100138: joint6 1
+    100140: joint7
+    100142: joint7 1
+    100144: joint8
+    100146: joint9
+    100148: joint9 1
+    100150: joint9 2
+    100152: joint9 3
+    100154: joint9 4
+    100156: joint9 5
+    100158: kraken2
+    100160: //RootNode
+    100162: kraken_rig
+    100164: left_back_arm_constraint
+    100166: left_back_arm_controller
+    100168: left_eyelid
+    100170: left_front_tooth
+    100172: left_front_tooth_controller
+    100174: left_mid_arm_constraint
+    100176: left_rear_arm_constraint
+    100178: left_rear_arm_controller
+    100180: left_side_tooth
+    100182: left_side_tooth_controller
+    100184: mid_left_arm_controller
+    100186: right_back_arm_constraint
+    100188: right_eyelid
+    100190: right_front_arm_constraint
+    100192: right_front_tooth
+    100194: right_front_tooth_controller
+    100196: right_mid_arm_constraint
+    100198: right_rear_arm_constraint
+    100200: right_side_tooth
+    100202: right_side_tooth_controller
+    400000: front_left_arm_constraint
+    400002: front_left_arm_IK_controller
+    400004: front_right_arm_IK_controller
+    400006: front_right_arm_IK_controller5
+    400008: front_right_arm_IK_controller6
+    400010: front_right_arm_IK_controller7
+    400012: ikHandle1
+    400014: ikHandle2
+    400016: ikHandle3
+    400018: ikHandle4
+    400020: ikHandle5
+    400022: ikHandle6
+    400024: ikHandle7
+    400026: ikHandle8
+    400028: joint1
+    400030: joint10
+    400032: joint10 1
+    400034: joint10 2
+    400036: joint10 3
+    400038: joint10 4
+    400040: joint10 5
+    400042: joint11
+    400044: joint11 1
+    400046: joint11 2
+    400048: joint11 3
+    400050: joint11 4
+    400052: joint11 5
+    400054: joint12
+    400056: joint12 1
+    400058: joint12 2
+    400060: joint12 3
+    400062: joint12 4
+    400064: joint12 5
+    400066: joint13
+    400068: joint13 1
+    400070: joint13 2
+    400072: joint13 3
+    400074: joint13 4
+    400076: joint13 5
+    400078: joint14
+    400080: joint15
+    400082: joint16
+    400084: joint17
+    400086: joint18
+    400088: joint19
+    400090: joint2
+    400092: joint2 1
+    400094: joint21
+    400096: joint22
+    400098: joint23
+    400100: joint24
+    400102: joint25
+    400104: joint25 1
+    400106: joint25 2
+    400108: joint25 3
+    400110: joint26
+    400112: joint26 1
+    400114: joint26 2
+    400116: joint26 3
+    400118: joint27
+    400120: joint28
+    400122: joint29
+    400124: joint3
+    400126: joint3 1
+    400128: joint4
+    400130: joint4 1
+    400132: joint5
+    400134: joint5 1
+    400136: joint6
+    400138: joint6 1
+    400140: joint7
+    400142: joint7 1
+    400144: joint8
+    400146: joint9
+    400148: joint9 1
+    400150: joint9 2
+    400152: joint9 3
+    400154: joint9 4
+    400156: joint9 5
+    400158: kraken2
+    400160: //RootNode
+    400162: kraken_rig
+    400164: left_back_arm_constraint
+    400166: left_back_arm_controller
+    400168: left_eyelid
+    400170: left_front_tooth
+    400172: left_front_tooth_controller
+    400174: left_mid_arm_constraint
+    400176: left_rear_arm_constraint
+    400178: left_rear_arm_controller
+    400180: left_side_tooth
+    400182: left_side_tooth_controller
+    400184: mid_left_arm_controller
+    400186: right_back_arm_constraint
+    400188: right_eyelid
+    400190: right_front_arm_constraint
+    400192: right_front_tooth
+    400194: right_front_tooth_controller
+    400196: right_mid_arm_constraint
+    400198: right_rear_arm_constraint
+    400200: right_side_tooth
+    400202: right_side_tooth_controller
+    4300000: kraken2
+    4300002: right_eyelid
+    4300004: left_eyelid
+    7400000: pose
+    7400002: right_attack_1
+    7400004: right_attack_2
+    7400006: spawn1
+    7400008: spawn2
+    7400010: ermerge_attack_1
+    7400012: swim1
+    7400014: submerge
+    9500000: //RootNode
+    13700000: kraken2
+    13700002: left_eyelid
+    13700004: right_eyelid
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: pose
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: front_left_arm_constraint
+        weight: 1
+      - path: front_left_arm_IK_controller
+        weight: 1
+      - path: front_left_arm_IK_controller/ikHandle2
+        weight: 1
+      - path: front_right_arm_IK_controller
+        weight: 1
+      - path: front_right_arm_IK_controller/ikHandle1
+        weight: 1
+      - path: front_right_arm_IK_controller5
+        weight: 1
+      - path: front_right_arm_IK_controller5/ikHandle6
+        weight: 1
+      - path: front_right_arm_IK_controller6
+        weight: 1
+      - path: front_right_arm_IK_controller6/ikHandle7
+        weight: 1
+      - path: front_right_arm_IK_controller7
+        weight: 1
+      - path: front_right_arm_IK_controller7/ikHandle8
+        weight: 1
+      - path: kraken2
+        weight: 1
+      - path: kraken2/left_eyelid
+        weight: 1
+      - path: kraken2/right_eyelid
+        weight: 1
+      - path: kraken_rig
+        weight: 1
+      - path: kraken_rig/joint21
+        weight: 1
+      - path: kraken_rig/joint21/joint1
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: kraken_rig/joint21/joint8
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5/joint13
+          5
+        weight: 1
+      - path: kraken_rig/joint21/joint14
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: kraken_rig/joint21/joint15
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1/joint13
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint16
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2/joint13
+          2
+        weight: 1
+      - path: kraken_rig/joint21/joint17
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3/joint13
+          3
+        weight: 1
+      - path: kraken_rig/joint21/joint18
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4/joint13
+          4
+        weight: 1
+      - path: kraken_rig/joint21/joint19
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1/joint7 1
+        weight: 1
+      - path: kraken_rig/joint21/joint22
+        weight: 1
+      - path: kraken_rig/joint21/joint23
+        weight: 1
+      - path: kraken_rig/joint21/joint24
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25/joint26
+        weight: 1
+      - path: kraken_rig/joint21/joint27
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1/joint26 1
+        weight: 1
+      - path: kraken_rig/joint21/joint28
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2/joint26 2
+        weight: 1
+      - path: kraken_rig/joint21/joint29
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3/joint26 3
+        weight: 1
+      - path: left_back_arm_constraint
+        weight: 1
+      - path: left_back_arm_controller
+        weight: 1
+      - path: left_back_arm_controller/ikHandle5
+        weight: 1
+      - path: left_front_tooth_controller
+        weight: 1
+      - path: left_front_tooth_controller/left_front_tooth
+        weight: 1
+      - path: left_mid_arm_constraint
+        weight: 1
+      - path: left_rear_arm_constraint
+        weight: 1
+      - path: left_rear_arm_controller
+        weight: 1
+      - path: left_rear_arm_controller/ikHandle4
+        weight: 1
+      - path: left_side_tooth_controller
+        weight: 1
+      - path: left_side_tooth_controller/left_side_tooth
+        weight: 1
+      - path: mid_left_arm_controller
+        weight: 1
+      - path: mid_left_arm_controller/ikHandle3
+        weight: 1
+      - path: right_back_arm_constraint
+        weight: 1
+      - path: right_front_arm_constraint
+        weight: 1
+      - path: right_front_tooth_controller
+        weight: 1
+      - path: right_front_tooth_controller/right_front_tooth
+        weight: 1
+      - path: right_mid_arm_constraint
+        weight: 1
+      - path: right_rear_arm_constraint
+        weight: 1
+      - path: right_side_tooth_controller
+        weight: 1
+      - path: right_side_tooth_controller/right_side_tooth
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: right_attack_1
+      takeName: Take 001
+      firstFrame: 60
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: front_left_arm_constraint
+        weight: 1
+      - path: front_left_arm_IK_controller
+        weight: 1
+      - path: front_left_arm_IK_controller/ikHandle2
+        weight: 1
+      - path: front_right_arm_IK_controller
+        weight: 1
+      - path: front_right_arm_IK_controller/ikHandle1
+        weight: 1
+      - path: front_right_arm_IK_controller5
+        weight: 1
+      - path: front_right_arm_IK_controller5/ikHandle6
+        weight: 1
+      - path: front_right_arm_IK_controller6
+        weight: 1
+      - path: front_right_arm_IK_controller6/ikHandle7
+        weight: 1
+      - path: front_right_arm_IK_controller7
+        weight: 1
+      - path: front_right_arm_IK_controller7/ikHandle8
+        weight: 1
+      - path: kraken2
+        weight: 1
+      - path: kraken2/left_eyelid
+        weight: 1
+      - path: kraken2/right_eyelid
+        weight: 1
+      - path: kraken_rig
+        weight: 1
+      - path: kraken_rig/joint21
+        weight: 1
+      - path: kraken_rig/joint21/joint1
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: kraken_rig/joint21/joint8
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5/joint13
+          5
+        weight: 1
+      - path: kraken_rig/joint21/joint14
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: kraken_rig/joint21/joint15
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1/joint13
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint16
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2/joint13
+          2
+        weight: 1
+      - path: kraken_rig/joint21/joint17
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3/joint13
+          3
+        weight: 1
+      - path: kraken_rig/joint21/joint18
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4/joint13
+          4
+        weight: 1
+      - path: kraken_rig/joint21/joint19
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1/joint7 1
+        weight: 1
+      - path: kraken_rig/joint21/joint22
+        weight: 1
+      - path: kraken_rig/joint21/joint23
+        weight: 1
+      - path: kraken_rig/joint21/joint24
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25/joint26
+        weight: 1
+      - path: kraken_rig/joint21/joint27
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1/joint26 1
+        weight: 1
+      - path: kraken_rig/joint21/joint28
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2/joint26 2
+        weight: 1
+      - path: kraken_rig/joint21/joint29
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3/joint26 3
+        weight: 1
+      - path: left_back_arm_constraint
+        weight: 1
+      - path: left_back_arm_controller
+        weight: 1
+      - path: left_back_arm_controller/ikHandle5
+        weight: 1
+      - path: left_front_tooth_controller
+        weight: 1
+      - path: left_front_tooth_controller/left_front_tooth
+        weight: 1
+      - path: left_mid_arm_constraint
+        weight: 1
+      - path: left_rear_arm_constraint
+        weight: 1
+      - path: left_rear_arm_controller
+        weight: 1
+      - path: left_rear_arm_controller/ikHandle4
+        weight: 1
+      - path: left_side_tooth_controller
+        weight: 1
+      - path: left_side_tooth_controller/left_side_tooth
+        weight: 1
+      - path: mid_left_arm_controller
+        weight: 1
+      - path: mid_left_arm_controller/ikHandle3
+        weight: 1
+      - path: right_back_arm_constraint
+        weight: 1
+      - path: right_front_arm_constraint
+        weight: 1
+      - path: right_front_tooth_controller
+        weight: 1
+      - path: right_front_tooth_controller/right_front_tooth
+        weight: 1
+      - path: right_mid_arm_constraint
+        weight: 1
+      - path: right_rear_arm_constraint
+        weight: 1
+      - path: right_side_tooth_controller
+        weight: 1
+      - path: right_side_tooth_controller/right_side_tooth
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: right_attack_2
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 184
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: front_left_arm_constraint
+        weight: 1
+      - path: front_left_arm_IK_controller
+        weight: 1
+      - path: front_left_arm_IK_controller/ikHandle2
+        weight: 1
+      - path: front_right_arm_IK_controller
+        weight: 1
+      - path: front_right_arm_IK_controller/ikHandle1
+        weight: 1
+      - path: front_right_arm_IK_controller5
+        weight: 1
+      - path: front_right_arm_IK_controller5/ikHandle6
+        weight: 1
+      - path: front_right_arm_IK_controller6
+        weight: 1
+      - path: front_right_arm_IK_controller6/ikHandle7
+        weight: 1
+      - path: front_right_arm_IK_controller7
+        weight: 1
+      - path: front_right_arm_IK_controller7/ikHandle8
+        weight: 1
+      - path: kraken2
+        weight: 1
+      - path: kraken2/left_eyelid
+        weight: 1
+      - path: kraken2/right_eyelid
+        weight: 1
+      - path: kraken_rig
+        weight: 1
+      - path: kraken_rig/joint21
+        weight: 1
+      - path: kraken_rig/joint21/joint1
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: kraken_rig/joint21/joint8
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5/joint13
+          5
+        weight: 1
+      - path: kraken_rig/joint21/joint14
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: kraken_rig/joint21/joint15
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1/joint13
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint16
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2/joint13
+          2
+        weight: 1
+      - path: kraken_rig/joint21/joint17
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3/joint13
+          3
+        weight: 1
+      - path: kraken_rig/joint21/joint18
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4/joint13
+          4
+        weight: 1
+      - path: kraken_rig/joint21/joint19
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1/joint7 1
+        weight: 1
+      - path: kraken_rig/joint21/joint22
+        weight: 1
+      - path: kraken_rig/joint21/joint23
+        weight: 1
+      - path: kraken_rig/joint21/joint24
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25/joint26
+        weight: 1
+      - path: kraken_rig/joint21/joint27
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1/joint26 1
+        weight: 1
+      - path: kraken_rig/joint21/joint28
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2/joint26 2
+        weight: 1
+      - path: kraken_rig/joint21/joint29
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3/joint26 3
+        weight: 1
+      - path: left_back_arm_constraint
+        weight: 1
+      - path: left_back_arm_controller
+        weight: 1
+      - path: left_back_arm_controller/ikHandle5
+        weight: 1
+      - path: left_front_tooth_controller
+        weight: 1
+      - path: left_front_tooth_controller/left_front_tooth
+        weight: 1
+      - path: left_mid_arm_constraint
+        weight: 1
+      - path: left_rear_arm_constraint
+        weight: 1
+      - path: left_rear_arm_controller
+        weight: 1
+      - path: left_rear_arm_controller/ikHandle4
+        weight: 1
+      - path: left_side_tooth_controller
+        weight: 1
+      - path: left_side_tooth_controller/left_side_tooth
+        weight: 1
+      - path: mid_left_arm_controller
+        weight: 1
+      - path: mid_left_arm_controller/ikHandle3
+        weight: 1
+      - path: right_back_arm_constraint
+        weight: 1
+      - path: right_front_arm_constraint
+        weight: 1
+      - path: right_front_tooth_controller
+        weight: 1
+      - path: right_front_tooth_controller/right_front_tooth
+        weight: 1
+      - path: right_mid_arm_constraint
+        weight: 1
+      - path: right_rear_arm_constraint
+        weight: 1
+      - path: right_side_tooth_controller
+        weight: 1
+      - path: right_side_tooth_controller/right_side_tooth
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: spawn1
+      takeName: Take 001
+      firstFrame: 184
+      lastFrame: 329
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: front_left_arm_constraint
+        weight: 1
+      - path: front_left_arm_IK_controller
+        weight: 1
+      - path: front_left_arm_IK_controller/ikHandle2
+        weight: 1
+      - path: front_right_arm_IK_controller
+        weight: 1
+      - path: front_right_arm_IK_controller/ikHandle1
+        weight: 1
+      - path: front_right_arm_IK_controller5
+        weight: 1
+      - path: front_right_arm_IK_controller5/ikHandle6
+        weight: 1
+      - path: front_right_arm_IK_controller6
+        weight: 1
+      - path: front_right_arm_IK_controller6/ikHandle7
+        weight: 1
+      - path: front_right_arm_IK_controller7
+        weight: 1
+      - path: front_right_arm_IK_controller7/ikHandle8
+        weight: 1
+      - path: kraken2
+        weight: 1
+      - path: kraken2/left_eyelid
+        weight: 1
+      - path: kraken2/right_eyelid
+        weight: 1
+      - path: kraken_rig
+        weight: 1
+      - path: kraken_rig/joint21
+        weight: 1
+      - path: kraken_rig/joint21/joint1
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: kraken_rig/joint21/joint8
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5/joint13
+          5
+        weight: 1
+      - path: kraken_rig/joint21/joint14
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: kraken_rig/joint21/joint15
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1/joint13
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint16
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2/joint13
+          2
+        weight: 1
+      - path: kraken_rig/joint21/joint17
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3/joint13
+          3
+        weight: 1
+      - path: kraken_rig/joint21/joint18
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4/joint13
+          4
+        weight: 1
+      - path: kraken_rig/joint21/joint19
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1/joint7 1
+        weight: 1
+      - path: kraken_rig/joint21/joint22
+        weight: 1
+      - path: kraken_rig/joint21/joint23
+        weight: 1
+      - path: kraken_rig/joint21/joint24
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25/joint26
+        weight: 1
+      - path: kraken_rig/joint21/joint27
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1/joint26 1
+        weight: 1
+      - path: kraken_rig/joint21/joint28
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2/joint26 2
+        weight: 1
+      - path: kraken_rig/joint21/joint29
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3/joint26 3
+        weight: 1
+      - path: left_back_arm_constraint
+        weight: 1
+      - path: left_back_arm_controller
+        weight: 1
+      - path: left_back_arm_controller/ikHandle5
+        weight: 1
+      - path: left_front_tooth_controller
+        weight: 1
+      - path: left_front_tooth_controller/left_front_tooth
+        weight: 1
+      - path: left_mid_arm_constraint
+        weight: 1
+      - path: left_rear_arm_constraint
+        weight: 1
+      - path: left_rear_arm_controller
+        weight: 1
+      - path: left_rear_arm_controller/ikHandle4
+        weight: 1
+      - path: left_side_tooth_controller
+        weight: 1
+      - path: left_side_tooth_controller/left_side_tooth
+        weight: 1
+      - path: mid_left_arm_controller
+        weight: 1
+      - path: mid_left_arm_controller/ikHandle3
+        weight: 1
+      - path: right_back_arm_constraint
+        weight: 1
+      - path: right_front_arm_constraint
+        weight: 1
+      - path: right_front_tooth_controller
+        weight: 1
+      - path: right_front_tooth_controller/right_front_tooth
+        weight: 1
+      - path: right_mid_arm_constraint
+        weight: 1
+      - path: right_rear_arm_constraint
+        weight: 1
+      - path: right_side_tooth_controller
+        weight: 1
+      - path: right_side_tooth_controller/right_side_tooth
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: spawn2
+      takeName: Take 001
+      firstFrame: 319
+      lastFrame: 439
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: front_left_arm_constraint
+        weight: 1
+      - path: front_left_arm_IK_controller
+        weight: 1
+      - path: front_left_arm_IK_controller/ikHandle2
+        weight: 1
+      - path: front_right_arm_IK_controller
+        weight: 1
+      - path: front_right_arm_IK_controller/ikHandle1
+        weight: 1
+      - path: front_right_arm_IK_controller5
+        weight: 1
+      - path: front_right_arm_IK_controller5/ikHandle6
+        weight: 1
+      - path: front_right_arm_IK_controller6
+        weight: 1
+      - path: front_right_arm_IK_controller6/ikHandle7
+        weight: 1
+      - path: front_right_arm_IK_controller7
+        weight: 1
+      - path: front_right_arm_IK_controller7/ikHandle8
+        weight: 1
+      - path: kraken2
+        weight: 1
+      - path: kraken2/left_eyelid
+        weight: 1
+      - path: kraken2/right_eyelid
+        weight: 1
+      - path: kraken_rig
+        weight: 1
+      - path: kraken_rig/joint21
+        weight: 1
+      - path: kraken_rig/joint21/joint1
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: kraken_rig/joint21/joint8
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5/joint13
+          5
+        weight: 1
+      - path: kraken_rig/joint21/joint14
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: kraken_rig/joint21/joint15
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1/joint13
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint16
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2/joint13
+          2
+        weight: 1
+      - path: kraken_rig/joint21/joint17
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3/joint13
+          3
+        weight: 1
+      - path: kraken_rig/joint21/joint18
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4/joint13
+          4
+        weight: 1
+      - path: kraken_rig/joint21/joint19
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1/joint7 1
+        weight: 1
+      - path: kraken_rig/joint21/joint22
+        weight: 1
+      - path: kraken_rig/joint21/joint23
+        weight: 1
+      - path: kraken_rig/joint21/joint24
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25/joint26
+        weight: 1
+      - path: kraken_rig/joint21/joint27
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1/joint26 1
+        weight: 1
+      - path: kraken_rig/joint21/joint28
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2/joint26 2
+        weight: 1
+      - path: kraken_rig/joint21/joint29
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3/joint26 3
+        weight: 1
+      - path: left_back_arm_constraint
+        weight: 1
+      - path: left_back_arm_controller
+        weight: 1
+      - path: left_back_arm_controller/ikHandle5
+        weight: 1
+      - path: left_front_tooth_controller
+        weight: 1
+      - path: left_front_tooth_controller/left_front_tooth
+        weight: 1
+      - path: left_mid_arm_constraint
+        weight: 1
+      - path: left_rear_arm_constraint
+        weight: 1
+      - path: left_rear_arm_controller
+        weight: 1
+      - path: left_rear_arm_controller/ikHandle4
+        weight: 1
+      - path: left_side_tooth_controller
+        weight: 1
+      - path: left_side_tooth_controller/left_side_tooth
+        weight: 1
+      - path: mid_left_arm_controller
+        weight: 1
+      - path: mid_left_arm_controller/ikHandle3
+        weight: 1
+      - path: right_back_arm_constraint
+        weight: 1
+      - path: right_front_arm_constraint
+        weight: 1
+      - path: right_front_tooth_controller
+        weight: 1
+      - path: right_front_tooth_controller/right_front_tooth
+        weight: 1
+      - path: right_mid_arm_constraint
+        weight: 1
+      - path: right_rear_arm_constraint
+        weight: 1
+      - path: right_side_tooth_controller
+        weight: 1
+      - path: right_side_tooth_controller/right_side_tooth
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ermerge_attack_1
+      takeName: Take 001
+      firstFrame: 439
+      lastFrame: 514
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: front_left_arm_constraint
+        weight: 1
+      - path: front_left_arm_IK_controller
+        weight: 1
+      - path: front_left_arm_IK_controller/ikHandle2
+        weight: 1
+      - path: front_right_arm_IK_controller
+        weight: 1
+      - path: front_right_arm_IK_controller/ikHandle1
+        weight: 1
+      - path: front_right_arm_IK_controller5
+        weight: 1
+      - path: front_right_arm_IK_controller5/ikHandle6
+        weight: 1
+      - path: front_right_arm_IK_controller6
+        weight: 1
+      - path: front_right_arm_IK_controller6/ikHandle7
+        weight: 1
+      - path: front_right_arm_IK_controller7
+        weight: 1
+      - path: front_right_arm_IK_controller7/ikHandle8
+        weight: 1
+      - path: kraken2
+        weight: 1
+      - path: kraken2/left_eyelid
+        weight: 1
+      - path: kraken2/right_eyelid
+        weight: 1
+      - path: kraken_rig
+        weight: 1
+      - path: kraken_rig/joint21
+        weight: 1
+      - path: kraken_rig/joint21/joint1
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: kraken_rig/joint21/joint8
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5/joint13
+          5
+        weight: 1
+      - path: kraken_rig/joint21/joint14
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: kraken_rig/joint21/joint15
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1/joint13
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint16
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2/joint13
+          2
+        weight: 1
+      - path: kraken_rig/joint21/joint17
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3/joint13
+          3
+        weight: 1
+      - path: kraken_rig/joint21/joint18
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4/joint13
+          4
+        weight: 1
+      - path: kraken_rig/joint21/joint19
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1/joint7 1
+        weight: 1
+      - path: kraken_rig/joint21/joint22
+        weight: 1
+      - path: kraken_rig/joint21/joint23
+        weight: 1
+      - path: kraken_rig/joint21/joint24
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25/joint26
+        weight: 1
+      - path: kraken_rig/joint21/joint27
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1/joint26 1
+        weight: 1
+      - path: kraken_rig/joint21/joint28
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2/joint26 2
+        weight: 1
+      - path: kraken_rig/joint21/joint29
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3/joint26 3
+        weight: 1
+      - path: left_back_arm_constraint
+        weight: 1
+      - path: left_back_arm_controller
+        weight: 1
+      - path: left_back_arm_controller/ikHandle5
+        weight: 1
+      - path: left_front_tooth_controller
+        weight: 1
+      - path: left_front_tooth_controller/left_front_tooth
+        weight: 1
+      - path: left_mid_arm_constraint
+        weight: 1
+      - path: left_rear_arm_constraint
+        weight: 1
+      - path: left_rear_arm_controller
+        weight: 1
+      - path: left_rear_arm_controller/ikHandle4
+        weight: 1
+      - path: left_side_tooth_controller
+        weight: 1
+      - path: left_side_tooth_controller/left_side_tooth
+        weight: 1
+      - path: mid_left_arm_controller
+        weight: 1
+      - path: mid_left_arm_controller/ikHandle3
+        weight: 1
+      - path: right_back_arm_constraint
+        weight: 1
+      - path: right_front_arm_constraint
+        weight: 1
+      - path: right_front_tooth_controller
+        weight: 1
+      - path: right_front_tooth_controller/right_front_tooth
+        weight: 1
+      - path: right_mid_arm_constraint
+        weight: 1
+      - path: right_rear_arm_constraint
+        weight: 1
+      - path: right_side_tooth_controller
+        weight: 1
+      - path: right_side_tooth_controller/right_side_tooth
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: swim1
+      takeName: Take 001
+      firstFrame: 319
+      lastFrame: 598
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: front_left_arm_constraint
+        weight: 1
+      - path: front_left_arm_IK_controller
+        weight: 1
+      - path: front_left_arm_IK_controller/ikHandle2
+        weight: 1
+      - path: front_right_arm_IK_controller
+        weight: 1
+      - path: front_right_arm_IK_controller/ikHandle1
+        weight: 1
+      - path: front_right_arm_IK_controller5
+        weight: 1
+      - path: front_right_arm_IK_controller5/ikHandle6
+        weight: 1
+      - path: front_right_arm_IK_controller6
+        weight: 1
+      - path: front_right_arm_IK_controller6/ikHandle7
+        weight: 1
+      - path: front_right_arm_IK_controller7
+        weight: 1
+      - path: front_right_arm_IK_controller7/ikHandle8
+        weight: 1
+      - path: kraken2
+        weight: 1
+      - path: kraken2/left_eyelid
+        weight: 1
+      - path: kraken2/right_eyelid
+        weight: 1
+      - path: kraken_rig
+        weight: 1
+      - path: kraken_rig/joint21
+        weight: 1
+      - path: kraken_rig/joint21/joint1
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: kraken_rig/joint21/joint8
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5/joint13
+          5
+        weight: 1
+      - path: kraken_rig/joint21/joint14
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: kraken_rig/joint21/joint15
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1/joint13
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint16
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2/joint13
+          2
+        weight: 1
+      - path: kraken_rig/joint21/joint17
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3/joint13
+          3
+        weight: 1
+      - path: kraken_rig/joint21/joint18
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4/joint13
+          4
+        weight: 1
+      - path: kraken_rig/joint21/joint19
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1/joint7 1
+        weight: 1
+      - path: kraken_rig/joint21/joint22
+        weight: 1
+      - path: kraken_rig/joint21/joint23
+        weight: 1
+      - path: kraken_rig/joint21/joint24
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25/joint26
+        weight: 1
+      - path: kraken_rig/joint21/joint27
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1/joint26 1
+        weight: 1
+      - path: kraken_rig/joint21/joint28
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2/joint26 2
+        weight: 1
+      - path: kraken_rig/joint21/joint29
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3/joint26 3
+        weight: 1
+      - path: left_back_arm_constraint
+        weight: 1
+      - path: left_back_arm_controller
+        weight: 1
+      - path: left_back_arm_controller/ikHandle5
+        weight: 1
+      - path: left_front_tooth_controller
+        weight: 1
+      - path: left_front_tooth_controller/left_front_tooth
+        weight: 1
+      - path: left_mid_arm_constraint
+        weight: 1
+      - path: left_rear_arm_constraint
+        weight: 1
+      - path: left_rear_arm_controller
+        weight: 1
+      - path: left_rear_arm_controller/ikHandle4
+        weight: 1
+      - path: left_side_tooth_controller
+        weight: 1
+      - path: left_side_tooth_controller/left_side_tooth
+        weight: 1
+      - path: mid_left_arm_controller
+        weight: 1
+      - path: mid_left_arm_controller/ikHandle3
+        weight: 1
+      - path: right_back_arm_constraint
+        weight: 1
+      - path: right_front_arm_constraint
+        weight: 1
+      - path: right_front_tooth_controller
+        weight: 1
+      - path: right_front_tooth_controller/right_front_tooth
+        weight: 1
+      - path: right_mid_arm_constraint
+        weight: 1
+      - path: right_rear_arm_constraint
+        weight: 1
+      - path: right_side_tooth_controller
+        weight: 1
+      - path: right_side_tooth_controller/right_side_tooth
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: submerge
+      takeName: Take 001
+      firstFrame: 599
+      lastFrame: 649
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: front_left_arm_constraint
+        weight: 1
+      - path: front_left_arm_IK_controller
+        weight: 1
+      - path: front_left_arm_IK_controller/ikHandle2
+        weight: 1
+      - path: front_right_arm_IK_controller
+        weight: 1
+      - path: front_right_arm_IK_controller/ikHandle1
+        weight: 1
+      - path: front_right_arm_IK_controller5
+        weight: 1
+      - path: front_right_arm_IK_controller5/ikHandle6
+        weight: 1
+      - path: front_right_arm_IK_controller6
+        weight: 1
+      - path: front_right_arm_IK_controller6/ikHandle7
+        weight: 1
+      - path: front_right_arm_IK_controller7
+        weight: 1
+      - path: front_right_arm_IK_controller7/ikHandle8
+        weight: 1
+      - path: kraken2
+        weight: 1
+      - path: kraken2/left_eyelid
+        weight: 1
+      - path: kraken2/right_eyelid
+        weight: 1
+      - path: kraken_rig
+        weight: 1
+      - path: kraken_rig/joint21
+        weight: 1
+      - path: kraken_rig/joint21/joint1
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: kraken_rig/joint21/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: kraken_rig/joint21/joint8
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5
+        weight: 1
+      - path: kraken_rig/joint21/joint8/joint9 5/joint10 5/joint11 5/joint12 5/joint13
+          5
+        weight: 1
+      - path: kraken_rig/joint21/joint14
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12
+        weight: 1
+      - path: kraken_rig/joint21/joint14/joint9/joint10/joint11/joint12/joint13
+        weight: 1
+      - path: kraken_rig/joint21/joint15
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1
+        weight: 1
+      - path: kraken_rig/joint21/joint15/joint9 1/joint10 1/joint11 1/joint12 1/joint13
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint16
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2
+        weight: 1
+      - path: kraken_rig/joint21/joint16/joint9 2/joint10 2/joint11 2/joint12 2/joint13
+          2
+        weight: 1
+      - path: kraken_rig/joint21/joint17
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3
+        weight: 1
+      - path: kraken_rig/joint21/joint17/joint9 3/joint10 3/joint11 3/joint12 3/joint13
+          3
+        weight: 1
+      - path: kraken_rig/joint21/joint18
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4
+        weight: 1
+      - path: kraken_rig/joint21/joint18/joint9 4/joint10 4/joint11 4/joint12 4/joint13
+          4
+        weight: 1
+      - path: kraken_rig/joint21/joint19
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1
+        weight: 1
+      - path: kraken_rig/joint21/joint19/joint2 1/joint3 1/joint4 1/joint5 1/joint6
+          1/joint7 1
+        weight: 1
+      - path: kraken_rig/joint21/joint22
+        weight: 1
+      - path: kraken_rig/joint21/joint23
+        weight: 1
+      - path: kraken_rig/joint21/joint24
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25
+        weight: 1
+      - path: kraken_rig/joint21/joint24/joint25/joint26
+        weight: 1
+      - path: kraken_rig/joint21/joint27
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1
+        weight: 1
+      - path: kraken_rig/joint21/joint27/joint25 1/joint26 1
+        weight: 1
+      - path: kraken_rig/joint21/joint28
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2
+        weight: 1
+      - path: kraken_rig/joint21/joint28/joint25 2/joint26 2
+        weight: 1
+      - path: kraken_rig/joint21/joint29
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3
+        weight: 1
+      - path: kraken_rig/joint21/joint29/joint25 3/joint26 3
+        weight: 1
+      - path: left_back_arm_constraint
+        weight: 1
+      - path: left_back_arm_controller
+        weight: 1
+      - path: left_back_arm_controller/ikHandle5
+        weight: 1
+      - path: left_front_tooth_controller
+        weight: 1
+      - path: left_front_tooth_controller/left_front_tooth
+        weight: 1
+      - path: left_mid_arm_constraint
+        weight: 1
+      - path: left_rear_arm_constraint
+        weight: 1
+      - path: left_rear_arm_controller
+        weight: 1
+      - path: left_rear_arm_controller/ikHandle4
+        weight: 1
+      - path: left_side_tooth_controller
+        weight: 1
+      - path: left_side_tooth_controller/left_side_tooth
+        weight: 1
+      - path: mid_left_arm_controller
+        weight: 1
+      - path: mid_left_arm_controller/ikHandle3
+        weight: 1
+      - path: right_back_arm_constraint
+        weight: 1
+      - path: right_front_arm_constraint
+        weight: 1
+      - path: right_front_tooth_controller
+        weight: 1
+      - path: right_front_tooth_controller/right_front_tooth
+        weight: 1
+      - path: right_mid_arm_constraint
+        weight: 1
+      - path: right_rear_arm_constraint
+        weight: 1
+      - path: right_side_tooth_controller
+        weight: 1
+      - path: right_side_tooth_controller/right_side_tooth
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
