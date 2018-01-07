@@ -46,7 +46,8 @@ public class TargetsGameManager : AbstractGameManager
     UIManager ui;
     PlayerInput player;
     public List<float> times = new List<float>();
-    public int maxTime = 40;
+    int maxTime = 30;
+    public GameObject postGamePrefab;
     void Start()
     {
        
@@ -166,6 +167,15 @@ public class TargetsGameManager : AbstractGameManager
             UpdateUI();
         }
 
+        if (gameOver)
+        {
+            if (Input.GetKeyUp(KeyCode.E) || player.Actions != null && player.Actions.Blue.WasPressed)
+            {
+                RestartGame();
+                gameOver = false;
+            }
+        }
+
     }
 
     public void GoToNextRound()
@@ -182,7 +192,7 @@ public class TargetsGameManager : AbstractGameManager
 
     private void UpdateUI()
     {
-        if(rounds.round == rounds.targetRounds.Count)
+        if(rounds.round == rounds.targetRounds.Count-1)
         {
             ui.round.text = "Final Round ";
         }
@@ -310,23 +320,85 @@ public class TargetsGameManager : AbstractGameManager
         globalCanvas.panel2.gameObject.SetActive(true);
         Time.timeScale = 1f;
         gameOver = true;
+        
+        enableStats();
 
     }
 
 
     public void enableStats()
     {
-        GameOverStatsUI gameOverUI = globalCanvas.gameOverUI;
-        gameOverUI.startFading = true;
+        player.setStatus(ShipStatus.Waiting);
+        var gameOverScreen = Instantiate(this.postGamePrefab as GameObject);
+        MapObjects map = GameObject.FindObjectOfType<MapObjects>();
+        map.enabled = false;
+        map.transform.root.gameObject.SetActive(false);
+        foreach (cameraFollow k in cams)
+        {
+            k.camera.gameObject.SetActive(false);
+        }
+
+        TargetsPostGameStats controller = gameOverScreen.GetComponent<TargetsPostGameStats>();
+        player.transform.position = controller.shipLocation.transform.position;
+        player.transform.rotation = controller.shipLocation.transform.rotation;
+
+        for(int x = 0; x < rounds.targetRounds.Count; x++)
+        {
+            float currentBest = 0;
+            if(PlayerPrefs.HasKey(player.type.ToString() + "-" + x))
+            {
+                currentBest = PlayerPrefs.GetFloat(player.type.ToString() + "-" + x);
+            }
+            
+            if(x >= times.Count)
+            {
+                controller.runScores[x].text = "None\n";
+                controller.runScores[x].color = Color.grey;
+                if(currentBest == 0)
+                {
+                    controller.bestScores[x].text = "None\n";
+                    controller.bestScores[x].color = Color.grey;
+                }
+            }
+            else
+            {
+                if (times[x] < currentBest)
+                {
+                    controller.runScores[x].color = Color.green;
+                    PlayerPrefs.SetFloat(player.type.ToString() + "-" + x, times[x]);
+                    currentBest = times[x];
+                }
+                var currTime = times[x];
+                var bestTime = currentBest;
+                SetTime(controller.runScores[x], currTime);
+                SetTime(controller.bestScores[x], bestTime);
+
+            }
+        }
+
+
     }
 
-
+    private void SetTime(Text text, float time)
+    {
+        string minutes = Mathf.Floor(time / 60).ToString("00");
+        string seconds = Mathf.Floor(time % 60).ToString("00");
+        string ms = (Mathf.Floor(time * 1000) % 1000).ToString("000");
+        text.text = string.Format("{0}:{1}:{2}", minutes, seconds, ms) + "\n";
+    }
 
     override public void ExitToCharacterSelect()
     {
         Time.timeScale = 1;
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("Start");
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1;
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("Game");
     }
 
     internal override int getNumberOfTeams()

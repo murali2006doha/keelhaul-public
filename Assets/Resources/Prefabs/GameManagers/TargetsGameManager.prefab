@@ -63,8 +63,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 5
-  instantiationId: 5
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114509559571343434
@@ -91,3 +91,6 @@ MonoBehaviour:
   globalCanvas: {fileID: 0}
   fadeInAnimator: {fileID: 0}
   shipPoints: 
+  times: []
+  postGamePrefab: {fileID: 1961046894816894, guid: c688e01d52abf0044b26a503485a5aed,
+    type: 2}
