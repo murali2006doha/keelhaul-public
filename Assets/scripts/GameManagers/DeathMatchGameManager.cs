@@ -826,12 +826,6 @@ public class DeathMatchGameManager : AbstractGameManager
 
 
 
-    override public void ExitToCharacterSelect()
-    {
-        Time.timeScale = 1;
-        PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene("start");
-    }
     public void restartCurrentGame()
     {
         DontDestroyOnLoad(ps);
@@ -841,7 +835,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
     internal override int getNumberOfTeams()
     {
-        return gamePoints.Count;
+        return isTeam?gamePoints.Count:0;
     }
 
     public override List<PlayerInput> getPlayers()

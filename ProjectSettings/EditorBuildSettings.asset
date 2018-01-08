@@ -5,33 +5,48 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial.unity
+    guid: e850d5e87d6a7184eb117cd1e2570343
   - enabled: 0
     path: Assets/Scenes/start2.unity
+    guid: d2e97e6894e737d4d95f97353f8dbd72
   - enabled: 0
     path: Assets/Scenes/abhi's weird contraption.unity
+    guid: 996b7ebd0d53e4148af86ab3d1170337
   - enabled: 0
     path: Assets/Scenes/nathan's basic bitch.unity
+    guid: 4d6e374eed312487394e8d5bfb464c47
   - enabled: 0
-    path: Assets/Scenes/test.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/team ctf.unity
+    guid: 0c301cb414f25eb4d99ddf5aa48c80a2
   - enabled: 0
     path: Assets/Scenes/free for all.unity
+    guid: 624550c428aebd046b1dab7171925a8a
   - enabled: 0
-    path: Assets/Scenes/FFA Lightmapped.unity
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/free for all_vig.unity
+    guid: f697dd0d08b84b94e82a99006dfd04e8
   - enabled: 0
     path: Assets/Scenes/new map experiment.unity
+    guid: 06716a29226cd574b910e556734700a0
   - enabled: 0
     path: Assets/Scenes/deathMatchMaps/TropicalMap.unity
+    guid: 00116a539b9b147dc9d5b510129fe63c
   - enabled: 0
     path: Assets/Scenes/free for all_marketplace.unity
+    guid: 1b6c01665a062ab4aae444f2056a4cbb
   - enabled: 0
     path: Assets/Scenes/Networking.unity
+    guid: 05204d3f53d42414cb92d4b5e1682e23
   - enabled: 1
     path: Assets/Scenes/Start.unity
+    guid: bbf093d95b2c9498aa7544c1e6db6c63
   - enabled: 1
     path: Assets/Scenes/Game.unity
+    guid: 3aa6d9e3b9008e14a91e37f3530ada0d

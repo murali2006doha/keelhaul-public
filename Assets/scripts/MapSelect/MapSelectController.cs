@@ -15,12 +15,12 @@ public class MapSelectController : MonoBehaviour {
     public void Initialize(PlayerSelectSettings settings, GameTypeEnum gameMode)
 	{
 
-        view.Initialize(gameMode);
+       // view.Initialize(gameMode);
 
 	}
 
     public void OnSelectMap(Action action)
 	{
-        view.OnSelectMap(action);
+       // view.OnSelectMap(action);
 	}
 }

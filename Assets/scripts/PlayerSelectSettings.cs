@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class PlayerSelectSettings : MonoBehaviour {
 
@@ -23,4 +24,14 @@ public class PlayerSelectSettings : MonoBehaviour {
 		}
 	}
 
+    internal void Reset()
+    {
+        players.Clear();
+        isTeam = false;
+        gameType = GameTypeEnum.DeathMatch;
+        map = MapEnum.TropicalMapFinal;
+        includeKraken = false;
+        isOnline = false;
+        mode = "";
+    }
 }

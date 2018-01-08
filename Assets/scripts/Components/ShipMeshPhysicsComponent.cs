@@ -40,7 +40,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 
 			}
 
-            if (other.transform.root.name.Contains("iceberg"))
+            if (other.transform.GetComponent<IceSpike>()!=null)
             {
                 var iceSpike = other.GetComponent<IceSpike>();
                 var parentId = iceSpike.parentId;

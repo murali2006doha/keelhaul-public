@@ -68,24 +68,26 @@ public class ShipAIV2 : MonoBehaviour {
     }
 
     void Update() {
-       
-       agent.transform.localPosition = Vector3.zero;
-       agent.transform.localRotation = Quaternion.identity;
-       var targets = FindTargets();
-       if (currentState == State.ATTACKING)
-        {
-            if (targets.Count > 0)
+        if (manager.gameStarted) { 
+           agent.transform.localPosition = Vector3.zero;
+           agent.transform.localRotation = Quaternion.identity;
+           var targets = FindTargets();
+           if (currentState == State.ATTACKING)
             {
-                PlayerInput closest = GetClosestTarget(targets);
-                Vector3 move = (closest.transform.position);
-                MoveToLocation(MathHelper.addZ(MathHelper.addX(move,Random.Range(-0.5f, 0.5f)),Random.Range(-0.5f, 0.5f)));
-                CheckAndFireAtTargets(targets);
+                if (targets.Count > 0)
+                {
+                    PlayerInput closest = GetClosestTarget(targets);
+                    Vector3 move = (closest.transform.position);
+                    MoveToLocation(MathHelper.addZ(MathHelper.addX(move,Random.Range(-0.5f, 0.5f)),Random.Range(-0.5f, 0.5f)));
+                    CheckAndFireAtTargets(targets);
+                }
+                else
+                {
+                    Vector3 move =  FindGoodSpotsToSearch();
+                    MoveToLocation(move);
+                }
             }
-            else
-            {
-                Vector3 move =  FindGoodSpotsToSearch();
-                MoveToLocation(move);
-            }
+
         }
 
 
@@ -97,9 +99,8 @@ public class ShipAIV2 : MonoBehaviour {
         var closest_dist = 99f;
         foreach(PlayerInput ship in targets)
         {
-            if (ship == this.input) {
+            if (ship == this.input || (manager.isTeam && ship.teamNo == input.teamNo) ) {
                 continue;
-
             }
 
             var distance = Vector3.Distance(ship.transform.position, this.transform.position);
@@ -175,7 +176,7 @@ public class ShipAIV2 : MonoBehaviour {
         List<PlayerInput> targets = new List<PlayerInput>();
         foreach(PlayerInput ship in manager.getPlayers())
         {
-            if (ship == input)
+            if (ship == input || (manager.isTeam && ship.teamNo == input.teamNo))
             {
                 continue;
             }

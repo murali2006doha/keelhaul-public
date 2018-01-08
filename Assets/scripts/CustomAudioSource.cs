@@ -11,54 +11,19 @@ public class CustomAudioSource : MonoBehaviour {
     public float intendedVolume = 1f;
 
     [SerializeField]
-    bool isSound;
-
-    [SerializeField]
     AudioSource audioSource;
 
 
     void Start() {
 
-        if (isSound) {
-        this.audioComponent.volume = intendedVolume * GlobalSettings.soundMultiplier;
-        } else {
-        this.audioComponent.volume = intendedVolume * GlobalSettings.musicMultiplier;
-        }
-            
-        GlobalSettings.OnSoundChange += setSoundVolume;
-        GlobalSettings.OnMusicChange += setMusicVolume;
-    }
+        this.audioComponent.volume = intendedVolume;
 
-
-    void setSoundVolume () {
-        if (isSound) {
-            this.audioComponent.volume = intendedVolume * GlobalSettings.soundMultiplier;
-        }
-    }
-
-
-    void setMusicVolume () {
-        if (!isSound) {
-            this.audioComponent.volume = intendedVolume * GlobalSettings.musicMultiplier;
-        }
     }
 
 
 	public void setVolume(float volume) {
-		
-		intendedVolume = volume;
-		if (isSound) {
-			setSoundVolume();
-		} else {
-			setMusicVolume();
-		}
+        this.audioComponent.volume = volume;
 	}
-
-
-    void OnDestroy() {
-        GlobalSettings.OnSoundChange -= setSoundVolume;
-        GlobalSettings.OnMusicChange -= setMusicVolume;
-    }
 
     public AudioSource audioComponent {
         get {

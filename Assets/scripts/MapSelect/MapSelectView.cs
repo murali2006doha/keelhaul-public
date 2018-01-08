@@ -9,23 +9,56 @@ using System;
 public class MapSelectView : MonoBehaviour {
 
 	[SerializeField] private ActionButton startGame;
-    [SerializeField] private ActionDropDown mapOptions;
-    private Action onSelectMap;
-    List<MapEnum> maps;
+    [SerializeField]
+    private ActionButton upButton;
+    [SerializeField]
+    private ActionButton downButton;
+    [SerializeField]
+    private Text mapText;
+
+    private Action<MapEnum> onMapSelect;
+    List<MapEnum> maps = new List<MapEnum>();
     public MapEnum selectedMap = MapEnum.TropicalMap;
 
+    private int selectedMapIndex = 0;
+    private bool mapSelected;
 
-    void Update() {
-        selectedMap = maps[mapOptions.DropDownComponent.value];
+    public bool skipMapSelect = false;
+
+    public void Start()
+    {
+        
+        
+            if (skipMapSelect)
+            {
+            Hide();
+                onMapSelect(selectedMap);
+            }
+        
+    }
+
+    public void Show() {
+        this.gameObject.SetActive(true);
+       
+        this.ChangeMap(0);
+    }
+
+    public void Hide() {
+        this.mapSelected = false;
+        this.selectedMapIndex = 0;
+        this.gameObject.SetActive(false);
     }
 
 
-    public void Initialize(GameTypeEnum gameMode)
+    public void Initialize(GameTypeEnum gameMode, Action<MapEnum> onMapSelect)
 	{
-        maps = new List<MapEnum>();
-		maps.Add(MapTypeHelper.GetRandomMap());
+        this.onMapSelect = onMapSelect;
 
-		if (gameMode == GameTypeEnum.Sabotage)
+        this.upButton.SetAction(() => this.ChangeMap(1));
+        this.downButton.SetAction(() => this.ChangeMap(-1));
+        this.startGame.SetAction(this.StartGame);
+
+        if (gameMode == GameTypeEnum.Sabotage)
         {
             maps = MapTypeHelper.GetSabotageOfflineMaps();
         }
@@ -34,20 +67,34 @@ public class MapSelectView : MonoBehaviour {
             maps = MapTypeHelper.GetDeathMatchOfflineMaps();
 		}
 
-		SetMaps(maps);
-	}
-
-
-	void SetMaps(List<MapEnum> maplist)
-	{
-		mapOptions.DropDownComponent.ClearOptions();
-
-		for (int i = 0; i < maplist.Count; i++)
+        if(gameMode == GameTypeEnum.Targets)
         {
-            mapOptions.DropDownComponent.options.Add(new Dropdown.OptionData(maplist[i].ToString()));
-			mapOptions.DropDownComponent.options[i].text = maplist[i].ToString();
-		}
-	}
+            maps = MapTypeHelper.GetDeathMatchOfflineMaps();
+            skipMapSelect = true;
+        }
+
+
+
+    }
+
+    public void ChangeMap(int direction)
+    {
+        this.selectedMapIndex += direction;
+        if (this.selectedMapIndex >= this.maps.Count) {
+            this.selectedMapIndex = 0;
+        } else if (this.selectedMapIndex < 0)
+        {
+            this.selectedMapIndex = this.maps.Count - 1;
+        }
+
+        this.selectedMap = this.maps[this.selectedMapIndex];
+
+        this.mapText.text = this.maps[this.selectedMapIndex].ToString();
+    }
+
+    public void StartGame() {
+        this.onMapSelect(this.selectedMap);
+    }
 
     public void OnSelectMap(Action action)
 	{
