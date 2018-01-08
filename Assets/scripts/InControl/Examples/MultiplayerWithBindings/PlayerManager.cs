@@ -23,8 +23,6 @@ using InControl;
 
 	public List<GameObject> players = new List<GameObject>( maxPlayers );
 		PlayerActions keyboardListener;
-		PlayerActions keyboardListener_1;
-		PlayerActions keyboardListener_2;
 		PlayerActions joystickListener;
 
 
@@ -32,8 +30,6 @@ using InControl;
 		{
 			InputManager.OnDeviceDetached += OnDeviceDetached;
 			keyboardListener = PlayerActions.CreateWithKeyboardBindings();
-			keyboardListener_1 = PlayerActions.CreateWithKeyboardBindings_1();
-			keyboardListener_2 = PlayerActions.CreateWithKeyboardBindings_2();
 			joystickListener = PlayerActions.CreateWithJoystickBindings();
 		}
 
@@ -61,20 +57,11 @@ using InControl;
 				}
 			}
 
-			if (JoinButtonWasPressedOnListener( keyboardListener_1 ))
+			if (JoinButtonWasPressedOnListener( keyboardListener ))
 			{
-				if (ThereIsNoPlayerUsingKeyboard_1())
+				if (ThereIsNoPlayerUsingKeyboard())
 				{
-					AssignListener (keyboardListener_1, null);
-					listening = false;
-					
-				}
-			}
-			if (JoinButtonWasPressedOnListener( keyboardListener_2 ))
-			{
-				if (ThereIsNoPlayerUsingKeyboard_2())
-				{
-					AssignListener (keyboardListener_2, null);
+					AssignListener (keyboardListener, null);
 					listening = false;
 					
 				}
@@ -168,23 +155,18 @@ using InControl;
 
 	GameObject FindPlayerUsingKeyboard()
 		{
-			return null;
-		}
-
-	GameObject FindPlayerUsingKeyboard_1()
-		{
 			var playerCount = players.Count;
 			for (int i = 0; i < playerCount; i++)
 			{
 				var player = players[i];
 			if (player.GetComponent<PlayerInput> () != null) {
 				PlayerActions temp = player.GetComponent<PlayerInput> ().Actions;
-				if (temp == keyboardListener_1) {
+				if (temp == keyboardListener) {
 					return player;
 				}
 			} else {
 				PlayerActions temp = player.GetComponent<KrakenInput> ().Actions;
-				if (temp == keyboardListener_1) {
+				if (temp == keyboardListener) {
 					return player;
 				}
 				
@@ -195,47 +177,10 @@ using InControl;
 
 			return null;
 		}
-	GameObject FindPlayerUsingKeyboard_2()
-		{
-			var playerCount = players.Count;
-			for (int i = 0; i < playerCount; i++)
-			{
-				var player = players[i];
-				if (player.GetComponent<PlayerInput> () != null) {
-					PlayerActions temp = player.GetComponent<PlayerInput> ().Actions;
-					if (temp == keyboardListener_1) {
-					return player;
-					}
-				} else {
-					PlayerActions temp = player.GetComponent<KrakenInput> ().Actions;
-					if (temp == keyboardListener_1) {
-					return player;
-					}
-
-				}
-
-
-			}
-
-			return null;
-		}
-
-
 
 		bool ThereIsNoPlayerUsingKeyboard()
 		{
 			return FindPlayerUsingKeyboard() == null;
-		}
-
-		bool ThereIsNoPlayerUsingKeyboard_1()
-		{
-			return FindPlayerUsingKeyboard_1() == null;
-		}
-
-
-		bool ThereIsNoPlayerUsingKeyboard_2()
-		{
-			return FindPlayerUsingKeyboard_2() == null;
 		}
 
 		void OnDeviceDetached( InputDevice inputDevice )

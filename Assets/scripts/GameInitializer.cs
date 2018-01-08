@@ -413,7 +413,7 @@ public class GameInitializer : MonoBehaviour {
             }
             for (int z = num; z < shipSelections.Count; z++)
             {
-                shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
+                shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings();
                 num = createShipWithName(num, shipSelections[z]);
                 if (PhotonNetwork.offlineMode)
                 {
@@ -438,7 +438,7 @@ public class GameInitializer : MonoBehaviour {
 
             for (int z = 0; z < shipSelections.Count; z++)
             {
-                shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
+                shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings();
                 num = createShipWithName(GetRightShipSelection(num), shipSelections[z]);
                 if (PhotonNetwork.offlineMode)
                 {
@@ -689,7 +689,7 @@ public class GameInitializer : MonoBehaviour {
 
             if (!player.bot && player.Actions.Device == null) {
                 Cursor.visible = true;
-                player.Actions = PlayerActions.CreateWithKeyboardBindings_2();
+                player.Actions = PlayerActions.CreateWithKeyboardBindings();
             }
 
             if (player.bot) {
