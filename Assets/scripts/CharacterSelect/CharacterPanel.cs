@@ -127,6 +127,7 @@ public class CharacterPanel : MonoBehaviour
         this.teamHolder.gameObject.SetActive(false);
         this.status.text = string.Empty;
         this.SignedIn = false;
+        this.CharacterSelected = false;
         this.IsPlayer = false;
         this.IsKraken = false;
         this.KrakenLock = false;
@@ -205,7 +206,7 @@ public class CharacterPanel : MonoBehaviour
         this.characterImage.gameObject.SetActive(true);
         this.teamHolder.gameObject.SetActive(true);
         this.ToggleHost(playerIndex, true);
-        this.status.text = this.IsPlayer ? ("Player " + playerIndex) : "Bot";
+        this.status.text = this.IsPlayer ? ("Player " + (playerIndex+1)) : "Bot";
         this.ChangeCharacter(0);
     }
 }

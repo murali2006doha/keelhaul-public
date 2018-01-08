@@ -55,75 +55,41 @@ public class PlayerActions : PlayerActionSet
 	}
 
 
-	public static PlayerActions CreateWithKeyboardBindings_1() {
-		var actions = new PlayerActions();
-
-		actions.Up.AddDefaultBinding(Key.UpArrow);
-		actions.Down.AddDefaultBinding(Key.DownArrow);
-		actions.Left.AddDefaultBinding(Key.LeftArrow);
-		actions.Right.AddDefaultBinding(Key.RightArrow);
-		actions.Fire.AddDefaultBinding(Key.RightShift);
-		actions.Fire_Hook.AddDefaultBinding(Key.M);
-		actions.Boost.AddDefaultBinding(Key.X);
-		actions.Boost.AddDefaultBinding(Key.Return);
-		actions.Bomb.AddDefaultBinding(Key.Space);
-		actions.Green.AddDefaultBinding(Key.Alt);
-		actions.Yellow.AddDefaultBinding(Key.Z);
-
-		return actions;
-	}
-
-	public static PlayerActions CreateWithKeyboardBindings_2() {
-		var actions = new PlayerActions();
+	public static PlayerActions CreateWithKeyboardBindings() {
+        var actions = new PlayerActions();
 
 		actions.Up.AddDefaultBinding(Key.W);
 		actions.Down.AddDefaultBinding(Key.S);
 		actions.Left.AddDefaultBinding(Key.A);
 		actions.Right.AddDefaultBinding(Key.D);
 
-		actions.Fire.AddDefaultBinding(Mouse.LeftButton);
+
+        actions.Green.AddDefaultBinding(Key.R);
+        actions.Red.AddDefaultBinding(Key.Space);
+        actions.Blue.AddDefaultBinding(Key.E);
+        actions.Yellow.AddDefaultBinding(Key.Q);
+
+        actions.Fire.AddDefaultBinding(Mouse.LeftButton);
 		actions.Fire_Hook.AddDefaultBinding(Mouse.RightButton);
-		//actions.Green.AddDefaultBinding(Key.R);
-		actions.Green.AddDefaultBinding(Key.Return);
 		actions.Alt_Fire.AddDefaultBinding(Key.LeftControl);
-		actions.Red.AddDefaultBinding(Key.Space);
+
+
 		actions.Boost.AddDefaultBinding(Key.Shift);
 		actions.Bomb.AddDefaultBinding(Key.Space);
-    actions.Blue.AddDefaultBinding(Key.E);
-    actions.Yellow.AddDefaultBinding(Key.Q);
+
 		actions.R_Up.AddDefaultBinding(Mouse.PositiveY);
 		actions.R_Down.AddDefaultBinding(Mouse.NegativeY);
 		actions.R_Left.AddDefaultBinding(Mouse.NegativeX);
 		actions.R_Right.AddDefaultBinding(Mouse.PositiveX);
 
-		actions.Start.AddDefaultBinding(Key.Escape);
 		actions.Select.AddDefaultBinding(Key.Tab);
+        actions.Start.AddDefaultBinding(Key.Return);
 
         setListeningOptionsForKeyboard(actions);
 
         return actions;
 	}
 
-	public static PlayerActions CreateWithKeyboardBindings() {
-		var actions = new PlayerActions();
-
-		actions.Green.AddDefaultBinding(Key.A);
-		actions.Red.AddDefaultBinding(Key.S);
-		actions.Blue.AddDefaultBinding(Key.D);
-		actions.Yellow.AddDefaultBinding(Key.F);
-		actions.Boost.AddDefaultBinding(Key.Return);
-		actions.Fire.AddDefaultBinding(Key.RightShift);
-		actions.Fire_Hook.AddDefaultBinding(Key.M);
-		actions.Boost.AddDefaultBinding(Key.X);
-		actions.Bomb.AddDefaultBinding(Key.Space);
-		actions.Up.AddDefaultBinding(Key.UpArrow);
-		actions.Down.AddDefaultBinding(Key.DownArrow);
-		actions.Left.AddDefaultBinding(Key.LeftArrow);
-		actions.Right.AddDefaultBinding(Key.RightArrow);
-		actions.Fire.AddDefaultBinding(Mouse.LeftButton);
-
-		return actions;
-	}
 
     public static PlayerActions CreateAllControllerBinding()
     {
@@ -252,8 +218,8 @@ public class PlayerActions : PlayerActionSet
 		LoadBindings(actions);
 
 		actions.ListenOptions.IncludeUnknownControllers = true;
-		actions.ListenOptions.MaxAllowedBindings = 4;
-		actions.ListenOptions.MaxAllowedBindingsPerType = 4;
+		actions.ListenOptions.MaxAllowedBindings = 1;
+		actions.ListenOptions.MaxAllowedBindingsPerType = 1;
 		actions.ListenOptions.AllowDuplicateBindingsPerSet = true;
 		actions.ListenOptions.UnsetDuplicateBindingsOnSet = false;
 		actions.ListenOptions.IncludeMouseButtons = true;
