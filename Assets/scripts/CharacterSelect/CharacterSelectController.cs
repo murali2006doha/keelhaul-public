@@ -43,6 +43,8 @@ public class CharacterSelectController : MonoBehaviour {
     public UnityAction onTranstionToMainMenu;
     private bool onCharacterSelect = true;
     private GameTypeEnum gameType;
+    PlayerActions allPlayers;
+    int panelCount = 4;
 
     private void Start()
     {
@@ -50,34 +52,41 @@ public class CharacterSelectController : MonoBehaviour {
         //last device to
         controllerSelect.SetOnJoin(AddToPlayers);
         controllerSelect.listening = true;
+        allPlayers = PlayerActions.CreateAllControllerBinding();
     }
 
 
-    public void Initialize() {
-        
+    public void Initialize()
+    {
+
         this.gameType = FindObjectOfType<PlayerSelectSettings>().gameType;
+        Reset();
 
         if (gameType == GameTypeEnum.DeathMatch)
         {
             this.panels[this.panels.Count - 1].gameObject.SetActive(true);
             this.panels.ForEach(panel => panel.Initialize(this.characterDMPanelSprites, GlobalVariables.CharactersForDeathMatch()));
-            this.mapView.Initialize(this.gameType, mapEnum => {
+            this.mapView.Initialize(this.gameType, mapEnum =>
+            {
                 this.BuildDMPlayerSettings(mapEnum);
                 SceneManager.LoadScene("Game");
             });
         }
         else if (gameType == GameTypeEnum.Sabotage)
         {
+            panelCount = 3;
             this.panels[this.panels.Count - 1].gameObject.SetActive(false);
             this.panels.ForEach(panel => panel.Initialize(this.characterSABPanelSprites, GlobalVariables.CharactersForSabotage()));
-            this.mapView.Initialize(this.gameType, mapEnum => {
+            this.mapView.Initialize(this.gameType, mapEnum =>
+            {
                 this.BuildSABPlayerSettings(mapEnum);
                 SceneManager.LoadScene("Game");
             });
         }
         else if (gameType == GameTypeEnum.Targets)
         {
-            for(int x = 1;x < 4; x++)
+            panelCount = 1;
+            for (int x = 1;x < 4; x++)
             {
                 this.panels[x].gameObject.SetActive(false);
             }
@@ -91,10 +100,29 @@ public class CharacterSelectController : MonoBehaviour {
 
     }
 
+    private void Reset()
+    {
+        playerToPos.Clear();
+        panelToPlayer.Clear();
+        players.Clear();
+        foreach (CharacterPanel p in panels)
+        {
+            p.SignOut();
+        }
+        for (int x = 1; x < 4; x++)
+        {
+            this.panels[x].gameObject.SetActive(true);
+        }
+        controllerSelect.ClearPlayers();
+    }
     private void Update () {
         foreach (PlayerActions player in players)
         {
             UpdatePlayerController(player);
+        }
+        if(panelToPlayer.Count == 0 && allPlayers.Red.WasPressed)
+        {
+            this.TransitionToMainMenu();
         }
     }
 
@@ -126,14 +154,14 @@ public class CharacterSelectController : MonoBehaviour {
             if (player.Left.WasReleased)
             {
                 panel.ToggleHost(playerIndex, false);
-                playerToPos[player] = playerToPos[player] - 1 < 0 ? 3 : playerToPos[player] - 1;
+                playerToPos[player] = playerToPos[player] - 1 < 0 ? panelCount-1 : playerToPos[player] - 1;
                 this.panels[playerToPos[player]].ToggleHost(playerIndex, true);
             }
             else if (player.Right.WasReleased)
             {
 
                 panel.ToggleHost(playerIndex, false);
-                playerToPos[player] = Math.Abs(playerToPos[player] + 1) % numPlayers;
+                playerToPos[player] = Math.Abs(playerToPos[player] + 1) % panelCount;
                 this.panels[playerToPos[player]].ToggleHost(playerIndex, true);
             }
 
@@ -241,9 +269,15 @@ public class CharacterSelectController : MonoBehaviour {
         if (!playerToPos.ContainsKey(player) && playerToPos.Count < numPlayers)
         {
             int firstAvailablePanelIndex = GetFirstAvailablePanel();
+            if (firstAvailablePanelIndex == -1 && playerToPos.Count < panelCount)
+            {
+                firstAvailablePanelIndex = GetFirstAvailableBotPanel();
+                panels[firstAvailablePanelIndex].SignOut();
+            }
+           
             playerToPos.Add(player, firstAvailablePanelIndex);
             panelToPlayer.Add(panels[firstAvailablePanelIndex], player);
-            panels[firstAvailablePanelIndex].SignIn(true, firstAvailablePanelIndex);
+            panels[firstAvailablePanelIndex].SignIn(true, playerToPos.Count-1);
         }
 
 
@@ -279,7 +313,7 @@ public class CharacterSelectController : MonoBehaviour {
 
             bool minplayers = this.panels.Filter(panel => panel.CharacterSelected).Count >= 2;
             bool minteams = teamsInGame.Count >= 2;
-            bool containsPlayers = this.panels.Exists(panel => panel.IsPlayer);
+            bool containsPlayers = this.panels.Exists(panel => panel.IsPlayer && panel.CharacterSelected);
 
             ready = minplayers & minteams & containsPlayers;
         }
@@ -287,8 +321,9 @@ public class CharacterSelectController : MonoBehaviour {
         {
             bool containsKraken = this.panels.Filter(panel => panel.IsKraken).Count == 1;
             bool minplayers = this.panels.Filter(panel => panel.CharacterSelected).Count == 3;
+            bool containsPlayers = this.panels.Exists(panel => panel.IsPlayer && panel.CharacterSelected);
 
-            ready = containsKraken & minplayers;
+            ready = containsKraken & minplayers & containsPlayers;
         }
 
         else if (gameType == GameTypeEnum.Targets)
@@ -342,6 +377,11 @@ public class CharacterSelectController : MonoBehaviour {
     private int GetFirstAvailablePanel()
     {
        return this.panels.FindIndex(panel => !panel.SignedIn);
+    }
+
+    private int GetFirstAvailableBotPanel()
+    {
+        return this.panels.FindIndex(panel => !panel.IsPlayer);
     }
 
     private void BuildDMPlayerSettings(MapEnum mapEnum) {
