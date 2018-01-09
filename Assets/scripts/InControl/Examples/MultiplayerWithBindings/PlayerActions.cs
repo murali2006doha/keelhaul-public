@@ -91,6 +91,8 @@ public class PlayerActions : PlayerActionSet
 	}
 
 
+ 
+
     public static PlayerActions CreateAllControllerBinding()
     {
         var actions = new PlayerActions();
@@ -158,7 +160,7 @@ public class PlayerActions : PlayerActionSet
         actions.ListenOptions.AllowDuplicateBindingsPerSet = true;
         actions.ListenOptions.UnsetDuplicateBindingsOnSet = false;
         actions.ListenOptions.IncludeMouseButtons = true;
-
+        
         foreach(PlayerAction action in actions.Actions)
         {
             action.RepeatDelay = 0.2f;
@@ -206,7 +208,7 @@ public class PlayerActions : PlayerActionSet
 		actions.Select.AddDefaultBinding(InputControlType.Back);
         actions.Select.AddDefaultBinding(InputControlType.Share);
 
-
+     
 
         return actions;
 	}

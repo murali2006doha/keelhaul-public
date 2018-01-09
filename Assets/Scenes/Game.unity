@@ -159,8 +159,10 @@ MonoBehaviour:
   shipSelections:
   - selectedCharacter: 0
     team: 0
+    bot: 0
   - selectedCharacter: 0
     team: 0
+    bot: 0
   includeKraken: 1
   isTeam: 0
   isFirstControllerKraken: 0

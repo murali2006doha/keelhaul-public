@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class PlayerSelectSettings : MonoBehaviour {
 
@@ -22,4 +23,15 @@ public class PlayerSelectSettings : MonoBehaviour {
 			players.Add (new CharacterSelection(player.selectedCharacter,player.Actions));
 		}
 	}
+
+    internal void Reset()
+    {
+        players.Clear();
+        isTeam = false;
+        gameType = GameTypeEnum.DeathMatch;
+        map = MapEnum.TropicalMapFinal;
+        includeKraken = false;
+        isOnline = false;
+        mode = "";
+    }
 }

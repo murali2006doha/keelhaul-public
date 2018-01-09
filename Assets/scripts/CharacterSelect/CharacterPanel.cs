@@ -57,6 +57,11 @@ public class CharacterPanel : MonoBehaviour
             else { IsKraken = false; }
         }
 
+        if(GameTypeEnum.Targets == FindObjectOfType<PlayerSelectSettings>().gameType)
+        {
+            this.teamHolder.gameObject.SetActive(false);
+        }
+
         RenderImages();
 
     }

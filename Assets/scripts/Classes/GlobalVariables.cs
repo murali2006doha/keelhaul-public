@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public static class GlobalVariables {
 
@@ -39,7 +40,7 @@ public static class GlobalVariables {
     public static string [] mapsToLoad = { MapEnum.Tropical.ToString(), MapEnum.Chinese.ToString() };
 
     public static string getMapToLoad() {
-      string mapToLoad = mapsToLoad[Random.Range(0, mapsToLoad.Length)]; 
+      string mapToLoad = mapsToLoad[UnityEngine.Random.Range(0, mapsToLoad.Length)]; 
 
       if (!firstTimeBoot) {
         firstTimeBoot = true;
@@ -57,7 +58,11 @@ public static class GlobalVariables {
     {
         return new List<string> {ShipEnum.Kraken.ToString(), ShipEnum.ChineseJunkShip.ToString(), ShipEnum.AtlanteanShip.ToString(), 
             ShipEnum.BlackbeardShip.ToString(), ShipEnum.VikingShip.ToString() };
-    } 
-    
+    }
+
+    internal static List<string> CharactersForTargets()
+    {
+        return new List<string> { ShipEnum.ChineseJunkShip.ToString(), ShipEnum.AtlanteanShip.ToString(), ShipEnum.BlackbeardShip.ToString(), ShipEnum.VikingShip.ToString() };
+    }
 }
 
