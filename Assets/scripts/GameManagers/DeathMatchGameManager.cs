@@ -61,6 +61,7 @@ public class DeathMatchGameManager : AbstractGameManager
 
     void Start()
     {
+        base.Start();
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
         gamePoints = new Dictionary<string, int>();
 

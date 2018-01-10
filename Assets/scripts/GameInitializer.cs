@@ -85,7 +85,7 @@ public class GameInitializer : MonoBehaviour {
 
         globalCanvas = GameObject.FindObjectOfType<GlobalCanvas>();
         screenSplitter = globalCanvas.splitscreenImages;
-        globalCanvas.setUpSplitScreen(ps ? ps.players.Count : numOfShips + numOfKrakens);
+        globalCanvas.setUpSplitScreen(ps ? GetNumOfNonBots() : numOfShips + numOfKrakens);
 
 
         //spawning players and attaching player input to objects.
@@ -97,6 +97,11 @@ public class GameInitializer : MonoBehaviour {
             createGameManager(() => createPlayersAndMapControllers(map));
         }
 
+    }
+
+    private int GetNumOfNonBots()
+    {
+        return ps.players.FindAll(a => !a.bot).Count;
     }
 
     void InstantiateEventSystem() {
@@ -528,7 +533,7 @@ public class GameInitializer : MonoBehaviour {
         int camCount = 0;
         foreach (CharacterSelection player in ps.players)
         {
-
+            
             if (player.selectedCharacter == ShipEnum.Kraken)
             {
                 UnityEngine.Object krakenUI = Resources.Load(PathVariables.krakenUIPath, typeof(GameObject));
@@ -542,11 +547,16 @@ public class GameInitializer : MonoBehaviour {
                 camCount++;
                 //Only case where screen is small
 
-                if (ps.players.Count == 4)
+                if (player.bot)
+                {
+                    camera1.enabled = false;
+                    break;
+                }
+                if (GetNumOfNonBots() == 4)
                 {
                     newCamera.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
                 }
-                else if (ps.players.Count == 1) {
+                else if (GetNumOfNonBots() == 1) {
                     newCamera.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
                 }
                 else
@@ -564,7 +574,6 @@ public class GameInitializer : MonoBehaviour {
         //Look for ships
         foreach (CharacterSelection player in ps.players)
         {
-
             if (player.selectedCharacter != ShipEnum.Kraken)
             {
                 GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
@@ -573,10 +582,17 @@ public class GameInitializer : MonoBehaviour {
                 camCount++;
                 GameObject instantiatedUI = Instantiate(shipUI, newCamera.transform) as GameObject;
                 //Wide Screen Case 1
-                setUpCameraPositions(foundKraken, shipCount, ps.players.Count, newCamera);
+                setUpCameraPositions(foundKraken, shipCount, GetNumOfNonBots(), newCamera);
                 var camera1 = newCamera.GetComponentInChildren<Camera>();
                 setUpCameraOnCanvas(instantiatedUI, camera1);
-                shipCount++;
+                if (!player.bot)
+                {
+                    shipCount++;
+                }
+                else
+                {
+                    camera1.enabled = false;
+                }
             }
 
         }
