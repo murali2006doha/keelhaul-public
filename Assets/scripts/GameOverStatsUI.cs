@@ -24,17 +24,17 @@ public class GameOverStatsUI : MonoBehaviour {
 
     void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
+        //canvasGroup = GetComponent<CanvasGroup>();
 
     }
 
     void Update()
     {
-        if(canvasGroup.alpha < 1 && startFading)
-        {
-            canvasGroup.alpha += fadeSpeed * Time.deltaTime * GlobalVariables.gameSpeed;
+        //if(canvasGroup.alpha < 1 && startFading)
+        //{
+        //    canvasGroup.alpha += fadeSpeed * Time.deltaTime * GlobalVariables.gameSpeed;
           
-        }
+        //}
     }
 
     internal void DisableExtraLosers(int count)

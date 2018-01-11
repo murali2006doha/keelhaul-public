@@ -63,6 +63,12 @@ public class UIManager : MonoBehaviour
     ShipEnum shipType;
     public TMPro.TextMeshProUGUI killFeed;
 
+    public Text targetBreak;
+    public Text round;
+    public Text roundScore;
+    public Text time;
+    public Text timeCount;
+
     public UIManager()
     {
 
@@ -86,7 +92,10 @@ public class UIManager : MonoBehaviour
     {
 		statsModal.gameObject.SetActive (false);
         barrelObj = GameObject.FindObjectOfType<Barrel>();
+        if (barrelObj)
+        {
         barrelPos = barrelObj.transform.position;
+        }
         if (compassArrow != null)
         {
             arrowImage = compassArrow.GetComponent<Image>();
@@ -347,11 +356,23 @@ public class UIManager : MonoBehaviour
         wobbleCount = 0;
     }
 
-    public void activateFinishAndColorTint()
+    public void activateFinishAndColorTint(string finishText = null)
     {
         hideDeathAnimation();
         colorTint.SetActive(true);
-        activateFinishText();
+        activateFinishText(finishText);
+    }
+
+    public void activateColorTint()
+    {
+        hideDeathAnimation();
+        colorTint.SetActive(true);
+    }
+
+    public void deactivateColorTint()
+    {
+        hideDeathAnimation();
+        colorTint.SetActive(false);
     }
 
     public void showDeathAnimation(int player, string ship)
@@ -371,8 +392,12 @@ public class UIManager : MonoBehaviour
         killText.GetComponent<Text>().text = temp;
     }
 
-    void activateFinishText()
+    void activateFinishText(string text = null)
     {
+        if (text != null)
+        {
+            finishText.GetComponentInChildren<Text>().text = text;
+        }
         finishText.SetActive(true);
     }
 

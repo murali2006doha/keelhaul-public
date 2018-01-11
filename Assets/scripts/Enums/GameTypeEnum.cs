@@ -5,7 +5,8 @@ public enum GameTypeEnum
 {
     Sabotage,
     KrakenHunt,
-    DeathMatch
+    DeathMatch,
+    Targets
 }
 
 

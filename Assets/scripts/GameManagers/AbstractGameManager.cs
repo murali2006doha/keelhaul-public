@@ -30,7 +30,14 @@ public abstract class AbstractGameManager : MonoBehaviour {
     }
 
 
-    public abstract void ExitToCharacterSelect(); 
+    public virtual void ExitToCharacterSelect() 
+        {
+        Time.timeScale = 1;
+        PhotonNetwork.LeaveRoom();
+        Destroy(FindObjectOfType<ControllerSelect>().gameObject);
+        Destroy(FindObjectOfType<PlayerSelectSettings>().gameObject);
+        SceneManager.LoadScene("Start");
+    } 
      
     public abstract void respawnPlayer(PlayerInput player, Vector3 startingPoint, Quaternion startingRotation);
 

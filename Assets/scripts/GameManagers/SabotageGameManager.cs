@@ -710,12 +710,7 @@ public class SabotageGameManager : AbstractGameManager
 
 
 
-    override public void ExitToCharacterSelect()
-    {
-        Time.timeScale = 1;
-        PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene("Start");
-    }
+  
     public void restartCurrentGame()
     {
         DontDestroyOnLoad(ps);

@@ -15,7 +15,8 @@ public class MainMenu : AbstractMenu
     public ActionButton offline;
     public ActionButton deathMatchOffline;
     public ActionButton sabotageOffline;
-	public ActionButton settings;
+    public ActionButton targetsOffline;
+    public ActionButton settings;
 	public ActionButton exit;
 
     [SerializeField]
@@ -32,7 +33,8 @@ public class MainMenu : AbstractMenu
             offlineSubmenu.gameObject.SetActive(true);
             actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 1, deathMatchOffline.gameObject);
             actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 2, sabotageOffline.gameObject);
-			index = index + 1;
+            actionSelectables.Insert(actionSelectables.IndexOf(offline.gameObject) + 3, targetsOffline.gameObject);
+            index = index + 1;
 		});
 
         deathMatchOffline.SetAction (() => {
@@ -46,8 +48,13 @@ public class MainMenu : AbstractMenu
             this.TransitionToCharacterSelect();
         });
 
+        targetsOffline.SetAction(() => {
+            FindObjectOfType<PlayerSelectSettings>().gameType = GameTypeEnum.Targets;
+            this.TransitionToCharacterSelect();
+        });
 
-		settings.SetAction(() => {
+
+        settings.SetAction(() => {
             CloseOfflineSubmenu();
             canReturn = true;
             this.enabled = false;
@@ -102,6 +109,7 @@ public class MainMenu : AbstractMenu
             offlineSubmenu.gameObject.SetActive(false);
             actionSelectables.RemoveAt(actionSelectables.IndexOf(deathMatchOffline.gameObject));
             actionSelectables.RemoveAt(actionSelectables.IndexOf(sabotageOffline.gameObject));
+            actionSelectables.RemoveAt(actionSelectables.IndexOf(targetsOffline.gameObject));
             index = 0;
             dontReset = true;
         }
@@ -119,6 +127,7 @@ public class MainMenu : AbstractMenu
 
     private void TransitionToCharacterSelect() {
         this.csController.gameObject.SetActive(true);
+        this.csController.Initialize();
         this.gameObject.SetActive(false);
     }
 

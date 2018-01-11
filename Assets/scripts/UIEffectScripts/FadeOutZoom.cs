@@ -11,12 +11,17 @@ public class FadeOutZoom : MonoBehaviour {
     void Start()
     {
         text = this.GetComponent<Text>();
-        Invoke("fadeOut", delay);
+        DelayedFade();
     }
 
-    void fadeOut()
+    public void FadeOut()
     {
         text.CrossFadeAlpha(0, fadeDuration, true);
+    }
+
+    public  void DelayedFade()
+    {
+        Invoke("FadeOut", delay);
     }
 
     void Update()
