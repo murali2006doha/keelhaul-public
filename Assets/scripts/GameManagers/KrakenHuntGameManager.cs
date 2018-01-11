@@ -39,6 +39,7 @@ public class KrakenHuntGameManager : AbstractGameManager
 
     void Start()
     {
+        base.Start();
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
         //Disable unused islands
         for (int z = shipPoints.Count; z < mapObjects.islands.Length; z++)

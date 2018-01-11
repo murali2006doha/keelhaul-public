@@ -39,8 +39,16 @@ public class ShipAIV2 : MonoBehaviour {
         if (!agent.isOnNavMesh)
         {
             var surface = FindObjectOfType<NavMeshSurface>();
-            surface.enabled = false;
-            surface.enabled = true;
+            if (surface == null)
+            {
+                this.enabled = false;
+            }
+            else
+            {
+                surface.enabled = false;
+                surface.enabled = true;
+            }
+
         }
 
     }

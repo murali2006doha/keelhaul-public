@@ -50,7 +50,7 @@ public class TargetsGameManager : AbstractGameManager
     public GameObject postGamePrefab;
     void Start()
     {
-       
+        base.Start();
         gamePoints = new Dictionary<string, int>();
 
      

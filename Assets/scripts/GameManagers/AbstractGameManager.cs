@@ -10,9 +10,17 @@ public abstract class AbstractGameManager : MonoBehaviour {
     public GameObject screenSplitter;
     public int minPlayersRequiredToStartGame = 2;
     public bool gameStarted;
-    void Start () {
-	
-	}
+    public void Start()
+    {
+        var listeners = FindObjectsOfType<AudioListener>();
+        if (listeners.Length > 1)
+        {
+            for(int x = 1; x < listeners.Length; x++)
+            {
+                listeners[x].enabled = false;
+            }
+        }
+    }
 
     protected void RunStartUpActions() {
         Physics.gravity = new Vector3(0f, -0.1f, 0f);
