@@ -19,11 +19,12 @@ public class PauseMenu : AbstractMenu
 
     public void Initialize(PlayerActions actions, AbstractGameManager gm, Action goBackAction) {
     	this.gameObject.SetActive(true);
-    	this.actions = actions;
+        this.actions = actions;
     	this.onReturnAction = goBackAction;
         this.gm = gm;
-        PauseGame();
+        this.PauseGame();
     }
+
 
     protected override void SetActions() {
 
@@ -110,7 +111,7 @@ public class PauseMenu : AbstractMenu
 			TogglePlayerActions();
     	}
 		ResumeAudio();
-	}
+    }
 
 
     private void ExitToMainMenu() {

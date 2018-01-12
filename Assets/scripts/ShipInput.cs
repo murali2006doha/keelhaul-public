@@ -36,7 +36,7 @@ public class ShipInput : AbstractInputManager
 		if (actions.Alt_Fire.RawValue > .5f && onRightBumperDown != null) {
 			onRightBumperDown();
 		}
-		if (actions.Start.WasReleased && onStartButtonPress != null) {
+        if (actions.Pause.WasReleased && onStartButtonPress != null) {
 			onStartButtonPress();
 		}
 		if (actions.Select.IsPressed && onSelectButtonHoldDown != null) {
