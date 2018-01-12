@@ -13,7 +13,7 @@ public abstract class AbstractInputManager : MonoBehaviour {
 	public Action onLeftTriggerDown { get; set; }
 	public Action onRightBumperDown { get; set; }
 	public Action onRightTriggerDown { get; set; }
-	public Action onStartButtonPress { get; set; }
+	public Action onPauseButtonPress { get; set; }
 	public Action onSelectButtonHoldDown { get; set; }
 	public Action onSelectButtonRelease { get; set; }
 }
