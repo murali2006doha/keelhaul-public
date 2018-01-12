@@ -100,8 +100,8 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
         }
         followCamera.camera.cullingMask |= (1 << newLayer);
 
-        animator.splashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Submerge");
-        animator.emergeSplashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Emerge");
+    //    animator.splashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Submerge");
+      //  animator.emergeSplashParticles = ArrayHelper.filterTag(this.GetComponentsInChildren<ParticleSystem>(), "Emerge");
         manager = GameObject.FindObjectOfType<AbstractGameManager>();
         gameStats = new FreeForAllStatistics();
         submergeTimer = stats.stages[currentStage].submergeTime;
