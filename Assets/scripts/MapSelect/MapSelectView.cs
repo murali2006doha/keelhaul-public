@@ -23,8 +23,23 @@ public class MapSelectView : MonoBehaviour {
     private int selectedMapIndex = 0;
     private bool mapSelected;
 
+    public bool skipMapSelect = false;
+
+    public void Start()
+    {
+        
+        
+            if (skipMapSelect)
+            {
+            Hide();
+                onMapSelect(selectedMap);
+            }
+        
+    }
+
     public void Show() {
         this.gameObject.SetActive(true);
+       
         this.ChangeMap(0);
     }
 
@@ -51,8 +66,16 @@ public class MapSelectView : MonoBehaviour {
         {
             maps = MapTypeHelper.GetDeathMatchOfflineMaps();
 		}
-        
-	}
+
+        if(gameMode == GameTypeEnum.Targets)
+        {
+            maps = MapTypeHelper.GetDeathMatchOfflineMaps();
+            skipMapSelect = true;
+        }
+
+
+
+    }
 
     public void ChangeMap(int direction)
     {

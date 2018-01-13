@@ -42,9 +42,11 @@ public class ShipMotorComponent : MonoBehaviour
 
     public virtual void Update()
     {
-       
-        UpdateShipPosition();
-        UpdateWake();
+        if (shipTransform)
+        {
+            UpdateShipPosition();
+            UpdateWake();
+        }
     }
 
     protected void UpdateShipPosition()

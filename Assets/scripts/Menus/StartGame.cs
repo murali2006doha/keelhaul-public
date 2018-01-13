@@ -22,18 +22,7 @@ public class StartGame : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-        //if (this.gameObject.activeSelf) {
-        //    cc.listening = true;
-        //    SignIn();
-        //}
-
-        //if (notStarted) {
-        //    OpenMenu();
-        //}
-        //else if (!notStarted) {
-        //    LoadMenu();
-        //}       
+    void Update () { 
     }
 
 

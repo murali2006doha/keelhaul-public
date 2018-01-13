@@ -9,23 +9,25 @@ public class ControllerSelect : MonoBehaviour {
 	public ArrayList players = new ArrayList();
 	public bool withKeyboard;
 	PlayerActions keyboardListener;
-	PlayerActions keyboardListener_1;
-	PlayerActions keyboardListener_2;
 	PlayerActions joystickListener;
 	public bool listening = true;
     Action<PlayerActions> onJoin;
 
+
+  public void ClearPlayers() {
+  	this.players = new ArrayList();
+  }
 	void Start () {
         Application.targetFrameRate = -1;
+        keyboardListener = PlayerActions.CreateWithKeyboardBindings();
 
+    }
 
-	}
-		
 	void Awake() {
 
 
 	}
-    
+
     public void SetOnJoin(Action<PlayerActions> onJoin)
     {
         this.onJoin = onJoin;
@@ -36,19 +38,20 @@ public class ControllerSelect : MonoBehaviour {
 		if (listening && players.Count < 4) {
 			if (JoinButtonWasPressedOnListener (joystickListener)) {
 				var inputDevice = InputManager.ActiveDevice;
-				if (ThereIsNoPlayerUsingJoystick (inputDevice)) {
-					AssignListener (inputDevice);
-				}
+                if(inputDevice.Name != null)
+                {
+                    if (ThereIsNoPlayerUsingJoystick(inputDevice))
+                    {
+                        AssignListener(inputDevice);
+                    }
+                }
+			
 			}
 
 			if (withKeyboard) {
-				if (JoinButtonWasPressedOnListener (keyboardListener_1)) {
-				
-					AssignListener (keyboardListener_1);
-
-				} else if (JoinButtonWasPressedOnListener (keyboardListener_2)) {
-				
-					AssignListener (keyboardListener_2);
+                if (JoinButtonWasPressedOnListener (keyboardListener) ) {
+                    if(ThereIsNoPlayerUsingKeyboard(keyboardListener))
+					    AssignListener (keyboardListener);
 
 				}
 			}
@@ -106,9 +109,7 @@ public class ControllerSelect : MonoBehaviour {
 	void OnEnable()
 	{
 		InputManager.OnDeviceDetached += OnDeviceDetached;
-		keyboardListener = PlayerActions.CreateWithKeyboardBindings();
-		keyboardListener_1 = PlayerActions.CreateWithKeyboardBindings_1();
-		keyboardListener_2 = PlayerActions.CreateWithKeyboardBindings_2();
+		
 		joystickListener = PlayerActions.CreateWithJoystickBindings();
 	}
 
@@ -117,8 +118,6 @@ public class ControllerSelect : MonoBehaviour {
 	{
 		InputManager.OnDeviceDetached -= OnDeviceDetached;
 		joystickListener.Destroy();
-		keyboardListener_1.Destroy ();
-		keyboardListener_2.Destroy ();
 		keyboardListener.Destroy();
 	}
 

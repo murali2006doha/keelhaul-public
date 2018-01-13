@@ -11,21 +11,17 @@ public static class GlobalSettings {
     public static bool waterReflection = IntToBool(PlayerPrefs.GetInt ("Reflection", 1));
     public static bool shadows = IntToBool(PlayerPrefs.GetInt ("Shadows", 1));
 
-    public static event Action OnSoundChange;
-    public static event Action OnMusicChange;
 
     public static void setSoundMultiplier(float x) {
-        soundMultiplier = x;
+		soundMultiplier = x;
         PlayerPrefs.SetFloat ("Sound multiplier", x);
         PlayerPrefs.Save ();
-        OnSoundChange.Invoke ();
     }
 
     public static void setMusicMuliplier(float x) {
         musicMultiplier = x;
         PlayerPrefs.SetFloat ("Music multiplier", x);
         PlayerPrefs.Save ();
-        OnMusicChange.Invoke ();
     }
 
 	public static void setRefraction(Boolean state) {

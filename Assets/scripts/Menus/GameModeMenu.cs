@@ -7,22 +7,20 @@ public class GameModeMenu : AbstractMenu {
 
     public ActionButton deathmatch;
     public ActionButton sabotage;
-    public bool isOnline;
-
 
     protected override void SetActions (){
 
         deathmatch.SetAction (() => {
             print("not available for beta");
             ToggleSelectables();
-            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch, isOnline);
+            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.DeathMatch);
             SceneManager.LoadScene("Game");
         });
 
         sabotage.SetAction (() => {
             print("not available for beta");
             ToggleSelectables();
-            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage, isOnline);
+            FindObjectOfType<GameModeSelectSettings>().SetGameModeSettings(GameTypeEnum.Sabotage);
             SceneManager.LoadScene("Game");
         });
     }
@@ -30,13 +28,8 @@ public class GameModeMenu : AbstractMenu {
 
     protected override void SetActionSelectables ()
     {
-        if (isOnline) {
-            actionSelectables.Add (deathmatch.gameObject);
-        }
-        else {
-            actionSelectables.Add (deathmatch.gameObject);
-            actionSelectables.Add (sabotage.gameObject);
-        }
+        actionSelectables.Add (deathmatch.gameObject);
+        actionSelectables.Add (sabotage.gameObject);
     }
 
 

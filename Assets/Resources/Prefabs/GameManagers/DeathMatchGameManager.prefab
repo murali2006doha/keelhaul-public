@@ -56,7 +56,6 @@ MonoBehaviour:
   group: 0
   OwnerShipWasTransfered: 0
   prefixBackup: -1
-  observed: {fileID: 0}
   synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
@@ -66,6 +65,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
+  currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114375056186594972
 MonoBehaviour:
@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenSplitter: {fileID: 0}
   minPlayersRequiredToStartGame: 2
+  gameStarted: 0
   playerWinPoints: 5
   krakenWinPoints: 5
   cams: []
@@ -92,3 +93,6 @@ MonoBehaviour:
   globalCanvas: {fileID: 0}
   fadeInAnimator: {fileID: 0}
   shipPoints: 
+  map: {fileID: 0}
+  gameOverStatPrefab: {fileID: 1570923240377428, guid: 52c6fc5a03f093640a4bcddf4e9c9c58,
+    type: 2}

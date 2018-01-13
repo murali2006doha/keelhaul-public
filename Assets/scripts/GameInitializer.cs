@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using InControl;
 using System;
+using UnityEngine.EventSystems;
 
 
 public class GameInitializer : MonoBehaviour {
@@ -52,8 +53,10 @@ public class GameInitializer : MonoBehaviour {
         Cursor.visible = false;
         ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
         this.map = ps.map;
+
         setGameTypeAndSettings();
         InstantiateMap();
+        InstantiateEventSystem();
 
         if (shipSelections.Count == 0)
         {
@@ -62,25 +65,27 @@ public class GameInitializer : MonoBehaviour {
         }
         numOfKrakens = includeKraken ? 1 : 0;
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
-
-        if (!isTeam)
-        {
-            numOfShips = Math.Min(Math.Min(mapObjects.shipStartingLocations.Length, 4 - numOfKrakens), shipSelections.Count);
-            shipSelections.RemoveRange(numOfShips - 1, shipSelections.Count - numOfShips);
+        if (mapObjects != null) {
+            if (!isTeam)
+            {
+                numOfShips = Math.Min(Math.Min(mapObjects.shipStartingLocations.Length, 4 - numOfKrakens), shipSelections.Count);
+                shipSelections.RemoveRange(numOfShips - 1, shipSelections.Count - numOfShips);
+            }
+            else
+            {
+                int numOfTeams = getNumberOfTeams();
+                removeTeams(numOfTeams - mapObjects.shipStartingLocations.Length);
+                numOfShips = Math.Min(4 - numOfKrakens, shipSelections.Count);
+            }
         }
-        else
-        {
-            int numOfTeams = getNumberOfTeams();
-            removeTeams(numOfTeams - mapObjects.shipStartingLocations.Length);
-            numOfShips = Math.Min(4 - numOfKrakens, shipSelections.Count);
-        }
+        
 
         initializeGlobalCanvas();
         initializePlayerCameras();
 
         globalCanvas = GameObject.FindObjectOfType<GlobalCanvas>();
         screenSplitter = globalCanvas.splitscreenImages;
-        globalCanvas.setUpSplitScreen(ps ? ps.players.Count : numOfShips + numOfKrakens);
+        globalCanvas.setUpSplitScreen(ps ? GetNumOfNonBots() : numOfShips + numOfKrakens);
 
 
         //spawning players and attaching player input to objects.
@@ -92,6 +97,20 @@ public class GameInitializer : MonoBehaviour {
             createGameManager(() => createPlayersAndMapControllers(map));
         }
 
+    }
+
+    private int GetNumOfNonBots()
+    {
+        return ps.players.FindAll(a => !a.bot).Count;
+    }
+
+    void InstantiateEventSystem() {
+		if (!FindObjectOfType<EventSystem>())
+		{
+			GameObject obj = new GameObject("EventSystem");
+            obj.AddComponent<EventSystem>().sendNavigationEvents = false;
+			obj.AddComponent<StandaloneInputModule>().forceModuleActive = true;
+		}
     }
 
     public void SimplyInstantiateManager(GameTypeEnum mode) {
@@ -108,15 +127,24 @@ public class GameInitializer : MonoBehaviour {
 
         if (ps) {
             gameType = ps.gameType;
-
-            if (gameType == GameTypeEnum.Sabotage) {
-                this.isTeam = true;
-            }
-
             includeKraken = ps.includeKraken;
             shipSelections.Clear();
+            List<int> teams = new List<int>();
             foreach(CharacterSelection selection in ps.players)
             {
+                if (ps.gameType == GameTypeEnum.Targets)
+                {
+                    map = PathVariables.GetMapForShip(selection.selectedCharacter);
+                }
+                if (teams.Contains(selection.team))
+                {
+                    isTeam = true;
+                }
+                else
+                {
+                    teams.Add(selection.team);
+                }
+
                 if (!(selection.selectedCharacter == ShipEnum.Kraken))
                 {
                     shipSelections.Add(selection);
@@ -263,6 +291,37 @@ public class GameInitializer : MonoBehaviour {
                 krakenHuntManager.shipPoints.Add(0);
             }
         }
+        else if (gameType == GameTypeEnum.Targets)
+        {
+            GameObject managerMain = Instantiate(Resources.Load(PathVariables.targetsManager, typeof(GameObject)), this.transform.parent) as GameObject;
+            TargetsGameManager deathMatchManager = managerMain.GetComponent<TargetsGameManager>();
+            deathMatchManager.cams = cams;
+            deathMatchManager.ps = ps;
+            deathMatchManager.isTeam = isTeam;
+            deathMatchManager.players = players;
+            deathMatchManager.includeKraken = includeKraken;
+            deathMatchManager.countDown = globalCanvas.countDownTimer;
+            deathMatchManager.globalCanvas = globalCanvas;
+            deathMatchManager.screenSplitter = globalCanvas.splitscreenImages;
+            deathMatchManager.fadeInAnimator = globalCanvas.fadePanelAnimator;
+            if (!isTeam)
+            {
+                for (int x = 0; x < players.Count; x++)
+                {
+                    deathMatchManager.shipPoints.Add(0);
+                }
+            }
+            else
+            {
+                for (int x = 0; x < teamNums.Count; x++)
+                {
+                    deathMatchManager.shipPoints.Add(0);
+                }
+            }
+            deathMatchManager.onInitialize = onInitialize;
+            manager = deathMatchManager;
+            manager.enabled = true;
+        }
 
     }
 
@@ -394,7 +453,7 @@ public class GameInitializer : MonoBehaviour {
             }
             for (int z = num; z < shipSelections.Count; z++)
             {
-                shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
+                shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings();
                 num = createShipWithName(num, shipSelections[z]);
                 if (PhotonNetwork.offlineMode)
                 {
@@ -419,7 +478,7 @@ public class GameInitializer : MonoBehaviour {
 
             for (int z = 0; z < shipSelections.Count; z++)
             {
-                shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings_2();
+                shipSelections[z].Actions = PlayerActions.CreateWithKeyboardBindings();
                 num = createShipWithName(GetRightShipSelection(num), shipSelections[z]);
                 if (PhotonNetwork.offlineMode)
                 {
@@ -442,7 +501,7 @@ public class GameInitializer : MonoBehaviour {
         krakenObj.transform.position = map.krakenStartPoint.transform.position;
 
         KrakenInput kraken = krakenObj.GetComponent<KrakenInput>();
-        if (action.Device == null) {
+        if (action == null || action.Device == null) {
 
             action = PlayerActions.CreateWithKeyboardBindings();
         }
@@ -474,7 +533,7 @@ public class GameInitializer : MonoBehaviour {
         int camCount = 0;
         foreach (CharacterSelection player in ps.players)
         {
-
+            
             if (player.selectedCharacter == ShipEnum.Kraken)
             {
                 UnityEngine.Object krakenUI = Resources.Load(PathVariables.krakenUIPath, typeof(GameObject));
@@ -488,11 +547,16 @@ public class GameInitializer : MonoBehaviour {
                 camCount++;
                 //Only case where screen is small
 
-                if (ps.players.Count == 4)
+                if (player.bot)
+                {
+                    camera1.enabled = false;
+                    break;
+                }
+                if (GetNumOfNonBots() == 4)
                 {
                     newCamera.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
                 }
-                else if (ps.players.Count == 1) {
+                else if (GetNumOfNonBots() == 1) {
                     newCamera.GetComponent<cameraFollow>().SetRectsOfCameras(new Rect(0f, 0f, 1f, 1f));
                 }
                 else
@@ -504,13 +568,12 @@ public class GameInitializer : MonoBehaviour {
             }
 
         }
-        UnityEngine.Object shipUI = Resources.Load(PathVariables.shipUIPath, typeof(GameObject));
+        GameObject shipUI = Resources.Load(PathVariables.shipUIPath, typeof(GameObject)) as GameObject;
 
         int shipCount = 0;
         //Look for ships
         foreach (CharacterSelection player in ps.players)
         {
-
             if (player.selectedCharacter != ShipEnum.Kraken)
             {
                 GameObject newCamera = Instantiate(camera, this.transform.parent) as GameObject;
@@ -519,10 +582,17 @@ public class GameInitializer : MonoBehaviour {
                 camCount++;
                 GameObject instantiatedUI = Instantiate(shipUI, newCamera.transform) as GameObject;
                 //Wide Screen Case 1
-                setUpCameraPositions(foundKraken, shipCount, ps.players.Count, newCamera);
+                setUpCameraPositions(foundKraken, shipCount, GetNumOfNonBots(), newCamera);
                 var camera1 = newCamera.GetComponentInChildren<Camera>();
                 setUpCameraOnCanvas(instantiatedUI, camera1);
-                shipCount++;
+                if (!player.bot)
+                {
+                    shipCount++;
+                }
+                else
+                {
+                    camera1.enabled = false;
+                }
             }
 
         }
@@ -667,9 +737,14 @@ public class GameInitializer : MonoBehaviour {
             PlayerInput input = newShip.GetComponent<PlayerInput>();
 
             input.playerId = playerId;
-            if (player.Actions.Device == null) {
+
+            if (!player.bot && player.Actions.Device == null) {
                 Cursor.visible = true;
-                player.Actions = PlayerActions.CreateWithKeyboardBindings_2();
+                player.Actions = PlayerActions.CreateWithKeyboardBindings();
+            }
+
+            if (player.bot) {
+                input.TurnOnAi();
             }
             input.Actions = player.Actions;
             input.shipNum = num+1;

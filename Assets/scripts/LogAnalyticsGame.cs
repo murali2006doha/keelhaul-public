@@ -21,11 +21,22 @@ public class LogAnalyticsGame : MonoBehaviour {
 
         int j = 1; //to avoid same dictionary keys
         foreach (PlayerInput player in shipSelections) {
-            if (player.Actions.Device == null) {
-                players.Add (player.shipName.ToString () + j.ToString (), "keyboard");
-            } else {
-                players.Add (player.shipName.ToString () + j.ToString (), "controller");
+            if(player.Actions == null)
+            {
+                players.Add(player.shipName.ToString() + j.ToString(), "bot");
             }
+            else
+            {
+                if (player.Actions != null && player.Actions.Device == null)
+                {
+                    players.Add(player.shipName.ToString() + j.ToString(), "keyboard");
+                }
+                else
+                {
+                    players.Add(player.shipName.ToString() + j.ToString(), "controller");
+                }
+            }
+           
             j++;
         }
             

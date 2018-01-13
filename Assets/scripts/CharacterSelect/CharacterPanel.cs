@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,21 +8,72 @@ public class CharacterPanel : MonoBehaviour
 {
 
     [SerializeField]
-    private Text characterName;
+    private Image characterImage;
+
+    [SerializeField]
+    private Image characterText;
+
     [SerializeField]
     private Text status;
-    [SerializeField]
-    private Text hosts;
 
     [SerializeField]
     private Text teamIndicator;
 
     [SerializeField]
-    private Image selected;
+    private GameObject teamHolder;
 
+    [SerializeField]
+    private List<PanelHostHolder> panelHostHolders;
+
+    [SerializeField]
+    private SpriteDictionary characterTypeImages;
+
+    [SerializeField]
+    private SpriteDictionary characterReadyImages;
+
+    [SerializeField]
+    private SpriteDictionary characterLockImages;
+
+    private SpriteDictionary characterToPanels;
+
+    private List<string> characterReferences;
 
     private int characterIndex = 0;
     private int selectedTeam = 0;
+    private bool characterSelected;
+
+    public bool IsPlayer { get; set; }
+    public bool IsKraken { get; set; }
+    public bool SignedIn { get; set; }
+    public bool KrakenLock { get; set; }
+
+    void Update()
+    {
+        if (GameTypeEnum.Sabotage == FindObjectOfType<PlayerSelectSettings>().gameType)
+        {
+            this.teamHolder.gameObject.SetActive(false);
+
+            if (GetSelectedCharacter() == "Kraken") { IsKraken = true; }
+            else { IsKraken = false; }
+        }
+
+        if(GameTypeEnum.Targets == FindObjectOfType<PlayerSelectSettings>().gameType)
+        {
+            this.teamHolder.gameObject.SetActive(false);
+        }
+
+        RenderImages();
+
+    }
+
+
+    public void Initialize(SpriteDictionary panelSprites, List<string> characterReferences)
+    {
+        this.characterReferences = characterReferences;
+        this.SignOut();
+        this.characterToPanels = panelSprites;
+    }
+
     public int SelectedTeam {
         get
         {
@@ -34,11 +86,6 @@ public class CharacterPanel : MonoBehaviour
 
         }
     }
-    private bool characterSelected;
-
-
-    public bool IsPlayer { get; set; }
-    public bool SignedIn { get; set; }
 
     public bool CharacterSelected
     {
@@ -50,16 +97,19 @@ public class CharacterPanel : MonoBehaviour
         set
         {
             this.characterSelected = value;
-            this.selected.gameObject.SetActive(value);
         }
     }
 
-    private List<string> characterReferences;
-    public void Initialize()
-    {
-        this.characterReferences = GlobalVariables.CharactersForDeathMatch();
-        this.SignOut();
+    public bool OnLockedKraken() {
+
+        if(IsKraken & KrakenLock) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
+
 
     public string GetSelectedCharacter()
     {
@@ -76,22 +126,29 @@ public class CharacterPanel : MonoBehaviour
 
     public void SignOut()
     {
-        this.characterName.text = string.Empty;
-        this.status.text = "A to sign in!";
+        this.panelHostHolders.ForEach(panel => panel.Hide());
+        this.characterImage.gameObject.SetActive(false);
+        this.characterText.gameObject.SetActive(false);
+        this.teamHolder.gameObject.SetActive(false);
+        this.status.text = string.Empty;
         this.SignedIn = false;
+        this.CharacterSelected = false;
         this.IsPlayer = false;
+        this.IsKraken = false;
+        this.KrakenLock = false;
         this.characterIndex = 0;
     }
 
     public void ToggleHost(int playerIndex, bool isAdding)
     {
+
         if (isAdding)
         {
-            this.hosts.text += "P" + playerIndex;
+            this.panelHostHolders[playerIndex].Decorate(playerIndex);
         }
-        else if (this.hosts.text.IndexOf(playerIndex.ToString()) > -1)
+        else
         {
-            this.hosts.text.Remove(this.hosts.text.IndexOf(playerIndex.ToString()) - 1, 2);
+            this.panelHostHolders[playerIndex].Hide();
         }
     }
 
@@ -108,24 +165,53 @@ public class CharacterPanel : MonoBehaviour
         {
             this.SelectedTeam++;
         }
-        
-
     }
 
     public void ChangeCharacter(int direction)
     {
+        int numCharacters = characterReferences.Count;
+
         if (!this.characterSelected)
         {
-            this.characterIndex = Mathf.Clamp(this.characterIndex + direction, 0, this.characterReferences.Count - 1);
-            this.characterName.text = this.characterReferences[this.characterIndex];
+            if (this.characterIndex + direction == numCharacters) {
+                this.characterIndex = 0;
+            } else if (this.characterIndex + direction == -1) {
+                this.characterIndex = numCharacters - 1;
+            } else {
+                this.characterIndex = this.characterIndex + direction;
+            }
         }
+
     }
 
+    private void RenderImages()
+    {
+        this.characterImage.sprite = this.characterToPanels.Get(GetSelectedCharacter());
+
+        if (characterSelected)
+        {
+            this.characterText.sprite = this.characterReadyImages.Get(this.GetSelectedCharacter());
+        }
+        else if (!characterSelected)
+        {
+            if (OnLockedKraken())
+            {
+                this.characterText.sprite = this.characterLockImages.Get(this.GetSelectedCharacter());;
+            }
+            else
+            {
+                this.characterText.sprite = this.characterTypeImages.Get(this.GetSelectedCharacter());
+            }
+        };
+    }
 
     private void DecorateSignedIn(int playerIndex)
     {
+        this.characterText.gameObject.SetActive(true);
+        this.characterImage.gameObject.SetActive(true);
+        this.teamHolder.gameObject.SetActive(true);
         this.ToggleHost(playerIndex, true);
-        this.status.text = this.IsPlayer ? ("Player " + playerIndex) : "Bot";
+        this.status.text = this.IsPlayer ? ("Player " + (playerIndex+1)) : "Bot";
         this.ChangeCharacter(0);
     }
 }

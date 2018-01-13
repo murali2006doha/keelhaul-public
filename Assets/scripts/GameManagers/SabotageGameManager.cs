@@ -60,6 +60,7 @@ public class SabotageGameManager : AbstractGameManager
 
     void Start()
     {
+        base.Start();
         MapObjects mapObjects = GameObject.FindObjectOfType<MapObjects>();
 
         gamePoints = new Dictionary<string, int>();
@@ -710,12 +711,7 @@ public class SabotageGameManager : AbstractGameManager
 
 
 
-    override public void ExitToCharacterSelect()
-    {
-        Time.timeScale = 1;
-        PhotonNetwork.LeaveRoom();
-        SceneManager.LoadScene("start");
-    }
+  
     public void restartCurrentGame()
     {
         DontDestroyOnLoad(ps);
