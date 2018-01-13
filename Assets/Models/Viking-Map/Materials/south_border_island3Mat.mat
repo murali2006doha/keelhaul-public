@@ -99,8 +99,8 @@ Material:
     - _ZWrite: 1
     - _width: 0.1007946
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.85294116, g: 0.97870183, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0.6764706, g: 0.20393598, b: 0.20393598, a: 1}
-    - _Rimlightcolour: {r: 1, g: 1, b: 1, a: 1}
+    - _Rimlightcolour: {r: 0.52768165, g: 0.69835943, b: 0.89705884, a: 1}
     - _node_9426: {r: 0.5, g: 0.5, b: 0.5, a: 1}
