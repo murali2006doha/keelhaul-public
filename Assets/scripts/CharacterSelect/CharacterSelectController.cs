@@ -205,7 +205,7 @@ public class CharacterSelectController : MonoBehaviour {
                     }
                 }
 
-                if (player.Yellow.WasReleased)
+                if (player.Yellow.WasReleased && gameType == GameTypeEnum.DeathMatch)
                 {
                     panel.ChangeTeam();
                 }
@@ -419,7 +419,7 @@ public class CharacterSelectController : MonoBehaviour {
                     new CharacterSelection(
                         panel.GetSelectedCharacter(),
                         this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
-                        1,
+                        panel.SelectedTeam,
                         !panel.IsPlayer));
             } else if (panel.CharacterSelected & !panel.IsKraken)
             {
@@ -427,7 +427,7 @@ public class CharacterSelectController : MonoBehaviour {
                     new CharacterSelection(
                         panel.GetSelectedCharacter(),
                         this.panelToPlayer.ContainsKey(panel) ? this.panelToPlayer[panel] : null,
-                        0,
+                        panel.SelectedTeam,
                         !panel.IsPlayer));
             }
         }

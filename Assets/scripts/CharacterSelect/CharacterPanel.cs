@@ -34,9 +34,13 @@ public class CharacterPanel : MonoBehaviour
     [SerializeField]
     private SpriteDictionary characterLockImages;
 
+    [SerializeField]
+    private Animator characterSelectAnimator;
+
     private SpriteDictionary characterToPanels;
 
     private List<string> characterReferences;
+
 
     private int characterIndex = 0;
     private int selectedTeam = 0;
@@ -51,10 +55,14 @@ public class CharacterPanel : MonoBehaviour
     {
         if (GameTypeEnum.Sabotage == FindObjectOfType<PlayerSelectSettings>().gameType)
         {
-            this.teamHolder.gameObject.SetActive(false);
-
-            if (GetSelectedCharacter() == "Kraken") { IsKraken = true; }
-            else { IsKraken = false; }
+            if (GetSelectedCharacter() == "Kraken") { 
+                IsKraken = true;
+                SelectedTeam = 0;
+            }
+            else {
+                IsKraken = false;
+                SelectedTeam = 1;
+            }
         }
 
         if(GameTypeEnum.Targets == FindObjectOfType<PlayerSelectSettings>().gameType)
@@ -173,15 +181,34 @@ public class CharacterPanel : MonoBehaviour
 
         if (!this.characterSelected)
         {
-            if (this.characterIndex + direction == numCharacters) {
+            if (this.characterIndex + direction == numCharacters)
+            {
                 this.characterIndex = 0;
-            } else if (this.characterIndex + direction == -1) {
+            }
+            else if (this.characterIndex + direction == -1)
+            {
                 this.characterIndex = numCharacters - 1;
-            } else {
+            }
+            else
+            {
                 this.characterIndex = this.characterIndex + direction;
             }
+
+            AnimateArrows(direction);
         }
 
+    }
+
+    private void AnimateArrows(int direction)
+    {
+        if (direction == -1)
+        {
+            characterSelectAnimator.SetBool("up-arrow", true);
+        }
+        else if (direction == 1)
+        {
+            characterSelectAnimator.SetBool("down-arrow", true);
+        }
     }
 
     private void RenderImages()
