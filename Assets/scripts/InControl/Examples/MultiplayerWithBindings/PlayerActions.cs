@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerActions : PlayerActionSet
 {
 	static string saveData;
-	public PlayerAction Green;
+    public PlayerAction Green;
 	public PlayerAction Red;
 	public PlayerAction Blue;
 	public PlayerAction Yellow;
@@ -22,15 +22,18 @@ public class PlayerActions : PlayerActionSet
 	public PlayerAction R_Down;
 	public PlayerAction R_Left;
 	public PlayerAction R_Right;
-	public PlayerAction Start;
+    public PlayerAction Start;
+    public PlayerAction Pause;
 	public PlayerAction Select;
+
+
 
 	public PlayerTwoAxisAction Rotate;   //left analog stick
 	public PlayerTwoAxisAction R_Rotate;    //right analog stick
 
 
 	public PlayerActions() {
-		Green = CreatePlayerAction("Green");
+        Green = CreatePlayerAction("Green");
 		Red = CreatePlayerAction("Red");
 		Blue = CreatePlayerAction("Blue");
 		Yellow = CreatePlayerAction("Yellow");
@@ -50,7 +53,8 @@ public class PlayerActions : PlayerActionSet
 		Fire = CreatePlayerAction("Fire");
 		Alt_Fire = CreatePlayerAction("Alt_Fire");
 		Fire_Hook = CreatePlayerAction("Fire_Hook");
-		Start = CreatePlayerAction("Start");
+        Start = CreatePlayerAction("Start");
+        Pause = CreatePlayerAction("Pause");
 		Select = CreatePlayerAction("Select");
 	}
 
@@ -58,32 +62,9 @@ public class PlayerActions : PlayerActionSet
 	public static PlayerActions CreateWithKeyboardBindings() {
         var actions = new PlayerActions();
 
-		actions.Up.AddDefaultBinding(Key.W);
-		actions.Down.AddDefaultBinding(Key.S);
-		actions.Left.AddDefaultBinding(Key.A);
-		actions.Right.AddDefaultBinding(Key.D);
-
-
-        actions.Green.AddDefaultBinding(Key.R);
-        actions.Red.AddDefaultBinding(Key.Space);
-        actions.Blue.AddDefaultBinding(Key.E);
-        actions.Yellow.AddDefaultBinding(Key.Q);
-
-        actions.Fire.AddDefaultBinding(Mouse.LeftButton);
-		actions.Fire_Hook.AddDefaultBinding(Mouse.RightButton);
-		actions.Alt_Fire.AddDefaultBinding(Key.LeftControl);
-
-
-		actions.Boost.AddDefaultBinding(Key.Shift);
-		actions.Bomb.AddDefaultBinding(Key.Space);
-
-		actions.R_Up.AddDefaultBinding(Mouse.PositiveY);
-		actions.R_Down.AddDefaultBinding(Mouse.NegativeY);
-		actions.R_Left.AddDefaultBinding(Mouse.NegativeX);
-		actions.R_Right.AddDefaultBinding(Mouse.PositiveX);
-
-		actions.Select.AddDefaultBinding(Key.Tab);
-        actions.Start.AddDefaultBinding(Key.Return);
+        actions = CreateKeyboardUniversalBindings(actions);
+        actions = CreateKeyboardMenuBindings(actions);
+        actions = CreateKeyboardGameBindings(actions);
 
         setListeningOptionsForKeyboard(actions);
 
@@ -91,68 +72,129 @@ public class PlayerActions : PlayerActionSet
 	}
 
 
- 
-
-    public static PlayerActions CreateAllControllerBinding()
+    private static PlayerActions CreateKeyboardUniversalBindings(PlayerActions actions)
     {
-        var actions = new PlayerActions();
+        actions.Up.AddDefaultBinding(Key.UpArrow);
+        actions.Down.AddDefaultBinding(Key.DownArrow);
+        actions.Left.AddDefaultBinding(Key.LeftArrow);
+        actions.Right.AddDefaultBinding(Key.RightArrow);
 
         actions.Up.AddDefaultBinding(Key.W);
         actions.Down.AddDefaultBinding(Key.S);
         actions.Left.AddDefaultBinding(Key.A);
         actions.Right.AddDefaultBinding(Key.D);
 
-        actions.Up.AddDefaultBinding(Key.UpArrow);
-        actions.Down.AddDefaultBinding(Key.DownArrow);
-        actions.Left.AddDefaultBinding(Key.LeftArrow);
-        actions.Right.AddDefaultBinding(Key.RightArrow);
+        actions.Select.AddDefaultBinding(Key.Tab);
+        actions.Start.AddDefaultBinding(Key.Return);
+
+        return actions;
+    }
+
+    private static PlayerActions CreateKeyboardMenuBindings(PlayerActions actions) {
+        
+        actions.Green.AddDefaultBinding(Key.Return);
+        actions.Red.AddDefaultBinding(Key.Escape);
+        actions.Blue.AddDefaultBinding(Key.E);
+        actions.Yellow.AddDefaultBinding(Key.Tab);
+
+        return actions;
+    }
+
+    private static PlayerActions CreateKeyboardGameBindings(PlayerActions actions)
+    {
 
         actions.Fire.AddDefaultBinding(Mouse.LeftButton);
         actions.Fire_Hook.AddDefaultBinding(Mouse.RightButton);
-        actions.Green.AddDefaultBinding(Key.Return);
         actions.Alt_Fire.AddDefaultBinding(Key.LeftControl);
-        actions.Red.AddDefaultBinding(Key.Space);
+
         actions.Boost.AddDefaultBinding(Key.Shift);
         actions.Bomb.AddDefaultBinding(Key.Space);
-        actions.Green.AddDefaultBinding(Key.Alt);
+
         actions.R_Up.AddDefaultBinding(Mouse.PositiveY);
         actions.R_Down.AddDefaultBinding(Mouse.NegativeY);
         actions.R_Left.AddDefaultBinding(Mouse.NegativeX);
         actions.R_Right.AddDefaultBinding(Mouse.PositiveX);
 
-        actions.Start.AddDefaultBinding(Key.Escape);
-        actions.Select.AddDefaultBinding(Key.Tab);
+        actions.Pause.AddDefaultBinding(Key.Escape);
+
+        return actions;
+    }
 
 
-        actions.Green.AddDefaultBinding(InputControlType.Action1);
-        actions.Red.AddDefaultBinding(InputControlType.Action2);
-        actions.Blue.AddDefaultBinding(InputControlType.Action3);
-        actions.Yellow.AddDefaultBinding(InputControlType.Action4);
+    public static PlayerActions CreateWithJoystickBindings()
+    {
+        var actions = new PlayerActions();
+
+        actions = CreateJoystickUniversalBindings(actions);
+        actions = CreateJoystickMenuBindings(actions);
+        actions = CreateJoystickGameBindings(actions);
+
+        return actions;
+    }
+
+    private static PlayerActions CreateJoystickUniversalBindings(PlayerActions actions)
+    {
 
         actions.Up.AddDefaultBinding(InputControlType.LeftStickUp);
         actions.Down.AddDefaultBinding(InputControlType.LeftStickDown);
         actions.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
         actions.Right.AddDefaultBinding(InputControlType.LeftStickRight);
 
-        actions.R_Up.AddDefaultBinding(InputControlType.RightStickUp);
-        actions.R_Down.AddDefaultBinding(InputControlType.RightStickDown);
-        actions.R_Left.AddDefaultBinding(InputControlType.RightStickLeft);
-        actions.R_Right.AddDefaultBinding(InputControlType.RightStickRight);
-
         actions.Up.AddDefaultBinding(InputControlType.DPadUp);
         actions.Down.AddDefaultBinding(InputControlType.DPadDown);
         actions.Left.AddDefaultBinding(InputControlType.DPadLeft);
         actions.Right.AddDefaultBinding(InputControlType.DPadRight);
 
+        actions.Start.AddDefaultBinding(InputControlType.Start);
+        actions.Start.AddDefaultBinding(InputControlType.Options);
+        actions.Start.AddDefaultBinding(InputControlType.Menu);
+        actions.Select.AddDefaultBinding(InputControlType.Back);
+        actions.Select.AddDefaultBinding(InputControlType.Share);
+
+        return actions;
+    }
+
+    private static PlayerActions CreateJoystickMenuBindings(PlayerActions actions)
+    {
+        actions.Green.AddDefaultBinding(InputControlType.Action1);
+        actions.Red.AddDefaultBinding(InputControlType.Action2);
+        actions.Blue.AddDefaultBinding(InputControlType.Action3);
+        actions.Yellow.AddDefaultBinding(InputControlType.Action4);
+
+        return actions;
+    }
+
+
+    private static PlayerActions CreateJoystickGameBindings(PlayerActions actions)
+    {
         actions.Fire.AddDefaultBinding(InputControlType.RightTrigger);
         actions.Alt_Fire.AddDefaultBinding(InputControlType.RightBumper);
         actions.Fire_Hook.AddDefaultBinding(InputControlType.LeftTrigger);
         actions.Boost.AddDefaultBinding(InputControlType.LeftBumper);
         actions.Bomb.AddDefaultBinding(InputControlType.Action2);
 
-        actions.Start.AddDefaultBinding(InputControlType.Start);
-        actions.Start.AddDefaultBinding(InputControlType.Options);
-        actions.Select.AddDefaultBinding(InputControlType.Select);
+        actions.R_Up.AddDefaultBinding(InputControlType.RightStickUp);
+        actions.R_Down.AddDefaultBinding(InputControlType.RightStickDown);
+        actions.R_Left.AddDefaultBinding(InputControlType.RightStickLeft);
+        actions.R_Right.AddDefaultBinding(InputControlType.RightStickRight);
+
+        actions.Pause.AddDefaultBinding(InputControlType.Start);
+        actions.Pause.AddDefaultBinding(InputControlType.Options);
+        actions.Pause.AddDefaultBinding(InputControlType.Menu);
+
+        return actions;
+    }
+
+
+    public static PlayerActions CreateAllControllerBinding()
+    {
+        var actions = new PlayerActions();
+
+        actions = CreateKeyboardUniversalBindings(actions);
+        actions = CreateKeyboardMenuBindings(actions);
+
+        actions = CreateJoystickUniversalBindings(actions);
+        actions = CreateJoystickMenuBindings(actions);
 
         actions.ListenOptions.IncludeUnknownControllers = true;
         actions.ListenOptions.MaxAllowedBindings = 4;
@@ -172,47 +214,6 @@ public class PlayerActions : PlayerActionSet
 
         return actions;
     }
-
-
-    public static PlayerActions CreateWithJoystickBindings() {
-		var actions = new PlayerActions();
-
-		actions.Green.AddDefaultBinding(InputControlType.Action1);
-		actions.Red.AddDefaultBinding(InputControlType.Action2);
-		actions.Blue.AddDefaultBinding(InputControlType.Action3);
-		actions.Yellow.AddDefaultBinding(InputControlType.Action4);
-
-		actions.Up.AddDefaultBinding(InputControlType.LeftStickUp);
-		actions.Down.AddDefaultBinding(InputControlType.LeftStickDown);
-		actions.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
-		actions.Right.AddDefaultBinding(InputControlType.LeftStickRight);
-
-		actions.R_Up.AddDefaultBinding(InputControlType.RightStickUp);
-		actions.R_Down.AddDefaultBinding(InputControlType.RightStickDown);
-		actions.R_Left.AddDefaultBinding(InputControlType.RightStickLeft);
-		actions.R_Right.AddDefaultBinding(InputControlType.RightStickRight);
-
-		actions.Up.AddDefaultBinding(InputControlType.DPadUp);
-		actions.Down.AddDefaultBinding(InputControlType.DPadDown);
-		actions.Left.AddDefaultBinding(InputControlType.DPadLeft);
-		actions.Right.AddDefaultBinding(InputControlType.DPadRight);
-
-		actions.Fire.AddDefaultBinding(InputControlType.RightTrigger);
-		actions.Alt_Fire.AddDefaultBinding(InputControlType.RightBumper);
-		actions.Fire_Hook.AddDefaultBinding(InputControlType.LeftTrigger);
-		actions.Boost.AddDefaultBinding(InputControlType.LeftBumper);
-		actions.Bomb.AddDefaultBinding(InputControlType.Action2);
-
-		actions.Start.AddDefaultBinding(InputControlType.Start);
-		actions.Start.AddDefaultBinding(InputControlType.Options);
-		actions.Select.AddDefaultBinding(InputControlType.Back);
-        actions.Select.AddDefaultBinding(InputControlType.Share);
-
-     
-
-        return actions;
-	}
-
 
 
 	static void setListeningOptionsForKeyboard(PlayerActions actions) {

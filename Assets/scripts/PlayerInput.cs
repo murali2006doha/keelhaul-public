@@ -217,7 +217,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.onRightRotateChanged += aimComponent.AimAt;
         shipInput.onRightTriggerDown += centralCannon.handleShoot;
         shipInput.onRightBumperDown += altCannonComponent.handleShoot;
-        shipInput.onStartButtonPress += this.instantiatePauseMenu;
+        shipInput.onPauseButtonPress += this.instantiatePauseMenu;
         shipInput.onSelectButtonHoldDown += this.showStatsScreen;
         //shipInput.onSelectButtonRelease += null;
         shipInput.onSelectButtonRelease += this.hideStatsScreen;
