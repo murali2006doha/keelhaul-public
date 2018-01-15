@@ -10,7 +10,7 @@ public class KrakenAnimator : MonoBehaviour {
 	// Use this for initialization
 	public KrakenInput kraken;
 	public Animator animKraken; //An array of the different kraken parts's animator components
-	public GameObject smashTentacle1,smashTentacle2;
+  public GameObject smashTentacle1;
 	public GameObject sinkableShip;
 	public ParticleSystem[] splashParticles;
     public ParticleSystem[] emergeSplashParticles;
@@ -60,18 +60,12 @@ public class KrakenAnimator : MonoBehaviour {
 
 	public void toggleCollider(){
 		smashTentacle1.GetComponent<BoxCollider>().enabled = !smashTentacle1.GetComponent<BoxCollider>().enabled;
-		//smashTentacle1.GetComponent<AudioSource>().enabled = !smashTentacle1.GetComponent<AudioSource>().enabled;
-		smashTentacle2.GetComponent<BoxCollider>().enabled = !smashTentacle2.GetComponent<BoxCollider>().enabled;
-		//smashTentacle2.GetComponent<AudioSource>().enabled = !smashTentacle2.GetComponent<AudioSource>().enabled;
 
 	}
 
     public void disableCollider()
     {
         smashTentacle1.GetComponent<BoxCollider>().enabled = false;
-        smashTentacle2.GetComponent<BoxCollider>().enabled = false;
-        
-
     }
     public void resetSmash(){
 		kraken.resetSmash ();
