@@ -182,7 +182,7 @@ public class ShipAIV2 : MonoBehaviour {
 
             PlayerInput randomTarget = targetsNearBy[Random.Range(0, targetsNearBy.Count)];
             Vector3 move = (input.transform.position + randomTarget.transform.forward * 4.0f);
-            MathHelper.addZ(MathHelper.addX(move, Random.Range(-3.0f, 3.0f)), Random.Range(-3.0f, 3.0f));
+            targetPosition = MathHelper.addZ(MathHelper.addX(move, Random.Range(-3.0f, 3.0f)), Random.Range(-3.0f, 3.0f));
             Boost();
 
         }
