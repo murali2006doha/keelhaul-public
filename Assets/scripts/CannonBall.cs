@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
+
 public class CannonBall : Photon.MonoBehaviour {
 
 	protected Transform owner;
@@ -128,7 +130,12 @@ public class CannonBall : Photon.MonoBehaviour {
 		}
 	}
 
-	virtual public void destroySelf(){
+    internal Vector3 GetVelocity()
+    {
+        return GetComponent<Rigidbody>().velocity;
+    }
+
+    virtual public void destroySelf(){
         if (GetComponent<PhotonView>().isMine)
         {
            
@@ -159,4 +166,9 @@ public class CannonBall : Photon.MonoBehaviour {
 	public void setOwner(Transform owner) {
 		this.owner = owner;
 	}
+
+    public PlayerInput getOwner()
+    {
+        return owner.GetComponent<PlayerInput>();
+    }
 }
