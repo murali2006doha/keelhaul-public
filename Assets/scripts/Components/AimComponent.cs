@@ -19,6 +19,9 @@ public class AimComponent : MonoBehaviour {
     public bool aiControls;
     private Camera cam;
 
+    private bool movementStarted = false;
+    private Vector3 lastMoveVector;
+
     public void AimAt(Vector3 moveVector)
     {
         if (keyboardControls && !aiControls)
@@ -27,6 +30,7 @@ public class AimComponent : MonoBehaviour {
         }
         else if (moveVector.magnitude >= minDistance)
         {
+            movementStarted = true;
             aim.transform.position = Vector3.MoveTowards(aim.transform.position, (cannon.transform.position) + (moveVector * maxDistance), moveSpeed);
             var pos = aim.transform.position;
             pos.y = 0;
@@ -34,6 +38,18 @@ public class AimComponent : MonoBehaviour {
 
             Vector3 shoot_direction = aim.transform.position - cannon.transform.position;
             cannon.transform.rotation = Quaternion.LookRotation(shoot_direction.normalized);
+
+            lastMoveVector = moveVector;
+
+        } else if (moveVector.magnitude == 0.0f && movementStarted) {
+            aim.transform.position = Vector3.MoveTowards(aim.transform.position, (cannon.transform.position) + (lastMoveVector * maxDistance), moveSpeed);
+            var pos = aim.transform.position;
+            pos.y = 0;
+            line.transform.LookAt(pos);
+
+            Vector3 shoot_direction = aim.transform.position - cannon.transform.position;
+            cannon.transform.rotation = Quaternion.LookRotation(shoot_direction.normalized);
+
         }
 
         //keep aim reticule on the ground
