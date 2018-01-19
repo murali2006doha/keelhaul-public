@@ -172,7 +172,8 @@ public class CharacterSelectController : MonoBehaviour {
             {
                 if (!this.panels[playerPosition].SignedIn)
                 {
-                    this.panels[this.playerToPos[player]].SignIn(false, playerIndex);
+                    //panels[playerToPos[player]].SignIn(false, playerIndex);
+                    panels[playerToPos[player]].BotSignIn(playerIndex, GetFirstAvailablePanel());
                 }
 
 
@@ -184,11 +185,8 @@ public class CharacterSelectController : MonoBehaviour {
                 {
                     if (panel.CharacterSelected)
                     {
-                        if(panel.IsKraken) {
-                            UnlockKraken(panel);
-                        }
-
                         panel.CharacterSelected = false;
+                        UnlockCharactersForSabotage(panel);
                         this.UpdatePlayableStatus();
                     }
                     else
@@ -210,14 +208,10 @@ public class CharacterSelectController : MonoBehaviour {
                     panel.ChangeTeam();
                 }
 
-                if (player.Green.WasReleased & !panel.OnLockedKraken())
-                {   
-                    if (panel.IsKraken)
-                    {
-                        LockOutKrakens(panel);
-                    }
-
+                if (player.Green.WasReleased & (!(panel.OnLockedKraken() || panel.OnLockedShip()))) 
+                {
                     panel.CharacterSelected = true;
+                    LockCharactersForSabotage();
                     this.UpdatePlayableStatus();
 
                 }
@@ -237,12 +231,12 @@ public class CharacterSelectController : MonoBehaviour {
         else if (player.Green.WasReleased)
         {
             SignIn(player);
+            LockCharactersForSabotage();
 
         } else if (player.Red.WasReleased) {
             this.TransitionToMainMenu();
         }
     }
-
 
     private void UpdateMapSelect(PlayerActions player) {
         if (player.Red.WasReleased)
@@ -335,26 +329,55 @@ public class CharacterSelectController : MonoBehaviour {
     }
 
 
-    private void LockOutKrakens(CharacterPanel panel)
+    private void LockCharactersForSabotage()
     {
-        foreach(CharacterPanel p in panels) {
-            if(p != panel) {
-                p.KrakenLock = true;
-            }
-        }
-    }
-
-
-    private void UnlockKraken(CharacterPanel panel) {
-        foreach (CharacterPanel p in panels)
+        //lock kraken
+        bool krakenSelected = this.panels.Filter(p => (p.CharacterSelected && p.IsKraken)).Count == 1;
+        if (krakenSelected)
         {
-            if (p != panel)
+            CharacterPanel kraken = this.panels.Filter(p => (p.CharacterSelected && p.IsKraken))[0];
+            foreach (CharacterPanel p in panels)
             {
-                p.KrakenLock = false;
+                if (p != kraken)
+                {
+                    p.KrakenLock = true;
+                }
             }
+
         }
+        //lock ships
+        bool shipsSelected = this.panels.Filter(p => (p.CharacterSelected && !p.IsKraken)).Count == 2;
+        if (shipsSelected)
+        {
+            foreach(CharacterPanel p in this.panels.Filter(p2 => (!p2.CharacterSelected))) {
+                p.ShipLock = true; 
+            };
+        }
+            
     }
 
+    private void UnlockCharactersForSabotage(CharacterPanel panel)
+    {
+        if (panel.IsKraken)
+        {
+            foreach (CharacterPanel p in panels)
+            {
+                if (p != panel)
+                {
+                    p.KrakenLock = false;
+                }
+            }
+        }
+
+        int ships = this.panels.Filter(p => (p.CharacterSelected && !p.IsKraken)).Count;
+        if (ships < 2)
+        {
+            foreach (CharacterPanel temp in this.panels.Filter(p2 => (!p2.CharacterSelected)))
+            {
+                temp.ShipLock = false;
+            };
+        }
+    }
 
 
     private void TransitionToMainMenu() {
