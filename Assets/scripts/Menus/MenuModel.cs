@@ -7,7 +7,7 @@ public class MenuModel : MonoBehaviour
 
 	public MainMenu mainMenu;
 	public SettingsMenu settingsMenu;
-	public GameModeMenu offlineModeMenu;
+    public OfflineSubmenu offlineSubmenu;
 	public InputBindingsMenu inputBindingsMenu;
     public ControllerLayoutMenu controllerLayoutMenu;
     public PauseMenu pauseMenu;

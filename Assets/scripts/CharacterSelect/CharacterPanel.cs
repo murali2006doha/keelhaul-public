@@ -140,7 +140,6 @@ public class CharacterPanel : MonoBehaviour
         this.SignedIn = true;
     }
 
-    //put aside
     public void BotSignIn(int playerIndex, int team)
     {
         this.IsPlayer = false;
