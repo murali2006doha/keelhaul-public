@@ -13,9 +13,6 @@ public class MainMenu : AbstractMenu
 
     public Transform offlineSubmenu;
     public ActionButton offline;
-    public ActionButton deathMatchOffline;
-    public ActionButton sabotageOffline;
-    public ActionButton targetsOffline;
     public ActionButton settings;
 	public ActionButton exit;
 
