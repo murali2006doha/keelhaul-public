@@ -8,13 +8,29 @@ using System;
 
 public class MapSelectView : MonoBehaviour {
 
-	[SerializeField] private ActionButton startGame;
+	[SerializeField] 
+    private ActionButton startGame;
+
     [SerializeField]
     private ActionButton upButton;
+
     [SerializeField]
     private ActionButton downButton;
+
     [SerializeField]
-    private Text mapText;
+    private Image mapImage;
+
+    [SerializeField]
+    private SpriteDictionary mapImages;
+
+    [SerializeField]
+    private Transform loadingScreen;
+
+    [SerializeField]
+    private float loadingTime;
+
+    [SerializeField]
+    private Animator mapViewAnimator;
 
     private Action<MapEnum> onMapSelect;
     List<MapEnum> maps = new List<MapEnum>();
@@ -31,7 +47,7 @@ public class MapSelectView : MonoBehaviour {
         
             if (skipMapSelect)
             {
-            Hide();
+                Hide();
                 onMapSelect(selectedMap);
             }
         
@@ -73,12 +89,15 @@ public class MapSelectView : MonoBehaviour {
             skipMapSelect = true;
         }
 
-
+        this.selectedMap = this.maps[this.selectedMapIndex];
+        this.mapImage.sprite = this.mapImages.Get(selectedMap.ToString());
 
     }
 
     public void ChangeMap(int direction)
     {
+        AnimateArrows(direction);
+
         this.selectedMapIndex += direction;
         if (this.selectedMapIndex >= this.maps.Count) {
             this.selectedMapIndex = 0;
@@ -88,12 +107,25 @@ public class MapSelectView : MonoBehaviour {
         }
 
         this.selectedMap = this.maps[this.selectedMapIndex];
+        this.mapImage.sprite = this.mapImages.Get(selectedMap.ToString());
 
-        this.mapText.text = this.maps[this.selectedMapIndex].ToString();
+    }
+
+    private void AnimateArrows(int direction)
+    {
+        if (direction == -1)
+        {
+            mapViewAnimator.SetBool("mapSelectDown", true);
+        }
+        else if (direction == 1)
+        {
+            mapViewAnimator.SetBool("mapSelectUp", true);
+        }
     }
 
     public void StartGame() {
         this.onMapSelect(this.selectedMap);
+        StartCoroutine(LoadNewScene());
     }
 
     public void OnSelectMap(Action action)
@@ -102,5 +134,21 @@ public class MapSelectView : MonoBehaviour {
             action();
 		});
 	}
+
+
+    IEnumerator LoadNewScene()
+    {
+        loadingScreen.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(loadingTime);
+
+        AsyncOperation async = SceneManager.LoadSceneAsync("Game");
+
+        while (!async.isDone)
+        {
+            yield return null;
+        }
+
+    }
 
 }

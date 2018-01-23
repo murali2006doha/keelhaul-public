@@ -69,7 +69,6 @@ public class CharacterSelectController : MonoBehaviour {
             this.mapView.Initialize(this.gameType, mapEnum =>
             {
                 this.BuildDMPlayerSettings(mapEnum);
-                SceneManager.LoadScene("Game");
             });
         }
         else if (gameType == GameTypeEnum.Sabotage)
@@ -80,7 +79,6 @@ public class CharacterSelectController : MonoBehaviour {
             this.mapView.Initialize(this.gameType, mapEnum =>
             {
                 this.BuildSABPlayerSettings(mapEnum);
-                SceneManager.LoadScene("Game");
             });
         }
         else if (gameType == GameTypeEnum.Targets)
@@ -93,7 +91,6 @@ public class CharacterSelectController : MonoBehaviour {
             this.panels.ForEach(panel => panel.Initialize(this.characterTARPanelSprites, GlobalVariables.CharactersForTargets()));
             this.mapView.Initialize(this.gameType, mapEnum => {
                 this.BuildTARPlayerSettings(mapEnum);
-                SceneManager.LoadScene("Game");
             });
         }
 
