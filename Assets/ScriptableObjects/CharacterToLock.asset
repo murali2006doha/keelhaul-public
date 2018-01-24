@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: CharacterToLock
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: fd4c9cfb69d614f169a2a8f9470dc8ac, type: 3}
-  - {fileID: 21300000, guid: a6cc3aeb2c5fb4ece9e33dafaa8c031c, type: 3}
-  - {fileID: 21300000, guid: c312131a3783d49f69bc221c64dd7adb, type: 3}
-  - {fileID: 21300000, guid: db44d56bf094f4fa49cbc1baaa2c12aa, type: 3}
-  - {fileID: 21300000, guid: 83491aff601b74283b20d11add4bb2b4, type: 3}
+  - {fileID: 21300000, guid: f17df19d1b87e4d06ae5662a72280cb7, type: 3}
+  - {fileID: 21300000, guid: 3c7204d6d7ec74b0bafd7dbc7953f5c4, type: 3}
+  - {fileID: 21300000, guid: d08c6f5ae170d4bc8b7e1601131b6aa2, type: 3}
+  - {fileID: 21300000, guid: e70b26429d982461ca0ce64168769e2f, type: 3}
+  - {fileID: 21300000, guid: 3125fb00b72d448d48e3416ef1cd81f4, type: 3}
