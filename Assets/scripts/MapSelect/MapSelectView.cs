@@ -115,11 +115,11 @@ public class MapSelectView : MonoBehaviour {
     {
         if (direction == -1)
         {
-            mapViewAnimator.SetBool("mapSelectDown", true);
+            mapViewAnimator.SetTrigger("down");
         }
         else if (direction == 1)
         {
-            mapViewAnimator.SetBool("mapSelectUp", true);
+            mapViewAnimator.SetTrigger("up");
         }
     }
 
