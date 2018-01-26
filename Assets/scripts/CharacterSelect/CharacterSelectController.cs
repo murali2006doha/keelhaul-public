@@ -183,7 +183,8 @@ public class CharacterSelectController : MonoBehaviour {
                     if (panel.CharacterSelected)
                     {
                         panel.CharacterSelected = false;
-                        UnlockCharactersForSabotage(panel);
+                        if(gameType == GameTypeEnum.Sabotage)
+                            UnlockCharactersForSabotage(panel);
                         this.UpdatePlayableStatus();
                     }
                     else
@@ -208,7 +209,8 @@ public class CharacterSelectController : MonoBehaviour {
                 if (player.Green.WasReleased & (!(panel.OnLockedKraken() || panel.OnLockedShip()))) 
                 {
                     panel.CharacterSelected = true;
-                    LockCharactersForSabotage();
+                    if (gameType == GameTypeEnum.Sabotage)
+                        LockCharactersForSabotage();
                     this.UpdatePlayableStatus();
 
                 }
