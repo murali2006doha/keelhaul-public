@@ -34,6 +34,9 @@ public class CharacterPanel : MonoBehaviour
     [SerializeField]
     private SpriteDictionary characterLockImages;
 
+    [SerializeField]
+    private Animator characterSelectAnimator;
+
     private SpriteDictionary characterToPanels;
 
     private List<string> characterReferences;
@@ -46,6 +49,7 @@ public class CharacterPanel : MonoBehaviour
     public bool IsKraken { get; set; }
     public bool SignedIn { get; set; }
     public bool KrakenLock { get; set; }
+    public bool ShipLock { get; set; }
 
     void Update()
     {
@@ -53,8 +57,13 @@ public class CharacterPanel : MonoBehaviour
         {
             this.teamHolder.gameObject.SetActive(false);
 
-            if (GetSelectedCharacter() == "Kraken") { IsKraken = true; }
-            else { IsKraken = false; }
+            if (GetSelectedCharacter() == "Kraken") {
+                IsKraken = true;
+                SelectedTeam = 0;
+            } else {
+                IsKraken = false;
+                SelectedTeam = 1;
+            }
         }
 
         if(GameTypeEnum.Targets == FindObjectOfType<PlayerSelectSettings>().gameType)
@@ -111,6 +120,21 @@ public class CharacterPanel : MonoBehaviour
     }
 
 
+    public bool OnLockedShip()
+    {
+
+        if (!IsKraken & ShipLock)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+
     public string GetSelectedCharacter()
     {
         return this.characterReferences[this.characterIndex];
@@ -124,6 +148,15 @@ public class CharacterPanel : MonoBehaviour
         this.SignedIn = true;
     }
 
+    public void BotSignIn(int playerIndex, int team)
+    {
+        this.IsPlayer = false;
+        this.DecorateSignedIn(playerIndex);
+        this.SelectedTeam = team;
+        this.SignedIn = true;
+    }
+
+
     public void SignOut()
     {
         this.panelHostHolders.ForEach(panel => panel.Hide());
@@ -136,6 +169,7 @@ public class CharacterPanel : MonoBehaviour
         this.IsPlayer = false;
         this.IsKraken = false;
         this.KrakenLock = false;
+        this.ShipLock = false;
         this.characterIndex = 0;
     }
 
@@ -173,15 +207,34 @@ public class CharacterPanel : MonoBehaviour
 
         if (!this.characterSelected)
         {
-            if (this.characterIndex + direction == numCharacters) {
+            if (this.characterIndex + direction == numCharacters)
+            {
                 this.characterIndex = 0;
-            } else if (this.characterIndex + direction == -1) {
+            }
+            else if (this.characterIndex + direction == -1)
+            {
                 this.characterIndex = numCharacters - 1;
-            } else {
+            }
+            else
+            {
                 this.characterIndex = this.characterIndex + direction;
             }
+
+            AnimateArrows(direction);
         }
 
+    }
+
+    private void AnimateArrows(int direction)
+    {
+        if (direction == -1)
+        {
+            characterSelectAnimator.SetBool("up-arrow", true);
+        }
+        else if (direction == 1)
+        {
+            characterSelectAnimator.SetBool("down-arrow", true);
+        }
     }
 
     private void RenderImages()
@@ -194,7 +247,7 @@ public class CharacterPanel : MonoBehaviour
         }
         else if (!characterSelected)
         {
-            if (OnLockedKraken())
+            if (OnLockedKraken() || OnLockedShip())
             {
                 this.characterText.sprite = this.characterLockImages.Get(this.GetSelectedCharacter());;
             }

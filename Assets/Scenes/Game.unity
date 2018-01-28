@@ -360,6 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1541752946}
   - component: {fileID: 1541752945}
+  - component: {fileID: 1541752942}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -367,6 +368,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &1541752942
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1541752941}
+  m_Enabled: 1
 --- !u!20 &1541752945
 Camera:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum MapEnum {
-	AtlantisMap, ChineseMap, VikingMap, BlackbeardMap, FrigidWasteland, TropicalMapFinal, TropicalMap, LevelUp,BlackMarket
+	AtlantisMap, ChineseMap, VikingMap, BlackbeardMap, FrigidWasteland, TropicalMapFinal, TropicalMap, LevelUp, BlackMarket
 }
 
 
@@ -19,8 +19,7 @@ public class MapTypeHelper
         maps.Add(MapEnum.LevelUp);
         maps.Add(MapEnum.BlackMarket);
 		maps.Add(MapEnum.TropicalMapFinal);
-    maps.Add(MapEnum.LevelUp);
-    maps.Add(MapEnum.VikingMap);
+        maps.Add(MapEnum.VikingMap);
 
         return maps;
     }
@@ -29,8 +28,8 @@ public class MapTypeHelper
 	{
 		List<MapEnum> maps = new List<MapEnum>();
 		maps.Add(MapEnum.BlackMarket);
-		maps.Add(MapEnum.LevelUp);
-    maps.Add(MapEnum.VikingMap);
+        maps.Add(MapEnum.TropicalMapFinal);
+        maps.Add(MapEnum.VikingMap);
 
     return maps;
 	}
