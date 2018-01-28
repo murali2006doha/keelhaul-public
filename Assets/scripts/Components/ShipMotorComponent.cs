@@ -137,7 +137,7 @@ public class ShipMotorComponent : MonoBehaviour
 
     public virtual void Boost()
     {
-        if (!boosted) {
+        if (!boosted && shipTransform != null && onBoost != null) {
             this.onBoost();
             this.boostParticle.SetActive(true);
             boosted = true;

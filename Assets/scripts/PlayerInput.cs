@@ -86,6 +86,16 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     public float rotationSpeed = 1f;
     private bool notInitalized = true;
     public ShipStatus status = ShipStatus.Waiting;
+
+    internal double getHealthPercent()
+    {
+        if (stats.max_health == 0)
+        {
+            return 0f;
+        }
+        return health / stats.max_health;
+    }
+
     public int playerId;
     public static UnityAction onHitRegister;    //extra actions for when player is hit
 
