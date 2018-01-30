@@ -831,4 +831,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         shipMeshComponent.GetComponent<Renderer>().material.mainTexture = Resources.Load<Texture>(PathVariables.GetAssociatedTextureSkinPath(type, altSkinCount));
     }
+
+    internal void DisableAI()
+    {
+        this.GetComponent<ShipAIV2>().DisableAI();
+
+    }
 }

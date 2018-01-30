@@ -765,6 +765,7 @@ public class DeathMatchGameManager : AbstractGameManager
                 losers.Add(ship.gameObject);
             }
             ship.DisableUIForStats();
+            ship.DisableAI();
             shipStats.Add(ship.gameStats);
         }
         GameObject titlesPrefab = Resources.Load(PathVariables.titlesPath, typeof(GameObject)) as GameObject;

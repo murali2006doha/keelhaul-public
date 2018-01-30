@@ -422,7 +422,12 @@ public class ShipAIV2 : MonoBehaviour {
         }
         return bombs;
     }
-    
+
+    internal void DisableAI()
+    {
+        GetComponentInChildren<NavMeshAgent>().enabled = false;
+        this.enabled = false;
+    }
 }
 
 

@@ -64,6 +64,7 @@ public class CharacterSelectController : MonoBehaviour {
 
         if (gameType == GameTypeEnum.DeathMatch)
         {
+            panelCount = 4;
             this.panels[this.panels.Count - 1].gameObject.SetActive(true);
             this.panels.ForEach(panel => panel.Initialize(this.characterDMPanelSprites, GlobalVariables.CharactersForDeathMatch()));
             this.mapView.Initialize(this.gameType, mapEnum =>
@@ -386,6 +387,14 @@ public class CharacterSelectController : MonoBehaviour {
     }
 
     private void TransitionToMapSelect() {
+      
+        if (gameType == GameTypeEnum.Targets)
+        {
+            this.mapView.gameObject.SetActive(true);
+            mapView.HideMapSelect();
+            mapView.StartGame();
+            
+        }
         this.onCharacterSelect = false;
         this.mapView.gameObject.SetActive(true);
     }

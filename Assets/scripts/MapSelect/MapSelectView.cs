@@ -44,12 +44,7 @@ public class MapSelectView : MonoBehaviour {
     public void Start()
     {
         
-        
-            if (skipMapSelect)
-            {
-                Hide();
-                onMapSelect(selectedMap);
-            }
+      
         
     }
 
@@ -151,4 +146,8 @@ public class MapSelectView : MonoBehaviour {
 
     }
 
+    internal void HideMapSelect()
+    {
+        mapImage.gameObject.SetActive(false);
+    }
 }
