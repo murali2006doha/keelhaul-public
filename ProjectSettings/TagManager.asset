@@ -56,7 +56,7 @@ TagManager:
   - p4_ui
   - dont_reflect
   - environment
-  - 
+  - CameraCollision
   m_SortingLayers:
   - name: Default
     uniqueID: 0
