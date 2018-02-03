@@ -16,11 +16,14 @@ public class CharacterPanel : MonoBehaviour
     [SerializeField]
     private Text status;
 
-    [SerializeField]
-    private Text teamIndicator;
+    //[SerializeField]
+    //private Text teamIndicator;
+
+    //[SerializeField]
+    //private GameObject teamHolder;
 
     [SerializeField]
-    private GameObject teamHolder;
+    private Image glow;
 
     [SerializeField]
     private List<PanelHostHolder> panelHostHolders;
@@ -37,6 +40,9 @@ public class CharacterPanel : MonoBehaviour
     [SerializeField]
     private Animator characterSelectAnimator;
 
+    [SerializeField] 
+    private ColorDictionary colors;
+
     private SpriteDictionary characterToPanels;
 
     private List<string> characterReferences;
@@ -44,6 +50,7 @@ public class CharacterPanel : MonoBehaviour
     private int characterIndex = 0;
     private int selectedTeam = 0;
     private bool characterSelected;
+    private int playerIndex;
 
     public bool IsPlayer { get; set; }
     public bool IsKraken { get; set; }
@@ -55,20 +62,20 @@ public class CharacterPanel : MonoBehaviour
     {
         if (GameTypeEnum.Sabotage == FindObjectOfType<PlayerSelectSettings>().gameType)
         {
-            this.teamHolder.gameObject.SetActive(false);
+            //this.teamHolder.gameObject.SetActive(false);
 
             if (GetSelectedCharacter() == "Kraken") {
                 IsKraken = true;
-                SelectedTeam = 0;
+                if (SignedIn) SelectedTeam = 0;
             } else {
                 IsKraken = false;
-                SelectedTeam = 1;
+                if (SignedIn) SelectedTeam = 1;
             }
         }
 
         if(GameTypeEnum.Targets == FindObjectOfType<PlayerSelectSettings>().gameType)
         {
-            this.teamHolder.gameObject.SetActive(false);
+            //this.teamHolder.gameObject.SetActive(false);
         }
 
         RenderImages();
@@ -91,8 +98,18 @@ public class CharacterPanel : MonoBehaviour
         set
         {
             this.selectedTeam = value;
-            this.teamIndicator.text = "Team " + value;
+            this.DecorateTeam();
+        }
+    }
 
+
+    void DecorateTeam() {
+        //these things change along with changing teams
+        if (GameTypeEnum.Targets != FindObjectOfType<PlayerSelectSettings>().gameType)
+        {
+            //this.teamIndicator.text = "Team " + selectedTeam;
+            this.glow.color = this.colors.Get(selectedTeam);
+            this.panelHostHolders[playerIndex].DecorateColor(selectedTeam);
         }
     }
 
@@ -142,6 +159,7 @@ public class CharacterPanel : MonoBehaviour
 
     public void SignIn(bool isPlayer, int playerIndex)
     {
+        this.playerIndex = playerIndex;
         this.IsPlayer = isPlayer;
         this.DecorateSignedIn(playerIndex);
         this.SelectedTeam = playerIndex;
@@ -162,7 +180,8 @@ public class CharacterPanel : MonoBehaviour
         this.panelHostHolders.ForEach(panel => panel.Hide());
         this.characterImage.gameObject.SetActive(false);
         this.characterText.gameObject.SetActive(false);
-        this.teamHolder.gameObject.SetActive(false);
+        //this.teamHolder.gameObject.SetActive(false);
+        this.glow.color = this.colors.GetBlack();
         this.status.text = string.Empty;
         this.SignedIn = false;
         this.CharacterSelected = false;
@@ -179,6 +198,7 @@ public class CharacterPanel : MonoBehaviour
         if (isAdding)
         {
             this.panelHostHolders[playerIndex].Decorate(playerIndex);
+
         }
         else
         {
@@ -262,7 +282,7 @@ public class CharacterPanel : MonoBehaviour
     {
         this.characterText.gameObject.SetActive(true);
         this.characterImage.gameObject.SetActive(true);
-        this.teamHolder.gameObject.SetActive(true);
+        //this.teamHolder.gameObject.SetActive(true);
         this.ToggleHost(playerIndex, true);
         this.status.text = this.IsPlayer ? ("Player " + (playerIndex+1)) : "Bot";
         this.ChangeCharacter(0);

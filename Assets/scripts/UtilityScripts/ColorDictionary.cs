@@ -8,4 +8,8 @@ public class ColorDictionary : ScriptableObject {
   public Color Get(int index) {
     return this.colors[index];
   }
+
+    public Color GetBlack() {
+        return this.colors[4];
+    }
 }
