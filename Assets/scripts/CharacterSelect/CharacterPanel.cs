@@ -181,7 +181,7 @@ public class CharacterPanel : MonoBehaviour
         this.characterImage.gameObject.SetActive(false);
         this.characterText.gameObject.SetActive(false);
         //this.teamHolder.gameObject.SetActive(false);
-        this.glow.color = this.colors.GetBlack();
+        this.glow.color = Color.black;
         this.status.text = string.Empty;
         this.SignedIn = false;
         this.CharacterSelected = false;
