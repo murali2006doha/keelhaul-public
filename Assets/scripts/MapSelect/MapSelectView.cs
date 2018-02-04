@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using InControl;
 using System;
 
 public class MapSelectView : MonoBehaviour {
@@ -41,12 +40,6 @@ public class MapSelectView : MonoBehaviour {
 
     public bool skipMapSelect = false;
 
-    public void Start()
-    {
-        
-      
-        
-    }
 
     public void Show() {
         this.gameObject.SetActive(true);
@@ -84,10 +77,22 @@ public class MapSelectView : MonoBehaviour {
             skipMapSelect = true;
         }
 
-        this.selectedMap = this.maps[this.selectedMapIndex];
-        this.mapImage.sprite = this.mapImages.Get(selectedMap.ToString());
-
+        this.SelectedMap = this.maps[this.selectedMapIndex];
     }
+
+    public MapEnum SelectedMap
+    {
+        get
+        {
+            return this.selectedMap;
+        }
+        set
+        {
+            this.selectedMap = value;
+            this.mapImage.sprite = this.mapImages.Get(selectedMap.ToString());
+        }
+    }
+
 
     public void ChangeMap(int direction)
     {
@@ -101,9 +106,7 @@ public class MapSelectView : MonoBehaviour {
             this.selectedMapIndex = this.maps.Count - 1;
         }
 
-        this.selectedMap = this.maps[this.selectedMapIndex];
-        this.mapImage.sprite = this.mapImages.Get(selectedMap.ToString());
-
+        this.SelectedMap = this.maps[this.selectedMapIndex];
     }
 
     private void AnimateArrows(int direction)
@@ -119,7 +122,6 @@ public class MapSelectView : MonoBehaviour {
     }
 
     public void StartGame() {
-        this.onMapSelect(this.selectedMap);
         StartCoroutine(LoadNewScene());
     }
 
@@ -133,6 +135,19 @@ public class MapSelectView : MonoBehaviour {
 
     IEnumerator LoadNewScene()
     {
+        //TODO: needs some indication of 'randomness'
+        if (this.SelectedMap == MapEnum.Random)
+        {
+            maps.Remove(MapEnum.Random);
+            int random = UnityEngine.Random.Range(0, this.maps.Count - 1);
+            SelectedMap = this.maps[random];
+            yield return new WaitForSeconds(3);
+        }
+
+        //set map
+        this.onMapSelect(this.SelectedMap);
+
+        //start loading screen and game
         loadingScreen.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(loadingTime);

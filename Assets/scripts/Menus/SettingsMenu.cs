@@ -66,12 +66,12 @@ public class SettingsMenu : AbstractMenu
 	}
 
 	public void setSoundVolume(float vol) {
-		audioMixer.SetFloat("SFX", (100 * vol) - 80);
+        audioMixer.SetFloat("SFX", LinearToDecibal(vol));
 		GlobalSettings.setSoundMultiplier(vol);
 	}
 
 	public void setMusicVolume(float vol) {
-		audioMixer.SetFloat("Music", (100 * vol) - 80);
+        audioMixer.SetFloat("Music", LinearToDecibal(vol));
 		GlobalSettings.setMusicMuliplier(vol);
 	}
 
@@ -90,6 +90,18 @@ public class SettingsMenu : AbstractMenu
     public void OnClick()
     {
         GoBack();
+    }
+
+
+    float LinearToDecibal(float linear)
+    {
+        if (linear == 0.0f)
+        {
+            return -80f;
+        } else {
+            return (20.0f * Mathf.Log10(linear)) + 20; 
+        }
+
     }
 }
 
