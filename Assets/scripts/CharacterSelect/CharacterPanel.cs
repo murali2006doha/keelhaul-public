@@ -16,17 +16,8 @@ public class CharacterPanel : MonoBehaviour
     [SerializeField]
     private Text status;
 
-    //[SerializeField]
-    //private Text teamIndicator;
-
-    //[SerializeField]
-    //private GameObject teamHolder;
-
     [SerializeField]
     private Image glow;
-
-    [SerializeField]
-    private List<PanelHostHolder> panelHostHolders;
 
     [SerializeField]
     private SpriteDictionary characterTypeImages;
@@ -47,7 +38,7 @@ public class CharacterPanel : MonoBehaviour
 
     private List<string> characterReferences;
 
-    private int characterIndex = 0;
+    public int characterIndex { get; set; }
     private int selectedTeam = 0;
     private bool characterSelected;
     private int playerIndex;
@@ -109,7 +100,7 @@ public class CharacterPanel : MonoBehaviour
         {
             //this.teamIndicator.text = "Team " + selectedTeam;
             this.glow.color = this.colors.Get(selectedTeam);
-            this.panelHostHolders[playerIndex].DecorateColor(selectedTeam);
+            
         }
     }
 
@@ -157,19 +148,24 @@ public class CharacterPanel : MonoBehaviour
         return this.characterReferences[this.characterIndex];
     }
 
-    public void SignIn(bool isPlayer, int playerIndex)
+
+    public void SetSelectedCharacter(int index)
+    {
+        this.characterIndex = index;
+    }
+    public void SignIn(bool isPlayer, int team)
     {
         this.playerIndex = playerIndex;
         this.IsPlayer = isPlayer;
-        this.DecorateSignedIn(playerIndex);
-        this.SelectedTeam = playerIndex;
+        this.DecorateSignedIn();
+        this.SelectedTeam = team;
         this.SignedIn = true;
     }
 
-    public void BotSignIn(int playerIndex, int team)
+    public void BotSignIn(int team)
     {
         this.IsPlayer = false;
-        this.DecorateSignedIn(playerIndex);
+        this.DecorateSignedIn();
         this.SelectedTeam = team;
         this.SignedIn = true;
     }
@@ -177,7 +173,6 @@ public class CharacterPanel : MonoBehaviour
 
     public void SignOut()
     {
-        this.panelHostHolders.ForEach(panel => panel.Hide());
         this.characterImage.gameObject.SetActive(false);
         this.characterText.gameObject.SetActive(false);
         //this.teamHolder.gameObject.SetActive(false);
@@ -190,20 +185,6 @@ public class CharacterPanel : MonoBehaviour
         this.KrakenLock = false;
         this.ShipLock = false;
         this.characterIndex = 0;
-    }
-
-    public void ToggleHost(int playerIndex, bool isAdding)
-    {
-
-        if (isAdding)
-        {
-            this.panelHostHolders[playerIndex].Decorate(playerIndex);
-
-        }
-        else
-        {
-            this.panelHostHolders[playerIndex].Hide();
-        }
     }
 
     public void ChangeTeam() {
@@ -278,12 +259,11 @@ public class CharacterPanel : MonoBehaviour
         };
     }
 
-    private void DecorateSignedIn(int playerIndex)
+    private void DecorateSignedIn()
     {
         this.characterText.gameObject.SetActive(true);
         this.characterImage.gameObject.SetActive(true);
         //this.teamHolder.gameObject.SetActive(true);
-        this.ToggleHost(playerIndex, true);
         this.status.text = this.IsPlayer ? ("Player " + (playerIndex+1)) : "Bot";
         this.ChangeCharacter(0);
     }
