@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4706723330414046}
   - component: {fileID: 33280805907269816}
   - component: {fileID: 23862416051091406}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 33707854444273380}
   - component: {fileID: 23418940194816372}
   - component: {fileID: 64009843427031388}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: east_border_island1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 33165710766712470}
   - component: {fileID: 23094677144458668}
   - component: {fileID: 64601678429992134}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: west_border_island1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 33187102243942878}
   - component: {fileID: 23255146707046978}
   - component: {fileID: 64023912997685034}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: south_border_island1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 4177843264396122}
   - component: {fileID: 33882228522497342}
   - component: {fileID: 23576572500106266}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Flag.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4656271263718938}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,6 +210,22 @@ GameObject:
   m_Layer: 5
   m_Name: winstate2
   m_TagString: ScoringZone
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1052342353991452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4187067336725994}
+  - component: {fileID: 64104124824560704}
+  m_Layer: 31
+  m_Name: CameraCollider
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,7 +275,7 @@ GameObject:
   - component: {fileID: 4444896357024976}
   - component: {fileID: 33615803264213688}
   - component: {fileID: 23094313820880896}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Trees_polySurface2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +292,7 @@ GameObject:
   - component: {fileID: 4459660057929896}
   - component: {fileID: 33837316633503108}
   - component: {fileID: 23547178552077098}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: FlagFBXASC046001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +355,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4793144879982270}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +370,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4674480220677416}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +387,7 @@ GameObject:
   - component: {fileID: 4590036324600948}
   - component: {fileID: 33525443322211914}
   - component: {fileID: 23398276289507232}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,7 +436,7 @@ GameObject:
   - component: {fileID: 4610320984650418}
   - component: {fileID: 33228338516232146}
   - component: {fileID: 23273422805530898}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +472,7 @@ GameObject:
   - component: {fileID: 33891638030480250}
   - component: {fileID: 23317853507196388}
   - component: {fileID: 64415927450152490}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: west_border_island4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +489,7 @@ GameObject:
   - component: {fileID: 4361102995692896}
   - component: {fileID: 33932265422464620}
   - component: {fileID: 23204367581874484}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +539,7 @@ GameObject:
   - component: {fileID: 33099396122768656}
   - component: {fileID: 23319215329040622}
   - component: {fileID: 64267761462966006}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: south_border_island4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +557,7 @@ GameObject:
   - component: {fileID: 33729325761776134}
   - component: {fileID: 23298812205671752}
   - component: {fileID: 64377727159154300}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: east_border_island2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -581,7 +597,7 @@ GameObject:
   - component: {fileID: 33754133888361278}
   - component: {fileID: 23607996182316874}
   - component: {fileID: 64373101706019100}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: south_border_island2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -631,7 +647,7 @@ GameObject:
   - component: {fileID: 33425986418880076}
   - component: {fileID: 23939074663952554}
   - component: {fileID: 64228962930044986}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +714,7 @@ GameObject:
   - component: {fileID: 4887739373685092}
   - component: {fileID: 33645691458256070}
   - component: {fileID: 23836164155516658}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +729,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4073029639179116}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +747,7 @@ GameObject:
   - component: {fileID: 33065163424775766}
   - component: {fileID: 23832306868199926}
   - component: {fileID: 64960147498517392}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: TropicalSpawn:pCube9_TropicalSpawn:polySurface61_TropicalSpawn:polySurface198_TropicalSpawn:polySurface1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +765,7 @@ GameObject:
   - component: {fileID: 33294334400126136}
   - component: {fileID: 23140580165575688}
   - component: {fileID: 64700113046891454}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: small_island_house
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -764,7 +780,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4547463158844184}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: north_border_island3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,7 +797,7 @@ GameObject:
   - component: {fileID: 4363638951295522}
   - component: {fileID: 33235354440903614}
   - component: {fileID: 23186829949564214}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +815,7 @@ GameObject:
   - component: {fileID: 33413749479909810}
   - component: {fileID: 23426043219047754}
   - component: {fileID: 64604835526934406}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: burning_village_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,7 +850,7 @@ GameObject:
   - component: {fileID: 33179880468282144}
   - component: {fileID: 23355136622866006}
   - component: {fileID: 64768878754679746}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: north_border_island3_MeshPart0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +950,7 @@ GameObject:
   - component: {fileID: 4387558443878498}
   - component: {fileID: 33571863016492286}
   - component: {fileID: 23815348079714362}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Flag.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -952,7 +968,7 @@ GameObject:
   - component: {fileID: 33615677687047676}
   - component: {fileID: 23207767441098706}
   - component: {fileID: 64492028478074996}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: north_border_island3_MeshPart1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,7 +1046,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4768176387476158}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: TropicalLand_05_Trees (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1064,7 @@ GameObject:
   - component: {fileID: 33313309214419604}
   - component: {fileID: 23465984333649834}
   - component: {fileID: 64115909144459238}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: pillar_bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1083,7 +1099,7 @@ GameObject:
   - component: {fileID: 33015080451969868}
   - component: {fileID: 23655386347015852}
   - component: {fileID: 64982012389769486}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: small_shipwreck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1202,7 @@ GameObject:
   - component: {fileID: 33498524583805806}
   - component: {fileID: 23870054195838136}
   - component: {fileID: 64306118739606964}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1236,7 +1252,7 @@ GameObject:
   - component: {fileID: 4388303185299870}
   - component: {fileID: 33302066587778140}
   - component: {fileID: 23063259394884486}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1254,7 +1270,7 @@ GameObject:
   - component: {fileID: 33088698779529950}
   - component: {fileID: 23470645084255754}
   - component: {fileID: 64014802304446142}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1301,7 +1317,7 @@ GameObject:
   - component: {fileID: 4183438452633450}
   - component: {fileID: 33708702885548454}
   - component: {fileID: 23413394102462102}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1369,7 +1385,7 @@ GameObject:
   - component: {fileID: 4999586128640202}
   - component: {fileID: 33720866759753620}
   - component: {fileID: 23538399564544856}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1387,7 +1403,7 @@ GameObject:
   - component: {fileID: 33524554790815510}
   - component: {fileID: 23630990061776442}
   - component: {fileID: 64444066497746658}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: burning_village_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1421,7 +1437,7 @@ GameObject:
   - component: {fileID: 33912635086799262}
   - component: {fileID: 23425862228640090}
   - component: {fileID: 64171355142995512}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: valhalla_sign_shipwreck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1469,7 +1485,7 @@ GameObject:
   - component: {fileID: 33279414536696988}
   - component: {fileID: 23597202318121642}
   - component: {fileID: 64470777178214086}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: viking_ship_bridge_island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1520,7 +1536,7 @@ GameObject:
   - component: {fileID: 4849419736657134}
   - component: {fileID: 33699361656372802}
   - component: {fileID: 23337256003464348}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,7 +1605,7 @@ GameObject:
   - component: {fileID: 33066455198378044}
   - component: {fileID: 23596328336497608}
   - component: {fileID: 64499256811462016}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: west_border_island2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1606,7 +1622,7 @@ GameObject:
   - component: {fileID: 4817074343509272}
   - component: {fileID: 33320946886255576}
   - component: {fileID: 23810964464018286}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1653,7 +1669,7 @@ GameObject:
   - component: {fileID: 4974502394430294}
   - component: {fileID: 33090856982384686}
   - component: {fileID: 23938817671615828}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: polySurface6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1707,12 +1723,30 @@ GameObject:
   - component: {fileID: 33661295442801546}
   - component: {fileID: 23968706500236310}
   - component: {fileID: 64346064745512712}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: arch_hallway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1480010103534062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4899324171347580}
+  - component: {fileID: 33009388213862578}
+  - component: {fileID: 23788620316810036}
+  - component: {fileID: 114740714352035100}
+  m_Layer: 30
+  m_Name: NavMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1480159594850498
 GameObject:
@@ -1741,7 +1775,7 @@ GameObject:
   - component: {fileID: 4621324434151278}
   - component: {fileID: 33776073282073042}
   - component: {fileID: 23852474366857546}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1793,7 +1827,7 @@ GameObject:
   - component: {fileID: 4708513073389130}
   - component: {fileID: 33393445984440700}
   - component: {fileID: 23385372010276804}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1812,7 +1846,7 @@ GameObject:
   - component: {fileID: 23105267286794200}
   - component: {fileID: 136278537381808964}
   - component: {fileID: 135827155048595828}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Island_subsurf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1925,7 +1959,7 @@ GameObject:
   - component: {fileID: 4216178625268970}
   - component: {fileID: 33583205828897272}
   - component: {fileID: 23804602050323478}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2007,7 +2041,7 @@ GameObject:
   - component: {fileID: 4830170072345834}
   - component: {fileID: 33828123845524384}
   - component: {fileID: 23207372841706534}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2024,7 +2058,7 @@ GameObject:
   - component: {fileID: 4121351584874298}
   - component: {fileID: 33268303521894894}
   - component: {fileID: 23935470201452384}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2058,7 +2092,7 @@ GameObject:
   - component: {fileID: 4024155657193972}
   - component: {fileID: 33070344806190928}
   - component: {fileID: 23437742097137650}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2075,7 +2109,7 @@ GameObject:
   - component: {fileID: 4890978473136188}
   - component: {fileID: 33326540897678762}
   - component: {fileID: 23823345566019098}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2108,7 +2142,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4384448567613164}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2159,7 +2193,7 @@ GameObject:
   - component: {fileID: 4608212962135580}
   - component: {fileID: 33922723822235640}
   - component: {fileID: 23527369122417324}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2294,7 +2328,7 @@ GameObject:
   - component: {fileID: 64160048980555886}
   - component: {fileID: 65424748221415006}
   - component: {fileID: 65133750016778918}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: arch_mast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2311,7 +2345,7 @@ GameObject:
   - component: {fileID: 4124312807091926}
   - component: {fileID: 33919768723924502}
   - component: {fileID: 23394584551696316}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: polySurface1_Trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2364,7 +2398,7 @@ GameObject:
   - component: {fileID: 33897740248378554}
   - component: {fileID: 23321948893570636}
   - component: {fileID: 64538292679501270}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: pillar_wreck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2379,7 +2413,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4200446378261838}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: viking_map_valhalla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2394,7 +2428,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4315822201720694}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: SpawnTower_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2411,7 +2445,7 @@ GameObject:
   - component: {fileID: 4553194280089090}
   - component: {fileID: 33015611911983852}
   - component: {fileID: 23005897809395202}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2429,7 +2463,7 @@ GameObject:
   - component: {fileID: 33212911537896404}
   - component: {fileID: 23277451427449174}
   - component: {fileID: 64645933286502856}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: burning_village_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2447,7 +2481,7 @@ GameObject:
   - component: {fileID: 33878525255035222}
   - component: {fileID: 23111039888044000}
   - component: {fileID: 64281812645004320}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: TropicalSpawn:pCube9_TropicalSpawn:polySurface61_TropicalSpawn:polySurface198_TropicalSpawn:polySurface1
     (3)
   m_TagString: Untagged
@@ -2562,7 +2596,7 @@ GameObject:
   - component: {fileID: 4556132790075850}
   - component: {fileID: 33167342126941546}
   - component: {fileID: 23934948474917294}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: TropicalLand_06:pCylinder2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2580,7 +2614,7 @@ GameObject:
   - component: {fileID: 33665709629943792}
   - component: {fileID: 23711364549139438}
   - component: {fileID: 64709646387769158}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: tower_island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2598,7 +2632,7 @@ GameObject:
   - component: {fileID: 33041446939656930}
   - component: {fileID: 23936064080892284}
   - component: {fileID: 64524877524943516}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: west_border_island5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2616,7 +2650,7 @@ GameObject:
   - component: {fileID: 33432596302602952}
   - component: {fileID: 23195465656998234}
   - component: {fileID: 64271868931579750}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: north_border_island2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2668,7 +2702,7 @@ GameObject:
   - component: {fileID: 4020436519792256}
   - component: {fileID: 33480740933671702}
   - component: {fileID: 23931836683969344}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2751,7 +2785,7 @@ GameObject:
   - component: {fileID: 33184398519644790}
   - component: {fileID: 23419452450728056}
   - component: {fileID: 64109345821081396}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: north_border_island1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2786,7 +2820,7 @@ GameObject:
   - component: {fileID: 33336943998492300}
   - component: {fileID: 23747730200304652}
   - component: {fileID: 64009991317135844}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: small_shipwreck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2819,7 +2853,7 @@ GameObject:
   - component: {fileID: 33987409664097428}
   - component: {fileID: 23238043051966944}
   - component: {fileID: 64973194822325788}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: shipwreck_island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2937,7 +2971,7 @@ GameObject:
   - component: {fileID: 33949260107521346}
   - component: {fileID: 23377806379401094}
   - component: {fileID: 64813109738248480}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: small_island_trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2954,7 +2988,7 @@ GameObject:
   - component: {fileID: 4999313321328830}
   - component: {fileID: 33717631258656064}
   - component: {fileID: 23940522943999854}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2971,7 +3005,7 @@ GameObject:
   - component: {fileID: 4988748107333014}
   - component: {fileID: 33974647076372800}
   - component: {fileID: 23054774298389112}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: FlagFBXASC046001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3034,7 +3068,7 @@ GameObject:
   - component: {fileID: 33602017647481698}
   - component: {fileID: 23271662389898062}
   - component: {fileID: 64550642532517348}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: pillar_wreck2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3069,7 +3103,7 @@ GameObject:
   - component: {fileID: 33879396548283614}
   - component: {fileID: 23829304930020696}
   - component: {fileID: 64936649520562014}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: centerpiece_valhalla_gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3086,7 +3120,7 @@ GameObject:
   - component: {fileID: 4307789986952266}
   - component: {fileID: 33505759768576408}
   - component: {fileID: 23003163761159624}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3116,7 +3150,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4087636164890510}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: TropicalLand_05_Trees (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3134,7 +3168,7 @@ GameObject:
   - component: {fileID: 33663517430270410}
   - component: {fileID: 23339686504321204}
   - component: {fileID: 64266953894225562}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: east_border_island3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3151,7 +3185,7 @@ GameObject:
   - component: {fileID: 4582527401249348}
   - component: {fileID: 33381350127141674}
   - component: {fileID: 23451735215897294}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3169,7 +3203,7 @@ GameObject:
   - component: {fileID: 33799975759960904}
   - component: {fileID: 23282662218805952}
   - component: {fileID: 64442430607135396}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: west_border_island3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3186,7 +3220,7 @@ GameObject:
   - component: {fileID: 4814461124799122}
   - component: {fileID: 33537512417661654}
   - component: {fileID: 23472523156893140}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Flag.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3218,7 +3252,7 @@ GameObject:
   - component: {fileID: 4002004136821218}
   - component: {fileID: 33040496764246912}
   - component: {fileID: 23336348006685380}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3252,7 +3286,7 @@ GameObject:
   - component: {fileID: 4133893849958290}
   - component: {fileID: 33246510799463710}
   - component: {fileID: 23557665035686296}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: PalmTree_01 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3284,7 +3318,7 @@ GameObject:
   - component: {fileID: 4569058335754372}
   - component: {fileID: 33155779987477344}
   - component: {fileID: 23208637966416398}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: polySurface1_Trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3333,7 +3367,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4884119581320130}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: SpawnTower_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3351,7 +3385,7 @@ GameObject:
   - component: {fileID: 33967588902233678}
   - component: {fileID: 23406035794197604}
   - component: {fileID: 64264829367675950}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: south_border_island3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3567,7 +3601,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4724099324780280}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: island
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3604,7 +3638,7 @@ GameObject:
   - component: {fileID: 64457173483446740}
   - component: {fileID: 65163824618350394}
   - component: {fileID: 65147068667113170}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: arch_viking_ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3847,7 +3881,7 @@ Transform:
   - {fileID: 4586033635570888}
   - {fileID: 4124012142004708}
   m_Father: {fileID: 4660107229018890}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4064921558163586
 Transform:
@@ -3914,7 +3948,7 @@ Transform:
   - {fileID: 4347450860376608}
   - {fileID: 4740625505831224}
   m_Father: {fileID: 4660107229018890}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4076919948909232
 Transform:
@@ -4257,6 +4291,19 @@ Transform:
   m_Father: {fileID: 4768176387476158}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0.23300001, y: -108.227005, z: -3.7070003}
+--- !u!4 &4187067336725994
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1052342353991452}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.3, y: -0, z: -1.3}
+  m_LocalScale: {x: 1401, y: 1498, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4660107229018890}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4200446378261838
 Transform:
   m_ObjectHideFlags: 1
@@ -4301,7 +4348,7 @@ Transform:
   - {fileID: 4540328405429678}
   - {fileID: 4831956173366686}
   m_Father: {fileID: 4660107229018890}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4212676353582504
 Transform:
@@ -4526,7 +4573,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1965752682720438}
-  m_LocalRotation: {x: 0.029620202, y: -0.27371392, z: 0.5276136, w: 0.80363387}
+  m_LocalRotation: {x: 0.029620199, y: -0.2737139, z: 0.5276135, w: 0.80363375}
   m_LocalPosition: {x: -6.1451774, y: 199.55864, z: -7.2186747}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4723,7 +4770,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4660107229018890}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -49.03, y: -30, z: 0}
 --- !u!4 &4361102995692896
 Transform:
@@ -5272,7 +5319,7 @@ Transform:
   - {fileID: 4452900419968632}
   - {fileID: 4897766549433554}
   m_Father: {fileID: 4660107229018890}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4556132790075850
 Transform:
@@ -5588,12 +5635,14 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4899324171347580}
   - {fileID: 4059220589530108}
   - {fileID: 4555041839646626}
   - {fileID: 4977742027992236}
   - {fileID: 4355383596873602}
   - {fileID: 4200446378261838}
   - {fileID: 4076444124902290}
+  - {fileID: 4187067336725994}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6373,6 +6422,19 @@ Transform:
   m_Father: {fileID: 4555041839646626}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: -107.5058, z: 1.1029999}
+--- !u!4 &4899324171347580
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480010103534062}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.052891, y: -0.49198532, z: -4.6123276}
+  m_LocalScale: {x: 18.86702, y: 45.12563, z: 13.784494}
+  m_Children: []
+  m_Father: {fileID: 4660107229018890}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4907447005768524
 Transform:
   m_ObjectHideFlags: 1
@@ -6543,7 +6605,7 @@ Transform:
   m_Children:
   - {fileID: 4644952026894794}
   m_Father: {fileID: 4660107229018890}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -40, z: 0}
 --- !u!4 &4978713590501260
 Transform:
@@ -9051,6 +9113,40 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23788620316810036
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480010103534062}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23800750558274702
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -10003,6 +10099,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!33 &33009388213862578
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480010103534062}
+  m_Mesh: {fileID: 4300006, guid: ba6a41dc489914734857bb5924eb70ad, type: 3}
 --- !u!33 &33015080451969868
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -10760,6 +10863,20 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300044, guid: 222f782c0a80144f09da41fbebd96246, type: 3}
+--- !u!64 &64104124824560704
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1052342353991452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300028, guid: 010ee2d4d56d10543b702d3e5fcd9dcb, type: 3}
 --- !u!64 &64109345821081396
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -12413,6 +12530,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d57f9c6bf17f454fb30472ba43b55d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114740714352035100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480010103534062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 1073741846
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.17666666
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 23800000, guid: 9c765582a23454716bb0643b15502a6b, type: 2}
 --- !u!114 &114806104011094094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12603,7 +12748,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0.060062014, z: 0.06}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 6.275004, y: 0.3254764, z: -5.258205}
+  m_ConnectedAnchor: {x: 6.275004, y: 0.3256986, z: -5.258205}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
