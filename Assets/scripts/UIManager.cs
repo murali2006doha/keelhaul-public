@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
     public GameObject finishText;
     public GameObject colorTint;
     public GameObject worldSpace;
-	public StatsModal statsModal;
+    
     Image boostBarPanel;
 	bool x = true;
     private int playerNum = 1;
@@ -90,7 +90,6 @@ public class UIManager : MonoBehaviour
     }
     void Start()
     {
-		statsModal.gameObject.SetActive (false);
         barrelObj = GameObject.FindObjectOfType<Barrel>();
         if (barrelObj)
         {
@@ -418,23 +417,6 @@ public class UIManager : MonoBehaviour
         killFeed.text = killFeed.text.Substring(killFeed.text.IndexOf("\n")+1);
     }
 
-
-	public void InitializeStatsScreen(AbstractGameManager gm, PlayerInput input) {
-		if (x) {
-			statsModal.gameObject.SetActive (true);
-			statsModal.InitializeStats ();
-			x = false;
-		}
-	}
-
-
-	public void SetOffStatsScreen() {
-		if (statsModal.gameObject.activeSelf) {
-			statsModal.ClearStats ();
-			statsModal.gameObject.SetActive (false);
-			x = true;
-		}
-	}
 
     internal void AddBarrelScoreToKillFeed(string player, string ship)
     {
