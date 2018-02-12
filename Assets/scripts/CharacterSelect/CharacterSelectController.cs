@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using System.Linq;
 
 public class CharacterSelectController : MonoBehaviour {
 
@@ -34,16 +35,22 @@ public class CharacterSelectController : MonoBehaviour {
 
     [SerializeField]
     private GameObject playableStatus;
+    
+    [SerializeField]
+    private GameObject botView;
+    
+    [SerializeField]
+    private CharacterPanel botPanel;
 
     int numPlayers = 4;
     public List<PlayerActions> players = new List<PlayerActions>();
-    Dictionary<PlayerActions, int> playerToPos = new Dictionary<PlayerActions, int>();
     Dictionary<CharacterPanel,PlayerActions> panelToPlayer = new Dictionary<CharacterPanel,PlayerActions>();
     private bool playable;
     public UnityAction onTranstionToMainMenu;
     private bool onCharacterSelect = true;
     private GameTypeEnum gameType;
     PlayerActions allPlayers;
+    PlayerActions botController;
     int panelCount = 4;
 
     private void Start()
@@ -67,6 +74,7 @@ public class CharacterSelectController : MonoBehaviour {
             panelCount = 4;
             this.panels[this.panels.Count - 1].gameObject.SetActive(true);
             this.panels.ForEach(panel => panel.Initialize(this.characterDMPanelSprites, GlobalVariables.CharactersForDeathMatch()));
+            this.botPanel.Initialize(this.characterDMPanelSprites, GlobalVariables.CharactersForDeathMatch());
             this.mapView.Initialize(this.gameType, mapEnum =>
             {
                 this.BuildDMPlayerSettings(mapEnum);
@@ -76,6 +84,7 @@ public class CharacterSelectController : MonoBehaviour {
         {
             panelCount = 3;
             this.panels[this.panels.Count - 1].gameObject.SetActive(false);
+            this.botPanel.Initialize(this.characterSABPanelSprites, GlobalVariables.CharactersForSabotage());
             this.panels.ForEach(panel => panel.Initialize(this.characterSABPanelSprites, GlobalVariables.CharactersForSabotage()));
             this.mapView.Initialize(this.gameType, mapEnum =>
             {
@@ -100,7 +109,6 @@ public class CharacterSelectController : MonoBehaviour {
 
     private void Reset()
     {
-        playerToPos.Clear();
         panelToPlayer.Clear();
         players.Clear();
         foreach (CharacterPanel p in panels)
@@ -128,11 +136,55 @@ public class CharacterSelectController : MonoBehaviour {
     private void UpdatePlayerController(PlayerActions player)
     {
 
-        if (this.onCharacterSelect) {
-            this.UpdateCharacterSelect(player);
-        } else
+        if (this.botView.activeSelf)
         {
+            this.UpdateBotSelect(this.botController);
+        }
+        
+        else if (this.onCharacterSelect) {
+            this.UpdateCharacterSelect(player);
+        }
+
+        else {
             this.UpdateMapSelect(player);
+        }
+    }
+
+    private void UpdateBotSelect(PlayerActions player)
+    {
+        if (player.Up.WasReleased)
+        {
+            botPanel.ChangeCharacter(-1);
+        }
+
+        if (player.Down.WasReleased)
+        {
+            botPanel.ChangeCharacter(1);
+        }
+        
+        if (player.Yellow.WasReleased && gameType == GameTypeEnum.DeathMatch)
+        {
+            botPanel.ChangeTeam();
+        }
+
+
+        if (player.Green.WasReleased & (!(botPanel.OnLockedKraken() || botPanel.OnLockedShip())))
+        {
+            botPanel.CharacterSelected = true;
+            var panelToRegister = this.panels[GetFirstAvailablePanel()];
+            panelToRegister.BotSignIn(botPanel.SelectedTeam);
+            panelToRegister.CharacterSelected = true;
+            panelToRegister.characterIndex = botPanel.characterIndex;
+            
+            botPanel.SignOut();
+            botView.SetActive(false);
+            this.LockCharactersForSabotage();
+        }
+
+        if (player.Red.WasReleased)
+        {
+            botPanel.SignOut();
+            botView.SetActive(false);
         }
     }
 
@@ -146,85 +198,80 @@ public class CharacterSelectController : MonoBehaviour {
                 this.TransitionToMapSelect();
             }
 
-            int playerPosition = playerToPos[player];
-            var panel = this.panels[playerPosition];
+            CharacterPanel panel = null;
+            foreach (var kvp in panelToPlayer.Keys)
+            {
+                if (panelToPlayer[kvp] == player)
+                {
+                    panel = kvp;
+                }
+            }
+            
+
             int playerIndex = this.players.IndexOf(player);
 
-            if (player.Left.WasReleased)
+            bool canAddBot = this.panels.Exists(freePanel => !freePanel.SignedIn);
+            if (player.Blue.WasReleased && canAddBot)
             {
-                panel.ToggleHost(playerIndex, false);
-                playerToPos[player] = playerToPos[player] - 1 < 0 ? panelCount-1 : playerToPos[player] - 1;
-                this.panels[playerToPos[player]].ToggleHost(playerIndex, true);
-            }
-            else if (player.Right.WasReleased)
-            {
-
-                panel.ToggleHost(playerIndex, false);
-                playerToPos[player] = Math.Abs(playerToPos[player] + 1) % panelCount;
-                this.panels[playerToPos[player]].ToggleHost(playerIndex, true);
-            }
-
-
-
-            if (player.Blue.WasReleased)
-            {
-                if (!this.panels[playerPosition].SignedIn)
-                {
-                    //panels[playerToPos[player]].SignIn(false, playerIndex);
-                    panels[playerToPos[player]].BotSignIn(playerIndex, GetFirstAvailablePanel());
-                }
-
+                this.botView.SetActive(true);
+                this.botController = player;
+                this.botPanel.BotSignIn(this.GetFirstAvailablePanel());
 
             }
 
-            if ((panelToPlayer.ContainsKey(panel) && player == panelToPlayer[panel]) || (!panel.IsPlayer && panel.SignedIn))
+            if (player.Boost.WasReleased)
             {
-                if (player.Red.WasReleased)
+                int indexToRemove = this.GetLastAddedBotPanel();
+
+                if (indexToRemove > -1)
                 {
-                    if (panel.CharacterSelected)
-                    {
-                        panel.CharacterSelected = false;
-                        if(gameType == GameTypeEnum.Sabotage)
-                            UnlockCharactersForSabotage(panel);
-                        this.UpdatePlayableStatus();
-                    }
-                    else
-                    {
-                        if (panel.IsPlayer)
-                        {
-                            panelToPlayer.Remove(panel);
-                            playerToPos.Remove(player);
-                        }
-
-                        panel.SignOut();
-
-
-                    }
+                    this.panels[indexToRemove].SignOut();
                 }
 
-                if (player.Yellow.WasReleased && gameType == GameTypeEnum.DeathMatch)
-                {
-                    panel.ChangeTeam();
-                }
+            }
 
-                if (player.Green.WasReleased & (!(panel.OnLockedKraken() || panel.OnLockedShip()))) 
+            if (player.Red.WasReleased)
+            {
+                if (panel.CharacterSelected)
                 {
-                    panel.CharacterSelected = true;
-                    if (gameType == GameTypeEnum.Sabotage)
-                        LockCharactersForSabotage();
+                    panel.CharacterSelected = false;
+                    if(gameType == GameTypeEnum.Sabotage)
+                        UnlockCharactersForSabotage(panel);
                     this.UpdatePlayableStatus();
-
                 }
-
-                if (player.Up.WasReleased)
+                else
                 {
-                    panel.ChangeCharacter(-1);
-                }
+                    if (panel.IsPlayer)
+                    {
+                        panelToPlayer.Remove(panel);
+                    }
 
-                if (player.Down.WasReleased)
-                {
-                    panel.ChangeCharacter(1);
+                    panel.SignOut();
                 }
+            }
+
+            if (player.Yellow.WasReleased && gameType == GameTypeEnum.DeathMatch)
+            {
+                panel.ChangeTeam();
+            }
+
+            if (player.Green.WasReleased & (!(panel.OnLockedKraken() || panel.OnLockedShip()))) 
+            {
+                panel.CharacterSelected = true;
+                if (gameType == GameTypeEnum.Sabotage)
+                    LockCharactersForSabotage();
+                this.UpdatePlayableStatus();
+
+            }
+
+            if (player.Up.WasReleased)
+            {
+                panel.ChangeCharacter(-1);
+            }
+
+            if (player.Down.WasReleased)
+            {
+                panel.ChangeCharacter(1);
             }
         }
 
@@ -260,23 +307,19 @@ public class CharacterSelectController : MonoBehaviour {
 
     public void SignIn(PlayerActions player)
     {
-
-        if (!playerToPos.ContainsKey(player) && playerToPos.Count < numPlayers)
+        int firstAvailablePanelIndex = GetFirstAvailablePanel();
+        if (firstAvailablePanelIndex == -1)
         {
-            int firstAvailablePanelIndex = GetFirstAvailablePanel();
-            if (firstAvailablePanelIndex == -1 && playerToPos.Count < panelCount)
-            {
-                firstAvailablePanelIndex = GetFirstAvailableBotPanel();
-                panels[firstAvailablePanelIndex].SignOut();
-            }
-           
-            playerToPos.Add(player, firstAvailablePanelIndex);
-            panelToPlayer.Add(panels[firstAvailablePanelIndex], player);
-            panels[firstAvailablePanelIndex].SignIn(true, playerToPos.Count-1);
+            firstAvailablePanelIndex = GetFirstAvailableBotPanel();
+            panels[firstAvailablePanelIndex].SignOut();
         }
-
-
+           
+        panelToPlayer.Add(panels[firstAvailablePanelIndex], player);
+        panels[firstAvailablePanelIndex].SignIn(true, firstAvailablePanelIndex);
     }
+
+
+    
 
 
     public void AddToPlayers(PlayerActions player)
@@ -331,6 +374,11 @@ public class CharacterSelectController : MonoBehaviour {
 
     private void LockCharactersForSabotage()
     {
+
+        if (this.gameType != GameTypeEnum.Sabotage)
+        {
+            return;
+        }
         //lock kraken
         bool krakenSelected = this.panels.Filter(p => (p.CharacterSelected && p.IsKraken)).Count == 1;
         if (krakenSelected)
@@ -344,6 +392,8 @@ public class CharacterSelectController : MonoBehaviour {
                 }
             }
 
+            botPanel.KrakenLock = true;
+
         }
         //lock ships
         bool shipsSelected = this.panels.Filter(p => (p.CharacterSelected && !p.IsKraken)).Count == 2;
@@ -352,12 +402,20 @@ public class CharacterSelectController : MonoBehaviour {
             foreach(CharacterPanel p in this.panels.Filter(p2 => (!p2.CharacterSelected))) {
                 p.ShipLock = true; 
             };
+
+            botPanel.ShipLock = true;
         }
             
     }
 
     private void UnlockCharactersForSabotage(CharacterPanel panel)
     {
+        
+        if (this.gameType != GameTypeEnum.Sabotage)
+        {
+            return;
+        }
+        
         if (panel.IsKraken)
         {
             foreach (CharacterPanel p in panels)
@@ -367,6 +425,8 @@ public class CharacterSelectController : MonoBehaviour {
                     p.KrakenLock = false;
                 }
             }
+
+            botPanel.KrakenLock = false;
         }
 
         int ships = this.panels.Filter(p => (p.CharacterSelected && !p.IsKraken)).Count;
@@ -376,6 +436,8 @@ public class CharacterSelectController : MonoBehaviour {
             {
                 temp.ShipLock = false;
             };
+
+            botPanel.ShipLock = false;
         }
     }
 
@@ -408,14 +470,18 @@ public class CharacterSelectController : MonoBehaviour {
 
     private int GetFirstAvailablePanel()
     {
-       return this.panels.FindIndex(panel => !panel.SignedIn);
+        return this.panels.FindIndex(panel => !panel.SignedIn);
     }
 
     private int GetFirstAvailableBotPanel()
     {
         return this.panels.FindIndex(panel => !panel.IsPlayer);
     }
-
+    
+    private int GetLastAddedBotPanel()
+    {
+        return this.panels.FindLastIndex(panel => !panel.IsPlayer && panel.SignedIn);
+    }
     private void BuildDMPlayerSettings(MapEnum mapEnum) {
 
         var ps = GameObject.FindObjectOfType<PlayerSelectSettings>();
