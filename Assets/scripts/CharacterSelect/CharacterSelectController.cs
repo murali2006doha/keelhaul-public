@@ -50,6 +50,7 @@ public class CharacterSelectController : MonoBehaviour {
     private bool onCharacterSelect = true;
     private GameTypeEnum gameType;
     PlayerActions allPlayers;
+    PlayerActions botController;
     int panelCount = 4;
 
     private void Start()
@@ -137,7 +138,7 @@ public class CharacterSelectController : MonoBehaviour {
 
         if (this.botView.activeSelf)
         {
-            this.UpdateBotSelect(player);
+            this.UpdateBotSelect(this.botController);
         }
         
         else if (this.onCharacterSelect) {
@@ -213,6 +214,7 @@ public class CharacterSelectController : MonoBehaviour {
             if (player.Blue.WasReleased && canAddBot)
             {
                 this.botView.SetActive(true);
+                this.botController = player;
                 this.botPanel.BotSignIn(this.GetFirstAvailablePanel());
 
             }
