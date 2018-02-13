@@ -115,7 +115,7 @@ public abstract class AbstractMenu : MonoBehaviour
     }
 
 
-    bool AnyInputEnterWasReleased() {
+    public bool AnyInputEnterWasReleased() {
         if (actions !=null && actions.Green.WasReleased) {
             return true;
         }

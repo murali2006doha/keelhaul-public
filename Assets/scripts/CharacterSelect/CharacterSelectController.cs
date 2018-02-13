@@ -127,7 +127,7 @@ public class CharacterSelectController : MonoBehaviour {
         {
             UpdatePlayerController(player);
         }
-        if(panelToPlayer.Count == 0 && allPlayers.Red.WasPressed)
+        if(panelToPlayer.Count == 0 && allPlayers.Red.WasReleased)
         {
             this.TransitionToMainMenu();
         }
