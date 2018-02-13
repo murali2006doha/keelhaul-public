@@ -12,7 +12,6 @@ public class BombComponent : MonoBehaviour {
     float blinkTime;
 
     public GameObject largeBombZone;
-    public GameObject smallBombZone;
     public GameObject bombModel;
 
     //these are all the animations involved
@@ -54,20 +53,19 @@ public class BombComponent : MonoBehaviour {
     public IEnumerator ActivateBomb() {
 
         startSound (fuseSound);
-        smallBombZone.SetActive (false);
-        largeBombZone.SetActive (true);
+        //largeBombZone.SetActive (true);
 
-        for(int i = 0; i < blinks; i++){ //blinks when activated
-            largeBombZone.GetComponent<Renderer> ().material.color = Color.white;
-            bombModel.GetComponent<Renderer> ().material.color = Color.white;
-            yield return new WaitForSeconds(blinkTime);
-            largeBombZone.GetComponent<Renderer> ().material.color = Color.yellow;
-            bombModel.GetComponent<Renderer> ().material.color = Color.red;
-            yield return new WaitForSeconds(blinkTime);
-        }
+        //for(int i = 0; i < blinks; i++){ //blinks when activated
+        //    largeBombZone.GetComponent<Renderer> ().material.color = Color.white;
+        //    bombModel.GetComponent<Renderer> ().material.color = Color.white;
+        //    yield return new WaitForSeconds(blinkTime);
+        //    largeBombZone.GetComponent<Renderer> ().material.color = Color.yellow;
+        //    bombModel.GetComponent<Renderer> ().material.color = Color.red;
+        //    yield return new WaitForSeconds(blinkTime);
+        //}
 
-        //explode!
-        Destroy (largeBombZone);            //destroy the parameter zone
+        ////explode!
+        //Destroy (largeBombZone);            //destroy the parameter zone
 
         if (GetComponent<PhotonView>().isMine) {
             startSound (explosionSound);
