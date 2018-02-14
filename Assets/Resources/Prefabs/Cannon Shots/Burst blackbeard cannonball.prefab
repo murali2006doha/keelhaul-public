@@ -828,7 +828,7 @@ MonoBehaviour:
   shieldHit: {fileID: 1701858947685462, guid: 2d11297b6fb6a4725865ea9349f2f68e, type: 2}
   splash: {fileID: 1882772391095456, guid: 56d7a42a4d0e54460b1a83e5d0595560, type: 2}
   kraken: {fileID: 0}
-  gravity: -10
+  gravity: -5.2
   force: 0
   reflectForce: 200
   reflectMult: 1
