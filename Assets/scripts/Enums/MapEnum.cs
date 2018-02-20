@@ -17,7 +17,6 @@ public class MapTypeHelper
 
     public static List<MapEnum> GetDeathMatchOfflineMaps() {
         List<MapEnum> maps = new List<MapEnum>();
-        maps.Add(MapEnum.LevelUp); //no image for this yet
         maps.Add(MapEnum.BlackMarket);
 		maps.Add(MapEnum.TropicalMapFinal);
         maps.Add(MapEnum.VikingMap);

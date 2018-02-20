@@ -1155,6 +1155,7 @@ MonoBehaviour:
   normalZoomValue: 3.25
   duration: 2
   magnitude: 0.5
+  groundDistance: 10
   blurEffect: {fileID: 0}
 --- !u!114 &11478538
 MonoBehaviour:

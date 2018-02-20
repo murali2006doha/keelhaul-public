@@ -65,22 +65,22 @@ public static class NavigationUtils {
     	
     }
 
-    static bool AnyInputUpWasReleased(PlayerActions actions) {
+    public static bool AnyInputUpWasReleased(PlayerActions actions) {
         return (actions.Up.WasPressed || (actions.Up.RawValue > 0.9 && actions.Up.WasRepeated));
  
     }
 
-    static bool AnyInputDownWasReleased(PlayerActions actions) {
+    public static bool AnyInputDownWasReleased(PlayerActions actions) {
         return (actions.Down.WasPressed || actions.Down.RawValue > 0.9 && actions.Down.WasRepeated);
     }
 
 
-    static bool AnyInputRightWasReleased(PlayerActions actions) {
+    public static bool AnyInputRightWasReleased(PlayerActions actions) {
         return actions.Right.RawValue > 0.9 && (actions.Right.WasPressed || actions.Right.WasRepeated);
     }
 
 
-    static bool AnyInputLeftWasReleased(PlayerActions actions) {
+    public static bool AnyInputLeftWasReleased(PlayerActions actions) {
         return actions.Left.RawValue > 0.9 && (actions.Left.WasPressed ||  actions.Left.WasRepeated);
     }
 
