@@ -138,10 +138,8 @@ public class MapSelectView : MonoBehaviour {
         //TODO: needs some indication of 'randomness'
         if (this.SelectedMap == MapEnum.Random)
         {
-            maps.Remove(MapEnum.Random);
-            int random = UnityEngine.Random.Range(0, this.maps.Count - 1);
+            int random = UnityEngine.Random.Range(0, this.maps.Count - 2);
             SelectedMap = this.maps[random];
-            yield return new WaitForSeconds(3);
         }
 
         //set map
