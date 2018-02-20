@@ -46,6 +46,7 @@ public class CharacterSelectController : MonoBehaviour {
     public List<PlayerActions> players = new List<PlayerActions>();
     Dictionary<CharacterPanel,PlayerActions> panelToPlayer = new Dictionary<CharacterPanel,PlayerActions>();
     private bool playable;
+    private bool listeningToInput = true;
     public UnityAction onTranstionToMainMenu;
     private bool onCharacterSelect = true;
     private GameTypeEnum gameType;
@@ -77,7 +78,8 @@ public class CharacterSelectController : MonoBehaviour {
             this.botPanel.Initialize(this.characterDMPanelSprites, GlobalVariables.CharactersForDeathMatch());
             this.mapView.Initialize(this.gameType, mapEnum =>
             {
-                this.BuildDMPlayerSettings(mapEnum);
+              this.listeningToInput = false;
+              this.BuildDMPlayerSettings(mapEnum);
             });
         }
         else if (gameType == GameTypeEnum.Sabotage)
@@ -88,7 +90,8 @@ public class CharacterSelectController : MonoBehaviour {
             this.panels.ForEach(panel => panel.Initialize(this.characterSABPanelSprites, GlobalVariables.CharactersForSabotage()));
             this.mapView.Initialize(this.gameType, mapEnum =>
             {
-                this.BuildSABPlayerSettings(mapEnum);
+              this.listeningToInput = false;
+              this.BuildSABPlayerSettings(mapEnum);
             });
         }
         else if (gameType == GameTypeEnum.Targets)
@@ -100,7 +103,8 @@ public class CharacterSelectController : MonoBehaviour {
             }
             this.panels.ForEach(panel => panel.Initialize(this.characterTARPanelSprites, GlobalVariables.CharactersForTargets()));
             this.mapView.Initialize(this.gameType, mapEnum => {
-                this.BuildTARPlayerSettings(mapEnum);
+              this.listeningToInput = false;
+              this.BuildTARPlayerSettings(mapEnum);
             });
         }
 
@@ -123,6 +127,10 @@ public class CharacterSelectController : MonoBehaviour {
         
     }
     private void Update () {
+
+      if (!listeningToInput) {
+        return;
+      }
         foreach (PlayerActions player in players)
         {
             UpdatePlayerController(player);
@@ -179,9 +187,11 @@ public class CharacterSelectController : MonoBehaviour {
             botPanel.SignOut();
             botView.SetActive(false);
             this.LockCharactersForSabotage();
-        }
+            this.UpdatePlayableStatus();
 
-        if (player.Red.WasReleased)
+    }
+
+    if (player.Red.WasReleased)
         {
             botPanel.SignOut();
             botView.SetActive(false);
