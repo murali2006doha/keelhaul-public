@@ -26,7 +26,6 @@ public class OfflineSubmenu : AbstractMenu {
     // Update is called once per frame
     void Update()
     {
-        print(modeIndex);
         Navigate();
         panelSprite.sprite = modeToImage.Get(modes[modeIndex].ToString());
         panelText.text = modes[modeIndex].ToString();

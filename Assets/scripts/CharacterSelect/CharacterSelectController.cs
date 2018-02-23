@@ -11,7 +11,6 @@ using System.Linq;
 public class CharacterSelectController : MonoBehaviour {
 
 
-    public List<Text> texts;
     [SerializeField]
     private List<CharacterPanel> panels;
 
@@ -390,7 +389,7 @@ public class CharacterSelectController : MonoBehaviour {
             return;
         }
         //lock kraken
-        bool krakenSelected = this.panels.Filter(p => (p.CharacterSelected && p.IsKraken)).Count == 1;
+        bool krakenSelected = this.panels.Filter(p => (p.CharacterSelected && (p.GetSelectedCharacter() == "Kraken"))).Count == 1;
         if (krakenSelected)
         {
             CharacterPanel kraken = this.panels.Filter(p => (p.CharacterSelected && p.IsKraken))[0];
@@ -406,7 +405,7 @@ public class CharacterSelectController : MonoBehaviour {
 
         }
         //lock ships
-        bool shipsSelected = this.panels.Filter(p => (p.CharacterSelected && !p.IsKraken)).Count == 2;
+        bool shipsSelected = this.panels.Filter(p => (p.CharacterSelected && (p.GetSelectedCharacter() != "Kraken"))).Count == 2;
         if (shipsSelected)
         {
             foreach(CharacterPanel p in this.panels.Filter(p2 => (!p2.CharacterSelected))) {
