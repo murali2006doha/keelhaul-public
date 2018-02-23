@@ -21,12 +21,6 @@ public class StartGame : MonoBehaviour {
         FindObjectOfType<MenuModel>().mainMenu.gameObject.SetActive (true);
     }
 
-    // Update is called once per frame
-    void Update () { 
-    }
-
-
-
 
     void OpenMenu() {
         if (AnyInputEnterWasReleased() && this.actions != null) {
