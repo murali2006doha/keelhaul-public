@@ -53,7 +53,6 @@ public class CharacterPanel : MonoBehaviour
     {
         if (GameTypeEnum.Sabotage == FindObjectOfType<PlayerSelectSettings>().gameType)
         {
-            print(GetSelectedCharacter() + ": " + IsKraken);
             if (GetSelectedCharacter() == "Kraken") {
                 IsKraken = true;
                 if (SignedIn) SelectedTeam = 0;
