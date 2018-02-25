@@ -261,7 +261,12 @@ public class CharacterPanel : MonoBehaviour
         this.DecorateTeam();
         this.characterText.gameObject.SetActive(true);
         this.characterImage.gameObject.SetActive(true);
-        this.botStatus.enabled = this.IsPlayer ? false : true;
+        this.botStatus.enabled = false;
         this.ChangeCharacter(0);
+    }
+
+
+    public void EnableBotStatus() {
+        this.botStatus.enabled = true;
     }
 }

@@ -182,6 +182,7 @@ public class CharacterSelectController : MonoBehaviour {
             panelToRegister.BotSignIn(botPanel.SelectedTeam);
             panelToRegister.CharacterSelected = true;
             panelToRegister.characterIndex = botPanel.characterIndex;
+            panelToRegister.EnableBotStatus();
             
             botPanel.SignOut();
             botView.SetActive(false);
