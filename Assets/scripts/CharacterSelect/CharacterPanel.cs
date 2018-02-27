@@ -14,10 +14,10 @@ public class CharacterPanel : MonoBehaviour
     private Image characterText;
 
     [SerializeField]
-    private Text status;
+    private Image botStatus;
 
     [SerializeField]
-    private Image glow;
+    private Image teamColor;
 
     [SerializeField]
     private SpriteDictionary characterTypeImages;
@@ -32,7 +32,7 @@ public class CharacterPanel : MonoBehaviour
     private Animator characterSelectAnimator;
 
     [SerializeField] 
-    private ColorDictionary colors;
+    private SpriteDictionary colors;
 
     private SpriteDictionary characterToPanels;
 
@@ -53,8 +53,6 @@ public class CharacterPanel : MonoBehaviour
     {
         if (GameTypeEnum.Sabotage == FindObjectOfType<PlayerSelectSettings>().gameType)
         {
-            //this.teamHolder.gameObject.SetActive(false);
-
             if (GetSelectedCharacter() == "Kraken") {
                 IsKraken = true;
                 if (SignedIn) SelectedTeam = 0;
@@ -66,7 +64,7 @@ public class CharacterPanel : MonoBehaviour
 
         if(GameTypeEnum.Targets == FindObjectOfType<PlayerSelectSettings>().gameType)
         {
-            //this.teamHolder.gameObject.SetActive(false);
+        
         }
 
         RenderImages();
@@ -79,6 +77,7 @@ public class CharacterPanel : MonoBehaviour
         this.characterReferences = characterReferences;
         this.SignOut();
         this.characterToPanels = panelSprites;
+
     }
 
     public int SelectedTeam {
@@ -98,9 +97,7 @@ public class CharacterPanel : MonoBehaviour
         //these things change along with changing teams
         if (GameTypeEnum.Targets != FindObjectOfType<PlayerSelectSettings>().gameType)
         {
-            //this.teamIndicator.text = "Team " + selectedTeam;
-            this.glow.color = this.colors.Get(selectedTeam);
-            
+            this.teamColor.sprite = this.colors.Get(TeamColorHelper.GetColor(selectedTeam).ToString());
         }
     }
 
@@ -157,17 +154,17 @@ public class CharacterPanel : MonoBehaviour
     {
         this.playerIndex = playerIndex;
         this.IsPlayer = isPlayer;
-        this.DecorateSignedIn();
         this.SelectedTeam = team;
         this.SignedIn = true;
+        this.DecorateSignedIn();
     }
 
     public void BotSignIn(int team)
     {
         this.IsPlayer = false;
-        this.DecorateSignedIn();
         this.SelectedTeam = team;
         this.SignedIn = true;
+        this.DecorateSignedIn();
     }
 
 
@@ -175,9 +172,8 @@ public class CharacterPanel : MonoBehaviour
     {
         this.characterImage.gameObject.SetActive(false);
         this.characterText.gameObject.SetActive(false);
-        //this.teamHolder.gameObject.SetActive(false);
-        this.glow.color = Color.black;
-        this.status.text = string.Empty;
+        this.teamColor.gameObject.SetActive(false);
+        this.botStatus.enabled = false;
         this.SignedIn = false;
         this.CharacterSelected = false;
         this.IsPlayer = false;
@@ -261,10 +257,16 @@ public class CharacterPanel : MonoBehaviour
 
     private void DecorateSignedIn()
     {
+        this.teamColor.gameObject.SetActive(true);
+        this.DecorateTeam();
         this.characterText.gameObject.SetActive(true);
         this.characterImage.gameObject.SetActive(true);
-        //this.teamHolder.gameObject.SetActive(true);
-        this.status.text = this.IsPlayer ? ("Player " + (playerIndex+1)) : "Bot";
+        this.botStatus.enabled = false;
         this.ChangeCharacter(0);
+    }
+
+
+    public void EnableBotStatus() {
+        this.botStatus.enabled = true;
     }
 }
