@@ -37,7 +37,6 @@ public class BombControllerComponent : MonoBehaviour {
                 SoundManager.playSound(SoundClipEnum.BombDrop, SoundCategoryEnum.Generic, transform.position);
 				gameStats.numOfBombsPlanted++;
 				decrementBomb ();
-                uiManager.animManager.onBomb();
 				canDropBomb = false;
 
 			} else {

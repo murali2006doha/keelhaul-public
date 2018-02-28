@@ -453,6 +453,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (magnitude > 0 && !isPushed)
         {
+            this.motor.AddPushForce(magnitude, direction);
             if (hookshotComponent.enabled)
             {
                 hookshotComponent.UnHook();
