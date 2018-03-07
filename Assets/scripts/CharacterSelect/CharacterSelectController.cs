@@ -130,6 +130,11 @@ public class CharacterSelectController : MonoBehaviour {
       if (!listeningToInput) {
         return;
       }
+
+    if (this.botView.activeSelf)
+    {
+      this.UpdateBotSelect(this.botController);
+    } else {
         foreach (PlayerActions player in players)
         {
             UpdatePlayerController(player);
@@ -139,16 +144,12 @@ public class CharacterSelectController : MonoBehaviour {
             this.TransitionToMainMenu();
         }
     }
+  }
 
     private void UpdatePlayerController(PlayerActions player)
     {
-
-        if (this.botView.activeSelf)
-        {
-            this.UpdateBotSelect(this.botController);
-        }
         
-        else if (this.onCharacterSelect) {
+        if (this.onCharacterSelect) {
             this.UpdateCharacterSelect(player);
         }
 
@@ -161,12 +162,12 @@ public class CharacterSelectController : MonoBehaviour {
     {
         if (player.Up.WasReleased)
         {
-            botPanel.ChangeCharacter(-1);
+            botPanel.ChangeCharacter(1);
         }
 
         if (player.Down.WasReleased)
         {
-            botPanel.ChangeCharacter(1);
+            botPanel.ChangeCharacter(-1);
         }
         
         if (player.Yellow.WasReleased && gameType == GameTypeEnum.DeathMatch)
@@ -276,12 +277,12 @@ public class CharacterSelectController : MonoBehaviour {
 
             if (player.Up.WasReleased)
             {
-                panel.ChangeCharacter(-1);
+                panel.ChangeCharacter(1);
             }
 
             if (player.Down.WasReleased)
             {
-                panel.ChangeCharacter(1);
+                panel.ChangeCharacter(-1);
             }
         }
 
