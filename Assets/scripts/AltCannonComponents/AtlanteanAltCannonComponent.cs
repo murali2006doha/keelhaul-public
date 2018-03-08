@@ -34,11 +34,13 @@ public class AtlanteanAltCannonComponent : AbstractAltCannonComponent {
     var directionVector = (this.input.transform.position - startingPosition);
     Ray damageRay = new Ray(startingPosition, directionVector.normalized);
     var hits = Physics.RaycastAll(damageRay, directionVector.magnitude, 1 << LayerMask.NameToLayer("player"));
-
+	
+		List<PlayerInput> hitInputs = new List<PlayerInput> ();
     foreach (var hit in hits) {
       var enemy = hit.collider.transform.root.GetComponent<PlayerInput>();
-      if (enemy != null) {
+			if (enemy != null && !hitInputs.Contains(enemy)) {
         enemy.hit(damage, this.input.GetId());
+				hitInputs.Add (enemy);
       }
     }
 

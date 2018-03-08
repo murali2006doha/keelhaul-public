@@ -832,7 +832,7 @@ MonoBehaviour:
   force: 0
   reflectForce: 200
   reflectMult: 1
-  damage: 0.5
+  damage: 1
   pushMagnitude: 0
   reflected: 0
 --- !u!114 &114875051080228418
