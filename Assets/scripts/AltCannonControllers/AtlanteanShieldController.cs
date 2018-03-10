@@ -7,7 +7,7 @@ public class AtlanteanShieldController : MonoBehaviour {
     public float lifeTime;
     public bool protecting;
     public float powerShieldDuration;
-	public bool isReflecting = false;
+	public bool isReflecting = true;
 	PlayerInput ship;
 	public Vector3 offset;
 	float originalSpeed;
@@ -36,7 +36,6 @@ public class AtlanteanShieldController : MonoBehaviour {
 	}
 
 	public void KillSelf() {
-        //ship.centralCannon.DeAmpCannonball();
 		PlayerInput.onHitRegister -= AddToHealth;
         this.protecting = false;
         Invoke("DestroyEffect", effectDisableDelayTime);
@@ -65,8 +64,6 @@ public class AtlanteanShieldController : MonoBehaviour {
             {
                 parent = player.gameObject;
                 ship = player;
-                //ship.centralCannon.AmpUpCannonball();
-                //ship.activateInvincibility();
                 break;
             }
         }

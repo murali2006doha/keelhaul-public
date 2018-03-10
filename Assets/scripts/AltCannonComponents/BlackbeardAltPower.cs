@@ -29,7 +29,7 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
         origSpeed = this.input.motor.getSpeedModifier ();
         origCameraSpeed = this.input.followCamera.followSpeed;
 
-        this.stats.shootDelay = this.stats.shootDelay / altFiringDelayMultiplier;
+        this.stats.shootDelay = this.stats.shootDelay * altFiringDelayMultiplier;
         this.input.motor.setSpeedModifier (this.input.motor.getSpeedModifier () * altSpeedMultiplier);
         this.input.followCamera.followSpeed = this.input.followCamera.followSpeed * altSpeedMultiplier;
         cannons.setDamageMultiplier(altDamageMultiplier);
