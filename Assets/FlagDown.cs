@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class FlagDown : MonoBehaviour {
     public RectTransform rect;
-    float origPosition = 70;
-    float newPosition = -45;
+    public float origPosition = 70;
+    public float newPosition = -45;
+    public float moveDown = -2f;
+    public float moveUp = 90f;
+    public float moveDuration = 0.2f;
 
     bool resetBlocked = false;
     bool useBlocked = false;
@@ -22,16 +25,16 @@ public class FlagDown : MonoBehaviour {
         {
             useBlocked = true;
             this.transform.localPosition = MathHelper.setY(this.transform.localPosition, newPosition);
-            LeanTween.moveLocalY(this.gameObject, 90f, 0.2f).setOnComplete(() => useBlocked = false);
+            LeanTween.moveLocalY(this.gameObject, moveUp, moveDuration).setOnComplete(() => useBlocked = false);
         }
     }
 
     public void ResetAbility()
     {
-        if (!resetBlocked && this.transform.localPosition.y >= 70) {
+        if (!resetBlocked && this.transform.localPosition.y >= origPosition) {
             resetBlocked = true;
             this.transform.localPosition = MathHelper.setY(this.transform.localPosition, origPosition);
-            LeanTween.moveLocalY(this.gameObject, -3f, 0.2f).setOnComplete(() => resetBlocked = false);
+            LeanTween.moveLocalY(this.gameObject, moveDown, moveDuration).setOnComplete(() => resetBlocked = false);
         }
     }
 

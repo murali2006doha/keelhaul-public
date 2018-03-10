@@ -1174,8 +1174,8 @@ MonoBehaviour:
     ship: {fileID: 156012, guid: 4397fb22064255942a610294609746a5, type: 2}
     name: Chinese Junk Ship
     altFirePrefab: {fileID: 132918, guid: f682444f48a75455493d3c5004104773, type: 2}
-    altFireSprite: {fileID: 21300000, guid: 2befe7ffc818f4b61b3299efc5ad62b5, type: 3}
-    altFireOutline: {fileID: 21300000, guid: 46bcd2a1579b040db9473c8442e5317a, type: 3}
+    altFireSprite: {fileID: 21300000, guid: 983825e3859e8cb418ae1963e12f41d4, type: 3}
+    altFireOutline: {fileID: 21300000, guid: 983825e3859e8cb418ae1963e12f41d4, type: 3}
     portrait: {fileID: 21300000, guid: 02165ae1a51474d889763c1a9b4e8eda, type: 3}
     portraitBg: {fileID: 21300000, guid: f7490fc0900e3084fb01c8694b780b90, type: 3}
     doomGuyPoint: {fileID: 21300000, guid: 5d2b85b580741444d8ea09ce352bc63b, type: 3}
@@ -10745,8 +10745,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114961205758043600}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 11
+  instantiationId: 11
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114147462181035602
@@ -10786,8 +10786,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 9
+  instantiationId: 9
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114247642520699438
@@ -10824,8 +10824,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999716085284838}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 10
+  instantiationId: 10
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114342432854071966

@@ -2914,9 +2914,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224000012491207200}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 1
+  m_MaxValue: 3
+  m_WholeNumbers: 1
+  m_Value: 3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5306,8 +5306,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rect: {fileID: 224954044372301400}
-  origPosition: 47.7
-  newPosition: -49
 --- !u!114 &114949424518361406
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -70,7 +70,7 @@ public class BombControllerComponent : MonoBehaviour {
 
 		uiManager.decrementBomb ();
 		bombCount = bombCount - 1;
-		uiManager.setBombBar ((float)(bombCount) / 3.0f);
+		uiManager.setBombBar ((float)(bombCount));
 
 	}
 

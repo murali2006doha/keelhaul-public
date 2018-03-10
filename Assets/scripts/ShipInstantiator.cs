@@ -98,7 +98,7 @@ public class ShipInstantiator : MonoBehaviour {
         
 
         ship.uiManager.Initialize(num + numKraken, true, type, info.portraitBg, info.portrait, info.doomGuyHit, info.doomGuyHurt, info.doomGuyPoint);
-        //ship.uiManager.flag.GetComponent<Image>().sprite = info.altFireSprite;
+        ship.uiManager.flag.GetComponent<Image>().sprite = info.altFireSprite;
      
         ship.followCamera = ui.GetComponentInParent<cameraFollow>();
         ship.followCamera.target = ship.gameObject;

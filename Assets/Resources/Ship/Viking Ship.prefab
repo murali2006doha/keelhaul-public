@@ -3568,8 +3568,8 @@ MonoBehaviour:
     ship: {fileID: 175570, guid: 97a0aefb4ef70db4a8c085c3ed066b24, type: 2}
     name: Blackbeard Ship
     altFirePrefab: {fileID: 0}
-    altFireSprite: {fileID: 21300000, guid: 76f6808aa89fa7e45b3a48a4d70671e4, type: 3}
-    altFireOutline: {fileID: 21300000, guid: 85c59b7d81c6e8e4e805f25d6cb12d7f, type: 3}
+    altFireSprite: {fileID: 21300000, guid: fde7dcf574c58774ebed457f40505d48, type: 3}
+    altFireOutline: {fileID: 21300000, guid: fde7dcf574c58774ebed457f40505d48, type: 3}
     portrait: {fileID: 21300000, guid: e6a4cd083c2849a439c425f71a6897a8, type: 3}
     portraitBg: {fileID: 21300000, guid: d7d761db0aae09a4fbeb70ee771e1b0d, type: 3}
     doomGuyPoint: {fileID: 21300000, guid: 77be9dd2473e9f4439239f5f84a82ac0, type: 3}
@@ -3862,8 +3862,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 12
+  instantiationId: 12
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114687119095539344
@@ -3888,8 +3888,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114192596627240678}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 14
+  instantiationId: 14
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114754548444789722
@@ -4008,8 +4008,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114221169922914554}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 13
+  instantiationId: 13
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114962331943695858
