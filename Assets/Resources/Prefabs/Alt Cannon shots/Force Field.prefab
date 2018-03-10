@@ -211,9 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  lifeTime: 5
+  lifeTime: 1
   protecting: 0
-  powerShieldDuration: 0
   isReflecting: 1
   offset: {x: 0, y: 0, z: 0}
   effectDisableDelayTime: 0

@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 019e9cef0489d194286c9d754c8c7236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 1.7
+  maxVelocity: 2
   max_health: 8
   max_bombs: 3
   weight: 2
@@ -50,7 +50,7 @@ MonoBehaviour:
   tiltAngle: 20
   shootDelay: 0.8
   alternateShootDelay: 12
-  boostVelocity: 5.5
+  boostVelocity: 4.5
   boostResetTime: 6
   inkSlowDownTime: 1
   barrelSlowDownFactor: 1

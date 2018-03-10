@@ -22,6 +22,7 @@ public class CannonBall : Photon.MonoBehaviour {
   public float pushMagnitude = 0f;
   public bool reflected = false;
 
+	private Vector3 initialForce;
   void Start() {
     Invoke("destroySelf", lifeTime);
   }
@@ -50,7 +51,7 @@ public class CannonBall : Photon.MonoBehaviour {
 
           this.transform.LookAt(opponent);
           this.GetComponent<Rigidbody>().velocity = new Vector3();
-          this.GetComponent<Rigidbody>().AddForce(this.transform.forward * reflectForce * reflectMult);
+					this.GetComponent<Rigidbody>().AddForce((new Vector3(initialForce.x * -1, initialForce.y, initialForce.z * -1) * reflectMult));
           Invoke("destroySelf", lifeTime);
 
           parent.GetComponent<PlayerInput>().gameStats.numOfReflectedShots++;
@@ -149,6 +150,7 @@ public class CannonBall : Photon.MonoBehaviour {
 
   [PunRPC]
   public void AddForce(Vector3 force) {
+		this.initialForce = force;
     GetComponent<Rigidbody>().AddForce(force);
   }
   public void setOwner(Transform owner) {
