@@ -28,8 +28,10 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
         origFiringDelay = this.stats.shootDelay;
         origSpeed = this.input.motor.getSpeedModifier ();
         origCameraSpeed = this.input.followCamera.followSpeed;
+		cannons.numOfCannonBalls = 3;
+		cannons.angleOfCannonShots = 10;
 
-        this.stats.shootDelay = this.stats.shootDelay / altFiringDelayMultiplier;
+        this.stats.shootDelay = this.stats.shootDelay * altFiringDelayMultiplier;
         this.input.motor.setSpeedModifier (this.input.motor.getSpeedModifier () * altSpeedMultiplier);
         this.input.followCamera.followSpeed = this.input.followCamera.followSpeed * altSpeedMultiplier;
         cannons.setDamageMultiplier(altDamageMultiplier);
@@ -53,6 +55,8 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
         this.input.motor.setSpeedModifier (origSpeed);
         this.input.followCamera.followSpeed = origCameraSpeed;
         cannons.resetDamageMultiplier();
+		cannons.numOfCannonBalls = 1;
+		cannons.angleOfCannonShots = 0;
         this.GetComponent<PhotonView>().RPC("DisableChargedUpEffect", PhotonTargets.All);
     }
 

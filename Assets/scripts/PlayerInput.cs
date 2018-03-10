@@ -453,6 +453,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface
     {
         if (magnitude > 0 && !isPushed)
         {
+            this.motor.AddPushForce(magnitude, direction);
             if (hookshotComponent.enabled)
             {
                 hookshotComponent.UnHook();
@@ -504,7 +505,17 @@ public class PlayerInput : MonoBehaviour, StatsInterface
         shipInput.actions.Device.StopVibration();
     }
 
-    [PunRPC]
+  public void SetUpForTeleport() {
+    this.invincible = true;
+    this.SetLockedStatus(true);
+  }
+
+  public void ResetFromTeleport() {
+    this.invincible = false;
+    this.SetLockedStatus(false);
+  }
+
+  [PunRPC]
     public void PlayHitSound()
     {
         SoundManager.playSound(SoundClipEnum.ShipHit, SoundCategoryEnum.Generic, transform.position);

@@ -28,8 +28,11 @@ public class ShipMotorComponent : MonoBehaviour
     public bool sinking = false;
     public bool locked;
 
+  private Vector3 rammedDirection;
+  private float rammedForce;
+  private bool underRam;
 
-      internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish, Action onBoostRecharge, bool keyboardControls)
+  internal void Initialize(CharacterController characterController, ShipStats stats, Transform shipTransform, Action onBoost, Action onBoostFinish, Action onBoostRecharge, bool keyboardControls)
     {
         this.cc = characterController;
         this.stats = stats;
@@ -63,6 +66,13 @@ public class ShipMotorComponent : MonoBehaviour
         {
             return;
         }
+
+      if (underRam) {
+          rammedForce = Mathf.Max(0f, rammedForce - (stats.deAccelerationSpeed * Time.deltaTime * GlobalVariables.gameSpeed));
+          if (rammedForce == 0) {
+        cc.Move(rammedDirection.normalized * rammedForce * Time.deltaTime * GlobalVariables.gameSpeed);
+          }
+      }
         //Must be in Boost?
         if ((directionVector.magnitude == 0 || (keyboardControls && !aiControls) && directionVector.z <= 0) && velocity != 0f  || (velocity > stats.maxVelocity))
         {
@@ -133,6 +143,12 @@ public class ShipMotorComponent : MonoBehaviour
     {
         directionVector = input;
 
+    }
+
+    public void AddPushForce(float magnitude, Vector3 direction) {
+      this.rammedDirection = direction;
+      this.rammedForce = magnitude;
+      this.underRam = true;
     }
 
     public virtual void Boost()
