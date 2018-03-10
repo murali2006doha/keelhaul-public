@@ -64,7 +64,8 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
 	public virtual void ResetShotAlt() {
 		canShootAlt = true;
         uiManager.setAltFireMeter(1);
-        uiManager.animManager.onAlternateFireRecharged();
+        uiManager.SetAltFireAvailable();
+        //uiManager.animManager.onAlternateFireRecharged();
 
     }
 }
