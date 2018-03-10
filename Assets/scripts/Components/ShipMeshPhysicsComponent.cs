@@ -141,10 +141,11 @@ void handleBombExplosion (Collider other) {
 	void handleShipNose (Collider other) {
     Debug.Log("REACJOIMG JERE");
 		PlayerInput otherPlayer = other.transform.root.GetComponent<PlayerInput> ();
-		if (otherPlayer.velocity > otherPlayer.stats.maxVelocity) {
+		if (otherPlayer.motor.getVelocity() > otherPlayer.stats.maxVelocity) {
 			Instantiate (rammingSprite, other.transform.position, Quaternion.identity);
-			input.addPushForce (otherPlayer.cc.velocity.normalized, Mathf.Max (otherPlayer.stats.weight - stats.weight, 0f));
-			otherPlayer.velocity = 0;
+			input.addPushForce (otherPlayer.cc.velocity.normalized, Mathf.Max ((otherPlayer.stats.weight - stats.weight)/otherPlayer.stats.weight, 0f));
+      otherPlayer.motor.Brake();
+			
 		}
 	}
 
