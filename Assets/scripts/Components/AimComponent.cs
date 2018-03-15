@@ -22,8 +22,16 @@ public class AimComponent : MonoBehaviour {
     private bool movementStarted = false;
     private Vector3 lastMoveVector;
 
+    private Vector3 latestMoveVector;
+
+    public void updateAim()
+    {
+        AimAt(latestMoveVector);
+    }
+
     public void AimAt(Vector3 moveVector)
     {
+        latestMoveVector = moveVector;
         if (keyboardControls && !aiControls)
         {
             AimWithMouseAt(new Vector2(moveVector.x, moveVector.y));

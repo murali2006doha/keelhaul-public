@@ -316,6 +316,10 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
       uiManager.updateShipUI(this.transform.position, hookshotComponent.shouldShowTooltip());
       if (gameStarted) {
         uiManager.updateTutorialPrompts(followCamera.camera, Actions);
+                if (aimComponent)
+                {
+                    aimComponent.updateAim();
+                }
       }
 
     }
