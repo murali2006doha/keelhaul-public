@@ -26,25 +26,20 @@ public class SettingsMenu : AbstractMenu
 		musicSlider.SetAction(this.setMusicVolume, this.actions);
 		
         keyboardControls.SetAction(() => {
-			this.enabled = false;
-			ToggleSelectables();
-            this.gameObject.SetActive(false);
+            this.enabled = false;
+            ToggleSelectables();
             FindObjectOfType<MenuModel>().inputBindingsMenu.Initialize(this.actions, () => {
-                FindObjectOfType<InputBindingsMenu>().ResetPage();
-				ToggleSelectables();
-				this.enabled = true;
-                this.gameObject.SetActive(true);
-			});
-		});
+              ToggleSelectables();
+              this.enabled = true;
+            });
+        });
 
         controllerControls.SetAction(() => {
             this.enabled = false;
-			ToggleSelectables();
-            this.gameObject.SetActive(false);
+            ToggleSelectables();
             FindObjectOfType<MenuModel>().controllerLayoutMenu.Initialize(this.actions, () => {
-	            ToggleSelectables();
-	            this.enabled = true; 
-                this.gameObject.SetActive(true);
+              ToggleSelectables();
+              this.enabled = true; 
             });
         });
 	}
@@ -61,8 +56,8 @@ public class SettingsMenu : AbstractMenu
 		actionSelectables.Add(waterReflectToggle.gameObject);
 		actionSelectables.Add(musicSlider.gameObject);
 		actionSelectables.Add(soundSlider.gameObject);
-		/*actionSelectables.Add(keyboardControls.gameObject);
-        actionSelectables.Add(controllerControls.gameObject);*/
+		actionSelectables.Add(keyboardControls.gameObject);
+        actionSelectables.Add(controllerControls.gameObject);
 	}
 
 	public void setSoundVolume(float vol) {
