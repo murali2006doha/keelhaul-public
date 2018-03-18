@@ -19,7 +19,12 @@ public class UIManager : MonoBehaviour
     public GameObject shipAlert;
     public float alertTime;
     //public Slider altFireBar;
+
     public Slider altFireBar;
+    public Slider altFireReadyBar;
+    public FlagDown flag;
+
+
     public Slider scoreBar;
     public GameObject scorePosition;
     public GameObject scoreDestinationPosition;
@@ -59,6 +64,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image characterPortrait;
     [SerializeField] Image characterPortraitBackground;
 
+   
+
     bool highlight = true;
     ShipEnum shipType;
     public TMPro.TextMeshProUGUI killFeed;
@@ -68,6 +75,8 @@ public class UIManager : MonoBehaviour
     public Text roundScore;
     public Text time;
     public Text timeCount;
+
+
 
     public UIManager()
     {
@@ -327,6 +336,8 @@ public class UIManager : MonoBehaviour
     {
 
         altFireBar.value = 0;
+        altFireReadyBar.value = 0;
+        flag.UseAbility();
         //altfireFill.GetComponent<Image> ().fillAmount = 0;
 
     }
@@ -335,6 +346,18 @@ public class UIManager : MonoBehaviour
     {
         altFireBar.value = value;
         //altfireFill.GetComponent<Image> ().fillAmount = value;
+    }
+
+    public void SetAltFireAvailable()
+    {
+        LeanTween.value(altFireReadyBar.gameObject,0,1,0.5f).setOnUpdate((float val) =>
+        {
+            altFireReadyBar.value = val;
+        }).setOnComplete(() =>
+        {
+            flag.ResetAbility();
+        });
+        
     }
 
     public void targetBarrel()
