@@ -168,6 +168,7 @@ public class KrakenAnimator : MonoBehaviour {
 
 	}
 
+
 	public bool isCurrentAnimName(string tag){
 		return animKraken.GetCurrentAnimatorStateInfo(0).IsTag(tag);
 	}
