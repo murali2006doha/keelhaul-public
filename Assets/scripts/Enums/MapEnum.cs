@@ -20,7 +20,9 @@ public class MapTypeHelper
         maps.Add(MapEnum.BlackMarket);
 		maps.Add(MapEnum.TropicalMapFinal);
         maps.Add(MapEnum.VikingMap);
+    maps.Add(MapEnum.FrigidWasteland);
         maps.Add(MapEnum.Random);
+
 
         return maps;
     }
