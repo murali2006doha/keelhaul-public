@@ -9,14 +9,19 @@ public class AtlanteanAltCannonComponent : AbstractAltCannonComponent {
   [SerializeField] private float damage;
   [SerializeField] private float buildUpTime;
   [SerializeField] private TrailRenderer trailer;
+  [SerializeField] private GameObject particleEffect;
 
   public override void alternateFire () {
     this.input.SetUpForTeleport();
     this.trailer.enabled = true;
+    this.particleEffect.SetActive(true);
+    this.particleEffect.transform.SetParent(null, true);
     Invoke("Blink", buildUpTime);
   }
 
   private void Blink() {
+    this.particleEffect.SetActive(false);
+    this.particleEffect.transform.SetParent(this.trailer.transform, true);
     this.setupRotation();
     Ray ray = new Ray(this.input.shipMesh.transform.position, this.shoot_direction);
     RaycastHit hitInfo;
