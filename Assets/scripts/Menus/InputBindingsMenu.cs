@@ -11,20 +11,20 @@ public class InputBindingsMenu : AbstractMenu
   public ActionButton rotateLeft;
   public ActionButton rotateRight;
   public ActionButton fire;
-  public ActionButton altFire;
   public ActionButton boost;
-  public ActionButton hookshot;
+  //public ActionButton hookshot;
   public ActionButton dropBomb;
+    public ActionButton altFire;
   public ActionButton save;
   public ActionButton reset;
   public Text moveForwardText;
   public Text rotateLeftText;
   public Text rotateRightText;
   public Text fireText;
-  public Text altFireText;
   public Text boostText;
-  public Text hookshotText;
+  //public Text hookshotText;
   public Text dropBombText;
+    public Text altFireText;
   public Text setBindingText;
   private bool checkingBinding = false;
   private PlayerAction actionToBind;
@@ -48,7 +48,7 @@ public class InputBindingsMenu : AbstractMenu
         fireText.text = PlayerActions.GetKeyboardBindingName(this.actions.Fire);
         altFireText.text = PlayerActions.GetKeyboardBindingName(this.actions.Alt_Fire);
         boostText.text = PlayerActions.GetKeyboardBindingName(this.actions.Boost);
-        hookshotText.text = PlayerActions.GetKeyboardBindingName(this.actions.Fire_Hook);
+        //hookshotText.text = PlayerActions.GetKeyboardBindingName(this.actions.Fire_Hook);
         dropBombText.text = PlayerActions.GetKeyboardBindingName(this.actions.Bomb);
       }
 
@@ -101,11 +101,11 @@ public class InputBindingsMenu : AbstractMenu
         actionToBind = this.actions.Boost;
         PlayerActions.Listen (actionToBind);
       });
-      hookshot.SetAction (() => {
-        checkingBinding = true;
-        actionToBind = this.actions.Fire_Hook;
-        PlayerActions.Listen (actionToBind);
-      });
+      //hookshot.SetAction (() => {
+      //  checkingBinding = true;
+      //  actionToBind = this.actions.Fire_Hook;
+      //  PlayerActions.Listen (actionToBind);
+      //});
       dropBomb.SetAction (() => {
         checkingBinding = true;
         actionToBind = this.actions.Bomb;
@@ -155,8 +155,8 @@ public class InputBindingsMenu : AbstractMenu
         });
         boost.SetAction (() => {
         });
-        hookshot.SetAction (() => {
-        });
+        //hookshot.SetAction (() => {
+        //});
         dropBomb.SetAction (() => {
         });
     }
@@ -178,10 +178,10 @@ public class InputBindingsMenu : AbstractMenu
     actionSelectables.Add (rotateLeft.gameObject);
     actionSelectables.Add (rotateRight.gameObject);
     actionSelectables.Add (fire.gameObject);
-    actionSelectables.Add (altFire.gameObject);
     actionSelectables.Add (boost.gameObject);
-    actionSelectables.Add (hookshot.gameObject);
+    //actionSelectables.Add (hookshot.gameObject);
     actionSelectables.Add (dropBomb.gameObject);
+        actionSelectables.Add(altFire.gameObject);
     actionSelectables.Add (save.gameObject);
     actionSelectables.Add (reset.gameObject);
   }
@@ -215,7 +215,7 @@ public class InputBindingsMenu : AbstractMenu
     fireText.text = PlayerActions.GetKeyboardBindingName(this.actions.Fire);
     altFireText.text = PlayerActions.GetKeyboardBindingName(this.actions.Alt_Fire);
     boostText.text = PlayerActions.GetKeyboardBindingName(this.actions.Boost);
-    hookshotText.text = PlayerActions.GetKeyboardBindingName(this.actions.Fire_Hook);
+    //hookshotText.text = PlayerActions.GetKeyboardBindingName(this.actions.Fire_Hook);
     dropBombText.text = PlayerActions.GetKeyboardBindingName(this.actions.Bomb);
   }
 
