@@ -14,9 +14,7 @@ public class InputBindingsMenu : AbstractMenu
   public ActionButton boost;
   //public ActionButton hookshot;
   public ActionButton dropBomb;
-    public ActionButton altFire;
-  public ActionButton save;
-  public ActionButton reset;
+  public ActionButton altFire;
   public Text moveForwardText;
   public Text rotateLeftText;
   public Text rotateRightText;
@@ -24,27 +22,30 @@ public class InputBindingsMenu : AbstractMenu
   public Text boostText;
   //public Text hookshotText;
   public Text dropBombText;
-    public Text altFireText;
+  public Text altFireText;
   public Text setBindingText;
   private bool checkingBinding = false;
   private PlayerAction actionToBind;
 
-  public override void Navigate ()
+  public override void Navigate()
   {
 
 
-    if (!checkingBinding) {
+    if (!checkingBinding)
+    {
       canReturn = true;
-      if (actionSelectables.Count > 0) {
-        index = NavigationUtils.NavigateModal (this.actions, actionSelectables.ToArray (), index);
+      if (actionSelectables.Count > 0)
+      {
+        index = NavigationUtils.NavigateModal(this.actions, actionSelectables.ToArray(), index);
       }
 
-      index = NavigationUtils.NavigateModalWithMouse (actionSelectables, index);
+      index = NavigationUtils.NavigateModalWithMouse(actionSelectables, index);
 
-      if (this.actions.Device == null || this.actions.Device.Name == "None") {
-        moveForwardText.text = PlayerActions.GetKeyboardBindingName (this.actions.L_Up);
-        rotateLeftText.text = PlayerActions.GetKeyboardBindingName (this.actions.L_Left);
-        rotateRightText.text = PlayerActions.GetKeyboardBindingName (this.actions.L_Right);
+      if (this.actions.Device == null || this.actions.Device.Name == "None")
+      {
+        moveForwardText.text = PlayerActions.GetKeyboardBindingName(this.actions.L_Up);
+        rotateLeftText.text = PlayerActions.GetKeyboardBindingName(this.actions.L_Left);
+        rotateRightText.text = PlayerActions.GetKeyboardBindingName(this.actions.L_Right);
         fireText.text = PlayerActions.GetKeyboardBindingName(this.actions.Fire);
         altFireText.text = PlayerActions.GetKeyboardBindingName(this.actions.Alt_Fire);
         boostText.text = PlayerActions.GetKeyboardBindingName(this.actions.Boost);
@@ -52,166 +53,190 @@ public class InputBindingsMenu : AbstractMenu
         dropBombText.text = PlayerActions.GetKeyboardBindingName(this.actions.Bomb);
       }
 
-      setBindingText.gameObject.SetActive (false);
-     
-       
-    } else {
-            
-      canReturn = false;
-      setBindingText.gameObject.SetActive (true);
-      CheckIfBindingIsComplete (actionToBind);
+      setBindingText.gameObject.SetActive(false);
 
-      if (AnyInputBackWasReleased ()) {
+      if (AnyInputSaveWasReleased())
+      {
+        PlayerActions.SaveBindings(this.actions);
+        print("SAVED bindings");
+      }
+
+      if (AnyInputResetWasReleased())
+      {
+        Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action>();
+        modalActions.Add(ModalActionEnum.onOpenAction, () =>
+        {
+          this.enabled = false;
+          ToggleSelectables();
+          canReturn = false;
+        });
+        modalActions.Add(ModalActionEnum.onCloseAction, () =>
+        {
+          this.enabled = true;
+          ToggleSelectables();
+          canReturn = true;
+        });
+
+        ModalStack.InitializeModal(this.actions, ModalsEnum.notificationDoubleModal, modalActions);
+        FindObjectOfType<NotificationDoubleModal>().Spawn(NotificationImages.quitConfirm,
+          NotificationImages.yes,
+          NotificationImages.no,
+          () =>
+          {
+            PlayerActions.Reset(this.actions);
+          }, () =>
+          {
+          });
+      }
+
+
+    }
+    else
+    {
+
+      canReturn = false;
+      setBindingText.gameObject.SetActive(true);
+      CheckIfBindingIsComplete(actionToBind);
+
+      if (AnyInputBackWasReleased())
+      {
         checkingBinding = false;
       }
     }
   }
 
-  protected override void SetActions ()
+  protected override void SetActions()
   {
-    if (this.actions.Device == null || this.actions.Device.Name == "None") {
-      moveForward.SetAction (() => {
+    if (this.actions.Device == null || this.actions.Device.Name == "None")
+    {
+      moveForward.SetAction(() =>
+      {
         checkingBinding = true;
         actionToBind = this.actions.L_Up;
-        PlayerActions.Listen (actionToBind);
+        PlayerActions.Listen(actionToBind);
 
       });
-      rotateLeft.SetAction (() => {
+      rotateLeft.SetAction(() =>
+      {
         checkingBinding = true;
         actionToBind = this.actions.L_Left;
-        PlayerActions.Listen (actionToBind);
+        PlayerActions.Listen(actionToBind);
       });
-      rotateRight.SetAction (() => {
+      rotateRight.SetAction(() =>
+      {
         checkingBinding = true;
         actionToBind = this.actions.L_Right;
-        PlayerActions.Listen (actionToBind);
+        PlayerActions.Listen(actionToBind);
       });
-      fire.SetAction (() => {
+      fire.SetAction(() =>
+      {
         checkingBinding = true;
         actionToBind = this.actions.Fire;
-        PlayerActions.Listen (actionToBind);
+        PlayerActions.Listen(actionToBind);
       });
-      altFire.SetAction (() => {
+      altFire.SetAction(() =>
+      {
         checkingBinding = true;
         actionToBind = this.actions.Alt_Fire;
-        PlayerActions.Listen (actionToBind);
+        PlayerActions.Listen(actionToBind);
       });
-      boost.SetAction (() => {
+      boost.SetAction(() =>
+      {
         checkingBinding = true;
         actionToBind = this.actions.Boost;
-        PlayerActions.Listen (actionToBind);
+        PlayerActions.Listen(actionToBind);
       });
       //hookshot.SetAction (() => {
       //  checkingBinding = true;
       //  actionToBind = this.actions.Fire_Hook;
       //  PlayerActions.Listen (actionToBind);
       //});
-      dropBomb.SetAction (() => {
+      dropBomb.SetAction(() =>
+      {
         checkingBinding = true;
         actionToBind = this.actions.Bomb;
-        PlayerActions.Listen (actionToBind);
-      });       
-
-      save.SetAction (() => {
-        PlayerActions.SaveBindings (this.actions);
+        PlayerActions.Listen(actionToBind);
       });
 
-      Dictionary<ModalActionEnum, Action> modalActions = new Dictionary<ModalActionEnum, Action> ();
-      modalActions.Add (ModalActionEnum.onOpenAction, () => {
-        this.enabled = false;
-        ToggleSelectables ();
-        canReturn = false;
+    }
+    else
+    {
+      moveForward.SetAction(() =>
+      {
       });
-      modalActions.Add (ModalActionEnum.onCloseAction, () => {
-        this.enabled = true;
-        ToggleSelectables ();
-        canReturn = true;
-        index = actionSelectables.IndexOf (reset.gameObject);
+      rotateLeft.SetAction(() =>
+      {
       });
-
-      reset.SetAction (() => {
-
-        ModalStack.InitializeModal (this.actions, ModalsEnum.notificationDoubleModal, modalActions);
-        FindObjectOfType<NotificationDoubleModal> ().Spawn (NotificationImages.quitConfirm,           
-          NotificationImages.yes, 
-          NotificationImages.no,
-          () => {
-            PlayerActions.Reset (this.actions);
-          }, () => {
-          reset.ButtonComponent.Select ();
-        });
+      rotateRight.SetAction(() =>
+      {
       });
-
-    } else {
-        moveForward.SetAction (() => {
-        });
-        rotateLeft.SetAction (() => {
-        });
-        rotateRight.SetAction (() => {
-        });
-        fire.SetAction (() => {
-        });
-        altFire.SetAction (() => {
-        });
-        boost.SetAction (() => {
-        });
-        //hookshot.SetAction (() => {
-        //});
-        dropBomb.SetAction (() => {
-        });
+      fire.SetAction(() =>
+      {
+      });
+      altFire.SetAction(() =>
+      {
+      });
+      boost.SetAction(() =>
+      {
+      });
+      //hookshot.SetAction (() => {
+      //});
+      dropBomb.SetAction(() =>
+      {
+      });
     }
   }
 
-  public override void GoBack() {
+  public override void GoBack()
+  {
     if (!dontDestroy)
     {
-      ResetPage ();
-      this.gameObject.SetActive (false);
+      ResetPage();
+      this.gameObject.SetActive(false);
     }
-    onReturnAction ();      
+    onReturnAction();
   }
 
 
-  protected override void SetActionSelectables ()
+  protected override void SetActionSelectables()
   {
-    actionSelectables.Add (moveForward.gameObject);
-    actionSelectables.Add (rotateLeft.gameObject);
-    actionSelectables.Add (rotateRight.gameObject);
-    actionSelectables.Add (fire.gameObject);
-    actionSelectables.Add (boost.gameObject);
+    actionSelectables.Add(moveForward.gameObject);
+    actionSelectables.Add(rotateLeft.gameObject);
+    actionSelectables.Add(rotateRight.gameObject);
+    actionSelectables.Add(fire.gameObject);
+    actionSelectables.Add(boost.gameObject);
     //actionSelectables.Add (hookshot.gameObject);
-    actionSelectables.Add (dropBomb.gameObject);
-        actionSelectables.Add(altFire.gameObject);
-    actionSelectables.Add (save.gameObject);
-    actionSelectables.Add (reset.gameObject);
+    actionSelectables.Add(dropBomb.gameObject);
+    actionSelectables.Add(altFire.gameObject);
   }
 
 
-  void KeyboardOrController ()
+  void KeyboardOrController()
   {
 
   }
 
 
-  void CheckIfBindingIsComplete (PlayerAction action)
+  void CheckIfBindingIsComplete(PlayerAction action)
   {
-    if (PlayerActions.IsBindingDone (action)) {
+    if (PlayerActions.IsBindingDone(action))
+    {
       checkingBinding = false;
     }
   }
 
 
-  void ResetPage ()
+  void ResetPage()
   {
     checkingBinding = false;
     canReturn = true;
-    setBindingText.gameObject.SetActive (false);
+    setBindingText.gameObject.SetActive(false);
     index = 0;
-    PlayerActions.LoadBindings (this.actions);
+    PlayerActions.LoadBindings(this.actions);
 
-    moveForwardText.text = PlayerActions.GetKeyboardBindingName (this.actions.Up);
-    rotateLeftText.text = PlayerActions.GetKeyboardBindingName (this.actions.Left);
-    rotateRightText.text = PlayerActions.GetKeyboardBindingName (this.actions.Right);
+    moveForwardText.text = PlayerActions.GetKeyboardBindingName(this.actions.Up);
+    rotateLeftText.text = PlayerActions.GetKeyboardBindingName(this.actions.Left);
+    rotateRightText.text = PlayerActions.GetKeyboardBindingName(this.actions.Right);
     fireText.text = PlayerActions.GetKeyboardBindingName(this.actions.Fire);
     altFireText.text = PlayerActions.GetKeyboardBindingName(this.actions.Alt_Fire);
     boostText.text = PlayerActions.GetKeyboardBindingName(this.actions.Boost);

@@ -16,27 +16,36 @@ public class SettingsMenu : AbstractMenu
     protected override void SetActions()
     {
         graphics.SetAction(() => {
+            this.gameObject.SetActive(false);
             this.enabled = false;
             ToggleSelectables();
             FindObjectOfType<MenuModel>().grapicsMenu.Initialize(this.actions, () => {
                 ToggleSelectables();
                 this.enabled = true;
+                this.gameObject.SetActive(true);
+
             });
         });
         sound.SetAction(() => {
+            this.gameObject.SetActive(false);
             this.enabled = false;
             ToggleSelectables();
             FindObjectOfType<MenuModel>().soundMenu.Initialize(this.actions, () => {
                 ToggleSelectables();
                 this.enabled = true;
+                this.gameObject.SetActive(true);
+
             });
         });
         controls.SetAction(() => {
+            this.gameObject.SetActive(false);
             this.enabled = false;
             ToggleSelectables();
             FindObjectOfType<MenuModel>().inputBindingsMenu.Initialize(this.actions, () => {
                 ToggleSelectables();
                 this.enabled = true;
+                this.gameObject.SetActive(true);
+
             });
         });
 
