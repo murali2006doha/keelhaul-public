@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c237569b6b044c98583b0b21577a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipHit: {fileID: 1713327145219862, guid: ed8bc7e49c04e474e98a347b412d7ce5, type: 2}
+  shipHit: {fileID: 145490, guid: 3afb73346b65f404781f482680f34a11, type: 2}
   lifeTime: 4
   krakenHit: {fileID: 102508, guid: cb8c36175b2fc6846ac5d9df652aabf5, type: 2}
   normalHit: {fileID: 145378, guid: f61565664dac5bd49b5b596ac403dee4, type: 2}
