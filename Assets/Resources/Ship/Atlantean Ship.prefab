@@ -13980,9 +13980,9 @@ MonoBehaviour:
   alternateFirePrefab: {fileID: 107544, guid: dab6356b4739f4c809c57a9559642199, type: 2}
   cannonBallPos: {fileID: 406304}
   instantiated: {fileID: 0}
-  blinkDistance: 3.5
+  blinkDistance: 5
   damage: 3
-  buildUpTime: 4
+  buildUpTime: 2
   trailer: {fileID: 96426728525425658}
   particleEffect: {fileID: 1502402802509708}
 --- !u!114 &114376429275305742
@@ -14019,8 +14019,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114804807475055430}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 6
-  instantiationId: 6
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114385707832624558
@@ -14045,8 +14045,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114461923634993986}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 7
-  instantiationId: 7
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114454242921959622
@@ -14071,8 +14071,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 5
-  instantiationId: 5
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114461923634993986
