@@ -20,7 +20,7 @@ public class VikingFreeze : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        this.transform.rotation = rot;
+        //this.transform.rotation = rot;
         transform.position = parent.transform.position + offset;
     }
 

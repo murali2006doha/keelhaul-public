@@ -49,7 +49,7 @@ MonoBehaviour:
   tiltSpeed: 2
   tiltAngle: 40
   shootDelay: 0.8
-  alternateShootDelay: 2.5
+  alternateShootDelay: 30
   boostVelocity: 4.5
   boostResetTime: 6
   inkSlowDownTime: 1

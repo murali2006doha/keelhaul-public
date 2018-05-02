@@ -3862,8 +3862,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 12
-  instantiationId: 12
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114687119095539344
@@ -3888,8 +3888,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114192596627240678}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 14
-  instantiationId: 14
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114754548444789722
@@ -3916,6 +3916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c33481d16665304ebe86187586abc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ramRotationSpeed: 1
   wake: {fileID: 1800753792342090}
   boostParticle: {fileID: 1680705440492042}
   velocity: 0
@@ -4008,8 +4009,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114221169922914554}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 13
-  instantiationId: 13
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114962331943695858
