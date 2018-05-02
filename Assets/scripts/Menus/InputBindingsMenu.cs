@@ -101,6 +101,7 @@ public class InputBindingsMenu : AbstractMenu
       if (AnyInputBackWasReleased())
       {
         checkingBinding = false;
+        ToggleSelectables();
       }
     }
   }
@@ -109,82 +110,96 @@ public class InputBindingsMenu : AbstractMenu
   {
     if (this.actions.Device == null || this.actions.Device.Name == "None")
     {
-      moveForward.SetAction(() =>
-      {
-        checkingBinding = true;
-        actionToBind = this.actions.L_Up;
-        PlayerActions.Listen(actionToBind);
-
-      });
-      rotateLeft.SetAction(() =>
-      {
-        checkingBinding = true;
-        actionToBind = this.actions.L_Left;
-        PlayerActions.Listen(actionToBind);
-      });
-      rotateRight.SetAction(() =>
-      {
-        checkingBinding = true;
-        actionToBind = this.actions.L_Right;
-        PlayerActions.Listen(actionToBind);
-      });
-      fire.SetAction(() =>
-      {
-        checkingBinding = true;
-        actionToBind = this.actions.Fire;
-        PlayerActions.Listen(actionToBind);
-      });
-      altFire.SetAction(() =>
-      {
-        checkingBinding = true;
-        actionToBind = this.actions.Alt_Fire;
-        PlayerActions.Listen(actionToBind);
-      });
-      boost.SetAction(() =>
-      {
-        checkingBinding = true;
-        actionToBind = this.actions.Boost;
-        PlayerActions.Listen(actionToBind);
-      });
-      //hookshot.SetAction (() => {
-      //  checkingBinding = true;
-      //  actionToBind = this.actions.Fire_Hook;
-      //  PlayerActions.Listen (actionToBind);
-      //});
-      dropBomb.SetAction(() =>
-      {
-        checkingBinding = true;
-        actionToBind = this.actions.Bomb;
-        PlayerActions.Listen(actionToBind);
-      });
-
+      SetAllActions();
     }
     else
     {
-      moveForward.SetAction(() =>
-      {
-      });
-      rotateLeft.SetAction(() =>
-      {
-      });
-      rotateRight.SetAction(() =>
-      {
-      });
-      fire.SetAction(() =>
-      {
-      });
-      altFire.SetAction(() =>
-      {
-      });
-      boost.SetAction(() =>
-      {
-      });
-      //hookshot.SetAction (() => {
-      //});
-      dropBomb.SetAction(() =>
-      {
-      });
+      ToggleSelectables();
     }
+  }
+
+  //void RemoveAllActions() {
+  //  moveForward.SetAction(() =>
+  //  {
+  //  });
+  //  rotateLeft.SetAction(() =>
+  //  {
+  //  });
+  //  rotateRight.SetAction(() =>
+  //  {
+  //  });
+  //  fire.SetAction(() =>
+  //  {
+  //  });
+  //  altFire.SetAction(() =>
+  //  {
+  //  });
+  //  boost.SetAction(() =>
+  //  {
+  //  });
+  //  //hookshot.SetAction (() => {
+  //  //});
+  //  dropBomb.SetAction(() =>
+  //  {
+  //  });
+  //}
+
+  void SetAllActions() {
+    moveForward.SetAction(() =>
+    {
+      checkingBinding = true;
+      actionToBind = this.actions.L_Up;
+      PlayerActions.Listen(actionToBind);
+      ToggleSelectables();
+
+    });
+    rotateLeft.SetAction(() =>
+    {
+      checkingBinding = true;
+      actionToBind = this.actions.L_Left;
+      PlayerActions.Listen(actionToBind);
+      ToggleSelectables();
+    });
+    rotateRight.SetAction(() =>
+    {
+      checkingBinding = true;
+      actionToBind = this.actions.L_Right;
+      PlayerActions.Listen(actionToBind);
+      ToggleSelectables();
+    });
+    fire.SetAction(() =>
+    {
+      checkingBinding = true;
+      actionToBind = this.actions.Fire;
+      PlayerActions.Listen(actionToBind);
+      ToggleSelectables();
+    });
+    altFire.SetAction(() =>
+    {
+      checkingBinding = true;
+      actionToBind = this.actions.Alt_Fire;
+      PlayerActions.Listen(actionToBind);
+      ToggleSelectables();
+    });
+    boost.SetAction(() =>
+    {
+      checkingBinding = true;
+      actionToBind = this.actions.Boost;
+      PlayerActions.Listen(actionToBind);
+      ToggleSelectables();
+    });
+    //hookshot.SetAction (() => {
+    //  checkingBinding = true;
+    //  actionToBind = this.actions.Fire_Hook;
+    //  PlayerActions.Listen (actionToBind);
+    //});
+    dropBomb.SetAction(() =>
+    {
+      checkingBinding = true;
+      actionToBind = this.actions.Bomb;
+      PlayerActions.Listen(actionToBind);
+      ToggleSelectables();
+    });
   }
 
   public override void GoBack()
@@ -211,17 +226,12 @@ public class InputBindingsMenu : AbstractMenu
   }
 
 
-  void KeyboardOrController()
-  {
-
-  }
-
-
   void CheckIfBindingIsComplete(PlayerAction action)
   {
     if (PlayerActions.IsBindingDone(action))
     {
       checkingBinding = false;
+      ToggleSelectables();
     }
   }
 
