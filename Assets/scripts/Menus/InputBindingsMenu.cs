@@ -118,31 +118,6 @@ public class InputBindingsMenu : AbstractMenu
     }
   }
 
-  //void RemoveAllActions() {
-  //  moveForward.SetAction(() =>
-  //  {
-  //  });
-  //  rotateLeft.SetAction(() =>
-  //  {
-  //  });
-  //  rotateRight.SetAction(() =>
-  //  {
-  //  });
-  //  fire.SetAction(() =>
-  //  {
-  //  });
-  //  altFire.SetAction(() =>
-  //  {
-  //  });
-  //  boost.SetAction(() =>
-  //  {
-  //  });
-  //  //hookshot.SetAction (() => {
-  //  //});
-  //  dropBomb.SetAction(() =>
-  //  {
-  //  });
-  //}
 
   void SetAllActions() {
     moveForward.SetAction(() =>
