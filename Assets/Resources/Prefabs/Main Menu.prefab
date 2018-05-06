@@ -3142,8 +3142,8 @@ MonoBehaviour:
   mainMenu: {fileID: 114364994764761270}
   offlineSubmenu: {fileID: 114967257534111588}
   settingsMenu: {fileID: 114604795666190088}
-  soundMenu: {fileID: 114106521442922340}
-  grapicsMenu: {fileID: 114090384427575474}
+  soundMenu: {fileID: 0}
+  grapicsMenu: {fileID: 0}
   inputBindingsMenu: {fileID: 114833537153881602}
   controllerLayoutMenu: {fileID: 114640440059625974}
   pauseMenu: {fileID: 0}
@@ -5666,7 +5666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.8344828, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
