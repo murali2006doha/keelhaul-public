@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: ModeControls
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: a5d3d833f83ba4e48946d0ab171f562e, type: 3}
-  - {fileID: 21300000, guid: 322bdcd63d8da444f9bd54966a039724, type: 3}
-  - {fileID: 21300000, guid: ad95272b3806146318325875cf93ef05, type: 3}
+  - {fileID: 21300000, guid: cf1f4e9713d85408b998b81252d1fd04, type: 3}
+  - {fileID: 21300000, guid: cf1f4e9713d85408b998b81252d1fd04, type: 3}
+  - {fileID: 21300000, guid: cf1f4e9713d85408b998b81252d1fd04, type: 3}
