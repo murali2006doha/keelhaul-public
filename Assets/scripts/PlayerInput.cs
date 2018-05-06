@@ -98,6 +98,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
 
   void Start() {
     //Have to refactor this later
+    Cursor.visible = false;
     manager = GameObject.FindObjectOfType<AbstractGameManager>();
     this.GetComponentInChildren<ShipInstantiator>().setupShipNames(this, type, this.GetId(), manager.getNumberOfTeams(), this.GetId());
     bool hasDevice = Actions == null || Actions.Device == null;
@@ -239,7 +240,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
 
   void instantiatePauseMenu() {
     if (FindObjectOfType<CountDown>() == null && !FindObjectOfType<MenuModel>()) {
-
+      Cursor.visible = true;
       clearShipInput();
 
       GameObject pause = Instantiate(pauseModal);
@@ -247,6 +248,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
         InitializeShipInput();
         pause.GetComponent<MenuModel>().pauseMenu.ResumeGame();
         Destroy(pause.gameObject);
+        Cursor.visible = false;
       });
     }
   }
@@ -581,6 +583,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
     if (hookshotComponent.enabled) {
       hookshotComponent.UnHook();
     }
+
+    this.motor.StopPushForce();
     dying = true;
     uiManager.animManager.onDeath();
     SoundManager.playSound(SoundClipEnum.SinkExplosion, SoundCategoryEnum.Generic, transform.position);

@@ -144,6 +144,10 @@ public class ShipMotorComponent : MonoBehaviour {
     this.underRam = true;
   }
 
+  public void StopPushForce() {
+    this.underRam = false;
+  }
+
   public void Brake() {
     this.velocity = 0;
   }

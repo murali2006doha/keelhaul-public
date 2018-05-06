@@ -21,6 +21,7 @@ public class MainMenu : AbstractMenu
 	protected override void SetActions() {
 
 		offline.SetAction(() => {
+            Cursor.visible = false;
             canReturn = true;
             this.enabled = false;
             ToggleSelectables();
@@ -28,6 +29,7 @@ public class MainMenu : AbstractMenu
                 index = actionSelectables.IndexOf(offline.gameObject);
                 this.enabled = true;
                 ToggleSelectables();
+                Cursor.visible = true;
             });
 		});
 

@@ -5306,6 +5306,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rect: {fileID: 224954044372301400}
+  origPosition: 70
+  newPosition: -45
+  moveDown: -2
+  moveUp: 90
+  moveDuration: 0.2
 --- !u!114 &114949424518361406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7232,7 +7237,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010884563002}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 656.0001, y: -1191.0002, z: 11.000001}
+  m_LocalPosition: {x: 656.0001, y: -1181.5502, z: 11.000001}
   m_LocalScale: {x: 1.000004, y: 1.000004, z: 1.000004}
   m_Children: []
   m_Father: {fileID: 224000014025239562}
@@ -7240,8 +7245,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 656.0001, y: -1191.0002}
-  m_SizeDelta: {x: 1314, y: 2404}
+  m_AnchoredPosition: {x: 656.0001, y: -1181.5502}
+  m_SizeDelta: {x: 1314, y: 2422.9001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000013469708668
 RectTransform:
