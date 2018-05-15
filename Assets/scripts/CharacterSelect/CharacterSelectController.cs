@@ -33,6 +33,9 @@ public class CharacterSelectController : MonoBehaviour {
     private SpriteDictionary characterTARPanelSprites;
 
     [SerializeField]
+    private SpriteDictionary ModeControls;
+
+    [SerializeField]
     private GameObject playableStatus;
     
     [SerializeField]
@@ -40,6 +43,10 @@ public class CharacterSelectController : MonoBehaviour {
     
     [SerializeField]
     private CharacterPanel botPanel;
+
+    [SerializeField]
+    private Image controls;
+
 
     int numPlayers = 4;
     public List<PlayerActions> players = new List<PlayerActions>();
@@ -71,6 +78,7 @@ public class CharacterSelectController : MonoBehaviour {
 
         if (gameType == GameTypeEnum.DeathMatch)
         {
+            controls.sprite = ModeControls.Get("controls");
             panelCount = 4;
             this.panels[this.panels.Count - 1].gameObject.SetActive(true);
             this.panels.ForEach(panel => panel.Initialize(this.characterDMPanelSprites, GlobalVariables.CharactersForDeathMatch()));
@@ -83,6 +91,8 @@ public class CharacterSelectController : MonoBehaviour {
         }
         else if (gameType == GameTypeEnum.Sabotage)
         {
+            controls.sprite = ModeControls.Get("controls");
+
             panelCount = 3;
             this.panels[this.panels.Count - 1].gameObject.SetActive(false);
             this.botPanel.Initialize(this.characterSABPanelSprites, GlobalVariables.CharactersForSabotage());
@@ -95,6 +105,8 @@ public class CharacterSelectController : MonoBehaviour {
         }
         else if (gameType == GameTypeEnum.Targets)
         {
+            controls.sprite = ModeControls.Get("controls");
+
             panelCount = 1;
             for (int x = 1;x < 4; x++)
             {
@@ -220,8 +232,7 @@ public class CharacterSelectController : MonoBehaviour {
 
             int playerIndex = this.players.IndexOf(player);
 
-            bool canAddBot = this.panels.Exists(freePanel => !freePanel.SignedIn);
-            if (player.Blue.WasReleased && canAddBot)
+            if (player.Blue.WasReleased && CanAddBot())
             {
                 this.botView.SetActive(true);
                 this.botController = player;
@@ -313,6 +324,20 @@ public class CharacterSelectController : MonoBehaviour {
             this.mapView.StartGame();
         }
     }
+
+
+  bool CanAddBot() {
+    bool canAddBot = false;
+    if (gameType == GameTypeEnum.DeathMatch)
+    {
+      canAddBot = this.panels.Exists(freePanel => !freePanel.SignedIn);
+    } else if (gameType == GameTypeEnum.Sabotage) {
+      canAddBot = this.panels.GetRange(0, 3).Exists(freePanel => !freePanel.SignedIn);
+    }
+
+    print(canAddBot);
+    return canAddBot;
+  }
 
 
     public void SignIn(PlayerActions player)

@@ -77,6 +77,8 @@ public class PlayerActions : PlayerActionSet
     actions = CreateKeyboardMenuBindings(actions);
     actions = CreateKeyboardGameBindings(actions);
 
+    setListeningOptions (actions);
+
     return actions;
 	}
 

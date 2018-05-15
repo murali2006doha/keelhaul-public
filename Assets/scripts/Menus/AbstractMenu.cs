@@ -132,5 +132,27 @@ public abstract class AbstractMenu : MonoBehaviour
 
     	return false;
     }
+
+    public bool AnyInputResetWasReleased()
+    {
+        if (actions != null && actions.Yellow.WasReleased)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public bool AnyInputSaveWasReleased()
+    {
+
+        if (actions != null && (actions.Blue.WasReleased))
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
 
