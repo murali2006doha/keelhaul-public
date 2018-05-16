@@ -16,6 +16,8 @@ public class MainMenu : AbstractMenu
     public ActionButton settings;
 	public ActionButton exit;
 
+  public Transform background;
+
     bool dontReset= false;
 
 	protected override void SetActions() {
@@ -38,10 +40,12 @@ public class MainMenu : AbstractMenu
             canReturn = true;
             this.enabled = false;
 			ToggleSelectables();
+      background.gameObject.SetActive(true);
 			FindObjectOfType<MenuModel>().settingsMenu.Initialize(this.actions, () => {
                 index = actionSelectables.IndexOf(settings.gameObject);
 				this.enabled = true;
                 ToggleSelectables();
+        background.gameObject.SetActive(false);
 			});
 		});
 
