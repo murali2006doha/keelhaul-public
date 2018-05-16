@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -37,6 +37,7 @@ public class SettingsMenu : AbstractMenu
 
             });
         });
+
         controls.SetAction(() => {
             this.gameObject.SetActive(false);
             this.enabled = false;
@@ -62,6 +63,5 @@ public class SettingsMenu : AbstractMenu
     {
         GoBack();
     }
-
 }
 
