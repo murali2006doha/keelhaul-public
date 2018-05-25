@@ -34,9 +34,12 @@ public static class PathVariables {
 
 
     //Bombs
-    internal static string atlantisBombPath = "Prefabs/Bombs/atlantis bomb";
-    internal static string chineseBombPath = "Prefabs/Bombs/gung bomb";
-    internal static string blackbeardBombPath = "Prefabs/Bombs/atlantis bomb";
+    internal static string atlantisBombPath = "Prefabs/Bombs/NewBomb";
+  internal static string chineseBombPath = "Prefabs/Bombs/NewBomb";
+  internal static string blackbeardBombPath = "Prefabs/Bombs/NewBomb";
+  //internal static string atlantisBombPath = "Prefabs/Bombs/atlantis bomb";
+  //internal static string chineseBombPath = "Prefabs/Bombs/gung bomb";
+  //internal static string blackbeardBombPath = "Prefabs/Bombs/atlantis bomb";
 
 
     //alternate shots

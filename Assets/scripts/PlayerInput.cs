@@ -472,6 +472,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
     }
     var player = manager.getPlayerWithId(id);
     if (!isKraken && (player == null || (manager.getNumberOfTeams() > 1 && teamNo == player.teamNo))) {
+      print("HITTING");
       return;
     }
 
