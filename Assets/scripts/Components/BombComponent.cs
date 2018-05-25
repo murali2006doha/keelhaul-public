@@ -92,9 +92,9 @@ public class BombComponent : MonoBehaviour {
             return;
         }
 
-        if ((other.gameObject.name).Equals ("playerMesh") && 
-            player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject) {//to activate a bomb
-
+    if ((other.gameObject.name).Equals("playerMesh") &&
+        player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject &&
+        player.teamNo != other.GetComponentInParent<PlayerInput>().teamNo) {//to activate a bomb
  
             if (parentCannon.getBombList().Contains (other.gameObject) == false) {
                 player.gameStats.numOfBombsDetonated += 0.5f;
