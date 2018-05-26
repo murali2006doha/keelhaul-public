@@ -7,6 +7,7 @@ using System;
 public class InputBindingsMenu : AbstractMenu
 {
 
+  public Text setBindingText;
   public ActionButton moveForward;
   public ActionButton rotateLeft;
   public ActionButton rotateRight;
@@ -15,6 +16,7 @@ public class InputBindingsMenu : AbstractMenu
   //public ActionButton hookshot;
   public ActionButton dropBomb;
   public ActionButton altFire;
+  public ActionButton submerge_emerge;
   public Text moveForwardText;
   public Text rotateLeftText;
   public Text rotateRightText;
@@ -23,7 +25,7 @@ public class InputBindingsMenu : AbstractMenu
   //public Text hookshotText;
   public Text dropBombText;
   public Text altFireText;
-  public Text setBindingText;
+  public Text submerge_emergeText;
   private bool checkingBinding = false;
   private PlayerAction actionToBind;
 
@@ -51,6 +53,7 @@ public class InputBindingsMenu : AbstractMenu
         boostText.text = PlayerActions.GetKeyboardBindingName(this.actions.Boost);
         //hookshotText.text = PlayerActions.GetKeyboardBindingName(this.actions.Fire_Hook);
         dropBombText.text = PlayerActions.GetKeyboardBindingName(this.actions.Bomb);
+        submerge_emergeText.text = PlayerActions.GetKeyboardBindingName(this.actions.Submerge_emerge);
       }
 
       setBindingText.gameObject.SetActive(false);
@@ -175,6 +178,14 @@ public class InputBindingsMenu : AbstractMenu
       PlayerActions.Listen(actionToBind);
       ToggleSelectables();
     });
+
+    submerge_emerge.SetAction(() =>
+    {
+      checkingBinding = true;
+      actionToBind = this.actions.Submerge_emerge;
+      PlayerActions.Listen(actionToBind);
+      ToggleSelectables();
+    });
   }
 
   public override void GoBack()
@@ -198,6 +209,7 @@ public class InputBindingsMenu : AbstractMenu
     //actionSelectables.Add (hookshot.gameObject);
     actionSelectables.Add(dropBomb.gameObject);
     actionSelectables.Add(altFire.gameObject);
+    actionSelectables.Add(submerge_emerge.gameObject);
   }
 
 
@@ -227,6 +239,7 @@ public class InputBindingsMenu : AbstractMenu
     boostText.text = PlayerActions.GetKeyboardBindingName(this.actions.Boost);
     //hookshotText.text = PlayerActions.GetKeyboardBindingName(this.actions.Fire_Hook);
     dropBombText.text = PlayerActions.GetKeyboardBindingName(this.actions.Bomb);
+    submerge_emergeText.text = PlayerActions.GetKeyboardBindingName(this.actions.Submerge_emerge);
   }
 
 }

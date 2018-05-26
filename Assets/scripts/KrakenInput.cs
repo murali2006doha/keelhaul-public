@@ -303,7 +303,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
 				Invoke("resetSmash", 0.1f);
             }
 
-            if (Actions.Blue.WasPressed && stats.canPerformAction(Actions.Blue.Name, currentStage) && !mouth.isHooked() && canSubmerge)
+      if (Actions.Submerge_emerge.WasPressed && stats.canPerformAction(Actions.Submerge_emerge.Name, currentStage) && !mouth.isHooked() && canSubmerge)
             { //Submerge
                 SoundManager.playSound(SoundClipEnum.KrakenSubmerge,SoundCategoryEnum.KrakenStageOne, transform.position);
                 animator.submergeKraken();
@@ -365,7 +365,7 @@ public class KrakenInput : MonoBehaviour, StatsInterface {
                 gameStats.timeSpentUnderShips += Time.deltaTime;
             }
 
-            if (submergeTimer <= 0 || (Actions.Blue.WasPressed) && stats.canPerformAction(Actions.Blue.Name, currentStage)) {
+      if (submergeTimer <= 0 || (Actions.Submerge_emerge.WasPressed) && stats.canPerformAction(Actions.Submerge_emerge.Name, currentStage)) {
                 SoundManager.playSound(SoundClipEnum.KrakenBubble, SoundCategoryEnum.Generic, transform.position);
                 vibrate(0.3f, stats.stages[currentStage].emergeTime);
                 isSubmerging = true;

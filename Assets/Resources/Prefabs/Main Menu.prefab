@@ -7481,6 +7481,7 @@ MonoBehaviour:
   boost: {fileID: 114423475977670670}
   dropBomb: {fileID: 114972309929488862}
   altFire: {fileID: 114794442014460408}
+  submerge_emerge: {fileID: 114886588605797328}
   moveForwardText: {fileID: 114043933085159244}
   rotateLeftText: {fileID: 114080720444540758}
   rotateRightText: {fileID: 114630110567855142}
@@ -7488,6 +7489,7 @@ MonoBehaviour:
   boostText: {fileID: 114159119994808100}
   dropBombText: {fileID: 114587169994627876}
   altFireText: {fileID: 114217054627919016}
+  submerge_emergeText: {fileID: 114735334215007288}
   setBindingText: {fileID: 114971111367473100}
 --- !u!114 &114833875442835074
 MonoBehaviour:
