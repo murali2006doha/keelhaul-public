@@ -77,6 +77,10 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 			if (other.name == "KrakenBubbles") {
 				uiManager.triggerShipAlert();
 			}
+            if(other.name == "barrel")
+            {
+                hookshotComponent.AutoHookBarrel();
+            }
 
            
         }
@@ -145,6 +149,10 @@ void handleBombExplosion (Collider other) {
 			Instantiate (rammingSprite, other.transform.position, Quaternion.identity);
 			input.addPushForce (otherPlayer.cc.velocity.normalized, Mathf.Max ((otherPlayer.stats.weight - stats.weight)/otherPlayer.stats.weight, 0f));
       otherPlayer.motor.Brake();
+            if(hookshotComponent && hookshotComponent.isHooked())
+            {
+                hookshotComponent.UnHook();
+            }
 			
 		}
 	}

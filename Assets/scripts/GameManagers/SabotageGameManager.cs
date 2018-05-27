@@ -294,8 +294,13 @@ public class SabotageGameManager : AbstractGameManager
             }
             x++;
         }
-        barrel.AddComponent<CharacterJoint>();
-        barrel.GetComponent<CharacterJoint>().anchor = anchor;
+        b.isScoring = false;
+        if (!b.autoHook)
+        {
+            barrel.AddComponent<CharacterJoint>();
+            barrel.GetComponent<CharacterJoint>().anchor = anchor;
+        }
+
         barrel.GetComponent<Barrel>().activatePillar();
     }
 
@@ -735,6 +740,7 @@ public class SabotageGameManager : AbstractGameManager
         int winPoints = playerWinPoints;
         var players2 = getPlayers();
         int teamNo = 0;
+        barrel.isScoring = true;
         gamePoints[id.ToString()]++;
         if (kraken.id == id)
         {
@@ -759,6 +765,7 @@ public class SabotageGameManager : AbstractGameManager
                     {
                         teamNo = player.teamNo;
                     }
+                   
                     barrel.GetComponent<BoxCollider>().enabled = false;
                     player.GetComponent<HookshotComponent>().UnHook();
                     player.GetComponent<HookshotComponent>().enabled = false;
