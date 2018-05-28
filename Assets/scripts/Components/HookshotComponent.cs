@@ -125,7 +125,7 @@ public class HookshotComponent : MonoBehaviour
 
     public void AutoHookBarrel()
     {
-        if (!barrel.isScoring && barrelGameObj.GetComponent<Barrel>().owner == null)
+        if (!barrel.isScoring && barrel.owner == null)
         {
             onHook(true);
             tether.enabled = true;
@@ -360,16 +360,18 @@ public class HookshotComponent : MonoBehaviour
 
                 }
             }
-            barrelGameObj.GetComponent<Barrel>().owner = null;
-            rb.isKinematic = false;
-            tether.enabled = false;
-            hookshotActive = false;
-            stuck = false;
-            hooked = false;
-            hooking = false;
-            distanceCounter = 0;
-            onHook(false);
-            StopAllCoroutines();
+            if (barrelGameObj.GetComponent<Barrel>().owner == ship.gameObject) { 
+                barrelGameObj.GetComponent<Barrel>().owner = null;
+                rb.isKinematic = false;
+                tether.enabled = false;
+                hookshotActive = false;
+                stuck = false;
+                hooked = false;
+                hooking = false;
+                distanceCounter = 0;
+                onHook(false);
+                StopAllCoroutines();
+            }
         }
 
     }

@@ -740,7 +740,7 @@ public class SabotageGameManager : AbstractGameManager
         int winPoints = playerWinPoints;
         var players2 = getPlayers();
         int teamNo = 0;
-        barrel.isScoring = true;
+
         gamePoints[id.ToString()]++;
         if (kraken.id == id)
         {
@@ -749,6 +749,7 @@ public class SabotageGameManager : AbstractGameManager
         }
         else
         {
+            barrel.isScoring = true;
             if (PhotonNetwork.player.ID == id && !PhotonNetwork.offlineMode)
             {
 
