@@ -91,7 +91,7 @@ public class CharacterSelectController : MonoBehaviour {
         }
         else if (gameType == GameTypeEnum.Sabotage)
         {
-            controls.sprite = ModeControls.Get("controls");
+            controls.sprite = ModeControls.Get("controls-sabotage");
 
             panelCount = 3;
             this.panels[this.panels.Count - 1].gameObject.SetActive(false);
@@ -105,7 +105,7 @@ public class CharacterSelectController : MonoBehaviour {
         }
         else if (gameType == GameTypeEnum.Targets)
         {
-            controls.sprite = ModeControls.Get("controls");
+            controls.sprite = ModeControls.Get("controls-targets");
 
             panelCount = 1;
             for (int x = 1;x < 4; x++)

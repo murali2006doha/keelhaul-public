@@ -40,9 +40,9 @@ public class KrakenAi : MonoBehaviour {
 			agent.SetDestination (barrel.transform.position);
 			if (agent.remainingDistance > 10f && !isSubmerged) {
 				if (!input.dying && !input.isSubmerging) {
-					input.Actions.Blue.SetValue (1, 1);
+          input.Actions.Submerge_emerge.SetValue (1, 1);
 				} else if (input.isSubmerging) {
-					input.Actions.Blue.SetValue (0, 1);
+          input.Actions.Submerge_emerge.SetValue (0, 1);
 					isSubmerged = true;
 				}
 
