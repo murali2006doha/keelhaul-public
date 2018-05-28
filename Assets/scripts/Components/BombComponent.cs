@@ -25,7 +25,7 @@ public class BombComponent : MonoBehaviour {
     void Start() {
 
         blinkTime = (waitTimeToExplode / (float) blinks);
-        transform.rotation = Quaternion.Euler(-90, 0, 0); //prefabs should be adjusted so this is no longer necc
+        //transform.rotation = Quaternion.Euler(-90, 0, 0); //prefabs should be adjusted so this is no longer necc
 
     }
 
@@ -92,9 +92,16 @@ public class BombComponent : MonoBehaviour {
             return;
         }
 
-        if ((other.gameObject.name).Equals ("playerMesh") && 
-            player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject) {//to activate a bomb
+    if ((other.gameObject.name).Equals("playerMesh")) {
+      print(player.teamNo);
+      print(other.GetComponentInParent<PlayerInput>().teamNo);
+    }
 
+    if ((other.gameObject.name).Equals("playerMesh") &&
+        player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject &&
+        player.teamNo != other.GetComponentInParent<PlayerInput>().teamNo) {//to activate a bomb
+      //if ((other.gameObject.name).Equals("playerMesh") &&
+        //player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject) {//to activate a bomb
  
             if (parentCannon.getBombList().Contains (other.gameObject) == false) {
                 player.gameStats.numOfBombsDetonated += 0.5f;

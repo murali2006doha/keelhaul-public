@@ -49,7 +49,7 @@ public class BombControllerComponent : MonoBehaviour {
 
 	private void spawnBomb() {
         //maybe do an arc to throw bomb?
-        GameObject bombObject = PhotonNetwork.Instantiate(bombPath, transform.position, transform.rotation, 0);
+    GameObject bombObject = PhotonNetwork.Instantiate(bombPath, transform.position, transform.rotation, 0);
 		bombObject.GetComponent<BombComponent>().Initialize (this, this.input);
 		bombList.Add (bombObject);
 	}
