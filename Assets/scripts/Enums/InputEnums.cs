@@ -4,7 +4,7 @@ using System.Collections;
 public enum InputEnum
 {
 	Green, Red, Blue, Yellow, Left, Right, Up, Down, AnyMovement, Rotate, R_Rotate, AnyAiming, Boost, Bomb, Fire, Alt_Fire,
-	Fire_Hook, Start
+	Fire_Hook, Start, Submerge_emerge
 }
 
 public class InputEnumConverter
@@ -43,6 +43,8 @@ public class InputEnumConverter
 				return actions.Fire_Hook.WasPressed;
 			case InputEnum.Start:
 				return actions.Start.WasPressed;
+      case InputEnum.Submerge_emerge:
+        return actions.Submerge_emerge.WasPressed;
 
 		}
 

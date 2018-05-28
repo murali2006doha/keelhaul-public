@@ -14,8 +14,9 @@ public class PlayerActions : PlayerActionSet
 	public PlayerAction Right;
 	public PlayerAction Fire;
 	public PlayerAction Bomb;
-	public PlayerAction Alt_Fire;
-	public PlayerAction Fire_Hook;
+  public PlayerAction Alt_Fire;
+  public PlayerAction Fire_Hook;
+  public PlayerAction Submerge_emerge;
 	public PlayerAction Up;
 	public PlayerAction Down;
 	public PlayerAction R_Up;
@@ -63,6 +64,7 @@ public class PlayerActions : PlayerActionSet
 		Fire = CreatePlayerAction("Fire");
 		Alt_Fire = CreatePlayerAction("Alt_Fire");
     Fire_Hook = CreatePlayerAction("Fire_Hook");
+    Submerge_emerge = CreatePlayerAction("Submerge_emerge");
     Start = CreatePlayerAction("Start");
     Pause = CreatePlayerAction("Pause");
 		Select = CreatePlayerAction("Select");
@@ -129,6 +131,7 @@ public class PlayerActions : PlayerActionSet
     actions.Fire.AddDefaultBinding(Mouse.LeftButton);
     actions.Fire_Hook.AddDefaultBinding(Mouse.RightButton);
     actions.Alt_Fire.AddDefaultBinding(Key.LeftControl);
+    actions.Submerge_emerge.AddDefaultBinding(Key.E);
 
     actions.Boost.AddDefaultBinding(Key.Shift);
     actions.Bomb.AddDefaultBinding(Key.Space);
@@ -186,7 +189,8 @@ public class PlayerActions : PlayerActionSet
   {
     actions.Fire.AddDefaultBinding(InputControlType.RightTrigger);
     actions.Alt_Fire.AddDefaultBinding(InputControlType.RightBumper);
-    actions.Fire_Hook.AddDefaultBinding(InputControlType.LeftTrigger);
+    actions.Alt_Fire.AddDefaultBinding(Key.LeftControl);
+    actions.Submerge_emerge.AddDefaultBinding(InputControlType.Action2);
     actions.Boost.AddDefaultBinding(InputControlType.LeftBumper);
     actions.Bomb.AddDefaultBinding(InputControlType.Action2);
 

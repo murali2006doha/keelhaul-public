@@ -111,6 +111,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
           vibrate(0.5f, 2f);
           uiManager.setBoostBar(0);
           uiManager.animManager.onBoost();
+            if (hookshotComponent != null) hookshotComponent.UnHook();
         },
         () => {
 
@@ -202,8 +203,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
       var aimPhysics = aimComponent.GetComponent<AimPhysicsComponent>();
       if (aimPhysics) {
         hookshotComponent.Initialize(uiManager, gameStats, aimPhysics.isAimTouchingBarrel);
+                if (hookshotComponent.autoHook)
+                {
+                    aimComponent.aim.GetComponent<MeshRenderer>().enabled = false;
+                }
       }
-
     }
   }
 

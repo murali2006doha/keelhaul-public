@@ -9,12 +9,20 @@ public class Barrel : MonoBehaviour
     public GameObject explosion;
     PlayerInput currentPlayer;
     bool shouldDenotate = true;
+    internal bool isScoring = false;
+
+    [HideInInspector]
+    public bool autoHook = true;
 
     // Use this for initialization
     void Start()
     {
         pillar = GetComponentInChildren<LightPillar>();
         currentPlayer = FindObjectOfType<PlayerInput>();
+        if (autoHook)
+        {
+            Destroy(GetComponent<CharacterJoint>());
+        }
     }
 
     public void activatePillar()
