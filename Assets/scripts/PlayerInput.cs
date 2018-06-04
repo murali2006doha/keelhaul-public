@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
   public Vector3 startingPoint;
   public Quaternion startingRotation;
   public PlayerActions Actions { get; set; }
+  public float minHookshotDistance;
 
   [Header("Component Variables")]
   public ShipMotorComponent motor;
@@ -23,6 +24,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
   public AimComponent aimComponent;
   public HookshotComponent hookshotComponent;
   public ShipCannonComponent centralCannon;
+
+  internal void MoveToHarpoonLocation(Vector3 position) {
+    throw new NotImplementedException();
+  }
+
   public AbstractAltCannonComponent altCannonComponent;
   public ShipMeshPhysicsComponent shipMeshComponent;
 
@@ -226,6 +232,28 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
     }
   }
 
+  public void MoveToHarpoonLocation(Vector3 position, float speed) {
+    StartCoroutine(MoveRoutine(position, speed));
+
+  }
+
+
+  IEnumerator MoveRoutine(Vector3 position, float speed) {
+    while (Vector3.Distance(transform.position, position) > minHookshotDistance) {
+      Debug.Log("reaching here");
+      transform.position = Vector3.Lerp(transform.position, position, speed * Time.deltaTime);
+
+      yield return null;
+    }
+
+    Debug.Log("Reached the target.");
+
+
+    yield return new WaitForSeconds(.1f);
+    this.SetLockedStatus(false);
+    this.StopCoroutine("MoveRoutine");
+    Debug.Log("MyCoroutine is now finished.");
+  }
 
   public void clearShipInput() {
     shipInput.onRotateChanged = null;
@@ -318,10 +346,9 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
       uiManager.updateShipUI(this.transform.position, hookshotComponent.shouldShowTooltip());
       if (gameStarted) {
         uiManager.updateTutorialPrompts(followCamera.camera, Actions);
-                if (aimComponent)
-                {
-                    aimComponent.updateAim();
-                }
+        if (aimComponent) {
+          aimComponent.updateAim();
+        }
       }
 
     }
