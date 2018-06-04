@@ -1032,6 +1032,7 @@ MonoBehaviour:
   scoreDestination: {fileID: 0}
   startingPoint: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  minHookshotDistance: 0.4
   motor: {fileID: 114358724233102334}
   bombController: {fileID: 114247642520699438}
   aimComponent: {fileID: 114147462181035602}
@@ -10745,8 +10746,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114961205758043600}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 11
-  instantiationId: 11
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114147462181035602
@@ -10786,8 +10787,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 9
-  instantiationId: 9
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114247642520699438
@@ -10824,8 +10825,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999716085284838}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 10
-  instantiationId: 10
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114342432854071966
@@ -10868,6 +10869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c33481d16665304ebe86187586abc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ramRotationSpeed: 1
   wake: {fileID: 170552}
   boostParticle: {fileID: 1064227694621572}
   velocity: 0

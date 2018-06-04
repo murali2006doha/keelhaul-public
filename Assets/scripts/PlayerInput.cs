@@ -16,7 +16,7 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
   public Vector3 startingPoint;
   public Quaternion startingRotation;
   public PlayerActions Actions { get; set; }
-  public float minHookshotDistance;
+  public float minHookshotDistance = 0.4f;
 
   [Header("Component Variables")]
   public ShipMotorComponent motor;

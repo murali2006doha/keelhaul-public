@@ -761,8 +761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95ca08cff1e3584792def6a97418b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 2
-  force: 600
+  lifeTime: 1
+  force: 1200
   rigidbody: {fileID: 54399160506370384}
 --- !u!114 &114383695741761200
 MonoBehaviour:
