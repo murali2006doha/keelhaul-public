@@ -49,6 +49,7 @@ public class HookshotComponent : MonoBehaviour
     private bool stuck = false;
     internal Action<bool> onHook;
     public bool autoHook;
+    bool tetherAnimating = false;
 
     void Start()
     {
@@ -65,11 +66,16 @@ public class HookshotComponent : MonoBehaviour
         if (hooked)
         {
             tether.SetPosition(0, hook.transform.position);
-            tether.SetPosition(1, barrel_dest.transform.position);
-            barrelGameObj.transform.position = barrel_dest.transform.position;
+            tether.SetPosition(1, barrelGameObj.transform.position);
+            MoveBarrelToTether();
+            //barrelGameObj.transform.position = barrel_dest.transform.position;
         }
     }
 
+    private void MoveBarrelToTether()
+    {
+        barrelGameObj.transform.position = Vector3.Lerp(barrelGameObj.transform.position, barrel_dest.transform.position, 2.5f * Time.deltaTime * GlobalVariables.gameSpeed);
+    }
 
     IEnumerator handleHit()
     {
@@ -112,6 +118,11 @@ public class HookshotComponent : MonoBehaviour
 
     }
 
+    internal GameObject getBarrel()
+    {
+        return barrelGameObj;
+    }
+
     internal void Initialize(UIManager uiManager, FreeForAllStatistics gameStats, Func<bool> aimCheckFunction)
     {
         stats = gameStats;
@@ -127,11 +138,12 @@ public class HookshotComponent : MonoBehaviour
     {
         if (!barrel.isScoring && barrel.owner == null)
         {
+            tetherAnimating = true;
             onHook(true);
             tether.enabled = true;
             tether.SetPosition(0, hook.transform.position);
-            tether.SetPosition(1, barrelGameObj.transform.position);
-            barrelGameObj.transform.position = barrel_dest.transform.position;
+            tether.SetPosition(1, Vector3.Lerp(hook.transform.position,barrelGameObj.transform.position,1.5f * Time.deltaTime * GlobalVariables.gameSpeed));
+            //barrelGameObj.transform.position = barrel_dest.transform.position;
             CompleteHookingBarrel();
         }
 

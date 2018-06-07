@@ -49,6 +49,10 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
                     takeDamageAction(iceSpike.damage* Time.deltaTime, parentId, false);
                 }
             }
+            if (other.name == "barrel")
+            {
+                hookshotComponent.AutoHookBarrel();
+            }
         }
 	}
 		
@@ -77,10 +81,7 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 			if (other.name == "KrakenBubbles") {
 				uiManager.triggerShipAlert();
 			}
-            if(other.name == "barrel")
-            {
-                hookshotComponent.AutoHookBarrel();
-            }
+           
 
            
         }
@@ -88,8 +89,10 @@ public class ShipMeshPhysicsComponent : MonoBehaviour {
 
 
 	void handleScoringZone () {
+        
 		Vector3 newPos = Vector3.Lerp (hookshotComponent.getBarrelPosition(), scoreDestination.transform.position, Time.time);
-		hookshotComponent.setBarrelPosition (newPos);
+        LeanTween.moveLocal(hookshotComponent.getBarrel(), newPos, 0.4f);
+        //hookshotComponent.setBarrelPosition (newPos);
         SabotageGameManager sabManager = (SabotageGameManager) manager;
         sabManager.GetComponent<PhotonView>().RPC("IncrementPoint", PhotonTargets.All,input.GetId());
         input.SendBarrelScoreToKillFeed();

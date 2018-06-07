@@ -289,7 +289,7 @@ public class SabotageGameManager : AbstractGameManager
             if (barrelObj == barrel)
             {
                 barrel.transform.position = barrels_start_pos[x];
-                barrel.transform.rotation = Quaternion.Euler(new Vector3(-90f, 0f, 0f));
+                //barrel.transform.rotation = Quaternion.Euler(new Vector3(-90f, 0f, 0f));
                 break;
             }
             x++;
