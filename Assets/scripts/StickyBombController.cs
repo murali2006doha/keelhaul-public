@@ -51,7 +51,6 @@ public class StickyBombController : MonoBehaviour {
 
 				Vector3 direction = GetComponent<Rigidbody> ().velocity.normalized;
 				PlayerInput ship = collider.transform.root.GetComponent<PlayerInput> ();
-				print (ship);
 				ship.addPushForce (direction, magnitude);
 
 				gameObject.AddComponent<FixedJoint> ();

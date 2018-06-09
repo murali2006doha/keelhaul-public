@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class BombControllerComponent : MonoBehaviour {
 
 	FreeForAllStatistics gameStats;
+  AbstractGameManager manager;
 	CharacterController cc;
 	ShipStats stats;
 	Transform shipTransform;
@@ -19,7 +20,8 @@ public class BombControllerComponent : MonoBehaviour {
 	
 
 
-	internal void Initialize(ShipStats stats, PlayerInput input, UIManager uiManager, FreeForAllStatistics gameStats, string bombPath)
+	internal void Initialize(ShipStats stats, PlayerInput input, UIManager uiManager, 
+                           FreeForAllStatistics gameStats, string bombPath, AbstractGameManager manager)
 	{
 		this.input = input;
         this.bombPath = bombPath;
@@ -27,6 +29,7 @@ public class BombControllerComponent : MonoBehaviour {
 		this.gameStats = gameStats;
 		this.stats = stats;
 		this.bombCount = stats.max_bombs;
+    this.manager = manager;
 	}
 
 
@@ -50,7 +53,7 @@ public class BombControllerComponent : MonoBehaviour {
 	private void spawnBomb() {
         //maybe do an arc to throw bomb?
     GameObject bombObject = PhotonNetwork.Instantiate(bombPath, transform.position, transform.rotation, 0);
-		bombObject.GetComponent<BombComponent>().Initialize (this, this.input);
+    bombObject.GetComponent<BombComponent>().Initialize (this, this.input, this.manager);
 		bombList.Add (bombObject);
 	}
 

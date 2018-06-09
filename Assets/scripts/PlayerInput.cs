@@ -133,7 +133,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
         this,
         uiManager,
         gameStats,
-        PathVariables.GetAssociatedBombForShip(type));
+        PathVariables.GetAssociatedBombForShip(type),
+        manager);
     InitializeHookshot();
 
     shipMeshComponent.Initialize(
@@ -502,6 +503,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
       onHitRegister();
     }
     var player = manager.getPlayerWithId(id);
+    print(teamNo == player.teamNo);
+    print(manager.getNumberOfTeams());
     if (!isKraken && (player == null || (manager.getNumberOfTeams() > 1 && teamNo == player.teamNo))) {
       print("HITTING");
       return;
