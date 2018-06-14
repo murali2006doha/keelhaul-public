@@ -14,43 +14,88 @@ public class Harpoon : MonoBehaviour {
   [SerializeField]
   private Rigidbody rigidbody;
 
+  [SerializeField]
+  private float hitDamage = 0.1f  ;
+
+  [SerializeField]
+  private float moveBackSpeed = 10f;
+
+  [SerializeField]
+  private LineRenderer line;
+
+  private Vector3 originPosition;
   private List<PlayerInput> victims = new List<PlayerInput>();
   private PlayerInput owner;
-  private UnityAction<List<PlayerInput>> onFinish;
+  private UnityAction<PlayerInput> onFinish;
 
+  [SerializeField]
+  private float harpoonDistance = 0.1f;
+
+  [SerializeField]
+  private float harpoonDistanceVictim = 0.1f;
+
+  private bool pullingBack = false;
   void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+    this.line.SetPosition(0, this.originPosition);
+    this.line.SetPosition(1, this.transform.position);
+    if (this.pullingBack) {
+      if (Vector3.Distance(this.transform.position, this.originPosition) < this.harpoonDistance) {
+        Destroy(this.gameObject);
+      }
+
+      foreach (var victim in this.victims) {
+        if (Vector3.Distance(victim.gameObject.transform.position, this.transform.position) < harpoonDistanceVictim) {
+          this.victims.Remove(victim);
+          this.onFinish(victim);
+        }
+      }
+
+      this.transform.position = Vector3.MoveTowards(this.transform.position, this.originPosition, this.moveBackSpeed * Time.deltaTime);
+    }
+
+  }
 
 
   public void OnTriggerEnter(Collider other) {
     var otherPlayer = other.transform.root.GetComponent<PlayerInput>();
 
-    if (otherPlayer == null) {
-      return;
+    if (otherPlayer == null || otherPlayer == this.owner) {
+        return;
     }
 
-    Debug.Log("reaching here");
-    otherPlayer.SetLockedStatus(true);
-    if (!this.victims.Contains(otherPlayer)) {
-      this.victims.Add(otherPlayer);
+    if (this.pullingBack) {
+      if (this.victims.Contains(otherPlayer)) {
+        this.onFinish(otherPlayer);
+      }
+
+    } else {
+      otherPlayer.hit(hitDamage, this.owner.GetId());
+      otherPlayer.SetLockedStatus(true);
+      if (!this.victims.Contains(otherPlayer)) {
+        this.victims.Add(otherPlayer);
+      }
+
     }
+    
   }
 
-  public void Initialize(UnityAction<List<PlayerInput>> onFinish, PlayerInput owner) {
+  public void Initialize(UnityAction<PlayerInput> onFinish, PlayerInput owner) {
     this.onFinish = onFinish;
+    this.pullingBack = false;
     this.owner = owner;
     this.rigidbody.AddForce(this.transform.forward * force);
+    this.originPosition = this.transform.position;
     Invoke("PullBack", this.lifeTime);
   }
 
   private void PullBack() {
-    this.onFinish(this.victims);
-    Destroy(this.gameObject);
+    this.pullingBack = true;
+    this.rigidbody.isKinematic = true;
+    this.rigidbody.useGravity = false;
   }
 }
