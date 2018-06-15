@@ -33,9 +33,14 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
     victim.MoveToHarpoonLocation(this.transform.position, harpoonSpeed);
   }
 
+	private void OnHarpoonFinish() {
+		this.input.SetLockedStatus (false);
+	}
+
   public override void alternateFire() {
+		this.input.SetLockedStatus (true);
     var instantiatedHarpoon = GameObject.Instantiate(harpoonPrefab, this.cannonBallPos.position, this.transform.rotation);
-    instantiatedHarpoon.Initialize(this.OnHarpoonEnd, this.input);
+		instantiatedHarpoon.Initialize(this.OnHarpoonEnd, this.OnHarpoonFinish, this.input);
   }
 
   public override void setupRotation() {
