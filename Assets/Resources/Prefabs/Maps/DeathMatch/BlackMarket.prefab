@@ -20238,7 +20238,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.17666666
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 93f6634ce7dd1489a84d6e5ce3578e82, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ae030dfbed3442044ac25b203ce26b59, type: 2}
 --- !u!114 &114722908528708992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20298,6 +20298,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   pillar: {fileID: 114012868525501890}
   explosion: {fileID: 182170, guid: 9a8ea4b8a802d6a4eba1c86572deaba8, type: 2}
+  autoHook: 1
 --- !u!114 &114995536544548350
 MonoBehaviour:
   m_ObjectHideFlags: 1

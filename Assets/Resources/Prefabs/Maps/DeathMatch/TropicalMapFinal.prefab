@@ -11079,6 +11079,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   pillar: {fileID: 114539767834401544}
   explosion: {fileID: 182170, guid: 9a8ea4b8a802d6a4eba1c86572deaba8, type: 2}
+  autoHook: 1
 --- !u!114 &114439193244704208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11181,9 +11182,9 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.17666666
+  m_VoxelSize: 0.11666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: b845fd83f5b694cb3a277d0aa6110bc2, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 84a42f192318a8b46972afdb7470119a, type: 2}
 --- !u!114 &114807056922397182
 MonoBehaviour:
   m_ObjectHideFlags: 1
