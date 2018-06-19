@@ -10,12 +10,14 @@ public class AtlanteanAltCannonComponent : AbstractAltCannonComponent {
   [SerializeField] private float buildUpTime;
   [SerializeField] private TrailRenderer trailer;
   [SerializeField] private GameObject particleEffect;
+  [SerializeField] private Animator shipAnim;
 
   public override void alternateFire () {
     this.input.SetUpForTeleport();
     this.trailer.enabled = true;
     this.particleEffect.SetActive(true);
     this.particleEffect.transform.SetParent(null, true);
+    this.shipAnim.SetTrigger("ethereal");
     Invoke("Blink", buildUpTime);
   }
 
@@ -23,18 +25,17 @@ public class AtlanteanAltCannonComponent : AbstractAltCannonComponent {
     this.particleEffect.SetActive(false);
     this.particleEffect.transform.SetParent(this.trailer.transform, true);
     this.setupRotation();
+    this.shipAnim.SetTrigger("dethereal");
     Ray ray = new Ray(this.input.shipMesh.transform.position, this.shoot_direction);
     RaycastHit hitInfo;
     this.input.motor.locked = true;
     var environmentLayerMask = 1 << LayerMask.NameToLayer("environment");
-
     var startingPosition = this.input.transform.position;
     if (Physics.Raycast(ray, out hitInfo, blinkDistance, environmentLayerMask, QueryTriggerInteraction.UseGlobal)) {
       this.input.transform.SetPositionAndRotation(new Vector3(hitInfo.point.x, this.input.transform.position.y, hitInfo.point.z), this.input.transform.rotation);
     } else {
       this.input.transform.position += this.shoot_direction * blinkDistance;
     }
-
 
     var directionVector = (this.input.transform.position - startingPosition);
     Ray damageRay = new Ray(startingPosition, directionVector.normalized);

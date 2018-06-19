@@ -28,8 +28,9 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
     this.damageMultiplier = 1f;
   }
 
-  private void OnHarpoonEnd(List<PlayerInput> victims) {
-    victims.ForEach(victim => victim.MoveToHarpoonLocation(this.transform.position, harpoonSpeed));
+  private void OnHarpoonEnd(PlayerInput victim) {
+    Debug.Log("reaching here for " + victim.GetId());
+    victim.MoveToHarpoonLocation(this.transform.position, harpoonSpeed);
   }
 
   public override void alternateFire() {
