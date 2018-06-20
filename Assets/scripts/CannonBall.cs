@@ -129,10 +129,7 @@ public class CannonBall : Photon.MonoBehaviour {
   }
 
   virtual public void destroySelf() {
-    if (GetComponent<PhotonView>().isMine) {
-
-      PhotonNetwork.Destroy(GetComponent<PhotonView>());
-    }
+    Destroy(this.gameObject);
   }
 
   void FixedUpdate() {
