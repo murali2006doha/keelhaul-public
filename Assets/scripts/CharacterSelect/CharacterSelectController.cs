@@ -335,7 +335,6 @@ public class CharacterSelectController : MonoBehaviour {
       canAddBot = this.panels.GetRange(0, 3).Exists(freePanel => !freePanel.SignedIn);
     }
 
-    print(canAddBot);
     return canAddBot;
   }
 

@@ -7,6 +7,7 @@ public class BombComponent : MonoBehaviour {
 
     BombControllerComponent parentCannon;
     PlayerInput player;
+  AbstractGameManager manager;
 
     int blinks = 5;
     float blinkTime;
@@ -30,9 +31,10 @@ public class BombComponent : MonoBehaviour {
     }
 
 
-    internal void Initialize(BombControllerComponent parent, PlayerInput input) {
+  internal void Initialize(BombControllerComponent parent, PlayerInput input, AbstractGameManager manager) {
         this.parentCannon = parent;
         this.player = input;
+    this.manager = manager;
     }
 
 
@@ -53,19 +55,6 @@ public class BombComponent : MonoBehaviour {
     public IEnumerator ActivateBomb() {
 
         startSound (fuseSound);
-        //largeBombZone.SetActive (true);
-
-        //for(int i = 0; i < blinks; i++){ //blinks when activated
-        //    largeBombZone.GetComponent<Renderer> ().material.color = Color.white;
-        //    bombModel.GetComponent<Renderer> ().material.color = Color.white;
-        //    yield return new WaitForSeconds(blinkTime);
-        //    largeBombZone.GetComponent<Renderer> ().material.color = Color.yellow;
-        //    bombModel.GetComponent<Renderer> ().material.color = Color.red;
-        //    yield return new WaitForSeconds(blinkTime);
-        //}
-
-        ////explode!
-        //Destroy (largeBombZone);            //destroy the parameter zone
 
         if (GetComponent<PhotonView>().isMine) {
             startSound (explosionSound);
@@ -92,21 +81,22 @@ public class BombComponent : MonoBehaviour {
             return;
         }
 
-    if ((other.gameObject.name).Equals("playerMesh")) {
-      print(player.teamNo);
-      print(other.GetComponentInParent<PlayerInput>().teamNo);
-    }
+        int id = other.GetComponentInParent<PlayerInput>().GetId();
+        var otherPlayer = manager.getPlayerWithId(id);
 
-    if ((other.gameObject.name).Equals("playerMesh") &&
-        player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject &&
-        player.teamNo != other.GetComponentInParent<PlayerInput>().teamNo) {//to activate a bomb
-      //if ((other.gameObject.name).Equals("playerMesh") &&
-        //player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject) {//to activate a bomb
- 
+        if ((other.gameObject.name).Equals("playerMesh") && 
+            (player.gameObject != other.GetComponentInParent<PlayerInput>().gameObject)) {
+          if (manager.getNumberOfTeams() > 1 && player.teamNo == otherPlayer.teamNo)
+          {
+            print(player.teamNo);
+            print(otherPlayer.teamNo);
+            return;
+          } else {
             if (parentCannon.getBombList().Contains (other.gameObject) == false) {
                 player.gameStats.numOfBombsDetonated += 0.5f;
-                GetComponent<PhotonView>().RPC("RPCActivateBomb", PhotonTargets.All);
-            }
+                StartCoroutine(ActivateBomb());
+            } 
+          }
         }
 
         if (other.gameObject.name.Contains("Kraken")) {

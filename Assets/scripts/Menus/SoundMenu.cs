@@ -27,12 +27,12 @@ public class SoundMenu : AbstractMenu
 	}
 
 	public void setSoundVolume(float vol) {
-        audioMixer.SetFloat("SFX", LinearToDecibal(vol));
+    audioMixer.SetFloat("SFX", LinearToDBConverter.LinearToDecibal(vol));
 		GlobalSettings.setSoundMultiplier(vol);
 	}
 
 	public void setMusicVolume(float vol) {
-        audioMixer.SetFloat("Music", LinearToDecibal(vol));
+    audioMixer.SetFloat("Music", LinearToDBConverter.LinearToDecibal(vol));
 		GlobalSettings.setMusicMuliplier(vol);
 	}
 
@@ -41,16 +41,5 @@ public class SoundMenu : AbstractMenu
         GoBack();
     }
 
-
-    float LinearToDecibal(float linear)
-    {
-        if (linear == 0.0f)
-        {
-            return -80f;
-        } else {
-            return (20.0f * Mathf.Log10(linear)) + 20; 
-        }
-
-    }
 }
 

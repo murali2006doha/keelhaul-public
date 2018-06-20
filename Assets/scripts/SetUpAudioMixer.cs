@@ -11,8 +11,8 @@ public class SetUpAudioMixer : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
-        float soundMultiplier = GlobalSettings.soundMultiplier;
-        float musicMultiplier = GlobalSettings.musicMultiplier;
+    float soundMultiplier = GlobalSettings.soundMultiplier;
+    float musicMultiplier = GlobalSettings.musicMultiplier;
     audioMixer.SetFloat("SFX", LinearToDBConverter.LinearToDecibal(soundMultiplier));
     audioMixer.SetFloat("Music", LinearToDBConverter.LinearToDecibal(musicMultiplier));
 	} 

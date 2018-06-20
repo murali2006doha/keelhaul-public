@@ -61,7 +61,6 @@ public class InputBindingsMenu : AbstractMenu
       if (AnyInputSaveWasReleased())
       {
         PlayerActions.SaveBindings(this.actions);
-        print("SAVED bindings");
       }
 
       if (AnyInputResetWasReleased())
