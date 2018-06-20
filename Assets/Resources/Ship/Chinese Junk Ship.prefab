@@ -562,7 +562,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190322}
   m_LocalRotation: {x: -0, y: 0.9988678, z: -0, w: -0.047572922}
-  m_LocalPosition: {x: 20.066994, y: 18.188835, z: -33.94197}
+  m_LocalPosition: {x: 7.642151, y: 1.0363792, z: -5.5565853}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 431684}
@@ -966,6 +966,7 @@ MonoBehaviour:
   missedTetherRollbackSpeed: 3
   extraDistance: 1.2
   stuckTime: 0.5
+  barrelGameObj: {fileID: 0}
   barrel: {fileID: 0}
   destination: {fileID: 0}
   hookshotActive: 0
@@ -1002,6 +1003,7 @@ MonoBehaviour:
     numOfKrakenSmash: 0
   uiManager: {fileID: 0}
   splashParticle: {fileID: 1412898726211924}
+  autoHook: 0
 --- !u!114 &11440490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10746,8 +10748,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114961205758043600}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 7
+  instantiationId: 7
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114147462181035602
@@ -10787,8 +10789,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 5
+  instantiationId: 5
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114247642520699438
@@ -10825,8 +10827,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999716085284838}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 6
+  instantiationId: 6
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114342432854071966
@@ -10919,7 +10921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a116f3d7a3241feab0783274284314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostSound: {fileID: 8300000, guid: 0fcb39057f3e44fd1b932e9e07a360ef, type: 3}
+  boostSound: {fileID: 8300000, guid: 74ba27464ff6e164483edc283d33e460, type: 3}
   movementSound: {fileID: 8300000, guid: 8ba1d415158f147d9b54d87ba4ac6fe9, type: 3}
   maxVolume: 0.65
   boostVolume: 1

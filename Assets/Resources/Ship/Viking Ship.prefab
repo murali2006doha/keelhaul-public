@@ -2492,7 +2492,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1676817926590220}
   m_LocalRotation: {x: 0, y: 0.96989334, z: 0, w: 0.24353029}
-  m_LocalPosition: {x: -23.208138, y: -35.22569, z: -17.477736}
+  m_LocalPosition: {x: 5.209793, y: -0.75198674, z: -5.074072}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4777083751887454}
@@ -3511,7 +3511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a116f3d7a3241feab0783274284314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostSound: {fileID: 8300000, guid: 0fcb39057f3e44fd1b932e9e07a360ef, type: 3}
+  boostSound: {fileID: 8300000, guid: 74ba27464ff6e164483edc283d33e460, type: 3}
   movementSound: {fileID: 8300000, guid: 8ba1d415158f147d9b54d87ba4ac6fe9, type: 3}
   maxVolume: 0.14
   boostVolume: 0.14
@@ -3592,6 +3592,7 @@ MonoBehaviour:
   scoreDestination: {fileID: 0}
   startingPoint: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
+  minHookshotDistance: 0.4
   motor: {fileID: 114771546866688374}
   bombController: {fileID: 114799525471838902}
   aimComponent: {fileID: 114186087409521954}
@@ -3790,6 +3791,7 @@ MonoBehaviour:
   missedTetherRollbackSpeed: 3
   extraDistance: 1.2
   stuckTime: 0.5
+  barrelGameObj: {fileID: 0}
   barrel: {fileID: 0}
   destination: {fileID: 0}
   hookshotActive: 0
@@ -3826,6 +3828,7 @@ MonoBehaviour:
     numOfKrakenSmash: 0
   uiManager: {fileID: 0}
   splashParticle: {fileID: 0}
+  autoHook: 0
 --- !u!114 &114637182552432806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3862,8 +3865,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 5
+  instantiationId: 5
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114687119095539344
@@ -3888,8 +3891,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114192596627240678}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 7
+  instantiationId: 7
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114754548444789722
@@ -4009,8 +4012,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114221169922914554}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 6
+  instantiationId: 6
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114962331943695858

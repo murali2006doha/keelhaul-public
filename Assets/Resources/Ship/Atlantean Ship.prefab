@@ -391,7 +391,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121440}
   m_LocalRotation: {x: 0, y: 0.96989334, z: 0, w: 0.24353029}
-  m_LocalPosition: {x: 4.86, y: 0.37, z: 7.2365217}
+  m_LocalPosition: {x: 7.0462694, y: 1.512928, z: -5.1496315}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4662262607629996}
@@ -8005,7 +8005,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1736326498
+  randomSeed: 1408858541
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13995,7 +13995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a116f3d7a3241feab0783274284314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostSound: {fileID: 8300000, guid: 0fcb39057f3e44fd1b932e9e07a360ef, type: 3}
+  boostSound: {fileID: 8300000, guid: 74ba27464ff6e164483edc283d33e460, type: 3}
   movementSound: {fileID: 8300000, guid: 8ba1d415158f147d9b54d87ba4ac6fe9, type: 3}
   maxVolume: 0.33
   boostVolume: 0.14
@@ -14054,8 +14054,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114804807475055430}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 6
+  instantiationId: 6
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114385707832624558
@@ -14080,8 +14080,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114461923634993986}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 7
+  instantiationId: 7
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114454242921959622
@@ -14106,8 +14106,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 5
+  instantiationId: 5
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114461923634993986
@@ -14144,8 +14144,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 8
+  instantiationId: 8
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114536067405788696
@@ -14290,6 +14290,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: ethereal
+  - Type: 9
+    SynchronizeType: 0
+    Name: dethereal
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
