@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114704070369234328}
   - component: {fileID: 54590574958582480}
   - component: {fileID: 120535771925419700}
+  - component: {fileID: 114418631547939728}
   m_Layer: 0
   m_Name: Harpoon
   m_TagString: Untagged
@@ -55,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 1225294403626974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.730589, y: 31.42262, z: 5.3154144}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4885881834087898}
   m_Father: {fileID: 0}
@@ -142,6 +143,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.23508847, y: 0.36139405, z: 0.067614146}
   m_Center: {x: 0.042963706, y: -0.024008956, z: 0.00395298}
+--- !u!114 &114418631547939728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225294403626974}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1347817507220a4384f3ff6f7c24546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveUnitsPerSecond:
+    value: {x: 0.58, y: 0, z: 0}
+    space: 1
+  rotateDegreesPerSecond:
+    value: {x: 0, y: 0, z: 260}
+    space: 1
+  ignoreTimescale: 0
 --- !u!114 &114704070369234328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,7 +219,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.39
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:

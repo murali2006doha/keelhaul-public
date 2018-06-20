@@ -34,6 +34,8 @@ public class Harpoon : MonoBehaviour {
   [SerializeField]
   private float harpoonDistanceVictim = 0.1f;
 
+  private UnityAction onEnd;
+
   private bool pullingBack = false;
   void Start () {
 		
@@ -45,6 +47,7 @@ public class Harpoon : MonoBehaviour {
     this.line.SetPosition(1, this.transform.position);
     if (this.pullingBack) {
       if (Vector3.Distance(this.transform.position, this.originPosition) < this.harpoonDistance) {
+		onEnd ();
         Destroy(this.gameObject);
       }
 
@@ -84,12 +87,13 @@ public class Harpoon : MonoBehaviour {
     
   }
 
-  public void Initialize(UnityAction<PlayerInput> onFinish, PlayerInput owner) {
+	public void Initialize(UnityAction<PlayerInput> onFinish, UnityAction onEnd, PlayerInput owner) {
     this.onFinish = onFinish;
     this.pullingBack = false;
     this.owner = owner;
     this.rigidbody.AddForce(this.transform.forward * force);
     this.originPosition = this.transform.position;
+    this.onEnd = onEnd;
     Invoke("PullBack", this.lifeTime);
   }
 
