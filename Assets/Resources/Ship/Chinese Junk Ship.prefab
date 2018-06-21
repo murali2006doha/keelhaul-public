@@ -1034,7 +1034,7 @@ MonoBehaviour:
   scoreDestination: {fileID: 0}
   startingPoint: {x: 0, y: 0, z: 0}
   startingRotation: {x: 0, y: 0, z: 0, w: 0}
-  minHookshotDistance: 0.4
+  minHookshotDistance: 0.7
   motor: {fileID: 114358724233102334}
   bombController: {fileID: 114247642520699438}
   aimComponent: {fileID: 114147462181035602}
@@ -10748,8 +10748,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114961205758043600}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 7
-  instantiationId: 7
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114147462181035602
@@ -10789,8 +10789,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 5
-  instantiationId: 5
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114247642520699438
@@ -10827,8 +10827,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114999716085284838}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 6
-  instantiationId: 6
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114342432854071966
@@ -10897,6 +10897,7 @@ MonoBehaviour:
   arcCannonForce: 100
   numOfCannonBalls: 1
   angleOfCannonShots: 30
+  disabled: 0
   cannonballPath: 
 --- !u!114 &114426165432869570
 MonoBehaviour:
@@ -10979,6 +10980,7 @@ MonoBehaviour:
   altCannonForce: 600
   alternateFirePrefab: {fileID: 132918, guid: f682444f48a75455493d3c5004104773, type: 2}
   cannonBallPos: {fileID: 4036201299870254}
+  disabled: 0
 --- !u!114 &114905322627413398
 MonoBehaviour:
   m_ObjectHideFlags: 1
