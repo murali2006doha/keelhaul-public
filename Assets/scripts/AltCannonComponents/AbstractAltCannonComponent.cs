@@ -19,9 +19,10 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
   protected Vector3 shoot_direction;
   protected UIManager uiManager;
   protected ShipStats stats;
-
+  public bool disabled;
   abstract public void alternateFire();
   abstract public void setupRotation();
+  abstract public void CancelPower();
 
   internal void Initialize(PlayerInput input, Transform shipTransform, GameObject aim, ShipStats stats, UIManager uiManager) {
     this.input = input;
@@ -41,6 +42,9 @@ abstract public class AbstractAltCannonComponent : MonoBehaviour {
 
 
   public void handleShoot() {
+    if (disabled) {
+      return;
+    }
     this.setupRotation();
 
     //if (canShootAlt && input.Actions.Alt_Fire.RawValue > .5f) {

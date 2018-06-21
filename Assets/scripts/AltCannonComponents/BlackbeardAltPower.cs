@@ -20,6 +20,9 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
 
   public AudioClip soundClip;
 
+  public bool hooking;
+  private Harpoon instantiatedHarpoon;
+
   public void setDamageMultiplier(float damageMultiplier) {
     this.damageMultiplier = damageMultiplier;
   }
@@ -34,13 +37,19 @@ public class BlackbeardAltPower : AbstractAltCannonComponent {
   }
 
 	private void OnHarpoonFinish() {
-		this.input.SetLockedStatus (false);
+		this.input.SetLockedStatus (false, false);
+    this.hooking = false;
 	}
 
   public override void alternateFire() {
 		this.input.SetLockedStatus (true);
-    var instantiatedHarpoon = GameObject.Instantiate(harpoonPrefab, this.cannonBallPos.position, this.transform.rotation);
+    this.hooking = true;
+    this.instantiatedHarpoon = GameObject.Instantiate(harpoonPrefab, this.cannonBallPos.position, this.transform.rotation);
 		instantiatedHarpoon.Initialize(this.OnHarpoonEnd, this.OnHarpoonFinish, this.input);
+  }
+
+  public override void CancelPower() {
+    this.instantiatedHarpoon.Cancel();
   }
 
   public override void setupRotation() {

@@ -202,8 +202,11 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
     this.worldCanvas.UpdateHealthSlider(sliderVal);
   }
 
-  public void SetLockedStatus(bool locked) {
+  public void SetLockedStatus(bool locked, bool disableFiring = false) {
     motor.locked = locked;
+    this.centralCannon.disabled = disableFiring;
+    this.altCannonComponent.disabled = disableFiring;
+    this.bombController.disabled = disableFiring;
   }
   private void InitializeHookshot() {
     if (hookshotComponent) {
@@ -245,9 +248,8 @@ public class PlayerInput : MonoBehaviour, StatsInterface {
 
   IEnumerator MoveRoutine(Vector3 position, float speed) {
     while (Vector3.Distance(transform.position, position) > minHookshotDistance) {
-      Debug.Log("reaching here");
-      transform.position = Vector3.Lerp(transform.position, position, speed * Time.deltaTime);
-
+      Debug.Log("reaching here for ship");
+      this.transform.position = Vector3.MoveTowards(this.transform.position, position, speed * Time.deltaTime);
       yield return null;
     }
 

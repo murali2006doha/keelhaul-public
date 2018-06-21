@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,8 +28,10 @@ public class BlackBeardAltCannonComponent : AbstractAltCannonComponent {
 		shoot_direction = aim.transform.position - shipTransform.position;
 	}
 
+  public override void CancelPower() {
+  }
 
-	public override void alternateFire() {
+  public override void alternateFire() {
 
 		initializeCannonBalls ();
 
@@ -48,7 +51,7 @@ public class BlackBeardAltCannonComponent : AbstractAltCannonComponent {
 
 		int count = cannonList.Count;
 		for (int x = 0; x < count; x++) {
-			float random_delay = Random.Range (minDelay, maxDelay);
+			float random_delay = UnityEngine.Random.Range (minDelay, maxDelay);
 			Transform cannonShot = cannonList [0];			
 			fireShot (cannonShot);
 			cannonList.RemoveAt (0);
@@ -63,7 +66,7 @@ public class BlackBeardAltCannonComponent : AbstractAltCannonComponent {
 		for (int i = 0; i < cannonList.Count; i++) {
 
 			Transform temp = cannonList [i];
-			int randomCannon = Random.Range (0, cannonList.Count);
+			int randomCannon = UnityEngine.Random.Range (0, cannonList.Count);
 			cannonList [i] = cannonList [randomCannon];
 			cannonList [randomCannon] = temp;
 

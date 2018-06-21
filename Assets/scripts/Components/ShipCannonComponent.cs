@@ -18,6 +18,8 @@ public class ShipCannonComponent : MonoBehaviour
     protected ShipStats stats;
     protected float forceMultiplier = 20f; //Forward facing force multiplier
 
+    public bool disabled;
+
     protected Vector3 velocity;
     protected Transform shipTransform;
     protected ShipMotorComponent motor;
@@ -74,6 +76,9 @@ public class ShipCannonComponent : MonoBehaviour
 
     public void handleShoot()
     {
+    if (disabled) {
+      return;
+    }
         this.velocity = shipTransform.forward * motor.getVelocity() * GlobalVariables.gameSpeed;
         this.speed = motor.getVelocity() * GlobalVariables.gameSpeed;
         Vector3 shoot_direction = aim.transform.position - shipTransform.position;
