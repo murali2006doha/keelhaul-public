@@ -179,7 +179,7 @@ MonoBehaviour:
   moveBackSpeed: 10
   line: {fileID: 120535771925419700}
   harpoonDistance: 0.7
-  harpoonDistanceVictim: 0.7
+  harpoonDistanceVictim: 0.77
 --- !u!120 &120535771925419700
 LineRenderer:
   m_ObjectHideFlags: 1

@@ -16,11 +16,9 @@ public class BombControllerComponent : MonoBehaviour {
 	List<GameObject> bombList = new List<GameObject>();
 
 	public bool canDropBomb = true;
+  internal bool disabled;
 
-	
-
-
-	internal void Initialize(ShipStats stats, PlayerInput input, UIManager uiManager, 
+  internal void Initialize(ShipStats stats, PlayerInput input, UIManager uiManager, 
                            FreeForAllStatistics gameStats, string bombPath, AbstractGameManager manager)
 	{
 		this.input = input;
@@ -34,6 +32,9 @@ public class BombControllerComponent : MonoBehaviour {
 
 
 	public void handleBomb() {
+    if (disabled) {
+      return;
+    }
 		if (canDropBomb) {
 			if (bombCount != 0) {
 				spawnBomb ();

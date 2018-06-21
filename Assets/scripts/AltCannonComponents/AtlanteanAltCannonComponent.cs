@@ -69,7 +69,11 @@ public class AtlanteanAltCannonComponent : AbstractAltCannonComponent {
 		return this.input;
 	}
 
-    public override void ResetShotAlt()
+  public override void CancelPower() {
+
+  }
+
+  public override void ResetShotAlt()
     {
         base.ResetShotAlt();
         if (instantiated)

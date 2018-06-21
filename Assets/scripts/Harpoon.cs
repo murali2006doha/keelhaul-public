@@ -47,7 +47,7 @@ public class Harpoon : MonoBehaviour {
     this.line.SetPosition(1, this.transform.position);
     if (this.pullingBack) {
       if (Vector3.Distance(this.transform.position, this.originPosition) < this.harpoonDistance) {
-		onEnd ();
+		    onEnd ();
         Destroy(this.gameObject);
       }
 
@@ -59,6 +59,7 @@ public class Harpoon : MonoBehaviour {
       }
 
       this.transform.position = Vector3.MoveTowards(this.transform.position, this.originPosition, this.moveBackSpeed * Time.deltaTime);
+      Debug.Log("reaching here for harpoon");
     }
 
   }
@@ -72,13 +73,16 @@ public class Harpoon : MonoBehaviour {
     }
 
     if (this.pullingBack) {
-      if (this.victims.Contains(otherPlayer)) {
-        this.onFinish(otherPlayer);
+      if (victims.Contains(otherPlayer)) {
       }
-
-    } else {
+    } else  if (!otherPlayer.invincible) {
+      if (otherPlayer.shipName == ShipEnum.BlackbeardShip.ToString()) {
+        if (((BlackbeardAltPower)(otherPlayer.altCannonComponent)).hooking) {
+          otherPlayer.altCannonComponent.CancelPower();
+        }
+      }
       otherPlayer.hit(hitDamage, this.owner.GetId());
-      otherPlayer.SetLockedStatus(true);
+      otherPlayer.SetLockedStatus(true, true);
       if (!this.victims.Contains(otherPlayer)) {
         this.victims.Add(otherPlayer);
       }
@@ -97,6 +101,10 @@ public class Harpoon : MonoBehaviour {
     Invoke("PullBack", this.lifeTime);
   }
 
+  public void Cancel() {
+    this.victims.ForEach(victim => victim.SetLockedStatus(false));
+    Destroy(this.gameObject);
+  }
   private void PullBack() {
     this.pullingBack = true;
     this.rigidbody.isKinematic = true;

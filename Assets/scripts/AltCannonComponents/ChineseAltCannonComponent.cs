@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,11 @@ public class ChineseAltCannonComponent : AbstractAltCannonComponent {
 
 	}
 
-	public override void setupRotation() {
+  public override void CancelPower() {
+    throw new NotImplementedException();
+  }
+
+  public override void setupRotation() {
 		shoot_direction = aim.transform.position - shipTransform.position;
 		this.transform.rotation = Quaternion.LookRotation (shoot_direction.normalized);
 
