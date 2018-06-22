@@ -131,10 +131,5 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
       }
 
 
-    //bool AnyInputEnterWasReleased() {
-        //return actions.Start.WasReleased;
-    //}
-
-
 
 }

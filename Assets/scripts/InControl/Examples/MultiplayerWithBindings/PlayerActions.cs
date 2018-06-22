@@ -242,6 +242,7 @@ public class PlayerActions : PlayerActionSet
     actions.ListenOptions.IncludeMouseButtons = true;
     actions.ListenOptions.IncludeControllers = false;
     actions.ListenOptions.IncludeKeys = true;
+    actions.ListenOptions.IncludeModifiersAsFirstClassKeys = true;
 
     actions.ListenOptions.OnBindingFound = (action, binding) => {
       if (binding == new KeyBindingSource(Key.Escape)) {
