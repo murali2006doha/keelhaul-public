@@ -99,7 +99,7 @@ public class PauseMenu : AbstractMenu
             TogglePlayerActions();
     	}
 
-    	PauseAudio();
+    	//PauseAudio();
     }
 
     //put this in onReturnAction when calling from playerInput
@@ -110,7 +110,7 @@ public class PauseMenu : AbstractMenu
 			Time.timeScale = 1;
 			TogglePlayerActions();
     	}
-		ResumeAudio();
+		  //ResumeAudio();
     }
 
 
@@ -131,7 +131,7 @@ public class PauseMenu : AbstractMenu
             audio.mute = true;
         }
 
-        pauseMusic.Play();
+        //pauseMusic.Play();
     }
 
 
@@ -140,7 +140,7 @@ public class PauseMenu : AbstractMenu
             if (null != audio)
                 audio.mute = false;
         }
-        pauseMusic.Stop();
+        //pauseMusic.Stop();
     }
 
 

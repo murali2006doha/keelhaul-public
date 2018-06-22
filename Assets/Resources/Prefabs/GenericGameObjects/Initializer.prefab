@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4957737826062860}
   - component: {fileID: 114529735256869592}
-  - component: {fileID: 114879928171835194}
-  - component: {fileID: 114771866673502022}
+  - component: {fileID: 114835976196359694}
+  - component: {fileID: 81972640282839550}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -35,34 +35,21 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1854575883002100}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.14783496, y: 0.85041535, z: 0.3269403, w: 0.38477087}
   m_LocalPosition: {x: -18.306156, y: -34.12168, z: -17.005299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114529735256869592
-MonoBehaviour:
+  m_LocalEulerAnglesHint: {x: -42.054, y: 131.307, z: 0.012}
+--- !u!81 &81972640282839550
+AudioListener:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1854575883002100}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 090d7ab216eafbf46b279c3a88310932, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shipSelections:
-  - selectedCharacter: 0
-    team: 0
-  includeKraken: 0
-  isTeam: 0
-  isFirstControllerKraken: 0
-  gameType: 0
-  isMaster: 1
-  playerId: 0
---- !u!114 &114771866673502022
+  m_Enabled: 1
+--- !u!114 &114529735256869592
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -70,32 +57,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 1854575883002100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a61d6d3334053f47be157084fedaadf, type: 3}
+  m_Script: {fileID: 11500000, guid: 090d7ab216eafbf46b279c3a88310932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectionText: {fileID: 0}
-  NetworkedCharacterSelect: {fileID: 1094443328089532, guid: 645a1f2311c084ae882b673e34b8e787,
-    type: 2}
-  initializer: {fileID: 114529735256869592}
-  offlineMode: 0
-  csc: {fileID: 114575166429551640, guid: 645a1f2311c084ae882b673e34b8e787, type: 2}
---- !u!114 &114879928171835194
+  shipSelections:
+  - selectedCharacter: 0
+    team: 0
+    bot: 0
+  - selectedCharacter: 0
+    team: 1
+    bot: 1
+  includeKraken: 0
+  isTeam: 0
+  isFirstControllerKraken: 0
+  map: 8
+  gameType: 2
+  isMaster: 1
+  playerId: 0
+--- !u!114 &114835976196359694
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1854575883002100}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b5e8de77c5b4597ae7fbfb49a95e22, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  logDebugInfo: 1
-  invertYAxis: 0
-  useFixedUpdate: 0
-  dontDestroyOnLoad: 0
-  enableXInput: 1
-  xInputUpdateRate: 0
-  xInputBufferSize: 0
-  enableICade: 0
-  customProfiles: []
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 1
+  instantiationId: 1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0

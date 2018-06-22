@@ -13,8 +13,11 @@ public abstract class AbstractGameManager : MonoBehaviour {
     public void Start()
     {
         var listeners = FindObjectsOfType<AudioListener>();
+
         if (listeners.Length > 1)
         {
+            listeners[0].enabled = true;
+
             for(int x = 1; x < listeners.Length; x++)
             {
                 listeners[x].enabled = false;
