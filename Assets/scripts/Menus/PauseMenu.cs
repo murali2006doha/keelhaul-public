@@ -33,13 +33,15 @@ public class PauseMenu : AbstractMenu
         });
 
         settingsButton.SetAction(() => {
-            this.enabled = false;
-            ToggleSelectables();
+
+          canReturn = true;
+          this.enabled = false;
+          ToggleSelectables();
+
             FindObjectOfType<MenuModel>().settingsMenu.Initialize(this.actions, () => {
                 index = actionSelectables.IndexOf(settingsButton.gameObject);
-                this.enabled = true;
-                ToggleSelectables();
-                FindObjectOfType<MenuModel>().settingsMenu.gameObject.SetActive(false);
+              this.enabled = true;
+              ToggleSelectables();
             });
         });
 

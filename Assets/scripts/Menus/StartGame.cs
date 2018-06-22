@@ -47,11 +47,11 @@ public class StartGame : MonoBehaviour {
     }
 
     bool AnyInputEnterWasReleased() {
-    	if (Input.GetKeyUp(KeyCode.Return)) {
+    if (Input.anyKey) {
     		return true;
     	}
     	foreach (InputDevice device in InputManager.Devices) {
-    		if (device.Action1.WasReleased) {
+      if (device.AnyButtonWasReleased) {
     			return true;
     		}
     	}

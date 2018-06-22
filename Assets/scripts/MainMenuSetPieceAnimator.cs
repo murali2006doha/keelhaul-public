@@ -113,10 +113,27 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     }
 
 
+      bool AnyInputEnterWasReleased()
+      {
+        if (Input.anyKey)
+        {
+          return true;
+        }
+        foreach (InputDevice device in InputManager.Devices)
+        {
+          if (device.AnyButtonWasReleased)
+          {
+            return true;
+          }
+        }
 
-    bool AnyInputEnterWasReleased() {
-        return actions.Start.WasReleased;
-    }
+        return false;
+      }
+
+
+    //bool AnyInputEnterWasReleased() {
+        //return actions.Start.WasReleased;
+    //}
 
 
 
