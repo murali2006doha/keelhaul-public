@@ -895,6 +895,7 @@ GameObject:
   - component: {fileID: 222982423985911048}
   - component: {fileID: 114047310297742396}
   - component: {fileID: 114879213532340850}
+  - component: {fileID: 114412125953102872}
   m_Layer: 5
   m_Name: Pause Settings
   m_TagString: Untagged
@@ -2612,7 +2613,7 @@ MonoBehaviour:
   grapicsMenu: {fileID: 114440712108488680}
   inputBindingsMenu: {fileID: 114309848841034940}
   controllerLayoutMenu: {fileID: 114149651943438040}
-  pauseMenu: {fileID: 114938170776533690}
+  pauseMenu: {fileID: 114412125953102872}
 --- !u!114 &114198501748311136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3616,6 +3617,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 114730392747051242}
+--- !u!114 &114412125953102872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539939394733656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2188cf38aeed74b2d93eeabbd26aa6ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resumeButton: {fileID: 114351063182551000}
+  settingsButton: {fileID: 114443959430382454}
+  exitToMenuButton: {fileID: 114403320032333870}
+  exitToDesktopButton: {fileID: 114228756154277394}
+  pauseMusic: {fileID: 82121015323348624}
 --- !u!114 &114440712108488680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5765,7 +5782,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1979194305948794}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2188cf38aeed74b2d93eeabbd26aa6ac, type: 3}
   m_Name: 

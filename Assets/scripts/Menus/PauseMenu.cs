@@ -33,7 +33,8 @@ public class PauseMenu : AbstractMenu
         });
 
         settingsButton.SetAction(() => {
-
+          
+        this.gameObject.SetActive(false);
           canReturn = true;
           this.enabled = false;
           ToggleSelectables();
@@ -42,6 +43,7 @@ public class PauseMenu : AbstractMenu
                 index = actionSelectables.IndexOf(settingsButton.gameObject);
               this.enabled = true;
               ToggleSelectables();
+        this.gameObject.SetActive(true);
             });
         });
 
