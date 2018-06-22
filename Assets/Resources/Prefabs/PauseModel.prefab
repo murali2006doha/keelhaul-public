@@ -1632,7 +1632,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1546094734693216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e590730f3d3ce4124b1dc8bc4af0a23f, type: 2}
   m_CullingMode: 0
@@ -1649,7 +1649,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1937798095430902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e590730f3d3ce4124b1dc8bc4af0a23f, type: 2}
   m_CullingMode: 0
@@ -1666,7 +1666,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1523449033925496}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e590730f3d3ce4124b1dc8bc4af0a23f, type: 2}
   m_CullingMode: 0
@@ -1683,7 +1683,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756615848192880}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e590730f3d3ce4124b1dc8bc4af0a23f, type: 2}
   m_CullingMode: 0
@@ -1700,7 +1700,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1388083318593056}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e590730f3d3ce4124b1dc8bc4af0a23f, type: 2}
   m_CullingMode: 0

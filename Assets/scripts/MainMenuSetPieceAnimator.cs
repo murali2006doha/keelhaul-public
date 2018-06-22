@@ -9,6 +9,7 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     ControllerSelect cc;
     PlayerActions actions;
     bool notStarted = true;
+  bool holding = false;
 
     [SerializeField]
     bool withKeyboard;
@@ -39,6 +40,8 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
 
     public void Start() {
         actions = PlayerActions.CreateAllControllerBinding();
+
+
         System.Random rand = new System.Random();
         foreach (SeagullAnimator gull in seagulls) {
             gull.Initialize(rand);
@@ -46,7 +49,7 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     }
 
     public void Update() {
-        if (notStarted && AnyInputEnterWasReleased() && this.actions != null) {
+        if (notStarted && AnyInputWasPressed() && this.actions != null) {
             this.SkipAnimation();
             notStarted = false;
         }
@@ -94,7 +97,7 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     }
 
     void OpenMenu() {
-        if (AnyInputEnterWasReleased() && this.actions != null) {
+        if (AnyInputWasPressed() && this.actions != null) {
             this.SkipAnimation();
             notStarted = false;
         }
@@ -113,15 +116,28 @@ public class MainMenuSetPieceAnimator : MonoBehaviour {
     }
 
 
-      bool AnyInputEnterWasReleased()
+  bool AnyInputWasPressed()
       {
-        if (Input.anyKey)
-        {
-          return true;
-        }
+    
+      if (Input.anyKey)
+      {
+        holding = true;
+      }
+
+    if (!Input.anyKey && holding)
+      {
+      holding = false;
+      return true;
+
+      }
+
+
+
+
+
         foreach (InputDevice device in InputManager.Devices)
         {
-          if (device.AnyButtonWasReleased)
+        if (device.AnyButtonWasReleased)
           {
             return true;
           }
