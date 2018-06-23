@@ -14,7 +14,7 @@ public static class NavigationUtils {
     if (HasMouseMoved()) {
       index = NavigateModalWithMouse(actionSelectables, index);
     } else {
-      EventSystem.current.SetSelectedGameObject(null);
+      //EventSystem.current.SetSelectedGameObject(null);
       //actionSelectables[index].GetComponent<ActionSelectable>().setHoveringFalse();
       index = NavigateModal(actions, passedInButtons, index);
     }
