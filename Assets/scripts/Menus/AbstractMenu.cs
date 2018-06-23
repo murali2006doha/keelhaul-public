@@ -65,12 +65,13 @@ public abstract class AbstractMenu : MonoBehaviour
         } 
     }
 
-
+ 
     public virtual void Navigate() {
         if (actionSelectables.Count > 0) {
-            index = NavigationUtils.NavigateModal(this.actions, actionSelectables.ToArray(), index);
+          index = NavigationUtils.algorithm(this.actions, actionSelectables.ToArray(), actionSelectables, index);
+            //index = NavigationUtils.NavigateModal(this.actions, actionSelectables.ToArray(), index);
         }
-        index = NavigationUtils.NavigateModalWithMouse(actionSelectables, index);
+        //index = NavigationUtils.NavigateModalWithMouse(actionSelectables, index);
     }
 
         
