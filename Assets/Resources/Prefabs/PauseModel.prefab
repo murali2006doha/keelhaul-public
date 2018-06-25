@@ -1524,7 +1524,6 @@ GameObject:
   - component: {fileID: 114937863374910680}
   - component: {fileID: 114506664810690126}
   - component: {fileID: 114198501748311136}
-  - component: {fileID: 114938170776533690}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -1552,7 +1551,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1979194305948794}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fac1999a6621f0e4a8dd5ead5ef75fe2, type: 3}
@@ -4040,7 +4039,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1979194305948794}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da83e2b70208d4a0ca605e63adc8cbc1, type: 3}
   m_Name: 
@@ -5776,22 +5775,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114938170776533690
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1979194305948794}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2188cf38aeed74b2d93eeabbd26aa6ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resumeButton: {fileID: 114351063182551000}
-  settingsButton: {fileID: 114443959430382454}
-  exitToMenuButton: {fileID: 114403320032333870}
-  exitToDesktopButton: {fileID: 114228756154277394}
-  pauseMusic: {fileID: 82121015323348624}
 --- !u!114 &114938905962684112
 MonoBehaviour:
   m_ObjectHideFlags: 1
