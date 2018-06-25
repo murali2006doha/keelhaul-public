@@ -11202,10 +11202,10 @@ MonoBehaviour:
   clipPlaneOffset: 0.07
   reflectLayers:
     serializedVersion: 2
-    m_Bits: 4294475743
+    m_Bits: 4294508511
   refractLayers:
     serializedVersion: 2
-    m_Bits: 4294475743
+    m_Bits: 4294508511
   customRefract: 0
   reflect: 1
 --- !u!114 &114834575168787296

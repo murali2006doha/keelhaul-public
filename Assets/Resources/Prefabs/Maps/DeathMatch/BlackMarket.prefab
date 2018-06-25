@@ -484,7 +484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1086016768417210
 GameObject:
   m_ObjectHideFlags: 1
@@ -4761,7 +4761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1816971337001874
 GameObject:
   m_ObjectHideFlags: 1
@@ -20236,7 +20236,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.17666666
+  m_VoxelSize: 0.11666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: ae030dfbed3442044ac25b203ce26b59, type: 2}
 --- !u!114 &114722908528708992
@@ -20278,10 +20278,10 @@ MonoBehaviour:
   clipPlaneOffset: 0.07
   reflectLayers:
     serializedVersion: 2
-    m_Bits: 3757604831
+    m_Bits: 3757637599
   refractLayers:
     serializedVersion: 2
-    m_Bits: 3757604831
+    m_Bits: 3757637599
   customRefract: 0
   reflect: 1
 --- !u!114 &114980888359567488
