@@ -5,8 +5,29 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using InControl;
 using System;
+using UnityEngine.EventSystems;
+
 
 public static class NavigationUtils {
+
+  public static int algorithm(PlayerActions actions, GameObject[] passedInButtons,List<GameObject> actionSelectables, int index) {
+    if (HasMouseMoved()) {
+      index = NavigateModalWithMouse(actionSelectables, index);
+    } else {
+      //EventSystem.current.SetSelectedGameObject(null);
+      //actionSelectables[index].GetComponent<ActionSelectable>().setHoveringFalse();
+      index = NavigateModal(actions, passedInButtons, index);
+    }
+
+    return index;
+
+  }
+
+  static bool HasMouseMoved()
+  {
+    //I feel dirty even doing this 
+    return (Input.GetAxis("Mouse X") != 0) || (Input.GetAxis("Mouse Y") != 0);
+  }
 
     public static int NavigateModalWithMouse(List<GameObject> actionSelectables, int index) {
 
@@ -18,6 +39,8 @@ public static class NavigationUtils {
 
         return index;
     }
+
+
 
     public static int NavigateModal(PlayerActions actions, GameObject[] passedInButtons, int index) { //navigating main menu  
         if (actions == null)
