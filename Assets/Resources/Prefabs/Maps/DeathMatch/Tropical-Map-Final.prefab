@@ -10875,6 +10875,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   pillar: {fileID: 114539767834401544}
   explosion: {fileID: 182170, guid: 9a8ea4b8a802d6a4eba1c86572deaba8, type: 2}
+  autoHook: 1
 --- !u!114 &114439193244704208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10969,10 +10970,10 @@ MonoBehaviour:
   clipPlaneOffset: 0.07
   reflectLayers:
     serializedVersion: 2
-    m_Bits: 4294475743
+    m_Bits: 4294508511
   refractLayers:
     serializedVersion: 2
-    m_Bits: 4294508511
+    m_Bits: 4294475743
   customRefract: 0
   reflect: 1
 --- !u!114 &114834575168787296
