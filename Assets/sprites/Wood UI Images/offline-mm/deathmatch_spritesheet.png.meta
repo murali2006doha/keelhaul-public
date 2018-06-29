@@ -1,0 +1,1376 @@
+fileFormatVersion: 2
+guid: 9673723266d9e466a99e9caf5adcea6e
+timeCreated: 1529617976
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: deathmatch_spritesheet_0
+    21300002: deathmatch_spritesheet_1
+    21300004: deathmatch_spritesheet_2
+    21300006: deathmatch_spritesheet_3
+    21300008: deathmatch_spritesheet_4
+    21300010: deathmatch_spritesheet_5
+    21300012: deathmatch_spritesheet_6
+    21300014: deathmatch_spritesheet_87
+    21300016: deathmatch_spritesheet_8
+    21300018: deathmatch_spritesheet_9
+    21300020: deathmatch_spritesheet_10
+    21300022: deathmatch_spritesheet_11
+    21300024: deathmatch_spritesheet_12
+    21300026: deathmatch_spritesheet_13
+    21300028: deathmatch_spritesheet_14
+    21300030: deathmatch_spritesheet_88
+    21300032: deathmatch_spritesheet_16
+    21300034: deathmatch_spritesheet_17
+    21300036: deathmatch_spritesheet_18
+    21300038: deathmatch_spritesheet_19
+    21300040: deathmatch_spritesheet_20
+    21300042: deathmatch_spritesheet_21
+    21300044: deathmatch_spritesheet_22
+    21300046: deathmatch_spritesheet_89
+    21300048: deathmatch_spritesheet_24
+    21300050: deathmatch_spritesheet_25
+    21300052: deathmatch_spritesheet_26
+    21300054: deathmatch_spritesheet_27
+    21300056: deathmatch_spritesheet_28
+    21300058: deathmatch_spritesheet_29
+    21300060: deathmatch_spritesheet_30
+    21300062: deathmatch_spritesheet_90
+    21300064: deathmatch_spritesheet_32
+    21300066: deathmatch_spritesheet_33
+    21300068: deathmatch_spritesheet_34
+    21300070: deathmatch_spritesheet_35
+    21300072: deathmatch_spritesheet_36
+    21300074: deathmatch_spritesheet_37
+    21300076: deathmatch_spritesheet_38
+    21300078: deathmatch_spritesheet_91
+    21300080: deathmatch_spritesheet_40
+    21300082: deathmatch_spritesheet_41
+    21300084: deathmatch_spritesheet_42
+    21300086: deathmatch_spritesheet_43
+    21300088: deathmatch_spritesheet_44
+    21300090: deathmatch_spritesheet_45
+    21300092: deathmatch_spritesheet_46
+    21300094: deathmatch_spritesheet_92
+    21300096: deathmatch_spritesheet_48
+    21300098: deathmatch_spritesheet_49
+    21300100: deathmatch_spritesheet_50
+    21300102: deathmatch_spritesheet_51
+    21300104: deathmatch_spritesheet_52
+    21300106: deathmatch_spritesheet_53
+    21300108: deathmatch_spritesheet_54
+    21300110: deathmatch_spritesheet_93
+    21300112: deathmatch_spritesheet_56
+    21300114: deathmatch_spritesheet_57
+    21300116: deathmatch_spritesheet_58
+    21300118: deathmatch_spritesheet_59
+    21300120: deathmatch_spritesheet_60
+    21300122: deathmatch_spritesheet_61
+    21300124: deathmatch_spritesheet_62
+    21300126: deathmatch_spritesheet_94
+    21300128: deathmatch_spritesheet_64
+    21300130: deathmatch_spritesheet_65
+    21300132: deathmatch_spritesheet_66
+    21300134: deathmatch_spritesheet_67
+    21300136: deathmatch_spritesheet_68
+    21300138: deathmatch_spritesheet_69
+    21300140: deathmatch_spritesheet_70
+    21300142: deathmatch_spritesheet_95
+    21300144: deathmatch_spritesheet_72
+    21300146: deathmatch_spritesheet_73
+    21300148: deathmatch_spritesheet_74
+    21300150: deathmatch_spritesheet_75
+    21300152: deathmatch_spritesheet_76
+    21300154: deathmatch_spritesheet_77
+    21300156: deathmatch_spritesheet_78
+    21300158: deathmatch_spritesheet_96
+    21300160: deathmatch_spritesheet_80
+    21300162: deathmatch_spritesheet_81
+    21300164: deathmatch_spritesheet_82
+    21300166: deathmatch_spritesheet_83
+    21300168: deathmatch_spritesheet_84
+    21300170: deathmatch_spritesheet_85
+    21300172: deathmatch_spritesheet_86
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3790
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 3790
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 3790
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 3790
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 3790
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 3790
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 3790
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_87
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 3790
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3411
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 3411
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 3411
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 3411
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 3411
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 3411
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 3411
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_88
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 3411
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3032
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 3032
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 3032
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 3032
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 3032
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 3032
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 3032
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2653
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 2653
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 2653
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 2653
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 2653
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 2653
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 2653
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_90
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 2653
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2274
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 2274
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 2274
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 2274
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 2274
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 2274
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 2274
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_91
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 2274
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1895
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1895
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1895
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_43
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1895
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_44
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1895
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_45
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 1895
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_46
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 1895
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_92
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 1895
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1516
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_49
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1516
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_50
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1516
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_51
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1516
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_52
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1516
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_53
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 1516
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_54
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 1516
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_93
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 1516
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1137
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_57
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1137
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_58
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1137
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_59
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1137
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_60
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1137
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_61
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 1137
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_62
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 1137
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_94
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 1137
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 758
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_65
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 758
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_66
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 758
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_67
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 758
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_68
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 758
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_69
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 758
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_70
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 758
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_95
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 758
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 379
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_73
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 379
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_74
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 379
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_75
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 379
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_76
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 379
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_77
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 379
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_78
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 379
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_96
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 386
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_80
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_81
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_82
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_83
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 0
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_84
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 0
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_85
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 0
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: deathmatch_spritesheet_86
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 0
+        width: 560
+        height: 379
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
